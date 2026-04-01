@@ -1,0 +1,840 @@
+# ============================================================================
+# BDO Trainer - Awakened Witch Combo Configuration
+# ============================================================================
+# Class: Witch (Awakening)
+# Weapons: Staff (Main) / Dagger (Off) / Aad Sphera (Awakening — earth/lightning orbs)
+# Damage Type: Magic / Ranged
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Witch/Wizard Class Discord
+#   - Community guides by Absoloote, BigandShiny, HelenaAtreides
+#
+# Notes:
+#   - Witch has NO grab (unlike Wizard who has a grab)
+#   - Known for best-in-class party buffs (Protected Area, Speed Spell, heals)
+#   - Strong large-scale AOE, easy PVE, weaker 1v1 due to no grab
+# ============================================================================
+
+class: Witch
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    voltaic_pulse:
+        name: "Voltaic Pulse"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Lightning orb barrage with Super Armor. Main lightning damage skill."
+        flows_into: ["flow_conductor", "equilibrium_break", "fissure_wave"]
+        core_effect: "Core: Voltaic Pulse - Extra hits and increased damage"
+        notes: "Bread-and-butter damage skill. Always follow with Flow: Conductor."
+
+    flow_conductor:
+        name: "Flow: Conductor"
+        input: "LMB (after Voltaic Pulse)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Voltaic Pulse. Additional lightning burst with Super Armor."
+        flows_into: ["equilibrium_break", "thunder_storm"]
+        notes: "Always chain after Voltaic Pulse for extra damage."
+
+    equilibrium_break:
+        name: "Equilibrium Break"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Massive earth AOE slam with Super Armor. Highest damage awakening skill."
+        flows_into: ["voltaic_pulse", "fissure_wave", "yoke_of_ordeal"]
+        core_effect: "Core: Equilibrium Break - Extra damage and improved AOE range"
+        notes: "Core skill recommendation. Massive AOE and damage. Use off cooldown in PVE."
+
+    yoke_of_ordeal:
+        name: "Yoke of Ordeal"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Earth-element forward slam with Super Armor and knockdown CC."
+        flows_into: ["flow_mass_destruction", "equilibrium_break", "voltaic_pulse"]
+        notes: "Strong engage and damage. Flows into Flow: Mass Destruction."
+
+    flow_mass_destruction:
+        name: "Flow: Mass Destruction"
+        input: "LMB (after Yoke of Ordeal)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Yoke of Ordeal. Additional earth slam with Super Armor."
+        flows_into: ["equilibrium_break", "voltaic_pulse"]
+        notes: "Always chain after Yoke of Ordeal for extra burst."
+
+    fissure_wave:
+        name: "Fissure Wave"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Earth-element ground fissure with Super Armor. Good AOE and knockback."
+        flows_into: ["equilibrium_break", "voltaic_pulse"]
+        notes: "Good filler skill. Pushes mobs together in PVE."
+
+    thunder_storm:
+        name: "Thunder Storm"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Lightning AOE storm with Super Armor. Large area and high damage."
+        flows_into: ["voltaic_pulse", "equilibrium_break"]
+        notes: "Large AOE for pack clearing. Strong in PVE and large-scale PVP."
+
+    gorr_sphera:
+        name: "Gorr Sphera"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Forward Guard healing sphere. Heals self and nearby allies."
+        flows_into: ["voltaic_pulse", "equilibrium_break"]
+        core_effect: "Core: Gorr Sphera - Additional HP recovery amount"
+        notes: "Emergency heal with frontal protection. Use when HP is low."
+
+    teleport_awakening:
+        name: "Teleport (Awakening)"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 7000
+        description: "Iframe teleport. Primary mobility skill. Moves in facing direction."
+        flows_into: ["voltaic_pulse", "equilibrium_break", "yoke_of_ordeal"]
+        notes: "Core movement skill. iframe makes it the safest repositioning tool."
+
+    detonative_flow:
+        name: "Detonative Flow"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Explosive earth detonation with Super Armor and float CC."
+        flows_into: ["equilibrium_break", "voltaic_pulse"]
+        notes: "Good CC and decent damage. Float can set up follow-up damage in PVP."
+
+    toxic_flood:
+        name: "Toxic Flood"
+        input: "E"
+        keys: ["e"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Poison pool AOE with Super Armor. Lingering damage zone."
+        flows_into: ["voltaic_pulse", "equilibrium_break"]
+        notes: "Good for area denial and lingering damage. Strong in large-scale."
+
+    earth_response:
+        name: "Earth Response"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Earth slam with Super Armor and knockdown. Down attack properties."
+        flows_into: ["equilibrium_break", "voltaic_pulse"]
+        notes: "Down attack on knocked targets. Good damage filler."
+
+    flow_earth_tremor:
+        name: "Flow: Earth Tremor"
+        input: "F (after awakening skills)"
+        keys: ["f"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up earth tremor available after multiple awakening skills."
+        flows_into: ["equilibrium_break", "voltaic_pulse"]
+        notes: "Can be chained after many awakening skills. Good filler."
+
+    thunder_bolt:
+        name: "Thunder Bolt"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward lightning bolt with Forward Guard. Quick ranged poke."
+        flows_into: ["voltaic_pulse", "thunder_storm"]
+        notes: "Quick forward poke with frontal protection. Good for PVP spacing."
+
+    gorr_roll:
+        name: "Gorr Roll"
+        input: "A or D + RMB"
+        keys: ["a", "rmb"]
+        keys_alt: ["d", "rmb"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Sideways roll with Super Armor. Secondary movement tool."
+        flows_into: ["voltaic_pulse", "equilibrium_break"]
+        notes: "Quick SA repositioning. Useful for dodging in PVP."
+
+    voltaic_chain:
+        name: "Voltaic Chain"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Lightning chain attack from hotbar. Super Armor throughout."
+        flows_into: ["voltaic_pulse", "equilibrium_break"]
+        notes: "Hotbar skill. Good extra burst damage with protection."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    voltaic_meteor:
+        name: "Voltaic Meteor"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Lightning-infused meteor strike. Super Armor with knockdown CC."
+        notes: "Preferred L56 Rabam. SA knockdown is useful in PVP and PVE."
+
+    earth_tide:
+        name: "Earth Tide"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Earth wave with Super Armor and bound CC. Good protected filler."
+        notes: "Preferred L57 Rabam. SA with CC makes it a safe engage tool."
+
+    lightning_storm_rabam:
+        name: "Lightning Storm"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 15000
+        description: "Enhanced lightning storm from hotbar. Super Armor throughout."
+        notes: "L58 Rabam. Put on hotbar. Extra burst for large-scale fights."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    teleport:
+        name: "Teleport"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        description: "iframe teleport. Can be chained twice with Shift+Space. Primary escape and mobility."
+        notes: "Can double teleport with Shift+Space. Core movement skill for all Witch builds."
+
+    speed_spell:
+        name: "Speed Spell"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Party buff. Increases movement speed and attack/casting speed for nearby allies."
+        notes: "Essential party buff. Keep active at all times in group play."
+
+    healing_lighthouse:
+        name: "Healing Lighthouse"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Places a healing beacon that restores HP to nearby allies over time."
+        notes: "Strong group heal. Place during downtime or before big fights."
+
+    healing_aura:
+        name: "Healing Aura"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        description: "Instant AOE heal around self with Super Armor. Heals self and allies."
+        notes: "Emergency party heal with SA protection. Use when group HP is low."
+
+    protected_area:
+        name: "Protected Area"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        description: "Signature Witch/Wizard skill. Grants 100% resistance to all CC for nearby party members."
+        notes: "THE signature support skill. Huge in node wars and siege. Communicate usage with party."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Secondary movement tool."
+        notes: "iframe sidestep. Can be useful for repositioning in PVP."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 350
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport into pack"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main AOE nuke"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Lightning damage"
+            - skill: "flow_conductor"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "fissure_wave"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "AOE filler"
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Stack all big AOEs."
+        difficulty: intermediate
+        combo_window_ms: 350
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport into center of pack"
+            - skill: "thunder_storm"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Lightning AOE opener, hits wide"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main earth nuke"
+            - skill: "yoke_of_ordeal"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Earth slam"
+            - skill: "flow_mass_destruction"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up earth burst"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Lightning burst"
+            - skill: "flow_conductor"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up lightning"
+            - skill: "fissure_wave"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Clean up remaining mobs"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport into pack"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "One-shot nuke"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Quick burst if anything survives"
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage into pack"
+            - skill: "thunder_storm"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA lightning AOE opener"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main earth nuke"
+            - skill: "yoke_of_ordeal"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Earth slam"
+            - skill: "flow_mass_destruction"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up earth burst"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Lightning burst"
+            - skill: "flow_conductor"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up lightning"
+            - skill: "toxic_flood"
+              input: "E"
+              keys: ["e"]
+              note: "Poison AOE for lingering damage"
+            - skill: "detonative_flow"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Explosive filler"
+            - skill: "earth_response"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Down attack on knocked mobs"
+            - skill: "voltaic_meteor"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor skills. Approach with protection
+            and unload AOE damage. Witch relies on SA trading, not grabs.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe into range"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA lightning poke"
+            - skill: "flow_conductor"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA main nuke"
+            - skill: "yoke_of_ordeal"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA knockdown attempt"
+            - skill: "flow_mass_destruction"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up burst"
+
+    sa_trade_combo:
+        name: "SA Trade Combo (1v1)"
+        description: >
+            Core Witch 1v1 approach. Since Witch has NO grab, you must
+            out-trade with Super Armor skills and land CC through them.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe to reposition"
+            - skill: "detonative_flow"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "SA float attempt — key CC"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA nuke on floated target"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst follow-up"
+            - skill: "flow_conductor"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA lightning follow-up"
+            - skill: "earth_response"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA down attack finisher"
+
+    cc_chain_combo:
+        name: "CC Chain (On Catch)"
+        description: >
+            Damage combo once you land a CC on the target. Since Witch
+            has no grab, capitalize on every CC opportunity.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "detonative_flow"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Float CC — catch the target"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Bound follow-up on CC'd target"
+            - skill: "yoke_of_ordeal"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Knockdown extend"
+            - skill: "flow_mass_destruction"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up earth burst"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Lightning burst finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in Super Armor. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "thunder_bolt"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG stiffness poke"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst"
+            - skill: "flow_conductor"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA finisher"
+
+    punish_combo:
+        name: "Punish Combo (After Ally CC)"
+        description: >
+            Maximum damage combo when your teammate lands a grab or CC.
+            Dump all damage onto the CC'd target immediately.
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Nuke on CC'd target"
+            - skill: "yoke_of_ordeal"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Earth slam follow-up"
+            - skill: "flow_mass_destruction"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Earth burst"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Lightning burst"
+            - skill: "flow_conductor"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Lightning follow-up finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Witch has strong kiting tools
+            with Teleport iframe and heals. Create distance and recover.
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe away from danger"
+            - skill: "gorr_roll"
+              input: "A or D + RMB"
+              keys: ["a", "rmb"]
+              note: "SA side dodge"
+            - skill: "gorr_sphera"
+              input: "Q"
+              keys: ["q"]
+              note: "FG heal while facing enemy"
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Second teleport if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Witch excels in large-scale with
+            massive AOEs and Protected Area support. Stay with group.
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "protected_area"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "PA for party 100% CC resist"
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe into casting range"
+            - skill: "thunder_storm"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA large AOE on enemy blob"
+            - skill: "equilibrium_break"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA earth nuke"
+            - skill: "toxic_flood"
+              input: "E"
+              keys: ["e"]
+              note: "SA poison zone on enemy"
+            - skill: "voltaic_pulse"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA lightning burst"
+            - skill: "flow_conductor"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "yoke_of_ordeal"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA earth slam"
+            - skill: "flow_mass_destruction"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up burst"
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe reposition to safety"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 350
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe forward teleport"
+            - skill: "gorr_roll"
+              input: "A or D + RMB"
+              keys: ["a", "rmb"]
+              note: "SA roll filler while TP on cooldown"
+            - skill: "voltaic_meteor"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam movement filler"
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Movement chain for Witch awakening. Cycle between Teleport,
+            Gorr Roll, and pre-awakening dashes for maximum speed.
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe forward teleport"
+            - skill: "gorr_roll"
+              input: "A or D + RMB"
+              keys: ["a", "rmb"]
+              note: "SA sideways roll"
+            - skill: "earth_tide"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA Rabam movement"
+            - skill: "teleport_awakening"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport if off cooldown"
+            - skill: "evasion"
+              input: "A / D (double tap)"
+              keys: ["a"]
+              note: "iframe sidestep filler"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Voltaic Pulse"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Flow: Conductor"
+          addon_1: "Critical Hit Damage +3% for 5 sec"
+          addon_2: "Extra AP Against Monsters +20 for 7 sec"
+        - skill: "Equilibrium Break"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Yoke of Ordeal"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Thunder Storm"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Fissure Wave"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Dagger Stab"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Magic Arrow"
+      reason: "Unprotected, not useful in awakening rotation."
+    - name: "Multiple Magic Arrows"
+      reason: "Unprotected, slows down rotation."
+    - name: "Lightning"
+      reason: "Pre-awakening version interferes with awakening combos."
+    - name: "Fireball"
+      reason: "Pre-awakening version interferes with awakening combos."
+    - name: "Residual Lightning"
+      reason: "Pre-awakening, not needed in awakening spec."
+    - name: "Earth Response"
+      reason: "Optional lock. Put on HOTBAR if locking from skill bar."
+    - name: "Magical Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Protected Area"
+    - "Healing Lighthouse"
+    - "Healing Aura"
+    - "Speed Spell"
+    - "Gorr Sphera"
+    - "Voltaic Chain"
+    - "Lightning Storm"
+    - "Toxic Flood"
+    - "Earth Response"
+    - "Detonative Flow"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Equilibrium Break"
+    effect: "Extra damage and improved AOE range"
+    reason: >
+        Equilibrium Break with Core gains additional hits and a larger AOE,
+        making it even stronger for both PVE grinding and PVP large-scale.
+        It is the highest-damage awakening skill and is used off cooldown
+        in every rotation. Most Witch players choose this Core first.
+        After getting comfortable, experiment with Voltaic Pulse and
+        Gorr Sphera Cores as well.

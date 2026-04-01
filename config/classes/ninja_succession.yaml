@@ -1,0 +1,848 @@
+# ============================================================================
+# BDO Trainer - Succession Ninja Combo Configuration
+# ============================================================================
+# Class: Ninja (Succession)
+# Weapons: Shortsword (Main) / Shuriken (Off) — Enhanced pre-awakening skills
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Succession Ninja Identity:
+#   - Enhanced Shortsword and Shuriken skills with no Sura Katana usage
+#   - Retains Grab (E) — core PVP tool that bypasses Super Armor
+#   - Retains stealth via Ninjutsu: Shadow Clone for invisible approach
+#   - Crescent Slash and Ninjutsu skills become primary damage dealers
+#   - Faster, more fluid combos than Awakening with tighter animation locks
+#   - High burst windows with enhanced pre-awakening kit scaling
+#   - Still extremely high skill ceiling — stealth assassin playstyle
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Ninja Class Discord
+#   - Community guides by Katan, Dae, Shinobi, BPGaming
+# ============================================================================
+
+class: Ninja
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Succession Skills (Enhanced Pre-Awakening)
+# --------------------------------------------------------------------------
+awakening_skills:
+    crescent_slash:
+        name: "Crescent Slash"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Signature succession skill. Wide arc slash with Super Armor and knockdown."
+        flows_into: ["flash_slash", "shadow_stomp", "ninja_step"]
+        core_effect: "Core: Crescent Slash - Extra hits and massively increased damage"
+        notes: "Primary damage skill. SA throughout. Bread-and-butter of succession rotation."
+
+    ninjutsu_black_moonlight:
+        name: "Ninjutsu: Black Moonlight"
+        input: "S + E"
+        keys: ["s", "e"]
+        protection: "SA"
+        cc: ["float"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Powerful upward slash ninjutsu. Float CC with high burst damage."
+        flows_into: ["crescent_slash", "shadow_clone_attack", "ankle_cutter"]
+        core_effect: "Core: Black Moonlight - Extended Super Armor duration and extra damage"
+        notes: "High burst ninjutsu. Float sets up aerial combos. Use after CC or grab."
+
+    shadow_clone_attack:
+        name: "Ninjutsu: Shadow Clone Attack"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Enhanced shadow clone assault. SA multi-hit with stiffness."
+        flows_into: ["crescent_slash", "ninjutsu_black_moonlight", "flash_slash"]
+        notes: "Strong damage skill with SA. Stiffness enables grab follow-up."
+
+    flash_slash:
+        name: "Flash Slash"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Quick forward dash slash with Super Armor. Gap closer with stiffness."
+        flows_into: ["crescent_slash", "shadow_stomp", "grab"]
+        core_effect: "Core: Flash Slash - Forward Guard added during dash frames"
+        notes: "Good engage tool. SA makes it safe. Stiffness into grab is a core combo."
+
+    shadow_stomp:
+        name: "Shadow Stomp"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Ground stomp with Super Armor. Bound CC for combo setup."
+        flows_into: ["crescent_slash", "ninjutsu_black_moonlight", "grab"]
+        notes: "Key CC tool. SA bound into grab or Crescent Slash for full burst."
+
+    shuriken_throw:
+        name: "Shuriken Throw"
+        input: "RMB"
+        keys: ["rmb"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 3000
+        description: "Ranged shuriken throw. Stiffness on hit. Fast animation."
+        flows_into: ["flash_slash", "ninja_step", "crescent_slash"]
+        notes: "Ranged poke for stiffness. Unprotected but very fast. Good for catching."
+
+    kunai_stab:
+        name: "Kunai Stab"
+        input: "LMB"
+        keys: ["lmb"]
+        protection: "none"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Basic shortsword combo. Enhanced in succession for filler damage."
+        flows_into: ["crescent_slash", "shadow_stomp", "flash_slash"]
+        notes: "Basic attack filler. Use to cancel animations or transition between skills."
+
+    suicide_fall:
+        name: "Suicide Fall"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Aerial dive attack with Super Armor. Knockdown on impact."
+        flows_into: ["crescent_slash", "shadow_stomp", "ankle_cutter"]
+        notes: "SA gap closer with knockdown. Good for engaging from above."
+
+    ankle_cutter:
+        name: "Ankle Cutter"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "none"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Quick low sweep with bound CC. Enhanced damage in succession."
+        flows_into: ["crescent_slash", "ninjutsu_black_moonlight", "grab"]
+        notes: "Bound CC for combo setups. Unprotected — use when target is CC'd or distracted."
+
+    ninja_step:
+        name: "Ninja Step"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 4000
+        description: "Quick directional dash with iframe. Primary movement skill."
+        flows_into: ["crescent_slash", "flash_slash", "shadow_stomp"]
+        notes: "iframe movement. Faster than awakening Silent Step. Chain for mobility."
+
+    ninjutsu_shadow_clone:
+        name: "Ninjutsu: Shadow Clone"
+        input: "Q"
+        keys: ["q"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 30000
+        description: "Stealth / invisibility skill. SA during cast. Turns Ninja invisible."
+        flows_into: ["crescent_slash", "flash_slash", "grab"]
+        notes: "Stealth approach for assassination. SA cast. Duration varies with skill level."
+
+    shadow_slash:
+        name: "Shadow Slash"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Forward Guard backward slash. Knockback CC with frontal protection."
+        flows_into: ["crescent_slash", "flash_slash", "ninja_step"]
+        notes: "Safe poke with FG. Knockback creates distance. Good defensive option."
+
+    ninjutsu_oni_shadow:
+        name: "Ninjutsu: Oni Shadow"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["float"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Enhanced ninjutsu. Super Armor with float CC and high damage."
+        flows_into: ["crescent_slash", "ninjutsu_black_moonlight", "shadow_clone_attack"]
+        core_effect: "Core: Oni Shadow - Increased number of hits and AoE range"
+        notes: "Strong burst ninjutsu. Float into aerials. Core expands the AOE significantly."
+
+    beheading_the_dead:
+        name: "Beheading the Dead"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward rushing slash with Super Armor. Knockdown CC."
+        flows_into: ["crescent_slash", "shadow_stomp", "ankle_cutter"]
+        notes: "SA gap closer with knockdown. Good approach tool between cooldowns."
+
+    blade_spin:
+        name: "Blade Spin"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Spinning blade attack with Super Armor. Stiffness on hit."
+        flows_into: ["crescent_slash", "flash_slash", "grab"]
+        notes: "SA filler with stiffness. Use to approach or set up grab attempts."
+
+    flow_cutting_clouds:
+        name: "Flow: Cutting Clouds"
+        input: "F (after succession skills)"
+        keys: ["f"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up Forward Guard attack available after multiple succession skills."
+        flows_into: ["crescent_slash", "shadow_stomp"]
+        notes: "Can chain after many skills. FG filler between combos. Always weave this in."
+
+    ninjutsu_ghost_step:
+        name: "Ninjutsu: Ghost Step"
+        input: "Shift + Space"
+        keys: ["shift", "space"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 6000
+        description: "Long-range iframe dash. Enhanced in succession for extra distance."
+        flows_into: ["crescent_slash", "flash_slash", "ninjutsu_shadow_clone"]
+        notes: "Key mobility iframe. Longer range than Ninja Step. Use for repositioning."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    serpent_strike:
+        name: "Serpent Strike"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "SA forward lunge with stiffness CC. Good for 1v1 engage and catch."
+        notes: "Preferred L56 Rabam. SA protection and stiffness for combo setups."
+
+    shadow_puncture:
+        name: "Shadow Puncture"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "SA thrust with bound CC. Good movement and combo starter."
+        notes: "Preferred L57 Rabam. SA movement with bound CC into Crescent Slash."
+
+    phantom_shuriken:
+        name: "Phantom Shuriken"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Ranged shuriken barrage from hotbar. Knockdown on hit."
+        notes: "Optional. Hotbar only. Use for ranged poke in group fights or finisher."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Ninja PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Ninja's grab is one of the best in the game. No stance swap needed in succ."
+
+    block_jump:
+        name: "Block Jump"
+        input: "S + Space"
+        keys: ["s", "space"]
+        protection: "iframe"
+        cc: []
+        description: "Quick backward iframe leap. Primary defensive iframe."
+        notes: "Key survival tool. iframe on demand. Use to escape pressure or dodge grabs."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. PVE iframe as well."
+        notes: "Fast iframe for repositioning. Chain into succession skills seamlessly."
+
+    fox_claw:
+        name: "Fox Claw"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["stiffness"]
+        description: "Quick multi-hit slash with SA. Stiffness on hit. Good filler."
+        notes: "Hotbar recommended. SA filler with stiffness for catch attempts."
+
+    ninjutsu_concealment:
+        name: "Ninjutsu: Concealment"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        description: "Short stealth with SA. Brief invisibility for repositioning."
+        notes: "Short stealth alternative. SA cast. Use for quick repositioning in fights."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Fast and fluid for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe dash to pack"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage into pack"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "shadow_clone_attack"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA multi-hit filler"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA bound cleanup"
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Use all ninjutsu and cooldowns."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Gap close into pack"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage and group mobs"
+            - skill: "ninjutsu_oni_shadow"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA float AOE"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on grouped mobs"
+            - skill: "shadow_clone_attack"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA multi-hit follow-up"
+            - skill: "ninjutsu_black_moonlight"
+              input: "S + E"
+              keys: ["s", "e"]
+              note: "High burst ninjutsu"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA bound cleanup"
+            - skill: "beheading_the_dead"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Clean up remaining mobs"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe dash into pack"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_cutting_clouds"
+              input: "F"
+              keys: ["f"]
+              note: "Quick FG follow-up"
+            - skill: "ninjutsu_ghost_step"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "iframe movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns and ninjutsu."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA gap close and stiffness"
+            - skill: "ninjutsu_oni_shadow"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA float opener"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "shadow_clone_attack"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA multi-hit"
+            - skill: "ninjutsu_black_moonlight"
+              input: "S + E"
+              keys: ["s", "e"]
+              note: "High burst ninjutsu"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA bound filler"
+            - skill: "beheading_the_dead"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "SA knockdown"
+            - skill: "blade_spin"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA stiffness filler"
+            - skill: "ankle_cutter"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Bound filler damage"
+            - skill: "serpent_strike"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler damage"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    stealth_engage:
+        name: "Stealth Engage"
+        description: >
+            Classic Ninja assassination opener. Go invisible with Shadow Clone,
+            approach the target unseen, then burst from stealth with succession skills.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "ninjutsu_shadow_clone"
+              input: "Q"
+              keys: ["q"]
+              note: "Go invisible — stealth approach"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA stiffness out of stealth"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab stiffened target"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Full burst on grabbed target"
+            - skill: "ninjutsu_black_moonlight"
+              input: "S + E"
+              keys: ["s", "e"]
+              note: "Float follow-up for extra damage"
+            - skill: "shadow_clone_attack"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher if target survives"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Ninja PVP combo. Land a grab then chain into full succession burst.
+            Ninja's grab bypasses Super Armor — no stance swap needed in succession.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Maximum burst on grabbed target"
+            - skill: "ninjutsu_black_moonlight"
+              input: "S + E"
+              keys: ["s", "e"]
+              note: "Float follow-up"
+            - skill: "shadow_clone_attack"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA multi-hit follow-up"
+            - skill: "ninjutsu_oni_shadow"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Finisher burst on downed target"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use stiffness or bound skills to catch the target off guard,
+            then chain into grab and full Crescent Slash burst.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA bound — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on bound target"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "ninjutsu_black_moonlight"
+              input: "S + E"
+              keys: ["s", "e"]
+              note: "Float follow-up"
+            - skill: "shadow_clone_attack"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Extra burst damage"
+            - skill: "ankle_cutter"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Finisher"
+
+    ranged_catch:
+        name: "Ranged Catch (Shuriken Opener)"
+        description: >
+            Ranged catch combo. Hit Shuriken Throw from distance for stiffness,
+            then close the gap with Flash Slash and grab for full burst.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "shuriken_throw"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Ranged stiffness — catch from distance"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA gap close to stiffened target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Full burst"
+            - skill: "ninjutsu_black_moonlight"
+              input: "S + E"
+              keys: ["s", "e"]
+              note: "Float follow-up"
+            - skill: "ninjutsu_oni_shadow"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Finisher burst"
+
+    quick_burst:
+        name: "Quick Burst (No Grab)"
+        description: >
+            Fast burst combo for duels when grab is on cooldown or risky.
+            Uses protected succession skills for safe damage output.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA gap close with stiffness"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst"
+            - skill: "shadow_clone_attack"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA multi-hit follow-up"
+            - skill: "ninjutsu_oni_shadow"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA burst finisher"
+            - skill: "flow_cutting_clouds"
+              input: "F"
+              keys: ["f"]
+              note: "FG follow-up filler"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use iframes and stealth to
+            create distance. Succession Ninja has excellent escape tools.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "block_jump"
+              input: "S + Space"
+              keys: ["s", "space"]
+              note: "iframe backward leap"
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe dash away"
+            - skill: "ninjutsu_ghost_step"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Long iframe dash to safety"
+            - skill: "ninjutsu_shadow_clone"
+              input: "Q"
+              keys: ["q"]
+              note: "Go invisible to fully reset"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Succession Ninja excels at flanking and
+            assassinating backline targets. Use stealth, burst a target, escape.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "ninjutsu_shadow_clone"
+              input: "Q"
+              keys: ["q"]
+              note: "Stealth approach behind enemy lines"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage into target"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA bound on target"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Maximum burst damage"
+            - skill: "ninjutsu_black_moonlight"
+              input: "S + E"
+              keys: ["s", "e"]
+              note: "SA float follow-up"
+            - skill: "shadow_clone_attack"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA multi-hit finisher"
+            - skill: "block_jump"
+              input: "S + Space"
+              keys: ["s", "space"]
+              note: "iframe escape after burst"
+            - skill: "ninjutsu_ghost_step"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "iframe dash to safety"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe forward dash"
+            - skill: "ninjutsu_ghost_step"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Long iframe dash"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward rush filler"
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Ninja succession. Cycle between Ninja Step,
+            Ghost Step, and Rabam dashes for maximum speed and iframe uptime.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "iframe forward dash"
+            - skill: "ninjutsu_ghost_step"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Long iframe dash"
+            - skill: "shadow_puncture"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA Rabam movement"
+            - skill: "ninja_step"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward rush filler"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Crescent Slash"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Ninjutsu: Black Moonlight"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Shadow Clone Attack"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Flash Slash"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Ninjutsu: Oni Shadow"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Shadow Stomp"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Absolute: Shuriken Flight"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Shortsword Defense"
+      reason: "Unnecessary in succession. Wastes time and slows rotation."
+    - name: "Kunai Stab"
+      reason: "Optional lock. Basic attack can misfire during combos."
+    - name: "Throwing Kick"
+      reason: "Unprotected, can trigger accidentally. Not useful."
+    - name: "Shuriken Malice"
+      reason: "Unprotected ranged skill. Can misfire during fast combos."
+    - name: "Star Throw"
+      reason: "Unprotected shuriken variant. Lock to prevent accidental use."
+    - name: "Suicide Fall"
+      reason: "Optional lock. Put on HOTBAR if used — unprotected without care."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Ninjutsu: Shadow Clone"
+    - "Ninjutsu: Concealment"
+    - "Phantom Shuriken"
+    - "Fox Claw"
+    - "Ankle Cutter"
+    - "Suicide Fall"
+    - "Block Jump"
+    - "Serpent Strike"
+    - "Shadow Puncture"
+    - "Blade Spin"
+    - "Shadow Stomp"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Crescent Slash"
+    effect: "Extra hits and massively increased damage on Crescent Slash"
+    reason: >
+        Crescent Slash with Core gains additional hits and a massive damage
+        boost, making it the strongest succession damage skill by far. This
+        is the universally recommended first Core for Succession Ninja. It
+        amplifies your burst potential in both PVE and PVP grinding. After
+        obtaining this, consider Ninjutsu: Black Moonlight Core for extra
+        burst or Flash Slash Core for the added Forward Guard protection.

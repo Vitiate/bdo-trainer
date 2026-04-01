@@ -1,0 +1,852 @@
+# ============================================================================
+# BDO Trainer - Awakened Tamer Combo Configuration
+# ============================================================================
+# Class: Tamer (Awakening)
+# Weapons: Shortsword (Main) / Trinket (Off) / Celestial Bo Staff (Awakening)
+# Damage Type: Melee
+# Pet: Heilang (assists in combat, provides buffs and extra damage)
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull, grab
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Tamer Class Discord
+#   - Community guides by Akanthe, Tett, Nayeli, FlameRose
+# ============================================================================
+
+class: Tamer
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    moonlight_strike:
+        name: "Moonlight Strike"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Fast forward slash with Super Armor. Primary damage filler and engage tool."
+        flows_into: ["flow_full_moon", "garuda", "legendary_beast_dance"]
+        core_effect: "Core: Moonlight Strike - Extra damage on last hit"
+        notes: "Bread-and-butter damage skill. Always follow with Flow: Full Moon for extra hits."
+
+    flow_full_moon:
+        name: "Flow: Full Moon"
+        input: "LMB (after Moonlight Strike)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Moonlight Strike. Additional multi-hit burst with Super Armor."
+        flows_into: ["garuda", "legendary_beast_dance", "jolt_wave"]
+        notes: "Always chain after Moonlight Strike for extended damage. Down attack properties."
+
+    garuda:
+        name: "Garuda"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Heavy overhead Bo Staff slam with Super Armor. Core awakening nuke with bound CC."
+        flows_into: ["flow_soaring_strike", "moonlight_strike", "legendary_beast_dance"]
+        core_effect: "Core: Garuda - Additional critical hit damage and extra hits"
+        notes: "Highest single-skill damage in awakening kit. Use on cooldown in PVE and PVP."
+
+    flow_soaring_strike:
+        name: "Flow: Soaring Strike"
+        input: "RMB (after Garuda)"
+        keys: ["rmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Aerial follow-up after Garuda. Launches the Bo Staff upward with float CC."
+        flows_into: ["moonlight_strike", "jolt_wave", "allround_spinner"]
+        notes: "Always chain after Garuda for extra burst and float CC."
+
+    legendary_beast_dance:
+        name: "Legendary Beast Dance"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Forward Guard multi-hit combo with Heilang. Fast forward rush with stiffness."
+        flows_into: ["flow_beast_rampage", "garuda", "moonlight_strike"]
+        core_effect: "Core: Legendary Beast Dance - Forward Guard during the skill"
+        notes: "Good protected engage. Heilang attacks in sync. Flows into Flow: Beast Rampage."
+
+    flow_beast_rampage:
+        name: "Flow: Beast Rampage"
+        input: "F (after Legendary Beast Dance)"
+        keys: ["f"]
+        protection: "FG"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up slam after Legendary Beast Dance. Forward Guard with knockdown."
+        flows_into: ["garuda", "moonlight_strike", "jolt_wave"]
+        notes: "Always chain after LBD for extra damage and knockdown CC."
+
+    heilang_howling:
+        name: "Heilang: Howling"
+        input: "Q"
+        keys: ["q"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Heilang howls, buffing AP and attack speed. Super Armor during cast."
+        flows_into: ["moonlight_strike", "garuda", "cloud_stomping"]
+        core_effect: "Core: Heilang: Howling - Increased AP buff amount"
+        notes: "Use before engaging packs or PVP fights. Hotbar recommended for cooldown tracking."
+
+    jolt_wave:
+        name: "Jolt Wave"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Backward swing with Super Armor. Quick repositioning tool with stiffness CC."
+        flows_into: ["bolt_wave", "moonlight_strike", "garuda"]
+        notes: "Good filler skill with SA protection. Use for safe damage between cooldowns."
+
+    bolt_wave:
+        name: "Bolt Wave"
+        input: "LMB (after Jolt Wave)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Jolt Wave. Extended multi-hit chain with Super Armor."
+        flows_into: ["moonlight_strike", "garuda", "legendary_beast_dance"]
+        notes: "Chain after Jolt Wave for extended filler damage."
+
+    allround_spinner:
+        name: "Allround Spinner"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "360-degree spinning Bo Staff attack with Super Armor. Large AOE."
+        flows_into: ["moonlight_strike", "garuda", "jolt_wave"]
+        notes: "Strong AOE clearing skill. Great for grouping mobs in PVE."
+
+    moonrise:
+        name: "Moonrise"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Backward slam with Forward Guard. Repositioning tool with knockdown."
+        flows_into: ["garuda", "moonlight_strike", "cloud_stomping"]
+        notes: "Defensive skill for creating distance while maintaining frontal protection."
+
+    cloud_stomping:
+        name: "Cloud Stomping"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Aerial leap with Super Armor. Primary movement skill and iframe in PVE."
+        flows_into: ["moonlight_strike", "garuda", "legendary_beast_dance"]
+        notes: "Primary awakening movement. PVE iframe (1s invincibility vs monsters). Very fast."
+
+    cloud_ride:
+        name: "Cloud Ride"
+        input: "W + W (hold)"
+        keys: ["w", "w"]
+        protection: "none"
+        cc: []
+        damage: none
+        cooldown_ms: 0
+        description: "Sprint on Heilang's back for fast traversal. Unprotected."
+        flows_into: ["cloud_stomping", "moonlight_strike"]
+        notes: "Fastest base movement. Unprotected so do not use in PVP combat."
+
+    void_lightning:
+        name: "Void Lightning"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Heilang launches lightning at the target. Ranged poke with float CC."
+        flows_into: ["garuda", "moonlight_strike"]
+        notes: "Ranged CC option. Unprotected so use carefully in PVP."
+
+    heilang_bite:
+        name: "Heilang: Bite"
+        input: "LMB + RMB"
+        keys: ["lmb", "rmb"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 6000
+        description: "Command Heilang to bite the target. Ranged Heilang attack with stiffness."
+        flows_into: ["moonlight_strike", "garuda"]
+        notes: "Ranged Heilang poke. Useful for catching fleeing targets in PVP."
+
+    roaring:
+        name: "Roaring"
+        input: "Shift + Q"
+        keys: ["shift", "q"]
+        protection: "SA"
+        cc: ["stun"]
+        damage: low
+        cooldown_ms: 15000
+        description: "Heilang roars, stunning nearby enemies. Super Armor during cast."
+        flows_into: ["garuda", "moonlight_strike", "legendary_beast_dance"]
+        notes: "AOE stun is strong in PVP. Use to set up combos or peel for allies."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    echo_pierce:
+        name: "Echo Pierce"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Heilang-infused forward thrust with Super Armor and stiffness CC."
+        notes: "Preferred L56 Rabam. Good protected movement and CC option."
+
+    heilang_storm:
+        name: "Heilang: Storm"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Heilang creates a whirlwind around the Tamer. Super Armor with knockback."
+        notes: "Preferred L57 Rabam. Good AOE protection and damage. SA movement option."
+
+    beast_claw:
+        name: "Beast Claw"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Heilang leaps forward with a claw slash. Bound CC on hit."
+        notes: "Hotbar skill. Good ranged engage but unprotected. Use with caution in PVP."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Tamer PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Tamer is one of the best 1v1 classes because of this grab."
+
+    heilang_summon:
+        name: "Summon Heilang"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Summons or recalls Heilang. Keep Heilang alive for combos and buffs."
+        notes: "Re-summon if Heilang dies. Heilang must be alive for pet-based skills."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. PVE iframe as well."
+        notes: "Short iframe. Can be used to dodge key abilities in PVP."
+
+    trample:
+        name: "Trample"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Heilang charges forward and tramples enemies. Super Armor."
+        notes: "Good engage tool from pre-awakening. Hotbar recommended."
+
+    leaves_dropping:
+        name: "Leaves Dropping"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["bound"]
+        description: "Aerial slam from pre-awakening. Super Armor with bound CC."
+        notes: "Used for protected CC in PVP. Hotbar recommended."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Leap into mob pack"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy nuke on pack"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Follow-up burst"
+            - skill: "moonlight_strike"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main filler damage"
+            - skill: "flow_full_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended damage"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Leap to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff first, then unload."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "heilang_howling"
+              input: "Q"
+              keys: ["q"]
+              note: "AP buff before engaging"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Leap into pack center"
+            - skill: "allround_spinner"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE spin, group mobs"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main nuke on grouped mobs"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Follow-up damage"
+            - skill: "moonlight_strike"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Filler burst"
+            - skill: "flow_full_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended damage"
+            - skill: "legendary_beast_dance"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Clean up remaining"
+            - skill: "flow_beast_rampage"
+              input: "F"
+              keys: ["f"]
+              note: "Finisher slam"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Leap into pack"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "One-shot burst"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Quick follow-up"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Leap to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "heilang_howling"
+              input: "Q"
+              keys: ["q"]
+              note: "Buff up"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage pack"
+            - skill: "allround_spinner"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE opener"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main nuke"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Follow-up burst"
+            - skill: "moonlight_strike"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Filler damage"
+            - skill: "flow_full_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended filler"
+            - skill: "legendary_beast_dance"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG multi-hit"
+            - skill: "flow_beast_rampage"
+              input: "F"
+              keys: ["f"]
+              note: "FG knockdown"
+            - skill: "jolt_wave"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA filler"
+            - skill: "bolt_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Chain filler"
+            - skill: "echo_pierce"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor skills and Heilang.
+            Approach with protection, then look for a grab or CC opening.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "heilang_howling"
+              input: "Q"
+              keys: ["q"]
+              note: "SA buff before going in"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "SA leap gap close"
+            - skill: "legendary_beast_dance"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG stiffness poke"
+            - skill: "flow_beast_rampage"
+              input: "F"
+              keys: ["f"]
+              note: "FG knockdown follow-up"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA main damage"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "SA float follow-up"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Tamer PVP combo. Land a grab then chain into full burst.
+            Tamer's grab bypasses Super Armor — this is your primary kill tool in duels.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA nuke on grabbed target"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Float follow-up"
+            - skill: "moonlight_strike"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Extended burst damage"
+            - skill: "flow_full_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Finish with full moon chain"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard skills to approach, fish for a stiffness,
+            then chain into grab and full damage. Classic Tamer 1v1 pattern.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "legendary_beast_dance"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG stiffness — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA nuke follow-up"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Float follow-up"
+            - skill: "moonlight_strike"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Extended burst"
+            - skill: "flow_full_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "moonlight_strike"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA engage damage"
+            - skill: "flow_full_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA main nuke"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "SA float finish"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Instant nuke on CC'd target"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Float follow-up"
+            - skill: "moonlight_strike"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Extended burst"
+            - skill: "flow_full_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Finisher damage"
+
+    heilang_engage:
+        name: "Heilang Engage (Pet Opener)"
+        description: >
+            Use Heilang to initiate from range. Send Heilang to stiffness
+            then follow up with a grab or protected rush.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "heilang_bite"
+              input: "LMB + RMB"
+              keys: ["lmb", "rmb"]
+              note: "Ranged Heilang stiffness"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "SA leap to target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab stiffened target"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA nuke after grab"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Float follow-up"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Tamer is very mobile and can
+            use Cloud Stomping and Heilang to kite effectively.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "moonrise"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG backward slam, create distance"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "SA leap away"
+            - skill: "heilang_storm"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA Rabam movement"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue leaping if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on protected burst and
+            avoid overextending. Stay mobile and pick off isolated targets.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "heilang_howling"
+              input: "Q"
+              keys: ["q"]
+              note: "SA buff before engaging blob"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "SA leap into group"
+            - skill: "roaring"
+              input: "Shift + Q"
+              keys: ["shift", "q"]
+              note: "SA AOE stun"
+            - skill: "allround_spinner"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE spin"
+            - skill: "garuda"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA main damage"
+            - skill: "flow_soaring_strike"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "SA follow-up"
+            - skill: "moonlight_strike"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "SA reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward leap"
+            - skill: "heilang_storm"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA Rabam movement"
+            - skill: "echo_pierce"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement filler"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Leap again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Movement chain for Tamer awakening. Cycle between Cloud Stomping,
+            Rabam skills, and Cloud Ride for maximum speed between packs.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward leap"
+            - skill: "heilang_storm"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA Rabam movement"
+            - skill: "echo_pierce"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA dash forward"
+            - skill: "cloud_stomping"
+              input: "Space"
+              keys: ["space"]
+              note: "Leap if off cooldown"
+            - skill: "cloud_ride"
+              input: "W + W (hold)"
+              keys: ["w", "w"]
+              note: "Sprint on Heilang between packs"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Heilang: Howling"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Moonlight Strike"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Garuda"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Allround Spinner"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Legendary Beast Dance"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Jolt Wave"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "HP Recovery +30 per hit"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Scratch"
+      reason: "Unprotected, triggers accidentally and messes up awakening rotation."
+    - name: "Soaring Kick"
+      reason: "Unprotected pre-awakening kick, not useful in awakening play."
+    - name: "Surging Tide"
+      reason: "Pre-awakening version unprotected, conflicts with awakening inputs."
+    - name: "Flash"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Whiplash"
+      reason: "Pre-awakening version not needed in awakening rotation. Lock to prevent conflicts."
+    - name: "Bolt Wave (Pre-Awakening)"
+      reason: "Pre-awakening version conflicts with awakening Bolt/Jolt input."
+    - name: "Fearful Trembling"
+      reason: "Unprotected, slows down rotation if triggered accidentally."
+    - name: "Void Lightning"
+      reason: "Optional lock. Put on HOTBAR if using, unprotected from skill bar."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Heilang: Howling"
+    - "Garuda"
+    - "Allround Spinner"
+    - "Trample"
+    - "Leaves Dropping"
+    - "Summon Heilang"
+    - "Echo Pierce"
+    - "Heilang: Storm"
+    - "Beast Claw"
+    - "Void Lightning"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Garuda"
+    effect: "Additional critical hit damage and extra hits"
+    reason: >
+        Garuda with Core gains significant extra damage, making it the
+        strongest single ability in the Tamer awakening kit. It is your
+        primary nuke in both PVE grinding and PVP burst combos. Most
+        Tamer players choose this Core first. After getting comfortable,
+        experiment with Moonlight Strike and Legendary Beast Dance Cores
+        as well.

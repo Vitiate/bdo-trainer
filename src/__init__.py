@@ -7,6 +7,7 @@ __app_name__ = "BDO Trainer"
 
 from .combo_loader import ComboLoader
 from .overlay import ComboOverlay
+from .settings_gui import SettingsWindow
 from .tray import TrayManager
 
-__all__ = ["ComboLoader", "ComboOverlay", "TrayManager"]
+__all__ = ["ComboLoader", "ComboOverlay", "SettingsWindow", "TrayManager"]

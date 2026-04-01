@@ -42,6 +42,7 @@ logger = logging.getLogger("bdo_trainer")
 # ---------------------------------------------------------------------------
 from src.combo_loader import ComboLoader
 from src.overlay import ComboOverlay
+from src.settings_gui import SettingsWindow
 from src.tray import TRAY_AVAILABLE, TrayManager
 
 # Optional: global hotkeys via the `keyboard` library
@@ -97,6 +98,8 @@ class BDOTrainerApp:
                 on_stop=self._on_stop,
                 on_exit=self._on_exit,
                 on_reposition_toggle=self._on_reposition_toggle,
+                on_setup_guide_toggle=self._on_setup_guide_toggle,
+                on_settings=self._on_settings,
             )
         else:
             logger.warning("Tray icon unavailable — install pystray + Pillow")
@@ -109,6 +112,7 @@ class BDOTrainerApp:
         self._current_class: str = ""
         self._current_spec: str = ""
         self._current_combo_id: str = ""
+        self._shutdown_done: bool = False
 
     # ------------------------------------------------------------------
     # Hotkey helpers
@@ -121,6 +125,7 @@ class BDOTrainerApp:
         bindings = {
             hk.get("start_combo", "F5"): self._hotkey_restart,
             hk.get("stop_combo", "F6"): self._hotkey_stop,
+            hk.get("next_step", "F7"): self._hotkey_next_page,
             hk.get("reset_combo", "F8"): self._hotkey_restart,
         }
 
@@ -170,6 +175,68 @@ class BDOTrainerApp:
         else:
             self.overlay.schedule(self.overlay.disable_reposition)
 
+    def _on_setup_guide_toggle(self, enabled: bool):
+        """Called when user toggles Setup Guide in the tray."""
+        if enabled:
+            self.overlay.schedule(self._show_setup_guide)
+        else:
+            self.overlay.schedule(self.overlay.hide_setup_guide)
+
+    def _show_setup_guide(self):
+        """Fetch guide data for the current class/spec and display it."""
+        cls, spec = self._current_class, self._current_spec
+        if not cls or not spec:
+            logger.warning("Setup guide: no class/spec selected yet")
+            if self.tray:
+                self.tray.set_setup_guide_mode(False)
+                self.tray.notify(
+                    "BDO Trainer", "Select a combo first, then open the Setup Guide."
+                )
+            return
+        guide_data = self.loader.get_setup_guide(cls, spec)
+        if guide_data is None:
+            logger.warning(f"Setup guide: no data for {cls}/{spec}")
+            if self.tray:
+                self.tray.set_setup_guide_mode(False)
+            return
+        self.overlay.show_setup_guide(guide_data)
+
+    def _on_settings(self):
+        """Called when user clicks Settings in the tray."""
+        self.overlay.schedule(self._open_settings)
+
+    def _open_settings(self):
+        """Open the settings window (must run on the Tk thread)."""
+        SettingsWindow.open(
+            self.overlay.root,
+            self.loader,
+            on_save=self._on_settings_saved,
+        )
+
+    def _on_settings_saved(self, new_settings):
+        """Called (on Tk thread) after the user saves settings."""
+        # Update the loader's in-memory settings so every getter reflects
+        # the new values immediately.
+        self.loader.settings = new_settings
+
+        # Re-apply key remapping to the overlay
+        self.overlay.set_key_remap(self.loader.get_key_remap())
+
+        # Re-apply idle-reset timeout
+        timing = self.loader.get_timing_settings()
+        self.overlay.set_idle_reset_ms(timing.get("idle_reset_timeout_ms", 0))
+
+        # Re-register global hotkeys with potentially new keys
+        self._remove_hotkeys()
+        self._setup_hotkeys()
+
+        logger.info("Live-reloaded settings from GUI")
+
+    def _hotkey_next_page(self):
+        """Advance the setup-guide page (F7) when guide is showing."""
+        if self.overlay.setup_guide_active:
+            self.overlay.schedule(self.overlay.next_setup_page)
+
     def _hotkey_restart(self):
         """Re-start (or start) the current combo via hotkey."""
         cls, spec, cid = (
@@ -188,6 +255,12 @@ class BDOTrainerApp:
     # ------------------------------------------------------------------
     def _start_combo(self, class_name: str, spec_name: str, combo_id: str):
         """Resolve the combo data and hand it to the overlay."""
+        # Dismiss setup guide if it's showing
+        if self.overlay.setup_guide_active:
+            self.overlay.hide_setup_guide()
+            if self.tray:
+                self.tray.set_setup_guide_mode(False)
+
         combo_data = self.loader.get_combo(class_name, spec_name, combo_id)
         if combo_data is None:
             logger.error(f"Combo not found: {class_name}/{spec_name}/{combo_id}")
@@ -215,7 +288,10 @@ class BDOTrainerApp:
             self.tray.notify("BDO Trainer", f"Combo: {combo_name}")
 
     def _shutdown(self):
-        """Gracefully tear everything down."""
+        """Gracefully tear everything down (idempotent)."""
+        if self._shutdown_done:
+            return
+        self._shutdown_done = True
         logger.info("Shutting down…")
         self._remove_hotkeys()
         if self.tray:

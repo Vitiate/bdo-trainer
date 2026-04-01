@@ -1,0 +1,856 @@
+# ============================================================================
+# BDO Trainer - Succession Berserker Combo Configuration
+# ============================================================================
+# Class: Berserker (Succession)
+# Weapons: Axe (Main) / Ornamental Knot (Off)
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull, grab
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Berserker Class Discord
+#   - Community guides by Absolute, GrumpyGreen, Vert, Duodecil
+# ============================================================================
+
+class: Berserker
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Succession Skills (Enhanced Axe Skills)
+# --------------------------------------------------------------------------
+awakening_skills:
+    frenzied_destroyer:
+        name: "Frenzied Destroyer"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Enhanced spinning axe combo with Super Armor. Succession's main damage skill."
+        flows_into: ["ancient_power", "raging_thunder", "slugfest"]
+        core_effect: "Core: Frenzied Destroyer - Extra hits and increased damage"
+        notes: "Bread-and-butter damage skill. Hold LMB to extend spin. Very high total damage."
+
+    raging_thunder:
+        name: "Raging Thunder"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Enhanced spinning rush with Super Armor. Multi-hit AOE with knockback."
+        flows_into: ["frenzied_destroyer", "ancient_power", "slugfest"]
+        notes: "Strong AOE damage. Hold F to extend spin. Great for PVE pack clearing."
+
+    titan_blow:
+        name: "Titan Blow"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Super Armor forward axe dash. Fast gap closer with stiffness CC."
+        flows_into: ["slugfest", "frenzied_destroyer", "raging_thunder"]
+        notes: "Primary engage tool. Flows directly into Slugfest with F."
+
+    slugfest:
+        name: "Slugfest"
+        input: "F"
+        keys: ["f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 4000
+        description: "Overhead axe slam with Super Armor and knockdown. Standalone or after Titan Blow."
+        flows_into: ["frenzied_destroyer", "ancient_power", "ground_lifting"]
+        notes: "Can be used standalone or as Titan Blow follow-up. Knockdown sets up combos."
+
+    ground_lifting:
+        name: "Ground Lifting"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Upward axe strike with Super Armor and float CC."
+        flows_into: ["frenzied_destroyer", "raging_thunder", "ancient_power"]
+        notes: "Good for popping enemies into the air. Float sets up air attacks."
+
+    elastic_force:
+        name: "Elastic Force"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Enhanced shockwave slam. Super Armor with heavy knockback."
+        flows_into: ["frenzied_destroyer", "ancient_power", "raging_thunder"]
+        core_effect: "Core: Elastic Force - Increased damage and extended hitbox"
+        notes: "High burst damage. Good for PVE grouping and PVP trading."
+
+    headbutt:
+        name: "Headbutt"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["stun"]
+        damage: low
+        cooldown_ms: 5000
+        description: "Quick headbutt with stun CC. Unprotected but fast."
+        flows_into: ["grab", "frenzied_destroyer", "slugfest"]
+        notes: "Key CC tool. Stun sets up grab. Be careful — unprotected."
+
+    stomp:
+        name: "Stomp"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Ground stomp with Forward Guard and bound CC."
+        flows_into: ["frenzied_destroyer", "raging_thunder", "ancient_power"]
+        core_effect: "Core: Stomp - Forward Guard during the skill"
+        notes: "Safe CC with frontal protection. Bound sets up down attacks."
+
+    ancient_power:
+        name: "Ancient Power"
+        input: "LMB (after succession skills)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up available after many succession skills. Extra burst with SA."
+        flows_into: ["frenzied_destroyer", "raging_thunder"]
+        notes: "Chain after Frenzied Destroyer, Raging Thunder, or Elastic Force for extra damage."
+
+    predatory_hunt:
+        name: "Predatory Hunt"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Forward Guard into Super Armor transition. Bound CC on hit."
+        flows_into: ["frenzied_destroyer", "slugfest", "raging_thunder"]
+        notes: "Starts with FG, transitions to SA. Good protected engage with bound CC."
+
+    beastly_wind_slash:
+        name: "Beastly Wind Slash"
+        input: "E (Succession)"
+        keys: ["e"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Wide-arc axe swing with Super Armor and knockback."
+        flows_into: ["frenzied_destroyer", "raging_thunder", "ancient_power"]
+        notes: "Note: E also used for Grab in neutral. Input is context-dependent."
+
+    corpse_storm:
+        name: "Corpse Storm"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward axe rush with Super Armor and stiffness CC."
+        flows_into: ["slugfest", "frenzied_destroyer", "ground_lifting"]
+        notes: "Good alternative engage with stiffness. Can flow into Slugfest."
+
+    fearsome_tyrant:
+        name: "Fearsome Tyrant"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 12000
+        description: "Enhanced succession slam with Super Armor. High burst."
+        flows_into: ["frenzied_destroyer", "ancient_power"]
+        core_effect: "Core: Fearsome Tyrant - Extra hits and extended Super Armor"
+        notes: "Long cooldown but very high damage. Save for burst windows."
+
+    tackle:
+        name: "Tackle"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Super Armor forward charge. Primary succession movement skill."
+        flows_into: ["titan_blow", "frenzied_destroyer", "slugfest"]
+        notes: "Main gap closer. PVE iframe (1s invincibility vs monsters)."
+
+    devastation:
+        name: "Devastation"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Heavy overhead axe slam from hotbar. Super Armor throughout."
+        flows_into: ["frenzied_destroyer", "raging_thunder"]
+        notes: "Hotbar skill. Strong filler damage with SA protection."
+
+    wrath_of_beast:
+        name: "Wrath of Beast"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Ground pound AOE from hotbar. Super Armor with knockdown."
+        flows_into: ["frenzied_destroyer", "raging_thunder"]
+        notes: "Hotbar skill. Good extra burst with protection."
+
+    rock_smash:
+        name: "Rock Smash"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward axe rush with Super Armor. Quick engage tool."
+        flows_into: ["slugfest", "frenzied_destroyer", "raging_thunder"]
+        notes: "Good alternative engage. Can flow into Slugfest."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    titan_slam:
+        name: "Titan Slam"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "SA enhanced ground slam. Combines Headbutt into a powerful knockdown strike."
+        notes: "Preferred L56 Rabam. Good protected engage with knockdown."
+
+    whirlwind_crusher:
+        name: "Whirlwind Crusher"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "SA spinning axe rush. Good for movement and AOE damage."
+        notes: "Preferred L57 Rabam. Useful for protected movement and pack clearing."
+
+    earth_shattering_strike:
+        name: "Earth Shattering Strike"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Enhanced axe slam from hotbar. Super Armor with bound CC."
+        notes: "Optional. Put on hotbar. Decent burst with protection."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Berserker PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Berserker is THE grab class. Practice grab timing relentlessly."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Dodge incoming attacks."
+        notes: "PVE iframe. Can be locked in PVP to prevent accidental use."
+
+    lava_piercer:
+        name: "Lava Piercer"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stiffness"]
+        description: "Ranged frontal guard spear attack. Good for poking at range."
+        notes: "Put on hotbar. Useful for ranged poke with frontal protection."
+
+    giant_leap:
+        name: "Giant Leap"
+        input: "Shift + Space"
+        keys: ["shift", "space"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Long-range leaping slam. Super Armor engage tool."
+        notes: "Good engage from distance. Knockdown on landing. Use to open fights."
+
+    shake_off:
+        name: "Shake Off"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        description: "Self-buff that removes debuffs. Super Armor during animation."
+        notes: "Hotbar recommended. Useful for cleansing slows and debuffs."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "SA charge into pack"
+            - skill: "titan_blow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash engage"
+            - skill: "slugfest"
+              input: "F"
+              keys: ["f"]
+              note: "Knockdown follow-up"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main spin damage — hold to extend"
+            - skill: "ancient_power"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "Charge to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Use all cooldowns for maximum AOE."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "SA charge into pack center"
+            - skill: "raging_thunder"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA spin for AOE grouping"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main spin damage"
+            - skill: "ancient_power"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "elastic_force"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Shockwave burst"
+            - skill: "ground_lifting"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Float stragglers"
+            - skill: "titan_blow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Reposition if needed"
+            - skill: "slugfest"
+              input: "F"
+              keys: ["f"]
+              note: "Clean up remaining"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "Charge into pack"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot spin burst"
+            - skill: "titan_blow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Dash to next pack"
+            - skill: "whirlwind_crusher"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage into pack"
+            - skill: "fearsome_tyrant"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA high burst opener"
+            - skill: "raging_thunder"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA spin AOE"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main spin damage"
+            - skill: "ancient_power"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "elastic_force"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Shockwave burst"
+            - skill: "ground_lifting"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Float for down attack"
+            - skill: "titan_blow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Reposition"
+            - skill: "slugfest"
+              input: "F"
+              keys: ["f"]
+              note: "Extend combo"
+            - skill: "wrath_of_beast"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA burst filler"
+            - skill: "titan_slam"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam knockdown"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor skills to approach.
+            Succession Berserker chains SA skills to trade into grabs.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close"
+            - skill: "titan_blow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash engage"
+            - skill: "slugfest"
+              input: "F"
+              keys: ["f"]
+              note: "SA knockdown follow-up"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main spin damage"
+            - skill: "ancient_power"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "elastic_force"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA finisher burst"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Berserker PVP combo. Land the grab then chain into full burst.
+            Berserker's grab bypasses Super Armor — this is your primary kill tool.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "ground_lifting"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Float on grabbed target"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main spin burst on CC'd target"
+            - skill: "ancient_power"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "elastic_force"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Shockwave finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Headbutt stun to set up a grab, then chain into
+            full damage. Classic Berserker catch rotation.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "titan_blow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash in — stiffness on hit"
+            - skill: "headbutt"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Stun the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stunned target"
+            - skill: "ground_lifting"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Float follow-up"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main spin burst"
+            - skill: "elastic_force"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Shockwave finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. High damage quickly while
+            staying protected. No grab needed — pure SA trading.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "corpse_storm"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "SA forward rush with stiffness"
+            - skill: "slugfest"
+              input: "F"
+              keys: ["f"]
+              note: "SA knockdown"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA spin burst"
+            - skill: "ancient_power"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "ground_lifting"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Float on CC'd target"
+            - skill: "fearsome_tyrant"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA heavy burst"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main spin damage"
+            - skill: "elastic_force"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Shockwave finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use SA movement to create distance.
+            Succession Berserker is slow but has strong SA chaining to escape.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "whirlwind_crusher"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA spin movement out"
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "SA charge away"
+            - skill: "stomp"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG bound if they chase"
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue charging if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on SA damage into groups.
+            Berserker excels at tanking and grabbing key targets.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "SA engage into group"
+            - skill: "predatory_hunt"
+              input: "Q"
+              keys: ["q"]
+              note: "FG/SA opener with bound"
+            - skill: "raging_thunder"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA spin into blob"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA spin AOE burst"
+            - skill: "ancient_power"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "elastic_force"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA shockwave into group"
+            - skill: "titan_slam"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam SA knockdown"
+            - skill: "whirlwind_crusher"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA reposition out"
+
+    stomp_engage:
+        name: "Stomp FG Engage"
+        description: >
+            Use Forward Guard Stomp as a safe poke to fish for bound CC,
+            then follow up with grab or full burst combo.
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "stomp"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG bound poke — safe CC attempt"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on bound target"
+            - skill: "frenzied_destroyer"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main spin burst"
+            - skill: "ancient_power"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "elastic_force"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Shockwave finisher"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward charge"
+            - skill: "whirlwind_crusher"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA spin movement"
+            - skill: "titan_blow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash forward"
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "Charge again if off cooldown"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Berserker succession. Cycle between Tackle,
+            Whirlwind Crusher, and Titan Blow for maximum speed. Succession
+            Berserker is slow but these chains keep momentum going.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward charge"
+            - skill: "titan_blow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash forward"
+            - skill: "whirlwind_crusher"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA spin movement"
+            - skill: "titan_slam"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA Rabam movement"
+            - skill: "tackle"
+              input: "Space"
+              keys: ["space"]
+              note: "Charge again if off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Frenzied Destroyer"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Raging Thunder"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Elastic Force"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Slugfest"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Ground Lifting"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Titan Blow"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "HP Recovery +30 per hit for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Absolute: Kick"
+      reason: "Unprotected, can trigger accidentally."
+    - name: "Hunting Dash"
+      reason: "Unprotected, slows down rotation."
+    - name: "Rage Hammer"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Iron Buster Shot"
+      reason: "Not used in succession. Lock to prevent input conflicts."
+    - name: "Cannon Barrage"
+      reason: "Awakening skill, not relevant in succession."
+    - name: "Devastation"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+    - name: "Wrath of Beast"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Devastation"
+    - "Wrath of Beast"
+    - "Lava Piercer"
+    - "Shake Off"
+    - "Titan Slam"
+    - "Whirlwind Crusher"
+    - "Earth Shattering Strike"
+    - "Predatory Hunt"
+    - "Giant Leap"
+    - "Grab"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Frenzied Destroyer"
+    effect: "Extra hits and increased damage during spin"
+    reason: >
+        Frenzied Destroyer with Core gains extra hits and significantly
+        increased damage, making it the strongest sustained skill in
+        Succession Berserker's kit. Most Berserker players choose this
+        Core first for PVE grinding and PVP trading. After getting
+        comfortable, experiment with Elastic Force and Fearsome Tyrant
+        Cores as well.

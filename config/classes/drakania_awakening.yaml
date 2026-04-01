@@ -1,0 +1,852 @@
+# ============================================================================
+# BDO Trainer - Awakened Drakania Combo Configuration
+# ============================================================================
+# Class: Drakania (Awakening)
+# Weapons: Slayer (Main — Greatsword) / Shard (Off) / Trion (Awakening — Dragon Lance + Wings)
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Class Notes:
+#   - Drakania has NO grab — must rely on CC chains and protected trading
+#   - Dragon / lance theme with aerial attacks and high burst damage
+#   - Tanky class with strong Super Armor and Forward Guard coverage
+#   - Awakening uses the Trion (dragon lance + draconic wings)
+#   - Excels at trading damage in Super Armor and punishing with burst
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Drakania Class Discord
+#   - Community guides by Aethon, Drakthar, HexeDrak
+# ============================================================================
+
+class: Drakania
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    hexeblood:
+        name: "Hexeblood"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 6000
+        description: "Powerful spear thrust with Super Armor. Main awakening damage skill."
+        flows_into: ["flow_hexeblood", "dragonfire", "markthanans_wings"]
+        notes: "Bread-and-butter damage skill. Always follow up with Flow: Hexeblood."
+
+    flow_hexeblood:
+        name: "Flow: Hexeblood"
+        input: "LMB (after Hexeblood)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up lance strike after Hexeblood. Additional burst with Super Armor."
+        flows_into: ["dragonfire", "draconic_charge", "markthanans_wings"]
+        notes: "Always chain after Hexeblood for extra damage. Down attack properties."
+
+    markthanans_wings:
+        name: "Markthanan's Wings"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Flying dive attack using draconic wings. Highest burst damage skill. Super Armor throughout."
+        flows_into: ["hexeblood", "trion_burst", "dragonfire"]
+        core_effect: "Core: Markthanan's Wings - Extra damage on all hits and additional Air Attack damage"
+        notes: "Signature Drakania burst skill. Aerial dive with massive damage. Core priority."
+
+    draconic_charge:
+        name: "Draconic Charge"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Super Armor lance charge forward. Good gap closer with knockback."
+        flows_into: ["flow_scale_strike", "hexeblood", "markthanans_wings"]
+        notes: "Primary engage tool. Covers good distance with SA protection."
+
+    flow_scale_strike:
+        name: "Flow: Scale Strike"
+        input: "F (after Draconic Charge)"
+        keys: ["f"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up Forward Guard strike after Draconic Charge. Quick stiffness CC."
+        flows_into: ["hexeblood", "markthanans_wings", "trion_burst"]
+        notes: "Always chain after Draconic Charge. FG transitions well into burst skills."
+
+    dragonfire:
+        name: "Dragonfire"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Draconic breath attack in a cone. Super Armor with stiffness on hit."
+        flows_into: ["flow_dragonfire", "hexeblood", "markthanans_wings"]
+        core_effect: "Core: Dragonfire - Increased AOE range and extra hit"
+        notes: "Good AOE for PVE clearing. Stiffness useful for PVP catch setups."
+
+    flow_dragonfire:
+        name: "Flow: Dragonfire"
+        input: "LMB (after Dragonfire)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: []
+        damage: medium
+        cooldown_ms: 0
+        description: "Extended breath attack after Dragonfire. Additional fire damage."
+        flows_into: ["hexeblood", "draconic_charge"]
+        notes: "Extends the Dragonfire hit window. Good filler in PVE rotations."
+
+    trion_burst:
+        name: "Trion Burst"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Massive AOE explosion centered on Drakania. Super Armor with knockdown."
+        flows_into: ["hexeblood", "markthanans_wings", "draconic_charge"]
+        core_effect: "Core: Trion Burst - Additional knockdown hit and increased AOE radius"
+        notes: "Strong AOE burst. Use in PVE for packs and PVP for group fights."
+
+    dragon_scale:
+        name: "Dragon Scale"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Activates draconic guard shield. Forward Guard with DP buff and HP recovery."
+        flows_into: ["hexeblood", "draconic_charge", "tail_whip"]
+        notes: "Defensive buff. Use to recover HP and tank damage from the front."
+
+    dragon_flight:
+        name: "Dragon Flight"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 5000
+        description: "Super Armor aerial dash using wings. Primary movement skill in awakening."
+        flows_into: ["markthanans_wings", "hexeblood", "draconic_charge"]
+        notes: "Main movement skill. SA throughout. PVE iframe (1s invincibility vs monsters)."
+
+    tail_whip:
+        name: "Tail Whip"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard sweeping tail attack with bound CC."
+        flows_into: ["hexeblood", "markthanans_wings", "trion_burst"]
+        notes: "Good defensive CC tool. FG keeps you protected while fishing for bound."
+
+    wing_strike:
+        name: "Wing Strike"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "none"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward rushing wing slash with float CC. Unprotected."
+        flows_into: ["hexeblood", "markthanans_wings"]
+        notes: "Float is useful for extending CC chains but skill is unprotected. Use carefully."
+
+    trion_sweep:
+        name: "Trion Sweep"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 4000
+        description: "Quick forward lance sweep with Forward Guard. Fast stiffness poke."
+        flows_into: ["hexeblood", "draconic_charge", "markthanans_wings"]
+        core_effect: "Core: Trion Sweep - Forward Guard maintained during the full animation"
+        notes: "Fast FG poke. Good for testing opponent's defense in PVP."
+
+    dragon_pierce:
+        name: "Dragon Pierce"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Ranged lance thrust from hotbar. Super Armor with knockback."
+        flows_into: ["hexeblood", "draconic_charge"]
+        notes: "Hotbar skill. Good ranged poke with SA protection."
+
+    wing_tempest:
+        name: "Wing Tempest"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "AOE wing gust attack from hotbar. Super Armor with knockdown."
+        flows_into: ["hexeblood", "markthanans_wings"]
+        notes: "Hotbar skill. Strong AOE for group fights and PVE clearing."
+
+    draconic_descent:
+        name: "Draconic Descent"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 14000
+        description: "Aerial slam from hotbar. Leaps into the air and crashes down with bound."
+        flows_into: ["hexeblood", "trion_burst"]
+        notes: "Hotbar skill. Powerful burst with bound. Good for punishing CC'd targets."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    flame_lance:
+        name: "Flame Lance"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Fire-infused lance thrust with Super Armor. Good for movement and damage filler."
+        notes: "Preferred L56 Rabam. SA movement with stiffness. Good for engage and disengage."
+
+    draconic_barrier:
+        name: "Draconic Barrier"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 8000
+        description: "SA protective dash with DP buff. Movement skill with defensive bonus."
+        notes: "Preferred L57 Rabam. Useful for protected repositioning. SA throughout."
+
+    infernal_breath:
+        name: "Infernal Breath"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 14000
+        description: "AOE fire breath from hotbar. Super Armor with wide cone damage."
+        notes: "Decent L58 Rabam. Good for PVE clearing. Hotbar only."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Essential defensive tool."
+        notes: "PVE iframe. Lock in PVP to prevent accidental use if desired."
+
+    draconic_slash:
+        name: "Draconic Slash"
+        input: "W + RMB (pre-awakening)"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Pre-awakening greatsword slash with Super Armor. Good movement filler."
+        notes: "Useful for transitions between awakening skills and movement."
+
+    brimbolt:
+        name: "Brimbolt"
+        input: "S + E"
+        keys: ["s", "e"]
+        protection: "none"
+        cc: ["stiffness"]
+        description: "Ranged fire projectile. Unprotected but useful for pulling mobs and ranged poke."
+        notes: "Good for pulling mobs in PVE. Ranged stiffness useful in PVP at distance."
+
+    untamed_surge:
+        name: "Untamed Surge"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        description: "Self-buff with Super Armor. Increases AP and attack speed."
+        notes: "Use before engaging. Buff lasts 30 seconds. SA during cast."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA aerial dash to pack"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main SA damage"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "dragonfire"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA breath attack AOE"
+            - skill: "markthanans_wings"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Flying dive burst"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff first, then unload all cooldowns."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "untamed_surge"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engaging"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close into pack"
+            - skill: "trion_burst"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE explosion, group mobs"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main SA burst"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "markthanans_wings"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Aerial dive finisher"
+            - skill: "dragonfire"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Breath attack to clean up"
+            - skill: "flow_dragonfire"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend breath damage"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up if needed"
+            - skill: "flame_lance"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns efficiently."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "untamed_surge"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA engage into pack"
+            - skill: "trion_burst"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE opener"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main SA burst"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "markthanans_wings"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Aerial dive burst"
+            - skill: "dragonfire"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Breath attack AOE"
+            - skill: "flow_dragonfire"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend breath"
+            - skill: "draconic_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA reposition to stragglers"
+            - skill: "flow_scale_strike"
+              input: "F"
+              keys: ["f"]
+              note: "FG follow-up"
+            - skill: "draconic_descent"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Burst finisher"
+            - skill: "wing_tempest"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "AOE cleanup"
+            - skill: "flame_lance"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor skills. Approach with SA protection
+            then look for a CC opening. Drakania has no grab so must trade or CC.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "untamed_surge"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before going in"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA aerial gap close"
+            - skill: "draconic_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA lance charge into target"
+            - skill: "flow_scale_strike"
+              input: "F"
+              keys: ["f"]
+              note: "FG stiffness poke"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage on stiffened target"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up burst"
+
+    aerial_burst:
+        name: "Aerial Burst (Signature Combo)"
+        description: >
+            Drakania's signature aerial combo. Dive from the air with
+            Markthanan's Wings then chain into full burst. High risk, high reward.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA aerial approach"
+            - skill: "markthanans_wings"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Flying dive — bound on hit"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst on bound target"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "trion_burst"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE explosion finisher"
+            - skill: "dragonfire"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA breath if target survives"
+
+    cc_chain:
+        name: "CC Chain (No Grab)"
+        description: >
+            CC chain combo for Drakania. Since Drakania has no grab, you must
+            fish for stiffness or float into bound, then burst. Requires patience.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "trion_sweep"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG stiffness — catch the target"
+            - skill: "wing_strike"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Float on stiffened target"
+            - skill: "markthanans_wings"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Diving bound — extend CC"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "trion_burst"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE knockdown finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly while
+            staying in SA skills. No CC setup needed — pure damage trade.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "draconic_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA charge into target"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up burst"
+            - skill: "markthanans_wings"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA aerial finisher"
+
+    dragon_dive:
+        name: "Dragon Dive (Trade Combo)"
+        description: >
+            SA trading combo. Stay in Super Armor throughout and out-damage
+            the opponent. Drakania is tanky enough to trade effectively.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "dragon_scale"
+              input: "Q"
+              keys: ["q"]
+              note: "FG shield — absorb initial hit"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA counter-attack"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "markthanans_wings"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA aerial dive"
+            - skill: "trion_burst"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE burst"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use SA movement to create distance.
+            Drakania has good escape tools with Dragon Flight and Rabam dash.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "dragon_scale"
+              input: "Q"
+              keys: ["q"]
+              note: "FG shield to absorb pressure"
+            - skill: "draconic_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA dash out with DP buff"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA aerial dash away"
+            - skill: "flame_lance"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement + damage while retreating"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue dashing if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on protected AOE damage and
+            avoid overextending. Drakania excels in large scale with SA trading.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "untamed_surge"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff before engaging blob"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA aerial engage into group"
+            - skill: "trion_burst"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE knockdown on group"
+            - skill: "hexeblood"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_hexeblood"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "markthanans_wings"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA aerial burst on group"
+            - skill: "dragonfire"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA breath attack AOE"
+            - skill: "draconic_descent"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA slam burst"
+            - skill: "wing_tempest"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA AOE cleanup"
+            - skill: "draconic_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA aerial forward dash"
+            - skill: "draconic_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement dash"
+            - skill: "flame_lance"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement filler"
+            - skill: "draconic_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward charge"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Movement chain for Drakania awakening. Cycle between Dragon Flight,
+            Draconic Barrier, and Flame Lance for maximum traversal speed.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "SA aerial dash — primary movement"
+            - skill: "draconic_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA dash with DP buff"
+            - skill: "flame_lance"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement + stiffness"
+            - skill: "draconic_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward lance charge"
+            - skill: "dragon_flight"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown, loop back"
+            - skill: "draconic_slash"
+              input: "W + RMB (pre-awakening)"
+              keys: ["w", "rmb"]
+              note: "Pre-awakening filler movement"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Hexeblood"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Markthanan's Wings"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Dragonfire"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+        - skill: "Trion Burst"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Draconic Charge"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Flow: Hexeblood"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Wing Strike"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Brimbolt"
+      reason: "Unprotected ranged poke. Lock from skill bar to avoid accidental use."
+    - name: "Slayer: Sideways Slash"
+      reason: "Pre-awakening filler. Unprotected and slows down rotation."
+    - name: "Slayer: Upward Slash"
+      reason: "Unprotected, not useful in awakening rotation."
+    - name: "Shard Toss"
+      reason: "Unprotected, low damage, messes up PVP combos."
+    - name: "Dragon Pierce"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+    - name: "Wing Tempest"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+    - name: "Draconic Descent"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Dragon Pierce"
+    - "Wing Tempest"
+    - "Draconic Descent"
+    - "Dragon Scale"
+    - "Untamed Surge"
+    - "Brimbolt"
+    - "Infernal Breath"
+    - "Flame Lance"
+    - "Draconic Barrier"
+    - "Dragonfire"
+    - "Trion Burst"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Markthanan's Wings"
+    effect: "Extra damage on all hits and additional Air Attack damage"
+    reason: >
+        Markthanan's Wings with Core gains significantly increased damage and
+        enhanced Air Attack multipliers, making Drakania's signature aerial dive
+        even more devastating. This is the highest priority Core for Drakania
+        Awakening. After getting comfortable, experiment with Dragonfire Core
+        for better PVE clearing and Trion Burst Core for large scale PVP.
+        Drakania has no grab, so maximizing burst damage on CC'd targets
+        is critical — Markthanan's Wings Core achieves exactly that.

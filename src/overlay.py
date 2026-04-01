@@ -8,11 +8,14 @@ Steps advance when the user presses the correct key combination
 
 import json
 import logging
+import re
 import sys
 import tkinter as tk
 import tkinter.font as tkfont
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Set
+
+from src.utils.keys import OUTLINE_OFFSETS, format_key_display
 
 logger = logging.getLogger("bdo_trainer")
 
@@ -21,7 +24,6 @@ logger = logging.getLogger("bdo_trainer")
 # ---------------------------------------------------------------------------
 TRANSPARENT_COLOR = "#010101"
 OUTLINE_COLOR = "#000000"
-OUTLINE_THICKNESS = 2
 
 DEFAULT_FONT_FAMILY = "Segoe UI"
 DEFAULT_SKILL_FONT_SIZE = 32
@@ -120,6 +122,26 @@ class InputMonitor:
         lmb, rmb, mmb                               – mouse buttons
     """
 
+    # Special-key mapping (built once; empty if pynput unavailable)
+    _SPECIAL_KEY_MAP: dict = {}
+    if INPUT_AVAILABLE:
+        _SPECIAL_KEY_MAP = {
+            _pynput_kb.Key.shift: "shift",
+            _pynput_kb.Key.shift_l: "shift",
+            _pynput_kb.Key.shift_r: "shift",
+            _pynput_kb.Key.space: "space",
+            _pynput_kb.Key.ctrl: "ctrl",
+            _pynput_kb.Key.ctrl_l: "ctrl",
+            _pynput_kb.Key.ctrl_r: "ctrl",
+            _pynput_kb.Key.alt: "alt",
+            _pynput_kb.Key.alt_l: "alt",
+            _pynput_kb.Key.alt_r: "alt",
+            _pynput_kb.Key.tab: "tab",
+            _pynput_kb.Key.enter: "enter",
+            _pynput_kb.Key.esc: "esc",
+            _pynput_kb.Key.caps_lock: "capslock",
+        }
+
     def __init__(self) -> None:
         self._pressed: Set[str] = set()
         self._required_sets: List[Set[str]] = []
@@ -181,11 +203,17 @@ class InputMonitor:
         self._on_match = None
         self._matched = False
 
+    def _reset_edge_trigger(self) -> None:
+        """Reset the edge-trigger flag when no required key set is fully held."""
+        if self._required_sets and not any(
+            rs.issubset(self._pressed) for rs in self._required_sets
+        ):
+            self._matched = False
+
     # ------------------------------------------------------------------
     # Normalisation helpers
     # ------------------------------------------------------------------
-    @staticmethod
-    def _normalize_key(key) -> str:
+    def _normalize_key(self, key) -> str:
         """Convert a pynput key object to our canonical lowercase string.
 
         When a game window (e.g. BDO) has focus, pynput often receives
@@ -214,23 +242,7 @@ class InputMonitor:
         except AttributeError:
             pass
 
-        _MAP = {
-            _pynput_kb.Key.shift: "shift",
-            _pynput_kb.Key.shift_l: "shift",
-            _pynput_kb.Key.shift_r: "shift",
-            _pynput_kb.Key.space: "space",
-            _pynput_kb.Key.ctrl: "ctrl",
-            _pynput_kb.Key.ctrl_l: "ctrl",
-            _pynput_kb.Key.ctrl_r: "ctrl",
-            _pynput_kb.Key.alt: "alt",
-            _pynput_kb.Key.alt_l: "alt",
-            _pynput_kb.Key.alt_r: "alt",
-            _pynput_kb.Key.tab: "tab",
-            _pynput_kb.Key.enter: "enter",
-            _pynput_kb.Key.esc: "esc",
-            _pynput_kb.Key.caps_lock: "capslock",
-        }
-        return _MAP.get(key, "")
+        return self._SPECIAL_KEY_MAP.get(key, "")
 
     # ------------------------------------------------------------------
     # Event handlers (called from pynput listener threads)
@@ -245,15 +257,9 @@ class InputMonitor:
         name = self._normalize_key(key)
         if name:
             self._pressed.discard(name)
-            # Reset edge trigger when no required set is fully held
-            if self._required_sets and not any(
-                rs.issubset(self._pressed) for rs in self._required_sets
-            ):
-                self._matched = False
+            self._reset_edge_trigger()
 
     def _on_click(self, _x, _y, button, pressed) -> None:
-        if not INPUT_AVAILABLE:
-            return
         btn_map = {
             _pynput_mouse.Button.left: "lmb",
             _pynput_mouse.Button.right: "rmb",
@@ -267,10 +273,7 @@ class InputMonitor:
             self._check()
         else:
             self._pressed.discard(name)
-            if self._required_sets and not any(
-                rs.issubset(self._pressed) for rs in self._required_sets
-            ):
-                self._matched = False
+            self._reset_edge_trigger()
 
     def _check(self) -> None:
         """Fire callback if all required keys are currently held (edge-triggered)."""
@@ -391,6 +394,15 @@ class ComboOverlay:
         self.on_combo_finished: Optional[Callable] = None
         self.get_skill_info: Optional[Callable] = None
 
+        # --- Setup guide state ---------------------------------------------
+        self._setup_guide_active: bool = False
+        self._setup_guide_data: Optional[Dict[str, Any]] = None
+        self._setup_guide_page: int = 0
+        self._setup_guide_num_pages: int = 4
+
+        # --- Shutdown guard ------------------------------------------------
+        self._destroyed: bool = False
+
         logger.info("Overlay initialised (transparent canvas, key-press mode)")
 
     # =====================================================================
@@ -409,6 +421,60 @@ class ComboOverlay:
             logger.info(f"Idle reset timeout: {self._idle_reset_ms}ms")
 
     # =====================================================================
+    # Display-text remapping
+    # =====================================================================
+
+    def _remap_display_text(self, input_text: str) -> str:
+        """Rewrite a step's ``input`` display string so it shows the
+        physical keys the user actually presses (after key remapping)
+        instead of the canonical BDO defaults.
+
+        Handles formats like::
+
+            "Shift + LMB"
+            "S + RMB"
+            "Shift + A / Shift + D"
+            "LMB (after Dusk)"
+            "W + F (switches to pre-awakening)"
+            "Hotbar Only"
+
+        Returns the original string unchanged when no remap is active.
+        """
+        if not self._key_remap:
+            return input_text
+
+        # Handle alternatives separated by " / "
+        alternatives = input_text.split(" / ")
+        remapped = [self._remap_single_input(alt) for alt in alternatives]
+        return " / ".join(remapped)
+
+    def _remap_single_input(self, text: str) -> str:
+        """Remap one alternative of an input string, e.g. ``"Shift + LMB"``
+        or ``"W + F (switches to pre-awakening)"``."""
+
+        # Split off a parenthetical suffix like "(after Dusk)"
+        match = re.match(r"^(.*?)(\s*\(.*\))$", text)
+        if match:
+            key_part = match.group(1)
+            suffix = match.group(2)
+        else:
+            key_part = text
+            suffix = ""
+
+        tokens = [t.strip() for t in key_part.split("+")]
+        remapped = [self._remap_display_token(t) for t in tokens]
+        return " + ".join(remapped) + suffix
+
+    def _remap_display_token(self, token: str) -> str:
+        """Map a single display token (e.g. ``"Shift"``, ``"LMB"``, ``"W"``)
+        through the key remap table and return a display-friendly result."""
+        canonical = token.lower().strip()
+        physical = self._key_remap.get(canonical, canonical)
+        if physical == canonical:
+            return token  # no remap — preserve the original casing
+        return format_key_display(physical)
+
+    # =====================================================================
     # Drawing helpers
     # =====================================================================
     def _draw_outlined_text(
@@ -422,23 +488,16 @@ class ComboOverlay:
         tag: str = "step",
     ) -> None:
         """Draw *text* with a dark outline for readability over any background."""
-        t = OUTLINE_THICKNESS
-        for dx in range(-t, t + 1):
-            for dy in range(-t, t + 1):
-                if dx == 0 and dy == 0:
-                    continue
-                # Only draw on the "ring" (skip interior for performance)
-                if abs(dx) + abs(dy) <= t:
-                    continue
-                self.canvas.create_text(
-                    x + dx,
-                    y + dy,
-                    text=text,
-                    font=font,
-                    fill=OUTLINE_COLOR,
-                    anchor=anchor,
-                    tags=(tag,),
-                )
+        for dx, dy in OUTLINE_OFFSETS:
+            self.canvas.create_text(
+                x + dx,
+                y + dy,
+                text=text,
+                font=font,
+                fill=OUTLINE_COLOR,
+                anchor=anchor,
+                tags=(tag,),
+            )
         # Main text on top
         self.canvas.create_text(
             x,
@@ -452,7 +511,10 @@ class ComboOverlay:
 
     def _clear_display(self) -> None:
         """Remove all canvas items tagged 'step'."""
-        self.canvas.delete("step")
+        try:
+            self.canvas.delete("step")
+        except Exception:
+            pass
 
     # =====================================================================
     # Combo lifecycle
@@ -494,11 +556,14 @@ class ComboOverlay:
         was_running = self._is_running
         self._is_running = False
         self.input_monitor.clear_target()
-        self._cancel_idle_reset()
-        if self._after_id is not None:
-            self.root.after_cancel(self._after_id)
-            self._after_id = None
-        self._clear_display()
+        try:
+            self._cancel_idle_reset()
+            if self._after_id is not None:
+                self.root.after_cancel(self._after_id)
+                self._after_id = None
+            self._clear_display()
+        except Exception:
+            pass
         if was_running:
             logger.info("Combo stopped")
 
@@ -573,6 +638,7 @@ class ComboOverlay:
         skill_name = self._resolve_skill_name(skill_id)
         protection = self._resolve_protection(skill_id)
         input_text: str = step.get("input", "")
+        input_text = self._remap_display_text(input_text)
         note: str = step.get("note", "")
         total = len(self._steps)
         counter = f"Step {self._current_step + 1} / {total}"
@@ -721,6 +787,14 @@ class ComboOverlay:
             self.root.after_cancel(self._idle_reset_id)
             self._idle_reset_id = None
 
+    def _pause_input(self) -> None:
+        """Clear input target and cancel pending timers (pauses combo detection)."""
+        self.input_monitor.clear_target()
+        self._cancel_idle_reset()
+        if self._after_id is not None:
+            self.root.after_cancel(self._after_id)
+            self._after_id = None
+
     def _idle_reset(self) -> None:
         """Reset combo back to step 1 after idle timeout."""
         self._idle_reset_id = None
@@ -740,6 +814,358 @@ class ComboOverlay:
         self._show_current_step()
 
     # =====================================================================
+    # Setup Guide (locked skills, hotbar, core skill, add-ons)
+    # =====================================================================
+    def show_setup_guide(self, guide_data: Dict[str, Any]) -> None:
+        """Enter setup-guide mode — pauses any active combo and shows
+        class/spec recommendations.  Pages are advanced manually with F7."""
+        if self._setup_guide_active:
+            # Already showing — refresh data
+            self._setup_guide_data = guide_data
+            self._setup_guide_page = 0
+            self._render_guide_page()
+            return
+
+        self._setup_guide_active = True
+        self._setup_guide_data = guide_data
+        self._setup_guide_page = 0
+
+        # Pause combo input detection (combo stays "running" but frozen)
+        self._pause_input()
+
+        self._clear_display()
+        self._render_guide_page()
+        label = f"{guide_data.get('class', '?')} / {guide_data.get('spec', '?')}"
+        logger.info(f"Setup guide shown for {label}")
+
+    def hide_setup_guide(self) -> None:
+        """Exit setup-guide mode and resume combo if one was active."""
+        was_active = self._setup_guide_active
+        self._setup_guide_active = False
+        self._setup_guide_data = None
+        self.canvas.delete("guide")
+
+        if not was_active:
+            return
+
+        # Resume combo from where it was paused
+        if self._is_running and self._steps:
+            self._show_current_step()
+
+        logger.info("Setup guide hidden")
+
+    def toggle_setup_guide(self, guide_data: Optional[Dict[str, Any]] = None) -> bool:
+        """Toggle the setup guide on / off.  Returns ``True`` if now showing."""
+        if self._setup_guide_active:
+            self.hide_setup_guide()
+            return False
+        if guide_data:
+            self.show_setup_guide(guide_data)
+            return True
+        return False
+
+    @property
+    def setup_guide_active(self) -> bool:
+        return self._setup_guide_active
+
+    def next_setup_page(self) -> None:
+        """Advance to the next setup-guide page (wraps around)."""
+        if not self._setup_guide_active:
+            return
+        self._setup_guide_page = (
+            self._setup_guide_page + 1
+        ) % self._setup_guide_num_pages
+        self._render_guide_page()
+
+    # ----- guide page renderer --------------------------------------------
+
+    _GUIDE_PAGE_NAMES = [
+        "Core Skill",
+        "Skills to Lock",
+        "Hotbar Setup",
+        "Skill Add-ons",
+    ]
+
+    def _render_guide_page(self) -> None:
+        """Render the current setup-guide page on the overlay canvas."""
+        self.canvas.delete("guide")
+        if not self._setup_guide_active or not self._setup_guide_data:
+            return
+
+        data = self._setup_guide_data
+        label = f"{data.get('class', '')} ({data.get('spec', '')})"
+        page = self._setup_guide_page
+        mid_y = self.screen_h // 2
+
+        # --- Header -------------------------------------------------------
+        self._draw_outlined_text(
+            self.cx,
+            mid_y - 210,
+            f"SETUP GUIDE  —  {label}",
+            self.input_font,
+            "#FFD700",
+            tag="guide",
+        )
+        self._draw_outlined_text(
+            self.cx,
+            mid_y - 183,
+            "━" * 40,
+            self.counter_font,
+            "#555555",
+            tag="guide",
+        )
+
+        # --- Page body ----------------------------------------------------
+        body_y = mid_y - 155
+        if page == 0:
+            self._render_guide_core(body_y)
+        elif page == 1:
+            self._render_guide_locked(body_y)
+        elif page == 2:
+            self._render_guide_hotbar(body_y)
+        elif page == 3:
+            self._render_guide_addons(body_y)
+
+        # --- Footer navigation --------------------------------------------
+        dots = ""
+        for i in range(self._setup_guide_num_pages):
+            dots += "  ●  " if i == page else "  ○  "
+        self._draw_outlined_text(
+            self.cx,
+            mid_y + 210,
+            dots,
+            self.input_font,
+            "#FFD700",
+            tag="guide",
+        )
+        page_label = self._GUIDE_PAGE_NAMES[page]
+        self._draw_outlined_text(
+            self.cx,
+            mid_y + 240,
+            f"Page {page + 1}/{self._setup_guide_num_pages}:  {page_label}",
+            self.counter_font,
+            "#888888",
+            tag="guide",
+        )
+        self._draw_outlined_text(
+            self.cx,
+            mid_y + 262,
+            "Press F7 for next page   ·   Uncheck Setup Guide in tray to close",
+            self.counter_font,
+            "#666666",
+            tag="guide",
+        )
+
+    # ----- individual page renderers --------------------------------------
+
+    def _render_guide_section_header(
+        self, y: int, title: str, items: Any, empty_msg: str
+    ) -> bool:
+        """Draw the section title for a guide page. Returns True if items
+        are empty (also draws the empty message), so the caller can return early."""
+        self._draw_outlined_text(
+            self.cx,
+            y,
+            title,
+            self.note_font,
+            "#AAAAAA",
+            tag="guide",
+        )
+        if not items:
+            self._draw_outlined_text(
+                self.cx,
+                y + 50,
+                empty_msg,
+                self.note_font,
+                self.note_color,
+                tag="guide",
+            )
+            return True
+        return False
+
+    def _render_guide_core(self, y: int) -> None:
+        """Page 0 — Core Skill Recommendation."""
+        data = self._setup_guide_data or {}
+        core = data.get("core_skill", {})
+        if self._render_guide_section_header(
+            y, "CORE SKILL RECOMMENDATION", core, "No core skill data available."
+        ):
+            return
+
+        name = core.get("recommended", "Unknown")
+        effect = core.get("effect", "")
+        reason = core.get("reason", "")
+
+        self._draw_outlined_text(
+            self.cx,
+            y + 50,
+            f"★  {name}",
+            self.skill_font,
+            self.skill_color,
+            tag="guide",
+        )
+        if effect:
+            self._draw_outlined_text(
+                self.cx,
+                y + 95,
+                effect,
+                self.input_font,
+                "#4CAF50",
+                tag="guide",
+            )
+        if reason:
+            reason_clean = " ".join(reason.split())
+            lines = self._wrap_text(reason_clean, 70)
+            for i, line in enumerate(lines[:5]):
+                self._draw_outlined_text(
+                    self.cx,
+                    y + 140 + i * 26,
+                    line,
+                    self.note_font,
+                    self.note_color,
+                    tag="guide",
+                )
+
+    def _render_guide_locked(self, y: int) -> None:
+        """Page 1 — Skills to Lock."""
+        data = self._setup_guide_data or {}
+        locked = data.get("locked_skills", [])
+        count = len(locked)
+        if self._render_guide_section_header(
+            y, f"SKILLS TO LOCK  ({count})", locked, "No lock recommendations."
+        ):
+            return
+
+        max_rows = 10
+        items = locked[:max_rows]
+        row_y = y + 35
+        spacing = 32
+
+        for i, item in enumerate(items):
+            name = item.get("name", "?") if isinstance(item, dict) else str(item)
+            reason = item.get("reason", "") if isinstance(item, dict) else ""
+            short = reason[:50] + ("…" if len(reason) > 50 else "")
+            line = f"🔒  {name}  —  {short}" if short else f"🔒  {name}"
+            self._draw_outlined_text(
+                self.cx,
+                row_y + i * spacing,
+                line,
+                self.note_font,
+                "#F44336",
+                tag="guide",
+            )
+
+        if count > max_rows:
+            self._draw_outlined_text(
+                self.cx,
+                row_y + max_rows * spacing,
+                f"… and {count - max_rows} more",
+                self.counter_font,
+                "#888888",
+                tag="guide",
+            )
+
+    def _render_guide_hotbar(self, y: int) -> None:
+        """Page 2 — Recommended Hotbar Setup."""
+        data = self._setup_guide_data or {}
+        hotbar = data.get("hotbar_skills", [])
+        count = len(hotbar)
+        if self._render_guide_section_header(
+            y, f"RECOMMENDED HOTBAR  ({count})", hotbar, "No hotbar recommendations."
+        ):
+            return
+
+        max_rows = 12
+        items = hotbar[:max_rows]
+        row_y = y + 35
+        spacing = 28
+
+        for i, skill_name in enumerate(items):
+            name = skill_name if isinstance(skill_name, str) else str(skill_name)
+            self._draw_outlined_text(
+                self.cx,
+                row_y + i * spacing,
+                f"{i + 1}.  {name}",
+                self.note_font,
+                "#FFD700",
+                tag="guide",
+            )
+
+        if count > max_rows:
+            self._draw_outlined_text(
+                self.cx,
+                row_y + max_rows * spacing,
+                f"… and {count - max_rows} more",
+                self.counter_font,
+                "#888888",
+                tag="guide",
+            )
+
+    def _render_guide_addons(self, y: int) -> None:
+        """Page 3 — Skill Add-ons (PVE)."""
+        data = self._setup_guide_data or {}
+        addons = data.get("skill_addons", {})
+        pve = addons.get("pve", []) if isinstance(addons, dict) else []
+        count = len(pve)
+        if self._render_guide_section_header(
+            y, f"SKILL ADD-ONS  —  PVE  ({count})", pve, "No add-on recommendations."
+        ):
+            return
+
+        max_rows = 6
+        items = pve[:max_rows]
+        row_y = y + 35
+        spacing = 55
+
+        for i, entry in enumerate(items):
+            if not isinstance(entry, dict):
+                continue
+            skill = entry.get("skill", "?")
+            a1 = entry.get("addon_1", "")
+            a2 = entry.get("addon_2", "")
+
+            self._draw_outlined_text(
+                self.cx,
+                row_y + i * spacing,
+                skill,
+                self.note_font,
+                self.skill_color,
+                tag="guide",
+            )
+            parts = []
+            if a1:
+                parts.append(f"+ {a1}")
+            if a2:
+                parts.append(f"+ {a2}")
+            if parts:
+                self._draw_outlined_text(
+                    self.cx,
+                    row_y + i * spacing + 22,
+                    "   |   ".join(parts),
+                    self.counter_font,
+                    "#4CAF50",
+                    tag="guide",
+                )
+
+    # ----- text wrapping helper -------------------------------------------
+
+    @staticmethod
+    def _wrap_text(text: str, max_chars: int = 65) -> List[str]:
+        """Simple word-wrap helper for multi-line outlined text."""
+        words = text.split()
+        lines: List[str] = []
+        current = ""
+        for word in words:
+            if current and len(current) + 1 + len(word) > max_chars:
+                lines.append(current)
+                current = word
+            else:
+                current = f"{current} {word}" if current else word
+        if current:
+            lines.append(current)
+        return lines
+
+    # =====================================================================
     # Reposition mode
     # =====================================================================
     def enable_reposition(self) -> None:
@@ -749,11 +1175,7 @@ class ComboOverlay:
         self._reposition_mode = True
 
         # Pause combo input detection so clicks don't advance steps
-        self.input_monitor.clear_target()
-        self._cancel_idle_reset()
-        if self._after_id is not None:
-            self.root.after_cancel(self._after_id)
-            self._after_id = None
+        self._pause_input()
 
         # Remove click-through so the overlay captures mouse events
         _remove_click_through(self.root)
@@ -929,7 +1351,12 @@ class ComboOverlay:
     # =====================================================================
     def schedule(self, func: Callable, delay_ms: int = 0) -> None:
         """Post *func* onto the Tk event loop (safe to call from any thread)."""
-        self.root.after(delay_ms, func)
+        if self._destroyed:
+            return
+        try:
+            self.root.after(delay_ms, func)
+        except Exception:
+            pass
 
     def run(self) -> None:
         """Enter the Tk main loop (blocks until shutdown)."""
@@ -937,7 +1364,10 @@ class ComboOverlay:
         self.root.mainloop()
 
     def shutdown(self) -> None:
-        """Tear down the overlay and input monitor."""
+        """Tear down the overlay and input monitor (idempotent)."""
+        if self._destroyed:
+            return
+        self._destroyed = True
         self.stop_combo()
         self.input_monitor.stop()
         try:

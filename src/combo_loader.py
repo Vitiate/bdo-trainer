@@ -96,6 +96,19 @@ class ComboLoader:
         self.load()
 
     # ------------------------------------------------------------------
+    # Combo iteration helper
+    # ------------------------------------------------------------------
+    def _iter_combos(self):
+        """Yield ``(class_name, spec_name, combo_id, combo_data)`` for every combo across all loaded configs."""
+        for (class_name, spec_name), data in self.class_configs.items():
+            for category in COMBO_CATEGORIES:
+                section = data.get(category, {})
+                if isinstance(section, dict):
+                    for combo_id, combo_data in section.items():
+                        if isinstance(combo_data, dict):
+                            yield class_name, spec_name, combo_id, combo_data
+
+    # ------------------------------------------------------------------
     # Class / Spec enumeration
     # ------------------------------------------------------------------
     def get_class_tree(self) -> Dict[str, Dict[str, List[Tuple[str, str]]]]:
@@ -106,30 +119,19 @@ class ComboLoader:
         single flat list per spec, preserving their category order.
         """
         tree: Dict[str, Dict[str, List[Tuple[str, str]]]] = {}
-        for (class_name, spec_name), data in self.class_configs.items():
-            combos_list: List[Tuple[str, str]] = []
-            for category in COMBO_CATEGORIES:
-                section = data.get(category, {})
-                if isinstance(section, dict):
-                    for combo_id, combo_data in section.items():
-                        if isinstance(combo_data, dict):
-                            display_name = combo_data.get("name", combo_id)
-                            combos_list.append((combo_id, display_name))
-            tree.setdefault(class_name, {})[spec_name] = combos_list
+        for class_name, spec_name, combo_id, combo_data in self._iter_combos():
+            display_name = combo_data.get("name", combo_id)
+            tree.setdefault(class_name, {}).setdefault(spec_name, []).append(
+                (combo_id, display_name)
+            )
         return tree
 
     def get_combo_list(self) -> List[Tuple[str, str, str, str]]:
         """Return a flat list of (class_name, spec_name, combo_id, display_name)."""
-        result: List[Tuple[str, str, str, str]] = []
-        for (class_name, spec_name), data in self.class_configs.items():
-            for category in COMBO_CATEGORIES:
-                section = data.get(category, {})
-                if isinstance(section, dict):
-                    for combo_id, combo_data in section.items():
-                        if isinstance(combo_data, dict):
-                            name = combo_data.get("name", combo_id)
-                            result.append((class_name, spec_name, combo_id, name))
-        return result
+        return [
+            (cls, spec, cid, data.get("name", cid))
+            for cls, spec, cid, data in self._iter_combos()
+        ]
 
     # ------------------------------------------------------------------
     # Combo access
@@ -234,3 +236,75 @@ class ComboLoader:
             "movement_combos": "Movement",
         }
         return names.get(category, category)
+
+    # ------------------------------------------------------------------
+    # Setup-guide data (locked skills, hotbar, core, add-ons)
+    # ------------------------------------------------------------------
+    def _get_class_field(self, class_name: str, spec_name: str, key: str, default=None):
+        """Return a field from a class/spec config, or *default* if not found."""
+        if default is None:
+            default = {}
+        return self.class_configs.get((class_name, spec_name), {}).get(key, default)
+
+    def get_locked_skills(
+        self, class_name: str, spec_name: str
+    ) -> List[Dict[str, Any]]:
+        """Return the locked_skills list for a class/spec.
+
+        Each entry is a dict with at least ``name`` and ``reason`` keys.
+        """
+        return self._get_class_field(class_name, spec_name, "locked_skills", [])
+
+    def get_hotbar_skills(self, class_name: str, spec_name: str) -> List[str]:
+        """Return the hotbar_skills list (display names) for a class/spec."""
+        return self._get_class_field(class_name, spec_name, "hotbar_skills", [])
+
+    def get_core_skill(self, class_name: str, spec_name: str) -> Dict[str, Any]:
+        """Return the core_skill recommendation dict for a class/spec.
+
+        Typically has ``recommended``, ``effect``, and ``reason`` keys.
+        """
+        return self._get_class_field(class_name, spec_name, "core_skill", {})
+
+    def get_skill_addons(self, class_name: str, spec_name: str) -> Dict[str, Any]:
+        """Return the skill_addons dict for a class/spec.
+
+        Usually contains a ``pve`` key with a list of add-on entries.
+        """
+        return self._get_class_field(class_name, spec_name, "skill_addons", {})
+
+    def get_setup_guide(
+        self, class_name: str, spec_name: str
+    ) -> Optional[Dict[str, Any]]:
+        """Return all setup-guide data for a class/spec in one dict.
+
+        Returns ``None`` if the class/spec is not loaded.  Otherwise
+        returns::
+
+            {
+                "class": str,
+                "spec": str,
+                "locked_skills": [...],
+                "hotbar_skills": [...],
+                "core_skill": {...},
+                "skill_addons": {...},
+            }
+        """
+        if (class_name, spec_name) not in self.class_configs:
+            return None
+        return {
+            "class": class_name,
+            "spec": spec_name,
+            "locked_skills": self._get_class_field(
+                class_name, spec_name, "locked_skills", []
+            ),
+            "hotbar_skills": self._get_class_field(
+                class_name, spec_name, "hotbar_skills", []
+            ),
+            "core_skill": self._get_class_field(
+                class_name, spec_name, "core_skill", {}
+            ),
+            "skill_addons": self._get_class_field(
+                class_name, spec_name, "skill_addons", {}
+            ),
+        }

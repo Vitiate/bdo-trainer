@@ -1,0 +1,834 @@
+# ============================================================================
+# BDO Trainer - Awakened Ninja Combo Configuration
+# ============================================================================
+# Class: Ninja (Awakening)
+# Weapons: Shortsword (Main) / Shuriken (Off) / Sura Katana (Awakening — 6 swords)
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Ninja Awakening Identity:
+#   - Highest burst damage in the game with Serpent Ascension
+#   - Grab class — E grab bypasses Super Armor, core PVP tool
+#   - Stealth via Ninjutsu: Shadow Clone for invisible approach
+#   - Six floating Sura Katana swords for awakening stance
+#   - Extremely high skill ceiling — demanding but rewarding
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Ninja Class Discord
+#   - Community guides by Katan, Dae, Shinobi, BPGaming
+# ============================================================================
+
+class: Ninja
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    serpent_ascension:
+        name: "Serpent Ascension"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Signature skill. Massive upward slash with float CC. Highest burst in the game."
+        flows_into: ["flow_execution", "katana_shower", "silent_step"]
+        core_effect: "Core: Serpent Ascension - Extra hit and increased damage"
+        notes: "The defining Ninja skill. Use after CC or grab for devastating burst. SA throughout."
+
+    flow_execution:
+        name: "Flow: Execution"
+        input: "LMB (after Serpent Ascension)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up slam after Serpent Ascension. Down attack with knockdown."
+        flows_into: ["murderous_intent", "katana_shower"]
+        notes: "Always chain after Serpent Ascension for maximum damage. Down attack properties."
+
+    katana_shower:
+        name: "Katana Shower"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Multi-hit spinning slash with Super Armor. Decent AOE coverage."
+        flows_into: ["serpent_ascension", "murderous_intent", "vacuum_slash"]
+        notes: "Good filler damage skill with SA. Use between main cooldowns."
+
+    sura_chaospree:
+        name: "Sura ChaoSpree"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Forward charge attack with Super Armor. Stiffness on hit. Strong gap closer."
+        flows_into: ["flow_earth_dragon", "serpent_ascension", "katana_shower"]
+        core_effect: "Core: Sura ChaoSpree - All DP +15 for 10 sec on hit"
+        notes: "Strong engage tool with SA. Always flow into Earth Dragon for extra damage."
+
+    flow_earth_dragon:
+        name: "Flow: Earth Dragon"
+        input: "LMB (after Sura ChaoSpree)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Ground slam follow-up after Sura ChaoSpree. Bound CC."
+        flows_into: ["serpent_ascension", "murderous_intent"]
+        notes: "Always chain after Sura ChaoSpree. Bound allows follow-up burst."
+
+    murderous_intent:
+        name: "Murderous Intent"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Heavy backward slash with Super Armor. High damage with knockdown."
+        flows_into: ["serpent_ascension", "katana_shower", "vacuum_slash"]
+        notes: "Strong burst skill. SA throughout. Good for damage when Serpent is on CD."
+
+    seamless:
+        name: "Seamless"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Quick forward dash attack. SA during skill. Float CC on hit."
+        flows_into: ["serpent_ascension", "sura_chaospree", "katana_shower"]
+        core_effect: "Core: Seamless - Forward Guard added after initial SA frames"
+        notes: "Versatile engage/transition skill. SA makes it safe. Core adds FG at end."
+
+    ghost_greeting:
+        name: "Ghost Greeting"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward Guard counter-style slash. Stiffness on hit."
+        flows_into: ["serpent_ascension", "sura_chaospree", "grab"]
+        notes: "FG protection lets you fish for stiffness. Confirm into grab or Serpent."
+
+    silent_step:
+        name: "Silent Step"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 4000
+        description: "Awakening dash/movement skill. SA during movement. PVE iframe."
+        flows_into: ["serpent_ascension", "sura_chaospree", "katana_shower"]
+        notes: "Primary awakening movement. PVE iframe (1s invincibility vs monsters). SA in PVP."
+
+    blade_spin_blade:
+        name: "Blade Spin Blade"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward spinning blade attack with SA. Stiffness CC."
+        flows_into: ["serpent_ascension", "katana_shower", "murderous_intent"]
+        notes: "Good filler with SA protection. Use for approach or between cooldowns."
+
+    vacuum_slash:
+        name: "Vacuum Slash"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["pull"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Forward Guard slash that pulls enemies in. Good for grouping."
+        flows_into: ["serpent_ascension", "murderous_intent", "katana_shower"]
+        notes: "Pull CC groups mobs in PVE. FG protection in PVP. Good setup tool."
+
+    flash_bondage:
+        name: "Flash Bondage"
+        input: "E (in Awakening)"
+        keys: ["e"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 7000
+        description: "Ranged shuriken stiffness CC. Unprotected but long range."
+        flows_into: ["serpent_ascension", "sura_chaospree", "grab"]
+        notes: "Ranged catch tool. Use from distance to stiff, then engage. Unprotected — be careful."
+
+    drastic_measure:
+        name: "Drastic Measure"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Self-buff. Increases AP and attack speed. SA during cast."
+        flows_into: ["serpent_ascension", "sura_chaospree"]
+        core_effect: "Core: Drastic Measure - Extends buff duration by 5 sec"
+        notes: "Use before engaging for AP buff. SA makes it safe to cast."
+
+    corrupt_sword_dance:
+        name: "Corrupt Sword Dance"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Quick low sweep with bound CC. Unprotected."
+        flows_into: ["serpent_ascension", "murderous_intent"]
+        notes: "Bound CC but unprotected. Use only when target is already CC'd or as surprise catch."
+
+    flow_shadow_strike:
+        name: "Flow: Shadow Strike"
+        input: "F (after awakening skills)"
+        keys: ["f"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up Forward Guard attack available after multiple awakening skills."
+        flows_into: ["serpent_ascension", "katana_shower"]
+        notes: "Can be chained after many awakening skills. FG filler between combos."
+
+    ankle_cutter:
+        name: "Ankle Cutter"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["bound"]
+        damage: low
+        cooldown_ms: 5000
+        description: "Quick low strike with bound CC. Hotbar recommended."
+        flows_into: ["serpent_ascension", "sura_chaospree"]
+        notes: "Hotbar skill. Bound CC for catch attempts. Unprotected."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    smokescreen_blade:
+        name: "Smokescreen Blade"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "SA slash combo with smoke effect. Stiffness CC. Good for 1v1 engage."
+        notes: "Preferred L56 Rabam. SA protection and stiffness for catch setups."
+
+    serpent_coil:
+        name: "Serpent Coil"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "SA forward thrust with bound CC. Good movement and catch tool."
+        notes: "Preferred L57 Rabam. SA movement with bound CC for combo setups."
+
+    shadow_slash:
+        name: "Shadow Slash"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Ranged slash from hotbar. Knockdown on hit."
+        notes: "Optional. Hotbar only. Use for ranged poke in group fights."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E (in pre-awakening stance)"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Ninja PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Ninja's grab is one of the best in the game. Practice swap → grab."
+
+    block_jump:
+        name: "Block Jump"
+        input: "S + Space (in pre-awakening)"
+        keys: ["s", "space"]
+        protection: "iframe"
+        cc: []
+        description: "Quick backward iframe leap. Primary defensive iframe."
+        notes: "Key survival tool. iframe on demand. Use to escape pressure or dodge grabs."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. PVE iframe as well."
+        notes: "Fast iframe for repositioning. Can chain into awakening skills."
+
+    shadow_stomp:
+        name: "Shadow Stomp"
+        input: "S + F (in pre-awakening)"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["bound"]
+        description: "Ground stomp with Super Armor and bound CC. Used to set up combos."
+        notes: "Great CC tool. SA protection. Bound into grab or Serpent Ascension."
+
+    ninjutsu_shadow_clone:
+        name: "Ninjutsu: Shadow Clone"
+        input: "Shift + RMB (in pre-awakening)"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: []
+        description: "Stealth / invisibility skill. SA during cast. Turns Ninja invisible."
+        notes: "Stealth approach for assassination. SA cast. Duration varies with skill level."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Fast and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to pack"
+            - skill: "sura_chaospree"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage into pack"
+            - skill: "flow_earth_dragon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up bound"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff first, then unload everything."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "drastic_measure"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engaging"
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Gap close into pack"
+            - skill: "vacuum_slash"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Pull mobs together"
+            - skill: "sura_chaospree"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA damage into grouped mobs"
+            - skill: "flow_earth_dragon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up bound"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "katana_shower"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Clean up remaining mobs"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up if needed"
+            - skill: "serpent_coil"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns and flows."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "drastic_measure"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage"
+            - skill: "vacuum_slash"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Pull and group mobs"
+            - skill: "sura_chaospree"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA charge attack"
+            - skill: "flow_earth_dragon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up bound"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "murderous_intent"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Heavy burst filler"
+            - skill: "katana_shower"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA multi-hit filler"
+            - skill: "blade_spin_blade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Extra damage filler"
+            - skill: "smokescreen_blade"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler damage"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    stealth_engage:
+        name: "Stealth Engage"
+        description: >
+            Classic Ninja assassination opener. Go invisible with Shadow Clone,
+            approach the target unseen, then burst from stealth.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "ninjutsu_shadow_clone"
+              input: "Shift + RMB (pre-awk)"
+              keys: ["shift", "rmb"]
+              note: "Go invisible — stealth approach"
+            - skill: "ghost_greeting"
+              input: "Q"
+              keys: ["q"]
+              note: "FG stiffness out of stealth"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab stiffened target"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Full burst on grabbed target"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam for kill"
+            - skill: "murderous_intent"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Finisher if target survives"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Ninja PVP combo. Land a grab then chain into Serpent Ascension.
+            Ninja's grab bypasses Super Armor — this is your primary kill tool.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Maximum burst on grabbed target"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "murderous_intent"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Extra damage if needed"
+            - skill: "katana_shower"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher on downed target"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard or ranged CC to catch the target off guard,
+            then chain into grab and full Serpent Ascension burst.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "ghost_greeting"
+              input: "Q"
+              keys: ["q"]
+              note: "FG stiffness — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "murderous_intent"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Extra burst damage"
+            - skill: "katana_shower"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher"
+
+    flash_bondage_catch:
+        name: "Flash Bondage Catch (Ranged)"
+        description: >
+            Ranged catch combo. Hit Flash Bondage from distance for stiffness,
+            then close the gap and grab for a full burst sequence.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "flash_bondage"
+              input: "E (in awk)"
+              keys: ["e"]
+              note: "Ranged stiffness — catch from distance"
+            - skill: "seamless"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA gap close to target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab stiffened target"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Full burst"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "murderous_intent"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Finisher"
+
+    quick_burst:
+        name: "Quick Burst (No Grab)"
+        description: >
+            Fast burst combo for duels when grab is on cooldown or risky.
+            Uses protected skills for safe damage output.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "seamless"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA gap close"
+            - skill: "sura_chaospree"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage with stiffness"
+            - skill: "flow_earth_dragon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up bound"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use iframes and SA movement to
+            create distance. Ninja has excellent escape tools.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "block_jump"
+              input: "S + Space"
+              keys: ["s", "space"]
+              note: "iframe backward leap"
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash away"
+            - skill: "ninjutsu_shadow_clone"
+              input: "Shift + RMB (pre-awk)"
+              keys: ["shift", "rmb"]
+              note: "Go invisible to reset"
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue dashing if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Ninja excels at flanking and assassinating
+            backline targets. Use stealth to approach, burst a target, then escape.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "ninjutsu_shadow_clone"
+              input: "Shift + RMB (pre-awk)"
+              keys: ["shift", "rmb"]
+              note: "Stealth approach behind enemy lines"
+            - skill: "drastic_measure"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before burst"
+            - skill: "sura_chaospree"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage into target"
+            - skill: "flow_earth_dragon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Bound follow-up"
+            - skill: "serpent_ascension"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Maximum burst damage"
+            - skill: "flow_execution"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "block_jump"
+              input: "S + Space"
+              keys: ["s", "space"]
+              note: "iframe escape after burst"
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash to safety"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward dash"
+            - skill: "serpent_coil"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA Rabam movement"
+            - skill: "seamless"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA forward dash filler"
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Movement chain for Ninja awakening. Cycle between Silent Step,
+            Rabam dashes, and pre-awakening movement for maximum speed.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward dash"
+            - skill: "serpent_coil"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA Rabam movement"
+            - skill: "smokescreen_blade"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam movement + stiffness"
+            - skill: "silent_step"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown"
+            - skill: "sura_chaospree"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward rush filler"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Serpent Ascension"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Flow: Execution"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Sura ChaoSpree"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Katana Shower"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Murderous Intent"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Seamless"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Absolute: Shuriken Flight"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Shuriken Throw"
+      reason: "Unprotected, slows down rotation in awakening."
+    - name: "Kunai Stab"
+      reason: "Unprotected, not useful in awakening rotation."
+    - name: "Ankle Cutter"
+      reason: "Lock from skill bar. Put on HOTBAR instead (unprotected)."
+    - name: "Flash Slash"
+      reason: "Unprotected pre-awk skill, can misfire during awk combos."
+    - name: "Suicide Fall"
+      reason: "Unprotected, can trigger accidentally. Hotbar only if used."
+    - name: "Corrupt Sword Dance"
+      reason: "Optional lock. Unprotected — only use intentionally from hotbar."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Drastic Measure"
+    - "Ankle Cutter"
+    - "Flash Bondage"
+    - "Ninjutsu: Shadow Clone"
+    - "Shadow Slash"
+    - "Corrupt Sword Dance"
+    - "Ghost Greeting"
+    - "Smokescreen Blade"
+    - "Serpent Coil"
+    - "Block Jump"
+    - "Shadow Stomp"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Serpent Ascension"
+    effect: "Extra hit and increased damage on Serpent Ascension"
+    reason: >
+        Serpent Ascension with Core gains an additional hit and massively
+        increased damage, making Ninja's already devastating signature
+        skill even deadlier. This is the universally recommended first
+        Core for Ninja. It amplifies your burst potential in both PVE
+        and PVP. After obtaining this, consider Sura ChaoSpree Core for
+        the defensive DP buff or Seamless Core for extra protection.

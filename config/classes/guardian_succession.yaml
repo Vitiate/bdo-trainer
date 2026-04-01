@@ -1,0 +1,843 @@
+# ============================================================================
+# BDO Trainer - Succession Guardian Combo Configuration
+# ============================================================================
+# Class: Guardian (Succession)
+# Weapons: Battle Axe (Main) / Shield (Off) — Enhanced pre-awakening skills
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Guardian Class Discord
+#   - Community guides by Derik, Orca, WakeUp, InvenGlobal
+# ============================================================================
+
+class: Guardian
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Awakening Skills (Succession-enhanced pre-awakening skills)
+# --------------------------------------------------------------------------
+awakening_skills:
+    axe_slash:
+        name: "Axe Slash"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Enhanced overhead axe slam. Super Armor with knockdown. Main burst skill."
+        flows_into: ["flow_axe_slash", "heavy_strike", "doom_strike"]
+        core_effect: "Core: Axe Slash - Extra damage and increased PVE multiplier"
+        notes: "Bread-and-butter skill. Always follow up with Flow: Axe Slash."
+
+    flow_axe_slash:
+        name: "Flow: Axe Slash"
+        input: "LMB (after Axe Slash)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Axe Slash. Additional slam with Super Armor."
+        flows_into: ["heavy_strike", "doom_strike", "shield_smash"]
+        notes: "Always chain after Axe Slash for extra burst damage."
+
+    heavy_strike:
+        name: "Heavy Strike"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Massive horizontal axe sweep with Super Armor. Wide frontal AOE."
+        flows_into: ["flow_heavy_strike", "axe_slash", "doom_strike"]
+        core_effect: "Core: Heavy Strike - Forward Guard added, increased damage"
+        notes: "Big AOE burst. Core adds FG making it very safe. Strong in PVE and PVP."
+
+    flow_heavy_strike:
+        name: "Flow: Heavy Strike"
+        input: "LMB (after Heavy Strike)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Heavy Strike. Additional sweep with Super Armor."
+        flows_into: ["axe_slash", "doom_strike"]
+        notes: "Always chain after Heavy Strike for extra damage and AOE coverage."
+
+    predatory_leap:
+        name: "Predatory Leap"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Super Armor forward leap. Gap closer with ground pound and stiffness."
+        flows_into: ["flow_predatory_leap", "axe_slash", "heavy_strike"]
+        notes: "Primary engage tool. Good gap closer with SA protection."
+
+    flow_predatory_leap:
+        name: "Flow: Predatory Leap"
+        input: "LMB (after Predatory Leap)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Predatory Leap. Ground smash with knockdown."
+        flows_into: ["axe_slash", "heavy_strike"]
+        notes: "Always chain after Predatory Leap for the knockdown CC."
+
+    shield_smash:
+        name: "Shield Smash"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Shield bash with self-heal. Super Armor with bound CC. Restores HP on hit."
+        flows_into: ["flow_shield_smash", "axe_slash", "heavy_strike"]
+        notes: "Sustain skill. Self-heal on hit makes grinding very comfortable."
+
+    flow_shield_smash:
+        name: "Flow: Shield Smash"
+        input: "LMB (after Shield Smash)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Shield Smash. Additional slam with Super Armor."
+        flows_into: ["axe_slash", "heavy_strike"]
+        notes: "Chain after Shield Smash for extra damage and healing."
+
+    doom_strike:
+        name: "Doom Strike"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Massive ground pound AOE. Super Armor with knockdown. High damage nuke."
+        flows_into: ["axe_slash", "heavy_strike", "shield_smash"]
+        notes: "Big AOE nuke. Use on large packs in PVE and for group fights in PVP."
+
+    block:
+        name: "Block"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 0
+        description: "Hold to block frontal damage and CC. Succession Guardian's primary defense."
+        flows_into: ["axe_slash", "predatory_leap", "shield_charge"]
+        notes: "Core defensive tool. Hold Q to block then counter-attack with skills."
+
+    shield_charge:
+        name: "Shield Charge"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 5000
+        description: "Super Armor forward charge with shield. Primary gap closer and movement skill."
+        flows_into: ["axe_slash", "predatory_leap", "heavy_strike"]
+        notes: "Main movement skill. SA makes it safe to use for engaging and repositioning."
+
+    mountain_crush:
+        name: "Mountain Crush"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Forward Guard axe slam. Stiffness CC on hit. Defensive counter-attack."
+        flows_into: ["axe_slash", "heavy_strike", "shield_smash"]
+        notes: "Defensive poke with FG. Good for trading blows and fishing for stiffness."
+
+    ground_stomp:
+        name: "Ground Stomp"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor backwards ground pound. Repositioning tool with knockback."
+        flows_into: ["axe_slash", "predatory_leap"]
+        notes: "Defensive repositioning skill. Creates distance safely with SA."
+
+    battle_roar:
+        name: "Battle Roar"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Self-buff shout. Increases AP and DP for a duration with Super Armor."
+        flows_into: ["axe_slash", "predatory_leap"]
+        core_effect: "Core: Battle Roar - Extended buff duration and additional AP"
+        notes: "Use before engaging for the AP/DP buff. SA keeps you safe while buffing."
+
+    wild_swing:
+        name: "Wild Swing"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor forward axe swing with float CC. Good gap closer."
+        flows_into: ["axe_slash", "heavy_strike", "doom_strike"]
+        notes: "Good engage with float CC. Follow up with damage while target is airborne."
+
+    earth_cleave:
+        name: "Earth Cleave"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 4000
+        description: "Quick forward slash with Forward Guard. Fast engagement poke."
+        flows_into: ["axe_slash", "heavy_strike"]
+        core_effect: "Core: Earth Cleave - Forward Guard maintained during the skill"
+        notes: "Fast FG poke for catching targets with stiffness."
+
+    fury_unleashed:
+        name: "Fury Unleashed"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Super Armor ground slam from hotbar. Good burst with knockdown."
+        flows_into: ["axe_slash", "heavy_strike"]
+        notes: "Hotbar skill. Decent burst filler between main cooldowns."
+
+    iron_wall:
+        name: "Iron Wall"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 25000
+        description: "Self-buff granting additional DP and damage reduction for a duration."
+        flows_into: ["axe_slash", "predatory_leap"]
+        notes: "Hotbar buff. Use in PVP before engaging for extra tankiness."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    flame_of_judgment:
+        name: "Flame of Judgment"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor flame wave. Good AOE damage filler with protected movement."
+        notes: "Preferred L56 Rabam. SA makes it safe for PVP and PVE."
+
+    raging_thunder:
+        name: "Raging Thunder"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor thunder slam. Good filler with stiffness CC."
+        notes: "Preferred L57 Rabam. Additional protected damage in rotation."
+
+    divine_punishment:
+        name: "Divine Punishment"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Hotbar fire slam. Super Armor with knockdown CC."
+        notes: "Decent L58 Rabam. Put on hotbar for extra burst filler."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Guardian PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Guardian has a grab, use it to break enemy SA."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. PVE iframe as well."
+        notes: "PVE iframe. Can be locked in PVP if it disrupts your combos."
+
+    shield_of_revelation:
+        name: "Shield of Revelation"
+        input: "Q (hold)"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        description: "Forward Guard block. Hold to block frontal damage and CC."
+        notes: "Essential block. Succession Guardian uses this heavily for defense."
+
+    infernal_nemesis:
+        name: "Infernal Nemesis"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Fire leap with Super Armor. Good engage or filler in succession kit."
+        notes: "Put on hotbar. Good SA engage tool."
+
+    god_fire:
+        name: "God Fire"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stiffness"]
+        description: "Forward Guard fire slash. Quick pre-awakening poke."
+        notes: "Optional hotbar skill. FG makes it relatively safe."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard succession grinding rotation. Simple and powerful. Guardian excels as a beginner PVE class."
+        difficulty: beginner
+        combo_window_ms: 350
+        steps:
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash to pack"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main axe slam damage"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "heavy_strike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Big AOE sweep"
+            - skill: "shield_smash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Self-heal + damage"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff first, then demolish the pack."
+        difficulty: intermediate
+        combo_window_ms: 350
+        steps:
+            - skill: "battle_roar"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP/DP buff before engaging"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close into pack"
+            - skill: "doom_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Big AOE nuke opener"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "heavy_strike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Wide AOE cleanup"
+            - skill: "flow_heavy_strike"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extra sweep damage"
+            - skill: "shield_smash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Self-heal + finish stragglers"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Focus on mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up if needed"
+            - skill: "predatory_leap"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA leap to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns efficiently."
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "battle_roar"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage"
+            - skill: "doom_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE nuke opener"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "heavy_strike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "AOE sweep"
+            - skill: "flow_heavy_strike"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extra sweep"
+            - skill: "shield_smash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Self-heal + bound"
+            - skill: "flow_shield_smash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend Shield Smash"
+            - skill: "wild_swing"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Float + reposition"
+            - skill: "flame_of_judgment"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor skills. Succession Guardian is
+            tanky with lots of SA. March forward and look for an opening.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "battle_roar"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before engaging"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close"
+            - skill: "predatory_leap"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA leap + stiffness"
+            - skill: "flow_predatory_leap"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Knockdown follow-up"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up slam"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Guardian PVP combo. Land a grab then chain into full burst.
+            Guardian's grab bypasses Super Armor — use it to crack open tanky targets.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "wild_swing"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Float on grabbed target"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "doom_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE nuke finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use stiffness from Predatory Leap or Mountain Crush to catch
+            the target, then chain into grab and full damage.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "predatory_leap"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA leap — stiffness catch"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "wild_swing"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Float follow-up"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "heavy_strike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher sweep"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in SA skills. Out-trade opponents with raw power.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "predatory_leap"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage"
+            - skill: "flow_predatory_leap"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Knockdown follow-up"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up slam"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "doom_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Instant AOE nuke on CC'd target"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "heavy_strike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher sweep"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Succession Guardian is slow but tanky.
+            Use SA movement and block to create distance safely.
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "ground_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA backwards slam — create distance"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash away"
+            - skill: "flame_of_judgment"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam SA filler while retreating"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Succession Guardian brings massive AOEs
+            and tankiness to group fights. Stay with your group and nuke.
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "battle_roar"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before engaging blob"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "SA engage into group"
+            - skill: "doom_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE nuke"
+            - skill: "axe_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_axe_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "heavy_strike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA wide AOE"
+            - skill: "flow_heavy_strike"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extra sweep damage"
+            - skill: "shield_smash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA self-heal + damage"
+            - skill: "ground_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs. Guardian is the slowest class — use every dash available."
+        difficulty: beginner
+        combo_window_ms: 350
+        steps:
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward charge"
+            - skill: "predatory_leap"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward leap"
+            - skill: "flame_of_judgment"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam movement filler"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "Charge again if off cooldown"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Guardian succession. Cycle between Shield Charge,
+            Predatory Leap, and Rabam skills for maximum speed. Succession is
+            slightly faster than awakening but still the slowest class overall.
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward charge"
+            - skill: "predatory_leap"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward leap"
+            - skill: "flame_of_judgment"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam movement filler"
+            - skill: "raging_thunder"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "Rabam SA movement"
+            - skill: "shield_charge"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Axe Slash"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Flow: Axe Slash"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Heavy Strike"
+          addon_1: "All DP -15 for 10 sec for target"
+          addon_2: "Extra AP Against Monsters +20 for 7 sec"
+        - skill: "Doom Strike"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All Accuracy Rate +4% for 7 sec"
+        - skill: "Shield Smash"
+          addon_1: "HP Recovery on Hit +30 for 7 sec"
+          addon_2: "All DP +15 for 7 sec"
+        - skill: "Predatory Leap"
+          addon_1: "Attack/Casting Speed +7% for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Shield Bash"
+      reason: "Low damage, unprotected, can trigger accidentally."
+    - name: "Ground Kick"
+      reason: "Unprotected, slows down rotation."
+    - name: "Axe Throw"
+      reason: "Unprotected, low damage, not useful in succession rotation."
+    - name: "Flow: Predator"
+      reason: "Can trigger accidentally, disrupts main combos."
+    - name: "Shield Push"
+      reason: "Unprotected, not useful in succession rotation."
+    - name: "Low Sweep"
+      reason: "Unprotected, disrupts combo flow."
+    - name: "Charging Slash"
+      reason: "Unprotected, can trigger accidentally during combos."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Fury Unleashed"
+    - "Iron Wall"
+    - "Infernal Nemesis"
+    - "God Fire"
+    - "Battle Roar"
+    - "Shield Smash"
+    - "Divine Punishment"
+    - "Flame of Judgment"
+    - "Raging Thunder"
+    - "Grab"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Heavy Strike"
+    effect: "Forward Guard added, increased damage multiplier"
+    reason: >
+        Heavy Strike with Core gains Forward Guard protection on top of its
+        existing Super Armor, making it one of the safest high-damage skills
+        in the game. The increased damage multiplier makes it hit extremely
+        hard. Most Succession Guardian players choose this Core first. Axe
+        Slash Core is also a strong alternative for raw PVE damage. After
+        Heavy Strike, consider Earth Cleave Core for the maintained FG poke.

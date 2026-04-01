@@ -9,7 +9,7 @@ long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="bdo-trainer",
-    version="0.2.0",
+    version="0.3.0",
     description="Transparent overlay combo trainer for Black Desert Online",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -21,6 +21,7 @@ setup(
         "pillow>=10.0",
         "keyboard>=0.13",
         "pynput>=1.7",
+        "requests>=2.28",
     ],
     extras_require={
         "dev": [
