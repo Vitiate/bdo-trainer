@@ -1,0 +1,809 @@
+# ============================================================================
+# BDO Trainer - Succession Ranger Combo Configuration
+# ============================================================================
+# Class: Ranger (Succession)
+# Weapons: Longbow (Main) / Kamasylven Dagger (Off) — Enhanced Bow Skills
+# Damage Type: Ranged / Mid-Range
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Ranger Class Discord
+#   - Community guides by Bloo, PreStige, Haerim
+# ============================================================================
+
+class: Ranger
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Succession Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    descending_current:
+        name: "Descending Current"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 6000
+        description: "Enhanced succession bow slam. Super Armor throughout with knockdown."
+        flows_into: ["flow_piercing_wind", "breezy_blade", "call_of_the_earth"]
+        core_effect: "Core: Descending Current - Extra hits and increased damage"
+        notes: "Bread-and-butter succession damage skill. Always flow into Flow: Piercing Wind."
+
+    flow_piercing_wind:
+        name: "Flow: Piercing Wind"
+        input: "LMB (after Descending Current)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Descending Current. Additional burst with Super Armor."
+        flows_into: ["breezy_blade", "charging_wind", "call_of_the_earth"]
+        notes: "Always chain after Descending Current for maximum damage output."
+
+    breezy_blade:
+        name: "Breezy Blade"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "FG"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Enhanced multi-hit Forward Guard slash combo. Strong succession filler."
+        flows_into: ["descending_current", "charging_wind", "natures_tremble"]
+        core_effect: "Core: Breezy Blade - Forward Guard maintained through full animation"
+        notes: "High damage with frontal protection. Core ensures FG on entire skill."
+
+    charging_wind:
+        name: "Charging Wind"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Super Armor charged arrow. Hold for increased range and damage."
+        flows_into: ["descending_current", "breezy_blade", "call_of_the_earth"]
+        core_effect: "Core: Charging Wind - Stiffness on all hits and increased damage"
+        notes: "Hold input for ranged version. Tap for quick close-range variant."
+
+    will_of_the_wind:
+        name: "Will of the Wind"
+        input: "Shift + Space"
+        keys: ["shift", "space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Super Armor forward dash. Primary succession gap closer."
+        flows_into: ["descending_current", "charging_wind", "rain_of_arrows"]
+        notes: "Primary movement skill. SA protection while closing distance."
+
+    evasive_explosion_shot:
+        name: "Evasive Explosion Shot"
+        input: "A/D + LMB"
+        keys: ["a", "lmb"]
+        keys_alt: ["d", "lmb"]
+        protection: "iframe"
+        cc: []
+        damage: medium
+        cooldown_ms: 3000
+        description: "iFrame sidestep with explosive arrow. Core Ranger survival tool."
+        flows_into: ["flow_evasive_shot", "descending_current", "breezy_blade"]
+        core_effect: "Core: Evasive Explosion Shot - Reduced cooldown and extra damage"
+        notes: "Primary iframe. Can be chained left/right. Essential for PVP survival."
+
+    natures_tremble:
+        name: "Nature's Tremble"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "FG"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard ground slam. Enhanced succession version with bound CC."
+        flows_into: ["descending_current", "breezy_blade", "tearing_arrow"]
+        notes: "Good CC tool with frontal protection. Use to set up burst combos."
+
+    bow_skill:
+        name: "Bow Skill"
+        input: "LMB (chain)"
+        keys: ["lmb"]
+        protection: "none"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Basic bow combo chain. Enhanced successive hits in succession spec."
+        flows_into: ["descending_current", "charging_wind"]
+        notes: "Filler between cooldowns. Cancel into other skills for damage."
+
+    call_of_the_earth:
+        name: "Call of the Earth"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["float"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Super Armor overhead arrow slam with float CC. Heavy burst damage."
+        flows_into: ["descending_current", "breezy_blade", "tearing_arrow"]
+        core_effect: "Core: Call of the Earth - Float on all hits"
+        notes: "Strong burst skill. Float CC enables air combos in PVP."
+
+    tearing_arrow:
+        name: "Tearing Arrow"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "none"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Ranged piercing shot. Unprotected but long range with knockdown."
+        flows_into: ["descending_current", "charging_wind"]
+        notes: "Long-range poke. Use at distance in PVP. Risky at close range."
+
+    elven_grace:
+        name: "Elven Grace"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "none"
+        cc: []
+        damage: none
+        cooldown_ms: 24000
+        description: "Self-buff. Increases AP, attack speed, and crit rate for succession."
+        flows_into: ["will_of_the_wind", "descending_current"]
+        core_effect: "Core: Elven Grace - Super Armor during the skill"
+        notes: "Use before engaging. Hotbar recommended for tracking cooldown."
+
+    rain_of_arrows:
+        name: "Rain of Arrows"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor ranged AOE arrow volley. Wide area coverage."
+        flows_into: ["descending_current", "charging_wind", "breezy_blade"]
+        notes: "Good PVE clear and large scale PVP AOE. SA protection throughout."
+
+    pinpointing_gust:
+        name: "Pinpointing Gust"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward Guard quick ranged arrow burst. Good approach tool."
+        flows_into: ["descending_current", "breezy_blade", "call_of_the_earth"]
+        notes: "Quick FG ranged poke. Good for fishing for stiffness CC in PVP."
+
+    spirits_shackles:
+        name: "Spirit's Shackles"
+        input: "Q"
+        keys: ["q"]
+        protection: "none"
+        cc: ["bound"]
+        damage: low
+        cooldown_ms: 5000
+        description: "Binding arrow shot with bound CC. Unprotected but fast."
+        flows_into: ["descending_current", "call_of_the_earth"]
+        notes: "Quick CC tool. Use from range to catch targets. Risky up close."
+
+    flow_evasive_shot:
+        name: "Flow: Evasive Shot"
+        input: "LMB (after Evasive Explosion Shot)"
+        keys: ["lmb"]
+        protection: "iframe"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Follow-up iframe shot after Evasive Explosion Shot."
+        flows_into: ["descending_current", "breezy_blade"]
+        notes: "Extends iframe protection from EES. Always chain for extra safety."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    vine_cutter:
+        name: "Vine Cutter"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Super Armor slash with stiffness. Good filler and PVP catch skill."
+        notes: "Preferred L56 Rabam. SA protection makes it safe for PVP."
+
+    natures_bloom:
+        name: "Nature's Bloom"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor AOE burst. Additional damage filler skill."
+        notes: "Preferred L57 Rabam. Good for PVE AOE clear and PVP filler."
+
+    kamasylven_leaf:
+        name: "Kamasylven Leaf"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Ranged leaf projectile with knockdown. Neither L58 Rabam is strong."
+        notes: "Optional. Can use from hotbar as a ranged CC poke."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    razor_wind:
+        name: "Razor Wind"
+        input: "S + E"
+        keys: ["s", "e"]
+        protection: "none"
+        cc: ["stiffness"]
+        description: "Ranged wind projectile. Unprotected but long-range stiffness poke."
+        notes: "Use from range to poke. Unprotected — don't use at close range in PVP."
+
+    blasting_gust:
+        name: "Blasting Gust"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["knockback"]
+        description: "Ranged wind blast. Knockback utility for peeling or zoning."
+        notes: "Put on hotbar. Useful for creating distance against melee classes."
+
+    earth_kick:
+        name: "Earth Kick"
+        input: "F"
+        keys: ["f"]
+        protection: "none"
+        cc: ["bound"]
+        description: "Quick low kick with bound CC. Unprotected but fast animation."
+        notes: "Emergency CC tool. Risky in PVP due to no protection."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe."
+        notes: "PVE iframe. Lock in PVP to prevent accidental use (use Evasive Explosion Shot instead)."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard succession grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Gap close to pack"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main damage"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "breezy_blade"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "FG filler damage"
+            - skill: "call_of_the_earth"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Heavy slam"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff first, then unload."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "elven_grace"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engaging"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Gap close into pack"
+            - skill: "charging_wind"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Ranged AOE, hold for full charge"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "call_of_the_earth"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Heavy slam"
+            - skill: "breezy_blade"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Multi-hit clear"
+            - skill: "rain_of_arrows"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "Clean up remaining mobs"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Dash into pack"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "natures_bloom"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "elven_grace"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Engage"
+            - skill: "charging_wind"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Ranged AOE opener"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "call_of_the_earth"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Heavy slam"
+            - skill: "breezy_blade"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "FG multi-hit"
+            - skill: "rain_of_arrows"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "Ranged AOE filler"
+            - skill: "natures_tremble"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "FG bound"
+            - skill: "vine_cutter"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Reposition to next pack"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor and Forward Guard skills.
+            Approach with protection, then look for a CC opening.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "elven_grace"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff before going in"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "SA gap close"
+            - skill: "pinpointing_gust"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG stiffness poke"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "call_of_the_earth"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard skills to fish for a stiffness or bound,
+            then chain into full burst damage while target is CC'd.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "pinpointing_gust"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG stiffness — catch the target"
+            - skill: "natures_tremble"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "FG bound on stiffened target"
+            - skill: "call_of_the_earth"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA float follow-up"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "breezy_blade"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "FG finisher"
+
+    iframe_engage:
+        name: "iFrame Engage"
+        description: >
+            Aggressive approach using Evasive Explosion Shot iframes.
+            Close the gap safely, then transition into burst damage.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "evasive_explosion_shot"
+              input: "A/D + LMB"
+              keys: ["a", "lmb"]
+              alt_keys: ["d", "lmb"]
+              note: "iFrame approach — chain multiple times"
+            - skill: "flow_evasive_shot"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended iframe"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst on arrival"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "call_of_the_earth"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA float"
+            - skill: "breezy_blade"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "FG finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills. No CC setup needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "charging_wind"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA ranged opener"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "breezy_blade"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "FG filler"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            No-grab class alternative. When an ally lands a grab or
+            the target is CC'd, Ranger can dump max damage at range
+            without needing to engage in melee.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "call_of_the_earth"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA float on CC'd target"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "breezy_blade"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "FG finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use iframes and SA movement
+            to create distance. Ranger excels at kiting and repositioning.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "evasive_explosion_shot"
+              input: "A/D + LMB"
+              keys: ["a", "lmb"]
+              alt_keys: ["d", "lmb"]
+              note: "iFrame out of danger"
+            - skill: "flow_evasive_shot"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended iframe"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "SA dash to create distance"
+            - skill: "evasive_explosion_shot"
+              input: "A/D + LMB"
+              keys: ["a", "lmb"]
+              alt_keys: ["d", "lmb"]
+              note: "Chain iframes if still pressured"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on ranged AOE damage
+            from a safe distance. Stay behind frontline and use SA skills.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "elven_grace"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff before engaging blob"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "SA position into range"
+            - skill: "charging_wind"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA ranged AOE — hold for max range"
+            - skill: "rain_of_arrows"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "SA ranged AOE volley"
+            - skill: "descending_current"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_piercing_wind"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "call_of_the_earth"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA burst into group"
+            - skill: "breezy_blade"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "FG filler"
+            - skill: "evasive_explosion_shot"
+              input: "A/D + LMB"
+              keys: ["a", "lmb"]
+              alt_keys: ["d", "lmb"]
+              note: "iFrame reposition to safety"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "SA forward dash"
+            - skill: "evasive_explosion_shot"
+              input: "A/D + LMB"
+              keys: ["a", "lmb"]
+              alt_keys: ["d", "lmb"]
+              note: "iFrame movement"
+            - skill: "vine_cutter"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Movement filler"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Dash again if off cooldown"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Ranger succession. Cycle between Will of the Wind,
+            Evasive Explosion Shot, and Rabam dashes for maximum traversal speed.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "SA forward dash"
+            - skill: "evasive_explosion_shot"
+              input: "A/D + LMB"
+              keys: ["a", "lmb"]
+              alt_keys: ["d", "lmb"]
+              note: "iFrame movement"
+            - skill: "flow_evasive_shot"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended movement"
+            - skill: "vine_cutter"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement filler"
+            - skill: "will_of_the_wind"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "If off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Elven Grace"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+        - skill: "Descending Current"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Charging Wind"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Call of the Earth"
+          addon_1: "HP Recovery +100 per hit"
+          addon_2: "All DP +15 for 7 sec"
+        - skill: "Breezy Blade"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Back Attack Damage +3% for 5 sec"
+        - skill: "Rain of Arrows"
+          addon_1: "All DP -15 for 10 sec for target"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental double-tap dodge that messes up combos."
+    - name: "Absolute: Kick"
+      reason: "Unprotected, can trigger accidentally."
+    - name: "Nature Trail"
+      reason: "Awakening movement skill, not available in succession spec."
+    - name: "Elven Rage"
+      reason: "Awakening buff, not available in succession spec."
+    - name: "Cold Blade"
+      reason: "Awakening skill, not available in succession spec."
+    - name: "Wailing Wind"
+      reason: "Awakening skill, not available in succession spec."
+    - name: "Regeneration"
+      reason: "Awakening skill, not available in succession spec."
+    - name: "Waltz of Wind"
+      reason: "Awakening skill, not available in succession spec."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Elven Grace"
+    - "Rain of Arrows"
+    - "Kamasylven Leaf"
+    - "Vine Cutter"
+    - "Nature's Bloom"
+    - "Blasting Gust"
+    - "Razor Wind"
+    - "Will of the Wind"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Descending Current"
+    effect: "Extra hits and increased damage"
+    reason: >
+        Descending Current with Core gains extra hits and significantly
+        increased damage, making it the strongest succession burst tool.
+        Alternatively, Charging Wind Core adds stiffness on all hits and
+        increased damage for ranged play. Most Ranger succession players
+        choose Descending Current Core first, then experiment with
+        Evasive Explosion Shot or Charging Wind Cores after.

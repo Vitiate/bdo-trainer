@@ -1,0 +1,867 @@
+# ============================================================================
+# BDO Trainer - Awakened Woosa Combo Configuration
+# ============================================================================
+# Class: Woosa (Awakening)
+# Weapons: Janggeom (Main — Korean sword) / Daedo (Off — inner power) / Sageongeom (Awakening — celestial fan sword)
+# Damage Type: Magic/Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Notes:
+#   - Woosa has NO grab. Relies on protected CC chains and spacing.
+#   - Korean-themed wind/cloud/lightning magic class.
+#   - Strong self-healing via Inner Peace. Excellent in PVP and large scale.
+#   - Part of the newest class wave in BDO.
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Woosa Class Discord
+#   - Community guides by Arukas, JinSeoul, CloudKR
+# ============================================================================
+
+class: Woosa
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    cloud_veil:
+        name: "Cloud Veil"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Fan slash wreathed in cloud energy. Super Armor throughout with stiffness."
+        flows_into: ["flow_mist_slash", "thunderstrike", "cloud_step"]
+        core_effect: "Core: Cloud Veil - Extra hit damage and healing on hit"
+        notes: "Bread-and-butter skill. Always follow with Flow: Mist Slash for full damage."
+
+    flow_mist_slash:
+        name: "Flow: Mist Slash"
+        input: "LMB (after Cloud Veil)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up fan slash trailing mist. Additional burst with Super Armor."
+        flows_into: ["thunderstrike", "heavens_gate", "rain_of_light"]
+        notes: "Always chain after Cloud Veil for extra damage and extended SA protection."
+
+    thunderstrike:
+        name: "Thunderstrike"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Calls down a devastating lightning strike. Super Armor with knockdown. Highest damage awakening skill."
+        flows_into: ["flow_thunder_wave", "cloud_veil", "rain_of_light"]
+        core_effect: "Core: Thunderstrike - Down attack damage +15%, extra lightning hit"
+        notes: "Primary damage skill. Core priority. Use on cooldown in PVE, save for CC'd targets in PVP."
+
+    flow_thunder_wave:
+        name: "Flow: Thunder Wave"
+        input: "LMB (after Thunderstrike)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up lightning wave after Thunderstrike. Sends out a forward shockwave."
+        flows_into: ["cloud_veil", "heavens_gate"]
+        notes: "Always chain after Thunderstrike. Knockback keeps targets at comfortable range."
+
+    cloud_step:
+        name: "Cloud Step"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 5000
+        description: "Super Armor dash forward through clouds. Quick gap closer with stiffness."
+        flows_into: ["flow_wind_step", "cloud_veil", "thunderstrike"]
+        core_effect: "Core: Cloud Step - Movement speed +10% for 10 sec on use"
+        notes: "Primary engage tool. Flows into Wind Step for extended mobility."
+
+    flow_wind_step:
+        name: "Flow: Wind Step"
+        input: "F (after Cloud Step)"
+        keys: ["f"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Extended dash follow-up to Cloud Step. Additional forward movement with SA."
+        flows_into: ["cloud_veil", "thunderstrike", "gust_blade"]
+        notes: "Always use after Cloud Step for extended distance. SA throughout."
+
+    rain_of_light:
+        name: "Rain of Light"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Channels celestial energy into a ranged AOE rain of light beams. Float CC."
+        flows_into: ["flow_celestial_rain", "thunderstrike", "cloud_veil"]
+        core_effect: "Core: Rain of Light - AOE range increased, extra hit added"
+        notes: "Ranged AOE skill. Great for PVE pack clearing and PVP zoning. Float opens combo opportunities."
+
+    flow_celestial_rain:
+        name: "Flow: Celestial Rain"
+        input: "LMB (after Rain of Light)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Rain of Light. Additional light beams cascade down."
+        flows_into: ["thunderstrike", "heavens_gate"]
+        notes: "Chain after Rain of Light for extended AOE damage."
+
+    heavens_gate:
+        name: "Heaven's Gate"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Opens a celestial gate, unleashing a massive AOE blast. SA with knockdown."
+        flows_into: ["thunderstrike", "cloud_veil", "rain_of_light"]
+        notes: "Large AOE skill. Long cooldown but devastating in both PVE and large scale PVP."
+
+    inner_peace:
+        name: "Inner Peace"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Forward Guard self-heal and buff. Restores HP and grants AP/DP buff for 10 sec."
+        flows_into: ["cloud_veil", "cloud_step"]
+        core_effect: "Core: Inner Peace - Heal amount +30%, grants Super Armor for 2 sec after cast"
+        notes: "Key self-sustain tool. FG during cast keeps you safe. Use between engagements or when pressured."
+
+    cloud_dance:
+        name: "Cloud Dance"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: low
+        cooldown_ms: 5000
+        description: "Iframe dash through clouds. Primary awakening movement skill. PVE iframe."
+        flows_into: ["cloud_veil", "thunderstrike", "cloud_step"]
+        notes: "Primary movement skill in awakening. Iframe for 1 sec. Use to reposition and dodge grabs."
+
+    lightning_rod:
+        name: "Lightning Rod"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["stun"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Plants a lightning rod that stuns nearby enemies. Forward Guard during cast."
+        flows_into: ["thunderstrike", "cloud_veil", "rain_of_light"]
+        notes: "Defensive CC tool with frontal protection. Use to create space or set up combos."
+
+    gust_blade:
+        name: "Gust Blade"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward fan thrust sending a blade of wind. SA with knockback."
+        flows_into: ["cloud_veil", "thunderstrike", "cloud_step"]
+        notes: "Good approach skill with knockback. Can be used to push enemies into walls."
+
+    storm_lotus:
+        name: "Storm Lotus"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Spinning fan strike channeling storm energy. Super Armor with bound."
+        flows_into: ["thunderstrike", "cloud_veil"]
+        notes: "Bound CC enables follow-up damage. Good filler between main cooldowns."
+
+    wind_scatter:
+        name: "Wind Scatter"
+        input: "E"
+        keys: ["e"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "360-degree wind burst around the caster. Knocks enemies back."
+        flows_into: ["cloud_dance", "cloud_veil"]
+        notes: "Panic button and self-peel tool. Use when surrounded. No grab on Woosa so this is your escape."
+
+    celestial_slash:
+        name: "Celestial Slash"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Overhead fan slash channeling celestial power. Super Armor. Hotbar recommended."
+        flows_into: ["thunderstrike", "cloud_veil"]
+        notes: "Hotbar skill. Good burst filler with protection."
+
+    cloud_burst:
+        name: "Cloud Burst"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Concentrated cloud explosion from hotbar. Forward Guard."
+        flows_into: ["thunderstrike", "rain_of_light"]
+        notes: "Hotbar skill. Forward Guard makes it safe to use in PVP."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    cloud_piercing_strike:
+        name: "Cloud Piercing Strike"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor fan thrust through cloud energy. Stiffness CC with forward movement."
+        notes: "Preferred L56 Rabam for 1v1 and general PVP. Good gap closer with CC."
+
+    gale_shield:
+        name: "Gale Shield"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 8000
+        description: "SA wind barrier that absorbs damage. Grants DP buff for 10 sec. Movement skill."
+        notes: "Preferred L57 Rabam. Useful for protected movement and survivability buff."
+
+    thunder_lotus:
+        name: "Thunder Lotus"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 14000
+        description: "Lightning-infused lotus strike from hotbar. SA with knockdown."
+        notes: "Decent L58 Rabam. Put on hotbar. Good extra burst with protection."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Standard evasion skill."
+        notes: "PVE iframe. Lock in PVP to prevent accidental use that interrupts combos."
+
+    cloud_ride:
+        name: "Cloud Ride"
+        input: "W + W (hold)"
+        keys: ["w", "w"]
+        protection: "SA"
+        cc: []
+        description: "Mounts a cloud for fast forward movement. Super Armor during ride."
+        notes: "Primary pre-awakening movement skill. SA throughout. Chain with Cloud Dance for fast travel."
+
+    qi_barrier:
+        name: "Qi Barrier"
+        input: "Q (pre-awakening)"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        description: "Conjures a forward-facing qi shield. Blocks frontal attacks. Drains WP while held."
+        notes: "Defensive tool when pressured. Hold to block, release into awakening skills."
+
+    heavenly_step:
+        name: "Heavenly Step"
+        input: "Shift + Space"
+        keys: ["shift", "space"]
+        protection: "iframe"
+        cc: []
+        description: "Upward leap iframe. Quick vertical dodge that grants brief invincibility."
+        notes: "Emergency iframe. Use to dodge incoming grabs or unblockable attacks."
+
+    wind_blade:
+        name: "Wind Blade"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["stiffness"]
+        description: "Ranged wind projectile. Unprotected but useful for ranged poke."
+        notes: "Optional pre-awakening poke. Unprotected, use at range only."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe dash to pack"
+            - skill: "cloud_veil"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA fan slash into pack"
+            - skill: "flow_mist_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slash"
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main burst damage"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up wave"
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Use AOE skills to group and nuke."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "inner_peace"
+              input: "Q"
+              keys: ["q"]
+              note: "Heal and buff before engaging"
+            - skill: "cloud_step"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash into pack"
+            - skill: "flow_wind_step"
+              input: "F"
+              keys: ["f"]
+              note: "Extended dash into center"
+            - skill: "heavens_gate"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Large AOE nuke"
+            - skill: "rain_of_light"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Ranged AOE follow-up"
+            - skill: "flow_celestial_rain"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended AOE rain"
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Lightning burst on survivors"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Clean up remaining"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe dash into pack"
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "One-shot burst"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up wave"
+            - skill: "cloud_ride"
+              input: "W + W"
+              keys: ["w", "w"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns and flows."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "inner_peace"
+              input: "Q"
+              keys: ["q"]
+              note: "Heal and AP/DP buff"
+            - skill: "cloud_step"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage"
+            - skill: "flow_wind_step"
+              input: "F"
+              keys: ["f"]
+              note: "Extended dash"
+            - skill: "heavens_gate"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Large AOE opener"
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main burst"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up wave"
+            - skill: "rain_of_light"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Ranged AOE"
+            - skill: "flow_celestial_rain"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended rain"
+            - skill: "cloud_veil"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Filler damage"
+            - skill: "flow_mist_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slash"
+            - skill: "storm_lotus"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Bound filler"
+            - skill: "cloud_piercing_strike"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor movement skills.
+            Approach with protection, then fish for CC openings.
+            Woosa has no grab so you must rely on protected CC chains.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "inner_peace"
+              input: "Q"
+              keys: ["q"]
+              note: "FG buff before going in"
+            - skill: "cloud_step"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA gap close"
+            - skill: "flow_wind_step"
+              input: "F"
+              keys: ["f"]
+              note: "Extended SA engage"
+            - skill: "gust_blade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "SA knockback to disrupt"
+            - skill: "cloud_veil"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA stiffness poke"
+            - skill: "flow_mist_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+
+    stiffness_chain:
+        name: "Stiffness Chain (1v1)"
+        description: >
+            Core Woosa 1v1 combo. Land a stiffness CC then chain into
+            knockdown and full burst. No grab needed — rely on stiffness
+            into extended CC chain for kill potential.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "cloud_veil"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA stiffness opener"
+            - skill: "lightning_rod"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG stun on stiffened target"
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA main burst — knockdown"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up wave"
+            - skill: "rain_of_light"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "AOE float on downed target"
+            - skill: "flow_celestial_rain"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended rain finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard skills to approach, fish for a stun,
+            then chain into knockdown and full damage. Woosa has no grab
+            so catching with FG-protected CC is essential.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "lightning_rod"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG stun — catch the target"
+            - skill: "storm_lotus"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA bound on stunned target"
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main burst — knockdown"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "heavens_gate"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Large AOE finisher"
+            - skill: "cloud_veil"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Cleanup damage"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in SA-protected skills. No CC needed to open.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "cloud_step"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA rush in"
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA main burst"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up wave"
+            - skill: "cloud_veil"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA filler damage"
+            - skill: "flow_mist_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+
+    knockdown_punish:
+        name: "Knockdown Punish (After Ally CC)"
+        description: >
+            Maximum damage combo when your teammate lands a CC
+            or the target is already knocked down on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Instant burst on CC'd target"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up wave"
+            - skill: "rain_of_light"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "AOE follow-up"
+            - skill: "flow_celestial_rain"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended rain finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Woosa has no grab so enemies
+            will try to pressure hard — use SA/iframe movement to disengage
+            and heal with Inner Peace before re-engaging.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "wind_scatter"
+              input: "E"
+              keys: ["e"]
+              note: "SA knockback — push enemies away"
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe dash away"
+            - skill: "gale_shield"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement + DP buff"
+            - skill: "inner_peace"
+              input: "Q"
+              keys: ["q"]
+              note: "FG heal at safe distance"
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe if pursued"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on large AOE damage and
+            self-sustain. Stay with your group and use SA skills.
+            Woosa excels in large scale with massive AOE and self-healing.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "inner_peace"
+              input: "Q"
+              keys: ["q"]
+              note: "Heal and buff before engaging blob"
+            - skill: "cloud_step"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage into group"
+            - skill: "flow_wind_step"
+              input: "F"
+              keys: ["f"]
+              note: "Extended SA dash"
+            - skill: "heavens_gate"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA large AOE nuke"
+            - skill: "rain_of_light"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA ranged AOE"
+            - skill: "flow_celestial_rain"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended AOE rain"
+            - skill: "thunderstrike"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA burst on grouped enemies"
+            - skill: "flow_thunder_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up wave"
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe forward dash"
+            - skill: "cloud_ride"
+              input: "W + W"
+              keys: ["w", "w"]
+              note: "SA cloud mount movement"
+            - skill: "cloud_step"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dash"
+            - skill: "flow_wind_step"
+              input: "F"
+              keys: ["f"]
+              note: "Extended forward dash"
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Movement chain for Woosa awakening. Cycle between Cloud Dance,
+            Cloud Ride, Cloud Step, and Gale Shield for maximum traversal
+            speed with protection throughout.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe forward dash"
+            - skill: "cloud_step"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward rush"
+            - skill: "flow_wind_step"
+              input: "F"
+              keys: ["f"]
+              note: "Extended dash"
+            - skill: "gale_shield"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement filler"
+            - skill: "cloud_ride"
+              input: "W + W"
+              keys: ["w", "w"]
+              note: "SA cloud ride filler"
+            - skill: "cloud_dance"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Thunderstrike"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Cloud Veil"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Heaven's Gate"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Rain of Light"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Storm Lotus"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Cloud Step"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Movement Speed +7% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Absolute: Basic Slash"
+      reason: "Unprotected, can trigger accidentally during awakening rotation."
+    - name: "Wind Blade"
+      reason: "Unprotected, not useful in awakening rotation."
+    - name: "Qi Slash"
+      reason: "Unprotected pre-awakening skill, slows down rotation."
+    - name: "Cloud Strike"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Flow: Cloud Strike"
+      reason: "Unprotected follow-up, messes up PVP combos."
+    - name: "Celestial Slash"
+      reason: "Lock from skill bar. Put on HOTBAR instead for controlled use."
+    - name: "Cloud Burst"
+      reason: "Lock from skill bar. Put on HOTBAR instead for controlled use."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Celestial Slash"
+    - "Cloud Burst"
+    - "Thunder Lotus"
+    - "Inner Peace"
+    - "Wind Blade"
+    - "Qi Barrier"
+    - "Heavenly Step"
+    - "Heaven's Gate"
+    - "Cloud Piercing Strike"
+    - "Gale Shield"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Thunderstrike"
+    effect: "Down attack damage +15%, extra lightning hit added"
+    reason: >
+        Thunderstrike with Core gains significant bonus damage with a down
+        attack modifier and an additional lightning hit. This is Woosa's
+        highest damage skill and the Core makes it substantially stronger
+        in both PVE and PVP. Most Woosa players choose this Core first.
+        After getting comfortable, experiment with Cloud Veil Core for
+        sustain and Cloud Step Core for mobility.

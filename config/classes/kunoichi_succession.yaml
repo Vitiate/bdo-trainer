@@ -1,0 +1,867 @@
+# ============================================================================
+# BDO Trainer - Succession Kunoichi Combo Configuration
+# ============================================================================
+# Class: Kunoichi (Succession)
+# Weapons: Shortsword (Main) / Kunai (Off) / Enhanced Shortsword+Kunai (Succession)
+# Damage Type: Melee / Ranged (Kunai Throw, Shuriken)
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull, grab
+#
+# Class Identity:
+#   - Enhanced Shortsword and Kunai combat with ninja arts
+#   - Mix of melee burst and ranged kunai/shuriken harass
+#   - Strong iframe movement with Block Jump and evasion chains
+#   - Grab class — Grab (E) bypasses Super Armor
+#   - Excellent 1v1 duelist with ranged poke options
+#   - High skill ceiling, rewarding precise input timing
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Kunoichi Class Discord
+#   - Community guides by VertualSol, NinjaKuno, FakeUni, Awnix
+# ============================================================================
+
+class: Kunoichi
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Succession Skills (Enhanced Shortsword + Kunai)
+# --------------------------------------------------------------------------
+succession_skills:
+    kunai_stab:
+        name: "Kunai Stab"
+        input: "LMB"
+        keys: ["lmb"]
+        protection: "none"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Basic melee combo attack. Fast multi-hit chain with Kunai."
+        flows_into: ["crescent_slash", "shadow_clone", "flash_slash"]
+        notes: "Filler attack. Mostly used to cancel animations or chain into real skills."
+
+    kunai_throw:
+        name: "Kunai Throw"
+        input: "RMB"
+        keys: ["rmb"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 0
+        description: "Ranged kunai projectile. Applies stiffness on hit. Can be used while moving."
+        flows_into: ["crescent_slash", "shadow_clone"]
+        notes: "Ranged poke tool. Great for catching opponents off guard or confirming into grab."
+
+    crescent_slash:
+        name: "Crescent Slash"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Main burst skill. Super Armor spinning slash with high damage and knockdown."
+        flows_into: ["flow_rising_moon", "shadow_clone", "kunai_stab"]
+        core_effect: "Core: Crescent Slash - Extra damage on last hit, extended SA duration"
+        notes: "Bread-and-butter damage skill. Always follow with Flow: Rising Moon."
+
+    flow_rising_moon:
+        name: "Flow: Rising Moon"
+        input: "LMB (after Crescent Slash)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Crescent Slash. Additional burst slash with Super Armor."
+        flows_into: ["shadow_clone", "flash_slash"]
+        notes: "Always chain after Crescent Slash for extra damage. Down attack properties."
+
+    shadow_clone:
+        name: "Shadow Clone"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Super Armor multi-hit clone assault. Bound CC on hit."
+        flows_into: ["flow_clone_burst", "crescent_slash", "flash_slash"]
+        notes: "Second main damage skill. Bound sets up follow-up damage."
+
+    flow_clone_burst:
+        name: "Flow: Clone Burst"
+        input: "LMB (after Shadow Clone)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Shadow Clone. Extended clone strikes with Super Armor."
+        flows_into: ["crescent_slash", "flash_slash"]
+        notes: "Always chain after Shadow Clone for extra damage."
+
+    shadow_stomp:
+        name: "Ninjutsu: Shadow Stomp"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Super Armor ground slam. Enhanced in Succession with extra damage."
+        flows_into: ["crescent_slash", "shadow_clone", "flash_slash"]
+        core_effect: "Core: Shadow Stomp - Increased damage and extended Super Armor"
+        notes: "Good AOE knockdown. Use to initiate or interrupt."
+
+    flash_slash:
+        name: "Flash Slash"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Quick Forward Guard dash slash. Good engage tool with stiffness."
+        flows_into: ["crescent_slash", "shadow_clone", "grab"]
+        notes: "Great for closing distance with frontal protection. Fish for stiffness into grab."
+
+    shuriken_throw:
+        name: "Shuriken Throw"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 4000
+        description: "Ranged shuriken barrage. Multiple projectiles with stiffness."
+        flows_into: ["crescent_slash", "flash_slash"]
+        notes: "Ranged harass tool. Good for poking in PVP before engaging."
+
+    tendon_cutter:
+        name: "Tendon Cutter"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard low slash. Applies movement speed debuff on hit."
+        flows_into: ["crescent_slash", "shadow_clone"]
+        core_effect: "Core: Tendon Cutter - Forward Guard added during skill"
+        notes: "Good defensive filler with frontal protection."
+
+    floor_sweeping:
+        name: "Floor Sweeping"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "none"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Low sweep with knockdown CC. Enhanced damage in Succession."
+        flows_into: ["crescent_slash", "shadow_clone"]
+        notes: "Unprotected but strong knockdown. Use when target is vulnerable."
+
+    fatal_blow:
+        name: "Fatal Blow"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Super Armor forward thrust with float CC."
+        flows_into: ["crescent_slash", "shadow_clone"]
+        notes: "Good for catching targets. Float CC leads into air combos."
+
+    ankle_cutter:
+        name: "Ankle Cutter"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "none"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Quick low slash with bound CC."
+        flows_into: ["crescent_slash", "shadow_clone", "flash_slash"]
+        notes: "Unprotected but fast bound. Use after confirmed CC for extension."
+
+    fox_claw:
+        name: "Fox Claw"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward Guard multi-hit claw attack. Fast with stiffness."
+        flows_into: ["crescent_slash", "shadow_clone", "grab"]
+        notes: "Good protected approach with stiffness for grab setup."
+
+    ninjutsu_shadow_slash:
+        name: "Ninjutsu: Shadow Slash"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Super Armor shadow dash slash. Good burst from hotbar."
+        flows_into: ["crescent_slash", "shadow_clone"]
+        notes: "Hotbar skill. Good protected damage filler."
+
+    ninjutsu_concealment:
+        name: "Ninjutsu: Concealment"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 30000
+        description: "Stealth skill. Become invisible for a short duration."
+        flows_into: ["crescent_slash", "grab", "flash_slash"]
+        notes: "Stealth opener for PVP. Use to reposition or initiate surprise attacks."
+
+    kunai_slash:
+        name: "Kunai Slash"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 4000
+        description: "Forward Guard defensive slash. Quick stiffness poke."
+        flows_into: ["crescent_slash", "shadow_clone", "grab"]
+        notes: "Defensive poke tool. FG makes it safe to fish for stiffness."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    shadow_explosion:
+        name: "Shadow Explosion"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor explosion around the Kunoichi. AOE knockback and decent damage."
+        notes: "Preferred L56 Rabam for Succession. Good protected AOE for spacing."
+
+    smoke_veil:
+        name: "Smoke Veil"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 10000
+        description: "Iframe smoke bomb dash. Leaves a smoke cloud that obscures vision."
+        notes: "Preferred L57 Rabam. Extra iframe for Kunoichi's evasive playstyle."
+
+    phantom_kunai:
+        name: "Phantom Kunai"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Ranged kunai barrage from hotbar. Stiffness CC at range."
+        notes: "Optional. Extra ranged poke. Put on hotbar if using."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Kunoichi PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Kunoichi is a grab class — practice grab timing constantly."
+
+    block_jump:
+        name: "Block Jump"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        description: "Iframe jump. Primary evasion skill. Can be chained repeatedly."
+        notes: "Kunoichi's signature movement. Spam for iframe chains. Essential for survival."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Fast directional dodge."
+        notes: "Iframe. Use for repositioning. Can chain into Block Jump."
+
+    smoke_screen:
+        name: "Smoke Screen"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        description: "AOE smoke that grants stealth and obscures enemy vision."
+        notes: "Utility skill. Good for resetting fights or hiding in large scale."
+
+    ninja_step:
+        name: "Ninja Step"
+        input: "W + W (double tap)"
+        keys: ["w", "w"]
+        protection: "iframe"
+        cc: []
+        description: "Forward iframe dash. Short distance but fast."
+        notes: "Quick forward reposition. Chains into Block Jump or attacks."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe into pack"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up damage"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Second burst"
+            - skill: "flow_clone_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended clone hits"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. AOE focused."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "shuriken_throw"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Pull mobs at range"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Gap close into pack"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "AOE knockdown, group mobs"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Second burst"
+            - skill: "flow_clone_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended hits"
+            - skill: "floor_sweeping"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Clean up remaining"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up for stragglers"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage pack"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "AOE knockdown opener"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Second burst"
+            - skill: "flow_clone_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended hits"
+            - skill: "fatal_blow"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "Float stragglers"
+            - skill: "floor_sweeping"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Knockdown filler"
+            - skill: "shadow_explosion"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam AOE burst"
+            - skill: "ninjutsu_shadow_slash"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA burst from hotbar"
+            - skill: "phantom_kunai"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Ranged filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Forward Guard skills to approach.
+            Fish for a stiffness then chain into grab for the kill.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG forward dash — approach with protection"
+            - skill: "fox_claw"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG multi-hit stiffness poke"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst on CC'd target"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up burst"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA finisher burst"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Kunoichi PVP combo. Land a grab then chain into full burst.
+            Kunoichi's grab bypasses Super Armor — this is your primary kill tool.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA knockdown on grabbed target"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use ranged poke to fish for a stiffness, then dash in for
+            grab and full damage chain. Kunoichi excels at this playstyle.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "kunai_throw"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Ranged stiffness poke — catch the target"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG dash in on stiffened target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Knockdown follow-up"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills. Ideal for quick trades.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG forward rush"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up damage"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA burst finisher"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA knockdown on CC'd target"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher burst"
+
+    stealth_engage:
+        name: "Stealth Engage (1v1)"
+        description: >
+            Open from stealth for a surprise grab or CC. Kunoichi's stealth
+            allows repositioning unseen before a devastating opener.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "ninjutsu_concealment"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Go invisible — reposition behind target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Surprise grab from stealth"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA knockdown"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Kunoichi excels at disengaging
+            with iframe chains. Use Block Jump spam to create distance.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "smoke_veil"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "Iframe smoke dash out"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe jump away"
+            - skill: "evasion"
+              input: "A or D (double tap)"
+              keys: ["a"]
+              note: "Sidestep iframe"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue iframe chain"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on protected damage in
+            the blob. Use SA skills and avoid overextending. Kunoichi
+            can stealth flank and assassinate key targets.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "ninjutsu_concealment"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Stealth to flank the blob"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe into position"
+            - skill: "shadow_stomp"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA AOE knockdown"
+            - skill: "crescent_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst"
+            - skill: "flow_rising_moon"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "shadow_clone"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA burst"
+            - skill: "shadow_explosion"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA AOE knockback for spacing"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe retreat out of blob"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe forward jump"
+            - skill: "ninja_step"
+              input: "W + W"
+              keys: ["w", "w"]
+              note: "Forward iframe dash"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue jumping"
+            - skill: "flash_slash"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG forward dash filler"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Kunoichi Succession. Cycle between Block Jump,
+            Ninja Step, evasions, and Smoke Veil for maximum speed and iframes.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe forward jump"
+            - skill: "ninja_step"
+              input: "W + W"
+              keys: ["w", "w"]
+              note: "Forward iframe dash"
+            - skill: "smoke_veil"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "Iframe smoke dash"
+            - skill: "block_jump"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue iframe chain"
+            - skill: "evasion"
+              input: "A or D (double tap)"
+              keys: ["a"]
+              note: "Sidestep if needed"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Crescent Slash"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Shadow Clone"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Ninjutsu: Shadow Stomp"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Flow: Rising Moon"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Flash Slash"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Floor Sweeping"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Kunai Stab"
+      reason: "Can trigger accidentally during combos. Not needed in rotation."
+    - name: "Ankle Cutter"
+      reason: "Unprotected, can mess up combos if triggered accidentally."
+    - name: "Target Chase"
+      reason: "Unprotected forward lunge. Can trigger during PVP combos."
+    - name: "Wheel of Fortune"
+      reason: "Unprotected spin. Replaced by better skills in Succession."
+    - name: "Lunar Dash"
+      reason: "Awakening skill, not needed in Succession. Lock to prevent swap."
+    - name: "Half Moon Slash"
+      reason: "Awakening skill, not needed in Succession. Lock to prevent swap."
+    - name: "Ninjutsu: Shadow Slash"
+      reason: "Lock from skill bar. Put on HOTBAR instead for controlled use."
+    - name: "Tendon Cutter"
+      reason: "Optional lock. Put on HOTBAR if locking from skill bar."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Ninjutsu: Shadow Slash"
+    - "Ninjutsu: Concealment"
+    - "Smoke Screen"
+    - "Phantom Kunai"
+    - "Shadow Explosion"
+    - "Smoke Veil"
+    - "Shuriken Throw"
+    - "Tendon Cutter"
+    - "Fox Claw"
+    - "Floor Sweeping"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Crescent Slash"
+    effect: "Extra damage on last hit, extended Super Armor duration"
+    reason: >
+        Crescent Slash with Core gains extra damage and extended Super Armor,
+        making your main burst skill even safer and more devastating. This is
+        the go-to Core for Succession Kunoichi. The extra damage on the last
+        hit significantly boosts your kill potential in both PVE and PVP.
+        After unlocking this Core, consider Shadow Stomp or Tendon Cutter
+        Cores as secondary upgrades.

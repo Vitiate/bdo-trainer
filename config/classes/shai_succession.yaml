@@ -1,0 +1,668 @@
+# ============================================================================
+# BDO Trainer - Succession Shai Combo Configuration
+# ============================================================================
+# Class: Shai (Succession)
+# Weapons: Florang (Main) / Vitclari (Off)
+# Damage Type: Melee / Support
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# NOTE: Shai Succession enhances her Florang (boomerang) pre-awakening kit
+# rather than using the Talent music instrument. She gains improved damage
+# on her main-hand skills but loses access to the powerful party buffs and
+# heals of Talent. She still has NO grab, limited PVP effectiveness, and
+# remains a support-leaning class even in Succession. Her solo grinding
+# improves but she sacrifices her unique party utility.
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Shai Class Discord
+#   - Community guides by Desperada, Archetype, YellowMouse
+# ============================================================================
+
+class: Shai
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Awakening Skills (Succession-Enhanced Florang Skills)
+# --------------------------------------------------------------------------
+awakening_skills:
+    eat_this_enhanced:
+        name: "Eat This! (Enhanced)"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "FG"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 6000
+        description: "Enhanced boomerang throw with Forward Guard. Succession's primary damage skill with increased hits and range."
+        flows_into: ["twirl_boom_enhanced", "go_away"]
+        core_effect: "Core: Eat This! - Extra hit on return, increased damage and Forward Guard duration"
+        notes: "Bread-and-butter damage skill. FG protects during throw and return. Always use off cooldown."
+
+    twirl_boom_enhanced:
+        name: "Twirl Boom (Enhanced)"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Enhanced spinning Florang attack with Super Armor. Succession adds extra spins and knockdown."
+        flows_into: ["eat_this_enhanced", "one_two_three_enhanced"]
+        core_effect: "Core: Twirl Boom - Additional spin attacks and increased AOE radius"
+        notes: "Main AOE clear skill. SA throughout makes it safe. Strong knockdown for PVE grouping."
+
+    go_away:
+        name: "Go Away!"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Powerful forward shove with Super Armor. Pushes enemies away with enhanced force."
+        flows_into: ["eat_this_enhanced", "twirl_boom_enhanced"]
+        notes: "Defensive damage skill. Use when surrounded to create space and deal damage."
+
+    one_two_three_enhanced:
+        name: "One-Two-Three (Enhanced)"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Enhanced three-hit Florang combo with Forward Guard. Quick stiffness CC on last hit."
+        flows_into: ["eat_this_enhanced", "twirl_boom_enhanced"]
+        notes: "Fast filler combo. FG on approach makes it a safer engage tool."
+
+    florang_toss:
+        name: "Florang Toss"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Ranged Florang throw with Forward Guard. Enhanced range and damage in Succession."
+        flows_into: ["eat_this_enhanced", "go_away"]
+        notes: "Ranged poke skill. Use to pull mobs or initiate safely from distance."
+
+    get_well_enhanced:
+        name: "Get Well (Enhanced)"
+        input: "Q"
+        keys: ["q"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 15000
+        description: "Enhanced self and party heal. Succession improves healing amount and adds Super Armor."
+        flows_into: ["eat_this_enhanced", "twirl_boom_enhanced"]
+        notes: "Succession retains some healing. Weaker than Talent heals but still useful for self-sustain."
+
+    looking_good:
+        name: "Looking Good!"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Forward rushing strike with Super Armor. Gap closer with stiffness on hit."
+        flows_into: ["twirl_boom_enhanced", "one_two_three_enhanced"]
+        notes: "Engage tool. SA movement + damage makes it good for approaching packs."
+
+    give_it_back:
+        name: "Give It Back!"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Overhead Florang slam with Forward Guard. Bound CC on hit."
+        flows_into: ["eat_this_enhanced", "go_away"]
+        notes: "Strong CC for PVE. Bound groups mobs for follow-up AOE skills."
+
+    quick_trick:
+        name: "Quick Trick"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 4000
+        description: "Quick low sweep with Florang. Fast animation but unprotected."
+        flows_into: ["eat_this_enhanced", "twirl_boom_enhanced"]
+        notes: "Fast filler. Unprotected so use carefully. Good for animation cancels."
+
+    over_here_succession:
+        name: "Over Here!"
+        input: "E"
+        keys: ["e"]
+        protection: "SA"
+        cc: ["pull"]
+        damage: low
+        cooldown_ms: 12000
+        description: "Pull enemies toward Shai with Super Armor. Groups mobs for AOE follow-up."
+        flows_into: ["twirl_boom_enhanced", "eat_this_enhanced"]
+        notes: "Mob grouping tool. Pull then Twirl Boom for efficient pack clearing."
+
+    hop_skip_jump:
+        name: "Hop, Skip, Jump"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Jumping Florang attack from hotbar. Super Armor with ground-pound knockdown."
+        flows_into: ["eat_this_enhanced", "twirl_boom_enhanced"]
+        notes: "Hotbar burst. Good for initiating on packs from range."
+
+    all_around:
+        name: "All Around"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "360-degree Florang spin from hotbar. Hits all surrounding enemies."
+        flows_into: ["eat_this_enhanced"]
+        notes: "Hotbar AOE. Use when surrounded for safe damage in all directions."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    ricocheting_florang:
+        name: "Ricocheting Florang"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Enhanced boomerang throw that ricochets between enemies. SA with knockback."
+        notes: "Strong PVE Rabam. Bounces between mobs for chain damage. Pairs well with Succession kit."
+
+    healing_bloom:
+        name: "Healing Bloom"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 12000
+        description: "AOE heal with damage reduction buff. Super Armor while channeling."
+        notes: "Preferred L57 Rabam for Succession. Compensates for losing Talent heals."
+
+    dancing_florang:
+        name: "Dancing Florang"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 14000
+        description: "Multi-hit Florang dance from hotbar. Forward Guard with stiffness on hit."
+        notes: "Extra burst option from hotbar. FG makes it relatively safe to use."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    tuck_and_roll:
+        name: "Tuck and Roll"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        description: "Forward roll with Super Armor. Primary movement and gap closer."
+        notes: "Spam for movement. SA protects during the roll animation. Core Succession movement."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Shai's primary defensive iframe."
+        notes: "Critical survival tool. Only true iframe Shai has. Use wisely."
+
+    come_out_donkey:
+        name: "Come Out, Come Out (Donkey)"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Summons Shai's donkey companion. Used for travel and some skill interactions."
+        notes: "Life skill utility. Donkey provides minor combat support."
+
+    timely_appearance:
+        name: "Timely Appearance"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Summon a small ally for brief combat support. Minor damage contribution."
+        notes: "Situational. Can provide extra hits but unprotected summon animation."
+
+    play_dead:
+        name: "Play Dead"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Shai drops to the ground feigning death. Niche PVP utility."
+        notes: "Gimmick skill. Can occasionally fool opponents in PVP but unreliable."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_florang_grind:
+        name: "Basic Florang Grind"
+        description: "Standard Succession grinding rotation. Simple Florang combos for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "Roll into mob pack"
+            - skill: "twirl_boom_enhanced"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE knockdown on pack"
+            - skill: "eat_this_enhanced"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Main burst damage"
+            - skill: "one_two_three_enhanced"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG filler damage"
+            - skill: "go_away"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA knockback cleanup"
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "Roll to next pack"
+
+    pull_and_clear:
+        name: "Pull and Clear"
+        description: "Group mobs together then burst them down. Efficient for dense spawn areas."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "over_here_succession"
+              input: "E"
+              keys: ["e"]
+              note: "Pull mobs together"
+            - skill: "twirl_boom_enhanced"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE on grouped mobs"
+            - skill: "eat_this_enhanced"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Main damage on group"
+            - skill: "give_it_back"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG bound for more CC"
+            - skill: "ricocheting_florang"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam bouncing damage on group"
+            - skill: "go_away"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Clean up survivors"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "Roll into pack"
+            - skill: "eat_this_enhanced"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "One-shot burst on weak mobs"
+            - skill: "twirl_boom_enhanced"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE cleanup if needed"
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "Immediately roll to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Use all cooldowns and maximize DPS uptime."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "looking_good"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "SA engage into pack"
+            - skill: "over_here_succession"
+              input: "E"
+              keys: ["e"]
+              note: "Pull stragglers in"
+            - skill: "twirl_boom_enhanced"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE main clear"
+            - skill: "eat_this_enhanced"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Primary burst damage"
+            - skill: "give_it_back"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG bound for CC chain"
+            - skill: "one_two_three_enhanced"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "FG filler"
+            - skill: "go_away"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA knockback"
+            - skill: "ricocheting_florang"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler damage"
+            - skill: "hop_skip_jump"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Hotbar burst on remaining"
+            - skill: "all_around"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "360 AOE cleanup"
+            - skill: "get_well_enhanced"
+              input: "Q"
+              keys: ["q"]
+              note: "Self-heal between packs"
+
+# --------------------------------------------------------------------------
+# PVP Combos (Limited — Shai cannot effectively solo PVP)
+# --------------------------------------------------------------------------
+pvp_combos:
+    defensive_poke:
+        name: "Defensive Poke"
+        description: >
+            Safe ranged poke using Forward Guard skills. Do not overcommit.
+            Shai Succession has slightly more damage than Talent but still
+            cannot duel effectively. Focus on poking and retreating.
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "florang_toss"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "FG ranged poke from safety"
+            - skill: "eat_this_enhanced"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "FG boomerang for damage"
+            - skill: "evasion"
+              input: "A / D (double tap)"
+              keys: ["a"]
+              note: "Iframe out after poking"
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "SA roll to create distance"
+
+    cc_and_run:
+        name: "CC and Run"
+        description: >
+            Land a CC to peel for yourself or an ally, then disengage.
+            Shai cannot follow up with kill damage but the CC buys time
+            for your team.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "give_it_back"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG bound — CC the attacker"
+            - skill: "go_away"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA knockback to push them away"
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "SA roll away immediately"
+            - skill: "get_well_enhanced"
+              input: "Q"
+              keys: ["q"]
+              note: "SA self-heal while retreating"
+            - skill: "evasion"
+              input: "A / D (double tap)"
+              keys: ["a"]
+              note: "Iframe to dodge any chase"
+
+    survival_kite:
+        name: "Survival Kite (Under Attack)"
+        description: >
+            Escape when being focused. Use every iframe and SA skill
+            to survive. Your goal is to not die and regroup with allies.
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "evasion"
+              input: "A / D (double tap)"
+              keys: ["a"]
+              note: "Iframe out of danger"
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "SA roll away"
+            - skill: "go_away"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA knockback if they follow"
+            - skill: "healing_bloom"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA heal + damage reduction"
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "Keep rolling to safety"
+
+    group_peel_support:
+        name: "Group Peel Support"
+        description: >
+            Support allies in group PVP by peeling attackers off them.
+            Use CC and knockbacks to disrupt enemies targeting your team.
+            Succession Shai still serves a support role even without Talent buffs.
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "over_here_succession"
+              input: "E"
+              keys: ["e"]
+              note: "SA pull to disrupt enemy positioning"
+            - skill: "twirl_boom_enhanced"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA knockdown on grouped enemies"
+            - skill: "give_it_back"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG bound on CC'd targets"
+            - skill: "go_away"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA knockback to scatter them"
+            - skill: "get_well_enhanced"
+              input: "Q"
+              keys: ["q"]
+              note: "SA heal yourself and nearby allies"
+            - skill: "healing_bloom"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA group heal + damage reduction"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 350
+        steps:
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward roll"
+            - skill: "looking_good"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "SA forward rush"
+            - skill: "evasion"
+              input: "A / D (double tap)"
+              keys: ["a"]
+              note: "Iframe sidestep for direction change"
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "SA roll again"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Shai Succession. Cycle between Tuck and Roll,
+            Looking Good, and evasion for maximum speed. Shai is slow so
+            efficient chaining is important.
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward roll"
+            - skill: "looking_good"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "SA rush forward"
+            - skill: "ricocheting_florang"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Animation cancel filler"
+            - skill: "evasion"
+              input: "A / D (double tap)"
+              keys: ["a"]
+              note: "Iframe reposition"
+            - skill: "tuck_and_roll"
+              input: "Space"
+              keys: ["space"]
+              note: "Roll again if off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Eat This! (Enhanced)"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Twirl Boom (Enhanced)"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Rate +10% for 7 sec"
+        - skill: "Go Away!"
+          addon_1: "All DP -15 for 10 sec for target"
+          addon_2: "Movement Speed -7% for 10 sec for target"
+        - skill: "One-Two-Three (Enhanced)"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All Accuracy Rate +4% for 7 sec"
+        - skill: "Give It Back!"
+          addon_1: "All DP +15 for 10 sec"
+          addon_2: "HP Recovery +200 per hit for 7 sec"
+        - skill: "Looking Good!"
+          addon_1: "Critical Hit Damage +3% for 5 sec"
+          addon_2: "Back Attack Damage +3% for 5 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Hop"
+      reason: "Unprotected, can trigger accidentally during movement."
+    - name: "Gathering Skill Display"
+      reason: "Life skill emote, not combat relevant. Can trigger accidentally."
+    - name: "Play Shy"
+      reason: "Emote skill, no combat use. Lock to prevent misclicks."
+    - name: "Timely Appearance"
+      reason: "Unprotected summon, can disrupt Succession rotation."
+    - name: "Quick Trick"
+      reason: "Unprotected, low damage. Lock from skill bar to avoid accidents."
+    - name: "Play Dead"
+      reason: "Gimmick skill. Lock to prevent accidental use in combat."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Hop, Skip, Jump"
+    - "All Around"
+    - "Get Well (Enhanced)"
+    - "Come Out, Come Out (Donkey)"
+    - "Healing Bloom"
+    - "Dancing Florang"
+    - "Ricocheting Florang"
+    - "Play Dead"
+    - "Timely Appearance"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Eat This! (Enhanced)"
+    effect: "Extra hit on return, increased damage and Forward Guard duration"
+    reason: >
+        Eat This! with Core is the strongest choice for Succession Shai
+        because it is your primary and most frequently used damage skill.
+        The extra hit on boomerang return significantly boosts clear speed,
+        and the extended Forward Guard duration keeps you safer during the
+        animation. Twirl Boom Core is a viable alternative if you prefer
+        AOE clearing, but most Succession Shai players prioritize Eat This!
+        Core first for consistent single-target and pack damage.

@@ -1,0 +1,831 @@
+# ============================================================================
+# BDO Trainer - Awakened Corsair Combo Configuration
+# ============================================================================
+# Class: Corsair (Awakening)
+# Weapons: Serenaca (Main — Sword) / Mareca (Off — Magic Device) / Patraca (Awakening — Mermaid Transformation / Water Cannon)
+# Damage Type: Melee / Magic
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Corsair Class Discord
+#   - Community guides by Caphras, AerielBDO, Hachiman
+# ============================================================================
+
+class: Corsair
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    tidal_crash:
+        name: "Tidal Crash"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 22000
+        description: "Self-buff. Increases AP, attack speed, and critical rate. Mermaid aura surrounds you."
+        flows_into: ["mermaid_dash", "torrential_wave"]
+        core_effect: "Core: Tidal Crash - additional +15 AP buff and HP recovery on use"
+        notes: "Use before engaging packs or PVP fights. Hotbar recommended for tracking cooldown."
+
+    mermaid_dash:
+        name: "Mermaid Dash"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Super Armor mermaid transformation dash. Primary awakening movement skill."
+        flows_into: ["torrential_wave", "seafarers_fury", "oceans_embrace"]
+        notes: "Primary movement in awakening. Transforms into mermaid briefly. Very fast gap closer."
+
+    torrential_wave:
+        name: "Torrential Wave"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 6000
+        description: "Main awakening water blast. Super Armor throughout with knockdown on hit."
+        flows_into: ["flow_raging_wave", "seafarers_fury", "whirlpool"]
+        notes: "Bread-and-butter damage skill. Always follow up with Flow: Raging Wave."
+
+    flow_raging_wave:
+        name: "Flow: Raging Wave"
+        input: "LMB (after Torrential Wave)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Torrential Wave. Unleashes a secondary water burst with Super Armor."
+        flows_into: ["seafarers_fury", "whirlpool"]
+        notes: "Always chain after Torrential Wave for extra damage. Down attack properties."
+
+    seafarers_fury:
+        name: "Seafarer's Fury"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 8000
+        description: "High damage water cannon blast. Super Armor with knockback. Core adds extra hits."
+        flows_into: ["torrential_wave", "coral_spike", "whirlpool"]
+        core_effect: "Core: Seafarer's Fury - extra cannon hits and increased damage"
+        notes: "Highest single-skill damage. Long animation but fully protected. Core priority."
+
+    oceans_embrace:
+        name: "Ocean's Embrace"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Super Armor forward dash/dive. Mermaid transformation charge with stiffness."
+        flows_into: ["flow_deep_dive", "torrential_wave", "seafarers_fury"]
+        core_effect: "Core: Ocean's Embrace - Forward Guard on first hit, extended SA"
+        notes: "Great engage tool. Use for gap closing with protection. Flows into Deep Dive."
+
+    flow_deep_dive:
+        name: "Flow: Deep Dive"
+        input: "F (after Ocean's Embrace)"
+        keys: ["f"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Ocean's Embrace. Diving attack with bound CC."
+        flows_into: ["torrential_wave", "whirlpool"]
+        notes: "Always chain after Ocean's Embrace for extra CC and damage."
+
+    whirlpool:
+        name: "Whirlpool"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["pull", "bound"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Super Armor AOE whirlpool. Pulls enemies in then binds. Core adds extended pull."
+        flows_into: ["torrential_wave", "seafarers_fury"]
+        core_effect: "Core: Whirlpool - Extended pull duration and increased AOE radius"
+        notes: "Excellent AOE for PVE. Pulls and groups mobs. Strong in large-scale PVP."
+
+    siren_song:
+        name: "Siren Song"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor sonic blast in mermaid form. Floats enemies hit."
+        flows_into: ["torrential_wave", "seafarers_fury", "whirlpool"]
+        notes: "Good AOE CC. Use to float enemies then follow up with damage."
+
+    tidal_guard:
+        name: "Tidal Guard"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 5000
+        description: "Forward Guard water shield. Blocks frontal attacks and retaliates with stiffness."
+        flows_into: ["torrential_wave", "coral_spike"]
+        notes: "Corsair's block skill. Use to absorb pressure then counter-attack."
+
+    coral_spike:
+        name: "Coral Spike"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard coral projectile attack. Stiffness on hit."
+        flows_into: ["flow_coral_burst", "torrential_wave", "seafarers_fury"]
+        notes: "Ranged poke with frontal protection. Good for fishing for CC in PVP."
+
+    flow_coral_burst:
+        name: "Flow: Coral Burst"
+        input: "RMB (after Coral Spike)"
+        keys: ["rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Coral Spike. Additional coral projectiles with Forward Guard."
+        flows_into: ["torrential_wave", "seafarers_fury"]
+        notes: "Always chain after Coral Spike for extra damage and continued protection."
+
+    abyssal_cannon:
+        name: "Abyssal Cannon"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Forward rushing water cannon blast. Super Armor with knockdown."
+        flows_into: ["torrential_wave", "seafarers_fury", "whirlpool"]
+        notes: "Good mid-range engage with protection. Can catch opponents off guard."
+
+    wave_surge:
+        name: "Wave Surge"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Quick forward water slash with Forward Guard. Fast stiffness poke."
+        flows_into: ["torrential_wave", "whirlpool"]
+        notes: "Fast engagement tool. Good for fishing for CC with frontal protection."
+
+    neptunes_wrath:
+        name: "Neptune's Wrath"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Ground slam water eruption. Unprotected but has bound CC."
+        flows_into: ["torrential_wave", "seafarers_fury"]
+        notes: "Useful CC but unprotected. Be careful in PVP. Better suited for PVE."
+
+    rising_tide:
+        name: "Rising Tide"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Super Armor water column eruption from hotbar. Floats nearby enemies."
+        flows_into: ["torrential_wave", "seafarers_fury"]
+        notes: "Hotbar skill. Good protected AOE with float CC."
+
+    mermaids_blessing:
+        name: "Mermaid's Blessing"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 30000
+        description: "Self-buff that restores HP and grants movement speed. Super Armor during cast."
+        flows_into: []
+        notes: "Hotbar only. Use for sustain during long grinds or between PVP fights."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    tidal_spear:
+        name: "Tidal Spear"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Water-infused spear thrust with stiffness. Super Armor throughout. Good for movement and CC."
+        notes: "Preferred L56 Rabam. Good for movement filler and PVP catch tool."
+
+    ocean_current:
+        name: "Ocean Current"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 8000
+        description: "Super Armor water movement skill. Dashes forward leaving a water trail. SA throughout."
+        notes: "Preferred L57 Rabam. Excellent protected movement. Fills gaps between dashes."
+
+    depth_charge:
+        name: "Depth Charge"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Diving water explosion from hotbar. Super Armor with knockdown on landing."
+        notes: "Solid L58 Rabam. Good burst with protection. Put on hotbar."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Corsair has a grab — essential for PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Corsair is one of the classes with a grab. Practice timing."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Brief invincibility during dodge."
+        notes: "PVE iframe. Can lock in PVP to prevent accidental use."
+
+    mareca_surge:
+        name: "Mareca: Surge"
+        input: "Shift + A / Shift + D"
+        keys: ["shift", "a"]
+        keys_alt: ["shift", "d"]
+        protection: "SA"
+        cc: []
+        description: "Mareca-powered sideways dash. Super Armor movement skill."
+        notes: "Great lateral movement. Use to reposition in PVP."
+
+    suns_eye:
+        name: "Sun's Eye"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["stiffness"]
+        description: "Ranged Mareca projectile. Useful for ranged poke and pulling mobs."
+        notes: "Ranged engage tool. Put on hotbar for pulling distant packs."
+
+    barrel_roll:
+        name: "Barrel Roll"
+        input: "Shift + Space (Pre-Awakening)"
+        keys: ["shift", "space"]
+        protection: "iframe"
+        cc: []
+        description: "Acrobatic iframe roll. Brief invincibility with good distance."
+        notes: "Strong iframe. Can be used to escape pressure or dodge grabs."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation for clearing packs. Simple and effective."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main water blast"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "whirlpool"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "AOE pull and bind"
+            - skill: "seafarers_fury"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Cannon blast finisher"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff first, pull mobs in, then unload."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "tidal_crash"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engaging"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "whirlpool"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Pull mobs together"
+            - skill: "siren_song"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE float on grouped mobs"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "seafarers_fury"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy cannon blast finisher"
+            - skill: "oceans_embrace"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Dash to remaining mobs"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up for stragglers"
+            - skill: "ocean_current"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns efficiently."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "tidal_crash"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage pack"
+            - skill: "whirlpool"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Pull and group mobs"
+            - skill: "siren_song"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE float"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "seafarers_fury"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy cannon blast"
+            - skill: "oceans_embrace"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash to stragglers"
+            - skill: "flow_deep_dive"
+              input: "F"
+              keys: ["f"]
+              note: "Diving follow-up"
+            - skill: "rising_tide"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "AOE burst"
+            - skill: "tidal_spear"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor movement and water skills.
+            Approach with protection, then fish for a grab or CC opening.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "tidal_crash"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before going in"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close"
+            - skill: "wave_surge"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG stiffness poke"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up burst"
+            - skill: "whirlpool"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA AOE finisher"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Corsair PVP combo. Land a grab then chain into full burst.
+            Corsair's grab bypasses Super Armor — this is your primary kill tool.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "siren_song"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Float on grabbed target"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "seafarers_fury"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy cannon blast finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard skills to approach, fish for a stiffness,
+            then chain into grab and full burst damage.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "coral_spike"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG stiffness — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "siren_song"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Float follow-up"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "seafarers_fury"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "oceans_embrace"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dive engage"
+            - skill: "flow_deep_dive"
+              input: "F"
+              keys: ["f"]
+              note: "SA follow-up bound"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst damage"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "seafarers_fury"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA cannon finisher"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "siren_song"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Instant float on CC'd target"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "seafarers_fury"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Cannon blast finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Corsair has excellent mobility with
+            mermaid dashes. Use SA movement to create safe distance.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "ocean_current"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement out"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash away"
+            - skill: "tidal_spear"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement + stiffness while retreating"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue dashing if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on protected AOE damage and
+            use Whirlpool to pull groups. Stay with your team and use SA skills.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "tidal_crash"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff before engaging blob"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "SA engage into group"
+            - skill: "whirlpool"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA AOE pull enemies together"
+            - skill: "siren_song"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE float"
+            - skill: "torrential_wave"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst"
+            - skill: "flow_raging_wave"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "seafarers_fury"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA heavy cannon"
+            - skill: "ocean_current"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain mermaid movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "SA mermaid dash forward"
+            - skill: "ocean_current"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA water movement"
+            - skill: "tidal_spear"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement filler"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Full movement chain for Corsair awakening. Cycle between Mermaid Dash,
+            Ocean Current, Ocean's Embrace, and Rabam dashes for maximum speed.
+            Corsair has some of the best movement in the game.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "SA mermaid dash"
+            - skill: "ocean_current"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA water trail movement"
+            - skill: "oceans_embrace"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dive"
+            - skill: "tidal_spear"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement + stiffness"
+            - skill: "mermaid_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown, dash again"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Tidal Crash"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+        - skill: "Ocean's Embrace"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Flow: Raging Wave"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Whirlpool"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Siren Song"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Rising Tide"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Absolute: Low Kick"
+      reason: "Unprotected, can trigger accidentally."
+    - name: "Mareca: Jab"
+      reason: "Unprotected, slows down rotation."
+    - name: "Mareca: Scatter"
+      reason: "Unprotected, not useful in awakening rotation."
+    - name: "Neptune's Wrath"
+      reason: "Unprotected, can trigger accidentally during combos. Put on HOTBAR if needed."
+    - name: "Serenaca: Slash I"
+      reason: "Pre-awakening basic attack, messes up awakening flows."
+    - name: "Anchor Strike"
+      reason: "Unprotected follow-up, messes up PVP combos."
+    - name: "Mareca: Volley"
+      reason: "Unprotected, slows down awakening rotation."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Rising Tide"
+    - "Mermaid's Blessing"
+    - "Whirlpool"
+    - "Sun's Eye"
+    - "Depth Charge"
+    - "Tidal Crash"
+    - "Neptune's Wrath"
+    - "Tidal Spear"
+    - "Ocean Current"
+    - "Barrel Roll"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Seafarer's Fury"
+    effect: "Extra cannon hits and increased damage"
+    reason: >
+        Seafarer's Fury with Core gains additional cannon hits and a significant
+        damage increase, making it Corsair's most powerful burst skill. This
+        Core is the highest priority for awakening Corsair. After obtaining it,
+        experiment with Ocean's Embrace Core for better engage protection and
+        Whirlpool Core for improved PVE clear speed.

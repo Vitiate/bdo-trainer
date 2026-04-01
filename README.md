@@ -2,9 +2,11 @@
 
 A transparent, click-through game overlay for **Black Desert Online** that displays skill combo sequences as floating outlined text over the game window. Steps advance in real time as you press the correct key and mouse combinations. Runs quietly from the system tray.
 
-Built for **Awakened Dark Knight** — easily extensible to other classes by dropping a YAML file into `config/classes/`.
+All **27 BDO classes × 2 specs (54 total)** are included out of the box — Awakening + Succession for every class, ready to go.
 
 ![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey)
+
+![In-game overlay screenshot](doc/images/in-game-overlay.png)
 
 ---
 
@@ -42,13 +44,15 @@ Built for **Awakened Dark Knight** — easily extensible to other classes by dro
 | **Step-by-step combos** | Each step highlights the current input; advances when the correct keys/mouse buttons are pressed |
 | **Alternative keys** | Steps can define `alt_keys` so either input is accepted (e.g., `Shift + A` or `Shift + D`) |
 | **Hotbar step auto-advance** | Hotbar skills can't be detected via hooks, so they auto-advance after a short delay |
+| **Setup Guide** | 4-page overlay showing locked skills, hotbar setup, core skill, and skill add-ons per class/spec |
+| **Settings GUI** | In-app settings editor for keybinds, display, timing, and hotkeys — no manual YAML editing needed |
 | **System tray** | Pick class → spec → combo from a nested tray menu; start, stop, reposition, or exit |
-| **Global hotkeys** | `F5` start/restart, `F6` stop, `F8` reset — work even while BDO has focus |
+| **Global hotkeys** | `F5` start/restart, `F6` stop, `F7` next Setup Guide page, `F8` reset — work even while BDO has focus |
 | **Key remapping** | Remap movement keys and other bindings to match your in-game BDO keybind settings |
 | **Reposition mode** | Drag the overlay text to any screen position; saved as relative coordinates in `overlay_position.json` |
 | **Idle reset** | Combo automatically resets to step 1 after a configurable inactivity timeout |
 | **VK fallback** | Uses virtual-key-code detection as a fallback when the game window has focus and character hooks fail |
-| **Auto-discovery** | Drop a new YAML file into `config/classes/` and it appears in the tray menu automatically |
+| **Auto-discovery** | All 27 classes are pre-populated; drop additional YAML files into `config/classes/` and they appear in the tray menu automatically |
 
 ---
 
@@ -62,23 +66,30 @@ bdo-trainer/
 ├── setup.py                            # Package setup
 ├── spec.md                             # Design specification
 ├── README.md                           # You are here
-├── THREAD_SUMMARY.md                   # Threading architecture notes
 ├── config/
 │   ├── combos.yaml                     # Global settings (hotkeys, display, key bindings, timing)
-│   ├── classes/
-│   │   └── dark_knight_awakening.yaml  # Dark Knight Awakening — skills, combos, addons
+│   ├── classes/                         # 54 files — all 27 classes × awakening + succession
+│   │   ├── dark_knight_awakening.yaml
+│   │   ├── dark_knight_succession.yaml
+│   │   ├── warrior_awakening.yaml
+│   │   ├── ...
+│   │   └── woosa_succession.yaml
 │   └── overlay_position.json           # Auto-generated — overlay position as relative coords
 ├── src/
 │   ├── __init__.py
 │   ├── combo_loader.py                 # Loads & merges global + per-class YAML configs
 │   ├── overlay.py                      # Transparent tkinter overlay + InputMonitor (pynput hooks)
-│   ├── tray.py                         # System tray icon & menu via pystray
-│   └── utils/
-│       ├── __init__.py
-│       └── logger.py                   # Logging helpers
+│   ├── settings_gui.py                 # Settings GUI window (keybinds, display, timing, hotkeys)
+│   └── tray.py                         # System tray icon & menu via pystray
+├── scripts/
+│   └── download_icons.py              # Skill icon scraper
 ├── tests/
 │   ├── __init__.py
 │   └── test_basic.py
+├── doc/
+│   └── images/
+│       ├── in-game-overlay.png         # Overlay screenshot
+│       └── menu.png                    # Tray menu screenshot
 ├── assets/                             # Icons, images
 └── logs/                               # Runtime log output
 ```
@@ -98,8 +109,9 @@ bdo-trainer/
 | `pyyaml` | Parse YAML config and combo files |
 | `pystray` | System tray icon and menu |
 | `pillow` | Image support for the tray icon (required by pystray) |
-| `keyboard` | Global hotkeys (`F5`, `F6`, `F8`) that work over fullscreen games |
+| `keyboard` | Global hotkeys (`F5`, `F6`, `F7`, `F8`) that work over fullscreen games |
 | `pynput` | Low-level keyboard and mouse listener hooks for step detection |
+| `requests` | HTTP requests (used by icon scraper script) |
 | `tkinter` | Overlay window (included with Python stdlib) |
 | `ctypes` | Win32 API calls for click-through, elevation (included with Python stdlib) |
 
@@ -204,7 +216,7 @@ key_bindings:
 
 ### Class/Spec Files — `config/classes/*.yaml`
 
-Each file defines one class + spec combination. The file is auto-discovered — just place it in `config/classes/` and it will appear in the tray menu on next launch.
+Each file defines one class + spec combination. The file is auto-discovered — just place it in `config/classes/` and it will appear in the tray menu on next launch. All 27 BDO classes ship with both Awakening and Succession configs pre-populated.
 
 Required top-level keys:
 
@@ -345,19 +357,11 @@ The combo loader translates these into the internal key names used by steps. For
 
 Right-click the system tray icon to see:
 
-```
-📂 Class
-  └── 📂 Dark Knight
-        └── 📂 Awakening
-              ├── Basic Grinding Combo
-              ├── Catch Combo
-              └── Movement Combo
-🛑 Stop
-📐 Reposition Overlay  ☑
-🚪 Exit
-```
+![Tray menu screenshot](doc/images/menu.png)
 
 - **Class → ClassName → SpecName → Combo** — starts the selected combo on the overlay.
+- **Setup Guide** — opens the 4-page setup overlay for the selected class/spec (locked skills, hotbar layout, core skill, skill add-ons).
+- **Settings** — opens the Settings GUI window to edit keybinds, display, timing, and hotkeys live.
 - **Stop** — stops the current combo and hides the overlay text.
 - **Reposition Overlay** — toggles reposition mode (checkable menu item).
 - **Exit** — shuts everything down cleanly.
@@ -370,6 +374,7 @@ These work globally, even when BDO is in fullscreen focus:
 |---|---|
 | `F5` | Start the selected combo, or restart it from step 1 if already running |
 | `F6` | Stop the current combo |
+| `F7` | Next Setup Guide page (when the guide is active) |
 | `F8` | Reset the current combo to step 1 (without stopping) |
 
 Hotkeys are configurable in `config/combos.yaml` under the `hotkeys` section.
@@ -388,6 +393,8 @@ If no relevant keys are pressed within the configured timeout (`idle_reset_timeo
 ---
 
 ## Adding a New Class or Spec
+
+All 27 classes already ship with Awakening + Succession configs, but you can add custom variants or update existing ones.
 
 1. Create a new YAML file in `config/classes/`. Name it descriptively, e.g., `witch_awakening.yaml` or `warrior_succession.yaml`.
 
@@ -445,7 +452,8 @@ No code changes required.
 | `src/combo_loader.py` | Loads `config/combos.yaml` (global settings) and auto-discovers all `config/classes/*.yaml` files. Exposes `get_class_tree()`, `get_combo()`, `get_skill_info()`, `get_key_remap()`. |
 | `src/overlay.py` | Transparent, click-through tkinter fullscreen window. Renders outlined text on a canvas. Contains `InputMonitor` which sets up pynput keyboard + mouse low-level hooks. Handles reposition mode (drag-to-move, saves position). Applies key remapping. Manages the idle reset timer. |
 | `src/tray.py` | System tray icon and nested menu via pystray. Dynamically builds menu from the class tree returned by the combo loader. |
-| `src/utils/logger.py` | Logging configuration and helpers. |
+| `src/settings_gui.py` | Settings window (`KeyCapturePopup` + `SettingsWindow` classes). Launched from the tray menu, edits `combos.yaml` keybinds/display/hotkeys/timing live. |
+| `scripts/download_icons.py` | Skill icon scraper — downloads skill icons for all classes from BDO Codex. |
 
 ### Threading Model
 
@@ -466,7 +474,7 @@ No code changes required.
 │  │  (daemon thread) │  │                                  │  │
 │  └─────────────────┘  └──────────────────────────────────┘  │
 ├──────────────────────────────────────────────────────────────┤
-│  keyboard library — internal hook thread for F5/F6/F8       │
+│  keyboard library — internal hook thread for F5/F6/F7/F8    │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -512,7 +520,7 @@ To reset to center, delete `config/overlay_position.json` and restart.
 ### Steps aren't advancing
 
 - Verify you're pressing the **exact combination** shown (e.g., `Shift + LMB` means hold Shift and left-click).
-- Check if your BDO keybinds differ from defaults. If so, update `key_bindings` in `config/combos.yaml`.
+- Check if your BDO keybinds differ from defaults. If so, update `key_bindings` in `config/combos.yaml` (or use **Settings** from the tray menu).
 - Hotbar steps auto-advance — you don't need to press anything for those.
 - Check `logs/` for error output.
 

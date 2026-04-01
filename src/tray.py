@@ -52,6 +52,8 @@ class TrayManager:
         on_combo_selected: Optional[Callable] = None,
         on_stop: Optional[Callable] = None,
         on_reposition_toggle: Optional[Callable] = None,
+        on_setup_guide_toggle: Optional[Callable] = None,
+        on_settings: Optional[Callable] = None,
         on_exit: Optional[Callable] = None,
     ):
         """
@@ -60,6 +62,8 @@ class TrayManager:
             on_combo_selected: Callback(class_name, spec_name, combo_id) when a combo is picked
             on_stop: Callback when "Stop" is selected
             on_reposition_toggle: Callback(enabled: bool) when reposition is toggled
+            on_setup_guide_toggle: Callback(enabled: bool) when setup guide is toggled
+            on_settings: Callback when "Settings" is selected
             on_exit: Callback when "Exit" is selected
         """
         if not TRAY_AVAILABLE:
@@ -69,11 +73,14 @@ class TrayManager:
         self.on_combo_selected = on_combo_selected
         self.on_stop = on_stop
         self.on_reposition_toggle = on_reposition_toggle
+        self.on_setup_guide_toggle = on_setup_guide_toggle
+        self.on_settings = on_settings
         self.on_exit = on_exit
 
         self._icon: Optional[pystray.Icon] = None
         self._thread: Optional[threading.Thread] = None
         self._reposition_mode: bool = False
+        self._setup_guide_mode: bool = False
 
     def _build_menu(self) -> pystray.Menu:
         """Build the tray context menu with Class > Spec > Combo submenus"""
@@ -118,6 +125,20 @@ class TrayManager:
             )
         )
 
+        # Setup Guide (checkable toggle)
+        menu_items.append(
+            pystray.MenuItem(
+                "Setup Guide",
+                self._on_setup_guide_clicked,
+                checked=lambda item: self._setup_guide_mode,
+            )
+        )
+
+        menu_items.append(pystray.Menu.SEPARATOR)
+
+        # Settings
+        menu_items.append(pystray.MenuItem("Settings", self._on_settings_clicked))
+
         menu_items.append(pystray.Menu.SEPARATOR)
 
         # Exit
@@ -140,6 +161,11 @@ class TrayManager:
         if self.on_stop:
             self.on_stop()
 
+    def _on_settings_clicked(self, icon, item):
+        logger.info("Tray: settings clicked")
+        if self.on_settings:
+            self.on_settings()
+
     def _on_reposition_clicked(self, icon, item):
         self._reposition_mode = not self._reposition_mode
         logger.info(
@@ -147,6 +173,19 @@ class TrayManager:
         )
         if self.on_reposition_toggle:
             self.on_reposition_toggle(self._reposition_mode)
+
+    def _on_setup_guide_clicked(self, icon, item):
+        self._setup_guide_mode = not self._setup_guide_mode
+        logger.info(
+            f"Tray: setup guide toggled — {'ON' if self._setup_guide_mode else 'OFF'}"
+        )
+        if self.on_setup_guide_toggle:
+            self.on_setup_guide_toggle(self._setup_guide_mode)
+
+    def set_setup_guide_mode(self, enabled: bool):
+        """Allow external code to sync the checkmark state (e.g. when
+        dismissed via hotkey rather than the tray menu)."""
+        self._setup_guide_mode = enabled
 
     def _on_exit_clicked(self, icon, item):
         logger.info("Tray: exit clicked")

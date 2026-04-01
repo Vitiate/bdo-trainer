@@ -1,0 +1,831 @@
+# ============================================================================
+# BDO Trainer - Awakened Musa Combo Configuration
+# ============================================================================
+# Class: Musa (Awakening)
+# Weapons: Blade (Main) / Horn Bow (Off) / Crescent Blade (Awakening)
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Note: Musa has NO grab. Rely on protected CC skills and Chase mobility.
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Musa Class Discord
+#   - Community guides by Ahon, KR Musa players, GrumpyGreenCricket
+# ============================================================================
+
+class: Musa
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    crust_crusher:
+        name: "Crust Crusher"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 4000
+        description: "Primary awakening damage skill. Super Armor with knockdown. Fast multi-hit slash."
+        flows_into: ["flow_foul_play", "crosscut", "projection"]
+        core_effect: "Core: Crust Crusher - Extra hit added, increased damage on all hits"
+        notes: "Bread-and-butter damage skill. Always follow up with Flow: Foul Play."
+
+    flow_foul_play:
+        name: "Flow: Foul Play"
+        input: "LMB (after Crust Crusher)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Crust Crusher. Additional burst with Super Armor."
+        flows_into: ["crosscut", "projection", "fiery_angel"]
+        notes: "Always chain after Crust Crusher for maximum damage output."
+
+    projection:
+        name: "Projection"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Super Armor forward dash slash. Covers distance and deals damage."
+        flows_into: ["crust_crusher", "crosscut", "fiery_angel"]
+        notes: "Dash + damage. Good for engaging and repositioning. SA throughout."
+
+    fiery_angel:
+        name: "Fiery Angel"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Super Armor forward slam with knockback. High damage AOE."
+        flows_into: ["flow_backflow", "crust_crusher", "crosscut"]
+        core_effect: "Core: Fiery Angel - Additional down attack damage"
+        notes: "Strong engage tool. Always follow up with Flow: Backflow."
+
+    flow_backflow:
+        name: "Flow: Backflow"
+        input: "LMB (after Fiery Angel)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Fiery Angel. Sweeping slash with Bound CC."
+        flows_into: ["crust_crusher", "projection", "crosscut"]
+        notes: "Always chain after Fiery Angel. Bound CC useful in PVP."
+
+    crosscut:
+        name: "Crosscut"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Super Armor cross slash with float CC. Good filler and CC tool."
+        flows_into: ["flow_nemesis_slash", "crust_crusher", "projection"]
+        notes: "Reliable float CC with SA protection. Core PVP catch skill."
+
+    flow_nemesis_slash:
+        name: "Flow: Nemesis Slash"
+        input: "LMB (after Crosscut)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Crosscut. Additional slash with down attack properties."
+        flows_into: ["crust_crusher", "fiery_angel", "projection"]
+        notes: "Always chain after Crosscut for extra damage on floated target."
+
+    whirlwind_cut:
+        name: "Whirlwind Cut"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Super Armor spinning AOE slash. Wide area knockdown."
+        flows_into: ["crust_crusher", "crosscut", "projection"]
+        notes: "Wide AOE spin. Great for PVE pack clearing and large scale PVP."
+
+    dash_slash:
+        name: "Dash Slash"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Super Armor forward dash. Primary awakening movement skill."
+        flows_into: ["crust_crusher", "crosscut", "fiery_angel", "projection"]
+        notes: "Primary movement skill in awakening. PVE iframe vs monsters."
+
+    blind_thrust:
+        name: "Blind Thrust"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward Guard thrust. Stiffness CC on hit. Good poke tool."
+        flows_into: ["crust_crusher", "crosscut", "fiery_angel"]
+        core_effect: "Core: Blind Thrust - Forward Guard on cooldown"
+        notes: "Safe frontal poke with CC. Good for testing enemy defenses."
+
+    dragon_bite:
+        name: "Dragon Bite"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Quick slash with stiffness CC. Unprotected but fast animation."
+        flows_into: ["crust_crusher", "crosscut", "projection"]
+        notes: "Unprotected — use carefully in PVP. Good damage filler in PVE."
+
+    below_the_belt:
+        name: "Below the Belt"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: ["bound"]
+        damage: low
+        cooldown_ms: 6000
+        description: "Forward Guard sweep with bound CC. Musa's key PVP catch tool."
+        flows_into: ["crust_crusher", "crosscut", "fiery_angel"]
+        notes: "Important PVP skill. FG with bound — use to catch unprotected targets."
+
+    flow_chase_slash:
+        name: "Flow: Chase Slash"
+        input: "LMB (during Chase)"
+        keys: ["lmb"]
+        protection: "none"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Quick slash during Chase. Useful for weaving damage between dashes."
+        flows_into: ["crust_crusher", "crosscut"]
+        notes: "Can cancel Chase animation into damage. Unprotected."
+
+    musa_spirit:
+        name: "Musa Spirit"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "none"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Self-buff. Recovers WP and increases attack speed."
+        flows_into: ["crust_crusher", "dash_slash"]
+        notes: "Use between pulls for WP sustain. Hotbar recommended."
+
+    counter_assassination:
+        name: "Counter Assassination"
+        input: "S + E"
+        keys: ["s", "e"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Super Armor backstep slash. Defensive disengage with stiffness."
+        flows_into: ["projection", "crust_crusher"]
+        notes: "Defensive tool. SA backstep for creating space in PVP."
+
+    gale:
+        name: "Gale"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Super Armor wind slash from hotbar. Wide AOE damage."
+        flows_into: ["crust_crusher", "crosscut"]
+        notes: "Hotbar skill. Good extra burst in PVE rotation."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    tiger_blade_frenzy:
+        name: "Tiger Blade: Frenzy"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor multi-hit slash. Good filler damage with protection."
+        notes: "Preferred L56 Rabam. SA protection and decent damage for PVE and PVP."
+
+    stub_arrow_flight:
+        name: "Stub Arrow: Flight"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 8000
+        description: "Super Armor forward movement dash. Extra mobility tool."
+        notes: "Good for movement chaining with Chase. Adds another SA movement option."
+
+    lunar_dash:
+        name: "Lunar Dash"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 15000
+        description: "Super Armor dash with knockdown. Hotbar burst/engage skill."
+        notes: "Hotbar only. Decent burst but long cooldown. Use as extra engage option."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    chase:
+        name: "Chase"
+        input: "Shift + Direction"
+        keys: ["shift", "w"]
+        keys_alt: ["shift", "a"]
+        protection: "iframe"
+        cc: []
+        description: "Signature Musa iframe dash. Spammable. Fastest movement in the game."
+        notes: "Core of Musa identity. Spam for movement. Iframe frames on each dash. Consumes WP."
+
+    rising_storm:
+        name: "Rising Storm"
+        input: "Shift + LMB (Pre-Awakening)"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Pre-awakening AOE spin. Used for extra damage in PVE rotations."
+        notes: "Swap to pre-awk for this skill. Good PVE filler between awakening cooldowns."
+
+    blooming:
+        name: "Blooming"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Pre-awakening burst slash from hotbar. Super Armor with knockdown."
+        notes: "Put on hotbar. Strong extra damage skill usable from awakening stance."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Short invincibility window."
+        notes: "Useful iframe. Consider locking in PVP to prevent accidental triggers."
+
+    divider:
+        name: "Divider"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stiffness"]
+        description: "Pre-awakening Forward Guard lunge. Good ranged poke with CC."
+        notes: "Hotbar recommended. Forward Guard with stiffness for safe poke."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Dash in, burst, move to next pack."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Chase into pack"
+            - skill: "dash_slash"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "crosscut"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Filler damage"
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Chase to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Use wide AOE skills first."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Dash into center of pack"
+            - skill: "whirlwind_cut"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Wide AOE spin, group mobs"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "fiery_angel"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Heavy AOE slam"
+            - skill: "flow_backflow"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend combo"
+            - skill: "crosscut"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Filler damage"
+            - skill: "flow_nemesis_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Clean up remaining mobs"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for easy spots. Maximize Chase movement between packs."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Spam Chase into pack"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up for overkill"
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Immediately Chase to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "musa_spirit"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff WP and attack speed"
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Engage into pack"
+            - skill: "whirlwind_cut"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Wide AOE opener"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "fiery_angel"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Heavy AOE slam"
+            - skill: "flow_backflow"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend combo"
+            - skill: "crosscut"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Filler damage"
+            - skill: "flow_nemesis_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extra damage"
+            - skill: "blooming"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Pre-awk hotbar burst"
+            - skill: "tiger_blade_frenzy"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler damage"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Chase iframe into Super Armor skills.
+            Approach with Chase, then use SA skills to fish for CC.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe dash toward target"
+            - skill: "dash_slash"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close"
+            - skill: "blind_thrust"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG stiffness poke"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up burst"
+            - skill: "crosscut"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA float finisher"
+
+    below_the_belt_catch:
+        name: "Below the Belt Catch (1v1)"
+        description: >
+            Use Forward Guard Below the Belt to catch targets with bound CC.
+            Musa has no grab, so this is the primary catch tool in duels.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Close distance with iframe"
+            - skill: "below_the_belt"
+              input: "Q"
+              keys: ["q"]
+              note: "FG bound CC — catch the target"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on bound target"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "fiery_angel"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Heavy slam on downed target"
+            - skill: "flow_backflow"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend combo finisher"
+
+    crosscut_float_combo:
+        name: "Crosscut Float Combo"
+        description: >
+            Use Crosscut float to catch an opening, then chain into
+            full damage. Works well when opponent drops protection.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "projection"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA dash in with stiffness"
+            - skill: "crosscut"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA float CC"
+            - skill: "flow_nemesis_slash"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up on floated target"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "fiery_angel"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Finisher slam"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying protected. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "projection"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA dash engage"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "crosscut"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA filler with float"
+
+    chase_harass:
+        name: "Chase Harass (Hit and Run)"
+        description: >
+            Musa's signature hit-and-run style. Chase in, deal fast damage,
+            then Chase out. Exploit Musa's speed to avoid trades.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe in"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Fast SA burst"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "chase"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Iframe out immediately"
+            - skill: "chase"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Continue dashing away"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Chase iframe is Musa's best
+            escape. Use SA skills to cover retreat if needed.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "counter_assassination"
+              input: "S + E"
+              keys: ["s", "e"]
+              note: "SA backstep to create space"
+            - skill: "chase"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Iframe dash away"
+            - skill: "chase"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Continue dashing"
+            - skill: "stub_arrow_flight"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement filler"
+            - skill: "chase"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Iframe away to safety"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Use Chase to flank, unload AOE
+            damage, then Chase out. Musa excels at hit-and-run in large scale.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe flank into enemy group"
+            - skill: "whirlwind_cut"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA wide AOE spin"
+            - skill: "crust_crusher"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_foul_play"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "fiery_angel"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA AOE slam"
+            - skill: "flow_backflow"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend AOE damage"
+            - skill: "blooming"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Extra AOE burst"
+            - skill: "chase"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Iframe retreat to safety"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    chase_spam:
+        name: "Chase Spam (Fastest Movement)"
+        description: "Chain Chase dashes for fastest traversal. Musa is the fastest class in the game."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe forward dash"
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Spam Chase continuously"
+            - skill: "musa_spirit"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Recover WP when low"
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Resume Chase spam"
+
+    awakening_movement:
+        name: "Awakening Movement Chain"
+        description: >
+            Movement chain using awakening skills between Chase dashes.
+            Mix in Dash Slash and Rabam for maximum sustained speed.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe forward dash"
+            - skill: "dash_slash"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward movement"
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Continue dashing"
+            - skill: "stub_arrow_flight"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement filler"
+            - skill: "projection"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA dash for extra distance"
+            - skill: "chase"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Resume Chase spam"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Crust Crusher"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Fiery Angel"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Crosscut"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Whirlwind Cut"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Rising Storm"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Blooming"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that interrupts Chase movement."
+    - name: "Absolute: Backstep Slash"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Stub Arrow"
+      reason: "Slow and unprotected. Messes up awakening rotation."
+    - name: "Carver"
+      reason: "Unprotected, slows down rotation."
+    - name: "Lunar Slash"
+      reason: "Unprotected, not useful in awakening rotation."
+    - name: "Cyclone Slash"
+      reason: "Unprotected, can trigger accidentally during Chase."
+    - name: "Dragon Bite"
+      reason: "Optional lock in PVP. Unprotected, risky to use. Keep for PVE."
+    - name: "Musa Spirit"
+      reason: "Optional lock from skill bar. Put on HOTBAR instead for controlled use."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Blooming"
+    - "Gale"
+    - "Musa Spirit"
+    - "Divider"
+    - "Lunar Dash"
+    - "Tiger Blade: Frenzy"
+    - "Stub Arrow: Flight"
+    - "Rising Storm"
+    - "Below the Belt"
+    - "Whirlwind Cut"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Crust Crusher"
+    effect: "Extra hit added, increased damage on all hits"
+    reason: >
+        Crust Crusher with Core gains an additional hit and increased damage
+        across all hits, making it Musa's strongest single skill. Since it is
+        the bread-and-butter of every combo in both PVE and PVP, this Core
+        provides the largest overall damage increase. After getting comfortable,
+        experiment with Fiery Angel and Blind Thrust Cores as well.

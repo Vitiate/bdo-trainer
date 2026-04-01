@@ -1,0 +1,828 @@
+# ============================================================================
+# BDO Trainer - Succession Nova Combo Configuration
+# ============================================================================
+# Class: Nova (Succession)
+# Weapons: Morning Star (Main) / Quoratum (Off — shield)
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Nova Succession Notes:
+#   Nova succession is unique for summoning ice soldiers that fight alongside
+#   her. The soldiers persist and attack independently, adding sustained damage.
+#   Succession enhances Morning Star and Quoratum (shield) skills with ice
+#   magic and soldier commands. Strong in PVE due to soldier AOE clear and
+#   sustained damage. Has a grab (E) for PVP utility.
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Nova Class Discord
+#   - Community guides by Alucard, Yulna, NovaPD, Kritika
+# ============================================================================
+
+class: Nova
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Succession Skills (Enhanced Pre-Awakening)
+# --------------------------------------------------------------------------
+awakening_skills:
+    morning_star_slash:
+        name: "Morning Star Slash"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 6000
+        description: "Enhanced overhead Morning Star slam. Super Armor with knockdown on hit."
+        flows_into: ["flow_ice_shatter", "ice_storm", "shield_bash"]
+        core_effect: "Core: Morning Star Slash - Extra hit and increased damage"
+        notes: "Primary burst skill. Always follow up with Flow: Ice Shatter for maximum damage."
+
+    flow_ice_shatter:
+        name: "Flow: Ice Shatter"
+        input: "LMB (after Morning Star Slash)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up slam that shatters ice on the ground. Down attack properties."
+        flows_into: ["ice_storm", "frozen_charge"]
+        notes: "Always chain after Morning Star Slash. Massive damage on downed targets."
+
+    ice_storm:
+        name: "Ice Storm"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Spin the Morning Star overhead creating a blizzard vortex. Super Armor with bound CC."
+        flows_into: ["flow_blizzard_sweep", "morning_star_slash", "frozen_charge"]
+        core_effect: "Core: Ice Storm - Bound on last hit and increased damage"
+        notes: "Strongest succession AOE skill. High damage in PVE. Core priority."
+
+    flow_blizzard_sweep:
+        name: "Flow: Blizzard Sweep"
+        input: "LMB (after Ice Storm)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up sweeping slash after Ice Storm. Sends out wave of ice."
+        flows_into: ["morning_star_slash", "frozen_charge"]
+        notes: "Always chain after Ice Storm for extra AOE damage."
+
+    frozen_charge:
+        name: "Frozen Charge"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Dash forward with shield raised, trailing ice. Super Armor gap closer."
+        flows_into: ["morning_star_slash", "ice_storm", "shield_bash"]
+        notes: "Primary movement and engage tool. Use to close gaps quickly."
+
+    shield_bash:
+        name: "Shield Bash"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "FG"
+        cc: ["stun"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard shield strike that stuns. Freezes targets on hit."
+        flows_into: ["morning_star_slash", "ice_storm", "quoratum_strike"]
+        core_effect: "Core: Shield Bash - Forward Guard during entire animation"
+        notes: "Good PVP catch tool. Stun sets up combos. FG keeps you safe."
+
+    quoratum_strike:
+        name: "Quoratum Strike"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["float"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Leap and slam the Quoratum shield down, creating ice spikes. Float CC."
+        flows_into: ["morning_star_slash", "ice_storm", "frozen_charge"]
+        notes: "Strong AOE with float. Good for grouping mobs and catching in PVP."
+
+    stars_call:
+        name: "Star's Call"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 12000
+        description: "Summon ice soldiers that fight alongside you. Soldiers attack independently."
+        flows_into: ["morning_star_slash", "frozen_charge"]
+        core_effect: "Core: Star's Call - Soldiers gain increased attack and duration"
+        notes: "Unique succession mechanic. Keep soldiers active for sustained DPS. Resummon on cooldown."
+
+    soldier_command:
+        name: "Soldier: Command"
+        input: "RMB (while soldiers active)"
+        keys: ["rmb"]
+        protection: "none"
+        cc: []
+        damage: medium
+        cooldown_ms: 3000
+        description: "Command ice soldiers to charge forward and attack your target."
+        flows_into: ["morning_star_slash", "ice_storm"]
+        notes: "Direct soldiers to focus targets. Useful for boss damage and PVP pressure."
+
+    soldier_rally:
+        name: "Soldier: Rally"
+        input: "F (while soldiers active)"
+        keys: ["f"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Command soldiers to rally at target location with AOE stiffness."
+        flows_into: ["morning_star_slash", "ice_storm"]
+        notes: "Soldiers create ice field at target. Good for zone control."
+
+    block:
+        name: "Block"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 0
+        description: "Hold Quoratum shield in front. Blocks incoming frontal damage and CC."
+        flows_into: ["shield_bash", "morning_star_slash", "frozen_charge"]
+        notes: "Nova's guard. Use to absorb attacks then counter with Shield Bash."
+
+    frozen_needle:
+        name: "Frozen Needle"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Fire a barrage of ice needles forward. Forward Guard ranged poke."
+        flows_into: ["morning_star_slash", "ice_storm"]
+        notes: "Ranged skill for poking. Safe with Forward Guard. Good in PVP at range."
+
+    ice_pillar:
+        name: "Ice Pillar"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Slam ground to create erupting ice pillars. Super Armor with bound."
+        flows_into: ["morning_star_slash", "ice_storm"]
+        notes: "Good AOE CC. Bound into Morning Star Slash for follow-up damage."
+
+    cold_snap:
+        name: "Cold Snap"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Forward lunging strike that releases a wave of frost. Super Armor."
+        flows_into: ["morning_star_slash", "flow_ice_shatter"]
+        notes: "Good filler with Super Armor. Use between main skill cooldowns."
+
+    frost_explosion:
+        name: "Frost Explosion"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 15000
+        description: "Channel ice energy then release a massive AOE frost explosion."
+        flows_into: ["morning_star_slash", "frozen_charge"]
+        notes: "Big AOE nuke. Long cooldown. Use in PVE for pack clear or PVP for blob fights."
+
+    winter_veil:
+        name: "Winter Veil"
+        input: "Shift + Q"
+        keys: ["shift", "q"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Self-buff that grants DP, attack speed, and freezing aura to nearby allies."
+        flows_into: ["frozen_charge", "morning_star_slash"]
+        notes: "Use before engaging. Buff yourself and soldiers for increased damage."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    frozen_tempest:
+        name: "Frozen Tempest"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Spinning shield and Morning Star attack with ice trail. Super Armor."
+        notes: "Preferred L56 Rabam. Good AOE with SA protection and movement."
+
+    glacial_guard:
+        name: "Glacial Guard"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "FG"
+        cc: ["bound"]
+        damage: low
+        cooldown_ms: 10000
+        description: "Forward Guard shield advance that creates ice wall. Bound on hit."
+        notes: "Defensive option with bound CC. Good for PVP counterplay."
+
+    permafrost:
+        name: "Permafrost"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 14000
+        description: "Create a field of permanent frost that slows and damages enemies."
+        notes: "Hotbar skill. Useful for zone control in node wars and PVE."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Nova PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Practice grab timing in duels. Nova has a reliable grab."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Brief invincibility during dodge."
+        notes: "Primary defensive iframe. Use to dodge grabs and unprotected windows."
+
+    quoratum_leap:
+        name: "Quoratum Leap"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Leap into the air and slam down with the Quoratum shield. Super Armor."
+        notes: "Good engage tool from hotbar. SA during leap."
+
+    ice_wall:
+        name: "Ice Wall"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Summon a wall of ice that blocks projectiles and enemy movement."
+        notes: "Useful in node wars for blocking choke points."
+
+    frozen_strike:
+        name: "Frozen Strike"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stiffness"]
+        description: "Quick Forward Guard Morning Star strike. Good filler from hotbar."
+        notes: "Safe poke with FG protection. Put on hotbar for easy access."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard succession grinding rotation. Summon soldiers, then cycle burst skills."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "stars_call"
+              input: "Space"
+              keys: ["space"]
+              note: "Summon ice soldiers"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Dash into pack"
+            - skill: "ice_storm"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main AOE damage"
+            - skill: "flow_blizzard_sweep"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up sweep"
+            - skill: "morning_star_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Burst slam"
+            - skill: "flow_ice_shatter"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up shatter"
+
+    soldier_sustained:
+        name: "Soldier Sustained Clear"
+        description: "Maximize soldier uptime and let them help clear. Buff then maintain soldiers."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "winter_veil"
+              input: "Shift + Q"
+              keys: ["shift", "q"]
+              note: "Buff yourself and soldiers"
+            - skill: "stars_call"
+              input: "Space"
+              keys: ["space"]
+              note: "Summon ice soldiers"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Engage pack"
+            - skill: "soldier_command"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Direct soldiers to attack"
+            - skill: "ice_storm"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main AOE burst"
+            - skill: "flow_blizzard_sweep"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "morning_star_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Burst damage"
+            - skill: "flow_ice_shatter"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Finisher"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Dash into pack"
+            - skill: "ice_storm"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "One-shot AOE"
+            - skill: "flow_blizzard_sweep"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Clean up"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Dash to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns and soldiers."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "winter_veil"
+              input: "Shift + Q"
+              keys: ["shift", "q"]
+              note: "Buff up"
+            - skill: "stars_call"
+              input: "Space"
+              keys: ["space"]
+              note: "Summon soldiers"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Engage pack"
+            - skill: "quoratum_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE float opener"
+            - skill: "ice_storm"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Main AOE burst"
+            - skill: "flow_blizzard_sweep"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up sweep"
+            - skill: "morning_star_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Heavy burst"
+            - skill: "flow_ice_shatter"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up shatter"
+            - skill: "frost_explosion"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Big AOE nuke"
+            - skill: "ice_pillar"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "AOE bound"
+            - skill: "frozen_tempest"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor and Forward Guard skills.
+            Approach with protection, fish for CC, then burst.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA gap close"
+            - skill: "shield_bash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "FG stun — catch target"
+            - skill: "morning_star_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst on stunned target"
+            - skill: "flow_ice_shatter"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "ice_storm"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA finisher"
+            - skill: "flow_blizzard_sweep"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Clean up damage"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Nova PVP combo. Land a grab then chain into full burst.
+            Nova's grab bypasses Super Armor — primary kill tool in duels.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "quoratum_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Float on grabbed target"
+            - skill: "morning_star_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_ice_shatter"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "ice_storm"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard skills to approach, fish for a stun with
+            Shield Bash, then chain into grab and full damage.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "frozen_needle"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG ranged poke — stiffness catch"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA close gap"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "quoratum_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Float follow-up"
+            - skill: "morning_star_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_ice_shatter"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. High damage quickly while
+            staying protected. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage"
+            - skill: "ice_storm"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA burst"
+            - skill: "flow_blizzard_sweep"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "morning_star_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA filler"
+
+    soldier_pressure:
+        name: "Soldier Pressure (1v1)"
+        description: >
+            Use soldiers to create pressure while you fish for openings.
+            Soldiers distract and deal chip damage while you engage safely.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "stars_call"
+              input: "Space"
+              keys: ["space"]
+              note: "Summon soldiers first"
+            - skill: "soldier_command"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Send soldiers at target"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage while soldiers distract"
+            - skill: "shield_bash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "FG stun catch"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab stunned target"
+            - skill: "morning_star_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Burst"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use SA movement and block to
+            create distance. Nova has good disengage tools with soldiers.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "block"
+              input: "Q"
+              keys: ["q"]
+              note: "FG block incoming damage"
+            - skill: "frozen_tempest"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA Rabam movement out"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash away"
+            - skill: "frozen_needle"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG ranged poke while retreating"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Soldiers add sustained damage in blobs.
+            Focus on protected AOE skills and keep soldiers active.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "winter_veil"
+              input: "Shift + Q"
+              keys: ["shift", "q"]
+              note: "Buff before engaging blob"
+            - skill: "stars_call"
+              input: "Space"
+              keys: ["space"]
+              note: "Summon soldiers"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage into group"
+            - skill: "frost_explosion"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Big AOE nuke"
+            - skill: "ice_storm"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA AOE bound"
+            - skill: "flow_blizzard_sweep"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up sweep"
+            - skill: "quoratum_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE float"
+            - skill: "frozen_tempest"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA Rabam reposition"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dash"
+            - skill: "frozen_tempest"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA Rabam movement"
+            - skill: "cold_snap"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "SA forward lunge filler"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Dash again if off cooldown"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Nova succession. Cycle between Frozen Charge,
+            Rabam dash, and Cold Snap for maximum speed.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dash"
+            - skill: "frozen_tempest"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA Rabam dash"
+            - skill: "cold_snap"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "SA forward lunge"
+            - skill: "glacial_guard"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "FG advance filler"
+            - skill: "frozen_charge"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "If off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Ice Storm"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Morning Star Slash"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Quoratum Strike"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Frost Explosion"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Back Attack Damage +3% for 5 sec"
+        - skill: "Frozen Charge"
+          addon_1: "Attack/Casting Speed +7% for 7 sec"
+          addon_2: "Movement Speed +7% for 7 sec"
+        - skill: "Ice Pillar"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Shield Push"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Basic Morning Star Combo"
+      reason: "Replaced by succession enhancements, slows rotation."
+    - name: "Quoratum Smash"
+      reason: "Unprotected, not useful in succession rotation."
+    - name: "Ice Bolt"
+      reason: "Low damage pre-awakening skill, unnecessary in succession."
+    - name: "Shield Throw"
+      reason: "Unprotected ranged skill, too slow for rotation."
+    - name: "Morning Star Spin"
+      reason: "Lock from skill bar. Put on HOTBAR if needed (unprotected)."
+    - name: "Frozen Ground"
+      reason: "Unprotected, can interrupt soldier commands."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Star's Call"
+    - "Quoratum Leap"
+    - "Frozen Strike"
+    - "Permafrost"
+    - "Ice Wall"
+    - "Winter Veil"
+    - "Frost Explosion"
+    - "Frozen Tempest"
+    - "Glacial Guard"
+    - "Ice Pillar"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Ice Storm"
+    effect: "Bound on last hit and increased damage"
+    reason: >
+        Ice Storm with Core gains Bound CC on the last hit and significantly
+        increased damage, making it the strongest AOE tool in succession.
+        This is the first Core most Nova succession players choose. The bound
+        CC also enables follow-up combos in PVP. After getting comfortable,
+        experiment with Morning Star Slash and Star's Call Cores as well.

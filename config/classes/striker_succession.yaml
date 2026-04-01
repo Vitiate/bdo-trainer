@@ -1,0 +1,862 @@
+# ============================================================================
+# BDO Trainer - Succession Striker Combo Configuration
+# ============================================================================
+# Class: Striker (Succession)
+# Weapons: Gauntlet (Main) / Vambrace (Off) / Enhanced Gauntlet (Succession)
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Striker Class Discord
+#   - Community guides by Vert, BigandShiny, Preach, DontAsk
+# ============================================================================
+
+class: Striker
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Awakening Skills (Succession-Enhanced Gauntlet Skills)
+# --------------------------------------------------------------------------
+awakening_skills:
+    crimson_fang:
+        name: "Crimson Fang"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Enhanced fist barrage with Super Armor. Core succession damage skill with knockdown."
+        flows_into: ["skull_crusher", "roaring_tiger", "crouching_wolf"]
+        core_effect: "Core: Crimson Fang - Extra hits and increased PVE damage"
+        notes: "Bread-and-butter succession skill. High hit count for massive damage."
+
+    skull_crusher:
+        name: "Skull Crusher"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 6000
+        description: "Super Armor overhead slam. Bound CC with heavy burst damage."
+        flows_into: ["crimson_fang", "roaring_tiger", "massive_suppression"]
+        core_effect: "Core: Skull Crusher - Bound on hit and increased damage"
+        notes: "Strong follow-up after Crimson Fang. Bound sets up down attacks."
+
+    roaring_tiger:
+        name: "Roaring Tiger"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Super Armor forward charge with spirit tiger. Stiffness on impact."
+        flows_into: ["crimson_fang", "skull_crusher", "crouching_wolf"]
+        core_effect: "Core: Roaring Tiger - Stiffness on hit and increased range"
+        notes: "Good engage tool. SA rush into stiffness can set up grabs in PVP."
+
+    crouching_wolf:
+        name: "Crouching Wolf"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Low sweeping kick with Super Armor. Bound CC on hit."
+        flows_into: ["crimson_fang", "skull_crusher", "adamantine"]
+        notes: "Good filler with bound CC. Down attack properties on downed targets."
+
+    adamantine:
+        name: "Adamantine"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Enhanced Super Armor forward dash. Primary protected mobility in succession."
+        flows_into: ["crimson_fang", "skull_crusher", "roaring_tiger"]
+        notes: "Core mobility tool. SA dash that chains into all main skills."
+
+    flash_step:
+        name: "Flash Step"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 5000
+        description: "Super Armor forward leap. Gap closer and primary movement skill."
+        flows_into: ["crimson_fang", "roaring_tiger", "skull_crusher"]
+        notes: "Primary gap closer. PVE iframe (1s invincibility vs monsters)."
+
+    massive_suppression:
+        name: "Massive Suppression"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Enhanced stomping ground pound with Super Armor. Knockdown with huge AOE."
+        flows_into: ["crimson_fang", "skull_crusher", "crouching_wolf"]
+        core_effect: "Core: Massive Suppression - Knockdown on hit and increased AOE"
+        notes: "Strong AOE slam. Used for PVE pack clearing and PVP burst."
+
+    wolfs_hunger:
+        name: "Wolf's Hunger"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward Guard rushing punch combo. Stiffness CC on impact."
+        flows_into: ["crimson_fang", "skull_crusher", "grab"]
+        notes: "FG engage tool. Fish for stiffness to set up grabs in PVP."
+
+    twisted_collision:
+        name: "Twisted Collision"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Super Armor spinning attack with float CC."
+        flows_into: ["crimson_fang", "skull_crusher", "crouching_wolf"]
+        notes: "Good CC tool. Float into air smash for extra damage."
+
+    rising_fang:
+        name: "Rising Fang"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "FG"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard rising uppercut with float CC."
+        flows_into: ["crimson_fang", "skull_crusher", "massive_suppression"]
+        notes: "Good catch tool. FG into float can set up air combos."
+
+    ferocious_strike:
+        name: "Ferocious Strike"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward Guard multi-hit punch flurry. Stiffness on later hits."
+        flows_into: ["crimson_fang", "skull_crusher", "grab"]
+        notes: "FG on first hits, SA on later hits. Good for trading blows."
+
+    iron_fist_fury:
+        name: "Iron Fist Fury"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Self-buff into powerful punch. Increases AP and attack speed."
+        flows_into: ["crimson_fang", "skull_crusher"]
+        core_effect: "Core: Iron Fist Fury - Super Armor and AP buff duration increased"
+        notes: "Use before engaging. Buff lasts 30 seconds."
+
+    savage_fang:
+        name: "Savage Fang"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Super Armor charging rush from hotbar. Good AOE damage."
+        flows_into: ["crimson_fang", "skull_crusher"]
+        notes: "Hotbar skill. Good for large scale and pack clearing."
+
+    hidden_claw:
+        name: "Hidden Claw"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Super Armor uppercut from hotbar. Knockdown CC."
+        flows_into: ["crimson_fang", "skull_crusher"]
+        notes: "Hotbar skill. Strong SA engage option."
+
+    flow_decimation:
+        name: "Flow: Decimation"
+        input: "LMB (after Crimson Fang)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up strike after Crimson Fang. Knockdown with Super Armor."
+        flows_into: ["skull_crusher", "crouching_wolf", "massive_suppression"]
+        notes: "Always chain after Crimson Fang for extra damage and knockdown."
+
+    flow_bite:
+        name: "Flow: Bite"
+        input: "LMB (after Skull Crusher)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up slam after Skull Crusher. Bound CC with Super Armor."
+        flows_into: ["crimson_fang", "massive_suppression", "crouching_wolf"]
+        notes: "Always chain after Skull Crusher for extra damage."
+
+    flash_kick:
+        name: "Flash Kick"
+        input: "F (after gauntlet skills)"
+        keys: ["f"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up Forward Guard kick available after multiple gauntlet skills."
+        flows_into: ["crimson_fang", "skull_crusher"]
+        notes: "Can be chained after many succession skills. Good filler with FG."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    spiral_cannon:
+        name: "Spiral Cannon"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor spinning fist rush. Knockback CC with good forward movement."
+        notes: "Preferred L56 Rabam. Good SA engage and gap closer with damage."
+
+    tiger_claw:
+        name: "Tiger Claw"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor claw swipe with stiffness. Fast animation with good damage."
+        notes: "Preferred L57 Rabam. Good for movement and filler damage."
+
+    rampaging_predator:
+        name: "Rampaging Predator"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Charging fist attack. Super Armor with knockdown."
+        notes: "L58 Rabam. Put on hotbar. Decent burst option in rotation."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Striker PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Striker is a grab class — practice grab timing constantly."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. PVE iframe as well."
+        notes: "PVE iframe. Can be locked in PVP to prevent accidental use."
+
+    knee_kick:
+        name: "Knee Kick"
+        input: "LMB + RMB"
+        keys: ["lmb", "rmb"]
+        protection: "none"
+        cc: ["stiffness"]
+        description: "Quick knee strike with stiffness CC. Fast animation."
+        notes: "Unprotected but fast. Can be used to catch targets off guard."
+
+    counter_attack:
+        name: "Counter Attack"
+        input: "S + E"
+        keys: ["s", "e"]
+        protection: "FG"
+        cc: ["knockdown"]
+        description: "Forward Guard counter with knockdown. Activates when hit during guard."
+        notes: "Useful defensive option. FG into knockdown when attacked."
+
+    ground_lifting:
+        name: "Ground Lifting"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["float"]
+        description: "Rising uppercut with float CC. Good for launching targets."
+        notes: "Put on hotbar. Useful for air combo setups."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Gap close to pack"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main damage opener"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Bound slam"
+            - skill: "flow_bite"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up damage"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Use all AOE skills."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "iron_fist_fury"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engaging"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Gap close into pack center"
+            - skill: "massive_suppression"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "AOE ground pound, group mobs"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Slam remaining"
+            - skill: "flow_bite"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Sweep remaining mobs"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "adamantine"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "iron_fist_fury"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage on pack"
+            - skill: "massive_suppression"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "AOE opener"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy slam"
+            - skill: "flow_bite"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "roaring_tiger"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Tiger charge"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Sweep filler"
+            - skill: "hidden_claw"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA burst"
+            - skill: "spiral_cannon"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor and Forward Guard skills.
+            Approach with protection, then look for a grab opening.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "adamantine"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA forward dash in"
+            - skill: "wolfs_hunger"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG stiffness poke"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up knockdown"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA bound slam"
+            - skill: "flow_bite"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Striker PVP combo. Land a grab then chain into full burst.
+            Striker's grab bypasses Super Armor — this is your primary kill tool.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "massive_suppression"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Ground pound on grabbed target"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Bound slam finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard skills to approach, fish for a stiffness,
+            then chain into grab and full burst damage.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "wolfs_hunger"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG stiffness — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "massive_suppression"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Ground pound follow-up"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Bound finisher"
+
+    float_burst:
+        name: "Float Burst (1v1)"
+        description: >
+            Use float CC to launch the target, then chain into air
+            attacks for devastating burst. Works best as a surprise engage.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "twisted_collision"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "SA float the target"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Air attack on floating target"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Bound slam"
+            - skill: "flow_bite"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up damage"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Bound clean-up"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "roaring_tiger"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage with stiffness"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA bound slam"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "massive_suppression"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Instant ground pound on CC'd target"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Bound slam finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use SA movement to create distance.
+            Succession Striker has strong SA mobility for retreating.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "adamantine"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA forward dash out"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash away"
+            - skill: "tiger_claw"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement + damage while retreating"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue dashing if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on protected damage and
+            avoid overextending. Stay with your group and use SA skills.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "iron_fist_fury"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff before engaging blob"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "SA engage into group"
+            - skill: "hidden_claw"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA uppercut into enemies"
+            - skill: "massive_suppression"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA AOE ground pound"
+            - skill: "crimson_fang"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_decimation"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "skull_crusher"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA burst"
+            - skill: "adamantine"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward leap"
+            - skill: "adamantine"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA forward dash"
+            - skill: "spiral_cannon"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA forward rush"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Leap again if off cooldown"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Striker succession. Cycle between Flash Step,
+            Adamantine, and Rabam dashes for maximum speed with SA coverage.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward leap"
+            - skill: "adamantine"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA forward dash"
+            - skill: "tiger_claw"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement + damage"
+            - skill: "spiral_cannon"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA forward rush filler"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Crimson Fang"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Skull Crusher"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Massive Suppression"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Roaring Tiger"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Crouching Wolf"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Iron Fist Fury"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Low Kick"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Crescent Kick"
+      reason: "Unprotected filler, slows down rotation."
+    - name: "Twisted Collision"
+      reason: "Optional lock in PVP. Float CC can mess up grab timing."
+    - name: "Shin Kick"
+      reason: "Unprotected, slows down combo flow."
+    - name: "Ground Lifting"
+      reason: "Unprotected, can trigger accidentally. Use from hotbar only."
+    - name: "Flash Kick"
+      reason: "Optional lock. Put on HOTBAR if locking from skill bar."
+    - name: "Knee Kick"
+      reason: "Unprotected, can trigger accidentally during quick inputs."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Hidden Claw"
+    - "Savage Fang"
+    - "Massive Suppression"
+    - "Iron Fist Fury"
+    - "Rampaging Predator"
+    - "Spiral Cannon"
+    - "Tiger Claw"
+    - "Grab"
+    - "Ground Lifting"
+    - "Counter Attack"
+    - "Adamantine"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Crimson Fang"
+    effect: "Extra hits and increased PVE damage"
+    reason: >
+        Crimson Fang with Core gains additional hits and a significant
+        damage boost, making it the strongest skill in the succession kit.
+        This is the foundation of all Striker succession combos and the
+        primary damage source for both PVE grinding and PVP burst. Most
+        Striker succession players choose this Core first. After getting
+        comfortable, experiment with Skull Crusher and Massive Suppression
+        Cores as well.

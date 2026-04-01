@@ -1,0 +1,846 @@
+# ============================================================================
+# BDO Trainer - Succession Sorceress Combo Configuration
+# ============================================================================
+# Class: Sorceress (Succession)
+# Weapons: Amulet (Main) / Talisman (Off) — Enhanced pre-awakening skills
+# Damage Type: Melee / Magic
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Succession Sorceress Identity:
+#   - Enhanced Amulet/Talisman skills with no Scythe usage
+#   - Retains Night Crow iframe and Shadow Leap for top-tier mobility
+#   - Dark Flame becomes the primary damage skill with massive scaling
+#   - Still weaves between skills but stays in pre-awakening stance
+#   - High burst windows with Dream of Doom crit debuff setups
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Sorceress Class Discord
+#   - Community guides by Akiree, JinYiHan, Vert, Shirna
+# ============================================================================
+
+class: Sorceress
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Succession Skills (Enhanced Pre-Awakening)
+# --------------------------------------------------------------------------
+awakening_skills:
+    dark_flame:
+        name: "Dark Flame"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Primary succession damage skill. Enhanced dark burst with Super Armor. Massive scaling."
+        flows_into: ["shadow_eruption", "rushing_crow", "claws_of_darkness"]
+        core_effect: "Core: Dark Flame - Extra hits and greatly increased damage"
+        notes: "Bread-and-butter skill. Use off cooldown. Succession version has far higher damage than base."
+
+    shadow_eruption:
+        name: "Shadow Eruption"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Ground eruption with float CC. Key catch tool for starting combos."
+        flows_into: ["dark_flame", "claws_of_darkness", "abyssal_flame"]
+        notes: "Primary CC skill. Float into full burst. Unprotected so time carefully."
+
+    claws_of_darkness:
+        name: "Claws of Darkness"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Super Armor dark claw strikes. Multi-hit with knockdown. High burst."
+        flows_into: ["dark_flame", "abyssal_flame", "signs_of_agony"]
+        core_effect: "Core: Claws of Darkness - Knockdown on hit and increased damage"
+        notes: "Second highest damage skill. Strong in both PVE and PVP."
+
+    abyssal_flame:
+        name: "Abyssal Flame"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Super Armor dark explosion. Large AOE with knockback. Heavy burst."
+        flows_into: ["dark_flame", "claws_of_darkness", "rushing_crow"]
+        notes: "Strong AOE nuke. Good for PVE clearing and PVP large scale."
+
+    rushing_crow:
+        name: "Rushing Crow"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: []
+        damage: medium
+        cooldown_ms: 4000
+        description: "Super Armor forward dash. Primary gap closer in succession."
+        flows_into: ["dark_flame", "claws_of_darkness", "shadow_eruption"]
+        notes: "Main movement skill in succession. Chains into damage skills smoothly."
+
+    dark_strike:
+        name: "Dark Strike"
+        input: "LMB (chain)"
+        keys: ["lmb"]
+        protection: "none"
+        cc: []
+        damage: medium
+        cooldown_ms: 0
+        description: "Enhanced LMB combo chain. Multiple dark amulet strikes. Succession scaling."
+        flows_into: ["dark_flame", "shadow_eruption", "claws_of_darkness"]
+        notes: "Use as filler between cooldowns. Fast animation and decent damage."
+
+    signs_of_agony:
+        name: "Signs of Agony"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Super Armor dark tendrils with bound CC. Large AOE slam."
+        flows_into: ["dark_flame", "abyssal_flame", "claws_of_darkness"]
+        notes: "Strong AOE with bound. Great for PVE pack clearing and PVP catch."
+
+    beak_kick:
+        name: "Beak Kick"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward Guard kick with stiffness CC. Quick defensive poke."
+        flows_into: ["dark_flame", "shadow_eruption", "claws_of_darkness"]
+        notes: "Safe FG poke. Use to fish for stiffness in PVP."
+
+    night_crow:
+        name: "Night Crow"
+        input: "Shift + Direction"
+        keys: ["shift", "w"]
+        keys_alt_left: ["shift", "a"]
+        keys_alt_right: ["shift", "d"]
+        keys_alt_back: ["shift", "s"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 3000
+        description: "Directional iframe dash. Core Sorceress identity skill. Succession retains full functionality."
+        flows_into: ["dark_flame", "rushing_crow", "shadow_eruption", "shadow_leap"]
+        notes: "THE identity skill of Sorceress. Spammable iframe with shards. Master this to master Sorc."
+
+    shadow_leap:
+        name: "Shadow Leap"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 4000
+        description: "Iframe leap. Additional iframe option alongside Night Crow."
+        flows_into: ["dark_flame", "rushing_crow", "claws_of_darkness"]
+        notes: "Key defensive tool. Pairs with Night Crow for extended iframe chains."
+
+    black_wave:
+        name: "Black Wave"
+        input: "S + E"
+        keys: ["s", "e"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard dark projectile wave. Ranged poke with stiffness."
+        flows_into: ["dark_flame", "claws_of_darkness", "abyssal_flame"]
+        notes: "Safe ranged FG poke. Good for fishing CC at range in PVP."
+
+    dark_backstep:
+        name: "Dark Backstep"
+        input: "S + Q"
+        keys: ["s", "q"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 5000
+        description: "Quick iframe backstep. Creates distance with invincibility."
+        flows_into: ["dark_flame", "black_wave", "shadow_eruption"]
+        notes: "Defensive iframe for creating space. Pairs with Night Crow chains."
+
+    crow_flare_enhanced:
+        name: "Crow Flare"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Enhanced Super Armor forward dark burst. Succession version has knockdown."
+        flows_into: ["dark_flame", "abyssal_flame", "claws_of_darkness"]
+        notes: "Good SA engage tool with knockdown CC."
+
+    bloody_calamity:
+        name: "Bloody Calamity"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        damage: medium
+        cooldown_ms: 10000
+        description: "Super Armor self-buff and HP drain attack. Recovers HP on hit."
+        flows_into: ["dark_flame", "claws_of_darkness"]
+        core_effect: "Core: Bloody Calamity - Increased HP recovery and added Super Armor"
+        notes: "Sustain tool. Use for HP recovery during grind. SA makes it safe."
+
+    mark_of_the_shadow:
+        name: "Mark of the Shadow"
+        input: "RMB (hold)"
+        keys: ["rmb"]
+        protection: "none"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Ranged dark projectiles. Enhanced succession version for shard generation."
+        flows_into: ["dark_flame", "shadow_eruption"]
+        notes: "Use to generate shards at range. Quick animation cancel into other skills."
+
+    storming_crow:
+        name: "Storming Crow"
+        input: "W + W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 5000
+        description: "Super Armor forward charge. Alternative gap closer."
+        flows_into: ["dark_flame", "claws_of_darkness", "shadow_eruption"]
+        notes: "Extra SA movement option. Use when Rushing Crow is on cooldown."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    shadow_ignition:
+        name: "Shadow Ignition"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Dark explosion with Super Armor. Stiffness CC and good burst. Preferred L56 Rabam."
+        notes: "Preferred for PVP. Good protected burst with CC."
+
+    abyssal_bite:
+        name: "Abyssal Bite"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor lunging bite attack. Knockdown on hit. Good engage tool."
+        notes: "Preferred L57 Rabam. Extra knockdown and SA engage option."
+
+    dark_torrent:
+        name: "Dark Torrent"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 14000
+        description: "Hotbar dark energy burst. Super Armor with bound CC."
+        notes: "Decent hotbar filler. Use when other skills are on cooldown."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (retained in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    dream_of_doom:
+        name: "Dream of Doom"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["stun"]
+        description: "100% crit rate debuff on target. Super Armor. Stun on good hit. Essential PVP debuff."
+        notes: "Always use before burst. 100% crit debuff is massive. Put on hotbar."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Short distance dodge."
+        notes: "Extra iframe option. Sorc has many iframes — use them all."
+
+    flow_dark_wave:
+        name: "Flow: Dark Wave"
+        input: "LMB (after Beak Kick)"
+        keys: ["lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        description: "Follow-up to Beak Kick. Forward Guard with stiffness."
+        notes: "Chain after Beak Kick for extra FG damage."
+
+    sinister_energy:
+        name: "Sinister Energy"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Self-buff that increases AP and critical hit rate. Essential pre-fight buff."
+        notes: "Maintain this buff at all times. Hotbar recommended."
+
+    darkness_released:
+        name: "Darkness Released"
+        input: "E"
+        keys: ["e"]
+        protection: "SA"
+        cc: ["stiffness"]
+        description: "Super Armor dark explosion. Consumes shards for extra damage."
+        notes: "Shard dump skill. Use when at max shards for bonus burst."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash into pack"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Main burst on pack"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Second burst skill"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "AOE nuke"
+            - skill: "signs_of_agony"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE bound finisher"
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Debuff then unload everything."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "dream_of_doom"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "100% crit debuff on pack"
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash into pack center"
+            - skill: "signs_of_agony"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE bound to group mobs"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Main nuke with crit debuff active"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Second burst"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "AOE explosion"
+            - skill: "crow_flare_enhanced"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "Clean up remaining mobs"
+            - skill: "bloody_calamity"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "HP recovery on stragglers"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Dash into pack"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "One-shot burst"
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe dash to next pack"
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Continue to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "dream_of_doom"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "100% crit debuff"
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage"
+            - skill: "signs_of_agony"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE bound opener"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Main nuke"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Second burst"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "AOE nuke"
+            - skill: "crow_flare_enhanced"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "SA knockdown filler"
+            - skill: "bloody_calamity"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "HP sustain"
+            - skill: "dark_torrent"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Rabam filler burst"
+            - skill: "shadow_ignition"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam burst"
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe to reposition"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using iframe and Super Armor skills.
+            Approach with Night Crow iframes, then fish for CC.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe approach"
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash to close distance"
+            - skill: "beak_kick"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG stiffness poke"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA main burst if stiffness lands"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA follow-up knockdown"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA finisher"
+
+    float_catch_combo:
+        name: "Float Catch Combo (1v1)"
+        description: >
+            Classic Succession Sorc 1v1 combo. Use iframes to bait attacks,
+            catch with Shadow Eruption float, then unload full burst.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe through enemy attack"
+            - skill: "shadow_eruption"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Float the target"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Main nuke on floated target"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Knockdown follow-up"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "AOE burst"
+            - skill: "signs_of_agony"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Bound finisher"
+
+    dream_of_doom_engage:
+        name: "Dream of Doom Engage"
+        description: >
+            Engage with Dream of Doom debuff for 100% crit on target,
+            then chain into full burst for maximum kill potential.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "dream_of_doom"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "100% crit debuff — stun if it lands"
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA close distance"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Main nuke with crit debuff active"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Follow-up burst"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "AOE finisher"
+
+    stiffness_chain:
+        name: "Stiffness Chain Combo"
+        description: >
+            Fish for stiffness with Forward Guard pokes, then confirm
+            into float and full damage chain. Defensive playstyle.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "beak_kick"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG stiffness — catch the target"
+            - skill: "shadow_eruption"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "Float on stiffened target"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Knockdown follow-up"
+            - skill: "signs_of_agony"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Bound extend"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills. No CC needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA gap close"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA main burst"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA follow-up"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA AOE finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Succession Sorc retains
+            full iframe mobility. Chain Night Crow for distance.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "night_crow"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Iframe backwards"
+            - skill: "shadow_leap"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe leap away"
+            - skill: "dark_backstep"
+              input: "S + Q"
+              keys: ["s", "q"]
+              note: "Iframe backstep for more distance"
+            - skill: "night_crow"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Chain another iframe if shards available"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on protected AOE damage.
+            Use iframes to position on flanks and nuke clumps.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "dream_of_doom"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "100% crit debuff on clump"
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe into position"
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage into group"
+            - skill: "signs_of_agony"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE bound on clump"
+            - skill: "dark_flame"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA main nuke with crit active"
+            - skill: "abyssal_flame"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA AOE explosion"
+            - skill: "claws_of_darkness"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA follow-up burst"
+            - skill: "night_crow"
+              input: "Shift + S"
+              keys: ["shift", "s"]
+              note: "Iframe out to safety"
+            - skill: "shadow_leap"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe reposition"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe forward dash"
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dash"
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe again when shards regenerate"
+            - skill: "storming_crow"
+              input: "W + W + F"
+              keys: ["w", "f"]
+              note: "SA charge filler"
+            - skill: "shadow_leap"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe leap for extra distance"
+
+    iframe_movement:
+        name: "Iframe Movement Chain"
+        description: >
+            Advanced movement using iframe chaining. Succession Sorc retains
+            full Night Crow and Shadow Leap for near-permanent iframe uptime.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe dash — consumes shards"
+            - skill: "shadow_leap"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe leap"
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Iframe dash again"
+            - skill: "dark_backstep"
+              input: "S + Q"
+              keys: ["s", "q"]
+              note: "Iframe backstep variety"
+            - skill: "rushing_crow"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash while shards regen"
+            - skill: "night_crow"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Shards regenerated, iframe again"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Dark Flame"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Claws of Darkness"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Signs of Agony"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Abyssal Flame"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Rushing Crow"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Crow Flare"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "HP Recovery +200 per hit for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Shadow Kick"
+      reason: "Unprotected, triggers accidentally during combos."
+    - name: "Imminent Doom"
+      reason: "Unprotected and slow. Lock from skill bar."
+    - name: "Shards of Darkness"
+      reason: "Lock to prevent accidental shard generation that interrupts combos."
+    - name: "Cartian's Protection"
+      reason: "Awakening skill, not used in Succession. Lock to prevent stance swap."
+    - name: "Grim Reaper's Judgment"
+      reason: "Awakening skill, not used in Succession. Lock to prevent stance swap."
+    - name: "Dead Hunt"
+      reason: "Awakening skill, not used in Succession. Lock to prevent stance swap."
+    - name: "Turn-back Slash"
+      reason: "Awakening skill, not used in Succession. Lock to prevent stance swap."
+    - name: "Violation"
+      reason: "Awakening skill, not used in Succession. Lock to prevent stance swap."
+    - name: "Absolute: Kick"
+      reason: "Unprotected, can trigger accidentally and interrupt combos."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Dream of Doom"
+    - "Sinister Energy"
+    - "Dark Torrent"
+    - "Shadow Ignition"
+    - "Abyssal Bite"
+    - "Bloody Calamity"
+    - "Darkness Released"
+    - "Black Wave"
+    - "Dark Flame"
+    - "Signs of Agony"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Dark Flame"
+    effect: "Extra hits and greatly increased damage"
+    reason: >
+        Dark Flame with Core adds extra hits and massively increases the
+        skill's damage output. As the primary damage skill in Succession
+        Sorceress, this Core is the top priority for every player. The
+        enhanced version turns Dark Flame into one of the hardest-hitting
+        skills in the game on a short cooldown. After this, consider
+        Claws of Darkness Core for secondary burst or Bloody Calamity
+        Core for improved sustain during extended grinds.

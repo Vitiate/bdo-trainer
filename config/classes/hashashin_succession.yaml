@@ -1,0 +1,859 @@
+# ============================================================================
+# BDO Trainer - Succession Hashashin Combo Configuration
+# ============================================================================
+# Class: Hashashin (Succession)
+# Weapons: Shamshir (Main) / Haladie (Off) — Enhanced Shamshir skills
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Hashashin Class Discord
+#   - Community guides by Vert, BigandShiny, Desperada, Haste
+# ============================================================================
+
+class: Hashashin
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Succession Skills (Enhanced Pre-Awakening)
+# --------------------------------------------------------------------------
+awakening_skills:
+    sand_slash:
+        name: "Sand Slash"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Enhanced Shamshir slash combo with Super Armor. Primary damage skill in succession."
+        flows_into: ["arid_assault", "constriction", "dune_slash"]
+        core_effect: "Core: Sand Slash - Extra hits, increased damage, and Super Armor"
+        notes: "Bread-and-butter succession damage skill. Enhanced range and damage over pre-awakening."
+
+    arid_assault:
+        name: "Arid Assault"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Heavy Shamshir thrust. Second highest burst damage in succession kit."
+        flows_into: ["sand_slash", "dune_slash", "flow_arid_burst"]
+        core_effect: "Core: Arid Assault - Super Armor and increased damage"
+        notes: "Primary burst skill. Use off cooldown for maximum damage output."
+
+    flow_arid_burst:
+        name: "Flow: Arid Burst"
+        input: "LMB (after Arid Assault)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up slash after Arid Assault. Additional burst with Super Armor."
+        flows_into: ["sand_slash", "constriction", "dune_slash"]
+        notes: "Always chain after Arid Assault for extended SA and extra damage."
+
+    constriction:
+        name: "Constriction"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Super Armor forward dash strike. Fast engagement with stiffness CC."
+        flows_into: ["sand_slash", "arid_assault", "dune_slash"]
+        notes: "Primary engage tool. Quick gap closer with SA protection."
+
+    dune_slash:
+        name: "Dune Slash"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Super Armor downward slam with bound CC. Strong burst and CC tool."
+        flows_into: ["sand_slash", "arid_assault", "splitting_sands"]
+        core_effect: "Core: Dune Slash - Bound on good hits, increased damage"
+        notes: "High damage with bound CC. Down attack properties on bound targets."
+
+    desert_storm:
+        name: "Desert Storm"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["float"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Super Armor sand tornado. Enhanced succession version with float CC and large AOE."
+        flows_into: ["sand_slash", "arid_assault", "dune_slash"]
+        core_effect: "Core: Desert Storm - Float on all hits, increased AOE"
+        notes: "Strongest AOE skill. Use for pack clearing in PVE and zoning in PVP."
+
+    shadow_leap:
+        name: "Shadow Leap"
+        input: "Shift + Space"
+        keys: ["shift", "space"]
+        protection: "iframe"
+        cc: []
+        damage: low
+        cooldown_ms: 5000
+        description: "Iframe teleport through sand. Long-range movement skill. Enhanced in succession."
+        flows_into: ["sand_slash", "constriction", "arid_assault"]
+        notes: "Primary movement and escape tool. Iframe makes it safe. Can chain twice."
+
+    splitting_sands:
+        name: "Splitting Sands"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Super Armor forward sand wave. Enhanced version with increased range and damage."
+        flows_into: ["sand_slash", "arid_assault", "constriction"]
+        notes: "Good approach tool with SA. Knocks back enemies for spacing."
+
+    ensnaring_sands:
+        name: "Ensnaring Sands"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard sand trap. Stiffens enemies caught in the area."
+        flows_into: ["sand_slash", "arid_assault", "dune_slash"]
+        notes: "Defensive tool with FG. Good for fishing stiffness CC in PVP."
+
+    sand_dash:
+        name: "Sand Dash"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Quick iframe sand dash. Primary short-range mobility in succession."
+        flows_into: ["sand_slash", "constriction", "arid_assault"]
+        notes: "Short iframe dash. Chain with Shadow Leap for extended movement."
+
+    serpent_strike:
+        name: "Serpent Strike"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Quick low sand sweep with bound CC. Unprotected but fast."
+        flows_into: ["sand_slash", "arid_assault"]
+        notes: "Unprotected CC tool. Use carefully in PVP when target is open."
+
+    desert_collapse:
+        name: "Desert Collapse"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 12000
+        description: "Forward Guard AOE sand eruption. Large area knockdown."
+        flows_into: ["sand_slash", "arid_assault", "dune_slash"]
+        core_effect: "Core: Desert Collapse - Forward Guard during the skill"
+        notes: "Large AOE with FG. Good for PVE clearing and PVP zoning."
+
+    quicksand:
+        name: "Quicksand"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "SA"
+        cc: ["pull"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor forward sand pull. Groups enemies for combo follow-up."
+        flows_into: ["sand_slash", "arid_assault", "dune_slash"]
+        notes: "Useful for grouping mobs in PVE and pulling targets in PVP."
+
+    sand_veil:
+        name: "Sand Veil"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Self-buff. Increases AP, attack speed, and evasion. Enhanced in succession."
+        flows_into: ["sand_slash", "constriction", "shadow_leap"]
+        core_effect: "Core: Sand Veil - Super Armor during the skill"
+        notes: "Use before engaging. Hotbar recommended for tracking cooldown."
+
+    cyclone_slash:
+        name: "Cyclone Slash"
+        input: "Shift + Q"
+        keys: ["shift", "q"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor spinning Shamshir attack. AOE knockback."
+        flows_into: ["sand_slash", "arid_assault"]
+        notes: "Good AOE filler. Use between main skills for additional damage."
+
+    sand_serpent:
+        name: "Sand Serpent"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Ranged sand projectile from hotbar. Super Armor on cast."
+        flows_into: ["sand_slash", "constriction"]
+        notes: "Hotbar skill. Good ranged poke with SA protection."
+
+    desert_shroud:
+        name: "Desert Shroud"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 11000
+        description: "Forward Guard sand explosion from hotbar. AOE stiffness."
+        flows_into: ["sand_slash", "arid_assault"]
+        notes: "Hotbar skill. Ranged AOE with frontal protection."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    wind_slash:
+        name: "Wind Slash"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor sand blade strike with stiffness. Good for 1v1 engage."
+        notes: "Preferred L56 Rabam for PVP. SA protection and movement."
+
+    sand_barrier:
+        name: "Sand Barrier"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 8000
+        description: "SA sand shield movement. Provides sand debuff on nearby enemies."
+        notes: "Preferred L57 Rabam. Useful for protected movement and debuffing."
+
+    desert_judgement:
+        name: "Desert Judgement"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Sand eruption burst from hotbar. AOE knockdown."
+        notes: "Optional. L58 Rabam is decent but not essential to rotation."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Hashashin PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Hashashin is a grab class — practice grab timing in duels."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Short iframe dodge."
+        notes: "PVE iframe. Lock in PVP to prevent accidental use if preferred."
+
+    haladie_defense:
+        name: "Haladie Defense"
+        input: "RMB (hold)"
+        keys: ["rmb"]
+        protection: "FG"
+        cc: []
+        description: "Block stance using Haladie off-hand. Forward Guard while held."
+        notes: "Emergency block. Succession relies less on block than other classes."
+
+    shamshir_training:
+        name: "Shamshir Training"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        description: "Self-buff increasing Shamshir attack damage. Super Armor during animation."
+        notes: "Use before engaging for damage boost. Hotbar recommended."
+
+    sand_kick:
+        name: "Sand Kick"
+        input: "F"
+        keys: ["f"]
+        protection: "none"
+        cc: ["stiffness"]
+        description: "Quick sand kick with stiffness. Fast CC tool."
+        notes: "Unprotected but very fast. Use to interrupt or catch opponents."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe teleport into pack"
+            - skill: "constriction"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash into mobs"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main AOE damage"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy burst"
+            - skill: "flow_arid_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up damage"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Teleport to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Group with Quicksand first."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe teleport into pack center"
+            - skill: "quicksand"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "Pull mobs together"
+            - skill: "desert_storm"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE tornado on grouped mobs"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main AOE damage"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy burst"
+            - skill: "flow_arid_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "dune_slash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Bound finisher on survivors"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe teleport into pack"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Follow-up if needed"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Teleport to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "sand_veil"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engage"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe engage"
+            - skill: "quicksand"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "Pull and group"
+            - skill: "desert_collapse"
+              input: "Q"
+              keys: ["q"]
+              note: "FG AOE opener"
+            - skill: "desert_storm"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA tornado AOE"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy slam"
+            - skill: "flow_arid_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "dune_slash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Bound slam"
+            - skill: "cyclone_slash"
+              input: "Shift + Q"
+              keys: ["shift", "q"]
+              note: "SA AOE filler"
+            - skill: "wind_slash"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using iframe teleport and Super Armor skills.
+            Close distance with protection, then look for a grab or CC opening.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe teleport to close distance"
+            - skill: "constriction"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA stiffness engage"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA heavy burst"
+            - skill: "flow_arid_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "dune_slash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA bound finisher"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Hashashin PVP combo. Land a grab then chain into full burst.
+            Hashashin's grab bypasses Super Armor — this is your primary kill tool.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "dune_slash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Bound on grabbed target"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy slam follow-up"
+            - skill: "flow_arid_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Constriction stiffness to catch an opponent,
+            then chain into grab and full damage.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "constriction"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA stiffness — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "dune_slash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Bound follow-up"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy damage"
+            - skill: "flow_arid_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "constriction"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage with stiffness"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA heavy burst"
+            - skill: "flow_arid_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up finisher"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "dune_slash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Instant bound on CC'd target"
+            - skill: "desert_storm"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE float"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy follow-up"
+
+    teleport_assassinate:
+        name: "Teleport Assassinate"
+        description: >
+            Use Shadow Leap to teleport behind an unsuspecting target,
+            then grab and burst them down. Classic Hashashin ambush play.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe teleport behind target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab from behind — bypasses block"
+            - skill: "dune_slash"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Bound on grabbed target"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main burst"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy damage"
+            - skill: "flow_arid_burst"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use iframe teleport and SA movement
+            to create distance. Succession excels at disengaging with Shadow Leap.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "sand_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe dash out"
+            - skill: "sand_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement + debuff"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe teleport away"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Second iframe teleport if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on AOE damage and protected skills.
+            Use enhanced Shamshir skills to zone enemies and burst grouped targets.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "sand_veil"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before engaging"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe engage into group"
+            - skill: "quicksand"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "SA pull enemies together"
+            - skill: "desert_collapse"
+              input: "Q"
+              keys: ["q"]
+              note: "FG AOE knockdown on group"
+            - skill: "desert_storm"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA tornado AOE"
+            - skill: "sand_slash"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "arid_assault"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA heavy burst"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe teleport forward"
+            - skill: "constriction"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dash"
+            - skill: "wind_slash"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam movement filler"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Teleport again if off cooldown"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Hashashin succession. Cycle between Shadow Leap,
+            Sand Dash, Constriction, and Rabam skills for maximum speed
+            and constant iframe/SA coverage. Succession has stronger Shadow Leap.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Iframe teleport forward"
+            - skill: "sand_dash"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe short dash"
+            - skill: "constriction"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dash"
+            - skill: "sand_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement filler"
+            - skill: "shadow_leap"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "If off cooldown, repeat cycle"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Sand Slash"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Arid Assault"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Constriction"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Dune Slash"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Desert Storm"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Desert Collapse"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Extra AP Against Monsters +20 for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Serpent Strike"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Sand Kick"
+      reason: "Unprotected pre-awakening filler, can interrupt combo flow."
+    - name: "Razor Wind"
+      reason: "Unprotected, not useful in succession rotation."
+    - name: "Haladie Toss"
+      reason: "Unprotected, slows down rotation."
+    - name: "Sand Serpent"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+    - name: "Desert Shroud"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+    - name: "Cyclone Slash"
+      reason: "Optional lock. Put on HOTBAR if locking from skill bar."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Sand Serpent"
+    - "Desert Shroud"
+    - "Desert Collapse"
+    - "Desert Judgement"
+    - "Sand Veil"
+    - "Wind Slash"
+    - "Sand Barrier"
+    - "Shamshir Training"
+    - "Splitting Sands"
+    - "Cyclone Slash"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Sand Slash"
+    effect: "Extra hits, increased damage, and Super Armor"
+    reason: >
+        Sand Slash with Core gains additional hits, a significant damage
+        increase, and reliable Super Armor on the skill. As your most
+        frequently used damage skill, this Core provides the biggest
+        overall improvement to both PVE grinding speed and PVP burst.
+        After getting comfortable, experiment with Arid Assault Core for
+        burst-heavy playstyles, or Dune Slash Core for additional CC
+        options in PVP.

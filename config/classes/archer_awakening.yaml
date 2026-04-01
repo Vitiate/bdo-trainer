@@ -1,0 +1,839 @@
+# ============================================================================
+# BDO Trainer - Awakened Archer Combo Configuration
+# ============================================================================
+# Class: Archer (Awakening)
+# Weapons: Crossbow (Main) / Ra'ghon (Off) / Greatbow (Awakening)
+# Damage Type: Ranged
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Notes:
+#   Archer is unique — originally released as an awakening-only class.
+#   He seamlessly uses both Crossbow and Greatbow skills without stance
+#   swapping. Archer has NO grab, relying on ranged CC and mobility.
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Archer Class Discord
+#   - Community guides by Vengeroth, Archetype, Desperado
+# ============================================================================
+
+class: Archer
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    earth_shatter:
+        name: "Earth Shatter"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Super Armor ground AOE slam. Main greatbow damage skill with knockdown."
+        flows_into: ["meteor_dive", "full_bloom", "flow_tempest"]
+        core_effect: "Core: Earth Shatter - Extra damage and increased AOE range"
+        notes: "Bread-and-butter damage skill. Use off cooldown in PVE rotations."
+
+    meteor_dive:
+        name: "Meteor Dive"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Super Armor aerial leap into ground slam with bound CC."
+        flows_into: ["earth_shatter", "full_bloom", "luthraghons_call"]
+        core_effect: "Core: Meteor Dive - Bound on good hits, increased damage"
+        notes: "Jump slam. Great for engaging packs in PVE and catching in PVP."
+
+    luthraghons_call:
+        name: "Luthraghon's Call"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Super Armor charged greatbow shot. Long range with stiffness."
+        flows_into: ["flow_lights_trail", "earth_shatter", "winged_strike"]
+        notes: "Strong ranged poke with SA. Always follow with Flow: Light's Trail."
+
+    flow_lights_trail:
+        name: "Flow: Light's Trail"
+        input: "LMB (after Luthraghon's Call)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Luthraghon's Call. Fires additional piercing shots."
+        flows_into: ["earth_shatter", "meteor_dive"]
+        notes: "Always chain after Luthraghon's Call for extra damage and knockback."
+
+    full_bloom:
+        name: "Full Bloom"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Super Armor massive radial AOE explosion. Huge damage area."
+        flows_into: ["earth_shatter", "tactical_retreat", "volant"]
+        notes: "One of the biggest AOE skills. Amazing for PVE pack clearing."
+
+    winged_strike:
+        name: "Winged Strike"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor aerial launch attack with float CC."
+        flows_into: ["meteor_dive", "earth_shatter", "flow_call_from_sky"]
+        notes: "Float CC enables air combos in PVP. Good for catching opponents."
+
+    flow_call_from_sky:
+        name: "Flow: Call from Sky"
+        input: "LMB (after Winged Strike)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Aerial follow-up after Winged Strike. Dive attack with knockdown."
+        flows_into: ["earth_shatter", "full_bloom"]
+        notes: "Always follow Winged Strike with this for extra air damage."
+
+    radiant_explosion:
+        name: "Radiant Explosion"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard ranged greatbow blast. Safe poke with stiffness."
+        flows_into: ["luthraghons_call", "earth_shatter", "glissade"]
+        notes: "Safe ranged poke with FG. Great for zoning in PVP."
+
+    tactical_retreat:
+        name: "Tactical Retreat"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 5000
+        description: "Iframe backward dash. Primary escape and repositioning tool."
+        flows_into: ["radiant_explosion", "luthraghons_call", "arrow_storm"]
+        notes: "Main iframe. Use to reposition and create distance. PVP essential."
+
+    glissade:
+        name: "Glissade"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "FG"
+        cc: []
+        damage: low
+        cooldown_ms: 4000
+        description: "Forward Guard forward slide. Primary forward movement skill."
+        flows_into: ["earth_shatter", "luthraghons_call", "meteor_dive"]
+        notes: "Main forward movement. FG while moving makes it safe to approach."
+
+    volant:
+        name: "Volant"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Super Armor backward leap with arrow volley. Creates distance."
+        flows_into: ["radiant_explosion", "luthraghons_call", "arrow_storm"]
+        notes: "Backward jump + ranged damage. Good for kiting in PVP."
+
+    arrow_storm:
+        name: "Arrow Storm"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 15000
+        description: "Super Armor rain of arrows over wide area. Massive AOE damage."
+        flows_into: ["flow_tempest", "earth_shatter", "tactical_retreat"]
+        notes: "Long cooldown but devastating AOE. Great for large PVE packs."
+
+    flow_tempest:
+        name: "Flow: Tempest"
+        input: "LMB (after Arrow Storm)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Arrow Storm. Extended arrow barrage with SA."
+        flows_into: ["earth_shatter", "meteor_dive"]
+        notes: "Always chain after Arrow Storm for maximum AOE damage."
+
+    zephyr_leap:
+        name: "Zephyr Leap"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Super Armor forward jump attack. Quick engage tool."
+        flows_into: ["earth_shatter", "winged_strike", "meteor_dive"]
+        notes: "Fast forward engage with SA. Good transition into burst skills."
+
+    wrath_of_nature:
+        name: "Wrath of Nature"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Ground shockwave that knocks back nearby enemies. Unprotected."
+        flows_into: ["tactical_retreat", "volant", "radiant_explosion"]
+        notes: "Unprotected but useful peel. Be careful using in PVP."
+
+    natures_tremble:
+        name: "Nature's Tremble"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Ranged greatbow shot from hotbar. Super Armor with knockdown."
+        flows_into: ["earth_shatter", "meteor_dive"]
+        notes: "Hotbar skill. Good ranged burst with protection."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    light_of_kamasylve:
+        name: "Light of Kamasylve"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor greatbow thrust with stiffness. Good filler with protection."
+        notes: "Preferred L56 Rabam. SA makes it safe to weave into combos."
+
+    breath_of_the_wind:
+        name: "Breath of the Wind"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 8000
+        description: "Super Armor wind dash with evasion buff. Movement skill."
+        notes: "Preferred L57 Rabam. Good protected movement and evasion buff."
+
+    natures_wrath:
+        name: "Nature's Wrath"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 14000
+        description: "Greatbow slam from hotbar. Super Armor with knockdown."
+        notes: "Decent L58 Rabam. Hotbar recommended for cooldown tracking."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Essential survival tool for ranged class."
+        notes: "Important iframe. Can lock to prevent accidental use if preferred."
+
+    breath_of_the_spirit:
+        name: "Breath of the Spirit"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Self-heal skill. Recovers HP over time. Hotbar recommended."
+        notes: "Important sustain. Use between packs in PVE or when safe in PVP."
+
+    uproot:
+        name: "Uproot"
+        input: "F"
+        keys: ["f"]
+        protection: "none"
+        cc: ["knockdown"]
+        description: "Crossbow melee strike with knockdown. Close-range emergency CC."
+        notes: "Use only when enemies are too close. Unprotected — risky in PVP."
+
+    earth_kick:
+        name: "Earth Kick"
+        input: "S + E"
+        keys: ["s", "e"]
+        protection: "none"
+        cc: ["bound"]
+        description: "Backward kick with bound CC. Creates distance after hit."
+        notes: "Emergency close-range peel. Unprotected but bound CC is strong."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG forward slide into pack"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main AOE damage"
+            - skill: "meteor_dive"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Jump slam on pack"
+            - skill: "full_bloom"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Big AOE finisher"
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe reposition"
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG slide to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Unload all cooldowns."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG approach into pack center"
+            - skill: "arrow_storm"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA rain of arrows on grouped mobs"
+            - skill: "flow_tempest"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend arrow barrage"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Ground AOE burst"
+            - skill: "full_bloom"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Massive radial AOE"
+            - skill: "meteor_dive"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Jump slam cleanup"
+            - skill: "luthraghons_call"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Ranged shot on stragglers"
+            - skill: "flow_lights_trail"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up piercing shots"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for easy grind spots. Maximize mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG dash into pack"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst AOE"
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe to reposition"
+            - skill: "breath_of_the_wind"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG engage"
+            - skill: "arrow_storm"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA AOE opener"
+            - skill: "flow_tempest"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended barrage"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main ground AOE"
+            - skill: "meteor_dive"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Jump slam burst"
+            - skill: "full_bloom"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Big radial AOE"
+            - skill: "winged_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Aerial float damage"
+            - skill: "flow_call_from_sky"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Dive follow-up"
+            - skill: "luthraghons_call"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "Ranged charge shot"
+            - skill: "flow_lights_trail"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "light_of_kamasylve"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+            - skill: "natures_tremble"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Hotbar ranged burst"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_poke:
+        name: "Protected Poke"
+        description: >
+            Safe ranged engage using Forward Guard and Super Armor skills.
+            Poke from range with protection, then reposition. Archer has no
+            grab — use ranged CC to control spacing.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "radiant_explosion"
+              input: "Q"
+              keys: ["q"]
+              note: "FG ranged stiffness poke"
+            - skill: "luthraghons_call"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA charge shot follow-up"
+            - skill: "flow_lights_trail"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Piercing knockback"
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe back to safety"
+
+    ranged_burst:
+        name: "Ranged Burst Combo"
+        description: >
+            Full ranged damage combo. Stay at range and unload damage
+            skills with Super Armor protection. Punish targets that
+            cannot close distance.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "radiant_explosion"
+              input: "Q"
+              keys: ["q"]
+              note: "FG stiffness opener"
+            - skill: "luthraghons_call"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA charge shot"
+            - skill: "flow_lights_trail"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Piercing follow-up"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA ground burst"
+            - skill: "volant"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA backward leap + arrows"
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe reposition"
+
+    aerial_catch:
+        name: "Aerial Catch Combo"
+        description: >
+            Use float CC from Winged Strike to catch an opponent in the
+            air, then chain into air attacks for full burst. Archer's
+            primary CC chain without grab.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "winged_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA float CC — catch the target"
+            - skill: "flow_call_from_sky"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Aerial knockdown follow-up"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA ground slam on downed target"
+            - skill: "meteor_dive"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Jump slam bound"
+            - skill: "full_bloom"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "SA big AOE finisher"
+
+    stiffness_chain:
+        name: "Stiffness Chain (1v1)"
+        description: >
+            Fish for a stiffness CC at range, then chain into full damage
+            on the stiffened target. Archer's version of a catch combo
+            since he has no grab to bypass SA.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "radiant_explosion"
+              input: "Q"
+              keys: ["q"]
+              note: "FG stiffness — catch the target"
+            - skill: "zephyr_leap"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "SA forward jump engage"
+            - skill: "winged_strike"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA float on stiffened target"
+            - skill: "flow_call_from_sky"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Aerial knockdown"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA ground slam"
+            - skill: "meteor_dive"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Jump slam finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use iframe and backward jumps
+            to create distance. Archer excels at kiting — play to your
+            range advantage and avoid melee.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe backward dash"
+            - skill: "volant"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA backward jump + arrows"
+            - skill: "breath_of_the_wind"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA wind dash away"
+            - skill: "radiant_explosion"
+              input: "Q"
+              keys: ["q"]
+              note: "FG ranged poke while retreating"
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe again if off cooldown"
+
+    meteor_engage:
+        name: "Meteor Engage (Aggressive)"
+        description: >
+            Aggressive dive-in combo. Jump in with Meteor Dive, burst
+            hard, then escape. High risk, high reward — use when you
+            spot an unprotected target.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG forward approach"
+            - skill: "meteor_dive"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA jump slam — bound CC"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA ground AOE on bound target"
+            - skill: "full_bloom"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "SA massive AOE burst"
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe escape after burst"
+            - skill: "volant"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA backward jump for safety"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Stay at range behind your group.
+            Focus on protected AOE damage into enemy blobs. Archer
+            excels at large scale with massive ranged AOE.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "arrow_storm"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA rain of arrows into blob"
+            - skill: "flow_tempest"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extended barrage"
+            - skill: "luthraghons_call"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA long-range charge shot"
+            - skill: "flow_lights_trail"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Piercing follow-up"
+            - skill: "earth_shatter"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA ground AOE"
+            - skill: "full_bloom"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "SA massive radial AOE"
+            - skill: "radiant_explosion"
+              input: "Q"
+              keys: ["q"]
+              note: "FG ranged stiffness poke"
+            - skill: "natures_tremble"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Hotbar ranged burst"
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe reposition if pressured"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG forward slide"
+            - skill: "breath_of_the_wind"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA wind dash"
+            - skill: "zephyr_leap"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "SA forward jump"
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG slide again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Full movement chain for Archer awakening. Cycle between Glissade,
+            Rabam dash, Zephyr Leap, and Tactical Retreat for maximum speed
+            and safety while repositioning across the map.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG forward slide"
+            - skill: "zephyr_leap"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "SA forward jump"
+            - skill: "breath_of_the_wind"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA wind dash"
+            - skill: "tactical_retreat"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe backward — turn camera to go forward"
+            - skill: "light_of_kamasylve"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA Rabam filler movement"
+            - skill: "glissade"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG slide if off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Earth Shatter"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Meteor Dive"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Arrow Storm"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Full Bloom"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Luthraghon's Call"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Winged Strike"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use. Can trigger mid-combo and interrupt flow."
+    - name: "Earth Kick"
+      reason: "Unprotected close-range. Can misfire during PVP and get you killed."
+    - name: "Uproot"
+      reason: "Unprotected melee. Should not be used intentionally in awakening rotation."
+    - name: "Low Kick"
+      reason: "Unprotected. Can trigger accidentally during crossbow attacks."
+    - name: "Piercing Arrow"
+      reason: "Pre-awakening skill. Slows down awakening rotation."
+    - name: "Multiple Arrow Shot"
+      reason: "Lock in awakening. Pre-awakening only, conflicts with greatbow skills."
+    - name: "Charging Wind"
+      reason: "Unprotected pre-awakening skill. Not used in awakening play."
+    - name: "Wrath of Nature"
+      reason: "Optional lock. Unprotected — put on HOTBAR if you want to use it."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Nature's Tremble"
+    - "Breath of the Spirit"
+    - "Arrow Storm"
+    - "Full Bloom"
+    - "Nature's Wrath"
+    - "Light of Kamasylve"
+    - "Breath of the Wind"
+    - "Wrath of Nature"
+    - "Uproot"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Earth Shatter"
+    effect: "Extra damage and increased AOE range"
+    reason: >
+        Earth Shatter with Core gains additional damage and a wider
+        AOE radius, making it even more devastating in PVE grinding.
+        As Archer's bread-and-butter skill used off cooldown, this
+        Core provides the most consistent damage increase. Meteor Dive
+        Core is also a strong choice for the Bound CC and burst damage
+        in PVP scenarios.

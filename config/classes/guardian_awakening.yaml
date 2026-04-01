@@ -1,0 +1,816 @@
+# ============================================================================
+# BDO Trainer - Awakened Guardian Combo Configuration
+# ============================================================================
+# Class: Guardian (Awakening)
+# Weapons: Battle Axe (Main) / Shield (Off) / Jordun (Awakening — holy flame great-axe)
+# Damage Type: Melee
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Guardian Class Discord
+#   - Community guides by Derik, Orca, WakeUp, InvenGlobal
+# ============================================================================
+
+class: Guardian
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    god_incinerator:
+        name: "God Incinerator"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Main awakening damage skill. Massive fire slam with Super Armor and knockdown."
+        flows_into: ["flow_god_incinerator", "searing_fang", "cleansing_flame"]
+        core_effect: "Core: God Incinerator - Extra damage on last hit, increased PVE damage"
+        notes: "Bread-and-butter skill. Always follow up with Flow: God Incinerator for maximum damage."
+
+    flow_god_incinerator:
+        name: "Flow: God Incinerator"
+        input: "LMB (after God Incinerator)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to God Incinerator. Additional fire slam with Super Armor."
+        flows_into: ["searing_fang", "cleansing_flame", "gluttony"]
+        notes: "Always chain after God Incinerator for extra burst damage."
+
+    searing_fang:
+        name: "Searing Fang"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Big frontal hit with Super Armor. Wide AOE fire strike."
+        flows_into: ["god_incinerator", "cleansing_flame", "mordant"]
+        notes: "Strong AOE burst. Good for clearing packs and PVP damage."
+
+    flaming_crevice:
+        name: "Flaming Crevice"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Super Armor dash forward. Gap closer with fire trail and stiffness."
+        flows_into: ["flow_fireborn", "god_incinerator", "searing_fang"]
+        notes: "Primary engage tool. Flows into Flow: Fireborn for extra damage."
+
+    flow_fireborn:
+        name: "Flow: Fireborn"
+        input: "LMB (after Flaming Crevice)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Flaming Crevice. Fire explosion with knockdown."
+        flows_into: ["god_incinerator", "searing_fang"]
+        notes: "Always chain after Flaming Crevice for the knockdown and extra damage."
+
+    gluttony:
+        name: "Gluttony"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Fire ground slam with self-heal. Super Armor with bound CC. Restores HP on hit."
+        flows_into: ["flow_suppression", "god_incinerator", "searing_fang"]
+        notes: "Sustain skill. Self-heal on hit makes grinding easy. Use when HP is low."
+
+    flow_suppression:
+        name: "Flow: Suppression"
+        input: "LMB (after Gluttony)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Gluttony. Additional slam with Super Armor and bound."
+        flows_into: ["god_incinerator", "searing_fang"]
+        notes: "Chain after Gluttony for extra damage and self-healing."
+
+    cleansing_flame:
+        name: "Cleansing Flame"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Large AOE fire explosion. Super Armor with knockdown. High damage nuke."
+        flows_into: ["god_incinerator", "searing_fang", "mordant"]
+        notes: "Big AOE nuke. Use in PVE for large packs, PVP for group fights."
+
+    sacred_fire:
+        name: "Sacred Fire"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Self-buff with Forward Guard. Increases AP and DP for a duration."
+        flows_into: ["god_incinerator", "flaming_crevice"]
+        core_effect: "Core: Sacred Fire - Extended buff duration and additional AP"
+        notes: "Use before engaging for the AP/DP buff. Forward Guard keeps you safe while buffing."
+
+    judgment_of_light:
+        name: "Judgment of Light"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 5000
+        description: "Super Armor movement dash. Primary gap closer in awakening stance."
+        flows_into: ["god_incinerator", "flaming_crevice", "searing_fang"]
+        notes: "Main movement skill in awakening. SA makes it safe to dash with."
+
+    mordant:
+        name: "Mordant"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward Guard counter-attack. Stiffness CC on hit."
+        flows_into: ["god_incinerator", "searing_fang", "gluttony"]
+        notes: "Defensive skill with FG. Good for trading hits and fishing for stiffness."
+
+    descent_of_the_goddess:
+        name: "Descent of the Goddess"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor leaping slam with float CC. Gap closer with aerial attack."
+        flows_into: ["god_incinerator", "searing_fang", "cleansing_flame"]
+        notes: "Good engage with float CC. Follow up with damage skills while target is airborne."
+
+    hallucination:
+        name: "Hallucination"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor backwards slam. Repositioning tool with knockback."
+        flows_into: ["god_incinerator", "flaming_crevice"]
+        notes: "Defensive repositioning skill. Use to create distance safely."
+
+    flow_wall_of_flame:
+        name: "Flow: Wall of Flame"
+        input: "RMB (after Searing Fang)"
+        keys: ["rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Searing Fang. Creates a wall of fire with knockback."
+        flows_into: ["god_incinerator", "cleansing_flame"]
+        notes: "Always follow Searing Fang with this for additional AOE damage."
+
+    black_blood_eruption:
+        name: "Black Blood Eruption"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Super Armor fire eruption from hotbar. Good burst with knockdown."
+        flows_into: ["god_incinerator", "searing_fang"]
+        notes: "Hotbar skill. Decent burst filler between main skills."
+
+    infernal_destruction:
+        name: "Infernal Destruction"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 10000
+        description: "Forward Guard ranged fire blast from hotbar."
+        flows_into: ["god_incinerator", "flaming_crevice"]
+        notes: "Hotbar skill. Good for ranged poke with frontal protection."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    flame_of_judgment:
+        name: "Flame of Judgment"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Super Armor flame wave. Good AOE damage filler with protected movement."
+        notes: "Preferred L56 Rabam. SA makes it safe for PVP and PVE."
+
+    raging_thunder:
+        name: "Raging Thunder"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor thunder slam. Good filler with stiffness CC."
+        notes: "Preferred L57 Rabam. Additional protected damage in rotation."
+
+    divine_punishment:
+        name: "Divine Punishment"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Hotbar fire slam. Super Armor with knockdown CC."
+        notes: "Decent L58 Rabam. Put on hotbar for extra burst filler."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Guardian PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Guardian has a grab, use it to break enemy SA."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. PVE iframe as well."
+        notes: "PVE iframe. Can be locked in PVP if it disrupts your combos."
+
+    shield_of_revelation:
+        name: "Shield of Revelation"
+        input: "Q (pre-awakening)"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        description: "Forward Guard block. Hold to block frontal damage and CC."
+        notes: "Pre-awakening block. Useful when swapping to main weapon for defense."
+
+    infernal_nemesis:
+        name: "Infernal Nemesis"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Pre-awakening fire leap with Super Armor. Good engage or filler."
+        notes: "Put on hotbar. Good SA engage from pre-awakening kit."
+
+    god_fire:
+        name: "God Fire"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stiffness"]
+        description: "Forward Guard fire slash. Quick pre-awakening poke."
+        notes: "Optional hotbar skill. FG makes it relatively safe."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Very simple and effective. Guardian's easiest combo."
+        difficulty: beginner
+        combo_window_ms: 350
+        steps:
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash to pack"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main fire slam damage"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up slam"
+            - skill: "searing_fang"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Big AOE hit"
+            - skill: "gluttony"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Self-heal + damage"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff up then unleash fire."
+        difficulty: intermediate
+        combo_window_ms: 350
+        steps:
+            - skill: "sacred_fire"
+              input: "Q"
+              keys: ["q"]
+              note: "AP/DP buff before engaging"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close into pack"
+            - skill: "cleansing_flame"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Big AOE nuke opener"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "searing_fang"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Wide AOE cleanup"
+            - skill: "flow_wall_of_flame"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Extra AOE damage"
+            - skill: "gluttony"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Self-heal + finish stragglers"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up if needed"
+            - skill: "flaming_crevice"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns efficiently."
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "sacred_fire"
+              input: "Q"
+              keys: ["q"]
+              note: "Buff up"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage"
+            - skill: "cleansing_flame"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE nuke opener"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "searing_fang"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "AOE damage"
+            - skill: "flow_wall_of_flame"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Extra fire wall damage"
+            - skill: "gluttony"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Self-heal + bound"
+            - skill: "flow_suppression"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend Gluttony damage"
+            - skill: "descent_of_the_goddess"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Float + reposition"
+            - skill: "flame_of_judgment"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor skills. Guardian has tons of SA
+            so approach is straightforward. Look for grab or CC opening.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "sacred_fire"
+              input: "Q"
+              keys: ["q"]
+              note: "FG buff before engaging"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close"
+            - skill: "flaming_crevice"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash + stiffness"
+            - skill: "flow_fireborn"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Knockdown follow-up"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up slam"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Guardian PVP combo. Land a grab then chain into full burst.
+            Guardian's grab bypasses Super Armor — use it to punish tanky targets.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "descent_of_the_goddess"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Float on grabbed target"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "cleansing_flame"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE nuke finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use stiffness from Flaming Crevice or Mordant to catch the target,
+            then chain into grab and full damage.
+        difficulty: advanced
+        combo_window_ms: 200
+        steps:
+            - skill: "flaming_crevice"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash — stiffness catch"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "descent_of_the_goddess"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Float follow-up"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "searing_fang"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in SA skills. Guardian can out-trade most classes.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "flaming_crevice"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA engage"
+            - skill: "flow_fireborn"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Knockdown follow-up"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up slam"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "cleansing_flame"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Instant AOE nuke on CC'd target"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "searing_fang"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Guardian is slow but has strong SA.
+            Use SA movement to create distance safely.
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "hallucination"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA backwards slam — create distance"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash away"
+            - skill: "flame_of_judgment"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam SA filler while retreating"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Guardian excels in large scale with
+            her massive AOEs and tanky SA kit. Stay with your group and nuke.
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "sacred_fire"
+              input: "Q"
+              keys: ["q"]
+              note: "FG buff before engaging blob"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "SA engage into group"
+            - skill: "cleansing_flame"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE nuke"
+            - skill: "god_incinerator"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_god_incinerator"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "searing_fang"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA wide AOE"
+            - skill: "flow_wall_of_flame"
+              input: "RMB"
+              keys: ["rmb"]
+              note: "Extra AOE damage"
+            - skill: "gluttony"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA self-heal + damage"
+            - skill: "hallucination"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs. Guardian is slow so use all available dashes."
+        difficulty: beginner
+        combo_window_ms: 350
+        steps:
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward dash"
+            - skill: "flaming_crevice"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward dash"
+            - skill: "flame_of_judgment"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam movement filler"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Movement chain for Guardian awakening. Cycle between Judgment of
+            Light, Flaming Crevice, and Rabam skills for maximum speed.
+            Guardian is the slowest class — learn this chain well.
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward dash"
+            - skill: "flaming_crevice"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA dash forward"
+            - skill: "flame_of_judgment"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam movement filler"
+            - skill: "raging_thunder"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "Rabam SA movement"
+            - skill: "judgment_of_light"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "God Incinerator"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Flow: God Incinerator"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Searing Fang"
+          addon_1: "All DP -15 for 10 sec for target"
+          addon_2: "Extra AP Against Monsters +20 for 7 sec"
+        - skill: "Cleansing Flame"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All Accuracy Rate +4% for 7 sec"
+        - skill: "Gluttony"
+          addon_1: "HP Recovery on Hit +30 for 7 sec"
+          addon_2: "All DP +15 for 7 sec"
+        - skill: "Flaming Crevice"
+          addon_1: "Attack/Casting Speed +7% for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Shield Bash"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Ground Kick"
+      reason: "Unprotected, slows down rotation."
+    - name: "Axe Throw"
+      reason: "Unprotected, low damage, not useful in awakening rotation."
+    - name: "Battle Roar"
+      reason: "Pre-awakening buff, use from hotbar only if needed."
+    - name: "Flow: Predator"
+      reason: "Can trigger accidentally, disrupts awakening combos."
+    - name: "Shield Push"
+      reason: "Unprotected, not useful in awakening rotation."
+    - name: "Heavy Strike"
+      reason: "Pre-awakening skill, lock to prevent accidental swap."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Black Blood Eruption"
+    - "Infernal Destruction"
+    - "Infernal Nemesis"
+    - "God Fire"
+    - "Sacred Fire"
+    - "Gluttony"
+    - "Divine Punishment"
+    - "Flame of Judgment"
+    - "Raging Thunder"
+    - "Grab"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "God Incinerator"
+    effect: "Extra damage on last hit, increased PVE damage"
+    reason: >
+        God Incinerator with Core gains significantly increased damage on the
+        final hit, making it your strongest burst skill by far. Guardian
+        players unanimously choose this Core first. It is your bread-and-butter
+        skill used in every combo — both PVE and PVP. After God Incinerator,
+        consider Sacred Fire Core for extended buff duration as your second Core.

@@ -1,0 +1,869 @@
+# ============================================================================
+# BDO Trainer - Awakened Sage Combo Configuration
+# ============================================================================
+# Class: Sage (Awakening)
+# Weapons: Kyve (Main) / Talisman (Off) / Ator (Awakening — spatial cube weapon)
+# Damage Type: Magic/Ranged
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull, grab
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Sage Class Discord
+#   - Community guides by Dazzler, Eminent, Tatsuya, FakeUni
+# ============================================================================
+
+class: Sage
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    rift_chain:
+        name: "Rift Chain"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Super Armor spatial slash that tears a rift through enemies. Main damage skill."
+        flows_into: ["flow_rift_collapse", "spatial_collapse", "void_rift"]
+        core_effect: "Core: Rift Chain - Extra hits and increased damage on all attacks"
+        notes: "Bread-and-butter damage skill. Always follow up with Flow: Rift Collapse."
+
+    flow_rift_collapse:
+        name: "Flow: Rift Collapse"
+        input: "LMB (after Rift Chain)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Rift Chain. Collapses the spatial rift for additional burst damage."
+        flows_into: ["spatial_collapse", "void_rift", "dimensional_fracture"]
+        notes: "Always chain after Rift Chain for maximum damage output."
+
+    spatial_collapse:
+        name: "Spatial Collapse"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Super Armor spatial implosion. Highest damage awakening skill with bound CC."
+        flows_into: ["rift_chain", "hyperdimensional_slash", "void_rift"]
+        core_effect: "Core: Spatial Collapse - Bound on good hits, increased AOE radius"
+        notes: "Primary burst skill. Use on CC'd targets for maximum damage. Core recommended."
+
+    ators_mark:
+        name: "Ator's Mark"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Super Armor forward teleport-dash that marks enemies. Excellent engage tool."
+        flows_into: ["flow_ators_implosion", "rift_chain", "spatial_collapse"]
+        core_effect: "Core: Ator's Mark - Super Armor on cooldown, stiffness on all hits"
+        notes: "Primary engage skill. Teleports through enemies. Flows into Ator's Implosion."
+
+    flow_ators_implosion:
+        name: "Flow: Ator's Implosion"
+        input: "F (after Ator's Mark)"
+        keys: ["f"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up to Ator's Mark. Detonates the spatial mark for AOE knockback."
+        flows_into: ["rift_chain", "spatial_collapse"]
+        notes: "Always chain after Ator's Mark for extra damage and CC."
+
+    void_rift:
+        name: "Void Rift"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Super Armor backward rift slash. Creates a void zone that floats enemies."
+        flows_into: ["rift_chain", "spatial_collapse", "dimensional_fracture"]
+        notes: "Good defensive option. Step back while dealing damage and floating targets."
+
+    hyperdimensional_slash:
+        name: "Hyperdimensional Slash"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Super Armor ranged slash that sends a spatial wave forward. Long range AOE."
+        flows_into: ["rift_chain", "spatial_collapse"]
+        notes: "Excellent ranged poke. Strong in large-scale PVP and PVE."
+
+    kyve_barrier:
+        name: "Kyve Barrier"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 3000
+        description: "Forward Guard spatial shield. Blocks frontal damage while active."
+        flows_into: ["rift_chain", "ators_mark", "spatial_shift"]
+        notes: "Hold Q to block. Useful between skill cooldowns and for baiting grabs."
+
+    spatial_shift:
+        name: "Spatial Shift"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 5000
+        description: "Iframe teleport. Blinks forward through space. Primary evasive movement."
+        flows_into: ["rift_chain", "ators_mark", "spatial_collapse"]
+        notes: "Core mobility tool. Iframe makes it safe for repositioning in PVP and PVE."
+
+    dimensional_fracture:
+        name: "Dimensional Fracture"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Forward Guard rift tear. Creates a spatial fracture with stiffness CC."
+        flows_into: ["rift_chain", "spatial_collapse", "void_rift"]
+        notes: "Safe poke with frontal protection. Good for fishing for CC in PVP."
+
+    ators_rift:
+        name: "Ator's Rift"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Super Armor forward charge that opens a rift. Good gap closer with CC."
+        flows_into: ["rift_chain", "flow_ators_implosion", "spatial_collapse"]
+        notes: "Strong engage tool. Can be used to close distance quickly."
+
+    convergence:
+        name: "Convergence"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 24000
+        description: "Self-buff. Increases AP, casting speed, and crit rate. Super Armor during cast."
+        flows_into: ["rift_chain", "ators_mark", "spatial_shift"]
+        core_effect: "Core: Convergence - Extended buff duration and added movement speed"
+        notes: "Use before engaging packs or PVP fights. Hotbar recommended for tracking."
+
+    rift_spear:
+        name: "Rift Spear"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward Guard spatial thrust. Quick ranged poke with stiffness."
+        flows_into: ["rift_chain", "spatial_collapse", "ators_mark"]
+        core_effect: "Core: Rift Spear - Forward Guard during the skill"
+        notes: "Fast engage tool with frontal protection. Good for initiating CC chains."
+
+    dimensional_rift:
+        name: "Dimensional Rift"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "none"
+        cc: ["bound"]
+        damage: low
+        cooldown_ms: 6000
+        description: "Quick low rift pulse with bound CC. Unprotected."
+        flows_into: ["spatial_collapse", "rift_chain"]
+        notes: "Useful CC but unprotected. Be careful when using in PVP."
+
+    flow_dimensional_echo:
+        name: "Flow: Dimensional Echo"
+        input: "RMB (after awakening skills)"
+        keys: ["rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up Forward Guard attack available after multiple awakening skills."
+        flows_into: ["rift_chain", "spatial_collapse"]
+        notes: "Can be chained after many awakening skills. Good filler with FG."
+
+    ators_judgment:
+        name: "Ator's Judgment"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Super Armor spatial bombardment from above. Strong AOE burst."
+        flows_into: ["rift_chain", "spatial_collapse"]
+        notes: "Hotbar skill. Good burst damage with protection for large-scale."
+
+    spatial_distortion:
+        name: "Spatial Distortion"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["pull"]
+        damage: low
+        cooldown_ms: 15000
+        description: "Forward Guard spatial vortex. Pulls enemies into a singularity."
+        flows_into: ["spatial_collapse", "rift_chain"]
+        notes: "Hotbar skill. Excellent for grouping mobs in PVE and disrupting in PVP."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    rift_convergence:
+        name: "Rift Convergence"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Spatial burst with stiffness CC. Super Armor throughout. Good for engage and movement."
+        notes: "Preferred L56 Rabam. SA movement with CC makes it versatile for PVP and grinding."
+
+    spatial_barrier:
+        name: "Spatial Barrier"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 8000
+        description: "SA protective spatial dome. Grants DP buff and SA during movement. Preferred L57 Rabam."
+        notes: "Preferred choice. Provides protected movement and defensive buff."
+
+    void_collapse:
+        name: "Void Collapse"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 14000
+        description: "Hotbar spatial detonation. SA with knockdown. Additional burst option."
+        notes: "Optional L58 Rabam. Decent burst but long cooldown. Put on hotbar."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Sage PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Sage has one of the better grab ranges. Practice grab timing."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. Brief invincibility during the dodge."
+        notes: "PVE iframe. Lock in PVP to prevent accidental use if preferred."
+
+    spatial_recall:
+        name: "Spatial Recall"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "iframe"
+        cc: []
+        description: "Teleport back to a previously marked location. iframe during teleport."
+        notes: "Unique Sage utility. Set a recall point then teleport back. Great escape tool."
+
+    rift_walk:
+        name: "Rift Walk"
+        input: "Shift + Space"
+        keys: ["shift", "space"]
+        protection: "SA"
+        cc: []
+        description: "Pre-awakening dash through a spatial rift. SA movement skill."
+        notes: "Good gap closer from pre-awakening kit. Use for extra mobility options."
+
+    lightning_prison:
+        name: "Lightning Prison"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["stun"]
+        description: "Ranged lightning cage that stuns enemies. Unprotected but long range."
+        notes: "Useful ranged CC. Put on hotbar for catching targets at distance."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe teleport into pack"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main damage"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy burst"
+            - skill: "void_rift"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Filler damage"
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff first, group, then unload."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "convergence"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engaging"
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe teleport into pack"
+            - skill: "spatial_distortion"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Pull mobs together"
+            - skill: "hyperdimensional_slash"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA ranged AOE"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy slam finisher"
+            - skill: "void_rift"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Clean up remaining"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize teleport mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport into pack"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "rift_convergence"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "convergence"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage with iframe"
+            - skill: "spatial_distortion"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Pull mobs together"
+            - skill: "hyperdimensional_slash"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Ranged AOE opener"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy burst"
+            - skill: "void_rift"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Filler damage"
+            - skill: "ators_mark"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA teleport reposition"
+            - skill: "flow_ators_implosion"
+              input: "F"
+              keys: ["f"]
+              note: "Detonate mark"
+            - skill: "ators_judgment"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Extra burst from hotbar"
+            - skill: "rift_convergence"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using iframe and Super Armor skills.
+            Teleport in with protection, then look for a grab or CC opening.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "convergence"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before going in"
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe teleport into range"
+            - skill: "rift_spear"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG stiffness poke"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA finisher"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Sage PVP combo. Land a grab then chain into full burst.
+            Sage's grab bypasses Super Armor — this is your primary kill tool.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "hyperdimensional_slash"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA knockdown on grabbed target"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy burst finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard skills to approach, fish for a stiffness,
+            then chain into grab and full damage.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "dimensional_fracture"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG stiffness — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "hyperdimensional_slash"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA knockdown follow-up"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "ators_mark"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA teleport engage"
+            - skill: "flow_ators_implosion"
+              input: "F"
+              keys: ["f"]
+              note: "Detonate mark"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA heavy burst"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "hyperdimensional_slash"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Instant knockdown on CC'd target"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use iframe and SA movement to
+            create distance. Sage excels at disengaging with teleports.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe teleport away"
+            - skill: "spatial_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA protective movement"
+            - skill: "rift_convergence"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement + stiffness"
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue teleporting if off cooldown"
+
+    ranged_poke:
+        name: "Ranged Poke / Zoning"
+        description: >
+            Keep enemies at distance using Sage's ranged abilities.
+            Punish approaches with FG skills and zone with AOE.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "dimensional_fracture"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "FG stiffness at range"
+            - skill: "hyperdimensional_slash"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA ranged wave"
+            - skill: "rift_spear"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG ranged poke"
+            - skill: "void_rift"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA retreat + float zone"
+            - skill: "kyve_barrier"
+              input: "Q"
+              keys: ["q"]
+              note: "FG block while waiting for cooldowns"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on ranged AOE damage and
+            avoid overextending. Sage excels at range in large-scale.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "convergence"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff before engaging blob"
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe position into range"
+            - skill: "spatial_distortion"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Pull enemies together"
+            - skill: "hyperdimensional_slash"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA ranged AOE"
+            - skill: "rift_chain"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_rift_collapse"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "spatial_collapse"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA heavy burst"
+            - skill: "ators_judgment"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA AOE bombardment"
+            - skill: "spatial_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Teleport Chain"
+        description: "Chain teleports and spatial movement for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe forward teleport"
+            - skill: "rift_convergence"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement"
+            - skill: "rift_walk"
+              input: "Shift + Space"
+              keys: ["shift", "space"]
+              note: "Pre-awakening SA dash"
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport again if off cooldown"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Movement chain for Sage awakening. Cycle between Spatial Shift,
+            Ator's Mark, and Rabam dashes for maximum speed. Sage has
+            exceptional mobility with iframe teleports.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe forward teleport"
+            - skill: "ators_mark"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward teleport-dash"
+            - skill: "rift_convergence"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "SA movement filler"
+            - skill: "spatial_barrier"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA protected movement"
+            - skill: "spatial_shift"
+              input: "Space"
+              keys: ["space"]
+              note: "Teleport again if off cooldown"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Convergence"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+        - skill: "Flow: Ator's Implosion"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Flow: Dimensional Echo"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Flow: Rift Collapse"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Spatial Collapse"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Ator's Judgment"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Absolute: Lightning"
+      reason: "Unprotected, can trigger accidentally."
+    - name: "Kyve Strike"
+      reason: "Unprotected basic attack, slows down rotation."
+    - name: "Talisman Throw"
+      reason: "Unprotected, not useful in awakening rotation."
+    - name: "Lightning Bolt"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Flow: Thunder Clap"
+      reason: "Unprotected follow-up, messes up PVP combos."
+    - name: "Dimensional Rift"
+      reason: "Lock from skill bar. Unprotected — use only when certain of opening."
+    - name: "Spatial Distortion"
+      reason: "Optional lock. Put on HOTBAR if locking from skill bar."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Ator's Judgment"
+    - "Spatial Distortion"
+    - "Spatial Collapse"
+    - "Lightning Prison"
+    - "Spatial Recall"
+    - "Convergence"
+    - "Void Collapse"
+    - "Kyve Barrier"
+    - "Rift Convergence"
+    - "Spatial Barrier"
+    - "Grab"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Spatial Collapse"
+    effect: "Bound on good hits, increased AOE radius"
+    reason: >
+        Spatial Collapse with Core gains Bound CC and a wider AOE, making
+        it your strongest burst tool in both PVE and PVP. Most Sage players
+        choose this Core first for the significant damage and CC upgrade.
+        After getting comfortable, experiment with Rift Chain and Ator's
+        Mark Cores as well for enhanced combos and engage tools.

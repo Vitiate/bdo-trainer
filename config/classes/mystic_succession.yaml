@@ -1,0 +1,851 @@
+# ============================================================================
+# BDO Trainer - Succession Mystic Combo Configuration
+# ============================================================================
+# Class: Mystic (Succession)
+# Weapons: Gauntlet (Main) / Vambrace (Off) / Enhanced Gauntlet (Succession)
+# Damage Type: Melee / Magic
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull, grab
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Mystic Class Discord
+#   - Community guides by Xenothe, Bigandshiny, Aeternitas
+# ============================================================================
+
+class: Mystic
+spec: Succession
+
+# --------------------------------------------------------------------------
+# Succession Skills (Enhanced Gauntlet)
+# --------------------------------------------------------------------------
+awakening_skills:
+    rage_hammer:
+        name: "Rage Hammer"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 20000
+        description: "Self-buff. Increases AP, attack speed, and movement speed. Super Armor."
+        flows_into: ["twisted_collision", "rising_dragon"]
+        core_effect: "Core: Rage Hammer - Extended buff duration and extra AP"
+        notes: "Use before engaging. Hotbar recommended for tracking cooldown."
+
+    flash_step:
+        name: "Flash Step"
+        input: "Space"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 4000
+        description: "Iframe forward dash. Primary movement skill in succession."
+        flows_into: ["double_flash", "twisted_collision", "rising_dragon"]
+        notes: "Main movement tool. Iframe makes Mystic succession very evasive."
+
+    double_flash:
+        name: "Double Flash"
+        input: "Space (after Flash Step)"
+        keys: ["space"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 0
+        description: "Second iframe dash chained after Flash Step. Extended mobility."
+        flows_into: ["twisted_collision", "rising_dragon", "wolfs_fang"]
+        notes: "Always double tap for maximum distance. Both dashes are iframes."
+
+    twisted_collision:
+        name: "Twisted Collision"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Enhanced spinning fist combo. Super Armor with knockdown. Main burst skill."
+        flows_into: ["flow_twisted_collision", "rising_dragon", "crouching_wolf"]
+        core_effect: "Core: Twisted Collision - Extra hits and increased damage"
+        notes: "Bread-and-butter damage skill. Always follow with Flow: Twisted Collision."
+
+    flow_twisted_collision:
+        name: "Flow: Twisted Collision"
+        input: "LMB (after Twisted Collision)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 0
+        description: "Follow-up to Twisted Collision. Additional burst with Super Armor."
+        flows_into: ["rising_dragon", "crouching_wolf"]
+        notes: "Always chain after Twisted Collision for maximum damage output."
+
+    rising_dragon:
+        name: "Rising Dragon"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["float"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Enhanced rising uppercut. Super Armor with float CC. High burst damage."
+        flows_into: ["twisted_collision", "thunder_pound", "flow_landslide"]
+        core_effect: "Core: Rising Dragon - Super Armor during skill and extra damage"
+        notes: "Heavy hitter with float CC. Core recommended. Key skill for combos."
+
+    tidal_burst:
+        name: "Tidal Burst"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Enhanced forward charge. Super Armor with stiffness. Strong gap closer."
+        flows_into: ["twisted_collision", "rising_dragon", "flow_landslide"]
+        core_effect: "Core: Tidal Burst - Extra damage and increased range"
+        notes: "Good engage tool with SA protection. Use to close distance safely."
+
+    crouching_wolf:
+        name: "Crouching Wolf"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Enhanced low sweeping strike. Super Armor with bound CC. Strong AOE."
+        flows_into: ["twisted_collision", "rising_dragon", "flow_landslide"]
+        core_effect: "Core: Crouching Wolf - Bound on hit and increased damage"
+        notes: "Strong AOE with bound CC. Good for both PVE clearing and PVP combos."
+
+    thunder_pound:
+        name: "Thunder Pound"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Enhanced ground pound AOE. Super Armor with knockdown."
+        flows_into: ["twisted_collision", "rising_dragon"]
+        notes: "Strong AOE knockdown. Key skill for PVE clearing and PVP burst."
+
+    wolfs_fang:
+        name: "Wolf's Fang"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Enhanced forward punch with Forward Guard. Quick engage with stiffness."
+        flows_into: ["twisted_collision", "rising_dragon", "crouching_wolf"]
+        core_effect: "Core: Wolf's Fang - Forward Guard during the skill"
+        notes: "Fast approach with frontal protection and stiffness CC. Good opener."
+
+    roaring_tiger:
+        name: "Roaring Tiger"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Enhanced back kick combo with Super Armor. Pushes enemies away."
+        flows_into: ["twisted_collision", "crouching_wolf"]
+        notes: "Good for creating space and hitting behind. SA protection throughout."
+
+    adamantine:
+        name: "Adamantine"
+        input: "Q"
+        keys: ["q"]
+        protection: "FG"
+        cc: []
+        damage: none
+        cooldown_ms: 0
+        description: "Block stance with Forward Guard. Hold to block incoming damage."
+        flows_into: ["twisted_collision", "rising_dragon"]
+        notes: "Mystic's block. Hold Q to guard. Can transition into attacks from block."
+
+    spiral_torpedo:
+        name: "Spiral Torpedo"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["stun"]
+        damage: medium
+        cooldown_ms: 7000
+        description: "Enhanced spinning torpedo rush. Super Armor with stun CC."
+        flows_into: ["twisted_collision", "rising_dragon"]
+        notes: "Good CC engage tool. Stun sets up grab or follow-up combos."
+
+    dragons_descent:
+        name: "Dragon's Descent"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Enhanced aerial diving strike. Super Armor with knockdown on landing."
+        flows_into: ["twisted_collision", "crouching_wolf"]
+        notes: "Aerial engage tool. Good for gap closing from height or after jumps."
+
+    flow_landslide:
+        name: "Flow: Landslide"
+        input: "F (after succession skills)"
+        keys: ["f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up Super Armor strike available after multiple succession skills."
+        flows_into: ["twisted_collision", "rising_dragon"]
+        notes: "Can be chained after many skills. Good filler with SA protection."
+
+    iron_fist_fury:
+        name: "Iron Fist Fury"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 12000
+        description: "Super Armor rapid punch barrage. High damage hotbar burst skill."
+        flows_into: ["twisted_collision", "rising_dragon"]
+        notes: "Put on hotbar. Strong burst damage with SA protection."
+
+# --------------------------------------------------------------------------
+# Rabam Skills (Skill Enhancement)
+# --------------------------------------------------------------------------
+rabam_skills:
+    dragon_strike:
+        name: "Dragon Strike"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Forward dragon punch with stiffness CC. Super Armor. Good for engage."
+        notes: "Preferred L56 Rabam. Good for movement and engage with SA protection."
+
+    tidal_dagger:
+        name: "Tidal Dagger"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 8000
+        description: "SA forward dash with water energy. Movement skill with full protection."
+        notes: "Preferred L57 Rabam. Useful for protected movement and gap closing."
+
+    sea_storm:
+        name: "Sea Storm"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 14000
+        description: "AOE water explosion from hotbar. Super Armor with knockdown CC."
+        notes: "Decent L58 Rabam for PVE. Use from hotbar for extra burst in rotations."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Succession play)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    grab:
+        name: "Grab"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        description: "Grab / grapple CC. Essential for Mystic PVP. Bypasses Super Armor."
+        notes: "Core PVP tool. Mystic is a grab class — practice grab timing constantly."
+
+    evasion:
+        name: "Evasion"
+        input: "A / D (double tap)"
+        keys: ["a"]
+        keys_alt: ["d"]
+        protection: "iframe"
+        cc: []
+        description: "Quick sidestep iframe. PVE iframe as well."
+        notes: "PVE iframe. Can use in PVP but costs stamina. Lock if causing issues."
+
+    flash_step_preawak:
+        name: "Flash Step (Pre-awakening)"
+        input: "W + W (double tap)"
+        keys: ["w", "w"]
+        protection: "iframe"
+        cc: []
+        description: "Quick forward dash iframe. Pre-awakening dash — enhanced in succession."
+        notes: "Fast forward dash iframe. Can be chained. Core movement tool."
+
+    bolide_strike:
+        name: "Bolide Strike"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["knockdown"]
+        description: "Leaping ground slam. Super Armor with knockdown. Good PVE filler."
+        notes: "Use from hotbar for additional burst. SA gives it safe usage."
+
+    martial_spirit:
+        name: "Martial Spirit"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        description: "Passive WP recovery buff. Toggle on for sustained grinding."
+        notes: "Keep active for WP sustain during extended PVE grinding sessions."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation. Simple and effective for clearing packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe dash to pack"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main damage burst"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "rising_dragon"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy uppercut"
+            - skill: "thunder_pound"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE ground pound"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full burst rotation for large mob packs. Buff first, then unload."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "rage_hammer"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engaging"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe dash into pack"
+            - skill: "thunder_pound"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE knockdown, group mobs"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst damage"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "AOE sweep finisher"
+            - skill: "rising_dragon"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Clean up remaining"
+            - skill: "flow_landslide"
+              input: "F"
+              keys: ["f"]
+              note: "Extend damage"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe dash into pack"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up"
+            - skill: "tidal_dagger"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA movement to next pack"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "rage_hammer"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage"
+            - skill: "thunder_pound"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "AOE opener"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "AOE sweep"
+            - skill: "rising_dragon"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy uppercut"
+            - skill: "flow_landslide"
+              input: "F"
+              keys: ["f"]
+              note: "Extend combo"
+            - skill: "iron_fist_fury"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA burst filler"
+            - skill: "roaring_tiger"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "AOE kick"
+            - skill: "dragon_strike"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using iframes and Super Armor skills. Flash Step in,
+            then use SA skills to pressure. Mystic succ is very mobile.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "rage_hammer"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before going in"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe gap close"
+            - skill: "wolfs_fang"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG stiffness poke"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA bound finisher"
+
+    grab_combo:
+        name: "Grab Combo (1v1)"
+        description: >
+            Core Mystic PVP combo. Land a grab then chain into full burst.
+            Mystic's grab bypasses Super Armor — this is your primary kill tool.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab the target — bypasses SA"
+            - skill: "thunder_pound"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Ground pound on grabbed target"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "rising_dragon"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy uppercut finisher"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Forward Guard skills to approach, land a stiffness CC,
+            then chain into grab and full damage. Classic Mystic pattern.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "wolfs_fang"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG stiffness — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stiffened target"
+            - skill: "thunder_pound"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Knockdown follow-up"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "rising_dragon"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy finisher"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in Super Armor. No grab needed.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "tidal_burst"
+              input: "W + F"
+              keys: ["w", "f"]
+              note: "SA forward rush"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA bound finisher"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "thunder_pound"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Instant knockdown on CC'd target"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "rising_dragon"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy uppercut finisher"
+
+    stun_chain:
+        name: "Stun Chain (Extended CC)"
+        description: >
+            Use Spiral Torpedo stun to open a CC chain, then grab
+            and burst the target down. High reward engage pattern.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "spiral_torpedo"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA stun — catch the target"
+            - skill: "grab"
+              input: "E"
+              keys: ["e"]
+              note: "Grab on stunned target"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst on CC'd target"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Follow-up burst"
+            - skill: "rising_dragon"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy uppercut"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Bound finisher"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use iframes and SA movement to
+            create distance. Succession Mystic has excellent escape tools.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe dash out"
+            - skill: "double_flash"
+              input: "Space"
+              keys: ["space"]
+              note: "Double iframe for distance"
+            - skill: "tidal_dagger"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA dash away"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Continue dashing if off cooldown"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on protected damage and
+            avoid overextending. Stay with your group and use SA skills.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "rage_hammer"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff before engaging blob"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe engage into group"
+            - skill: "iron_fist_fury"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "SA punch barrage"
+            - skill: "thunder_pound"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA AOE knockdown"
+            - skill: "twisted_collision"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "flow_twisted_collision"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "SA follow-up"
+            - skill: "crouching_wolf"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "SA AOE sweep"
+            - skill: "tidal_dagger"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA reposition out"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe forward dash"
+            - skill: "double_flash"
+              input: "Space"
+              keys: ["space"]
+              note: "Double dash for distance"
+            - skill: "tidal_dagger"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA dash movement"
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash again if off cooldown"
+
+    succession_movement:
+        name: "Succession Movement Guide"
+        description: >
+            Movement chain for Mystic succession. Cycle between Flash Step,
+            Double Flash, Tidal Dagger, and Dragon's Descent for max speed.
+            Succession Mystic is one of the fastest classes in the game.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "flash_step"
+              input: "Space"
+              keys: ["space"]
+              note: "Iframe forward dash"
+            - skill: "double_flash"
+              input: "Space"
+              keys: ["space"]
+              note: "Double iframe chain"
+            - skill: "tidal_dagger"
+              input: "Shift + Z"
+              keys: ["shift", "z"]
+              note: "SA dash movement"
+            - skill: "dragon_strike"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Movement + stiffness"
+            - skill: "dragons_descent"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "SA forward dive filler"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Twisted Collision"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Attack/Casting Speed +10% for 7 sec"
+        - skill: "Rising Dragon"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 10 sec for target"
+        - skill: "Thunder Pound"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Crouching Wolf"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Flow: Landslide"
+          addon_1: "All Accuracy Rate +4% for 7 sec"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Tidal Burst"
+          addon_1: "All DP +15 for 7 sec"
+          addon_2: "All Evasion Rate -4% for 10 sec for target"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Absolute: Low Kick"
+      reason: "Unprotected, can trigger accidentally during combos."
+    - name: "Ankle Hook"
+      reason: "Unprotected, not useful in succession rotation."
+    - name: "Fist Fury"
+      reason: "Unprotected base attacks, slows down rotation."
+    - name: "Flow: Nimbus Strike"
+      reason: "Unprotected follow-up, messes up PVP combos."
+    - name: "Rage Strike"
+      reason: "Unprotected, can trigger accidentally."
+    - name: "Iron Fist Fury"
+      reason: "Lock from skill bar. Put on HOTBAR instead for controlled use."
+    - name: "Bolide Strike"
+      reason: "Optional lock. Put on HOTBAR if locking from skill bar."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Iron Fist Fury"
+    - "Bolide Strike"
+    - "Spiral Torpedo"
+    - "Sea Storm"
+    - "Dragon Strike"
+    - "Tidal Dagger"
+    - "Adamantine"
+    - "Roaring Tiger"
+    - "Grab"
+    - "Rage Hammer"
+    - "Martial Spirit"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Twisted Collision"
+    effect: "Extra hits and increased damage"
+    reason: >
+        Twisted Collision with Core gains additional hits and significantly
+        increased damage, making it the strongest burst tool in the Mystic
+        succession kit. It transforms the class's grinding speed and PVP
+        burst potential. Most Mystic succession players choose this Core
+        first. After getting comfortable, experiment with Rising Dragon
+        and Crouching Wolf Cores as well.
