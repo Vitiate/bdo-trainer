@@ -1,0 +1,14 @@
+# Configuration
+pyyaml>=6.0
+
+# System Tray
+pystray>=0.19
+
+# Icon generation (also used by pystray)
+pillow>=10.0
+
+# Global hotkeys
+keyboard>=0.13
+
+# Input monitoring (keyboard + mouse detection for combo step advancement)
+pynput>=1.7

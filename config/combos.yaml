@@ -1,0 +1,56 @@
+# ============================================================================
+# BDO Trainer - Global Settings
+# ============================================================================
+# Class-specific data (skills, combos, etc.) is loaded from YAML files in
+# the config/classes/ directory.  Each file must have top-level `class:` and
+# `spec:` keys.
+#
+# Key Reference (for combo step `keys:` arrays):
+#   lmb  = Left Mouse Button
+#   rmb  = Right Mouse Button
+#   mmb  = Middle Mouse Button
+#   w/a/s/d = Movement keys
+#   shift, space, e, f, q, x, z = Ability modifiers
+# ============================================================================
+
+settings:
+    active_combo: "basic_grind"
+    default_combo_window_ms: 250
+    display:
+        show_protection_type: true
+        show_cc_type: true
+        show_key_overlay: true
+        highlight_protected_skills: true
+        highlight_iframes: true
+    hotkeys:
+        start_combo: "F5"
+        stop_combo: "F6"
+        next_step: "F7"
+        reset_combo: "F8"
+    key_bindings:
+        # Remap keys to match your in-game BDO keybindings.
+        # Change the value (right side) to the physical key you actually press.
+        # Valid values: any letter (a-z), shift, ctrl, alt, space, lmb, rmb, mmb
+        # Movement
+        Move Forward: "w"
+        Move Back: "s"
+        Move Left: "a"
+        Move Right: "d"
+        # Mouse
+        LMB: "lmb"
+        RMB: "rmb"
+        MMB: "mmb"
+        # Modifiers / Actions
+        Jump: "space"
+        Sprint: "shift"
+        # Ability Keys
+        Q: "a"
+        E: "d"
+        F: "f"
+        X: "x"
+        Z: "z"
+    timing:
+        step_highlight_duration_ms: 500
+        transition_delay_ms: 100
+        auto_advance: false
+        idle_reset_timeout_ms: 10000 # Reset combo to step 1 after this many ms of no input (0 = disabled)

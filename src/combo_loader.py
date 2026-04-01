@@ -1,0 +1,236 @@
+"""
+Combo Loader - Loads class/spec configs and global settings
+"""
+
+import logging
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+import yaml
+
+logger = logging.getLogger("bdo_trainer")
+
+COMBO_CATEGORIES = ["pve_combos", "pvp_combos", "movement_combos"]
+SKILL_SECTIONS = ["awakening_skills", "rabam_skills", "preawakening_utility"]
+
+# Maps BDO game-client key-binding names → canonical key names used in
+# combo step `keys:` arrays.
+_BDO_TO_COMBO_KEY = {
+    "Move Forward": "w",
+    "Move Back": "s",
+    "Move Left": "a",
+    "Move Right": "d",
+    "LMB": "lmb",
+    "RMB": "rmb",
+    "MMB": "mmb",
+    "Sprint": "shift",
+    "Jump": "space",
+    "Q": "q",
+    "E": "e",
+    "F": "f",
+    "X": "x",
+    "Z": "z",
+}
+
+
+class ComboLoader:
+    """Loads class/spec YAML configs from config/classes/ and global settings from config/combos.yaml."""
+
+    def __init__(self, config_dir: Optional[str] = None):
+        if config_dir is None:
+            config_dir = str(Path(__file__).parent.parent / "config")
+        self.config_dir = Path(config_dir)
+        self.settings_path = self.config_dir / "combos.yaml"
+        self.classes_dir = self.config_dir / "classes"
+
+        self.settings: Dict[str, Any] = {}
+        # Keyed by (class_name, spec_name) tuple
+        self.class_configs: Dict[Tuple[str, str], Dict[str, Any]] = {}
+        self.load()
+
+    def load(self):
+        """Load global settings + all class configs from disk."""
+        self._load_settings()
+        self._load_class_configs()
+
+    def _load_settings(self):
+        """Load global settings from combos.yaml."""
+        try:
+            with open(self.settings_path, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f) or {}
+            self.settings = data.get("settings", {})
+            logger.info(f"Loaded settings from {self.settings_path}")
+        except FileNotFoundError:
+            logger.warning(f"Settings file not found: {self.settings_path}")
+            self.settings = {}
+        except yaml.YAMLError as e:
+            logger.error(f"Error parsing settings YAML: {e}")
+            self.settings = {}
+
+    def _load_class_configs(self):
+        """Scan config/classes/*.yaml and load each class/spec config."""
+        self.class_configs = {}
+        if not self.classes_dir.is_dir():
+            logger.warning(f"Classes directory not found: {self.classes_dir}")
+            return
+        for yaml_file in sorted(self.classes_dir.glob("*.yaml")):
+            try:
+                with open(yaml_file, "r", encoding="utf-8") as f:
+                    data = yaml.safe_load(f) or {}
+                class_name = data.get("class")
+                spec_name = data.get("spec")
+                if not class_name or not spec_name:
+                    logger.warning(
+                        f"Skipping {yaml_file.name}: missing 'class' or 'spec' key"
+                    )
+                    continue
+                self.class_configs[(class_name, spec_name)] = data
+                logger.info(
+                    f"Loaded class config: {class_name} / {spec_name} from {yaml_file.name}"
+                )
+            except yaml.YAMLError as e:
+                logger.error(f"Error parsing {yaml_file.name}: {e}")
+
+    def reload(self):
+        """Reload all configs from disk."""
+        self.load()
+
+    # ------------------------------------------------------------------
+    # Class / Spec enumeration
+    # ------------------------------------------------------------------
+    def get_class_tree(self) -> Dict[str, Dict[str, List[Tuple[str, str]]]]:
+        """Return a nested dict: {class_name: {spec_name: [(combo_id, display_name), ...]}}.
+
+        This is the structure the tray menu uses to build its submenus.
+        Combos from all categories (pve, pvp, movement) are merged into a
+        single flat list per spec, preserving their category order.
+        """
+        tree: Dict[str, Dict[str, List[Tuple[str, str]]]] = {}
+        for (class_name, spec_name), data in self.class_configs.items():
+            combos_list: List[Tuple[str, str]] = []
+            for category in COMBO_CATEGORIES:
+                section = data.get(category, {})
+                if isinstance(section, dict):
+                    for combo_id, combo_data in section.items():
+                        if isinstance(combo_data, dict):
+                            display_name = combo_data.get("name", combo_id)
+                            combos_list.append((combo_id, display_name))
+            tree.setdefault(class_name, {})[spec_name] = combos_list
+        return tree
+
+    def get_combo_list(self) -> List[Tuple[str, str, str, str]]:
+        """Return a flat list of (class_name, spec_name, combo_id, display_name)."""
+        result: List[Tuple[str, str, str, str]] = []
+        for (class_name, spec_name), data in self.class_configs.items():
+            for category in COMBO_CATEGORIES:
+                section = data.get(category, {})
+                if isinstance(section, dict):
+                    for combo_id, combo_data in section.items():
+                        if isinstance(combo_data, dict):
+                            name = combo_data.get("name", combo_id)
+                            result.append((class_name, spec_name, combo_id, name))
+        return result
+
+    # ------------------------------------------------------------------
+    # Combo access
+    # ------------------------------------------------------------------
+    def get_combo(
+        self, class_name: str, spec_name: str, combo_id: str
+    ) -> Optional[Dict[str, Any]]:
+        """Look up a combo by class/spec/combo_id (searches across categories)."""
+        data = self.class_configs.get((class_name, spec_name))
+        if data is None:
+            return None
+        for category in COMBO_CATEGORIES:
+            section = data.get(category, {})
+            if isinstance(section, dict) and combo_id in section:
+                return section[combo_id]
+        return None
+
+    def get_combo_window_ms(
+        self, class_name: str, spec_name: str, combo_id: str
+    ) -> int:
+        """Get the combo_window_ms for a specific combo, falling back to global default."""
+        combo = self.get_combo(class_name, spec_name, combo_id)
+        if combo and "combo_window_ms" in combo:
+            return combo["combo_window_ms"]
+        return self.settings.get("default_combo_window_ms", 300)
+
+    # ------------------------------------------------------------------
+    # Skill access
+    # ------------------------------------------------------------------
+    def get_skill_info(
+        self, skill_id: str, class_name: str = "", spec_name: str = ""
+    ) -> Optional[Dict[str, Any]]:
+        """Look up a skill by ID within a specific class/spec.
+
+        If class_name/spec_name are empty, searches ALL loaded configs (backward compat).
+        """
+        configs_to_search = []
+        if class_name and spec_name:
+            cfg = self.class_configs.get((class_name, spec_name))
+            if cfg:
+                configs_to_search.append(cfg)
+        else:
+            configs_to_search = list(self.class_configs.values())
+
+        for data in configs_to_search:
+            for section in SKILL_SECTIONS:
+                skills = data.get(section, {})
+                if isinstance(skills, dict) and skill_id in skills:
+                    return skills[skill_id]
+        return None
+
+    # ------------------------------------------------------------------
+    # Settings access (unchanged — reads from global settings)
+    # ------------------------------------------------------------------
+    def get_settings(self) -> Dict[str, Any]:
+        return self.settings
+
+    def get_display_settings(self) -> Dict[str, Any]:
+        return self.settings.get("display", {})
+
+    def get_hotkeys(self) -> Dict[str, str]:
+        return self.settings.get(
+            "hotkeys",
+            {
+                "start_combo": "F5",
+                "stop_combo": "F6",
+                "next_step": "F7",
+                "reset_combo": "F8",
+            },
+        )
+
+    def get_key_bindings(self) -> Dict[str, str]:
+        return self.settings.get("key_bindings", {})
+
+    def get_key_remap(self) -> Dict[str, str]:
+        """Build canonical-combo-key → physical-key mapping from key_bindings config."""
+        bindings = self.get_key_bindings()
+        remap: Dict[str, str] = {}
+        for bdo_name, physical_key in bindings.items():
+            canonical = _BDO_TO_COMBO_KEY.get(bdo_name)
+            if canonical and physical_key:
+                phys = str(physical_key).lower().strip()
+                if phys != canonical:
+                    remap[canonical] = phys
+        return remap
+
+    def get_timing_settings(self) -> Dict[str, Any]:
+        return self.settings.get(
+            "timing",
+            {
+                "step_highlight_duration_ms": 500,
+                "transition_delay_ms": 100,
+                "auto_advance": False,
+                "idle_reset_timeout_ms": 10000,
+            },
+        )
+
+    def get_category_display_name(self, category: str) -> str:
+        names = {
+            "pve_combos": "PVE Combos",
+            "pvp_combos": "PVP Combos",
+            "movement_combos": "Movement",
+        }
+        return names.get(category, category)

@@ -1,0 +1,785 @@
+# ============================================================================
+# BDO Trainer - Awakened Dark Knight Combo Configuration
+# ============================================================================
+# Class: Dark Knight (Awakening)
+# Weapons: Kriegsmesser (Main) / Ornamental Knot (Off) / Vediant (Awakening)
+# Damage Type: Magic
+#
+# Key Reference:
+#   LMB  = Left Mouse Button
+#   RMB  = Right Mouse Button
+#   MMB  = Middle Mouse Button
+#   W/A/S/D = Movement keys
+#   Shift, Space, E, F, Q, X, Z = Ability modifiers
+#
+# Protection Types:
+#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   FG    = Forward Guard (blocks damage/CC from front)
+#   iframe = Invincibility frame (no damage, no CC)
+#   none  = Unprotected
+#
+# CC Types:
+#   bound, knockdown, knockback, stiffness, stun, float, pull
+#
+# Sources:
+#   - Black Desert Foundry (blackdesertfoundry.com)
+#   - Dark Knight Class Discord
+#   - Community guides by Harshsin, NotTheWorst, JStep
+# ============================================================================
+
+class: Dark Knight
+spec: Awakening
+
+# --------------------------------------------------------------------------
+# Awakening Skills
+# --------------------------------------------------------------------------
+awakening_skills:
+    spirit_hunt:
+        name: "Spirit Hunt"
+        input: "Shift + LMB"
+        keys: ["shift", "lmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Main awakening damage skill. Super Armor throughout."
+        flows_into: ["shattering_darkness", "seed_of_catastrophe"]
+        core_effect: "Core: Spirit Hunt - Stiffness on good hits"
+        notes: "One of your bread-and-butter damage skills."
+
+    shattering_darkness:
+        name: "Shattering Darkness"
+        input: "Shift + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: high
+        cooldown_ms: 8000
+        description: "Heavy hitting AOE with Super Armor."
+        flows_into: ["seed_of_catastrophe", "spirit_hunt"]
+        core_effect: "Core: Shattering Darkness - Stiffness on good hits"
+        notes: "Strong filler between other skills."
+
+    seed_of_catastrophe:
+        name: "Seed of Catastrophe"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["bound"]
+        damage: high
+        cooldown_ms: 9000
+        description: "Forward Guard AOE. Core adds Super Armor."
+        flows_into: ["cluster_of_despair", "spirit_hunt"]
+        core_effect: "Core: Seed of Catastrophe - Super Armor during skill (RECOMMENDED CORE)"
+        notes: "Recommended Core skill choice. SA version is very strong."
+
+    spirit_legacy:
+        name: "Spirit Legacy"
+        input: "W + RMB"
+        keys: ["w", "rmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Ranged forward guard attack. Good for engaging."
+        flows_into: ["spirit_hunt", "touch_of_exploitation"]
+        core_effect: "Core: Spirit Legacy - Stun on good hits"
+        notes: "Good ranged engage tool with Forward Guard."
+
+    touch_of_exploitation:
+        name: "Touch of Exploitation"
+        input: "W + LMB"
+        keys: ["w", "lmb"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 6000
+        description: "Forward guard gap closer."
+        flows_into: ["spirit_hunt", "shattering_darkness"]
+        core_effect: "Core: Touch of Exploitation - Bound on last good hit"
+        notes: "Good for chasing and engaging."
+
+    cluster_of_despair:
+        name: "Cluster of Despair"
+        input: "S + LMB"
+        keys: ["s", "lmb"]
+        protection: "FG"
+        cc: ["pull"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Forward guard with pull effect. Pulls enemies in."
+        flows_into: ["spirit_hunt", "seed_of_catastrophe"]
+        notes: "Useful to group mobs in PVE. Pull CC in PVP."
+
+    wheel_of_fortune:
+        name: "Wheel of Fortune"
+        input: "Shift + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: high
+        cooldown_ms: 10000
+        description: "Super Armor spin attack. Put on hotbar."
+        flows_into: ["spirit_hunt", "shattering_darkness"]
+        notes: "Good protected damage. Hotbar recommended."
+
+    air_strike:
+        name: "Air Strike"
+        input: "S + F"
+        keys: ["s", "f"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 12000
+        description: "Super Armor with float CC. Good PVP catch tool."
+        flows_into: ["spirit_hunt", "shattering_darkness"]
+        notes: "Essential PVP skill for catching floated targets."
+
+    nocturne:
+        name: "Nocturne"
+        input: "Space"
+        keys: ["space"]
+        protection: "SA"
+        cc: []
+        damage: low
+        cooldown_ms: 7000
+        description: "Super Armor mobility skill. Fast gap closer."
+        flows_into: ["spirit_hunt", "spirit_legacy", "shattering_darkness"]
+        notes: "Primary movement skill in awakening. Hotbar recommended."
+
+    lunacy_of_vedir:
+        name: "Lunacy of Vedir"
+        input: "Shift + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 30000
+        description: "Self-buff. Increases AP and attack/casting speed."
+        flows_into: ["nocturne", "spirit_legacy"]
+        notes: "Use before engaging. Hotbar recommended."
+
+    trap_of_vedir:
+        name: "Trap of Vedir"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["bound"]
+        damage: low
+        cooldown_ms: 16000
+        description: "Ranged trap with bound CC. Must be on hotbar."
+        flows_into: ["spirit_hunt", "nocturne"]
+        notes: "Lock from skill bar, place on hotbar. Good ranged CC."
+
+    flow_spirit_blaze:
+        name: "Flow: Spirit Blaze"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        damage: high
+        cooldown_ms: 12000
+        description: "Ranged burst damage. Must be on hotbar."
+        flows_into: []
+        core_effect: "Core: Spirit Blaze - Forward Guard while using skill"
+        notes: "Hotbar recommended. Lock from skill bar."
+
+    dusk:
+        name: "Dusk"
+        input: "Shift + A / Shift + D"
+        keys: ["shift", "a"]
+        keys_alt: ["shift", "d"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 4000
+        description: "Iframe dash left or right. PVE iframe as well."
+        flows_into: ["chain_dusk"]
+        notes: "Primary iframe. Can chain into Chain: Dusk."
+
+    chain_dusk:
+        name: "Chain: Dusk"
+        input: "LMB (after Dusk)"
+        keys: ["lmb"]
+        protection: "iframe"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Follow-up iframe after Dusk."
+        flows_into: ["spirit_hunt", "touch_of_exploitation"]
+        notes: "PVE iframe. Extends Dusk i-frame."
+
+    phantasmal_snare:
+        name: "Phantasmal Snare"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 5000
+        description: "Quick CC skill. PVE iframe."
+        flows_into: ["spirit_hunt", "shattering_darkness"]
+        notes: "PVE iframe (1 second invincibility vs monsters only)."
+
+# --------------------------------------------------------------------------
+# Rabam (Skill Enhancement) Skills
+# --------------------------------------------------------------------------
+rabam_skills:
+    shadow_strike:
+        name: "Shadow Strike"
+        level: 56
+        input: "Shift + X"
+        keys: ["shift", "x"]
+        protection: "SA"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 9000
+        description: "Ranged DPS skill. Cancellable. Preferred L56 Rabam."
+        notes: "Preferred over Wrath of Vedir. Cancellable and ranged."
+
+    obsidian_blaze:
+        name: "Obsidian Blaze"
+        level: 57
+        input: "Shift + Z"
+        keys: ["shift", "z"]
+        protection: "SA"
+        cc: []
+        damage: medium
+        cooldown_ms: 10000
+        description: "Super Armor AOE. Preferred L57 Rabam."
+        notes: "Preferred over Unveiled Fate due to Super Armor."
+
+    balanced_strike:
+        name: "Balanced Strike"
+        level: 58
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: ["float"]
+        damage: medium
+        cooldown_ms: 15000
+        description: "Extra Air Strike. Can cancel with Dusk. Preferred L58 Rabam."
+        notes: "Preferred over Slanted Slash. Castable from awakening."
+
+# --------------------------------------------------------------------------
+# Pre-Awakening Utility Skills (used in Awakening stance)
+# --------------------------------------------------------------------------
+preawakening_utility:
+    unveiled_dagger:
+        name: "Unveiled Dagger"
+        input: "W + F (switches to pre-awakening)"
+        keys: ["w", "f"]
+        protection: "FG"
+        cc: ["stiffness"]
+        description: "Gap closer. Switches to pre-awakening. Leads into Wheel of Fortune."
+
+    kamasylvia_slash:
+        name: "Kamasylvia Slash"
+        input: "F"
+        keys: ["f"]
+        protection: "none"
+        cc: ["knockdown"]
+        description: "Quick transition slash."
+
+    twilight_dash:
+        name: "Twilight Dash"
+        input: "Shift + W (pre-awakening)"
+        keys: ["shift", "w"]
+        protection: "SA"
+        cc: []
+        description: "Fast forward dash for mobility. Super Armor."
+
+    evasion:
+        name: "Evasion"
+        input: "A/D + RMB"
+        keys: ["a", "rmb"]
+        keys_alt: ["d", "rmb"]
+        protection: "iframe"
+        cc: []
+        description: "Short iframe dodge. PVE iframe. RECOMMENDED LOCKED."
+        notes: "Lock this skill to prevent accidental use messing up combos."
+
+# --------------------------------------------------------------------------
+# PVE Combos
+# --------------------------------------------------------------------------
+pve_combos:
+    basic_grind:
+        name: "Basic PVE Grind"
+        description: "Standard grinding rotation for clearing packs efficiently."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "Gap close to pack"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main damage"
+            - skill: "shattering_darkness"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Follow-up damage"
+            - skill: "seed_of_catastrophe"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "AOE finisher"
+            - skill: "wheel_of_fortune"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Spin for remaining mobs"
+            - skill: "dusk"
+              input: "Shift + A/D"
+              keys: ["shift", "a"]
+              alt_keys: ["shift", "d"]
+              note: "Dash to next pack"
+
+    large_pack_clear:
+        name: "Large Pack Clear"
+        description: "Full rotation for large mob packs. Buff first, then full burst."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "lunacy_of_vedir"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "AP buff before engaging"
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "Gap close into pack"
+            - skill: "cluster_of_despair"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Pull mobs together"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "shattering_darkness"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "AOE follow-up"
+            - skill: "seed_of_catastrophe"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "AOE finisher"
+            - skill: "trap_of_vedir"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Extra damage on survivors"
+            - skill: "wheel_of_fortune"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Clean up remaining"
+
+    speed_clear:
+        name: "Speed Clear (Easy Spots)"
+        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "Dash into pack"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "One-shot burst"
+            - skill: "dusk"
+              input: "Shift + A/D"
+              keys: ["shift", "a"]
+              alt_keys: ["shift", "d"]
+              note: "Dash to next pack"
+            - skill: "chain_dusk"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend movement"
+
+    endgame_grind:
+        name: "Endgame Grind Rotation"
+        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "lunacy_of_vedir"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff up"
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "Engage"
+            - skill: "spirit_legacy"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Ranged opener"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "shattering_darkness"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Heavy follow-up"
+            - skill: "seed_of_catastrophe"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "AOE burst"
+            - skill: "cluster_of_despair"
+              input: "S + LMB"
+              keys: ["s", "lmb"]
+              note: "Regroup mobs"
+            - skill: "wheel_of_fortune"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Spin damage"
+            - skill: "flow_spirit_blaze"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Ranged burst"
+            - skill: "shadow_strike"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Rabam filler"
+            - skill: "trap_of_vedir"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Debuff + damage"
+
+# --------------------------------------------------------------------------
+# PVP Combos
+# --------------------------------------------------------------------------
+pvp_combos:
+    protected_engage:
+        name: "Protected Engage"
+        description: >
+            Safe engage using Super Armor and Forward Guard skills.
+            Use when approaching an opponent who may be watching.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "lunacy_of_vedir"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "SA buff before going in"
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "SA gap close"
+            - skill: "spirit_legacy"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG ranged poke / stiffness"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA main damage"
+            - skill: "shattering_darkness"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA follow-up damage"
+            - skill: "seed_of_catastrophe"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "SA finisher (with Core)"
+
+    catch_combo:
+        name: "Catch / CC Chain"
+        description: >
+            Use Air Strike to float the target, then chain CC into full damage.
+            This is your primary kill combo when you land the initial CC.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "air_strike"
+              input: "S + F"
+              keys: ["s", "f"]
+              note: "SA float CC - catch the target"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Bound on floated target"
+            - skill: "shattering_darkness"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Knockdown follow-up"
+            - skill: "seed_of_catastrophe"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "Bound extension"
+            - skill: "wheel_of_fortune"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "Finish while they're down"
+
+    iframe_engage:
+        name: "Iframe Into Engage"
+        description: >
+            Use iframes to approach safely, then catch with CC.
+            Good against classes that fish for you to engage first.
+        difficulty: advanced
+        combo_window_ms: 180
+        steps:
+            - skill: "dusk"
+              input: "Shift + A/D"
+              keys: ["shift", "a"]
+              alt_keys: ["shift", "d"]
+              note: "Iframe approach"
+            - skill: "chain_dusk"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend iframe"
+            - skill: "touch_of_exploitation"
+              input: "W + LMB"
+              keys: ["w", "lmb"]
+              note: "FG gap close + stiffness"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA damage on stiffened target"
+            - skill: "shattering_darkness"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA knockdown"
+            - skill: "seed_of_catastrophe"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "SA finisher (Core)"
+
+    quick_burst:
+        name: "Quick Burst (1v1)"
+        description: >
+            Fast burst combo for duels. Deals high damage quickly
+            while staying in protected skills.
+        difficulty: intermediate
+        combo_window_ms: 200
+        steps:
+            - skill: "spirit_legacy"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "FG ranged stiffness"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "SA burst"
+            - skill: "shattering_darkness"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "SA follow-up"
+
+    grab_punish:
+        name: "Grab Punish (After Ally Grabs)"
+        description: >
+            Maximum damage combo to use when your teammate lands a grab
+            or the target is already CC'd on the ground.
+        difficulty: beginner
+        combo_window_ms: 250
+        steps:
+            - skill: "shattering_darkness"
+              input: "Shift + RMB"
+              keys: ["shift", "rmb"]
+              note: "Instant damage on grabbed target"
+            - skill: "spirit_hunt"
+              input: "Shift + LMB"
+              keys: ["shift", "lmb"]
+              note: "Main burst"
+            - skill: "seed_of_catastrophe"
+              input: "S + RMB"
+              keys: ["s", "rmb"]
+              note: "AOE finisher"
+            - skill: "flow_spirit_blaze"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Extra ranged burst"
+
+    kite_disengage:
+        name: "Kite / Disengage"
+        description: >
+            Escape combo when pressured. Use iframes and ranged skills
+            to create distance. DK is a glass cannon - know when to run.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "dusk"
+              input: "Shift + A/D"
+              keys: ["shift", "a"]
+              alt_keys: ["shift", "d"]
+              note: "Iframe out"
+            - skill: "chain_dusk"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend iframe distance"
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "SA dash away"
+            - skill: "shadow_strike"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Ranged damage while retreating"
+
+    large_scale_siege:
+        name: "Large Scale / Siege"
+        description: >
+            Node war and siege combo. Focus on ranged protected damage
+            and avoid overextending. Stay with your group.
+        difficulty: advanced
+        combo_window_ms: 250
+        steps:
+            - skill: "lunacy_of_vedir"
+              input: "Shift + E"
+              keys: ["shift", "e"]
+              note: "Buff before engaging blob"
+            - skill: "spirit_legacy"
+              input: "W + RMB"
+              keys: ["w", "rmb"]
+              note: "Ranged FG poke"
+            - skill: "trap_of_vedir"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Ranged bound CC"
+            - skill: "flow_spirit_blaze"
+              input: "Hotbar"
+              keys: ["hotbar"]
+              note: "Ranged burst"
+            - skill: "shadow_strike"
+              input: "Shift + X"
+              keys: ["shift", "x"]
+              note: "Ranged damage"
+            - skill: "wheel_of_fortune"
+              input: "Shift + F"
+              keys: ["shift", "f"]
+              note: "SA if close enough"
+            - skill: "dusk"
+              input: "Shift + A/D"
+              keys: ["shift", "a"]
+              alt_keys: ["shift", "d"]
+              note: "Iframe reposition"
+
+# --------------------------------------------------------------------------
+# Movement Combos
+# --------------------------------------------------------------------------
+movement_combos:
+    fast_travel:
+        name: "Fast Travel / Mobility Chain"
+        description: "Chain movement skills for fastest traversal between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "Long SA dash"
+            - skill: "dusk"
+              input: "Shift + A/D"
+              keys: ["shift", "a"]
+              alt_keys: ["shift", "d"]
+              note: "Iframe side dash"
+            - skill: "chain_dusk"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend dash"
+            - skill: "twilight_dash"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Pre-awak forward dash"
+
+    awakening_movement:
+        name: "Awakening Movement Guide"
+        description: >
+            Movement guide by JStep. Chain Nocturne, Dusk, and pre-awakening
+            dashes for maximum speed while staying protected.
+        difficulty: intermediate
+        combo_window_ms: 250
+        steps:
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "SA forward dash"
+            - skill: "dusk"
+              input: "Shift + D"
+              keys: ["shift", "d"]
+              note: "Iframe lateral"
+            - skill: "chain_dusk"
+              input: "LMB"
+              keys: ["lmb"]
+              note: "Extend iframe"
+            - skill: "nocturne"
+              input: "Space"
+              keys: ["space"]
+              note: "If off cooldown"
+            - skill: "twilight_dash"
+              input: "Shift + W"
+              keys: ["shift", "w"]
+              note: "Pre-awak dash filler"
+
+# --------------------------------------------------------------------------
+# Recommended Skill Add-ons (PVE)
+# --------------------------------------------------------------------------
+skill_addons:
+    pve:
+        - skill: "Air Strike"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+        - skill: "Spirit Legacy"
+          addon_1: "All DP -15 for 10 sec for target"
+          addon_2: "Critical Hit Rate +20% for 7 sec"
+        - skill: "Shattering Darkness"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Seed of Catastrophe"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+        - skill: "Cluster of Despair"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Critical Hit Rate +30% for 7 sec"
+        - skill: "Trap of Vedir"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "All DP -15 for 20 sec for target"
+
+# --------------------------------------------------------------------------
+# Recommended Skills to Lock
+# --------------------------------------------------------------------------
+locked_skills:
+    - name: "Evasion"
+      reason: "Prevents accidental use that messes up combos in PVP."
+    - name: "Scarring Slash"
+      reason: "Unprotected and not useful in awakening rotation."
+    - name: "Spirit Satiation"
+      reason: "Unprotected, slows down rotation."
+    - name: "Sudden Attack"
+      reason: "Unprotected, can trigger accidentally."
+    - name: "Darkness Burst"
+      reason: "Lock unless you have completed Magnus."
+    - name: "Hidden Strike"
+      reason: "Optional lock. Rarely used."
+    - name: "Trap of Vedir"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+    - name: "Flow: Spirit Blaze"
+      reason: "Lock from skill bar. Put on HOTBAR instead."
+
+# --------------------------------------------------------------------------
+# Recommended Hotbar Setup
+# --------------------------------------------------------------------------
+hotbar_skills:
+    - "Wheel of Fortune"
+    - "Lunacy of Vedir"
+    - "Nocturne"
+    - "Balanced Strike"
+    - "Shadow Strike"
+    - "Trap of Vedir"
+    - "Flow: Spirit Blaze"
+
+# --------------------------------------------------------------------------
+# Core Skill Recommendation
+# --------------------------------------------------------------------------
+core_skill:
+    recommended: "Seed of Catastrophe"
+    effect: "Super Armor during the skill"
+    reason: >
+        Seed of Catastrophe with Core gains full Super Armor, making it
+        one of your safest and strongest damage skills. Most DK players
+        choose this Core.
