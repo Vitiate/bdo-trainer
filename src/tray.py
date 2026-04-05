@@ -54,6 +54,7 @@ class TrayManager:
         on_reposition_toggle: Optional[Callable] = None,
         on_setup_guide_toggle: Optional[Callable] = None,
         on_settings: Optional[Callable] = None,
+        on_editor: Optional[Callable] = None,
         on_exit: Optional[Callable] = None,
     ):
         """
@@ -64,6 +65,7 @@ class TrayManager:
             on_reposition_toggle: Callback(enabled: bool) when reposition is toggled
             on_setup_guide_toggle: Callback(enabled: bool) when setup guide is toggled
             on_settings: Callback when "Settings" is selected
+            on_editor: Callback when "Class & Combo Editor" is selected
             on_exit: Callback when "Exit" is selected
         """
         if not TRAY_AVAILABLE:
@@ -75,6 +77,7 @@ class TrayManager:
         self.on_reposition_toggle = on_reposition_toggle
         self.on_setup_guide_toggle = on_setup_guide_toggle
         self.on_settings = on_settings
+        self.on_editor = on_editor
         self.on_exit = on_exit
 
         self._icon: Optional[pystray.Icon] = None
@@ -139,6 +142,10 @@ class TrayManager:
         # Settings
         menu_items.append(pystray.MenuItem("Settings", self._on_settings_clicked))
 
+        menu_items.append(
+            pystray.MenuItem("Class && Combo Editor", self._on_editor_clicked)
+        )
+
         menu_items.append(pystray.Menu.SEPARATOR)
 
         # Exit
@@ -165,6 +172,11 @@ class TrayManager:
         logger.info("Tray: settings clicked")
         if self.on_settings:
             self.on_settings()
+
+    def _on_editor_clicked(self, icon, item):
+        logger.info("Tray: editor clicked")
+        if self.on_editor:
+            self.on_editor()
 
     def _on_reposition_clicked(self, icon, item):
         self._reposition_mode = not self._reposition_mode
@@ -209,6 +221,13 @@ class TrayManager:
         self._thread = threading.Thread(target=self._icon.run, daemon=True)
         self._thread.start()
         logger.info("Tray icon started")
+
+    def refresh_menu(self, class_tree=None):
+        """Rebuild the tray menu (e.g. after editor changes)."""
+        if class_tree is not None:
+            self.class_tree = class_tree
+        if self._icon:
+            self._icon.menu = self._build_menu()
 
     def stop(self):
         """Stop the tray icon"""
