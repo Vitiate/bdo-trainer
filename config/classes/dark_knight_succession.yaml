@@ -31,768 +31,657 @@ class: Dark Knight
 spec: Succession
 
 # --------------------------------------------------------------------------
-# Succession Skills
+# Skills
 # --------------------------------------------------------------------------
-awakening_skills:
-    spirit_legacy:
-        name: "Spirit Legacy"
-        input: "Shift + LMB"
-        keys: ["shift", "lmb"]
-        protection: "SA"
-        cc: ["knockdown"]
-        damage: high
-        cooldown_ms: 6000
-        description: "Enhanced succession dark slash. Super Armor throughout with knockdown."
-        flows_into: ["unveiled_dagger", "air_strike", "wheel_of_fortune"]
-        core_effect: "Core: Spirit Legacy - Extra hits and increased damage"
-        notes: "Bread-and-butter succession damage skill. Primary burst in all situations."
+# ─────────────────────────────────────────────────────────
+# Dark Knight – Succession Skills (Verified via BDO Codex)
+# Requires: Succession: Wrath of Vedir (passive unlock)
+# NOTE: Succession and Awakening skills are MUTUALLY EXCLUSIVE.
+#       You cannot use Awakening skills after learning Succession.
+# ─────────────────────────────────────────────────────────
 
-    unveiled_dagger:
-        name: "Unveiled Dagger"
-        input: "Shift + RMB"
-        keys: ["shift", "rmb"]
-        protection: "SA"
-        cc: ["knockback"]
-        damage: high
-        cooldown_ms: 8000
-        description: "Enhanced multi-hit dagger combo with Super Armor. Strong AOE succession skill."
-        flows_into: ["spirit_legacy", "air_strike", "kamasylvia_slash"]
-        core_effect: "Core: Unveiled Dagger - Bound on last hit"
-        notes: "High damage AOE. Core version adds Bound for combo extension in PVP."
+skills:
+    # ── Unlock Passive ──────────────────────────────────────
 
-    lunacy_of_vedir:
-        name: "Lunacy of Vedir"
-        input: "W + F"
-        keys: ["w", "f"]
+    succession_wrath_of_vedir:
+        name: "Succession: Wrath of Vedir"
+        input: "Passive"
+        keys: []
+        protection: null
+        cc: []
+        damage: none
+        cooldown_ms: 0
+        description: "Passive skill that enables Succession. Allows the Dark Knight to fully absorb the power of the Vedir and use the kriegsmesser more agilely. Grants access to all Prime skills. Dusk can be used at any time while using Succession skills."
+        notes: "Requires resetting all skills first. Incompatible with Awakening and Absolute skills. Requires Thorn of Black Rose to unlock."
+
+    # ── Buff / Self ──────────────────────────────────────────
+
+    prime_spirit_absorption:
+        name: "Prime: Spirit Absorption"
+        input: "Hotbar Only (Quick Slot)"
+        keys: ["hotbar"]
         protection: "SA"
         cc: []
-        damage: low
-        cooldown_ms: 4000
-        description: "Super Armor forward dash. Primary succession gap closer and movement tool."
-        flows_into: ["spirit_legacy", "unveiled_dagger", "wheel_of_fortune"]
-        notes: "Primary movement skill. SA protection while closing distance quickly."
+        damage: none
+        cooldown_ms: 180000
+        description: "Succession version of Overlord. Imbue your kriegsmesser with the power of combusted spirits. Grants Attack Speed +30%, Movement Speed +30%, Critical Hit Rate +24%, All Accuracy +80 for 30 seconds. Super Armor during the skill."
+        flows_into: []
+        notes: "3 minute cooldown. Preceding Skill: Succession: Wrath of Vedir. Pure buff — use before engaging."
 
-    kamasylvia_slash:
-        name: "Kamasylvia Slash"
-        input: "S + LMB"
-        keys: ["s", "lmb"]
+    # ── Core Damage Skills ───────────────────────────────────
+
+    prime_ravage_rake:
+        name: "Prime: Ravage Rake"
+        input: "LMB + RMB"
+        keys: ["lmb", "rmb"]
         protection: "FG"
-        cc: ["stiffness"]
-        damage: medium
+        cc: ["spin"]
+        cc_notes: "Spin the target on attack 2 hits (PvE only). Down Attack."
+        damage: high
         cooldown_ms: 5000
-        description: "Forward Guard quick slash. Enhanced succession version with stiffness CC."
-        flows_into: ["spirit_legacy", "air_strike", "unveiled_dagger"]
-        notes: "Good CC tool with frontal protection. Use to set up burst combos in PVP."
+        description: "Deliver a wide slash with your kriegsmesser to all enemies in front. Forward Guard during the skill. Can be performed instantly after certain skills via LMB + RMB."
+        flows_into: []
+        notes: "Max rank: Prime: Ravage Rake IV. Recovers 128 HP per hit. Strong filler in Succession rotation."
 
-    air_strike:
-        name: "Air Strike"
-        input: "Shift + F"
+    prime_enforcement:
+        name: "Prime: Enforcement"
+        input: "↓ + RMB"
+        keys: ["down", "rmb"]
+        protection: null
+        cc: ["stiffness"]
+        cc_notes: "Stiffness on hits. Down Attack."
+        damage: high
+        cooldown_ms: 5000
+        description: "Powerfully slash enemies in front horizontally to inflict heavy damage. Stiffness on hits."
+        flows_into: []
+        notes: "Max rank: Prime: Enforcement III. No protection listed on base skill."
+
+    prime_wheel_of_fortune:
+        name: "Prime: Wheel of Fortune"
+        input: "SHIFT + F"
         keys: ["shift", "f"]
         protection: "SA"
-        cc: ["float"]
-        damage: high
+        cc: ["floating"]
+        cc_notes: "Floating on hits. Air Attack."
+        damage: very_high
+        cooldown_ms: 6000
+        description: "Draw from the energy of nature around to attack with a powerful blade strike. Super Armor during the skill. All Evasion +36 for 10s when using."
+        flows_into: []
+        notes: "Max rank: Prime: Wheel of Fortune IV. Can be added to Quick Slot. Core damage skill for Succession DK."
+
+    prime_kamasylvia_slash:
+        name: "Prime: Kamasylvia Slash"
+        input: "SHIFT + LMB"
+        keys: ["shift", "lmb"]
+        protection: "FG"
+        cc: ["knockdown"]
+        cc_notes: "Knockdown on hits. Spin the target (PvE only). Down Attack. Charged version has increased area."
+        damage: very_high
         cooldown_ms: 8000
-        description: "Super Armor aerial slam with float CC. Heavy burst damage."
-        flows_into: ["spirit_legacy", "unveiled_dagger", "wheel_of_fortune"]
-        core_effect: "Core: Air Strike - Float on all hits"
-        notes: "Strong burst skill. Float CC enables air combos in PVP."
+        description: "Gather the energy of nature, then unleash it before you. Damage varies on the amount of energy gathered. Hold LMB to charge (Dusk available while charging). RMB during Prime: Twilight Dash for basic attack. RMB after fully charged to perform charged attack moving backward. Forward Guard during the skill."
+        flows_into: []
+        notes: "Max rank: Prime: Kamasylvia Slash III. Recovers 75 MP per hit / 250 MP per charged hit. Charged attack deals ~double damage."
 
-    twilight_dash:
-        name: "Twilight Dash"
-        input: "Space"
+    prime_obsidian_ashes:
+        name: "Prime: Obsidian Ashes"
+        input: "SHIFT + E"
+        keys: ["shift", "e"]
+        protection: "SA"
+        cc: ["bound"]
+        cc_notes: "Bound on hits (PvE only)."
+        damage: high
+        cooldown_ms: 13000
+        description: "Unleash meteors of dark nature magic upon your foes. Super Armor during the skill. Bound on hits (PvE only). Can use Smoky Haze during the skill."
+        flows_into: []
+        notes: "Max rank: Prime: Obsidian Ashes IV. 13s cooldown. One of the key ranged damage skills in Succession."
+
+    prime_lunacy_of_vedir:
+        name: "Prime: Lunacy of Vedir"
+        input: "SHIFT + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        cc_notes: "Bound on hits (PvE only). Down Attack."
+        damage: very_high
+        cooldown_ms: 8000
+        description: "Harness the energy of nature into your kriegsmesser, then slam downwards to knock opponents down. Super Armor during the skill. Recovers 400 HP per hit."
+        flows_into: ["prime_nocturne"]
+        notes: "Max rank: Prime: Lunacy of Vedir III. Massive HP recovery. Strong burst skill. Can be followed by RMB into Prime: Nocturne."
+
+    prime_slanted_balance:
+        name: "Prime: Slanted Balance"
+        input: "↓ + LMB"
+        keys: ["down", "lmb"]
+        protection: "FG"
+        cc: ["floating"]
+        cc_notes: "Floating on hits. Spin target (PvE only). Down Attack. Air Attack."
+        damage: high
+        cooldown_ms: 5000
+        description: "Part the earth with the Energy of All Creations, obliterating everything in sight. Forward Guard during the skill. Floating on hits."
+        flows_into: []
+        notes: "Preceding Skill: Succession: Wrath of Vedir + Slanted Balance III. Learning this skill prevents learning Absolute: Slanted Balance."
+
+    prime_pervasive_darkness:
+        name: "Prime: Pervasive Darkness"
+        input: "SPACE (in certain situations)"
         keys: ["space"]
-        protection: "iframe"
-        cc: []
-        damage: none
-        cooldown_ms: 4000
-        description: "iFrame forward dash. Primary evasive movement skill in succession."
-        flows_into: ["spirit_legacy", "lunacy_of_vedir", "kamasylvia_slash"]
-        notes: "Primary iframe. Use to dodge CC and reposition. Chain with Lunacy of Vedir."
-
-    shadow_bullet:
-        name: "Shadow Bullet"
-        input: "S + RMB"
-        keys: ["s", "rmb"]
         protection: "FG"
         cc: ["stiffness"]
-        damage: medium
-        cooldown_ms: 6000
-        description: "Forward Guard ranged dark projectile. Good for poking from distance."
-        flows_into: ["spirit_legacy", "unveiled_dagger", "air_strike"]
-        notes: "Ranged FG poke. Use at mid-range in PVP. Good for fishing for stiffness."
-
-    wheel_of_fortune:
-        name: "Wheel of Fortune"
-        input: "W + RMB"
-        keys: ["w", "rmb"]
-        protection: "SA"
-        cc: ["knockdown"]
+        cc_notes: "Forward Guard on attack 1 hits (nullified during cooldown). Stiffness on attack 1 hits (PvE only, nullified during cooldown). Spin target (PvE only)."
         damage: high
-        cooldown_ms: 9000
-        description: "Super Armor spinning strike with knockdown. Wide AOE succession skill."
-        flows_into: ["spirit_legacy", "unveiled_dagger", "air_strike"]
-        core_effect: "Core: Wheel of Fortune - Knockdown on all hits"
-        notes: "Good AOE opener and filler. Large area coverage for pack clearing."
-
-    obsidian_ashes:
-        name: "Obsidian Ashes"
-        input: "Q"
-        keys: ["q"]
-        protection: "none"
-        cc: ["bound"]
-        damage: low
         cooldown_ms: 5000
-        description: "Quick dark magic burst with bound CC. Unprotected but fast."
-        flows_into: ["spirit_legacy", "air_strike", "unveiled_dagger"]
-        notes: "Quick CC tool. Use from range to catch targets. Risky at close range."
+        description: "Quickly slash enemies in the front to inflict heavy damage and weaken them. SPACE in certain situations; Hold SPACE to perform attack 2. All AP +10 for 10s when using (nullified during cooldown). Recovers 160 MP per hit (nullified during cooldown)."
+        flows_into: []
+        notes: "Context-sensitive activation (SPACE). Down Attack. Damage reduced during cooldown. Costs Stamina (100). Learning this prevents learning Absolute: Pervasive Darkness."
 
-    seed_of_catastrophe:
-        name: "Seed of Catastrophe"
-        input: "S + F"
-        keys: ["s", "f"]
-        protection: "FG"
-        cc: ["bound"]
-        damage: high
+    # ── Mobility ─────────────────────────────────────────────
+
+    prime_twilight_dash:
+        name: "Prime: Twilight Dash"
+        input: "C"
+        keys: ["c"]
+        protection: "SA"
+        cc: ["air_attack"]
+        cc_notes: "Air Attack (nullified on extra attack)."
+        damage: medium
         cooldown_ms: 9000
-        description: "Enhanced Forward Guard AOE slam. Succession version with bound CC."
-        flows_into: ["spirit_legacy", "wheel_of_fortune", "air_strike"]
-        core_effect: "Core: Seed of Catastrophe - Super Armor during skill"
-        notes: "Strong damage with FG. Core version upgrades to full SA — highly recommended."
+        description: "Dash forward and leave destruction in your path. Super Armor during the skill. Hold C to perform once more. Movement Speed +10% for 10s when using. No collision while moving."
+        flows_into: ["prime_kamasylvia_slash"]
+        notes: "Succession-only keybind: C (replaces Awakening's F). Costs Stamina (200). RMB during this dash activates Prime: Kamasylvia Slash basic attack."
 
-    corrupt_ground:
-        name: "Corrupt Ground"
-        input: "Shift + E"
-        keys: ["shift", "e"]
-        protection: "none"
+    prime_nocturne:
+        name: "Prime: Nocturne"
+        input: "Hotbar Only / RMB after Prime: Lunacy of Vedir or Flow: Vedir Strike"
+        keys: ["hotbar", "rmb"]
+        protection: "SA/iframe"
         cc: []
-        damage: none
-        cooldown_ms: 24000
-        description: "Self-buff. Increases AP, attack speed, and crit rate for succession."
-        flows_into: ["lunacy_of_vedir", "spirit_legacy"]
-        core_effect: "Core: Corrupt Ground - Super Armor during the skill"
-        notes: "Use before engaging. Hotbar recommended for tracking cooldown."
+        cc_notes: "No CC. Debuffs enemy Movement/Attack/Casting Speed -5% for 5s on hits."
+        damage: medium
+        cooldown_ms: 10000
+        description: "Instantly hide yourself in the dark. SA at start of skill, Invincible when concealed, SA when moving forward, FG when moving backward. W to move behind enemy, ↓ to move backward and guard. Increased attack range."
+        flows_into: []
+        notes: "Can also be activated via RMB after Prime: Lunacy of Vedir or Flow: Vedir Strike. Preceding Skills: Succession: Wrath of Vedir + Nocturne. Learning this prevents learning Absolute: Nocturne."
 
-    flow_spirit_slash:
-        name: "Flow: Spirit Slash"
-        input: "LMB (after Spirit Legacy)"
+    prime_air_strike:
+        name: "Prime: Air Strike"
+        input: "W + F"
+        keys: ["up", "f"]
+        protection: "iframe/SA"
+        cc: ["floating", "bound"]
+        cc_notes: "Invincible while moving (iframe). Super Armor on attacks. Floating on hits. Bound on extra attack hits (nullified on Floating hits). Down Attack. Air Attack."
+        damage: high
+        cooldown_ms: 7000
+        description: "Powerful upward slash then downward blow on ground to inflict heavy damage. Invincible while moving, Super Armor on attacks."
+        flows_into: []
+        notes: "Costs Stamina (150). Learning this prevents learning Absolute: Air Strike."
+
+    prime_spirit_legacy:
+        name: "Prime: Spirit Legacy"
+        input: "Hotbar Only (Quick Slot)"
+        keys: ["hotbar"]
+        protection: "FG"
+        cc: ["stun"]
+        cc_notes: "Stun on hits (PvE only, nullified during cooldown). Down Attack. Down Smash (nullified during cooldown)."
+        damage: very_high
+        cooldown_ms: 8000
+        description: "Inflict explosive damage to the enemy in front by charging dark magic into the phantom blades. Forward Guard during the skill (nullified during cooldown). Recovers 80 MP per hit. All Damage Reduction -20 for 10s on hits (nullified during cooldown). Damage reduced during cooldown."
+        flows_into: []
+        notes: "No direct key — must be placed on Hotbar / Quick Slot. Preceding Skill: Succession: Wrath of Vedir only."
+
+    # ── Succession-Exclusive Skills ───────────────────────────
+
+    succession_absolute_shadow_bullet:
+        name: "Succession: Absolute: Shadow Bullet"
+        input: "← OR → + RMB"
+        keys: ["left+rmb", "right+rmb"]
+        protection: null
+        cc: ["stiffness"]
+        cc_notes: "Stiffness on hits. Movement Speed -5% for 5s on hits."
+        damage: low
+        cooldown_ms: 4000
+        description: "Intercepts a distant enemy with nature's energy. Can be used with your vediant. Preceding Skills: Wrath of Vedir + Absolute: Shadow Bullet."
+        flows_into: []
+        notes: "Short cooldown ranged poke/stiffness tool unique to Succession path."
+
+    succession_phantasmal_snare:
+        name: "Succession: Phantasmal Snare"
+        input: "← or ↓ or → + F (to continue Chain: Dusk)"
+        keys: ["left+f", "down+f", "right+f"]
+        protection: "iframe"
+        cc: ["stun"]
+        cc_notes: "Stun on hits. Invincible at start (nullified during Chain: Dusk's cooldown). Invincible while concealed. Invincible while moving in phantasmal form. Invincible during skill (PvE only)."
+        damage: low
+        cooldown_ms: 12000
+        description: "Temporarily take on a phantasmal visage to confuse foes, then summon a rose-shaped trap. Enhanced Succession version with additional iframes: also Invincible while concealed and in phantasmal form. Direction key during skill performs phantasmal movements."
+        flows_into: []
+        notes: "Preceding Skills: Wrath of Vedir + Chain: Dusk. Extended iframe window vs. base Phantasmal Snare. Performed while standing when used via Quick Slot."
+
+    # ── Flow Skills ──────────────────────────────────────────
+
+    flow_vedir_strike:
+        name: "Flow: Vedir Strike"
+        input: "LMB (after Unveiled Dagger)"
+        keys: ["lmb"]
+        protection: "SA"
+        cc: ["knockback"]
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up slash after Unveiled Dagger. Super Armor."
+        flows_into: ["spirit_legacy", "air_strike"]
+        notes: "Chain after Unveiled Dagger for extra damage."
+
+    flow_cultivation:
+        name: "Flow: Cultivation"
+        input: "LMB (after Wheel of Fortune)"
         keys: ["lmb"]
         protection: "SA"
         cc: ["knockdown"]
-        damage: high
+        damage: medium
         cooldown_ms: 0
-        description: "Follow-up to Spirit Legacy. Additional burst with Super Armor."
-        flows_into: ["unveiled_dagger", "air_strike", "wheel_of_fortune"]
-        notes: "Always chain after Spirit Legacy for maximum damage output."
+        description: "Follow-up strike after Wheel of Fortune. Super Armor."
+        flows_into: ["spirit_legacy", "unveiled_dagger"]
+        notes: "Chain after Wheel of Fortune for extra damage."
 
-    pervasive_darkness:
-        name: "Pervasive Darkness"
-        input: "W + LMB"
-        keys: ["w", "lmb"]
-        protection: "FG"
+    # ── Engage / Gap Closer ──────────────────────────────────
+
+    air_strike:
+        name: "Air Strike"
+        input: "W + F"
+        keys: ["w", "f"]
+        protection: "iframe/SA"
+        cc: ["floating", "bound"]
+        damage: high
+        cooldown_ms: 7000
+        description: "Upward slash then downward blow. Iframe while moving, SA on attacks."
+        notes: "Main engage skill."
+
+    furia_di_vedir:
+        name: "Furia di Vedir"
+        input: "W + F (after engage)"
+        keys: ["w", "f"]
+        protection: "SA"
         cc: ["stiffness"]
         damage: medium
         cooldown_ms: 5000
-        description: "Forward Guard rushing dark slash. Quick approach with stiffness CC."
-        flows_into: ["spirit_legacy", "air_strike", "unveiled_dagger"]
-        notes: "Good PVP engage tool. FG while approaching makes it relatively safe."
+        description: "Forward charge slash. Super Armor."
+        notes: "Forward engage tool."
 
-    hidden_strike:
-        name: "Hidden Strike"
-        input: "Hotbar Only"
-        keys: ["hotbar"]
-        protection: "SA"
-        cc: ["knockdown"]
+    unveiled_dagger:
+        name: "Unveiled Dagger"
+        input: "F"
+        keys: ["f"]
+        protection: "FG"
+        cc: ["stiffness"]
         damage: medium
-        cooldown_ms: 10000
-        description: "Super Armor shadow strike. Enhanced succession version with knockdown."
-        flows_into: ["spirit_legacy", "air_strike"]
-        notes: "Put on hotbar. Good protected engage or burst filler."
+        cooldown_ms: 4000
+        description: "Gap closer slash. Forward Guard."
+        notes: "Bridge skill into main damage chain."
 
-    dark_nebula:
-        name: "Dark Nebula"
+    # ── Core Damage (Base References) ────────────────────────
+
+    wheel_of_fortune:
+        name: "Wheel of Fortune"
+        input: "SHIFT + F"
+        keys: ["shift", "f"]
+        protection: "SA"
+        cc: ["floating"]
+        damage: very_high
+        cooldown_ms: 6000
+        description: "Wide blade strike. Super Armor. Floating on hits."
+        notes: "Core burst skill."
+
+    lunacy_of_vedir:
+        name: "Lunacy of Vedir"
+        input: "SHIFT + RMB"
+        keys: ["shift", "rmb"]
+        protection: "SA"
+        cc: ["bound"]
+        damage: very_high
+        cooldown_ms: 8000
+        description: "Downward slam. Super Armor. Bound on hits."
+        notes: "Strong burst follow-up."
+
+    kamasylvia_slash:
+        name: "Kamasylvia Slash"
+        input: "SHIFT + LMB"
+        keys: ["shift", "lmb"]
+        protection: "FG"
+        cc: ["knockdown"]
+        damage: very_high
+        cooldown_ms: 8000
+        description: "Charged blade strike. Forward Guard. Knockdown on hits."
+        notes: "Hold LMB to charge for more damage."
+
+    slanted_balance:
+        name: "Slanted Balance"
+        input: "↓ + LMB"
+        keys: ["down", "lmb"]
+        protection: "FG"
+        cc: ["floating"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Earth-parting strike. Forward Guard. Floating on hits."
+        notes: "Pack grouping tool. Same as Prime: Slanted Balance pre-skill."
+
+    spirit_legacy:
+        name: "Spirit Legacy"
         input: "Hotbar Only"
         keys: ["hotbar"]
         protection: "FG"
         cc: ["stun"]
-        damage: low
+        damage: very_high
         cooldown_ms: 8000
-        description: "Forward Guard dark vortex with stun. PVP catch tool from hotbar."
-        flows_into: ["spirit_legacy", "unveiled_dagger"]
-        notes: "Hotbar skill. Stun allows follow-up burst on CC'd targets."
+        description: "Explosive frontal damage. Forward Guard."
+        notes: "Major burst skill from hotbar."
 
-# --------------------------------------------------------------------------
-# Rabam Skills (Skill Enhancement)
-# --------------------------------------------------------------------------
-rabam_skills:
-    shadow_strike_rabam:
+    pervasive_darkness:
+        name: "Pervasive Darkness"
+        input: "SPACE"
+        keys: ["space"]
+        protection: "FG"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Quick forward slash. Forward Guard. Stiffness."
+        notes: "Cleanup damage skill."
+
+    enforcement:
+        name: "Enforcement"
+        input: "↓ + RMB"
+        keys: ["down", "rmb"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Horizontal power slash. Stiffness on hits."
+        notes: "Finisher chain skill."
+
+    ravage_rake:
+        name: "Ravage Rake"
+        input: "LMB + RMB"
+        keys: ["lmb", "rmb"]
+        protection: "FG"
+        cc: ["spin"]
+        damage: high
+        cooldown_ms: 5000
+        description: "Wide slash. Forward Guard."
+        notes: "Main cleanup hit."
+
+    nocturne:
+        name: "Nocturne"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA/iframe"
+        cc: []
+        damage: medium
+        cooldown_ms: 10000
+        description: "Stealth reposition. SA at start, iframe when concealed."
+        notes: "Use RMB from Nocturne for reposition."
+
+    wrath_of_vedir:
+        name: "Wrath of Vedir"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        damage: low
+        cooldown_ms: 0
+        description: "Pull/utility skill for experienced players."
+        notes: "Better pull option for experienced DK players."
+
+    # ── Flow / Chain Skills ──────────────────────────────────
+
+    termination:
+        name: "Termination"
+        input: "Combo chain"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        damage: medium
+        cooldown_ms: 0
+        description: "Follow-up after Enforcement."
+        notes: "Chain from Enforcement."
+
+    rake_flow:
+        name: "Rake Flow"
+        input: "Combo chain"
+        keys: ["lmb", "rmb"]
+        protection: "FG"
+        cc: []
+        damage: medium
+        cooldown_ms: 0
+        description: "Flow continuation from Ravage Rake."
+        notes: "Finish survivors."
+
+    movement_followup:
+        name: "Movement Follow-up"
+        input: "A or W"
+        keys: ["a"]
+        protection: "none"
+        cc: []
+        damage: none
+        cooldown_ms: 0
+        description: "Micro-adjust positioning before the next skill."
+        notes: "Quick directional adjustment."
+
+    # ── Buff / Utility ───────────────────────────────────────
+
+    corrupt_ground:
+        name: "Corrupt Ground"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: []
+        damage: none
+        cooldown_ms: 24000
+        description: "Self-buff. Increases AP and attack speed."
+        notes: "Use before engaging."
+
+    # ── Movement Skills ──────────────────────────────────────
+
+    smoky_haze:
+        name: "Smoky Haze"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 3000
+        description: "Forward dash with Super Armor."
+        notes: "Movement chain tool."
+
+    twilight_dash:
+        name: "Twilight Dash"
+        input: "SHIFT + W"
+        keys: ["shift", "w"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 4000
+        description: "Forward dash. Super Armor."
+        notes: "Extra movement."
+
+    dusk:
+        name: "Dusk"
+        input: "SHIFT + → / SHIFT + ←"
+        keys: ["shift", "d"]
+        protection: "iframe"
+        cc: []
+        damage: none
+        cooldown_ms: 2000
+        description: "Lateral iframe dodge."
+        notes: "Primary iframe. 2s cooldown."
+
+    # ── Rabam Skills ─────────────────────────────────────────
+
+    shadow_strike:
         name: "Shadow Strike"
-        level: 56
-        input: "Shift + X"
+        input: "SHIFT + X"
         keys: ["shift", "x"]
         protection: "SA"
         cc: ["knockdown"]
         damage: medium
         cooldown_ms: 9000
-        description: "Ranged DPS skill. Cancellable. Preferred L56 Rabam."
-        notes: "Preferred over Wrath of Vedir. Cancellable and ranged with SA."
-
-    obsidian_blaze:
-        name: "Obsidian Blaze"
-        level: 57
-        input: "Shift + Z"
-        keys: ["shift", "z"]
-        protection: "SA"
-        cc: []
-        damage: medium
-        cooldown_ms: 10000
-        description: "Super Armor AOE burst. Preferred L57 Rabam for safe damage."
-        notes: "Preferred over Unveiled Fate due to Super Armor protection."
+        description: "Ranged DPS Rabam skill. Cancellable."
+        notes: "Level 56 Rabam."
 
     balanced_strike:
         name: "Balanced Strike"
-        level: 58
         input: "Hotbar Only"
         keys: ["hotbar"]
         protection: "SA"
         cc: ["float"]
         damage: medium
         cooldown_ms: 15000
-        description: "Extra Air Strike variant. Can cancel with Twilight Dash. Preferred L58 Rabam."
-        notes: "Preferred over Slanted Slash. Castable from succession stance."
-
-# --------------------------------------------------------------------------
-# Pre-Awakening Utility Skills (used in Succession play)
-# --------------------------------------------------------------------------
-preawakening_utility:
-    twilight_dash_utility:
-        name: "Twilight Dash (Chain)"
-        input: "Shift + W"
-        keys: ["shift", "w"]
-        protection: "SA"
-        cc: []
-        description: "Alternate directional dash for mobility. Super Armor. Chains with Space dash."
-        notes: "Use together with Space Twilight Dash for extended movement chains."
-
-    darkness_rise:
-        name: "Darkness Rise"
-        input: "Hotbar Only"
-        keys: ["hotbar"]
-        protection: "SA"
-        cc: []
-        description: "AOE dark energy burst. Self-heal on hit. Super Armor during cast."
-        notes: "Use for sustain in PVE. Hotbar recommended for easy access."
-
-    scarring_slash:
-        name: "Scarring Slash"
-        input: "F"
-        keys: ["f"]
-        protection: "none"
-        cc: ["knockdown"]
-        description: "Quick transition slash with knockdown CC. Unprotected but fast."
-        notes: "Emergency CC tool. Risky in PVP due to no protection."
-
-    evasion:
-        name: "Evasion"
-        input: "A/D + RMB"
-        keys: ["a", "rmb"]
-        keys_alt: ["d", "rmb"]
-        protection: "iframe"
-        cc: []
-        description: "Short iframe dodge. PVE iframe. Recommended locked in PVP."
-        notes: "Lock this skill to prevent accidental use messing up combos."
+        description: "Extra Air Strike variant."
+        notes: "Level 58 Rabam."
 
 # --------------------------------------------------------------------------
 # PVE Combos
 # --------------------------------------------------------------------------
+
 pve_combos:
-    basic_grind:
-        name: "Basic PVE Grind"
-        description: "Standard succession grinding rotation. Simple and effective for clearing packs."
-        difficulty: beginner
+    succession_main_dps:
+        name: "Succession Main DPS"
+        description: "Primary Succession DPS combo from the quick PvE guide."
+        difficulty: advanced
         combo_window_ms: 300
         steps:
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "Gap close to pack"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main damage"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Follow-up burst"
-            - skill: "unveiled_dagger"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "AOE clear"
             - skill: "air_strike"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "Heavy slam"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "Dash to next pack"
-
-    large_pack_clear:
-        name: "Large Pack Clear"
-        description: "Full burst rotation for large mob packs. Buff first, then unload."
-        difficulty: intermediate
-        combo_window_ms: 300
-        steps:
-            - skill: "corrupt_ground"
-              input: "Shift + E"
-              keys: ["shift", "e"]
-              note: "AP buff before engaging"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "Gap close into pack"
-            - skill: "wheel_of_fortune"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "AOE knockdown, group mobs"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main burst"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Follow-up burst"
-            - skill: "unveiled_dagger"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "AOE multi-hit"
-            - skill: "air_strike"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "Heavy slam finisher"
-            - skill: "seed_of_catastrophe"
-              input: "S + F"
-              keys: ["s", "f"]
-              note: "Clean up remaining mobs"
-
-    speed_clear:
-        name: "Speed Clear (Easy Spots)"
-        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
-        difficulty: beginner
-        combo_window_ms: 250
-        steps:
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "Dash into pack"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "One-shot burst"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Follow-up"
-            - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "iFrame movement to next pack"
-
-    endgame_grind:
-        name: "Endgame Grind Rotation"
-        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
-        difficulty: advanced
-        combo_window_ms: 250
-        steps:
-            - skill: "corrupt_ground"
-              input: "Shift + E"
-              keys: ["shift", "e"]
-              note: "Buff up"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "Engage"
-            - skill: "wheel_of_fortune"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "AOE opener"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main burst"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Follow-up burst"
-            - skill: "unveiled_dagger"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "AOE damage"
-            - skill: "air_strike"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "Heavy slam"
-            - skill: "seed_of_catastrophe"
-              input: "S + F"
-              keys: ["s", "f"]
-              note: "FG burst filler"
-            - skill: "shadow_strike_rabam"
-              input: "Shift + X"
-              keys: ["shift", "x"]
-              note: "Rabam SA filler"
-            - skill: "obsidian_blaze"
-              input: "Shift + Z"
-              keys: ["shift", "z"]
-              note: "Rabam AOE"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "Reposition to next pack"
-
-# --------------------------------------------------------------------------
-# PVP Combos
-# --------------------------------------------------------------------------
-pvp_combos:
-    protected_engage:
-        name: "Protected Engage"
-        description: >
-            Safe engage using Super Armor and Forward Guard skills.
-            Approach with protection, then look for a CC opening.
-        difficulty: intermediate
-        combo_window_ms: 200
-        steps:
-            - skill: "corrupt_ground"
-              input: "Shift + E"
-              keys: ["shift", "e"]
-              note: "Buff before going in"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "SA gap close"
-            - skill: "pervasive_darkness"
-              input: "W + LMB"
-              keys: ["w", "lmb"]
-              note: "FG stiffness poke"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "SA main damage"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "SA follow-up"
-            - skill: "unveiled_dagger"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "SA finisher"
-
-    catch_combo:
-        name: "Catch / CC Chain"
-        description: >
-            Use Forward Guard skills to fish for a stiffness or bound,
-            then chain into full burst damage while target is CC'd.
-        difficulty: advanced
-        combo_window_ms: 180
-        steps:
-            - skill: "pervasive_darkness"
-              input: "W + LMB"
-              keys: ["w", "lmb"]
-              note: "FG stiffness — catch the target"
+              note: "Engage the pack."
+            - skill: "furia_di_vedir"
+              note: "Move into the pull."
+            - skill: "slanted_balance"
+              note: "Group mobs before the back-attack section."
             - skill: "kamasylvia_slash"
-              input: "S + LMB"
-              keys: ["s", "lmb"]
-              note: "FG stiffness on CC'd target"
-            - skill: "air_strike"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "SA float follow-up"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main burst"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Follow-up burst"
+              note: "Use with Dusk to get behind mobs."
             - skill: "unveiled_dagger"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "Finisher"
-
-    iframe_engage:
-        name: "iFrame Engage"
-        description: >
-            Aggressive approach using Twilight Dash iframe to close safely.
-            Transition into burst damage after dodging enemy skills.
-        difficulty: advanced
-        combo_window_ms: 200
-        steps:
-            - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "iFrame through enemy skills"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "SA dash to close remaining distance"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "SA burst on arrival"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Follow-up burst"
-            - skill: "air_strike"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "SA float"
-            - skill: "unveiled_dagger"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "SA finisher"
-
-    quick_burst:
-        name: "Quick Burst (1v1)"
-        description: >
-            Fast burst combo for duels. Deals high damage quickly
-            while staying in protected skills. No CC setup needed.
-        difficulty: intermediate
-        combo_window_ms: 200
-        steps:
+              note: "Bridge into the main damage chain."
             - skill: "wheel_of_fortune"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "SA AOE opener"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "SA burst"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Follow-up"
-            - skill: "air_strike"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "SA heavy slam"
-
-    grab_punish:
-        name: "Grab Punish (After Ally Grabs)"
-        description: >
-            No-grab class alternative. When an ally lands a grab or
-            the target is CC'd, DK dumps maximum damage with SA skills
-            while the enemy cannot retaliate.
-        difficulty: beginner
-        combo_window_ms: 250
-        steps:
-            - skill: "air_strike"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "SA float on CC'd target"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main burst"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Follow-up burst"
-            - skill: "unveiled_dagger"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "SA finisher"
-
-    kite_disengage:
-        name: "Kite / Disengage"
-        description: >
-            Escape combo when pressured. Use iframe and SA movement
-            to create distance. DK has strong mobility for disengaging.
-        difficulty: intermediate
-        combo_window_ms: 250
-        steps:
-            - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "iFrame out of danger"
+              note: "Main burst spin."
             - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "SA dash to create distance"
-            - skill: "shadow_strike_rabam"
-              input: "Shift + X"
-              keys: ["shift", "x"]
-              note: "SA ranged damage while retreating"
-            - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "Chain iframes if still pressured"
+              note: "Follow-up damage."
+            - skill: "nocturne"
+              note: "Use RMB from Nocturne for reposition."
+            - skill: "movement_followup"
+              note: "Micro-adjust before Legacy."
+            - skill: "spirit_legacy"
+              note: "Major frontal burst."
+            - skill: "pervasive_darkness"
+              note: "Continue damage after Legacy."
+            - skill: "enforcement"
+              note: "Begin finisher pair."
+            - skill: "termination"
+              note: "Follow Enforcement."
+            - skill: "ravage_rake"
+              note: "Main cleanup hit."
+            - skill: "rake_flow"
+              note: "Finish survivors."
 
-    large_scale_siege:
-        name: "Large Scale / Siege"
-        description: >
-            Node war and siege combo. Focus on protected AOE damage
-            from mid-range. Stay with your group and use SA skills.
-        difficulty: advanced
-        combo_window_ms: 250
+    succession_main_fillers:
+        name: "Succession Main Fillers"
+        description: "Primary filler skills listed in the Succession quick PvE guide."
+        difficulty: intermediate
+        combo_window_ms: 300
         steps:
+            - skill: "ravage_rake"
+              note: "Reliable filler damage."
+            - skill: "pervasive_darkness"
+              note: "Strong filler and cleanup."
+            - skill: "wrath_of_vedir"
+              note: "Useful filler, especially for experienced pulling."
             - skill: "corrupt_ground"
-              input: "Shift + E"
-              keys: ["shift", "e"]
-              note: "Buff before engaging blob"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "SA engage into group"
-            - skill: "hidden_strike"
-              input: "Hotbar"
-              keys: ["hotbar"]
-              note: "SA charge into enemies"
-            - skill: "wheel_of_fortune"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "SA AOE knockdown"
-            - skill: "spirit_legacy"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "SA main damage"
-            - skill: "flow_spirit_slash"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "SA follow-up"
-            - skill: "unveiled_dagger"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "SA burst"
-            - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "iFrame reposition to safety"
+              note: "Additional filler damage."
+            - skill: "prime_obsidian_ashes"
+              note: "Good filler and utility."
+            - skill: "kamasylvia_slash"
+              note: "Optional but recommended for PvE."
 
-# --------------------------------------------------------------------------
-# Movement Combos
-# --------------------------------------------------------------------------
-movement_combos:
-    fast_travel:
-        name: "Fast Travel / Mobility Chain"
-        description: "Chain movement skills for fastest traversal between packs."
+    succession_pulling_skills:
+        name: "Succession Pulling Skills"
+        description: "Skills listed for pulling mobs in Succession."
         difficulty: beginner
         combo_window_ms: 300
         steps:
-            - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "iFrame forward dash"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "SA forward dash"
-            - skill: "shadow_strike_rabam"
-              input: "Shift + X"
-              keys: ["shift", "x"]
-              note: "Movement filler"
-            - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "Dash again if off cooldown"
+            - skill: "slanted_balance"
+              note: "Main pack grouping tool."
+            - skill: "prime_obsidian_ashes"
+              note: "Useful ranged pull."
+            - skill: "shadow_strike"
+              note: "Recommended level 56 Rabam for newcomers."
+            - skill: "wrath_of_vedir"
+              note: "Better pull option for experienced DK players."
 
-    succession_movement:
-        name: "Succession Movement Guide"
+movement_combos:
+    succession_pack_to_pack_movement:
+        name: "Succession Pack to Pack Movement"
         description: >
-            Movement chain for DK succession. Cycle between Twilight Dash,
-            Lunacy of Vedir, and Rabam dashes for maximum traversal speed.
-        difficulty: intermediate
+            Pack-to-pack movement route from the Succession quick PvE guide.
+            Assess distance and skip early movement tools if Air Strike alone is enough.
+        difficulty: beginner
         combo_window_ms: 250
         steps:
+            - skill: "unveiled_dagger"
+              note: "Starter movement slash toward the next pack."
+            - skill: "smoky_haze"
+              note: "Follow-up dash."
             - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "iFrame forward dash"
-            - skill: "lunacy_of_vedir"
-              input: "W + F"
-              keys: ["w", "f"]
-              note: "SA forward dash"
-            - skill: "shadow_strike_rabam"
-              input: "Shift + X"
-              keys: ["shift", "x"]
-              note: "SA ranged movement"
-            - skill: "twilight_dash"
-              input: "Space"
-              keys: ["space"]
-              note: "If off cooldown"
-            - skill: "wheel_of_fortune"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "SA forward rush filler"
+              note: "Extra pre-awakening movement if the next pack is far."
+            - skill: "air_strike"
+              note: "Main engage; ties directly into the Succession combo."
+            - skill: "dusk"
+              note: "Use only if you still need adjustment."
+            - skill: "balanced_strike"
+              note: "Alternative extra movement tool."
 
-# --------------------------------------------------------------------------
-# Recommended Skill Add-ons (PVE)
-# --------------------------------------------------------------------------
 skill_addons:
     pve:
-        - skill: "Corrupt Ground"
-          addon_1: "All Accuracy Rate +4% for 7 sec"
-          addon_2: "All Evasion Rate -4% for 10 sec for target"
-        - skill: "Spirit Legacy"
-          addon_1: "Extra AP Against Monsters +30 for 7 sec"
-          addon_2: "Attack/Casting Speed +10% for 7 sec"
-        - skill: "Unveiled Dagger"
-          addon_1: "Extra AP Against Monsters +20 for 7 sec"
-          addon_2: "Critical Hit Damage +3% for 5 sec"
-        - skill: "Seed of Catastrophe"
-          addon_1: "Back Attack Damage +3% for 5 sec"
-          addon_2: "Critical Hit Damage +3% for 5 sec"
-        - skill: "Wheel of Fortune"
-          addon_1: "Extra AP Against Monsters +20 for 7 sec"
-          addon_2: "All DP -15 for 10 sec for target"
         - skill: "Air Strike"
-          addon_1: "All DP +15 for 7 sec"
+          addon_1: "Extra AP Against Monsters +20 for 7 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+
+        - skill: "Wheel of Fortune"
+          addon_1: "Critical Hit Rate +30% for 7 sec"
+          addon_2: "Extra AP Against Monsters +20 for 7 sec"
+
+        - skill: "Spirit Legacy"
+          addon_1: "All DP -15 for 10 sec for target"
           addon_2: "Critical Hit Rate +20% for 7 sec"
 
-# --------------------------------------------------------------------------
-# Recommended Skills to Lock
-# --------------------------------------------------------------------------
+        - skill: "Pervasive Darkness"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
+
+        - skill: "Ravage Rake"
+          addon_1: "Extra AP Against Monsters +30 for 7 sec"
+          addon_2: "Critical Hit Rate +30% for 7 sec"
+
+        - skill: "Twilight Dash"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Attack/Casting Speed +7% for 7 sec"
+
 locked_skills:
     - name: "Evasion"
-      reason: "Prevents accidental use that messes up combos in PVP."
-    - name: "Spirit Satiation"
-      reason: "Unprotected, slows down succession rotation."
-    - name: "Sudden Attack"
-      reason: "Unprotected, can trigger accidentally during combos."
-    - name: "Spirit Hunt"
-      reason: "Awakening skill, not available in succession spec."
-    - name: "Shattering Darkness"
-      reason: "Awakening skill, not available in succession spec."
-    - name: "Cluster of Despair"
-      reason: "Awakening skill, not available in succession spec."
-    - name: "Touch of Exploitation"
-      reason: "Awakening skill, not available in succession spec."
+      reason: "Recommended lock to avoid accidental use breaking movement and combo flow."
+    - name: "Shadow Bullet"
+      reason: "Use only with intent during stance swaps and movement chains."
+    - name: "Smoky Haze"
+      reason: "Optional lock from skill bar if you prefer controlled hotbar use only."
     - name: "Nocturne"
-      reason: "Awakening skill, not available in succession spec."
+      reason: "Keep on hotbar for deliberate use rather than accidental activation."
 
-# --------------------------------------------------------------------------
-# Recommended Hotbar Setup
-# --------------------------------------------------------------------------
 hotbar_skills:
-    - "Hidden Strike"
-    - "Dark Nebula"
-    - "Corrupt Ground"
+    - "Wheel of Fortune"
     - "Balanced Strike"
     - "Shadow Strike"
-    - "Obsidian Blaze"
-    - "Darkness Rise"
-    - "Seed of Catastrophe"
+    - "Wrath of Vedir"
+    - "Nocturne"
+    - "Kamasylvia Slash"
 
-# --------------------------------------------------------------------------
-# Core Skill Recommendation
-# --------------------------------------------------------------------------
 core_skill:
-    recommended: "Spirit Legacy"
-    effect: "Extra hits and increased damage"
+    recommended: "Wheel of Fortune"
+    effect: "Super Armor during the skill"
     reason: >
-        Spirit Legacy with Core gains extra hits and significantly
-        increased damage, making it the strongest succession burst tool.
-        Alternatively, Unveiled Dagger Core adds Bound on last hit for
-        combo extensions in PVP. Most DK succession players choose
-        Spirit Legacy Core first, then experiment with Seed of Catastrophe
-        or Air Strike Cores after.
+        The Succession quick PvE guide does not explicitly name a Succession Core
+        in the text, so this should be treated as a practical placeholder rather
+        than a verified guide recommendation.

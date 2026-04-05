@@ -41,6 +41,7 @@ logger = logging.getLogger("bdo_trainer")
 # Imports (after path setup)
 # ---------------------------------------------------------------------------
 from src.combo_loader import ComboLoader
+from src.editor import EditorWindow
 from src.overlay import ComboOverlay
 from src.settings_gui import SettingsWindow
 from src.tray import TRAY_AVAILABLE, TrayManager
@@ -54,6 +55,12 @@ try:
     _hotkeys_available = True
 except ImportError:
     logger.warning("keyboard library not installed — global hotkeys disabled")
+except Exception as exc:
+    # On macOS/Linux the keyboard library may raise OSError or other
+    # exceptions when it lacks root privileges or Accessibility permissions.
+    logger.warning(
+        f"keyboard library failed to initialise — global hotkeys disabled: {exc}"
+    )
 
 
 # ===========================================================================
@@ -100,6 +107,7 @@ class BDOTrainerApp:
                 on_reposition_toggle=self._on_reposition_toggle,
                 on_setup_guide_toggle=self._on_setup_guide_toggle,
                 on_settings=self._on_settings,
+                on_editor=self._on_editor,
             )
         else:
             logger.warning("Tray icon unavailable — install pystray + Pillow")
@@ -231,6 +239,29 @@ class BDOTrainerApp:
         self._setup_hotkeys()
 
         logger.info("Live-reloaded settings from GUI")
+
+    def _on_editor(self):
+        """Called when user clicks Class & Combo Editor in the tray."""
+        self.overlay.schedule(self._open_editor)
+
+    def _open_editor(self):
+        """Open the editor window (must run on the Tk thread)."""
+        EditorWindow.open(
+            self.overlay.root,
+            self.loader,
+            on_save=self._on_editor_saved,
+        )
+
+    def _on_editor_saved(self):
+        """Called (on Tk thread) after the editor saves changes."""
+        # Reload class configs and update the tray menu
+        self.loader.reload()
+        self.combo_list = self.loader.get_combo_list()
+
+        if self.tray:
+            self.tray.refresh_menu(self.loader.get_class_tree())
+
+        logger.info("Reloaded class configs after editor save")
 
     def _hotkey_next_page(self):
         """Advance the setup-guide page (F7) when guide is showing."""

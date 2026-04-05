@@ -11,7 +11,7 @@ import yaml
 logger = logging.getLogger("bdo_trainer")
 
 COMBO_CATEGORIES = ["pve_combos", "pvp_combos", "movement_combos"]
-SKILL_SECTIONS = ["awakening_skills", "rabam_skills", "preawakening_utility"]
+SKILL_SECTIONS = ["skills", "awakening_skills", "rabam_skills", "preawakening_utility"]
 
 # Maps BDO game-client key-binding names → canonical key names used in
 # combo step `keys:` arrays.
@@ -308,3 +308,64 @@ class ComboLoader:
                 class_name, spec_name, "skill_addons", {}
             ),
         }
+
+    # ------------------------------------------------------------------
+    # Class config CRUD (used by the Editor GUI)
+    # ------------------------------------------------------------------
+    def get_class_config(
+        self, class_name: str, spec_name: str
+    ) -> Optional[Dict[str, Any]]:
+        """Return the raw config dict for a class/spec, or None."""
+        return self.class_configs.get((class_name, spec_name))
+
+    def save_class_config(
+        self, class_name: str, spec_name: str, data: Dict[str, Any]
+    ) -> Path:
+        """Write *data* to a YAML file for *class_name/spec_name* and update
+        the in-memory cache.  Returns the file path written."""
+        data["class"] = class_name
+        data["spec"] = spec_name
+
+        filename = f"{class_name}_{spec_name}".lower().replace(" ", "_") + ".yaml"
+        filepath = self.classes_dir / filename
+
+        header = (
+            f"# {class_name} \u2014 {spec_name}\n"
+            f"# Generated / updated by BDO Trainer Editor\n\n"
+        )
+
+        self.classes_dir.mkdir(parents=True, exist_ok=True)
+        with open(filepath, "w", encoding="utf-8") as fh:
+            fh.write(header)
+            yaml.dump(
+                data,
+                fh,
+                default_flow_style=False,
+                allow_unicode=True,
+                sort_keys=False,
+                width=120,
+            )
+
+        self.class_configs[(class_name, spec_name)] = data
+        logger.info(f"Saved class config: {class_name}/{spec_name} → {filepath.name}")
+        return filepath
+
+    def delete_class_config(self, class_name: str, spec_name: str) -> bool:
+        """Delete the YAML file for a class/spec and remove from cache.
+        Returns True on success."""
+        if (class_name, spec_name) not in self.class_configs:
+            return False
+
+        filename = f"{class_name}_{spec_name}".lower().replace(" ", "_") + ".yaml"
+        filepath = self.classes_dir / filename
+
+        try:
+            if filepath.exists():
+                filepath.unlink()
+        except OSError as exc:
+            logger.error(f"Failed to delete {filepath}: {exc}")
+            return False
+
+        del self.class_configs[(class_name, spec_name)]
+        logger.info(f"Deleted class config: {class_name}/{spec_name}")
+        return True

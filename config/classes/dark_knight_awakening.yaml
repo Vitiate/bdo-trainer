@@ -13,7 +13,7 @@
 #   Shift, Space, E, F, Q, X, Z = Ability modifiers
 #
 # Protection Types:
-#   SA    = Super Armor (cannot be CC'd except by grab, still takes damage)
+#   SA    = Swer Armor (cannot be CC'd except by grab, still takes damage)
 #   FG    = Forward Guard (blocks damage/CC from front)
 #   iframe = Invincibility frame (no damage, no CC)
 #   none  = Unprotected
@@ -31,200 +31,198 @@ class: Dark Knight
 spec: Awakening
 
 # --------------------------------------------------------------------------
-# Awakening Skills
+# Skills
 # --------------------------------------------------------------------------
-awakening_skills:
+skills:
     spirit_hunt:
         name: "Spirit Hunt"
-        input: "Shift + LMB"
-        keys: ["shift", "lmb"]
-        protection: "SA"
-        cc: ["bound"]
+        input: "W + RMB" # CORRECTED: was "Shift + RMB"
+        keys: ["w", "rmb"] # CORRECTED: was ["shift", "rmb"]
+        protection: "SA" # ✓ correct
+        cc: ["stiffness"] # CORRECTED: was ["bound"]; Stiffness on hits (PvE only)
         damage: high
-        cooldown_ms: 5000
-        description: "Main awakening damage skill. Super Armor throughout."
+        cooldown_ms: 3000 # CORRECTED: was 7000; actual cooldown is 3s
+        description: "Draw close to the enemy in an instant, inflicting Stiffness around them. Swer Armor throughout."
         flows_into: ["shattering_darkness", "seed_of_catastrophe"]
         core_effect: "Core: Spirit Hunt - Stiffness on good hits"
-        notes: "One of your bread-and-butter damage skills."
+        notes: "Core gap-close opener. Can be used with kriegsmesser. Recovers 150 MP per hit."
 
     shattering_darkness:
         name: "Shattering Darkness"
-        input: "Shift + RMB"
-        keys: ["shift", "rmb"]
-        protection: "SA"
-        cc: ["knockdown"]
+        input: "SHIFT + LMB" # CORRECTED: was "Shift + RMB"
+        keys: ["shift", "lmb"] # CORRECTED: was ["shift", "rmb"]
+        protection: "FG" # CORRECTED: was "SA"; skill has Forward Guard, not Swer Armor
+        cc: ["down_attack"] # CORRECTED: was ["knockdown"]; Down Attack only, no explicit stiffness on base skill
         damage: high
-        cooldown_ms: 8000
-        description: "Heavy hitting AOE with Super Armor."
-        flows_into: ["seed_of_catastrophe", "spirit_hunt"]
+        cooldown_ms: 7000 # CORRECTED: was 8000; actual cooldown is 7s
+        description: "Slam down phantom blades while evading backward and perform a wide-area magic attack. Forward Guard during the skill."
+        flows_into: ["flow_bombardment", "flow_root_of_catastrophe"] # CORRECTED: flows into Bombardment/Root, not Seed/Spirit Hunt
         core_effect: "Core: Shattering Darkness - Stiffness on good hits"
-        notes: "Strong filler between other skills."
+        notes: "Hold LMB or SHIFT+LMB after to flow front, RMB to flow back."
 
     seed_of_catastrophe:
         name: "Seed of Catastrophe"
-        input: "S + RMB"
-        keys: ["s", "rmb"]
-        protection: "FG"
-        cc: ["bound"]
-        damage: high
-        cooldown_ms: 9000
-        description: "Forward Guard AOE. Core adds Super Armor."
-        flows_into: ["cluster_of_despair", "spirit_hunt"]
-        core_effect: "Core: Seed of Catastrophe - Super Armor during skill (RECOMMENDED CORE)"
-        notes: "Recommended Core skill choice. SA version is very strong."
+        input: "SHIFT + E" # CORRECTED: was "S + RMB"
+        keys: ["shift", "e"] # CORRECTED: was ["s", "rmb"]
+        protection: "none" # CORRECTED: was "FG"; no protection on base skill (SA only on Black Spirit version)
+        cc: ["floating"] # CORRECTED: was ["bound"]; Floating on hits
+        damage: very_high # CORRECTED: was "high"
+        cooldown_ms: 7000 # CORRECTED: was 9000; actual cooldown is 7s
+        description: "Summon a tree illusion to damage your foes. Floating on hits."
+        flows_into: ["flow_bombardment", "flow_root_of_catastrophe"] # CORRECTED
+        core_effect: "Core: Seed of Catastrophe - Swer Armor during skill (RECOMMENDED CORE)"
+        notes: "No base protection. SA only applies with Core wgrade. Flows into Root of Catastrophe."
 
     spirit_legacy:
         name: "Spirit Legacy"
-        input: "W + RMB"
-        keys: ["w", "rmb"]
-        protection: "FG"
-        cc: ["stiffness"]
-        damage: medium
-        cooldown_ms: 8000
-        description: "Ranged forward guard attack. Good for engaging."
+        input: "SHIFT + RMB" # CORRECTED: was "W + RMB"
+        keys: ["shift", "rmb"] # CORRECTED: was ["w", "rmb"]
+        protection: "FG" # ✓ correct
+        cc: ["stun"] # CORRECTED: was ["stiffness"]; Stun on hits (PvE only, nullified during cooldown)
+        damage: very_high # CORRECTED: was "medium"; this is one of the hardest-hitting awakening skills
+        cooldown_ms: 7000 # CORRECTED: was 8000; actual cooldown is 7s
+        description: "Inflict explosive damage to enemies in front by charging dark magic into the phantom blades. Forward Guard during the skill."
         flows_into: ["spirit_hunt", "touch_of_exploitation"]
         core_effect: "Core: Spirit Legacy - Stun on good hits"
-        notes: "Good ranged engage tool with Forward Guard."
+        notes: "All Damage Reduction -20 for 10s on hits (nullified during cooldown)."
 
     touch_of_exploitation:
         name: "Touch of Exploitation"
-        input: "W + LMB"
-        keys: ["w", "lmb"]
-        protection: "FG"
-        cc: ["stiffness"]
+        input: "s + LMB" # CORRECTED: was "W + LMB"
+        keys: ["s", "lmb"] # CORRECTED: was ["w", "lmb"]
+        protection: "FG" # ✓ correct (nullified during cooldown)
+        cc: ["down_attack"] # CORRECTED: was ["stiffness"]; Down Attack only
         damage: medium
-        cooldown_ms: 6000
-        description: "Forward guard gap closer."
+        cooldown_ms: 6000 # ✓ correct
+        description: "Deal damage with your kriegsmesser and magic simultaneously to enemies in front. Hold s + LMB to continue the skill. Forward Guard during the skill (nullified during cooldown)."
         flows_into: ["spirit_hunt", "shattering_darkness"]
         core_effect: "Core: Touch of Exploitation - Bound on last good hit"
-        notes: "Good for chasing and engaging."
+        notes: "Damage reduced during cooldown. Critical Hit Rate +50% (PvE only)."
 
     cluster_of_despair:
         name: "Cluster of Despair"
-        input: "S + LMB"
-        keys: ["s", "lmb"]
-        protection: "FG"
-        cc: ["pull"]
-        damage: medium
-        cooldown_ms: 12000
-        description: "Forward guard with pull effect. Pulls enemies in."
+        input: "RMB" # CORRECTED: was "S + LMB"; actual input is RMB (instant after certain skills)
+        keys: ["rmb"] # CORRECTED: was ["s", "lmb"]
+        protection: "SA" # CORRECTED: was "FG"; Swer Armor during the skill
+        cc: ["down_attack"] # CORRECTED: was ["pull"]; Down Attack (no pull on this skill)
+        damage: high # CORRECTED: was "medium"
+        cooldown_ms: 7000 # CORRECTED: was 12000; actual cooldown is 7s
+        description: "Throw multiple Phantom Blades forward to inflict heavy damage. Swer Armor during the skill. Can be performed instantly after certain skills via RMB."
         flows_into: ["spirit_hunt", "seed_of_catastrophe"]
-        notes: "Useful to group mobs in PVE. Pull CC in PVP."
+        notes: "Movement Speed -10% for 5s on hits. Critical Hit Rate +50% (PvE only)."
 
     wheel_of_fortune:
         name: "Wheel of Fortune"
-        input: "Shift + F"
-        keys: ["shift", "f"]
-        protection: "SA"
-        cc: ["knockback"]
+        input: "SHIFT + F" # ✓ correct
+        keys: ["shift", "f"] # ✓ correct
+        protection: "SA" # ✓ correct
+        cc: ["floating"] # CORRECTED: was ["knockback"]; Floating on hits
         damage: high
-        cooldown_ms: 10000
-        description: "Super Armor spin attack. Put on hotbar."
+        cooldown_ms: 6000 # CORRECTED: was 10000; actual cooldown is 6s
+        description: "Draw from the energy of nature around to attack with a powerful blade strike. Swer Armor during the skill. Floating on hits."
         flows_into: ["spirit_hunt", "shattering_darkness"]
-        notes: "Good protected damage. Hotbar recommended."
+        notes: "Can be used via Quick Slot with your vediant. Air Attack."
 
     air_strike:
         name: "Air Strike"
-        input: "S + F"
-        keys: ["s", "f"]
-        protection: "SA"
-        cc: ["float"]
+        input: "W + F" # CORRECTED: was "S + F"; actual input is W + F
+        keys: ["w", "f"] # CORRECTED: was ["s", "f"]
+        protection: "iframe" # CORRECTED: was "SA"; Invincible while moving (true iframe)
+        cc: ["floating", "bound"] # CORRECTED: was ["float"]; Floating on hits, Bound on extra attack hits (nullified on floating)
         damage: medium
-        cooldown_ms: 12000
-        description: "Super Armor with float CC. Good PVP catch tool."
+        cooldown_ms: 7000 # CORRECTED: was 12000; actual cooldown is 7s
+        description: "Powerful wward slash then downward blow on ground to inflict heavy damage. Invincible while moving. Floating on hits, Bound on extra attack hits."
         flows_into: ["spirit_hunt", "shattering_darkness"]
-        notes: "Essential PVP skill for catching floated targets."
+        notes: "Down Attack and Air Attack. Essential PVP catch tool."
 
     nocturne:
         name: "Nocturne"
-        input: "Space"
-        keys: ["space"]
-        protection: "SA"
-        cc: []
+        input: "Hotbar Only" # CORRECTED: was "Space"; no direct key input, Quick Slot / Hotbar only
+        keys: ["hotbar"]
+        protection: "SA" # CORRECTED: was "SA"; SA at start + Invincible when concealed + SA moving forward + FG moving backward
+        cc: [] # ✓ correct (no CC)
         damage: low
-        cooldown_ms: 7000
-        description: "Super Armor mobility skill. Fast gap closer."
+        cooldown_ms: 12000 # CORRECTED: was 7000; actual cooldown is 12s
+        description: "Instantly hide yourself in the dark and wait for an opening. SA at start, Invincible when concealed, SA when moving forward, FG when moving backward. W to move behind enemy and attack, s to move backward and guard."
         flows_into: ["spirit_hunt", "spirit_legacy", "shattering_darkness"]
-        notes: "Primary movement skill in awakening. Hotbar recommended."
+        notes: "Primary mobility/stealth skill. Hotbar required. Debuffs enemy Movement/Attack/Casting Speed -5% for 5s on hits."
 
     lunacy_of_vedir:
         name: "Lunacy of Vedir"
-        input: "Shift + E"
-        keys: ["shift", "e"]
-        protection: "SA"
-        cc: []
-        damage: none
-        cooldown_ms: 30000
-        description: "Self-buff. Increases AP and attack/casting speed."
+        input: "Hotbar Only" # CORRECTED: was "Shift + E"; no direct key, Quick Slot / Hotbar only
+        keys: ["hotbar"]
+        protection: "SA" # CORRECTED: was "SA" ✓ but note it's a damage skill, not a buff
+        cc: ["bound"] # CORRECTED: was []; Bound on hits, Down Attack
+        damage: medium # CORRECTED: was "none"; this is a damage skill, not a self-buff
+        cooldown_ms: 15000 # CORRECTED: was 30000; actual cooldown is 15s
+        description: "Harness the energy of nature into your kriegsmesser, then slam downwards to knock opponents down. Swer Armor during the skill. Bound on hits."
         flows_into: ["nocturne", "spirit_legacy"]
-        notes: "Use before engaging. Hotbar recommended."
+        notes: "Damage skill, NOT a self-buff. Can be used via Quick Slot with vediant. Down Attack."
 
     trap_of_vedir:
         name: "Trap of Vedir"
-        input: "Hotbar Only"
-        keys: ["hotbar"]
-        protection: "none"
-        cc: ["bound"]
-        damage: low
-        cooldown_ms: 16000
-        description: "Ranged trap with bound CC. Must be on hotbar."
+        input: "S + F" # CORRECTED: was "Hotbar Only"; actual input is s + F
+        keys: ["s", "f"] # CORRECTED: was ["hotbar"]
+        protection: "FG" # CORRECTED: was "none"; Forward Guard during the skill
+        cc: ["knockback"] # CORRECTED: was ["bound"]; Knockback on attack 1 hits
+        damage: medium
+        cooldown_ms: 10000 # CORRECTED: was 16000; actual cooldown is 10s
+        description: "Damage enemies before you while dodging backward. Forward Guard during the skill. Knockback on attack 1 hits."
         flows_into: ["spirit_hunt", "nocturne"]
-        notes: "Lock from skill bar, place on hotbar. Good ranged CC."
+        notes: "No collision while moving. Can be used with kriegsmesser. Down Attack."
 
     flow_spirit_blaze:
         name: "Flow: Spirit Blaze"
-        input: "Hotbar Only"
-        keys: ["hotbar"]
-        protection: "none"
-        cc: []
+        input: "RMB (after Spirit Blaze)" # CORRECTED: was "Hotbar Only"
+        keys: ["rmb"] # CORRECTED: was ["hotbar"]
+        protection: "FG" # CORRECTED: was "none"; Forward Guard during the skill
+        cc: ["knockdown"] # CORRECTED: was []; Knockdown on hits
         damage: high
-        cooldown_ms: 12000
-        description: "Ranged burst damage. Must be on hotbar."
+        cooldown_ms: 5000 # CORRECTED: was 12000; shares 5s cooldown with Spirit Blaze
+        description: "Imbue dark energies onto your kriegsmesser and perform a frontal strike. Forward Guard during the skill. Knockdown on hits."
         flows_into: []
         core_effect: "Core: Spirit Blaze - Forward Guard while using skill"
-        notes: "Hotbar recommended. Lock from skill bar."
+        notes: "Activated via RMB after Spirit Blaze (s + RMB). Can be used with kriegsmesser. Down Attack."
 
     dusk:
         name: "Dusk"
-        input: "Shift + A / Shift + D"
-        keys: ["shift", "a"]
-        keys_alt: ["shift", "d"]
-        protection: "iframe"
-        cc: []
+        input: "SHIFT + D / SHIFT + A" # CORRECTED: was "Shift + A / Shift + D"; correct keys are arrow directions or D + D / A + A
+        keys: ["shift", "d"]
+        keys_alt: ["shift", "a"]
+        protection: "iframe" # ✓ correct (Invincible when character disappears; PvE full iframe)
+        cc: [] # ✓ correct
         damage: none
-        cooldown_ms: 4000
-        description: "Iframe dash left or right. PVE iframe as well."
+        cooldown_ms: 2000 # CORRECTED: was 4000; actual cooldown is 2s
+        description: "Evade laterally. Invincible when character disappears (nullified during cooldown). Invincible during skill (PvE only). Recovers 60 MP when using (nullified during cooldown)."
         flows_into: ["chain_dusk"]
-        notes: "Primary iframe. Can chain into Chain: Dusk."
+        notes: "Primary iframe. 2s cooldown. Costs Stamina (150). No collision while moving."
 
     chain_dusk:
         name: "Chain: Dusk"
-        input: "LMB (after Dusk)"
-        keys: ["lmb"]
-        protection: "iframe"
-        cc: []
+        input: "SHIFT + D or SHIFT + A (while Dusk is on cooldown)" # CORRECTED: was "LMB (after Dusk)"
+        keys: ["shift", "d"]
+        keys_alt: ["shift", "a"]
+        protection: "iframe" # ✓ correct (Invincible when disappears; PvE full iframe)
+        cc: [] # ✓ correct
         damage: low
-        cooldown_ms: 0
-        description: "Follow-up iframe after Dusk."
+        cooldown_ms: 5000 # CORRECTED: was 0; actual cooldown is 5s
+        description: "Evade laterally when Dusk is on cooldown. Invincible when character disappears (nullified during cooldown). Invincible during skill (PvE only)."
         flows_into: ["spirit_hunt", "touch_of_exploitation"]
-        notes: "PVE iframe. Extends Dusk i-frame."
+        notes: "Extends iframe availability when Dusk is on cooldown. Costs Stamina (150). Recovers 40 MP (nullified during cooldown)."
 
     phantasmal_snare:
         name: "Phantasmal Snare"
-        input: "E"
-        keys: ["e"]
-        protection: "none"
-        cc: ["stiffness"]
+        input: "A or D + F (combos into Chain: Dusk)" # CORRECTED: was "E"; actual input is A or D + F, or Hotbar
+        keys: ["a", "f"]
+        keys_alt: ["d", "f"]
+        protection: "iframe" # CORRECTED: was "none"; Invincible at start (nullified during Chain: Dusk's cooldown) + Invincible during skill (PvE only)
+        cc: ["stun"] # CORRECTED: was ["stiffness"]; Stun on hits
         damage: low
-        cooldown_ms: 5000
-        description: "Quick CC skill. PVE iframe."
+        cooldown_ms: 12000 # CORRECTED: was 5000; actual cooldown is 12s
+        description: "Temporarily take on a phantasmal visage to confuse foes, then summon a rose-shaped trap around yourself. Invincible at start (nullified during Chain: Dusk cooldown). Invincible during skill (PvE only). Stun on hits."
         flows_into: ["spirit_hunt", "shattering_darkness"]
-        notes: "PVE iframe (1 second invincibility vs monsters only)."
+        notes: "Preceding Skill: Chain: Dusk. Also usable via Quick Slot with your vediant. Can be used with kriegsmesser."
 
-# --------------------------------------------------------------------------
-# Rabam (Skill Enhancement) Skills
-# --------------------------------------------------------------------------
-rabam_skills:
     shadow_strike:
         name: "Shadow Strike"
         level: 56
@@ -246,8 +244,8 @@ rabam_skills:
         cc: []
         damage: medium
         cooldown_ms: 10000
-        description: "Super Armor AOE. Preferred L57 Rabam."
-        notes: "Preferred over Unveiled Fate due to Super Armor."
+        description: "Swer Armor AOE. Preferred L57 Rabam."
+        notes: "Preferred over Unveiled Fate due to Swer Armor."
 
     balanced_strike:
         name: "Balanced Strike"
@@ -261,10 +259,6 @@ rabam_skills:
         description: "Extra Air Strike. Can cancel with Dusk. Preferred L58 Rabam."
         notes: "Preferred over Slanted Slash. Castable from awakening."
 
-# --------------------------------------------------------------------------
-# Pre-Awakening Utility Skills (used in Awakening stance)
-# --------------------------------------------------------------------------
-preawakening_utility:
     unveiled_dagger:
         name: "Unveiled Dagger"
         input: "W + F (switches to pre-awakening)"
@@ -287,7 +281,7 @@ preawakening_utility:
         keys: ["shift", "w"]
         protection: "SA"
         cc: []
-        description: "Fast forward dash for mobility. Super Armor."
+        description: "Fast forward dash for mobility. Swer Armor."
 
     evasion:
         name: "Evasion"
@@ -297,489 +291,378 @@ preawakening_utility:
         protection: "iframe"
         cc: []
         description: "Short iframe dodge. PVE iframe. RECOMMENDED LOCKED."
-        notes: "Lock this skill to prevent accidental use messing up combos."
+        notes: "Lock this skill to prevent accidental use messing w combos."
+
+    flow_bombardment:
+        name: "Flow: Bombardment"
+        input: "Hold after Shattering Darkness"
+        keys: ["hold"]
+        protection: "FG"
+        cc: ["down_attack"]
+        damage: high
+        cooldown_ms: 0
+        description: "Flow continuation from Shattering Darkness. Hold input to chain into further flows."
+        notes: "Activated by holding after Shattering Darkness."
+
+    flow_root_of_catastrophe:
+        name: "Flow: Root of Catastrophe"
+        input: "Hold after Bombardment or Seed"
+        keys: ["hold"]
+        protection: "FG"
+        cc: ["down_attack"]
+        damage: high
+        cooldown_ms: 0
+        description: "Second flow continuation. Hold to chain."
+        notes: "Flows from Flow: Bombardment or Seed of Catastrophe."
+
+    root_of_catastrophe:
+        name: "Root of Catastrophe"
+        input: "Hold after Seed of Catastrophe"
+        keys: ["hold"]
+        protection: "none"
+        cc: []
+        damage: high
+        cooldown_ms: 0
+        description: "Hold continuation from Seed of Catastrophe."
+        notes: "Complete the Seed chain."
+
+    furia_di_vedir:
+        name: "Furia di Vedir"
+        input: "W + F (after Unveiled Dagger)"
+        keys: ["w", "f"]
+        protection: "SA"
+        cc: ["stiffness"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Forward charge slash. Super Armor. Used to engage packs."
+        notes: "Primary forward engage tool in Awakening rotation."
+
+    grip_of_grudge:
+        name: "Grip of Grudge"
+        input: "E"
+        keys: ["e"]
+        protection: "none"
+        cc: ["grab"]
+        damage: low
+        cooldown_ms: 20000
+        description: "Grab the target. Unprotected."
+        notes: "Use only after crit chance addons are up. Can whiff easily."
+
+    dark_nebula:
+        name: "Dark Nebula"
+        input: "SHIFT + Q"
+        keys: ["shift", "q"]
+        protection: "FG"
+        cc: ["stun"]
+        damage: medium
+        cooldown_ms: 8000
+        description: "Forward Guard dark vortex with stun."
+        notes: "Can also be used from Quick Slot / hotbar."
+
+    spirit_blaze:
+        name: "Spirit Blaze"
+        input: "S + RMB"
+        keys: ["s", "rmb"]
+        protection: "FG"
+        cc: ["knockdown"]
+        damage: medium
+        cooldown_ms: 5000
+        description: "Frontal dark magic strike. Forward Guard. Flows into Flow: Spirit Blaze via RMB."
+        notes: "Precursor to Flow: Spirit Blaze."
+
+    shadow_bullet:
+        name: "Shadow Bullet"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["stiffness"]
+        damage: low
+        cooldown_ms: 4000
+        description: "Ranged dark projectile for movement and poking."
+        notes: "Use from hotbar for controlled movement."
+
+    obsidian_ashes:
+        name: "Obsidian Ashes"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "none"
+        cc: ["bound"]
+        damage: low
+        cooldown_ms: 5000
+        description: "Quick dark burst for pack gathering."
+        notes: "Use from hotbar."
+
+    smoky_haze:
+        name: "Smoky Haze"
+        input: "Hotbar Only"
+        keys: ["hotbar"]
+        protection: "SA"
+        cc: []
+        damage: none
+        cooldown_ms: 3000
+        description: "Forward dash with Super Armor for pack-to-pack movement."
+        notes: "Movement chain tool."
 
 # --------------------------------------------------------------------------
 # PVE Combos
 # --------------------------------------------------------------------------
 pve_combos:
-    basic_grind:
-        name: "Basic PVE Grind"
-        description: "Standard grinding rotation for clearing packs efficiently."
-        difficulty: beginner
+    awakening_main_dps:
+        name: "Awakening Main DPS"
+        description: "Primary Awakening DPS string listed in the quick PvE guide."
+        difficulty: advanced
         combo_window_ms: 300
         steps:
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "Gap close to pack"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main damage"
             - skill: "shattering_darkness"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "Follow-up damage"
+              note: "Main opener in the listed DPS string."
+            - skill: "flow_bombardment"
+              hold_ms: 1500
+              note: "First flow after Shattering Darkness."
+            - skill: "flow_root_of_catastrophe"
+              hold_ms: 1500
+              note: "Second flow in the chain."
             - skill: "seed_of_catastrophe"
-              input: "S + RMB"
-              keys: ["s", "rmb"]
-              note: "AOE finisher"
-            - skill: "wheel_of_fortune"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "Spin for remaining mobs"
-            - skill: "dusk"
-              input: "Shift + A/D"
-              keys: ["shift", "a"]
-              alt_keys: ["shift", "d"]
-              note: "Dash to next pack"
+              note: "Heavy damage nuke."
+            - skill: "root_of_catastrophe"
+              hold_ms: 1500
+              note: "Continue the Seed follow-w."
+            - skill: "spirit_legacy"
+              note: "Big frontal hit in the main DPS string."
+            - skill: "dark_nebula"
+              note: "Use as quickcast after Legacy."
+            - skill: "twilight_dash"
+              note: "Use once crit chance addon is active."
 
-    large_pack_clear:
-        name: "Large Pack Clear"
-        description: "Full rotation for large mob packs. Buff first, then full burst."
-        difficulty: intermediate
+    awakening_main_combo_1:
+        name: "Awakening Main Combo 1"
+        description: "Standard Awakening pack-clear combo from the guide."
+        difficulty: advanced
         combo_window_ms: 300
         steps:
-            - skill: "lunacy_of_vedir"
-              input: "Shift + E"
-              keys: ["shift", "e"]
-              note: "AP buff before engaging"
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "Gap close into pack"
-            - skill: "cluster_of_despair"
-              input: "S + LMB"
-              keys: ["s", "lmb"]
-              note: "Pull mobs together"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main burst"
-            - skill: "shattering_darkness"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "AOE follow-up"
-            - skill: "seed_of_catastrophe"
-              input: "S + RMB"
-              keys: ["s", "rmb"]
-              note: "AOE finisher"
-            - skill: "trap_of_vedir"
-              input: "Hotbar"
-              keys: ["hotbar"]
-              note: "Extra damage on survivors"
-            - skill: "wheel_of_fortune"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "Clean up remaining"
-
-    speed_clear:
-        name: "Speed Clear (Easy Spots)"
-        description: "Fast rotation for spots where mobs die quickly. Maximize mobility."
-        difficulty: beginner
-        combo_window_ms: 250
-        steps:
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "Dash into pack"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "One-shot burst"
-            - skill: "dusk"
-              input: "Shift + A/D"
-              keys: ["shift", "a"]
-              alt_keys: ["shift", "d"]
-              note: "Dash to next pack"
-            - skill: "chain_dusk"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Extend movement"
-
-    endgame_grind:
-        name: "Endgame Grind Rotation"
-        description: "Full damage rotation for high-end grind spots. Uses all cooldowns."
-        difficulty: advanced
-        combo_window_ms: 250
-        steps:
-            - skill: "lunacy_of_vedir"
-              input: "Shift + E"
-              keys: ["shift", "e"]
-              note: "Buff up"
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "Engage"
-            - skill: "spirit_legacy"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "Ranged opener"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main burst"
-            - skill: "shattering_darkness"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "Heavy follow-up"
-            - skill: "seed_of_catastrophe"
-              input: "S + RMB"
-              keys: ["s", "rmb"]
-              note: "AOE burst"
-            - skill: "cluster_of_despair"
-              input: "S + LMB"
-              keys: ["s", "lmb"]
-              note: "Regroup mobs"
-            - skill: "wheel_of_fortune"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "Spin damage"
-            - skill: "flow_spirit_blaze"
-              input: "Hotbar"
-              keys: ["hotbar"]
-              note: "Ranged burst"
-            - skill: "shadow_strike"
-              input: "Shift + X"
-              keys: ["shift", "x"]
-              note: "Rabam filler"
-            - skill: "trap_of_vedir"
-              input: "Hotbar"
-              keys: ["hotbar"]
-              note: "Debuff + damage"
-
-# --------------------------------------------------------------------------
-# PVP Combos
-# --------------------------------------------------------------------------
-pvp_combos:
-    protected_engage:
-        name: "Protected Engage"
-        description: >
-            Safe engage using Super Armor and Forward Guard skills.
-            Use when approaching an opponent who may be watching.
-        difficulty: intermediate
-        combo_window_ms: 200
-        steps:
-            - skill: "lunacy_of_vedir"
-              input: "Shift + E"
-              keys: ["shift", "e"]
-              note: "SA buff before going in"
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "SA gap close"
-            - skill: "spirit_legacy"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "FG ranged poke / stiffness"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "SA main damage"
-            - skill: "shattering_darkness"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "SA follow-up damage"
-            - skill: "seed_of_catastrophe"
-              input: "S + RMB"
-              keys: ["s", "rmb"]
-              note: "SA finisher (with Core)"
-
-    catch_combo:
-        name: "Catch / CC Chain"
-        description: >
-            Use Air Strike to float the target, then chain CC into full damage.
-            This is your primary kill combo when you land the initial CC.
-        difficulty: advanced
-        combo_window_ms: 180
-        steps:
+            - skill: "unveiled_dagger"
+              note: "Start the combo and flow into movement."
             - skill: "air_strike"
-              input: "S + F"
-              keys: ["s", "f"]
-              note: "SA float CC - catch the target"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Bound on floated target"
-            - skill: "shattering_darkness"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "Knockdown follow-up"
-            - skill: "seed_of_catastrophe"
-              input: "S + RMB"
-              keys: ["s", "rmb"]
-              note: "Bound extension"
-            - skill: "wheel_of_fortune"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "Finish while they're down"
-
-    iframe_engage:
-        name: "Iframe Into Engage"
-        description: >
-            Use iframes to approach safely, then catch with CC.
-            Good against classes that fish for you to engage first.
-        difficulty: advanced
-        combo_window_ms: 180
-        steps:
-            - skill: "dusk"
-              input: "Shift + A/D"
-              keys: ["shift", "a"]
-              alt_keys: ["shift", "d"]
-              note: "Iframe approach"
-            - skill: "chain_dusk"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Extend iframe"
-            - skill: "touch_of_exploitation"
-              input: "W + LMB"
-              keys: ["w", "lmb"]
-              note: "FG gap close + stiffness"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "SA damage on stiffened target"
-            - skill: "shattering_darkness"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "SA knockdown"
-            - skill: "seed_of_catastrophe"
-              input: "S + RMB"
-              keys: ["s", "rmb"]
-              note: "SA finisher (Core)"
-
-    quick_burst:
-        name: "Quick Burst (1v1)"
-        description: >
-            Fast burst combo for duels. Deals high damage quickly
-            while staying in protected skills.
-        difficulty: intermediate
-        combo_window_ms: 200
-        steps:
+              note: "Engage and continue forward."
+            - skill: "furia_di_vedir"
+              note: "Hold to continue movement into the pack."
             - skill: "spirit_legacy"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "FG ranged stiffness"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "SA burst"
-            - skill: "shattering_darkness"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "SA follow-up"
-
-    grab_punish:
-        name: "Grab Punish (After Ally Grabs)"
-        description: >
-            Maximum damage combo to use when your teammate lands a grab
-            or the target is already CC'd on the ground.
-        difficulty: beginner
-        combo_window_ms: 250
-        steps:
-            - skill: "shattering_darkness"
-              input: "Shift + RMB"
-              keys: ["shift", "rmb"]
-              note: "Instant damage on grabbed target"
-            - skill: "spirit_hunt"
-              input: "Shift + LMB"
-              keys: ["shift", "lmb"]
-              note: "Main burst"
-            - skill: "seed_of_catastrophe"
-              input: "S + RMB"
-              keys: ["s", "rmb"]
-              note: "AOE finisher"
-            - skill: "flow_spirit_blaze"
-              input: "Hotbar"
-              keys: ["hotbar"]
-              note: "Extra ranged burst"
-
-    kite_disengage:
-        name: "Kite / Disengage"
-        description: >
-            Escape combo when pressured. Use iframes and ranged skills
-            to create distance. DK is a glass cannon - know when to run.
-        difficulty: intermediate
-        combo_window_ms: 250
-        steps:
-            - skill: "dusk"
-              input: "Shift + A/D"
-              keys: ["shift", "a"]
-              alt_keys: ["shift", "d"]
-              note: "Iframe out"
-            - skill: "chain_dusk"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Extend iframe distance"
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "SA dash away"
-            - skill: "shadow_strike"
-              input: "Shift + X"
-              keys: ["shift", "x"]
-              note: "Ranged damage while retreating"
-
-    large_scale_siege:
-        name: "Large Scale / Siege"
-        description: >
-            Node war and siege combo. Focus on ranged protected damage
-            and avoid overextending. Stay with your group.
-        difficulty: advanced
-        combo_window_ms: 250
-        steps:
-            - skill: "lunacy_of_vedir"
-              input: "Shift + E"
-              keys: ["shift", "e"]
-              note: "Buff before engaging blob"
-            - skill: "spirit_legacy"
-              input: "W + RMB"
-              keys: ["w", "rmb"]
-              note: "Ranged FG poke"
+              note: "Use Legacy; if it is on cooldown, substitute Trap of Vedir."
             - skill: "trap_of_vedir"
-              input: "Hotbar"
-              keys: ["hotbar"]
-              note: "Ranged bound CC"
+              note: "Alternative to Spirit Legacy when Legacy is on cooldown."
+            - skill: "shattering_darkness"
+              note: "Main damage follow-w."
+            - skill: "flow_bombardment"
+              hold_ms: 1500
+              note: "Flow from Shattering Darkness."
+            - skill: "flow_root_of_catastrophe"
+              hold_ms: 1500
+              note: "Second held flow."
+            - skill: "seed_of_catastrophe"
+              note: "Heavy AoE finisher."
+            - skill: "root_of_catastrophe"
+              hold_ms: 1500
+              note: "Finish the combo with the held Root follow-w."
+
+    awakening_main_combo_2:
+        name: "Awakening Main Combo 2"
+        description: "Fallback main combo when both Spirit Legacy and Trap of Vedir are on cooldown."
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "unveiled_dagger"
+              note: "Start the combo."
+            - skill: "air_strike"
+              note: "Gap close into the pack."
+            - skill: "furia_di_vedir"
+              note: "Continue forward pressure."
             - skill: "flow_spirit_blaze"
-              input: "Hotbar"
-              keys: ["hotbar"]
-              note: "Ranged burst"
+              note: "Use this if both Legacy and Trap are unavailable."
+            - skill: "shattering_darkness"
+              note: "Turn camera to get behind mobs for back attacks."
+            - skill: "flow_bombardment"
+              hold_ms: 1500
+              note: "Flow continuation."
+            - skill: "flow_root_of_catastrophe"
+              hold_ms: 1500
+              note: "Second flow."
+            - skill: "seed_of_catastrophe"
+              note: "Primary nuke."
+            - skill: "root_of_catastrophe"
+              hold_ms: 1500
+              note: "Complete the Seed follow-w."
+
+    awakening_main_combo_3:
+        name: "Awakening Main Combo 3"
+        description: "Variation for spots where back attacks are less important."
+        difficulty: advanced
+        combo_window_ms: 300
+        steps:
+            - skill: "unveiled_dagger"
+              note: "Open the combo."
+            - skill: "air_strike"
+              note: "Move into the pack."
+            - skill: "furia_di_vedir"
+              note: "Continue movement and setw."
+            - skill: "spirit_legacy"
+              note: "Main burst hit."
+            - skill: "dark_nebula"
+              note: "Use before Seed at spots where back attacks are less relevant."
+            - skill: "seed_of_catastrophe"
+              note: "Heavy AoE damage."
+            - skill: "root_of_catastrophe"
+              hold_ms: 1500
+              note: "Continue from Seed."
+            - skill: "shattering_darkness"
+              note: "Resume the normal flow string after Seed."
+            - skill: "flow_bombardment"
+              hold_ms: 1500
+              note: "Flow continuation."
+            - skill: "flow_root_of_catastrophe"
+              hold_ms: 1500
+              note: "Final follow-w in the listed variation."
+
+    awakening_main_fillers:
+        name: "Awakening Main Fillers"
+        description: "Primary filler skills recommended between main combos."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "grip"
+              note: "Use only after crit chance addons are w."
+            - skill: "flow_spirit_blaze"
+              note: "Helpful for managing cooldowns."
+
+    awakening_secondary_fillers:
+        name: "Awakening Secondary Fillers"
+        description: "Backw filler skills; the guide says ideally not to use them unless needed."
+        difficulty: intermediate
+        combo_window_ms: 300
+        steps:
+            - skill: "dark_nebula"
+              note: "Emergency filler when needed."
+            - skill: "spirit_hunt"
+              note: "Secondary filler."
+            - skill: "touch_of_exploitation"
+              note: "Secondary filler."
+            - skill: "spirit_blaze"
+              note: "Secondary filler and flow starter."
+
+    awakening_pulling_skills:
+        name: "Awakening Pulling Skills"
+        description: "Skills listed in the guide for gathering or pulling packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "furia_di_vedir"
+              note: "Primary forward pull tool."
             - skill: "shadow_strike"
-              input: "Shift + X"
-              keys: ["shift", "x"]
-              note: "Ranged damage"
-            - skill: "wheel_of_fortune"
-              input: "Shift + F"
-              keys: ["shift", "f"]
-              note: "SA if close enough"
-            - skill: "dusk"
-              input: "Shift + A/D"
-              keys: ["shift", "a"]
-              alt_keys: ["shift", "d"]
-              note: "Iframe reposition"
+              note: "Used to help gather mobs."
+            - skill: "shadow_bullet"
+              note: "Ranged pull / movement utility."
+            - skill: "obsidian_ashes"
+              note: "Pack gathering utility."
+            - skill: "cluster_of_despair"
+              note: "Additional pulling option; guide warns its hitbox can be wonky."
+
+    awakening_pack_to_pack_movement:
+        name: "Awakening Pack to Pack Movement"
+        description: "Movement route listed for traveling between packs."
+        difficulty: beginner
+        combo_window_ms: 300
+        steps:
+            - skill: "shadow_bullet"
+              note: "Start movement chain."
+            - skill: "smoky_haze"
+              note: "Continue movement."
+            - skill: "unveiled_dagger"
+              note: "Bridge into the next movement skill."
+            - skill: "air_strike"
+              note: "Main movement slash into next pack."
+            - skill: "furia_di_vedir"
+              note: "Finish gap close into the next grow."
 
 # --------------------------------------------------------------------------
 # Movement Combos
 # --------------------------------------------------------------------------
 movement_combos:
-    fast_travel:
-        name: "Fast Travel / Mobility Chain"
-        description: "Chain movement skills for fastest traversal between packs."
-        difficulty: beginner
-        combo_window_ms: 300
-        steps:
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "Long SA dash"
-            - skill: "dusk"
-              input: "Shift + A/D"
-              keys: ["shift", "a"]
-              alt_keys: ["shift", "d"]
-              note: "Iframe side dash"
-            - skill: "chain_dusk"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Extend dash"
-            - skill: "twilight_dash"
-              input: "Shift + W"
-              keys: ["shift", "w"]
-              note: "Pre-awak forward dash"
-
-    awakening_movement:
-        name: "Awakening Movement Guide"
+    awakening_pack_to_pack_movement:
+        name: "Awakening Pack to Pack Movement"
         description: >
-            Movement guide by JStep. Chain Nocturne, Dusk, and pre-awakening
-            dashes for maximum speed while staying protected.
-        difficulty: intermediate
+            Pack-to-pack movement route from the Awakening quick PvE guide.
+            Chain pre-awakening dashes and engage with Air Strike into Furia di Vedir.
+        difficulty: beginner
         combo_window_ms: 250
         steps:
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "SA forward dash"
-            - skill: "dusk"
-              input: "Shift + D"
-              keys: ["shift", "d"]
-              note: "Iframe lateral"
-            - skill: "chain_dusk"
-              input: "LMB"
-              keys: ["lmb"]
-              note: "Extend iframe"
-            - skill: "nocturne"
-              input: "Space"
-              keys: ["space"]
-              note: "If off cooldown"
-            - skill: "twilight_dash"
-              input: "Shift + W"
-              keys: ["shift", "w"]
-              note: "Pre-awak dash filler"
+            - skill: "shadow_bullet"
+              note: "Initial dash toward the next pack."
+            - skill: "smoky_haze"
+              note: "Follow-w dash to keep speed and protection."
+            - skill: "unveiled_dagger"
+              note: "Bridge into the engage; can be skipped if already close."
+            - skill: "air_strike"
+              note: "Main engage; ties directly into your main Awakening combo."
+            - skill: "furia_di_vedir"
+              note: "Continue forward into the center of the pack after Air Strike."
 
 # --------------------------------------------------------------------------
 # Recommended Skill Add-ons (PVE)
 # --------------------------------------------------------------------------
 skill_addons:
     pve:
-        - skill: "Air Strike"
+        - skill: "Shattering Darkness"
           addon_1: "Extra AP Against Monsters +20 for 7 sec"
           addon_2: "Attack/Casting Speed +7% for 7 sec"
+
+        - skill: "Seed of Catastrophe"
+          addon_1: "Critical Hit Rate +30% for 7 sec"
+          addon_2: "Extra AP Against Monsters +20 for 7 sec"
+
         - skill: "Spirit Legacy"
           addon_1: "All DP -15 for 10 sec for target"
           addon_2: "Critical Hit Rate +20% for 7 sec"
-        - skill: "Shattering Darkness"
-          addon_1: "Back Attack Damage +3% for 5 sec"
-          addon_2: "Critical Hit Damage +3% for 5 sec"
-        - skill: "Seed of Catastrophe"
-          addon_1: "Back Attack Damage +3% for 5 sec"
-          addon_2: "Critical Hit Damage +3% for 5 sec"
+
         - skill: "Cluster of Despair"
           addon_1: "Extra AP Against Monsters +30 for 7 sec"
           addon_2: "Critical Hit Rate +30% for 7 sec"
+
         - skill: "Trap of Vedir"
           addon_1: "Extra AP Against Monsters +20 for 7 sec"
           addon_2: "All DP -15 for 20 sec for target"
+
+        - skill: "Air Strike"
+          addon_1: "Back Attack Damage +3% for 5 sec"
+          addon_2: "Critical Hit Damage +3% for 5 sec"
 
 # --------------------------------------------------------------------------
 # Recommended Skills to Lock
 # --------------------------------------------------------------------------
 locked_skills:
-    - name: "Evasion"
-      reason: "Prevents accidental use that messes up combos in PVP."
-    - name: "Scarring Slash"
-      reason: "Unprotected and not useful in awakening rotation."
-    - name: "Spirit Satiation"
-      reason: "Unprotected, slows down rotation."
-    - name: "Sudden Attack"
-      reason: "Unprotected, can trigger accidentally."
-    - name: "Darkness Burst"
-      reason: "Lock unless you have completed Magnus."
-    - name: "Hidden Strike"
-      reason: "Optional lock. Rarely used."
-    - name: "Trap of Vedir"
-      reason: "Lock from skill bar. Put on HOTBAR instead."
+    - name: "Shadow Bullet"
+      reason: "Lock from skill bar to avoid accidental swaps; use it from hotbar only for controlled pre-awak movement."
+    - name: "Smoky Haze"
+      reason: "Lock from skill bar to prevent misinputs during movement chains; activate via hotbar when moving pack to pack."
     - name: "Flow: Spirit Blaze"
-      reason: "Lock from skill bar. Put on HOTBAR instead."
+      reason: "Lock from skill bar and put it on hotbar instead, since it is used as a situational filler and cooldown tool."
+    - name: "Grip of Grudge"
+      reason: "Optional lock; its awkward hitbox can whiff and disrwt your rotation if triggered unintentionally."
+    - name: "Cluster of Despair"
+      reason: "Optional lock from skill bar because of its very unreliable hitbox; better controlled via hotbar only when needed."
 
 # --------------------------------------------------------------------------
-# Recommended Hotbar Setup
+# Recommended Hotbar Setw
 # --------------------------------------------------------------------------
 hotbar_skills:
-    - "Wheel of Fortune"
-    - "Lunacy of Vedir"
-    - "Nocturne"
-    - "Balanced Strike"
-    - "Shadow Strike"
-    - "Trap of Vedir"
     - "Flow: Spirit Blaze"
-
+    - "Shadow Strike"
+    - "Grip of Grudge"
 # --------------------------------------------------------------------------
 # Core Skill Recommendation
 # --------------------------------------------------------------------------
 core_skill:
     recommended: "Seed of Catastrophe"
-    effect: "Super Armor during the skill"
+    effect: "Swer Armor during the skill (with Core)"
     reason: >
-        Seed of Catastrophe with Core gains full Super Armor, making it
-        one of your safest and strongest damage skills. Most DK players
-        choose this Core.
+        The Awakening quick PvE guide explicitly recommends Core: Seed of
+        Catastrophe because the Core wgrade adds full Swer Armor to an
+        already very high damage skill, making it much safer to use as a
+        main nuke in PvE.
