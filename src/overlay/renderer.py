@@ -207,6 +207,25 @@ class OverlayRenderer:
         )
 
     @staticmethod
+    def hold_bar_timeout_color(progress: float) -> str:
+        """Interpolate bar fill for timeout: dark slate → medium slate → light slate."""
+        if progress < 0.6:
+            t = progress / 0.6
+            r = int(0x40 + (0x60 - 0x40) * t)
+            g = int(0x48 + (0x6A - 0x48) * t)
+            b = int(0x58 + (0x82 - 0x58) * t)
+        else:
+            t = (progress - 0.6) / 0.4
+            r = int(0x60 + (0x80 - 0x60) * t)
+            g = int(0x6A + (0x8A - 0x6A) * t)
+            b = int(0x82 + (0xA2 - 0x82) * t)
+        return (
+            f"#{max(0, min(255, r)):02x}"
+            f"{max(0, min(255, g)):02x}"
+            f"{max(0, min(255, b)):02x}"
+        )
+
+    @staticmethod
     def lighten_color(hex_color: str, amount: float) -> str:
         """Lighten a hex colour by mixing toward white."""
         r = int(hex_color[1:3], 16)

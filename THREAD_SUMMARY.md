@@ -207,6 +207,116 @@ The bdocodex.com icon scraper was removed. After a full scrape of IDs 900-8300:
 
 ---
 
+## Completed Task — Class & Combo Editor GUI ✅
+
+### Full editor for creating/editing classes, skills, and combos
+
+Added a complete GUI editor accessible from the tray menu ("Class & Combo Editor") that allows users to create new classes, add skills, and build combos without editing YAML files manually.
+
+**New files:**
+
+| File | Lines | Responsibility |
+|------|-------|----------------|
+| `src/editor/__init__.py` | 6 | Re-exports `EditorWindow` |
+| `src/editor/window.py` | ~840 | Main editor window — sidebar, tab switching, new class dialog, save |
+| `src/editor/skill_editor.py` | ~1,340 | Skill list + full edit form with key toggles, CC checkboxes, dropdowns |
+| `src/editor/combo_editor.py` | ~1,164 | Combo list (PVE/PVP/Movement) + step builder with reordering |
+
+**Infrastructure changes:**
+- `src/combo_loader.py` — Added `get_class_config()`, `save_class_config()`, `delete_class_config()` CRUD methods
+- `src/tray.py` — Added `on_editor` callback, "Class & Combo Editor" menu item, `refresh_menu()` method
+- `main.py` — Wired editor: `_on_editor()`, `_open_editor()`, `_on_editor_saved()` (reloads configs + refreshes tray)
+
+**Editor window layout:**
+- Left sidebar: Listbox of all class/spec pairs, "+ New Class" and "Delete" buttons
+- Right content: "Skills" and "Combos" tabs
+- Bottom: Unsaved changes indicator + "Save Class" button
+- Singleton pattern (same as SettingsWindow)
+
+**Skills tab features:**
+- Left: Scrollable skill list
+- Right: Full edit form with:
+  - Skill ID (auto-generated or manual), Name, Input text
+  - **Key toggle button grid**: W/A/S/D, Shift/Space, LMB/RMB/MMB, Q/E/F/X/Z, Hotbar/Hold/Down — visual on/off toggles
+  - **Alt keys**: Collapsible second key grid
+  - Protection dropdown (SA/FG/iframe/none), Damage dropdown (none/low/medium/high/very_high)
+  - Cooldown (ms), Level (for Rabam skills)
+  - **CC checkbox grid**: stiffness, knockdown, knockback, floating, bound, stun, float, pull, grab, down_attack, spin
+  - Description and Notes text areas
+  - Flows Into (comma-separated skill IDs), Core Effect
+  - Save/Delete buttons per skill
+
+**Combos tab features:**
+- Left: Categorized combo list with section headers (PVE/PVP/Movement)
+- Right: Combo form + step builder:
+  - Combo ID, Name, Category dropdown, Difficulty dropdown, Step Window (ms), Description
+  - **Step builder**: Dynamic rows with skill dropdown (populated from class's skills), Note entry, Hold (ms) entry, ▲/▼ reorder buttons, × delete button
+  - "+ Add Step" button
+  - Save/Delete buttons per combo
+
+**New Class dialog:**
+- Modal with Class Name entry + Spec dropdown (Awakening/Succession)
+- Validates non-empty and no duplicates
+- Creates skeleton YAML immediately on disk
+- Refreshes sidebar and tray menu
+
+**Save behavior:**
+- Edits are in-memory until "Save Class" is clicked
+- Save consolidates all skill sections into unified `skills:` format
+- Old section names (`awakening_skills`, `rabam_skills`, `preawakening_utility`) are removed on save
+- Unsaved changes prompt on class switch or window close
+- Tray menu auto-refreshes after save
+
+---
+
+## Completed Task — Overlay Animation Overhaul ✅
+
+### Slide-up transitions, fade-out, next-skill preview with hold pulsation
+
+Several animation improvements to the combo overlay for smoother visual flow:
+
+**Next skill preview:**
+- Below the step counter, a preview line shows: `next ▸ Skill Name · Input Keys`
+- Uses `note_font` (14pt) in `#AAAAAA` for readability
+- Input keys are resolved from skill definitions with key remapping applied
+- Also shown during the "✓" success flash (fades with old content)
+- Built via `_build_preview_text()` and `_resolve_next_index()` helper methods
+
+**Hold step pulsation:**
+- When the next step involves holding (detected via `"hold" in text`, `keys == ["hold"]`, or `hold_ms` in step), the preview text **pulsates** between `#888888` (grey) and `#FFD700` (gold) on a smooth sine-wave cycle (~1.75 seconds per full cycle)
+- Uses `_draw_pulsing_preview()` which draws outlined text with a `"preview_pulse"` tag on the main text item
+- `_pulse_tick()` runs at 50ms intervals, finding `"preview_pulse"` tagged items and updating their fill color
+- Pulse is cancelled in `stop()`, `pause()`, `_render_step()`, and `_on_keys_matched()`
+
+**Slide-up animation (new step entering):**
+- When advancing to the next step, `_slide_in_step()` renders the new step at its final position, pushes all "step" items down 40px, then animates them sliding back up
+- Ease-out curve: `move = max(2, int(remaining * 0.35))` per frame at 20ms intervals → ~120ms total
+- Input is armed only after the slide completes
+- Constants: `_SLIDE_DISTANCE = 40`, `_SLIDE_TICK_MS = 20`
+
+**Fade-out animation (old step exiting):**
+- On key match, old "step" items are re-tagged to `"step_old"` via `canvas.addtag_withtag` / `canvas.dtag`
+- A green "✓ Skill Name" and next-preview are drawn with `tag="step_old"`
+- `_fade_out_tick()` runs at 20ms intervals:
+  - Slides "step_old" items upward by 3px per frame
+  - Lerps every text item's fill color 18% toward `TRANSPARENT_COLOR` (#010101) per frame
+  - Runs for `transition_ms / _SLIDE_TICK_MS` frames (typically ~12 frames = 240ms)
+- Old items are deleted when fade completes via `_cleanup_fade()`
+- New step slide-in starts after `transition_ms / 3` delay (~80ms), creating an overlapping crossfade
+
+**Hold step early release:**
+- `HoldBar._tick()` now tracks a `_was_held` flag
+- If keys were held and then released before the duration completes, the combo advances to the next step immediately
+- If keys were never held (user hasn't started pressing yet), the bar waits
+- Provides more natural gameplay feel — you don't have to hold for the exact duration
+
+**Code changes:**
+- `src/overlay/combo_player.py` — Added `_slide_in_step`, `_slide_tick`, `_cancel_slide`, `_fade_out_tick`, `_cleanup_fade`, `_cancel_fade`, `_draw_pulsing_preview`, `_pulse_tick`, `_cancel_pulse`, `_build_preview_text`, `_resolve_next_index`. Rewrote `_on_keys_matched` for animated transitions. Modified `_render_step` for next-preview with hold detection.
+- `src/overlay/hold_bar.py` — Added `_was_held` flag to `_tick()` for early-release detection
+- `src/overlay/renderer.py` — Added `preview_font` to `OverlayContext` (12pt italic)
+
+---
+
 ## What This Project Is
 
 A **transparent game overlay** for Black Desert Online that displays skill combos as floating outlined text over the game client. All 27 classes × 2 specs (54 total) are included. Steps advance when the user presses the correct key/mouse combination (not on a timer). It runs from the system tray.
@@ -255,6 +365,11 @@ bdo-trainer/
 │   │   ├── hold_bar.py              # HoldBar — hold-step progress bar
 │   │   ├── setup_guide.py           # SetupGuide — 4-page recommendations
 │   │   └── reposition.py            # RepositionHandler — drag-to-move + persistence
+│   ├── editor/
+│   │   ├── __init__.py              # Re-exports EditorWindow
+│   │   ├── window.py                # EditorWindow — main editor with sidebar + tabs
+│   │   ├── skill_editor.py          # SkillEditor — skill list + edit form
+│   │   └── combo_editor.py          # ComboEditor — combo list + step builder
 │   └── utils/
 │       ├── __init__.py
 │       └── keys.py                  # Key display names + outline offset utilities
@@ -284,6 +399,7 @@ main.py (BDOTrainerApp)
   │     SKILL_SECTIONS: ["skills", "awakening_skills", "rabam_skills", "preawakening_utility"]
   │     Key remapping: get_key_remap() builds canonical→physical key map from key_bindings
   │     Setup guide: get_setup_guide(cls, spec) → locked_skills, hotbar, core_skill, addons
+  │     CRUD: get_class_config, save_class_config, delete_class_config (for Editor)
   │
   ├─► ComboOverlay (src/overlay/core.py)   ◄── thin coordinator, runs tkinter mainloop (BLOCKS)
   │     Creates Tk root, canvas, OverlayContext, OverlayRenderer
@@ -297,6 +413,8 @@ main.py (BDOTrainerApp)
   │     │     Step rendering, skill resolution (name, keys, input, protection)
   │     │     Input arming + key remapping + idle reset
   │     │     Resolves keys/input from skill definitions when absent from combo steps
+  │     │     Next-skill preview with hold-step pulsation
+  │     │     Slide-up new step + fade-out old step animations
   │     │
   │     ├─► HoldBar (src/overlay/hold_bar.py)
   │     │     Hold-step progress bar (~33fps tick, animated fill/glow/spark)
@@ -311,9 +429,14 @@ main.py (BDOTrainerApp)
   │     Tabbed UI: Keybinds / Display / Hotkeys / Timing
   │     Saves to combos.yaml, live-reloads via on_save callback
   │
+  ├─► EditorWindow (src/editor/window.py)   ◄── singleton dialog on Tk thread
+  │     Three-panel: sidebar → Skills/Combos tabs → edit forms
+  │     Uses loader.save_class_config() / delete_class_config()
+  │     on_save callback triggers loader.reload() + tray.refresh_menu()
+  │
   ├─► TrayManager (src/tray.py)       ◄── runs in daemon thread
   │     pystray icon with "DK" label
-  │     Menu: Class > Spec > Combos / Stop / Reposition ✓ / Setup Guide ✓ / Settings / Exit
+  │     Menu: Class > Spec > Combos / Stop / Reposition ✓ / Setup Guide ✓ / Settings / Editor / Exit
   │
   └─► keyboard library                ◄── global hotkeys (F5/F6/F7/F8)
         F5 = start/restart combo
@@ -370,6 +493,7 @@ Steps where the skill has `keys: ["hold"]` delegate to `HoldBar`:
 2. `HoldBar` ticks at ~33fps, checks if previously-armed keys are still held via `InputMonitor._pressed`
 3. Animated progress bar renders on canvas (amber → gold → green gradient with glow/spark effects)
 4. On 100% completion, fires `on_complete` callback which advances the combo
+5. If the user **releases the keys early** (after holding them at least once), the combo advances immediately to the next step — no need to hold for the full duration
 
 ## Config File Structure
 
@@ -497,8 +621,11 @@ pve_combos:                # Steps duplicate input/keys from skill definitions
 - **Text**: Canvas `create_text` with dark outline (pre-computed offset copies in `#000000`, main text on top in colour) via `OverlayRenderer.draw_outlined_text()`
 - **Fonts**: Platform-detected via `platform.default_font_family()` — Segoe UI (Windows), Helvetica Neue (macOS), DejaVu Sans (Linux)
 - **Position**: Bottom-centre of screen (`relx=0.5, rely=0.85`), persisted to `overlay_position.json` as relative coordinates
-- **Layout per step** (top to bottom): combo name (grey italic) → skill name (gold 32pt bold) + [PROTECTION] badge → input keys (white 22pt) → note (grey 14pt) → step counter (dark grey 12pt)
-- **Success flash**: "✓ Skill Name" in green, displayed for `combo_window_ms` before advancing
+- **Layout per step** (top to bottom): combo name (grey italic) → skill name (gold 32pt bold) + [PROTECTION] badge → input keys (white 22pt) → note (grey 14pt) → step counter (dark grey 12pt) → next skill preview (grey 14pt, "next ▸ Name · Keys")
+- **Next skill preview**: `next ▸ Skill Name · Input Keys` in 14pt grey (#AAAAAA). Pulsates between grey and gold when the next step is a hold step.
+- **Slide-up transition**: New steps slide up 40px with ease-out over ~120ms
+- **Fade-out transition**: Old steps slide upward and colours lerp toward transparent over ~240ms, overlapping with the new step slide-in
+- **Success flash**: "✓ Skill Name" in green now fades out with the old content rather than being cleared instantly
 
 ## InputMonitor Details (`src/input_monitor.py`)
 
@@ -551,7 +678,6 @@ Example: if a user plays with ESDF instead of WASD, they set `Move Forward: "e"`
 4. **macOS/Linux** — click-through and `-transparentcolor` are Windows-only; macOS/Linux fall back to alpha transparency (functional for testing, not ideal for gameplay)
 5. **Skill data accuracy** — class YAML files were bulk-generated from community knowledge; exact cooldowns, protection types, and CC values should be verified in-game per class
 6. **Skill icons** — removed; bdocodex web scraping yielded ~49% match rate with broken CDN links. Plan to revisit with a game resource dump
-7. **YAML migration** — only the Dark Knight files have been migrated to the new unified `skills:` format; the other 52 class files still use the old section names (fully backward compatible)
 
 ## How to Run
 
