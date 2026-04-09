@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # BDO Trainer - macOS/Linux Run Script
 # This script runs the BDO Trainer application
 
