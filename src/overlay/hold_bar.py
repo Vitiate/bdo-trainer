@@ -24,6 +24,7 @@ class HoldBar:
         self._duration_ms: int = 0
         self._elapsed_ms: int = 0
         self._was_held: bool = False
+        self._keys_active: bool = False
         self._tick_ms: int = 30  # ~33fps
         self._after_id: Optional[str] = None
         self._on_complete: Optional[Callable] = None
@@ -40,6 +41,7 @@ class HoldBar:
         self._duration_ms = max(duration_ms, 100)
         self._elapsed_ms = 0
         self._was_held = False
+        self._keys_active = False
         self._on_complete = on_complete
         self.input_monitor.clear_target()
         self._render(0.0)
@@ -61,12 +63,16 @@ class HoldBar:
         keys_held = self._check_keys()
         if keys_held:
             self._was_held = True
-            self._elapsed_ms += self._tick_ms
+            self._keys_active = True
         elif self._was_held:
             # Keys were held and then released — advance to next step
             logger.info("Hold released early — advancing to next step")
             self._complete()
             return
+        else:
+            self._keys_active = False
+        # Always increment so hold steps auto-complete after their duration
+        self._elapsed_ms += self._tick_ms
         progress = min(self._elapsed_ms / self._duration_ms, 1.0)
         self._render(progress)
         if progress >= 1.0:
@@ -102,7 +108,10 @@ class HoldBar:
         inner_pad = 2
 
         # Outer glow
-        glow_color = OverlayRenderer.lerp_color("#1A1A3E", "#3B2F00", progress)
+        if self._keys_active:
+            glow_color = OverlayRenderer.lerp_color("#1A1A3E", "#3B2F00", progress)
+        else:
+            glow_color = OverlayRenderer.lerp_color("#1A1A3E", "#1A2A3E", progress)
         ctx.canvas.create_rectangle(
             x1 - 2,
             y1 - 2,
@@ -120,7 +129,7 @@ class HoldBar:
             x2,
             y2,
             fill="#0A0A18",
-            outline="#8B7530",
+            outline="#8B7530" if self._keys_active else "#506070",
             width=1,
             tags=("hold_bar",),
         )
@@ -129,7 +138,10 @@ class HoldBar:
         inner_w = bar_w - inner_pad * 2
         fill_w = int(inner_w * progress)
         if fill_w > 0:
-            fill_color = OverlayRenderer.hold_bar_color(progress)
+            if self._keys_active:
+                fill_color = OverlayRenderer.hold_bar_color(progress)
+            else:
+                fill_color = OverlayRenderer.hold_bar_timeout_color(progress)
             fx1 = x1 + inner_pad
             fy1 = y1 + inner_pad
             fx2 = fx1 + fill_w
@@ -163,7 +175,7 @@ class HoldBar:
                     fy1 + 1,
                     fx2,
                     fy2 - 1,
-                    fill="#FFFFCC",
+                    fill="#FFFFCC" if self._keys_active else "#AABBCC",
                     outline="",
                     tags=("hold_bar",),
                 )
@@ -175,7 +187,7 @@ class HoldBar:
                     spark_y - 2,
                     fx2 + 2,
                     spark_y + 2,
-                    fill="#FFFFFF",
+                    fill="#FFFFFF" if self._keys_active else "#CCDDEE",
                     outline="",
                     tags=("hold_bar",),
                 )

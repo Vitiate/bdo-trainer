@@ -390,6 +390,8 @@ class ComboPlayer:
         if raw_keys == ["hold"]:
             hold_ms = step.get("hold_ms", 1500)
             self.hold_bar.start(hold_ms, on_complete=self._on_keys_matched)
+            # Also arm the next step's keys so pressing them skips the hold
+            self._arm_next_step_during_hold()
             return
 
         alt_keys: List[str] = step.get("alt_keys", [])
@@ -437,12 +439,61 @@ class ComboPlayer:
                 self._idle_reset_ms, self._idle_reset
             )
 
+    def _arm_next_step_during_hold(self) -> None:
+        """During a hold step, arm the InputMonitor for the *next* step's
+        keys so pressing them skips the hold and advances immediately."""
+        next_idx = self._current_step + 1
+        if next_idx >= len(self._steps):
+            if self._loop:
+                next_idx = 0
+            else:
+                return
+        if next_idx == self._current_step:
+            return
+
+        next_step = self._steps[next_idx]
+        next_raw = self._resolve_keys(next_step)
+        if not next_raw or next_raw == ["hold"] or next_raw == ["hotbar"]:
+            return
+
+        # Resolve alt keys for the next step
+        alt_keys: List[str] = next_step.get("alt_keys", [])
+        if not alt_keys and self.get_skill_info:
+            sid = next_step.get("skill", "")
+            if sid:
+                info = self.get_skill_info(sid)
+                if info and "keys_alt" in info:
+                    alt_keys = info["keys_alt"]
+
+        def _remap(keys: List[str]) -> List[str]:
+            return [
+                self._key_remap.get(k.lower(), k.lower())
+                for k in keys
+                if k.lower() != "hotbar"
+            ]
+
+        primary = _remap(next_raw)
+        key_sets: List[List[str]] = []
+        if primary:
+            key_sets.append(primary)
+        if alt_keys:
+            alt = _remap(alt_keys)
+            if alt:
+                key_sets.append(alt)
+
+        if key_sets:
+            self.input_monitor.set_target(
+                key_sets,
+                on_match=lambda: self.ctx.root.after(0, self._on_hold_skip),
+            )
+
     def _on_keys_matched(self) -> None:
         if not self._is_running:
             return
         self._cancel_idle_reset()
         self._cancel_pulse()
         self._cancel_fade()  # clean up any previous fade still running
+        self.hold_bar.cancel()  # stop hold bar if still running
 
         step = self._steps[self._current_step]
         skill_id: str = step.get("skill", "")
@@ -493,6 +544,14 @@ class ComboPlayer:
         self._current_step += 1
         slide_delay = max(self._transition_ms // 3, 60)
         self._after_id = self.ctx.root.after(slide_delay, self._slide_in_step)
+
+    def _on_hold_skip(self) -> None:
+        """Called when the next step's keys are pressed during a hold step."""
+        if not self._is_running or not self.hold_bar.is_active:
+            return
+        logger.info("Hold skipped — next step keys pressed")
+        self.hold_bar.cancel()
+        self._on_keys_matched()
 
     # -----------------------------------------------------------------
     # Fade-out animation for old content

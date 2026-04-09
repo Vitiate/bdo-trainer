@@ -4,7 +4,7 @@ A transparent, click-through game overlay for **Black Desert Online** that displ
 
 All **27 BDO classes × 2 specs (54 total)** are included out of the box — Awakening + Succession for every class, ready to go.
 
-![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey)
+![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey) ![macOS: partial](https://img.shields.io/badge/macOS-partial-yellow)
 
 ![In-game overlay screenshot](doc/images/in-game-overlay.png)
 
@@ -28,8 +28,11 @@ All **27 BDO classes × 2 specs (54 total)** are included out of the box — Awa
   - [Global Hotkeys](#global-hotkeys)
   - [Reposition Mode](#reposition-mode)
   - [Idle Reset](#idle-reset)
+- [Overlay Animations](#overlay-animations)
+- [Class & Combo Editor](#class--combo-editor)
 - [Adding a New Class or Spec](#adding-a-new-class-or-spec)
 - [Architecture](#architecture)
+- [macOS Support](#macos-support)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
 
@@ -43,16 +46,22 @@ All **27 BDO classes × 2 specs (54 total)** are included out of the box — Awa
 | **Outlined text** | Canvas-based outlined text for readability over any background |
 | **Step-by-step combos** | Each step highlights the current input; advances when the correct keys/mouse buttons are pressed |
 | **Alternative keys** | Steps can define `alt_keys` so either input is accepted (e.g., `Shift + A` or `Shift + D`) |
-| **Hotbar step auto-advance** | Hotbar skills can't be detected via hooks, so they auto-advance after a short delay |
+| **Hotbar step auto-advance** | Hotbar skills auto-advance after a short delay since hotbar presses can't be detected |
+| **Hold step progress bar** | Animated amber → gold → green fill bar with glow and spark effects for hold/channel skills; releasing early advances to the next step |
+| **Next skill preview** | Shows the upcoming skill name + required keys below the current step; pulsates between grey and gold when the next step is a hold skill |
+| **Slide-up animation** | New steps slide up from below with an ease-out curve (~120 ms, 40 px travel) |
+| **Fade-out animation** | Old steps slide upward and fade to transparent, creating a smooth crossfade transition |
 | **Setup Guide** | 4-page overlay showing locked skills, hotbar setup, core skill, and skill add-ons per class/spec |
-| **Settings GUI** | In-app settings editor for keybinds, display, timing, and hotkeys — no manual YAML editing needed |
-| **System tray** | Pick class → spec → combo from a nested tray menu; start, stop, reposition, or exit |
-| **Global hotkeys** | `F5` start/restart, `F6` stop, `F7` next Setup Guide page, `F8` reset — work even while BDO has focus |
-| **Key remapping** | Remap movement keys and other bindings to match your in-game BDO keybind settings |
+| **Settings GUI** | Tabbed settings window for keybinds, display, timing, and hotkeys — live-reloads on save |
+| **Class & Combo Editor** | Full GUI for creating classes, editing skills with key toggle grids and CC checkboxes, building combos with step reordering |
+| **System tray** | Pick Class → Spec → Combo from a nested tray menu; Stop, Reposition, Setup Guide, Settings, Editor, Exit |
+| **Global hotkeys** | `F5` start/restart, `F6` stop, `F7` next guide page, `F8` reset — work even while BDO has focus (configurable) |
+| **Key remapping** | Remap movement and ability keys to match your in-game BDO keybind settings |
 | **Reposition mode** | Drag the overlay text to any screen position; saved as relative coordinates in `overlay_position.json` |
 | **Idle reset** | Combo automatically resets to step 1 after a configurable inactivity timeout |
-| **VK fallback** | Uses virtual-key-code detection as a fallback when the game window has focus and character hooks fail |
-| **Auto-discovery** | All 27 classes are pre-populated; drop additional YAML files into `config/classes/` and they appear in the tray menu automatically |
+| **Auto-discovery** | Drop YAML files into `config/classes/` and they appear in the tray menu automatically |
+| **54 pre-built class configs** | All 27 BDO classes × Awakening + Succession included out of the box |
+| **macOS support** | Launches and renders on macOS with semi-transparent fallback (no click-through) |
 
 ---
 
@@ -60,38 +69,52 @@ All **27 BDO classes × 2 specs (54 total)** are included out of the box — Awa
 
 ```
 bdo-trainer/
-├── main.py                             # Entry point — wires everything together, auto-elevates to admin
-├── requirements.txt                    # Python dependencies
-├── run.bat                             # One-click launcher (installs deps + elevates + runs)
-├── setup.py                            # Package setup
-├── spec.md                             # Design specification
-├── README.md                           # You are here
+├── main.py                          # Entry point — wires everything, auto-elevates admin
+├── spec.md                          # Original feature spec
+├── requirements.txt                 # pyyaml, pystray, pillow, keyboard, pynput
+├── run.bat                          # Windows launcher (auto-elevates, installs deps)
+├── run.sh                           # macOS/Linux launcher (venv, deps, permission notes)
+├── setup.py                         # Package setup
 ├── config/
-│   ├── combos.yaml                     # Global settings (hotkeys, display, key bindings, timing)
-│   ├── classes/                         # 54 files — all 27 classes × awakening + succession
+│   ├── combos.yaml                  # Global settings (hotkeys, display, key_bindings, timing)
+│   ├── classes/                     # 54 class/spec YAML files (27 classes × 2 specs)
 │   │   ├── dark_knight_awakening.yaml
 │   │   ├── dark_knight_succession.yaml
 │   │   ├── warrior_awakening.yaml
-│   │   ├── ...
-│   │   └── woosa_succession.yaml
-│   └── overlay_position.json           # Auto-generated — overlay position as relative coords
+│   │   └── ... (54 files total)
+│   └── overlay_position.json        # Auto-generated — saved overlay anchor position
 ├── src/
 │   ├── __init__.py
-│   ├── combo_loader.py                 # Loads & merges global + per-class YAML configs
-│   ├── overlay.py                      # Transparent tkinter overlay + InputMonitor (pynput hooks)
-│   ├── settings_gui.py                 # Settings GUI window (keybinds, display, timing, hotkeys)
-│   └── tray.py                         # System tray icon & menu via pystray
-├── scripts/
-│   └── download_icons.py              # Skill icon scraper
+│   ├── combo_loader.py              # Loads config/classes/*.yaml + combos.yaml settings
+│   ├── input_monitor.py             # InputMonitor — keyboard+mouse state tracking via pynput
+│   ├── platform.py                  # Platform helpers (click-through, font detection)
+│   ├── settings_gui.py              # Settings window (keybinds, display, timing, hotkeys)
+│   ├── tray.py                      # System tray icon via pystray
+│   ├── overlay/
+│   │   ├── __init__.py              # Re-exports ComboOverlay + INPUT_AVAILABLE
+│   │   ├── renderer.py              # OverlayContext (shared state) + OverlayRenderer (drawing)
+│   │   ├── core.py                  # ComboOverlay — thin coordinator
+│   │   ├── combo_player.py          # ComboPlayer — playback state machine + animations
+│   │   ├── hold_bar.py              # HoldBar — hold-step progress bar
+│   │   ├── setup_guide.py           # SetupGuide — 4-page recommendations
+│   │   └── reposition.py            # RepositionHandler — drag-to-move + persistence
+│   ├── editor/
+│   │   ├── __init__.py              # Re-exports EditorWindow
+│   │   ├── window.py                # EditorWindow — main editor with sidebar + tabs
+│   │   ├── skill_editor.py          # SkillEditor — skill list + edit form
+│   │   └── combo_editor.py          # ComboEditor — combo list + step builder
+│   └── utils/
+│       ├── __init__.py
+│       └── keys.py                  # Key display names + offset utilities
 ├── tests/
 │   ├── __init__.py
 │   └── test_basic.py
-├── doc/
-│   └── images/
-│       ├── in-game-overlay.png         # Overlay screenshot
-│       └── menu.png                    # Tray menu screenshot
-├── assets/                             # Icons, images
-└── logs/                               # Runtime log output
+├── assets/                          # Reserved for future use
+├── doc/images/                      # Screenshots for README
+├── logs/                            # Created at runtime
+├── .gitignore
+├── README.md
+└── THREAD_SUMMARY.md
 ```
 
 ---
@@ -99,8 +122,9 @@ bdo-trainer/
 ## Requirements
 
 - **Python 3.8+**
-- **Windows** (the overlay uses Win32 APIs; BDO is Windows-only)
-- **Administrator privileges** (see [Why Admin?](#why-does-it-need-admin) below)
+- **Windows** (primary — the overlay uses Win32 APIs for click-through)
+- **Administrator privileges** on Windows (see [Why Admin?](#why-does-it-need-admin) below)
+- macOS is partially supported (see [macOS Support](#macos-support))
 
 ### Python Dependencies
 
@@ -109,11 +133,10 @@ bdo-trainer/
 | `pyyaml` | Parse YAML config and combo files |
 | `pystray` | System tray icon and menu |
 | `pillow` | Image support for the tray icon (required by pystray) |
-| `keyboard` | Global hotkeys (`F5`, `F6`, `F7`, `F8`) that work over fullscreen games |
+| `keyboard` | Global hotkeys (`F5`–`F8`) that work over fullscreen games |
 | `pynput` | Low-level keyboard and mouse listener hooks for step detection |
-| `requests` | HTTP requests (used by icon scraper script) |
-| `tkinter` | Overlay window (included with Python stdlib) |
-| `ctypes` | Win32 API calls for click-through, elevation (included with Python stdlib) |
+| `tkinter` | Overlay window + canvas + all GUIs (included with Python stdlib) |
+| `ctypes` | Win32 click-through APIs (included with Python stdlib) |
 
 ---
 
@@ -127,7 +150,7 @@ cd bdo-trainer
 pip install -r requirements.txt
 ```
 
-### Option B — `run.bat` (recommended)
+### Option B — `run.bat` (Windows, recommended)
 
 Double-click `run.bat`. It will:
 
@@ -136,6 +159,15 @@ Double-click `run.bat`. It will:
 3. Launch `main.py`
 
 No manual setup needed.
+
+### Option C — `run.sh` (macOS / Linux)
+
+```
+chmod +x run.sh
+./run.sh
+```
+
+Creates a virtual environment, installs dependencies, and launches. See [macOS Support](#macos-support) for platform notes.
 
 ---
 
@@ -149,9 +181,9 @@ python main.py
 
 `main.py` will auto-elevate to administrator on Windows if it isn't already running elevated. A UAC prompt will appear the first time.
 
-### From `run.bat`
+### From `run.bat` / `run.sh`
 
-Double-click `run.bat` — it handles everything.
+Double-click `run.bat` on Windows or run `./run.sh` on macOS — they handle everything.
 
 ### What happens on launch
 
@@ -166,12 +198,14 @@ Double-click `run.bat` — it handles everything.
 
 1. **Pick a combo** from the tray menu (or press `F5` to restart the current one).
 2. The overlay displays the combo's steps as outlined text over your game.
-3. The **current step** is highlighted. It shows the skill name and required input (e.g., `Shift + LMB`).
-4. **Press the correct keys/mouse buttons** — the overlay detects the input via low-level hooks and advances to the next step.
+3. The **current step** is highlighted. It shows the skill name, protection badge, and required input (e.g., `Shift + LMB`).
+4. **Press the correct keys/mouse buttons** — the overlay detects the input via low-level hooks and advances to the next step with a smooth slide-up animation.
 5. If a step has **alternative keys** (`alt_keys`), either input combination is accepted.
-6. **Hotbar steps** auto-advance after a delay since hotbar key presses correspond to slots, not specific skills, and can't be meaningfully validated.
-7. When you reach the end, the combo resets to step 1 (loop).
-8. If you stop pressing keys, the **idle reset timer** returns the combo to step 1 after the configured timeout.
+6. **Hold steps** display an animated progress bar — hold the keys for the specified duration, or release early to advance.
+7. **Hotbar steps** auto-advance after a delay since hotbar key presses can't be meaningfully validated.
+8. A **next skill preview** below the current step shows what's coming up.
+9. When you reach the end, the combo resets to step 1 (loop).
+10. If you stop pressing keys, the **idle reset timer** returns the combo to step 1 after the configured timeout.
 
 ---
 
@@ -186,6 +220,7 @@ This file contains global settings **only** — no skill or combo data. Example:
 hotkeys:
   start_restart: "F5"
   stop: "F6"
+  next_guide_page: "F7"
   reset: "F8"
 
 # Display settings
@@ -214,99 +249,117 @@ key_bindings:
   Evade: "Shift"
 ```
 
+All of these settings can also be edited through the **Settings GUI** (right-click tray → Settings).
+
 ### Class/Spec Files — `config/classes/*.yaml`
 
-Each file defines one class + spec combination. The file is auto-discovered — just place it in `config/classes/` and it will appear in the tray menu on next launch. All 27 BDO classes ship with both Awakening and Succession configs pre-populated.
+Each file defines one class + spec combination. Files are auto-discovered — place one in `config/classes/` and it will appear in the tray menu on next launch.
 
-Required top-level keys:
-
-| Key | Description |
-|---|---|
-| `class` | Display name, e.g., `"Dark Knight"` |
-| `spec` | Spec name, e.g., `"Awakening"` |
-
-Optional top-level keys:
-
-| Key | Description |
-|---|---|
-| `awakening_skills` | Map of skill definitions for the awakening kit |
-| `preawakening_utility` | Map of skill definitions for pre-awakening utility skills |
-| `rabam_skills` | Map of rabam/prime skill definitions |
-| `pve_combos` | List of PvE combo definitions |
-| `pvp_combos` | List of PvP combo definitions |
-| `movement_combos` | List of movement/utility combo definitions |
-| `skill_addons` | Skill addon configuration |
-| `locked_skills` | List of skills to lock |
-| `hotbar_skills` | List of skills placed on the hotbar |
-| `core_skill` | The core/rabam skill selection |
-
-Abbreviated example (`config/classes/dark_knight_awakening.yaml`):
+**New unified format** (used by the Editor, and by Dark Knight files):
 
 ```yaml
 class: "Dark Knight"
 spec: "Awakening"
 
-awakening_skills:
+skills:
   spirit_hunt:
     name: "Spirit Hunt"
+    input: "W + RMB"
+    keys: ["w", "rmb"]
+    protection: "SA"
+    cc: ["stiffness"]
+    damage: high
+    cooldown_ms: 3000
+    description: "Forward-dashing slash with super armor."
+    flows_into: ["shattering_darkness"]
+    core_effect: "Core: Spirit Hunt"
+    notes: "Core gap-close opener."
+
+  shattering_darkness:
+    name: "Shattering Darkness"
     input: "Shift + LMB"
     keys: ["shift", "lmb"]
-    damage_type: "down_attack"
-    note: "Main damage skill"
-
-  dusk:
-    name: "Dusk"
-    input: "Shift + A/D"
-    keys: ["shift", "a"]
-    keys_alt: ["shift", "d"]
-    damage_type: "air_attack"
-
-preawakening_utility:
-  shadow_leap:
-    name: "Shadow Leap"
-    input: "Shift + Space"
-    keys: ["shift", "space"]
-    note: "Gap closer"
+    protection: "FG"
+    cc: ["down_smash"]
+    damage: high
 
 pve_combos:
-  - name: "Basic Grinding Combo"
-    category: "pve"
+  awakening_main_dps:
+    name: "Awakening Main DPS"
+    difficulty: advanced
+    combo_window_ms: 300
     steps:
-      - skill: "spirit_hunt"
-        input: "Shift + LMB"
-        keys: ["shift", "lmb"]
-        note: "Main damage"
-      - skill: "dusk"
-        input: "Shift + A/D"
-        keys: ["shift", "a"]
-        alt_keys: ["shift", "d"]
-        note: "Follow-up"
+      - skill: "shattering_darkness"
+        note: "Main opener"
+      - skill: "flow_bombardment"
+        hold_ms: 1500
+        note: "Hold to channel"
 
-pvp_combos:
-  - name: "Catch Combo"
-    category: "pvp"
-    steps:
-      - skill: "shadow_leap"
-        input: "Shift + Space"
-        keys: ["shift", "space"]
-      - skill: "spirit_hunt"
-        input: "Shift + LMB"
-        keys: ["shift", "lmb"]
+pvp_combos: { ... }
+movement_combos: { ... }
+
+skill_addons:
+  pve: [...]
+
+locked_skills:
+  - name: "Obsidian Ashes"
+    reason: "Too slow for PvE rotation"
+
+hotbar_skills: ["elion_blessing"]
+
+core_skill:
+  recommended: "Spirit Hunt"
+  effect: "Core: Spirit Hunt"
+  reason: "Best gap-close and damage boost"
 ```
+
+**Old format** (most class files — still fully supported):
+
+Steps include `input:` and `keys:` inline. Skill sections are split into `awakening_skills:`, `rabam_skills:`, `preawakening_utility:`. The combo loader handles both formats seamlessly. Saving through the Editor auto-migrates to the unified format.
 
 ### Combo Step Format
 
-Each step in a combo's `steps` list supports the following fields:
+In the **new unified format**, steps are simplified — `input` and `keys` are resolved from the skill definition:
 
 | Field | Required | Description |
 |---|---|---|
-| `skill` | Yes | Skill ID — must match a key in the skill definitions |
-| `input` | Yes | Human-readable input string displayed in the overlay |
-| `keys` | Yes | List of keys/buttons that must be pressed simultaneously |
+| `skill` | Yes | Skill ID — must match a key in the `skills` section |
+| `note` | No | Short contextual hint displayed below the step |
+| `hold_ms` | No | Duration in ms for hold/channel skills (displays a progress bar) |
+| `input` | No | Human-readable input string (resolved from skill if omitted) |
+| `keys` | No | Key list for detection (resolved from skill if omitted) |
 | `alt_keys` | No | Alternative key combo that also satisfies this step |
-| `note` | No | Short note displayed below the step |
 
-**Standard step:**
+**Simplified step** (input + keys resolved from skill):
+
+```yaml
+- skill: "spirit_hunt"
+  note: "Main opener"
+```
+
+**Hold step** (displays an animated progress bar):
+
+```yaml
+- skill: "flow_bombardment"
+  hold_ms: 1500
+  note: "Hold to channel"
+```
+
+**Step with alternative keys** (accepts either `Shift+A` or `Shift+D`):
+
+```yaml
+- skill: "dusk"
+  alt_keys: ["shift", "d"]
+```
+
+**Hotbar step** (auto-advances):
+
+```yaml
+- skill: "elion_blessing"
+  note: "Press hotbar slot"
+```
+
+**Old-format step** (still supported — `input` and `keys` inline):
 
 ```yaml
 - skill: "spirit_hunt"
@@ -315,27 +368,13 @@ Each step in a combo's `steps` list supports the following fields:
   note: "Main damage"
 ```
 
-**Step with alternative keys** (accepts either `Shift+A` or `Shift+D`):
+### Valid Key Names
 
-```yaml
-- skill: "dusk"
-  input: "Shift + A/D"
-  keys: ["shift", "a"]
-  alt_keys: ["shift", "d"]
-```
-
-**Hotbar step** (auto-advances since hotbar presses can't be reliably detected):
-
-```yaml
-- skill: "some_hotbar_skill"
-  input: "Hotbar 1"
-  keys: ["hotbar"]
-  note: "Press hotbar slot — auto-advances"
-```
+`w`, `a`, `s`, `d`, `shift`, `lmb`, `rmb`, `mmb`, `space`, `e`, `f`, `q`, `x`, `z`, `hotbar`, `hold`, `down`
 
 ### Key Remapping
 
-BDO lets you rebind movement and action keys. If your in-game bindings differ from the defaults, update `key_bindings` in `config/combos.yaml` using **BDO's action names**:
+BDO lets you rebind movement and action keys. If your in-game bindings differ from defaults, update `key_bindings` in `config/combos.yaml` (or use the **Settings GUI**):
 
 ```yaml
 key_bindings:
@@ -347,7 +386,7 @@ key_bindings:
   Evade: "Shift"
 ```
 
-The combo loader translates these into the internal key names used by steps. For example, if you rebind `Move Forward` to `Up Arrow`, any combo step referencing forward movement will expect `Up Arrow` instead of `W`.
+The combo loader translates these into the internal key names. For example, if you rebind `Move Forward` to `Up Arrow`, any combo step referencing forward movement will expect `Up Arrow` instead of `W`.
 
 ---
 
@@ -359,12 +398,13 @@ Right-click the system tray icon to see:
 
 ![Tray menu screenshot](doc/images/menu.png)
 
-- **Class → ClassName → SpecName → Combo** — starts the selected combo on the overlay.
-- **Setup Guide** — opens the 4-page setup overlay for the selected class/spec (locked skills, hotbar layout, core skill, skill add-ons).
-- **Settings** — opens the Settings GUI window to edit keybinds, display, timing, and hotkeys live.
-- **Stop** — stops the current combo and hides the overlay text.
-- **Reposition Overlay** — toggles reposition mode (checkable menu item).
-- **Exit** — shuts everything down cleanly.
+- **Class → ClassName → SpecName → Combo** — starts the selected combo on the overlay
+- **Stop** — stops the current combo and hides the overlay text
+- **Reposition Overlay** — toggles drag-to-move mode (checkable)
+- **Setup Guide** — opens the 4-page setup overlay for the selected class/spec
+- **Settings** — opens the Settings GUI window
+- **Class & Combo Editor** — opens the full class/skill/combo editor
+- **Exit** — shuts everything down cleanly
 
 ### Global Hotkeys
 
@@ -372,12 +412,12 @@ These work globally, even when BDO is in fullscreen focus:
 
 | Hotkey | Action |
 |---|---|
-| `F5` | Start the selected combo, or restart it from step 1 if already running |
+| `F5` | Start the selected combo, or restart from step 1 if already running |
 | `F6` | Stop the current combo |
 | `F7` | Next Setup Guide page (when the guide is active) |
 | `F8` | Reset the current combo to step 1 (without stopping) |
 
-Hotkeys are configurable in `config/combos.yaml` under the `hotkeys` section.
+Hotkeys are configurable in `config/combos.yaml` under `hotkeys`, or through the Settings GUI.
 
 ### Reposition Mode
 
@@ -386,57 +426,137 @@ Hotkeys are configurable in `config/combos.yaml` under the `hotkeys` section.
 3. Right-click the tray icon → deselect **Reposition Overlay** to lock the position.
 4. The position is saved to `config/overlay_position.json` as relative screen coordinates, so it persists across restarts and adapts to resolution changes.
 
+To reset to center, delete `config/overlay_position.json` and restart.
+
 ### Idle Reset
 
-If no relevant keys are pressed within the configured timeout (`idle_reset_timeout_ms` in `config/combos.yaml`, default 5000 ms), the combo automatically resets to step 1. This prevents you from getting stuck mid-combo when you take a break or switch activities.
+If no relevant keys are pressed within the configured timeout (`idle_reset_timeout_ms` in `config/combos.yaml`, default 5000 ms), the combo automatically resets to step 1. This prevents you from getting stuck mid-combo when you take a break.
+
+---
+
+## Overlay Animations
+
+The overlay uses smooth animations for step transitions:
+
+### Step Layout (top to bottom)
+
+1. **Combo name** — grey italic 14pt
+2. **Skill name** — gold bold 32pt + `[PROTECTION]` badge (SA, FG, etc.)
+3. **Input keys** — white 22pt
+4. **Hold bar** — animated progress bar (only on hold steps)
+5. **Note** — grey 14pt (optional)
+6. **Step counter** — dark grey 12pt
+7. **Next skill preview** — grey 14pt: `next ▸ Skill Name · Input Keys`
+
+### Transition Animation
+
+When the correct keypress is detected:
+
+1. The old content is tagged and a green **✓ Skill Name** confirmation appears.
+2. The old content **slides upward** at 3 px/frame and **fades** toward transparent.
+3. After ~80 ms delay, the new step **renders and slides up** 40 px with an ease-out curve (~120 ms).
+4. Once the slide completes, input is armed for the new step.
+
+### Hold Step Progress Bar
+
+For skills with `hold_ms`, an animated progress bar appears:
+
+- **Amber → gold → green** fill as you hold the keys
+- Glow and spark particle effects on the fill edge
+- Releasing keys early advances to the next step
+
+### Next Skill Preview Pulse
+
+When the upcoming step is a hold skill, the preview text pulsates between grey and gold (~1.75 s cycle) as a visual warning.
+
+---
+
+## Class & Combo Editor
+
+Accessible from the tray menu via **Class & Combo Editor**. Provides a full GUI for creating and editing class configurations without touching YAML files.
+
+### Features
+
+- **Sidebar** listing all class/spec pairs with selection
+- **New Class** dialog — enter a class name and pick a spec (Awakening/Succession)
+- **Delete Class** with confirmation prompt
+- **Skills tab** — scrollable skill list + full edit form:
+  - Key toggle button grid for input keys
+  - CC checkbox grid (bound, down, stiffness, etc.)
+  - Protection dropdown (SA, FG, iframe, none)
+  - Damage dropdown (low, medium, high)
+  - Description and notes text areas
+- **Combos tab** — categorized combo list (PVE / PVP / Movement) + combo form:
+  - Skill dropdown per step
+  - Note and `hold_ms` fields per step
+  - ▲ / ▼ buttons to reorder steps
+  - × button to delete steps
+
+### Workflow
+
+1. Open the editor from the tray menu.
+2. Select an existing class/spec from the sidebar, or click **New Class** to create one.
+3. Edit skills in the **Skills** tab — add, modify, or remove skill definitions.
+4. Build combos in the **Combos** tab — add steps referencing your skills.
+5. Click **Save** — the YAML file is written and the tray menu refreshes automatically.
+
+Saving through the editor auto-migrates old skill sections (`awakening_skills`, `rabam_skills`, `preawakening_utility`) into the unified `skills:` format.
 
 ---
 
 ## Adding a New Class or Spec
 
-All 27 classes already ship with Awakening + Succession configs, but you can add custom variants or update existing ones.
+### Option A — Use the Editor (recommended)
 
-1. Create a new YAML file in `config/classes/`. Name it descriptively, e.g., `witch_awakening.yaml` or `warrior_succession.yaml`.
+1. Right-click tray → **Class & Combo Editor**.
+2. Click **New Class**, enter the class name and spec.
+3. Add skills and combos using the GUI.
+4. Save — it appears in the tray menu immediately.
 
-2. Add the required top-level keys:
+### Option B — Create a YAML file manually
+
+1. Create a new file in `config/classes/`, e.g., `sage_awakening.yaml`.
+
+2. Add the required top-level keys and define skills:
 
 ```yaml
-class: "Witch"
+class: "Sage"
 spec: "Awakening"
-```
 
-3. Define skills:
-
-```yaml
-awakening_skills:
-  voltaic_pulse:
-    name: "Voltaic Pulse"
+skills:
+  rift_chain:
+    name: "Rift Chain"
     input: "Shift + LMB"
     keys: ["shift", "lmb"]
-    note: "Lightning AoE"
+    protection: "SA"
+    cc: ["stiffness"]
+    damage: high
+    notes: "Main damage skill"
 
-  equilibrium_break:
-    name: "Equilibrium Break"
+  spatial_collapse:
+    name: "Spatial Collapse"
     input: "Shift + RMB"
     keys: ["shift", "rmb"]
+    protection: "FG"
+    damage: high
 ```
 
-4. Define combos using those skill IDs:
+3. Define combos using those skill IDs:
 
 ```yaml
 pve_combos:
-  - name: "Basic Grind"
-    category: "pve"
+  basic_grind:
+    name: "Basic Grind"
+    difficulty: beginner
     steps:
-      - skill: "voltaic_pulse"
-        input: "Shift + LMB"
-        keys: ["shift", "lmb"]
-      - skill: "equilibrium_break"
-        input: "Shift + RMB"
-        keys: ["shift", "rmb"]
+      - skill: "rift_chain"
+        note: "Engage"
+      - skill: "spatial_collapse"
+        hold_ms: 1000
+        note: "Hold for full damage"
 ```
 
-5. Restart the application (or exit + relaunch). The new class/spec appears automatically in the tray menu under **Class → Witch → Awakening**.
+4. Restart the application. The new class/spec appears automatically in the tray menu under **Class → Sage → Awakening**.
 
 No code changes required.
 
@@ -448,12 +568,22 @@ No code changes required.
 
 | Module | Role |
 |---|---|
-| `main.py` | Entry point. Checks/requests admin elevation. Instantiates the combo loader, overlay, and tray. Starts the tkinter main loop. |
-| `src/combo_loader.py` | Loads `config/combos.yaml` (global settings) and auto-discovers all `config/classes/*.yaml` files. Exposes `get_class_tree()`, `get_combo()`, `get_skill_info()`, `get_key_remap()`. |
-| `src/overlay.py` | Transparent, click-through tkinter fullscreen window. Renders outlined text on a canvas. Contains `InputMonitor` which sets up pynput keyboard + mouse low-level hooks. Handles reposition mode (drag-to-move, saves position). Applies key remapping. Manages the idle reset timer. |
-| `src/tray.py` | System tray icon and nested menu via pystray. Dynamically builds menu from the class tree returned by the combo loader. |
-| `src/settings_gui.py` | Settings window (`KeyCapturePopup` + `SettingsWindow` classes). Launched from the tray menu, edits `combos.yaml` keybinds/display/hotkeys/timing live. |
-| `scripts/download_icons.py` | Skill icon scraper — downloads skill icons for all classes from BDO Codex. |
+| `main.py` | Entry point. Checks/requests admin elevation. Instantiates ComboLoader, ComboOverlay, TrayManager, SettingsWindow, EditorWindow, and keyboard hotkeys. Starts the tkinter main loop. |
+| `src/combo_loader.py` | Loads `config/combos.yaml` (global settings) and auto-discovers all `config/classes/*.yaml` files. Provides CRUD methods: `get_class_config()`, `save_class_config()`, `delete_class_config()`, `get_class_tree()`, `get_combo()`. |
+| `src/input_monitor.py` | `InputMonitor` class — sets up pynput keyboard + mouse low-level hooks on daemon threads. Tracks pressed-key state. Applies key remapping. |
+| `src/overlay/core.py` | `ComboOverlay` — thin coordinator that owns the tkinter root window and delegates to renderer, combo player, hold bar, setup guide, and reposition handler. |
+| `src/overlay/renderer.py` | `OverlayContext` (shared state) + `OverlayRenderer` (canvas-based outlined text drawing). |
+| `src/overlay/combo_player.py` | `ComboPlayer` — playback state machine, step rendering, slide/fade animations, hold bar integration, next-skill preview pulse. |
+| `src/overlay/hold_bar.py` | `HoldBar` — animated hold-step progress bar with glow/spark effects. |
+| `src/overlay/setup_guide.py` | `SetupGuide` — 4-page overlay for locked skills, hotbar setup, core skill, skill add-ons. |
+| `src/overlay/reposition.py` | `RepositionHandler` — drag-to-move overlay + persistence to `overlay_position.json`. |
+| `src/tray.py` | System tray icon and nested menu via pystray. Dynamically builds menu from the class tree. Has `refresh_menu()` to update after editor changes. |
+| `src/settings_gui.py` | Tabbed settings window for Key Bindings, Display, Hotkeys, Timing. Saves to `combos.yaml` and live-reloads. |
+| `src/editor/window.py` | `EditorWindow` — singleton Toplevel with sidebar (class/spec list) + tabs. |
+| `src/editor/skill_editor.py` | `SkillEditor` — skill list + full edit form with key toggle grids, CC checkboxes, dropdowns. |
+| `src/editor/combo_editor.py` | `ComboEditor` — categorized combo list + step builder with reordering. |
+| `src/platform.py` | Platform helpers — Win32 click-through setup, font detection, OS-specific behavior. |
+| `src/utils/keys.py` | Key display name mapping and offset utilities. |
 
 ### Threading Model
 
@@ -462,14 +592,15 @@ No code changes required.
 │  Main Thread                                                 │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  tkinter mainloop                                      │  │
-│  │  • Overlay rendering                                   │  │
+│  │  • ComboOverlay (overlay rendering)                    │  │
+│  │  • SettingsWindow, EditorWindow (GUI)                  │  │
 │  │  • All UI updates via root.after() / overlay.schedule()│  │
 │  └────────────────────────────────────────────────────────┘  │
 ├──────────────────────────────────────────────────────────────┤
 │  Daemon Threads                                              │
 │  ┌─────────────────┐  ┌──────────────────────────────────┐  │
-│  │  pystray         │  │  pynput                          │  │
-│  │  (tray icon      │  │  • Keyboard listener (daemon)    │  │
+│  │  pystray         │  │  pynput (InputMonitor)           │  │
+│  │  (TrayManager    │  │  • Keyboard listener (daemon)    │  │
 │  │   + menu)        │  │  • Mouse listener   (daemon)     │  │
 │  │  (daemon thread) │  │                                  │  │
 │  └─────────────────┘  └──────────────────────────────────┘  │
@@ -486,7 +617,18 @@ No code changes required.
 2. Events are translated through the **key remap table** (built from `key_bindings` in settings).
 3. The current pressed-key set is compared against the current step's `keys` (and `alt_keys` if present).
 4. On a full match, the combo advances. A UI update is scheduled on the main thread.
-5. As a **VK fallback**, when the game window has focus and character-level hooks don't fire, virtual key codes are used for detection instead.
+5. For **hold steps**, matching keys start the hold bar timer; releasing early or completing the hold advances the combo.
+
+---
+
+## macOS Support
+
+The overlay launches and renders on macOS with the following limitations:
+
+- **No click-through** — macOS does not support the `WS_EX_TRANSPARENT` equivalent, so the overlay window captures mouse events. Reposition mode still works.
+- **Semi-transparent fallback** — the window uses a semi-transparent background instead of a fully transparent one.
+- **Accessibility permissions** — macOS requires granting Accessibility permissions for `pynput` to capture global keyboard/mouse events. The `run.sh` script will display a note about this.
+- **No auto-elevation** — there is no admin auto-elevation on macOS. Run with `sudo` if needed for input monitoring.
 
 ---
 
@@ -526,7 +668,7 @@ To reset to center, delete `config/overlay_position.json` and restart.
 
 ### Combo resets unexpectedly
 
-The **idle reset timer** resets the combo to step 1 after a period of inactivity. Increase `idle_reset_timeout_ms` in `config/combos.yaml` if the default is too aggressive:
+The **idle reset timer** resets the combo to step 1 after a period of inactivity. Increase `idle_reset_timeout_ms` in `config/combos.yaml` (or via the Settings GUI):
 
 ```yaml
 timing:
@@ -547,6 +689,11 @@ BDO runs as an elevated process. On Windows, [User Interface Privilege Isolation
 
 - Some Windows configurations hide new tray icons. Check the system tray overflow area (the `^` arrow).
 - Make sure `pillow` is installed (`pip install pillow`) — pystray requires it for icon rendering.
+
+### macOS: Input not detected
+
+- Grant **Accessibility** permissions to your terminal / Python in System Settings → Privacy & Security → Accessibility.
+- You may need to restart the application after granting permissions.
 
 ### Adding the wrong keys / My character does something unexpected
 
