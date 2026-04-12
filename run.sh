@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # BDO Trainer - macOS/Linux Run Script
 # This script runs the BDO Trainer application
 
@@ -32,11 +32,12 @@ fi
 echo "Python found: $($PYTHON --version)"
 echo
 
-# --- Check for tkinter availability ---
+# --- Check for tkinter availability (before venv, using system Python) ---
+PY_VERSION=$($PYTHON -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
 if ! $PYTHON -c "import tkinter" &>/dev/null; then
-    echo "ERROR: tkinter is not available."
-    echo "  macOS  – it is bundled with the python.org installer; if you used"
-    echo "           Homebrew, run:  brew install python-tk"
+    echo "ERROR: tkinter is not available for Python $PY_VERSION."
+    echo "  macOS  – if you used Homebrew, run:  brew install python-tk@$PY_VERSION"
+    echo "           (or install Python from python.org which bundles tkinter)"
     echo "  Linux  – install the package for your distro, e.g.:"
     echo "           sudo apt install python3-tk   (Debian/Ubuntu)"
     echo "           sudo dnf install python3-tkinter   (Fedora)"
@@ -44,9 +45,24 @@ if ! $PYTHON -c "import tkinter" &>/dev/null; then
 fi
 
 # --- Create virtual environment if it doesn't exist ---
-if [ ! -d "venv" ]; then
+VENV_DIR=""
+if [ -d ".venv" ] && [ -f ".venv/bin/activate" ]; then
+    VENV_DIR=".venv"
+elif [ -d "venv" ] && [ -f "venv/bin/activate" ]; then
+    VENV_DIR="venv"
+fi
+
+if [ -z "$VENV_DIR" ]; then
+    # Clean up any Windows-created venv that won't work here
+    for d in .venv venv; do
+        if [ -d "$d" ] && [ ! -f "$d/bin/activate" ]; then
+            echo "Found $d/ but it appears to be Windows-created (no bin/activate). Removing..."
+            rm -rf "$d"
+        fi
+    done
     echo "Virtual environment not found. Creating one..."
-    $PYTHON -m venv venv
+    VENV_DIR=".venv"
+    $PYTHON -m venv "$VENV_DIR"
     echo "Virtual environment created successfully!"
     echo
 fi
@@ -54,7 +70,16 @@ fi
 # --- Activate virtual environment ---
 echo "Activating virtual environment..."
 # shellcheck disable=SC1091
-source venv/bin/activate
+source "$VENV_DIR/bin/activate"
+
+# --- Verify tkinter works inside the venv ---
+if ! python -c "import tkinter" &>/dev/null; then
+    echo "ERROR: tkinter is not available inside the virtual environment."
+    echo "  This can happen if tkinter was installed after the venv was created."
+    echo "  Try deleting the venv and re-running this script:"
+    echo "    rm -rf $VENV_DIR && ./run.sh"
+    exit 1
+fi
 
 # --- Install/update requirements if needed ---
 if [ -f "requirements.txt" ]; then
@@ -70,10 +95,8 @@ echo
 
 # --- Platform-specific notes ---
 if [ "$(uname)" = "Darwin" ]; then
-    echo "NOTE (macOS): For input monitoring (keyboard hooks) to work, your"
-    echo "terminal or Python may need Accessibility permissions."
-    echo "  → System Settings > Privacy & Security > Accessibility"
-    echo "Grant access to your terminal app (Terminal, iTerm2, etc.)."
+    echo "NOTE (macOS): If this is your first run, the app will prompt for"
+    echo "Accessibility permissions via a system dialog."
     echo
 fi
 
@@ -88,7 +111,7 @@ if [ "$(uname)" = "Linux" ]; then
 fi
 
 # --- Run the application ---
-python main.py
+python main.py "$@"
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -ne 0 ]; then
