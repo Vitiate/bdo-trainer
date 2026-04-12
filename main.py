@@ -49,18 +49,24 @@ from src.tray import TRAY_AVAILABLE, TrayManager
 # Optional: global hotkeys via the `keyboard` library
 _hotkeys_available = False
 kb = None
-try:
-    import keyboard as kb
-
-    _hotkeys_available = True
-except ImportError:
-    logger.warning("keyboard library not installed — global hotkeys disabled")
-except Exception as exc:
-    # On macOS/Linux the keyboard library may raise OSError or other
-    # exceptions when it lacks root privileges or Accessibility permissions.
+if sys.platform == "darwin" and os.geteuid() != 0:
+    # The keyboard library requires root on macOS; importing it is fine but
+    # add_hotkey() spawns a listener thread that aborts without root.
     logger.warning(
-        f"keyboard library failed to initialise — global hotkeys disabled: {exc}"
+        "keyboard library requires root on macOS — global hotkeys disabled. "
+        "Use the tray menu instead, or run with sudo."
     )
+else:
+    try:
+        import keyboard as kb
+
+        _hotkeys_available = True
+    except ImportError:
+        logger.warning("keyboard library not installed — global hotkeys disabled")
+    except Exception as exc:
+        logger.warning(
+            f"keyboard library failed to initialise — global hotkeys disabled: {exc}"
+        )
 
 
 # ===========================================================================
@@ -393,8 +399,128 @@ def _ensure_admin() -> None:
         logger.warning(f"Admin elevation check failed: {exc}")
 
 
+def _check_macos_accessibility() -> None:
+    """Prompt the user for Accessibility permissions on macOS if not granted."""
+    if sys.platform != "darwin":
+        return
+    try:
+        # Use a subprocess to avoid segfaults from ctypes CF object management
+        import subprocess
+
+        result = subprocess.run(
+            [
+                sys.executable, "-c",
+                "import objc;"
+                "from ApplicationServices import AXIsProcessTrustedWithOptions;"
+                "from Foundation import NSDictionary;"
+                "opts = NSDictionary.dictionaryWithObject_forKey_(True, 'AXTrustedCheckOptionPrompt');"
+                "print(AXIsProcessTrustedWithOptions(opts))",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if result.returncode == 0:
+            trusted = result.stdout.strip() == "True"
+            if trusted:
+                logger.info("macOS Accessibility permissions: granted")
+            else:
+                logger.warning(
+                    "macOS Accessibility permissions: NOT granted — "
+                    "a system prompt has been shown. Grant access and restart."
+                )
+            return
+    except Exception:
+        pass
+
+    # Fallback: just check without prompting (no pyobjc available)
+    try:
+        import subprocess
+
+        result = subprocess.run(
+            [
+                sys.executable, "-c",
+                "import ctypes, ctypes.util;"
+                "lib = ctypes.cdll.LoadLibrary(ctypes.util.find_library('ApplicationServices'));"
+                "lib.AXIsProcessTrusted.restype = ctypes.c_bool;"
+                "print(lib.AXIsProcessTrusted())",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if result.returncode == 0:
+            trusted = result.stdout.strip() == "True"
+            if trusted:
+                logger.info("macOS Accessibility permissions: granted")
+            else:
+                logger.warning(
+                    "macOS Accessibility permissions: NOT granted. "
+                    "Go to System Settings > Privacy & Security > Accessibility "
+                    "and grant access to your terminal or Python."
+                )
+        else:
+            logger.warning("macOS Accessibility check: could not determine status")
+    except Exception as exc:
+        logger.warning(f"macOS Accessibility check failed: {exc}")
+
+
+def _run_editor_only():
+    """Launch just the Class & Combo Editor in a standalone tkinter window."""
+    import tkinter as tk
+
+    logger.info("=== BDO Trainer — Editor-only mode ===")
+
+    loader = ComboLoader()
+    logger.info(f"Loaded {len(loader.get_combo_list())} combos across classes/specs")
+
+    root = tk.Tk()
+    root.title("BDO Trainer — Editor")
+    root.withdraw()
+
+    def on_editor_saved():
+        loader.reload()
+        logger.info("Reloaded class configs after editor save")
+
+    def open_settings():
+        SettingsWindow.open(root, loader, on_save=lambda s: setattr(loader, 'settings', s))
+
+    EditorWindow.open(root, loader, on_save=on_editor_saved)
+
+    # Re-open the editor if the user closes it, or quit the app
+    def _check_alive():
+        # EditorWindow is a singleton — check if it's still open
+        if EditorWindow._instance is None:
+            root.quit()
+            return
+        try:
+            EditorWindow._instance.window.winfo_exists()
+        except Exception:
+            root.quit()
+            return
+        root.after(500, _check_alive)
+
+    root.after(500, _check_alive)
+
+    # Add a simple menu bar for Settings access
+    menubar = tk.Menu(root)
+    menubar.add_command(label="Settings", command=open_settings)
+
+    try:
+        root.mainloop()
+    except KeyboardInterrupt:
+        pass
+
+    logger.info("=== BDO Trainer — Editor closed ===")
+
+
 def main():
+    if "--editor" in sys.argv:
+        _run_editor_only()
+        return
+
     _ensure_admin()
+    _check_macos_accessibility()
     app = BDOTrainerApp()
     app.run()
 
