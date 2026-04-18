@@ -152,6 +152,9 @@ class SkillEditor(tk.Frame):
         self._notes_text: Optional[tk.Text] = None
         self._flows_entry: Optional[tk.Entry] = None
         self._core_entry: Optional[tk.Entry] = None
+        self._hotbar_var: Optional[tk.BooleanVar] = None
+        self._hotbar_key_entry: Optional[tk.Entry] = None
+        self._hotbar_key_frame: Optional[tk.Frame] = None
         self._form_frame: Optional[tk.Frame] = None
         self._placeholder_label: Optional[tk.Label] = None
         self._save_btn: Optional[tk.Button] = None
@@ -461,6 +464,66 @@ class SkillEditor(tk.Frame):
             row=row, column=1, columnspan=3, sticky="w", padx=(0, 12), pady=4
         )
         self._build_key_grid(keys_frame, is_alt=False)
+        row += 1
+
+        # --- Hotbar Skill ---
+        tk.Label(
+            f,
+            text="Hotbar:",
+            font=FONT_BOLD,
+            bg=BG_DARK,
+            fg=FG_TEXT,
+            anchor="nw",
+        ).grid(row=row, column=0, sticky="nw", padx=(12, 6), pady=4)
+
+        hotbar_outer = tk.Frame(f, bg=BG_DARK)
+        hotbar_outer.grid(
+            row=row, column=1, columnspan=3, sticky="ew", padx=(0, 12), pady=4
+        )
+
+        self._hotbar_var = tk.BooleanVar(value=False)
+        hotbar_cb = tk.Checkbutton(
+            hotbar_outer,
+            text="Hotbar Skill",
+            variable=self._hotbar_var,
+            font=FONT,
+            bg=BG_DARK,
+            fg=FG_TEXT,
+            selectcolor=BG_INPUT,
+            activebackground=BG_DARK,
+            activeforeground=FG_TEXT,
+            highlightthickness=0,
+            bd=0,
+            command=self._on_hotbar_toggled,
+        )
+        hotbar_cb.pack(side="left")
+        self._bind_mousewheel(hotbar_cb)
+
+        self._hotbar_key_frame = tk.Frame(hotbar_outer, bg=BG_DARK)
+        # Initially hidden; shown when checkbox is checked
+
+        tk.Label(
+            self._hotbar_key_frame,
+            text="Key:",
+            font=FONT_BOLD,
+            bg=BG_DARK,
+            fg=FG_TEXT,
+        ).pack(side="left", padx=(16, 4))
+
+        self._hotbar_key_entry = tk.Entry(
+            self._hotbar_key_frame,
+            font=FONT,
+            bg=BG_INPUT,
+            fg=FG_TEXT,
+            insertbackground=FG_TEXT,
+            bd=0,
+            highlightthickness=1,
+            highlightcolor=ACCENT,
+            highlightbackground=BG_CARD,
+            width=6,
+        )
+        self._hotbar_key_entry.pack(side="left")
+
         row += 1
 
         # --- Alt Keys ---
@@ -873,6 +936,19 @@ class SkillEditor(tk.Frame):
         else:
             btn.configure(bg=BG_INPUT, fg=FG_DIM)
 
+    def _on_hotbar_toggled(self) -> None:
+        """Show/hide the hotbar key entry and sync the hotbar key toggle."""
+        if self._hotbar_var.get():
+            self._hotbar_key_frame.pack(side="left")
+            # Auto-select the "hotbar" key toggle
+            self._set_key_state("hotbar", True, is_alt=False)
+        else:
+            self._hotbar_key_frame.pack_forget()
+            # Clear the hotbar key toggle and entry
+            self._set_key_state("hotbar", False, is_alt=False)
+            if self._hotbar_key_entry:
+                self._hotbar_key_entry.delete(0, tk.END)
+
     def _reset_all_keys(self, is_alt: bool = False) -> None:
         """Reset all key toggles to off."""
         vars_dict = self._alt_key_vars if is_alt else self._key_vars
@@ -1050,6 +1126,12 @@ class SkillEditor(tk.Frame):
         if core:
             skill["core_effect"] = core
 
+        # Hotbar key
+        if self._hotbar_var and self._hotbar_var.get():
+            hk = self._hotbar_key_entry.get().strip() if self._hotbar_key_entry else ""
+            if hk:
+                skill["hotbar_key"] = hk
+
         self._skills[self._current_skill_id] = skill
 
     def _load_skill_to_form(self, skill_id: str) -> None:
@@ -1126,6 +1208,18 @@ class SkillEditor(tk.Frame):
         # Core effect
         self._set_entry(self._core_entry, skill_data.get("core_effect", ""))
 
+        # Hotbar
+        hotbar_key = skill_data.get("hotbar_key", "")
+        is_hotbar = bool(hotbar_key) or "hotbar" in skill_data.get("keys", [])
+        if self._hotbar_var:
+            self._hotbar_var.set(is_hotbar)
+        if is_hotbar:
+            self._hotbar_key_frame.pack(side="left")
+            self._set_entry(self._hotbar_key_entry, hotbar_key)
+        else:
+            self._hotbar_key_frame.pack_forget()
+            self._set_entry(self._hotbar_key_entry, "")
+
         # Scroll to top
         self._canvas.yview_moveto(0)
 
@@ -1168,6 +1262,12 @@ class SkillEditor(tk.Frame):
         self._set_text(self._notes_text, "")
         self._set_entry(self._flows_entry, "")
         self._set_entry(self._core_entry, "")
+
+        if self._hotbar_var:
+            self._hotbar_var.set(False)
+        if self._hotbar_key_frame:
+            self._hotbar_key_frame.pack_forget()
+        self._set_entry(self._hotbar_key_entry, "")
 
     # ------------------------------------------------------------------
     # Widget helpers

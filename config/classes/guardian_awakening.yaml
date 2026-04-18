@@ -1,0 +1,781 @@
+# Guardian — Awakening
+# Generated / updated by BDO Trainer Editor
+
+class: Guardian
+spec: Awakening
+skills:
+  awakening_juggernaut:
+    name: "Awakening: Juggernaut"
+    input: W + F
+    keys:
+      - w
+      - f
+    protection: FG
+    cc:
+      - push
+    damage: high
+    cooldown_ms: 7000
+    description:
+      Charge forward while pushing enemies backward using your jordun. Forward Guard during skill.
+      Recovers 20 WP per hit. Movement Speed +10% for 10s.
+    flows_into:
+      - searing_fang
+      - scornful_slash
+    notes: Gap-close engage tool. All Damage Reduction -20 for 10s on hits. Requires Juggernaut III.
+  dragons_maw:
+    name: Dragon's Maw
+    input: SHIFT + LMB
+    keys:
+      - shift
+      - lmb
+    protection: FG
+    cc:
+      - knockdown
+      - down_attack
+    damage: very_high
+    cooldown_ms: 14000
+    description:
+      Kindle the flames within your jordun, then blast it forward to set enemies ablaze.
+      Hold to maintain charging stance. Forward Guard during skill.
+    flows_into:
+      - flow_howling_light
+    core_effect: "Core: Dragon's Maw - enhanced flame blast"
+    notes:
+      Critical Hit Rate +100%. Knockdown PvE only. All Damage Reduction -10 for 10s on hits.
+      Recovers 35 HP and 20 WP per hit. One of the highest damage awakening skills.
+  god_incinerator:
+    name: God Incinerator
+    input: SHIFT + Q
+    keys:
+      - shift
+      - q
+    protection: SA
+    cc:
+      - bound
+      - down_attack
+    damage: very_high
+    cooldown_ms: 12000
+    description: Erupt the flames within your jordun upon the surface. Super Armor during skill.
+    flows_into:
+      - fireborne_rupture
+    core_effect: "Core: God Incinerator - enhanced flame eruption"
+    notes:
+      Critical Hit Rate +50%. Bound PvE only. All Damage Reduction -10 for 10s on hits.
+      Recovers 60 HP per hit. Can flow into Fireborne Rupture via Q.
+  searing_fang:
+    name: Searing Fang
+    input: SHIFT + RMB
+    keys:
+      - shift
+      - rmb
+    protection: SA
+    cc:
+      - bound
+      - down_attack
+      - down_smash
+    damage: high
+    cooldown_ms: 7000
+    description:
+      Charge forward after smashing down on the ground with your jordun. Hold RMB to continue.
+      Super Armor on Attack 1 hits. Leaves a fire trail.
+    flows_into:
+      - flow_suppress
+    core_effect: "Core: Searing Fang - enhanced charge"
+    notes:
+      Critical Hit Rate +50%. Bound PvE only. All Evasion -12 for 10s on hits.
+      20 burn damage every 3s for 9s on fire trail. Recovers 45 WP per hit.
+  scornful_slash:
+    name: Scornful Slash
+    input: S + RMB
+    keys:
+      - s
+      - rmb
+    protection: none
+    cc:
+      - floating
+      - down_smash
+      - air_smash
+    damage: high
+    cooldown_ms: 6000
+    description: Strike enemies up into the air with your jordun, leaving a trail of fire. Hold RMB to continue.
+    flows_into:
+      - glorious_advance
+      - searing_fang
+    core_effect: "Core: Scornful Slash - enhanced slash"
+    notes:
+      Critical Hit Rate +20%. Floating on hits. 20 burn damage every 3s for 9s on fire trail.
+      No innate protection — be careful with timing.
+  glorious_advance:
+    name: Glorious Advance
+    input: S + LMB
+    keys:
+      - s
+      - lmb
+    protection: none
+    cc:
+      - knockback
+      - down_smash
+      - air_smash
+    damage: high
+    cooldown_ms: 6000
+    description: Attack enemies by taking quick and short swings with your jordun. Hold LMB to continue.
+    flows_into:
+      - scornful_slash
+      - cleansing_flame
+    core_effect: "Core: Glorious Advance - enhanced swings"
+    notes:
+      Critical Hit Rate +20%. Attack Speed +10% for 20s. Knockback on second attack hit.
+      Recovers 19 WP per hit. No innate protection.
+  cleansing_flame:
+    name: Cleansing Flame
+    input: SHIFT + F
+    keys:
+      - shift
+      - f
+    protection: SA
+    cc:
+      - floating
+      - down_smash
+    damage: very_high
+    cooldown_ms: 6000
+    description: Spin around, then slash across with a powerful circular swing. Super Armor during skill.
+    flows_into:
+      - flow_to_ashes
+    core_effect: "Core: Cleansing Flame - enhanced spin slash"
+    notes: Critical Hit Rate +50%. Floating PvE only. All AP -20 for 10s on hits. Great AoE damage with SA protection.
+  infernal_steps:
+    name: Infernal Steps
+    input: Hold RMB
+    keys:
+      - rmb
+    protection: none
+    cc:
+      - stun
+      - knockback
+      - down_attack
+    damage: medium
+    cooldown_ms: 7000
+    description: Hold RMB to continue. Stun on 2 hits, Knockback on 3 hits (PvE only, nullified during cooldown).
+    flows_into:
+      - searing_fang
+      - scornful_slash
+    notes:
+      Critical Hit Rate +50%. Recovers 75 HP per hit (nullified during cooldown).
+      CC effects are PvE only and nullified during cooldown.
+  flow_suppress:
+    name: "Flow: Suppress"
+    input: RMB (after Searing Fang)
+    keys:
+      - rmb
+    protection: SA
+    cc:
+      - bound
+      - down_attack
+    damage: very_high
+    cooldown_ms: 0
+    description:
+      Knock enemies down by charging at them, then set the ground ablaze with the flames of your jordun.
+      Super Armor during skill.
+    flows_into:
+      - god_incinerator
+      - cleansing_flame
+    notes: Critical Hit Rate +100%. Bound on hits. Activated via RMB after Searing Fang. One of the hardest hitting flow skills.
+  fireborne_rupture:
+    name: Fireborne Rupture
+    input: SPACE / Q (after God Incinerator)
+    keys:
+      - hotbar
+    hotbar_key: "1"
+    protection: none
+    cc:
+      - pull
+      - knockdown
+      - down_smash
+      - air_smash
+    damage: very_high
+    cooldown_ms: 4000
+    description:
+      Slam your jordun on the ground to pull, then push enemies away.
+      Can be used via SPACE during certain skills or Q during God Incinerator.
+    flows_into:
+      - god_incinerator
+      - cleansing_flame
+    notes: Critical Hit Rate +50%. All CC PvE only. All AP +20 for 10s when using skill. Can be added to Quick Slot.
+  scalding_thorn:
+    name: Scalding Thorn
+    input: F
+    keys:
+      - f
+    protection: none
+    cc:
+      - stun
+      - down_smash
+      - air_smash
+    damage: high
+    cooldown_ms: 5000
+    description: Stab enemies using the lower half of the jordun. Stun on hits (nullified during cooldown).
+    flows_into:
+      - searing_fang
+      - glorious_advance
+    notes:
+      Recovers 100 WP per hit (nullified during cooldown). Recovers 35 HP and 20 WP per target.
+      No innate protection — use as a quick filler.
+  infernal_nemesis:
+    name: Infernal Nemesis
+    input: S + F
+    keys:
+      - s
+      - f
+    protection: SA
+    cc:
+      - knockdown
+      - down_attack
+      - down_smash
+    damage: high
+    cooldown_ms: 18000
+    description:
+      Ascend with the power of the Holy Flame, then swoop down on enemies.
+      Invincible while moving; Super Armor on attacks. LMB to attack instantly.
+    flows_into:
+      - cleansing_flame
+      - dragons_maw
+    notes: Recovers 200 HP per hit. Knockdown PvE only. Long 18s cooldown. Excellent protected engage/disengage tool.
+  frigid_wind:
+    name: Frigid Wind
+    input: W + RMB
+    keys:
+      - hotbar
+    hotbar_key: "3"
+    protection: SA
+    cc:
+      - floating
+      - down_attack
+      - air_attack
+    damage: high
+    cooldown_ms: 8000
+    description:
+      Slide forward, then swing your jordun. Super Armor during skill. Invincible while concealed.
+      Hold RMB for extra attacks.
+    flows_into:
+      - searing_fang
+      - dragons_maw
+    notes: Slash attack +100% Critical Hit Rate. Floating on slash PvE only. Recovers 104 WP per hit. Good gap closer with SA.
+  flow_howling_light:
+    name: "Flow: Howling Light"
+    input: LMB or RMB (after Dragon's Maw)
+    keys:
+      - lmb
+    protection: SA
+    cc:
+      - down_attack
+    damage: very_high
+    cooldown_ms: 0
+    description:
+      Shoots fire forward one more time by bringing forth the power of the flames and covers the earth
+      with fire. Super Armor during skill. Applies Dragon's Maw damage x2.
+    flows_into: []
+    notes: Recovers 210 HP per hit. 90 burn damage every 3s for 18s on hits. Always chain after Dragon's Maw for maximum damage.
+  flow_to_ashes:
+    name: "Flow: To Ashes"
+    input: LMB (after Cleansing Flame or Frost Slide)
+    keys:
+      - hotbar
+    hotbar_key: "2"
+    protection: none
+    cc:
+      - bound
+      - down_attack
+      - down_smash
+      - air_smash
+    damage: very_high
+    cooldown_ms: 7000
+    description: Unleash a mighty slash with the jordun upon unsuspecting foes. Bound on hit.
+    flows_into:
+      - cleansing_flame
+      - god_incinerator
+    notes:
+      Critical Hit Rate +100%. All Damage Reduction +20 and All Evasion +20 for 15s.
+      Bleeding 100 damage per 3s for 15s. Can be added to Quick Slot.
+  neck_impaler:
+    name: Neck Impaler
+    input: E
+    keys:
+      - e
+    protection: SA
+    cc:
+      - grab
+      - knockdown
+    damage: low
+    cooldown_ms: 15000
+    description:
+      Stab the enemy with your jordun, pick them up, then fling them down.
+      Super Armor on grapple attempts and failures.
+    flows_into:
+      - god_incinerator
+      - cleansing_flame
+    notes: "All Damage Reduction -15 for 10s on hits. Knockdown on successful grapple. Unaffected by Attack/Casting Speed. Requires Absolute: Chokeslam."
+  mountains_echo:
+    name: Mountain's Echo
+    level: 58
+    input: Hotbar Only
+    keys:
+      - hotbar
+    protection: SA
+    cc: []
+    damage: high
+    cooldown_ms: 22000
+    description:
+      Gather your strength to leap high up, then powerfully smash the ground.
+      Super Armor during skill. All Damage Reduction +20 for 10s.
+    flows_into: []
+    notes: Critical Hit Rate +50%. Can be added to Quick Slot. Requires Sturdy Step III and Rockslide III.
+  sturdy_smite:
+    name: Sturdy Smite
+    level: 58
+    input: Hotbar Only
+    keys:
+      - hotbar
+    protection: FG
+    cc:
+      - bound
+      - down_attack
+    damage: high
+    cooldown_ms: 9000
+    description: Instantly approach the enemy and smash the surface with your shield. Forward Guard during skill.
+    flows_into: []
+    notes: "Critical Hit Rate +50%. Bound PvE only. All Damage Reduction -20 for 10s on hits. Can be added to Quick Slot. Requires Sturdy Step III and Juggernaut: Smite II."
+  gate_crasher:
+    name: Gate Crasher
+    level: 60
+    input: S + F
+    keys:
+      - s
+      - f
+    protection: SA
+    cc:
+      - knockdown
+      - pull
+      - down_attack
+      - down_smash
+    damage: very_high
+    cooldown_ms: 9000
+    description:
+      Throw your battle axe with all your might, obliterating all enemies in front as it travels
+      forward and back. Super Armor during skill.
+    flows_into: []
+    notes: Critical Hit Rate +50%. Knockdown and Pull PvE only. Can be performed instantly after certain skills.
+  omuas_blessing:
+    name: Omua's Blessing
+    input: SHIFT + E
+    keys:
+      - shift
+      - e
+    protection: SA
+    cc: []
+    damage: none
+    cooldown_ms: 180000
+    description:
+      Self-buff. Super Armor for 10s when using the skill.
+      All AP +20, Critical Hit Rate +50%, All Accuracy +60, Movement Speed +30%,
+      Critical Hit Damage +20% for 30s.
+    flows_into: []
+    notes: 3-minute cooldown. Use before engaging packs or at the start of a rotation. Requires Omua's Glare.
+  omuas_glare:
+    name: Omua's Glare
+    input: SHIFT + E (pre-awakening)
+    keys:
+      - shift
+      - e
+    protection: SA
+    cc: []
+    damage: none
+    cooldown_ms: 180000
+    description:
+      Raises the dragon's blood for a while to gain Omua's strength.
+      All AP +20, Critical Hit Rate +50%, All Accuracy +60, Movement Speed +30%,
+      Critical Hit Damage +20% for 30s.
+    flows_into: []
+    notes: Pre-awakening version of the self-buff. Same effects as Omua's Blessing.
+  frost_slide:
+    name: Frost Slide
+    input: SHIFT + Direction
+    keys:
+      - shift
+      - direction
+    protection: iframe
+    cc: []
+    damage: none
+    cooldown_ms: 3000
+    description: Evade enemies by dashing quickly in a direction. Invincible during skill. Movement Speed +10% for 10s.
+    flows_into:
+      - flow_to_ashes
+      - cleansing_flame
+    notes: "Primary iframe. Costs 150 Stamina. No collision when moving backward or laterally. Can flow into Flow: To Ashes via LMB."
+  evasion:
+    name: Evasion
+    input: W + W / SHIFT + Direction
+    keys:
+      - shift
+      - direction
+    protection: iframe
+    cc: []
+    damage: none
+    cooldown_ms: 0
+    description: Tuck and roll to your desired direction. Invincible during skill (PvE only).
+    flows_into: []
+    notes: Costs 150 Stamina. PvE iframe only. Can be used with jordun.
+  guard:
+    name: Guard
+    input: Q
+    keys:
+      - q
+    protection: FG
+    cc: []
+    damage: none
+    cooldown_ms: 0
+    description:
+      Block incoming attacks. All Damage Reduction +20 for 10s while on Guard.
+      All CC Resistance (except Grapple), including from Back Attacks.
+      Forward Guard reduces Guard Gauge damage by 40%.
+    flows_into: []
+    notes: Recovers 25% max WP on blocks. Can move while guarding. SHIFT + W to sprint. Guard Gauge damage reduction negated when using jordun.
+  juggernaut:
+    name: Juggernaut
+    input: W + F (pre-awakening)
+    keys:
+      - w
+      - f
+    protection: FG
+    cc:
+      - push
+    damage: medium
+    cooldown_ms: 7000
+    description: Forward charge with battle axe. Push on hits.
+    flows_into:
+      - awakening_juggernaut
+    notes: Pre-awakening version. Flows into Awakening Juggernaut.
+  black_blood_circle:
+    name: Black Blood Circle
+    input: S + LMB (pre-awakening)
+    keys:
+      - s
+      - lmb
+    protection: FG
+    cc:
+      - knockdown
+    damage: medium
+    cooldown_ms: 8000
+    description: Slam your axe into the ground creating a shockwave.
+    flows_into: []
+    notes: Pre-awakening AoE. Forward Guard.
+  boulder_crush:
+    name: Boulder Crush
+    input: LMB (pre-awakening)
+    keys:
+      - lmb
+    protection: none
+    cc:
+      - down_attack
+    damage: medium
+    cooldown_ms: 0
+    description: Basic battle axe attacks.
+    flows_into: []
+    notes: Pre-awakening filler. No protection.
+  savage_hack:
+    name: Savage Hack
+    input: RMB (pre-awakening)
+    keys:
+      - rmb
+    protection: none
+    cc:
+      - knockback
+    damage: medium
+    cooldown_ms: 0
+    description: Hack at enemies with your battle axe.
+    flows_into: []
+    notes: Pre-awakening filler.
+  mountain_slam:
+    name: Mountain Slam
+    input: SHIFT + LMB (pre-awakening)
+    keys:
+      - shift
+      - lmb
+    protection: SA
+    cc:
+      - knockdown
+      - down_attack
+    damage: high
+    cooldown_ms: 8000
+    description: Slam your axe down with great force. Super Armor.
+    flows_into: []
+    notes: Pre-awakening. Good damage with SA protection.
+  avalanche_strike:
+    name: Avalanche Strike
+    input: SHIFT + F (pre-awakening)
+    keys:
+      - shift
+      - f
+    protection: SA
+    cc:
+      - floating
+    damage: high
+    cooldown_ms: 10000
+    description: Leap and strike with your axe. Super Armor.
+    flows_into: []
+    notes: Pre-awakening gap close with SA.
+  chokeslam:
+    name: Chokeslam
+    input: E (pre-awakening)
+    keys:
+      - e
+    protection: SA
+    cc:
+      - grab
+    damage: low
+    cooldown_ms: 15000
+    description: Grab the enemy and slam them down. Super Armor.
+    flows_into:
+      - neck_impaler
+    notes: Pre-awakening grab. Required for Neck Impaler.
+  torso_ripper:
+    name: Torso Ripper
+    input: F (pre-awakening)
+    keys:
+      - f
+    protection: FG
+    cc:
+      - bound
+    damage: medium
+    cooldown_ms: 6000
+    description: Rip into enemies with your axe. Forward Guard.
+    flows_into: []
+    notes: Pre-awakening.
+  fierce_disdain:
+    name: Fierce Disdain
+    input: S + RMB (pre-awakening)
+    keys:
+      - s
+      - rmb
+    protection: FG
+    cc:
+      - knockdown
+    damage: medium
+    cooldown_ms: 6000
+    description: Strike enemies with disdain. Forward Guard.
+    flows_into: []
+    notes: Pre-awakening.
+  mutilation:
+    name: Mutilation
+    input: W + RMB (pre-awakening)
+    keys:
+      - w
+      - rmb
+    protection: SA
+    cc:
+      - knockdown
+    damage: high
+    cooldown_ms: 8000
+    description: Rush forward and mutilate enemies. Super Armor.
+    flows_into: []
+    notes: Pre-awakening.
+  beast_demolisher:
+    name: Beast Demolisher
+    input: SHIFT + RMB (pre-awakening)
+    keys:
+      - shift
+      - rmb
+    protection: SA
+    cc:
+      - bound
+    damage: high
+    cooldown_ms: 10000
+    description: Demolish enemies with brutal axe swings. Super Armor.
+    flows_into: []
+    notes: Pre-awakening.
+  axe_throw:
+    name: Axe Throw
+    input: Hotbar Only
+    keys:
+      - hotbar
+    protection: none
+    cc:
+      - stiffness
+    damage: low
+    cooldown_ms: 5000
+    description: Throw your axe at a distant enemy.
+    flows_into: []
+    notes: Ranged pre-awakening poke. Use from hotbar.
+  rockslide:
+    name: Rockslide
+    input: SHIFT + Q (pre-awakening)
+    keys:
+      - shift
+      - q
+    protection: SA
+    cc:
+      - knockdown
+    damage: high
+    cooldown_ms: 10000
+    description: Slam the ground causing a rockslide. Super Armor.
+    flows_into: []
+    notes: Pre-awakening AoE.
+  black_bloods_descent:
+    name: Black Blood's Descent
+    input: SHIFT + LMB (pre-awakening, held)
+    keys:
+      - shift
+      - lmb
+    protection: SA
+    cc:
+      - down_attack
+    damage: high
+    cooldown_ms: 8000
+    description: Channel black blood energy into a devastating strike.
+    flows_into: []
+    notes: Pre-awakening. Hold to continue.
+  black_blood_slaughter:
+    name: Black Blood Slaughter
+    input: W + LMB (pre-awakening)
+    keys:
+      - w
+      - lmb
+    protection: SA
+    cc:
+      - knockdown
+    damage: high
+    cooldown_ms: 8000
+    description: Charge forward slaughtering enemies with black blood energy.
+    flows_into: []
+    notes: Pre-awakening.
+  claw_reveal:
+    name: Claw Reveal
+    input: A/D + LMB (pre-awakening)
+    keys:
+      - a
+      - lmb
+    keys_alt:
+      - d
+      - lmb
+    protection: none
+    cc:
+      - stiffness
+    damage: medium
+    cooldown_ms: 4000
+    description: Reveal your claws and slash sideways.
+    flows_into: []
+    notes: Pre-awakening lateral attack.
+  strike_down:
+    name: Strike Down
+    input: S + LMB (pre-awakening, basic)
+    keys:
+      - s
+      - lmb
+    protection: none
+    cc:
+      - knockdown
+    damage: medium
+    cooldown_ms: 5000
+    description: Strike the enemy down with an overhead blow.
+    flows_into: []
+    notes: Pre-awakening.
+  flow_low_blow:
+    name: "Flow: Low Blow"
+    input: LMB (after Strike Down)
+    keys:
+      - lmb
+    protection: none
+    cc:
+      - knockdown
+    damage: medium
+    cooldown_ms: 0
+    description: Follow up Strike Down with a low blow.
+    flows_into: []
+    notes: Pre-awakening flow from Strike Down.
+  flow_black_blood_eruption:
+    name: "Flow: Black Blood Eruption"
+    input: LMB (after Chokeslam)
+    keys:
+      - lmb
+    protection: none
+    cc: []
+    damage: medium
+    cooldown_ms: 0
+    description: Erupt black blood energy after a Chokeslam.
+    flows_into: []
+    notes: Pre-awakening flow from Chokeslam.
+pve_combos:
+  awakening_main_combo_1:
+    name: Awakening Main Combo 1
+    description: Primary awakening PvE rotation.
+    difficulty: intermediate
+    combo_window_ms: 300
+    steps:
+      - skill: glorious_advance
+      - skill: god_incinerator
+      - skill: cleansing_flame
+      - skill: dragons_maw
+      - skill: flow_howling_light
+      - skill: searing_fang
+      - skill: flow_suppress
+      - skill: scornful_slash
+  awakening_main_combo_2:
+    name: Awakening Main Combo 2
+    description: Fireborne Rupture opener into awakening rotation.
+    difficulty: intermediate
+    combo_window_ms: 300
+    steps:
+      - skill: fireborne_rupture
+      - skill: cleansing_flame
+      - skill: dragons_maw
+      - skill: flow_howling_light
+      - skill: god_incinerator
+      - skill: searing_fang
+      - skill: flow_suppress
+      - skill: scornful_slash
+  awakening_main_combo_3:
+    name: Awakening Main Combo 3
+    description: Flow Howling Light opener with Frost Slide or Frigid Wind reposition.
+    difficulty: intermediate
+    combo_window_ms: 300
+    steps:
+      - skill: flow_howling_light
+      - skill: god_incinerator
+      - skill: frost_slide
+        note: Quick iframe reposition to next pack.
+        alt_skill: frigid_wind
+        alt_note: SA gap closer with damage; use when enemies are in range.
+      - skill: fireborne_rupture
+      - skill: cleansing_flame
+      - skill: searing_fang
+      - skill: flow_suppress
+      - skill: scornful_slash
+movement_combos: {}
+skill_addons: {}
+locked_skills:
+  - name: Merciless Kick
+    reason: Not worth using; can lead to key input mistakes.
+  - name: Strike Down
+    reason: Interferes with Infernal Nemesis and Gate Crasher. Not locking this is a great way to die.
+  - name: Beast Demolisher
+    reason: Not worth using; can lead to key input mistakes.
+  - name: Torso Ripper
+    reason: Can mess with other inputs.
+  - name: Fervor
+    reason: Can mess with other inputs.
+  - name: "Juggernaut: Smite"
+    reason: Not worth using; can lead to key input mistakes.
+  - name: Evasion
+    reason: Not worth using; can lead to key input mistakes.
+  - name: Fireborne Rupture
+    reason: Lock and put on hotbar.
+  - name: "Flow: To Ashes"
+    reason: Can mess with other inputs; consider using it on hotbar.
+hotbar_skills:
+  - Fireborne Rupture
+  - God Incinerator
+  - Cleansing Flame
+  - Frigid Wind
+  - Infernal Nemesis
+  - "Flow: To Ashes"
+core_skill: {}
+pvp_combos: {}
