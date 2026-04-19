@@ -289,6 +289,8 @@ class ComboPlayer:
         input_text: str = self._resolve_input(step, skill_id)
         input_text = self._remap_display_text(input_text)
         note: str = step.get("note", "")
+        alt_skill_id: str = step.get("alt_skill", "")
+        alt_note: str = step.get("alt_note", "")
         total = len(self._steps)
         counter = f"Step {self._current_step + 1} / {total}"
         y = ctx.cy
@@ -340,12 +342,60 @@ class ComboPlayer:
                 ctx.note_font,
                 ctx.note_color,
             )
+
+        # Alt skill display
+        alt_offset = 0
+        if alt_skill_id:
+            alt_name = self._resolve_skill_name(alt_skill_id)
+            alt_protection = self._resolve_protection(alt_skill_id)
+            alt_input = self._resolve_input(step, alt_skill_id)
+            if not alt_input and self.get_skill_info:
+                info = self.get_skill_info(alt_skill_id)
+                if info:
+                    alt_input = info.get("input", "")
+            alt_input = self._remap_display_text(alt_input) if alt_input else ""
+
+            # "or" separator
+            or_y = y + 78 + hold_bar_offset + (30 if (ctx.show_notes and note) else 0)
+            self.renderer.draw_outlined_text(
+                ctx.cx, or_y, "\u2014 or \u2014", ctx.note_font, "#666666",
+            )
+            # Alt skill name
+            alt_name_y = or_y + 25
+            self.renderer.draw_outlined_text(
+                ctx.cx, alt_name_y, alt_name, ctx.skill_font, ctx.skill_color,
+            )
+            # Alt protection badge
+            if alt_protection:
+                alt_prot_color = PROTECTION_COLORS.get(alt_protection, "#888888")
+                alt_half_w = ctx.skill_font.measure(alt_name) // 2
+                self.renderer.draw_outlined_text(
+                    ctx.cx + alt_half_w + 35, alt_name_y,
+                    f"[{alt_protection.upper()}]", ctx.note_font, alt_prot_color,
+                )
+            # Alt input keys
+            if alt_input:
+                self.renderer.draw_outlined_text(
+                    ctx.cx, alt_name_y + 40, alt_input, ctx.input_font, ctx.input_color,
+                )
+                alt_offset = 95
+            else:
+                alt_offset = 55
+            # Alt note
+            if ctx.show_notes and alt_note:
+                self.renderer.draw_outlined_text(
+                    ctx.cx, alt_name_y + 40 + (30 if alt_input else 0),
+                    alt_note, ctx.note_font, ctx.note_color,
+                )
+                alt_offset += 30
+
         # Row 5 — step counter
-        counter_y = (
+        base_counter_y = (
             (y + 78 + hold_bar_offset)
             if (ctx.show_notes and note)
             else (y + 48 + hold_bar_offset)
         )
+        counter_y = base_counter_y + alt_offset
         self.renderer.draw_outlined_text(
             ctx.cx,
             counter_y,
@@ -418,6 +468,18 @@ class ComboPlayer:
             alt = _remap_and_filter(alt_keys)
             if alt:
                 key_sets.append(alt)
+
+        # Alt skill — also accept the alt skill's keys to advance the step
+        alt_skill_id = step.get("alt_skill", "")
+        if alt_skill_id and self.get_skill_info:
+            alt_info = self.get_skill_info(alt_skill_id)
+            if alt_info:
+                alt_skill_keys = _remap_and_filter(alt_info.get("keys", []))
+                if alt_skill_keys:
+                    key_sets.append(alt_skill_keys)
+                alt_skill_keys_alt = _remap_and_filter(alt_info.get("keys_alt", []))
+                if alt_skill_keys_alt:
+                    key_sets.append(alt_skill_keys_alt)
 
         if not key_sets or not INPUT_AVAILABLE:
             fallback_ms = max(self._transition_ms, 1500)
