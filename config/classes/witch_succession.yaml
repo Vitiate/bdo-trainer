@@ -1,0 +1,457 @@
+# Witch — Succession
+# Generated / updated by BDO Trainer Editor
+
+class: Witch
+spec: Succession
+skills:
+  prime_voltaic_pulse:
+    name: Prime Voltaic Pulse
+    input: W + C
+    keys:
+      - w
+      - c
+    protection: SA
+    cc:
+      - bound
+      - down_attack
+    damage: very_high
+    cooldown_ms: 7000
+    description:
+      Channel voltaic energy forward in a devastating strike. Super Armor during skill.
+      Bound on hits. 8910% x2 damage. Crit +100% in PvE. Recovers 120 MP per hit.
+    flows_into:
+      - prime_mma_elemental
+      - prime_equilibrium_break
+    core_effect: "Core: Voltaic Pulse - enhanced damage and bound"
+    notes:
+      Primary opener. Casting Speed +20% for 10s on use. Cannot learn if you have Bolide of Destruction.
+      Mutually exclusive with Bolide.
+  prime_mma_elemental:
+    name: "Prime: Multiple Magic Arrows"
+    input: S + RMB
+    keys:
+      - s
+      - rmb
+    protection: FG
+    cc:
+      - down_attack
+    damage: high
+    cooldown_ms: 3000
+    description:
+      Fire multiple magic arrows at the target. Forward Guard during skill. Hold for extra attacks.
+      5301% x2 damage. Crit +100% (nullified during CD). Enhanced extra 10410% x2.
+    flows_into:
+      - prime_earth_arrow
+      - prime_fireball
+    notes: Core filler with FG protection. Low CD. Hold RMB for extra hits when safe.
+  prime_earth_arrow:
+    name: Prime Earth Arrow
+    input: LMB + RMB
+    keys:
+      - lmb
+      - rmb
+    protection: none
+    cc:
+      - knockdown
+      - down_attack
+    damage: medium
+    cooldown_ms: 3000
+    description:
+      Fire a concentrated bolt of earth energy at the target. No protection.
+      5216% x2 damage. Knockdown PvE / Stiffness PvP. Crit +50%. Magic DR -20 debuff for 10s.
+    flows_into:
+      - prime_fireball
+      - prime_mma_elemental
+    notes: Low CD filler. No protection so use mid-combo when safe. Knockdown PvE only.
+  prime_fireball:
+    name: Prime Fireball
+    input: S + LMB
+    keys:
+      - s
+      - lmb
+    protection: none
+    cc:
+      - knockdown
+    damage: high
+    cooldown_ms: 3000
+    description:
+      Launch a concentrated fireball at the enemy. No protection during cast.
+      6951% x2 damage. Knockdown PvE / Stiffness PvP. Burn 20 dmg per 3s for 9s.
+    flows_into:
+      - prime_fireball_explosion
+      - prime_mma_elemental
+    notes: Fast filler. Flows into Fireball Explosion via RMB. Knockdown PvE only, Stiffness PvP.
+  prime_fireball_explosion:
+    name: "Prime Fireball Explosion: Spread"
+    input: SHIFT + LMB
+    keys:
+      - shift
+      - lmb
+    protection: SA
+    cc:
+      - down_attack
+    damage: high
+    cooldown_ms: 7000
+    description:
+      Detonate accumulated fire energy in a wide spread. Super Armor during skill.
+      8576% x2 damage. Crit +100%. Burn 35 dmg per 3s for 9s. Also via RMB after Fireball.
+    flows_into:
+      - prime_voltaic_pulse
+      - prime_equilibrium_break
+    notes:
+      "Spread variant chosen for SA protection. Areal variant has knockdown but no protection.
+      Also activates via RMB flow from Prime Fireball."
+  prime_equilibrium_break:
+    name: Prime Equilibrium Break
+    input: S + C
+    keys:
+      - s
+      - c
+    protection: FG
+    cc:
+      - bound
+      - down_attack
+    damage: very_high
+    cooldown_ms: 7000
+    description:
+      Shatter the magical equilibrium around targets, binding them in place.
+      Forward Guard during skill. 11582% x2 damage. Crit +100% PvE. Magic DR -20 debuff for 10s.
+    flows_into:
+      - lightning_chain
+      - prime_mma_elemental
+    core_effect: "Core: Equilibrium Break - stiffness before attack + bound on hits"
+    notes:
+      Key CC skill. Bound PvE only. FG protection. Cannot learn if you have Aqua Jail Explosion.
+      Mutually exclusive with Aqua Jail.
+  lightning_chain:
+    name: "Prime: Lightning"
+    input: S + F
+    keys:
+      - s
+      - f
+    protection: none
+    cc:
+      - stun
+      - down_attack
+    damage: medium
+    cooldown_ms: 5000
+    description:
+      Call down lightning strikes on nearby enemies. No protection (SA on BSR only).
+      4023% x2 damage. Stun on first hit (nullified during CD). Hold F for extra attacks.
+    flows_into:
+      - residual_lightning
+    notes:
+      "1st Hit Cancel: tap S+F then immediately RMB to cancel into Residual Lightning.
+      Full hits only when safe or in BSR rotation. Shocked debuff reduces target speed."
+  residual_lightning:
+    name: "Prime Residual Lightning: Combo"
+    input: RMB
+    keys:
+      - rmb
+    protection: SA
+    cc:
+      - down_attack
+    damage: high
+    cooldown_ms: 7000
+    description:
+      Follow-up lightning strike after Prime Lightning. Super Armor during skill.
+      2835% x2 damage. Crit +100%. Hold RMB/F/LMB for extra hits. Recovers 28 MP per hit.
+    flows_into:
+      - prime_voltaic_pulse
+      - prime_frigid_fog_control
+    notes:
+      "Combo variant chosen for SA protection. High Voltage variant has Bound but no protection.
+      Chains from Lightning via RMB or F. Two presses in combo notation for full hits."
+  prime_frigid_fog_control:
+    name: "Prime Frigid Fog: Control"
+    input: S + Q
+    keys:
+      - s
+      - q
+    protection: none
+    cc:
+      - freeze
+      - down_attack
+    damage: high
+    cooldown_ms: 7000
+    description:
+      Summon a freezing fog that slows and freezes enemies. 8817% x2 damage. Crit +50%.
+      Freeze on hits (PvP only). Also activates via RMB or S+E after same-element skills.
+    flows_into:
+      - prime_mma_elemental
+      - prime_voltaic_pulse
+    notes:
+      "Control variant chosen for freeze CC and higher damage. Disrupt variant has FG but less damage.
+      Mutually exclusive with Disrupt."
+  prime_voltaic_discharge_diffuse:
+    name: "Prime Voltaic Discharge: Diffuse"
+    input: SHIFT + RMB
+    keys:
+      - shift
+      - rmb
+    protection: FG
+    cc:
+      - knockback
+      - down_attack
+    damage: very_high
+    cooldown_ms: 30000
+    description:
+      Discharge massive voltaic energy in a wide diffuse pattern. Forward Guard during skill.
+      13874% x1, max 3 hits. Knockback. Shocked debuff on targets. 300 MP cost.
+    flows_into:
+      - prime_voltaic_pulse
+      - prime_mma_elemental
+    notes:
+      "Cycle A finisher. 30s CD - use once per full rotation. Diffuse variant chosen for knockback.
+      Focus variant has stiffness + stun instead. Mutually exclusive."
+  prime_meteor_shower_focus:
+    name: "Prime Meteor Shower: Focus"
+    input: S + LMB + RMB
+    keys:
+      - s
+      - lmb
+      - rmb
+    protection: FG
+    cc:
+      - knockdown
+      - down_attack
+    damage: very_high
+    cooldown_ms: 18000
+    description:
+      Focus meteoric energy into a devastating meteor strike. Forward Guard during skill.
+      9196% x3 damage. Knockdown on meteor PvE only. Crit +100%. Burn 60 dmg per 3s for 18s.
+    flows_into:
+      - prime_mma_elemental
+      - prime_voltaic_pulse
+    notes:
+      "Cycle B finisher. 18s CD. Focus variant chosen for single powerful hit.
+      Areal variant has wider area but 30s CD. Mutually exclusive."
+  prime_blizzard_domain:
+    name: "Prime Blizzard: Domain"
+    input: SHIFT + LMB + RMB
+    keys:
+      - shift
+      - lmb
+      - rmb
+    protection: FG
+    cc:
+      - slow
+    damage: very_high
+    cooldown_ms: 20000
+    description:
+      Unleash a devastating blizzard across a massive area. Forward Guard during skill.
+      5621% x1, max 8 hits. All AP -16 and Move Speed -15% for 5s on targets. Crit +50%.
+    flows_into:
+      - prime_voltaic_pulse
+      - prime_mma_elemental
+    notes:
+      "Cycle C finisher. 20s CD, longest cycle at 8.417s. Domain variant chosen for sustained hits.
+      Storm variant has 1min CD but continuous channeling. Mutually exclusive."
+  prime_earthquake_destruction:
+    name: "Prime Earthquake: Destruction"
+    input: SHIFT + F
+    keys:
+      - shift
+      - f
+    protection: SA
+    cc:
+      - bound
+      - down_attack
+    damage: very_high
+    cooldown_ms: 12000
+    description:
+      Shatter the earth beneath enemies with devastating force. Super Armor during skill.
+      11381% x2 damage. Pull + Bound PvE. Stiffness PvP. Crit +50% PvE. Recovers 135 MP per hit.
+    flows_into:
+      - prime_voltaic_pulse
+      - prime_frigid_fog_control
+    notes:
+      "Cycle D finisher. Fastest cycle at 7.467s. Destruction variant for raw damage.
+      Evade variant has backward dodge but less damage. Mutually exclusive."
+  teleport:
+    name: Teleport
+    input: SHIFT + SPACE
+    keys:
+      - shift
+      - space
+    protection: iframe
+    cc: []
+    damage: none
+    cooldown_ms: 9000
+    description:
+      Instantly teleport a short distance. Invincible during skill (iframe).
+      Movement Speed +10% for 10s after use. Consumes 200 stamina.
+    flows_into:
+      - prime_voltaic_pulse
+      - prime_mma_elemental
+    notes: Primary escape and repositioning tool. Use between combos to reposition for back attacks.
+  magic_shield:
+    name: Magic Shield
+    input: Q
+    keys:
+      - q
+    protection: FG
+    cc: []
+    damage: none
+    cooldown_ms: 0
+    description:
+      Hold Q to maintain Forward Guard stance. Blocks incoming frontal attacks.
+      Consumes MP while active. Release to cancel.
+    notes: Emergency block. Hold Q while waiting for cooldowns or under pressure.
+  healing_lighthouse:
+    name: Healing Lighthouse
+    input: SHIFT + Q
+    keys:
+      - shift
+      - q
+    protection: SA
+    cc: []
+    damage: none
+    cooldown_ms: 24000
+    description:
+      Place a healing lighthouse that restores HP to yourself and allies in range.
+      Super Armor during cast. Heals over time in area.
+    notes: Self and party heal. SA on cast protects you. 24s CD. Use between packs or when low HP.
+  speed_spell:
+    name: Speed Spell
+    input: hotbar
+    keys:
+      - hotbar
+    hotbar_key: "1"
+    protection: none
+    cc: []
+    damage: none
+    cooldown_ms: 30000
+    description: Grants casting speed and movement speed buff to self and nearby allies. Hotbar only.
+    notes: Maintain buff at all times. Rebuff every 30s. Essential for combo speed.
+
+pve_combos:
+  full_rotation:
+    name: Full Rotation (A + B + C + D)
+    description: Complete 31s infinite rotation. 83,064 DPS. Loops back to Cycle A after D.
+    steps:
+      - skill: prime_voltaic_pulse
+        note: "--- Cycle A (7.583s) ---"
+      - skill: prime_mma_elemental
+        note: FG filler
+      - skill: prime_earth_arrow
+        note: fast filler
+      - skill: prime_fireball
+        note: fast filler
+      - skill: prime_equilibrium_break
+        note: FG bound
+      - skill: lightning_chain
+        note: 1st hit cancel into RMB
+      - skill: residual_lightning
+        note: first RMB
+      - skill: residual_lightning
+        note: second RMB (flows via Shift+C)
+      - skill: prime_frigid_fog_control
+        note: freeze CC
+      - skill: prime_mma_elemental
+        note: FG filler
+      - skill: prime_earth_arrow
+        note: fast filler
+      - skill: prime_fireball
+        note: fast filler
+      - skill: prime_fireball_explosion
+        note: RMB flow from fireball (Shift+LMB)
+      - skill: prime_voltaic_discharge_diffuse
+        note: Cycle A finisher
+      - skill: prime_voltaic_pulse
+        note: "--- Cycle B (7.567s) ---"
+      - skill: prime_mma_elemental
+      - skill: prime_earth_arrow
+      - skill: prime_fireball
+      - skill: prime_equilibrium_break
+      - skill: lightning_chain
+        note: 1st hit cancel
+      - skill: residual_lightning
+      - skill: residual_lightning
+      - skill: prime_frigid_fog_control
+      - skill: prime_mma_elemental
+      - skill: prime_earth_arrow
+      - skill: prime_fireball
+      - skill: prime_fireball_explosion
+      - skill: prime_meteor_shower_focus
+        note: Cycle B finisher
+      - skill: prime_voltaic_pulse
+        note: "--- Cycle C (8.417s) ---"
+      - skill: prime_mma_elemental
+      - skill: prime_earth_arrow
+      - skill: prime_fireball
+      - skill: prime_equilibrium_break
+      - skill: lightning_chain
+        note: 1st hit cancel
+      - skill: residual_lightning
+      - skill: residual_lightning
+      - skill: prime_frigid_fog_control
+      - skill: prime_mma_elemental
+      - skill: prime_earth_arrow
+      - skill: prime_fireball
+      - skill: prime_fireball_explosion
+      - skill: prime_blizzard_domain
+        note: Cycle C finisher - longest CD, highest burst
+      - skill: prime_voltaic_pulse
+        note: "--- Cycle D (7.467s) ---"
+      - skill: prime_mma_elemental
+      - skill: prime_earth_arrow
+      - skill: prime_fireball
+      - skill: prime_equilibrium_break
+      - skill: lightning_chain
+        note: 1st hit cancel
+      - skill: residual_lightning
+      - skill: residual_lightning
+      - skill: prime_frigid_fog_control
+      - skill: prime_mma_elemental
+      - skill: prime_earth_arrow
+      - skill: prime_fireball
+      - skill: prime_fireball_explosion
+      - skill: prime_earthquake_destruction
+        note: Cycle D finisher - fastest cycle, then loop to A
+  max_burst_7_5s:
+    name: 7.5s Max Burst
+    description: Maximum damage in 7.5s window. 92,769 DPS. No loop - freestyle after.
+    steps:
+      - skill: prime_voltaic_pulse
+        note: opener
+      - skill: prime_mma_elemental
+      - skill: prime_equilibrium_break
+        note: bound for follow-up
+      - skill: prime_fireball_explosion
+        note: Shift+LMB
+      - skill: prime_voltaic_discharge_diffuse
+        note: Shift+RMB big burst
+      - skill: prime_frigid_fog_control
+      - skill: prime_mma_elemental
+      - skill: lightning_chain
+        note: 1st hit cancel
+      - skill: residual_lightning
+      - skill: residual_lightning
+      - skill: prime_earth_arrow
+      - skill: prime_fireball
+      - skill: prime_meteor_shower_focus
+        note: S+LMB+RMB big finisher
+      - skill: prime_mma_elemental
+        note: filler
+      - skill: prime_voltaic_pulse
+        note: second W+C then freestyle
+
+movement_combos: {}
+
+pvp_combos: {}
+
+locked_skills:
+  - name: Healing Aura
+    reason: Superseded by Healing Lighthouse in succession. Wastes input on S+Q which conflicts.
+  - name: Lightning Storm
+    reason: Awakening skill, not usable in succession spec.
+  - name: Yoke of Ordeal
+    reason: Awakening skill, not usable in succession spec.
+  - name: Thunder Storm
+    reason: Awakening skill, not usable in succession spec.
+
+hotbar_skills:
+  - name: Speed Spell
+    reason: Buff only, no combat input. Must maintain at all times.
+    hotbar_key: "1"

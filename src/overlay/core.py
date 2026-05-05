@@ -5,6 +5,7 @@ and delegates the public API used by ``main.py``.
 """
 
 import logging
+import queue
 import sys
 import tkinter as tk
 from typing import Any, Callable, Dict, Optional
@@ -109,6 +110,10 @@ class ComboOverlay:
         # --- Shutdown guard ------------------------------------------------
         self._destroyed: bool = False
 
+        # --- Thread-safe scheduling queue ----------------------------------
+        self._schedule_queue: queue.Queue = queue.Queue()
+        self._poll_queue()
+
         logger.info("Overlay initialised (transparent canvas, key-press mode)")
 
     # =================================================================
@@ -208,13 +213,23 @@ class ComboOverlay:
     # =================================================================
     # Thread-safe scheduling & main loop
     # =================================================================
-    def schedule(self, func: Callable, delay_ms: int = 0) -> None:
+    def _poll_queue(self) -> None:
+        """Drain the schedule queue from the Tk thread (runs every 50ms)."""
         if self._destroyed:
             return
         try:
-            self.root.after(delay_ms, func)
-        except Exception:
+            while True:
+                delay_ms, func = self._schedule_queue.get_nowait()
+                self.root.after(delay_ms, func)
+        except queue.Empty:
             pass
+        self.root.after(50, self._poll_queue)
+
+    def schedule(self, func: Callable, delay_ms: int = 0) -> None:
+        """Thread-safe: enqueue work to be picked up by the Tk thread."""
+        if self._destroyed:
+            return
+        self._schedule_queue.put((delay_ms, func))
 
     def run(self) -> None:
         logger.info("Overlay main loop starting")

@@ -704,6 +704,21 @@ skills:
     flows_into: []
     notes: Pre-awakening flow from Chokeslam.
 pve_combos:
+  infinite_combo_1:
+    name: Infinite Combo 1
+    description: Infinite awakening PvE rotation.
+    difficulty: intermediate
+    combo_window_ms: 300
+    steps:
+      - skill: flow_to_ashes
+      - skill: fireborne_rupture
+      - skill: god_incinerator
+      - skill: cleansing_flame
+      - skill: dragons_maw
+      - skill: flow_to_ashes
+      - skill: frigid_wind
+      - skill: searing_fang
+        
   awakening_main_combo_1:
     name: Awakening Main Combo 1
     description: Primary awakening PvE rotation.
