@@ -1,0 +1,326 @@
+# Witch — Awakening
+# Generated / updated by BDO Trainer Editor
+
+class: Witch
+spec: Awakening
+skills:
+  lightning_blast:
+    name: Lightning Blast
+    input: S + RMB
+    keys:
+      - s
+      - rmb
+    protection: FG
+    cc:
+      - down_attack
+      - air_attack
+    damage: very_high
+    cooldown_ms: 7000
+    description:
+      Fire a concentrated lightning bolt downward. Forward Guard during skill.
+      8802% x2 damage. Crit +50% plus +18% for 10s. 15% Down/Air Smash chance.
+    flows_into:
+      - voltaic_pulse
+      - fissure_wave
+    notes:
+      Signature skill. Core rotation opener due to 7s CD matching cycle timing.
+      FG protection makes it safe to initiate.
+  voltaic_pulse:
+    name: Voltaic Pulse IV
+    input: SHIFT + F
+    keys:
+      - shift
+      - f
+    protection: SA
+    cc:
+      - stiffness
+      - bound
+      - down_attack
+    damage: high
+    cooldown_ms: 6000
+    description:
+      Channel voltaic energy in a powerful forward burst. Super Armor during skill.
+      5859% x2 damage. Stiffness on attack 1, Bound on attack 2. Crit +50%.
+    flows_into:
+      - fissure_wave
+      - thunder_storm
+    core_effect: "Core: Voltaic Pulse - Forward Guard added during skill"
+    notes:
+      Casting Speed +20% for 10s on use. Recovers 105 MP per hit.
+      Empowered when Tett is summoned. Accel variant used in Cycles B/C/E.
+  fissure_wave:
+    name: Fissure Wave IV
+    input: S + LMB + RMB
+    keys:
+      - s
+      - lmb
+      - rmb
+    protection: SA
+    cc:
+      - knockdown
+      - down_attack
+    damage: high
+    cooldown_ms: 6000
+    description:
+      Send a wave of earth energy through the ground. Super Armor during skill.
+      4934% x1, max 3 hits. Hold LMB+RMB for attack 2 (4934% x2). Crit +50%.
+    flows_into:
+      - thunder_storm
+      - equilibrium_break
+    core_effect: "Core: Fissure Wave - Forward Guard added during skill"
+    notes:
+      Knockdown on attack 1. Recovers 167 MP per hit. Empowered when Gorr is summoned.
+      Earth's Calling auto-activates alongside this skill for bonus damage.
+  thunder_storm:
+    name: Thunder Storm III
+    input: S + F
+    keys:
+      - s
+      - f
+    protection: SA
+    cc:
+      - stun
+      - down_attack
+    damage: very_high
+    cooldown_ms: 6000
+    description:
+      Call down a massive lightning storm on surrounding enemies. Super Armor during skill.
+      8283% x2 damage. Stun PvE only. Crit +100%. All Evasion -36 for 10s debuff.
+    flows_into:
+      - voltaic_pulse
+      - equilibrium_break
+    core_effect: "Core: Thunder Storm - Stun on hits added"
+    notes:
+      Empowered when Tett is summoned. Shocked debuff reduces target speed.
+      Flow Rage Tett auto-activates for extra 2563% x2 damage. Accel in Cycles C/E.
+  yoke_of_ordeal:
+    name: Yoke of Ordeal III
+    input: SHIFT + RMB
+    keys:
+      - shift
+      - rmb
+    protection: FG
+    cc:
+      - knockback
+      - knockdown
+      - down_attack
+    damage: high
+    cooldown_ms: 11000
+    description:
+      Bind enemies with rings of magical force. Forward Guard during skill. Hold RMB for extra hits.
+      5025% x1, max 4 hits per attack phase. Knockback on att 1, Knockdown on att 2.
+    flows_into:
+      - equilibrium_break
+      - voltaic_pulse
+    core_effect: "Core: Yoke of Ordeal - enhanced damage and CC"
+    notes:
+      "11s CD - stagger with Barrage of Lightning. Speed debuff -15% for 5s on hits.
+      Place in Cycle A, use Barrage in Cycle E. Empowered when Gorr is summoned."
+  equilibrium_break:
+    name: Equilibrium Break IV
+    input: SHIFT + LMB
+    keys:
+      - shift
+      - lmb
+    protection: FG
+    cc:
+      - stiffness
+      - bound
+      - down_attack
+    damage: very_high
+    cooldown_ms: 6000
+    description:
+      Shatter equilibrium around targets. Forward Guard during skill.
+      7714% x2 damage. Stiffness before attack PvE. Bound on hits PvE. Crit +50%.
+    flows_into:
+      - fissure_wave
+      - voltaic_pulse
+    core_effect: "Core: Equilibrium Break - Stiffness before attack + Bound added"
+    notes: Magic DR -20 for 10s debuff on targets. Used in every cycle as second-to-last skill.
+  barrage_of_lightning:
+    name: Barrage of Lightning
+    input: W + RMB
+    keys:
+      - w
+      - rmb
+    protection: SA
+    cc:
+      - down_attack
+    damage: very_high
+    cooldown_ms: 11000
+    description:
+      Gather lightning and rain it down on enemies. Super Armor transitioning to Forward Guard.
+      10080% x2 damage. Crit +100%. -5% per extra target in PvP (max -70%).
+    flows_into:
+      - equilibrium_break
+      - fissure_wave
+    notes:
+      "Signature skill. 11s CD - stagger with Yoke of Ordeal. Place in Cycle E.
+      Highest single-hit damage in the kit. SA→FG dual protection."
+  earths_calling:
+    name: Earth's Calling
+    input: SHIFT + Q
+    keys:
+      - shift
+      - q
+    protection: SA
+    cc:
+      - down_attack
+    damage: medium
+    cooldown_ms: 6000
+    description:
+      Call upon the earth to strike enemies. 1722% x1, max 4 hits. Down Attack.
+      Also auto-activates when using Fissure Wave. Can be manually triggered.
+    flows_into:
+      - fissure_wave
+      - thunder_storm
+    notes: Used with accel in Cycles D/E. Adds extra earth damage to rotation. Level 58 skill.
+  detonative_flow:
+    name: Detonative Flow III
+    input: W + F
+    keys:
+      - w
+      - f
+    protection: none
+    cc:
+      - floating
+    damage: medium
+    cooldown_ms: 5000
+    description:
+      Charge forward with an explosive detonation. No inherent protection.
+      4285% x2 damage. Floating on hits (nullified during CD). Recovers 80 MP per hit.
+    flows_into:
+      - fissure_wave
+      - thunder_storm
+    core_effect: "Core: Detonative Flow - Forward Guard added during skill"
+    notes:
+      "Low DPS filler (37,821 %/s). Avoid in optimized rotation. Only use for gap-close
+      repositioning between packs. Floating nullified during CD."
+  magical_evasion:
+    name: Magical Evasion
+    input: SHIFT + S
+    keys:
+      - shift
+      - s
+    protection: SA
+    cc: []
+    damage: none
+    cooldown_ms: 3000
+    description:
+      Evade backward with magical energy. Super Armor during skill (Invincible in PvE).
+      Consumes 150 stamina. Used as combo finisher to reposition.
+    flows_into:
+      - lightning_blast
+      - voltaic_pulse
+    notes: Combo terminator in every cycle. Creates space then restart with S+RMB.
+  elementalization:
+    name: Elementalization
+    input: S + E
+    keys:
+      - s
+      - e
+    protection: iframe
+    cc: []
+    damage: none
+    cooldown_ms: 5000
+    description:
+      Elementalize your body to retreat backward. Invincible transitioning to Super Armor.
+      Consumes 250 stamina. Emergency escape tool.
+    notes: Alternative escape to Magical Evasion. Use when under heavy pressure.
+  teleport:
+    name: Teleport
+    input: SHIFT + SPACE
+    keys:
+      - shift
+      - space
+    protection: iframe
+    cc: []
+    damage: none
+    cooldown_ms: 9000
+    description:
+      Instantly teleport a short distance. Invincible during skill (iframe).
+      Movement Speed +10% for 10s after use. Consumes 200 stamina.
+    notes: Primary repositioning between packs. Use to close gaps quickly.
+  tectonic_block:
+    name: Tectonic Block
+    input: Q
+    keys:
+      - q
+    protection: FG
+    cc: []
+    damage: none
+    cooldown_ms: 0
+    description:
+      Guard with concentrated magical power. Forward Guard from the front.
+      Recover 15% Max MP on blocks. All Damage Reduction +30 for 10s when activated.
+    notes: Emergency block. Releases on movement. Use while waiting for cooldowns.
+  toxic_flood:
+    name: Toxic Flood
+    input: E
+    keys:
+      - e
+    protection: none
+    cc: []
+    damage: medium
+    cooldown_ms: 15000
+    description:
+      Spread toxic energy in a wide area. 635% x1, max 23 hits over 7.5s duration.
+      Poison 100 dmg per 3s for 36s. Magic DR -20 debuff for 5s.
+    notes: Long DoT skill. Not used in optimized rotation. Can place between packs for passive damage.
+  speed_spell:
+    name: Speed Spell
+    input: hotbar
+    keys:
+      - hotbar
+    hotbar_key: "1"
+    protection: none
+    cc: []
+    damage: none
+    cooldown_ms: 30000
+    description: Grants casting speed and movement speed buff to self and nearby allies. Hotbar only.
+    notes: Maintain buff at all times. Rebuff every 30s. Essential for combo speed.
+
+pve_combos:
+  full_rotation_e_a:
+    name: Full Rotation (E → A Loop)
+    description: Recommended dual-cycle. 1,003,328 dmg / 14.77s / 67,930 %/s. Loops infinitely.
+    steps:
+      - skill: lightning_blast
+        note: "--- Cycle E (7.30s, 67,963 %/s) ---"
+      - skill: voltaic_pulse
+        note: accel variant
+      - skill: earths_calling
+        note: accel variant
+      - skill: fissure_wave
+      - skill: thunder_storm
+        note: accel variant
+      - skill: barrage_of_lightning
+        note: 11s CD finisher
+      - skill: equilibrium_break
+      - skill: magical_evasion
+        note: reposition then restart
+      - skill: lightning_blast
+        note: "--- Cycle A (7.47s, 67,898 %/s) ---"
+      - skill: voltaic_pulse
+      - skill: fissure_wave
+      - skill: thunder_storm
+      - skill: yoke_of_ordeal
+        note: 11s CD finisher
+      - skill: equilibrium_break
+      - skill: magical_evasion
+        note: reposition then loop to Cycle E
+
+movement_combos: {}
+
+pvp_combos: {}
+
+locked_skills:
+  - name: Detonative Flow
+    reason: "Only 37,821 %/s. Creates zero-DPS gaps. Avoid in optimized rotation."
+  - name: Toxic Flood
+    reason: Long animation, not part of infinite rotation. Only for passive DoT between packs.
+
+hotbar_skills:
+  - name: Speed Spell
+    reason: Buff only, no combat input. Must maintain at all times.
+    hotbar_key: "1"
