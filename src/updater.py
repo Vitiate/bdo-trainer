@@ -16,6 +16,7 @@ Public API
 
 from __future__ import annotations
 
+import datetime as _dt
 import json
 import logging
 import re
@@ -163,11 +164,23 @@ def download_zipball(
     return out_path
 
 
-def install_zipball(zip_path: Path) -> None:
+def install_zipball(zip_path: Path, replace_config: bool = False) -> Optional[Path]:
     """Extract the zipball over the project tree, preserving user data.
 
+    Args:
+        zip_path: The downloaded source zipball.
+        replace_config: When True, back up the current ``config/`` directory
+            to ``config_backup_<YYYYMMDD-HHMMSS>/`` before extracting, so
+            the new release's ``config/`` can be written over the empty
+            slot. When False (default), ``config/`` is preserved untouched.
+
+    Returns:
+        The backup directory path if ``replace_config`` was True and a
+        backup was actually made, otherwise ``None``.
+
     The GitHub source zipball wraps everything in a top-level
-    ``<owner>-<repo>-<sha>/`` directory; we strip that prefix when copying."""
+    ``<owner>-<repo>-<sha>/`` directory; we strip that prefix when copying.
+    """
     project = _project_root()
     extract_root = project / "_update" / "extracted"
     if extract_root.exists():
@@ -185,11 +198,30 @@ def install_zipball(zip_path: Path) -> None:
         )
     src_root = top_dirs[0]
 
+    # If the user opted in to replacing configs, move the current config/
+    # aside to a timestamped backup so the new files install cleanly.
+    backup_dir: Optional[Path] = None
+    skip_top = set(_SKIP_TOP_LEVEL)
+    if replace_config:
+        live_config = project / "config"
+        if live_config.exists():
+            stamp = _dt.datetime.now().strftime("%Y%m%d-%H%M%S")
+            backup_dir = project / f"config_backup_{stamp}"
+            # Avoid clobbering a backup folder that somehow already exists.
+            n = 1
+            while backup_dir.exists():
+                backup_dir = project / f"config_backup_{stamp}_{n}"
+                n += 1
+            shutil.move(str(live_config), str(backup_dir))
+            logger.info(f"Update: backed up config/ to {backup_dir.name}/")
+        # Drop config/ from the skip list so the release's config/ installs.
+        skip_top.discard("config")
+
     copied = 0
     for src in src_root.rglob("*"):
         rel = src.relative_to(src_root)
         # Skip preserved top-level directories.
-        if rel.parts and rel.parts[0] in _SKIP_TOP_LEVEL:
+        if rel.parts and rel.parts[0] in skip_top:
             continue
         dest = project / rel
         if src.is_dir():
@@ -199,6 +231,7 @@ def install_zipball(zip_path: Path) -> None:
             shutil.copy2(src, dest)
             copied += 1
     logger.info(f"Update: installed {copied} files into {project}")
+    return backup_dir
 
 
 # ---------------------------------------------------------------------------
@@ -211,6 +244,10 @@ class _UpdateDialog:
     def __init__(self, parent: tk.Misc, info: UpdateInfo) -> None:
         self.info = info
         self.parent = parent
+
+        # Filled in by the install handler before the worker thread runs.
+        self._replace_config: bool = False
+        self._backup_dir: Optional[Path] = None
 
         self.win = tk.Toplevel(parent)
         self.win.title("BDO Trainer — Update Available")
@@ -286,6 +323,22 @@ class _UpdateDialog:
         self.win.destroy()
 
     def _on_install(self) -> None:
+        # Ask the user whether to keep their existing configs or take the
+        # ones from the new release. Default is "keep" (No) — replacing is
+        # destructive and only useful if the release ships updated combos
+        # the user wants verbatim.
+        replace = messagebox.askyesno(
+            "Replace configs?",
+            "Replace your existing configs with the ones from the new release?\n\n"
+            "• No  — keep your current config/ (recommended).\n"
+            "• Yes — back up your current config/ to "
+            "config_backup_<timestamp>/ and install the release's configs "
+            "in its place.",
+            default="no",
+            parent=self.win,
+        )
+        self._replace_config = bool(replace)
+
         self._install_btn.state(["disabled"])
         self._later_btn.state(["disabled"])
         self._progress_bar.pack(fill="x")
@@ -298,7 +351,10 @@ class _UpdateDialog:
         try:
             zip_path = download_zipball(self.info, progress_cb=self._on_progress)
             self._post(lambda: self._progress_label_var.set("Installing…"))
-            install_zipball(zip_path)
+            backup_dir = install_zipball(
+                zip_path, replace_config=self._replace_config,
+            )
+            self._backup_dir = backup_dir
             self._post(self._on_install_done)
         except Exception as exc:
             logger.exception("Update install failed")
@@ -323,12 +379,24 @@ class _UpdateDialog:
     def _on_install_done(self) -> None:
         self._progress_var.set(100)
         self._progress_label_var.set("Update installed.")
-        messagebox.showinfo(
-            "BDO Trainer",
+
+        msg = (
             f"Version {self.info.display_version} has been installed.\n\n"
-            "Please restart BDO Trainer to use the new version.",
-            parent=self.win,
+            "Please EXIT BDO Trainer fully and relaunch it. The currently "
+            "running process is still on the old code, and continuing to "
+            "use it before restart can crash the app."
         )
+        if self._backup_dir is not None:
+            msg += (
+                f"\n\nYour previous configs were backed up to:\n"
+                f"{self._backup_dir.name}/"
+            )
+        elif self._replace_config:
+            msg += (
+                "\n\nNo existing config/ was found, so no backup was made."
+            )
+
+        messagebox.showinfo("BDO Trainer", msg, parent=self.win)
         self._on_later()
 
     def _on_install_failed(self, exc: Exception) -> None:

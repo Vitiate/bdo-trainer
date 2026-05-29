@@ -4,6 +4,28 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.1] — 2026-05-28
+
+### Changed
+- **Updater — opt-in config replacement.** After clicking *Download &&
+  Install*, the updater now asks whether to replace the existing
+  `config/` with the one from the new release. Default is **No** (keep
+  your settings).
+- **Updater — timestamped config backup.** When the user opts in to
+  replacing configs, the live `config/` is moved to
+  `config_backup_<YYYYMMDD-HHMMSS>/` before the release's `config/` is
+  extracted. The success dialog tells the user where the backup lives.
+- **Updater — clearer post-install instructions.** The success dialog
+  now explicitly tells the user to fully exit BDO Trainer before doing
+  anything else, since the running process still holds stale module
+  imports and continuing to use it can crash the app.
+
+### Internal
+- `install_zipball()` returns the backup directory path (or `None`) and
+  accepts a `replace_config` flag so callers/tests can drive both modes.
+- `.gitignore` now covers `_update/`, `logs/`, and
+  `config_backup_*/` so updater artefacts don't end up in commits.
+
 ## [0.4.0] — 2026-05-28
 
 ### Added
@@ -82,5 +104,6 @@ and adheres to [Semantic Versioning](https://semver.org/).
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.4.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.1
 [0.4.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.0
 [0.3.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.3.0
