@@ -53,6 +53,60 @@ _SKIP_TOP_LEVEL = {
 }
 
 
+def _force_to_front(toplevel: tk.Misc) -> None:
+    """Keep a Toplevel reliably in front for its lifetime (macOS-friendly).
+
+    On macOS, a Toplevel created next to a parent that already has
+    ``-topmost True`` set will lose the z-order race; clicking around can
+    bury it. We:
+      • Suspend the parent's ``-topmost`` for the dialog's lifetime,
+        restoring it on destroy.
+      • Re-apply ``-topmost True`` + ``lift`` + ``focus_force`` on a few
+        ticks to outlast OS reordering.
+    """
+    parent = toplevel.master
+    parent_was_topmost = False
+    if parent is not None:
+        try:
+            parent_was_topmost = bool(parent.attributes("-topmost"))
+            if parent_was_topmost:
+                parent.attributes("-topmost", False)
+        except tk.TclError:
+            parent_was_topmost = False
+
+    def _bring_up() -> None:
+        try:
+            toplevel.attributes("-topmost", True)
+            toplevel.lift()
+            toplevel.focus_force()
+        except tk.TclError:
+            pass
+
+    _bring_up()
+    try:
+        toplevel.after_idle(_bring_up)
+        toplevel.after(50, _bring_up)
+        toplevel.after(150, _bring_up)
+        toplevel.after(400, _bring_up)
+    except tk.TclError:
+        pass
+
+    def _on_destroy(event: Optional[tk.Event] = None) -> None:
+        if event is not None and event.widget is not toplevel:
+            return
+        if parent is not None and parent_was_topmost:
+            try:
+                if parent.winfo_exists():
+                    parent.attributes("-topmost", True)
+            except tk.TclError:
+                pass
+
+    try:
+        toplevel.bind("<Destroy>", _on_destroy, add="+")
+    except tk.TclError:
+        pass
+
+
 @dataclass
 class UpdateInfo:
     tag: str
@@ -258,6 +312,7 @@ class _UpdateDialog:
         except tk.TclError:
             pass
         self.win.protocol("WM_DELETE_WINDOW", self._on_later)
+        _force_to_front(self.win)
 
         # --- Header --------------------------------------------------------
         header = ttk.Frame(self.win, padding=(16, 14, 16, 8))
@@ -322,12 +377,39 @@ class _UpdateDialog:
             pass
         self.win.destroy()
 
+    def _show_messagebox(self, kind: str, *args, **kwargs):
+        """Wrap messagebox calls so they appear above ``self.win``.
+
+        The native messagebox lands behind a Toplevel that already has
+        ``-topmost True`` on macOS. We drop our topmost flag for the
+        duration of the prompt, then restore it.
+        """
+        was_topmost = False
+        try:
+            was_topmost = bool(self.win.attributes("-topmost"))
+            if was_topmost:
+                self.win.attributes("-topmost", False)
+        except tk.TclError:
+            pass
+        try:
+            fn = getattr(messagebox, kind)
+            return fn(*args, **kwargs)
+        finally:
+            if was_topmost:
+                try:
+                    self.win.attributes("-topmost", True)
+                    self.win.lift()
+                    self.win.focus_force()
+                except tk.TclError:
+                    pass
+
     def _on_install(self) -> None:
         # Ask the user whether to keep their existing configs or take the
         # ones from the new release. Default is "keep" (No) — replacing is
         # destructive and only useful if the release ships updated combos
         # the user wants verbatim.
-        replace = messagebox.askyesno(
+        replace = self._show_messagebox(
+            "askyesno",
             "Replace configs?",
             "Replace your existing configs with the ones from the new release?\n\n"
             "• No  — keep your current config/ (recommended).\n"
@@ -396,14 +478,15 @@ class _UpdateDialog:
                 "\n\nNo existing config/ was found, so no backup was made."
             )
 
-        messagebox.showinfo("BDO Trainer", msg, parent=self.win)
+        self._show_messagebox("showinfo", "BDO Trainer", msg, parent=self.win)
         self._on_later()
 
     def _on_install_failed(self, exc: Exception) -> None:
         self._progress_label_var.set("")
         self._install_btn.state(["!disabled"])
         self._later_btn.state(["!disabled"])
-        messagebox.showerror(
+        self._show_messagebox(
+            "showerror",
             "BDO Trainer",
             f"Update failed: {exc}\n\nThe app is unchanged.",
             parent=self.win,

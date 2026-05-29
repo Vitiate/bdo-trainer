@@ -4,6 +4,23 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.2] — 2026-05-28
+
+### Fixed
+- **Updater dialog stays in front on macOS.** The update window and its
+  follow-up prompts (replace configs?, update installed, update failed)
+  now reliably appear above the parent window. Previously these could
+  land behind the editor on macOS — same z-order bug we already fixed
+  for the editor dialogs in 0.4.0.
+
+### Internal
+- Added a local `_force_to_front` helper that suspends the parent
+  Toplevel's `-topmost` for the dialog's lifetime and lifts the dialog
+  across several ticks so it outlasts macOS reordering.
+- All `messagebox.*` calls in the updater now go through a
+  `_show_messagebox` wrapper that briefly drops the update window's
+  `-topmost` so the native message box can land above it.
+
 ## [0.4.1] — 2026-05-28
 
 ### Changed
@@ -104,6 +121,7 @@ and adheres to [Semantic Versioning](https://semver.org/).
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.4.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.2
 [0.4.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.1
 [0.4.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.0
 [0.3.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.3.0
