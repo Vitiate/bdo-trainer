@@ -12,18 +12,18 @@ from typing import Any, Callable, Dict, List, Optional
 logger = logging.getLogger("bdo_trainer")
 
 # ---------------------------------------------------------------------------
-# Style constants
+# Style constants — Solarized Dark (mirrors window.py / settings_gui)
 # ---------------------------------------------------------------------------
-BG_DARK = "#1A1A2E"
-BG_CARD = "#16213E"
-BG_INPUT = "#0F3460"
-FG_TEXT = "#E8E8E8"
-FG_DIM = "#888888"
-ACCENT = "#E94560"
-ACCENT_HOVER = "#FF6B81"
-GOLD = "#FFD700"
-GREEN = "#4CAF50"
-RED_SOFT = "#CF6679"
+BG_DARK = "#002B36"
+BG_CARD = "#073642"
+BG_INPUT = "#073642"
+FG_TEXT = "#93A1A1"
+FG_DIM = "#657B83"
+ACCENT = "#268BD2"
+ACCENT_HOVER = "#2AA198"
+GOLD = "#B58900"
+GREEN = "#859900"
+RED_SOFT = "#DC322F"
 FONT = ("Segoe UI", 10)
 FONT_BOLD = ("Segoe UI", 10, "bold")
 FONT_HEADING = ("Segoe UI", 12, "bold")
@@ -116,11 +116,17 @@ DAMAGE_VALUES = ["none", "low", "medium", "high", "very_high"]
 class SkillEditor(tk.Frame):
     """Skill list + edit form panel."""
 
-    def __init__(self, parent: tk.Widget, on_change: Optional[Callable] = None):
+    def __init__(
+        self,
+        parent: tk.Widget,
+        on_change: Optional[Callable] = None,
+        on_id_renamed: Optional[Callable[[str, str], None]] = None,
+    ):
         super().__init__(parent, bg=BG_DARK)
         # Expose self as .frame so the host window can do  editor.frame
         self.frame = self
         self._on_change = on_change
+        self._on_id_renamed = on_id_renamed
         self._skills: Dict[str, dict] = {}  # skill_id -> skill_data
         self._current_skill_id: Optional[str] = None
         self._class_name = ""
@@ -373,28 +379,26 @@ class SkillEditor(tk.Frame):
             row=row, column=1, columnspan=3, sticky="ew", padx=(0, 12), pady=(12, 4)
         )
 
-        self._id_label = tk.Label(
-            id_frame,
-            text="",
-            font=FONT_BOLD,
-            bg=BG_DARK,
-            fg=ACCENT,
-            anchor="w",
-        )
-        self._id_label.pack(side="left", fill="x", expand=True)
-
+        # ID is always editable. Renaming triggers _on_id_changed to update
+        # references throughout self._skills and propagate to combos.
         self._id_entry = tk.Entry(
             id_frame,
-            font=FONT,
+            font=FONT_BOLD,
             bg=BG_INPUT,
-            fg=FG_TEXT,
+            fg=ACCENT,
             insertbackground=FG_TEXT,
             bd=0,
             highlightthickness=1,
             highlightcolor=ACCENT,
             highlightbackground=BG_CARD,
         )
-        # id_entry is only shown for new skills
+        self._id_entry.pack(side="left", fill="x", expand=True)
+        self._id_entry.bind("<FocusOut>", self._on_id_changed)
+        self._id_entry.bind("<Return>", self._on_id_changed)
+
+        # Kept for backward compat with code that referenced _id_label;
+        # no longer used in the UI.
+        self._id_label = None
         row += 1
 
         # --- Name ---
@@ -1141,10 +1145,9 @@ class SkillEditor(tk.Frame):
 
         self._set_form_visible(True)
 
-        # Skill ID display
-        self._id_label.configure(text=skill_id)
-        self._id_label.pack(side="left", fill="x", expand=True)
-        self._id_entry.pack_forget()
+        # Skill ID is always shown in an editable Entry.
+        self._id_entry.delete(0, tk.END)
+        self._id_entry.insert(0, skill_id)
         self._id_is_new = False
 
         # Name
@@ -1231,12 +1234,8 @@ class SkillEditor(tk.Frame):
         self._set_form_visible(False)
 
         # Reset field values anyway
-        if self._id_label:
-            self._id_label.configure(text="")
         if self._id_entry:
             self._id_entry.delete(0, tk.END)
-            self._id_entry.pack_forget()
-            self._id_label.pack(side="left", fill="x", expand=True)
 
         self._set_entry(self._name_entry, "")
         self._set_entry(self._input_entry, "")
@@ -1294,6 +1293,69 @@ class SkillEditor(tk.Frame):
     # Skill actions
     # ------------------------------------------------------------------
 
+    def _on_id_changed(self, event: Optional[tk.Event] = None) -> None:
+        """Handle the user editing the skill ID Entry (FocusOut / Return)."""
+        if self._current_skill_id is None or self._id_entry is None:
+            return
+
+        new_id = self._id_entry.get().strip()
+        old_id = self._current_skill_id
+
+        # Sanitize: lowercase, underscores for spaces, alnum + underscore only.
+        sanitized = new_id.lower().replace(" ", "_")
+        sanitized = "".join(c for c in sanitized if c.isalnum() or c == "_")
+
+        # No change, or empty input — revert to current ID.
+        if not sanitized or sanitized == old_id:
+            self._id_entry.delete(0, tk.END)
+            self._id_entry.insert(0, old_id)
+            return
+
+        # Collision check.
+        if sanitized in self._skills:
+            from tkinter import messagebox
+            messagebox.showwarning(
+                "Duplicate Skill ID",
+                f"A skill with ID '{sanitized}' already exists. Choose another.",
+            )
+            self._id_entry.delete(0, tk.END)
+            self._id_entry.insert(0, old_id)
+            return
+
+        # Rename the key in self._skills (preserves dict insertion order
+        # for ids that follow). Use a fresh dict to keep ordering stable.
+        new_skills: Dict[str, dict] = {}
+        for k, v in self._skills.items():
+            if k == old_id:
+                new_skills[sanitized] = v
+            else:
+                new_skills[k] = v
+        self._skills = new_skills
+
+        # Update flows_into references in every other skill.
+        for sk in self._skills.values():
+            flows = sk.get("flows_into")
+            if isinstance(flows, list) and old_id in flows:
+                sk["flows_into"] = [sanitized if f == old_id else f for f in flows]
+
+        self._current_skill_id = sanitized
+        self._id_entry.delete(0, tk.END)
+        self._id_entry.insert(0, sanitized)
+        self._refresh_list()
+
+        # Notify host so combo editor can update step references.
+        if self._on_id_renamed:
+            try:
+                self._on_id_renamed(old_id, sanitized)
+            except Exception:
+                logger.exception("Error in on_id_renamed callback")
+
+        if self._on_change:
+            try:
+                self._on_change()
+            except Exception:
+                logger.exception("Error in on_change callback")
+
     def _generate_skill_id(self, name: str) -> str:
         """Generate a unique skill ID from a name."""
         base = name.lower().strip().replace(" ", "_")
@@ -1330,12 +1392,6 @@ class SkillEditor(tk.Frame):
 
         self._refresh_list()
         self._load_skill_to_form(skill_id)
-
-        # Show the ID entry for new skills so user can customize
-        self._id_label.pack_forget()
-        self._id_entry.pack(side="left", fill="x", expand=True)
-        self._id_entry.delete(0, tk.END)
-        self._id_entry.insert(0, skill_id)
         self._id_is_new = True
 
         # Select in listbox

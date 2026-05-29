@@ -19,12 +19,12 @@ except ImportError:
 
 
 def _create_icon_image(size: int = 64) -> "Image.Image":
-    """Generate a simple tray icon using Pillow"""
-    img = Image.new("RGB", (size, size), color="#1A1A2E")
+    """Generate a simple tray icon using Pillow (Solarized Dark palette)."""
+    img = Image.new("RGB", (size, size), color="#002B36")  # base03
     draw = ImageDraw.Draw(img)
 
     # Draw a border
-    draw.rectangle([1, 1, size - 2, size - 2], outline="#E94560", width=2)
+    draw.rectangle([1, 1, size - 2, size - 2], outline="#268BD2", width=2)  # blue
 
     # Draw "DK" text
     try:
@@ -38,7 +38,7 @@ def _create_icon_image(size: int = 64) -> "Image.Image":
     text_h = bbox[3] - bbox[1]
     x = (size - text_w) // 2
     y = (size - text_h) // 2
-    draw.text((x, y), text, fill="#FFD700", font=font)
+    draw.text((x, y), text, fill="#B58900", font=font)  # yellow
 
     return img
 
@@ -55,6 +55,7 @@ class TrayManager:
         on_setup_guide_toggle: Optional[Callable] = None,
         on_settings: Optional[Callable] = None,
         on_editor: Optional[Callable] = None,
+        on_check_updates: Optional[Callable] = None,
         on_exit: Optional[Callable] = None,
     ):
         """
@@ -66,6 +67,7 @@ class TrayManager:
             on_setup_guide_toggle: Callback(enabled: bool) when setup guide is toggled
             on_settings: Callback when "Settings" is selected
             on_editor: Callback when "Class & Combo Editor" is selected
+            on_check_updates: Callback when "Check for Updates…" is selected
             on_exit: Callback when "Exit" is selected
         """
         if not TRAY_AVAILABLE:
@@ -78,6 +80,7 @@ class TrayManager:
         self.on_setup_guide_toggle = on_setup_guide_toggle
         self.on_settings = on_settings
         self.on_editor = on_editor
+        self.on_check_updates = on_check_updates
         self.on_exit = on_exit
 
         self._icon: Optional[pystray.Icon] = None
@@ -146,6 +149,10 @@ class TrayManager:
             pystray.MenuItem("Class && Combo Editor", self._on_editor_clicked)
         )
 
+        menu_items.append(
+            pystray.MenuItem("Check for Updates…", self._on_check_updates_clicked)
+        )
+
         menu_items.append(pystray.Menu.SEPARATOR)
 
         # Exit
@@ -177,6 +184,11 @@ class TrayManager:
         logger.info("Tray: editor clicked")
         if self.on_editor:
             self.on_editor()
+
+    def _on_check_updates_clicked(self, icon, item):
+        logger.info("Tray: check for updates clicked")
+        if self.on_check_updates:
+            self.on_check_updates()
 
     def _on_reposition_clicked(self, icon, item):
         self._reposition_mode = not self._reposition_mode

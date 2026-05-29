@@ -29,13 +29,26 @@ settings:
         reset_combo: "F8"
     key_bindings:
         # Remap keys to match your in-game BDO keybindings.
-        # Change the value (right side) to the physical key you actually press.
+        # The LEFT side is the BDO action name. The RIGHT side is the
+        # physical keyboard key you actually press for that action.
+        #
+        # Class YAML files always use the *canonical* key names (a/d for
+        # Move Left/Right, q/e for the Q/E abilities). This section maps
+        # those canonical names to whatever physical keys you pressed in
+        # game, so the same class YAML files work for everyone.
+        #
+        # DEFAULT layout (AD = movement, QE = abilities):
+        #     Move Left: "a"     Move Right: "d"     Q: "q"     E: "e"
+        #
+        # SWAPPED layout (QE = movement, AD = abilities):
+        #     Move Left: "q"     Move Right: "e"     Q: "a"     E: "d"
+        #
         # Valid values: any letter (a-z), shift, ctrl, alt, space, lmb, rmb, mmb
         # Movement
         Move Forward: "w"
         Move Back: "s"
-        Move Left: "a"
-        Move Right: "d"
+        Move Left: "q"
+        Move Right: "e"
         # Mouse
         LMB: "lmb"
         RMB: "rmb"

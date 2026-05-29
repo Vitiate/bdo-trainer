@@ -14,18 +14,18 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 logger = logging.getLogger("bdo_trainer")
 
 # ---------------------------------------------------------------------------
-# Theme constants (mirrors window.py / settings_gui)
+# Theme constants — Solarized Dark (mirrors window.py / settings_gui)
 # ---------------------------------------------------------------------------
-BG_DARK = "#1A1A2E"
-BG_CARD = "#16213E"
-BG_INPUT = "#0F3460"
-FG_TEXT = "#E8E8E8"
-FG_DIM = "#888888"
-ACCENT = "#E94560"
-ACCENT_HOVER = "#FF6B81"
-GOLD = "#FFD700"
-GREEN = "#4CAF50"
-RED_SOFT = "#CF6679"
+BG_DARK = "#002B36"
+BG_CARD = "#073642"
+BG_INPUT = "#073642"
+FG_TEXT = "#93A1A1"
+FG_DIM = "#657B83"
+ACCENT = "#268BD2"
+ACCENT_HOVER = "#2AA198"
+GOLD = "#B58900"
+GREEN = "#859900"
+RED_SOFT = "#DC322F"
 
 FONT = ("Segoe UI", 10)
 FONT_BOLD = ("Segoe UI", 10, "bold")
@@ -138,6 +138,29 @@ class ComboEditor(tk.Frame):
         self._clear_form()
         if self._header_label is not None:
             self._header_label.configure(text="Combos")
+
+    def rename_skill_reference(self, old_id: str, new_id: str) -> None:
+        """Update every step that referenced ``old_id`` to point at ``new_id``."""
+        if not old_id or old_id == new_id:
+            return
+
+        # Update stored combos.
+        for cat in COMBO_CATEGORIES:
+            for combo in self._combos.get(cat, {}).values():
+                steps = combo.get("steps")
+                if not isinstance(steps, list):
+                    continue
+                for step in steps:
+                    if isinstance(step, dict) and step.get("skill") == old_id:
+                        step["skill"] = new_id
+
+        # Update the in-memory steps for the combo currently being edited.
+        for step in self._steps_data:
+            if isinstance(step, dict) and step.get("skill") == old_id:
+                step["skill"] = new_id
+
+        # Rebuild the step rows so their dropdowns reflect the new ID.
+        self._rebuild_steps()
 
     # ------------------------------------------------------------------
     # UI construction
@@ -811,22 +834,47 @@ class ComboEditor(tk.Frame):
         )
         num_label.pack(side="left")
 
-        # Skill dropdown
-        skills = self._get_skills()
-        skill_ids = sorted(skills.keys()) if skills else []
-        skill_var = tk.StringVar(value=step_data.get("skill", ""))
+        # Skill dropdown — labels show the skill name; the underlying value
+        # stored in step["skill"] is still the ID.
+        skills = self._get_skills() or {}
+        # Sort by display label (name fallback to id) for friendlier browsing.
+        sorted_ids = sorted(
+            skills.keys(),
+            key=lambda sid: (skills[sid].get("name") or sid).lower(),
+        )
 
-        if skill_ids:
-            skill_menu = tk.OptionMenu(row, skill_var, *skill_ids)
+        def _label_for(sid: str) -> str:
+            name = skills.get(sid, {}).get("name", "").strip()
+            return f"{name}  ({sid})" if name else sid
+
+        label_to_id = {_label_for(sid): sid for sid in sorted_ids}
+        labels = list(label_to_id.keys())
+
+        current_id = step_data.get("skill", "")
+        # If the step references an unknown skill, surface it so the user
+        # can fix it instead of having it silently disappear.
+        if current_id and current_id not in skills:
+            stale_label = f"⚠  {current_id}  (missing)"
+            labels.insert(0, stale_label)
+            label_to_id[stale_label] = current_id
+            initial_label = stale_label
+        elif current_id:
+            initial_label = _label_for(current_id)
         else:
-            # Provide a blank option so the OptionMenu can be created
+            initial_label = ""
+
+        skill_var = tk.StringVar(value=initial_label)
+
+        if labels:
+            skill_menu = tk.OptionMenu(row, skill_var, *labels)
+        else:
             skill_menu = tk.OptionMenu(row, skill_var, "")
         skill_menu.configure(
             bg=BG_INPUT,
             fg=FG_TEXT,
             font=FONT_SMALL,
             highlightthickness=0,
-            width=18,
+            width=24,
             relief="flat",
             activebackground=ACCENT,
             activeforeground="#FFF",
@@ -927,6 +975,7 @@ class ComboEditor(tk.Frame):
             "frame": row,
             "skill_var": skill_var,
             "skill_menu": skill_menu,
+            "skill_label_to_id": label_to_id,
             "note_entry": note_entry,
             "hold_entry": hold_entry,
         }
@@ -938,7 +987,11 @@ class ComboEditor(tk.Frame):
         steps: List[dict] = []
         for sw in self._step_widgets:
             step: dict = {}
-            skill = sw["skill_var"].get().strip()
+            label = sw["skill_var"].get().strip()
+            label_map = sw.get("skill_label_to_id") or {}
+            # Translate the user-facing label back to the canonical skill ID;
+            # fall back to the raw string for legacy step rows.
+            skill = label_map.get(label, label)
             if skill:
                 step["skill"] = skill
             note = sw["note_entry"].get().strip()
