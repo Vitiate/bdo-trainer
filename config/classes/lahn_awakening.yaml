@@ -1,0 +1,198 @@
+# Lahn — Awakening
+# Generated / updated by BDO Trainer Editor
+
+class: Lahn
+spec: Awakening
+skills:
+  new_skill_1:
+    name: stately_dignity
+    input: Q
+    keys:
+    - q
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    description: attack & movement speed buff
+  new_skill_2:
+    name: Eradication
+    input: Shift+F
+    keys:
+    - shift
+    - f
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    description: first hit (+20 AP buff!)
+    flows_into:
+    - Optional Shift A/D
+  new_skill_3:
+    name: Phantom Dance
+    input: F
+    keys:
+    - f
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    description: Tap the F button!
+  new_skill_4:
+    name: Bleeding Hearts
+    input: LMB+RMB
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    description: -25 Damage Reduction debuff for the mobs!
+  new_skill_5:
+    name: Taunting Death
+    input: W+RMB
+    keys:
+    - w
+    - rmb
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    description: Hold RMB for flow
+  new_skill_6:
+    name: Flow Mangler
+    input: Hold RMB
+    keys:
+    - rmb
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    description: Hold RMB
+  new_skill_7:
+    name: Bridled Dispair
+    input: S+RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+  new_skill_8:
+    name: Tail Spin
+    input: Shift+RMB
+    keys:
+    - shift
+    - rmb
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    flows_into:
+    - flow_vice
+  flow_vice:
+    name: Flow Vice
+    input: Hold Shift+RMB
+    keys:
+    - hold
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+  new_skill_10:
+    name: Blinding Chains
+    input: Shift Q
+    keys:
+    - shift
+    - q
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+  fatal_attraction:
+    name: fatal_attraction
+    input: LMB
+    keys:
+    - lmb
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    description: Pre awakening magnus skill
+  deadly_dance:
+    name: Deadly Dance
+    input: W+F
+    keys:
+    - w
+    - f
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+  furor:
+    name: furor
+    input: Shift+LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+    flows_into:
+    - flow_dancing_with_death
+  flow_dancing_with_death:
+    name: flow_dancing_with_death
+    input: Hold Shift+LMB
+    keys:
+    - hold
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+  new_skill_1_2:
+    name: dodge
+    input: Shift+Q or Shift+E
+    keys:
+    - a
+    - shift
+    keys_alt:
+    - d
+    - shift
+    protection: none
+    damage: none
+    cooldown_ms: 0
+    cc: []
+pve_combos:
+  new_combo_2:
+    name: Infinite
+    difficulty: beginner
+    combo_window_ms: 300
+    description: ''
+    steps:
+    - skill: new_skill_1
+    - skill: new_skill_2
+    - skill: new_skill_3
+    - skill: new_skill_4
+    - skill: new_skill_5
+    - skill: new_skill_6
+    - skill: new_skill_7
+    - skill: new_skill_8
+    - skill: flow_vice
+    - skill: new_skill_10
+    - skill: fatal_attraction
+    - skill: new_skill_2
+    - skill: new_skill_1_2
+    - skill: furor
+    - skill: flow_dancing_with_death
+pvp_combos: {}
+movement_combos: {}
+skill_addons:
+  pve: []
+locked_skills: []
+hotbar_skills: []
+core_skill:
+  recommended: ''
+  effect: ''
+  reason: ''
