@@ -216,6 +216,26 @@ class ComboLoader:
                 phys = str(physical_key).lower().strip()
                 if phys != canonical:
                     remap[canonical] = phys
+
+        # Sanity check: warn when a remap target collides with another
+        # canonical key that hasn't been remapped away. This catches the
+        # half-configured swap case (e.g., Q -> a without Move Left -> q),
+        # which would silently merge two abilities onto the same physical key.
+        canonical_set = set(_BDO_TO_COMBO_KEY.values())
+        for canonical, phys in remap.items():
+            if phys in canonical_set and phys != canonical:
+                # The remap targets another canonical key. That's only OK
+                # if that other canonical key is itself remapped away.
+                if remap.get(phys, phys) == phys:
+                    logger.warning(
+                        "Key remap collision: '%s' is remapped to '%s', but "
+                        "'%s' itself is not remapped away. Combos that use "
+                        "canonical '%s' will require physical '%s', which is "
+                        "the same key as canonical '%s'. Add a matching "
+                        "binding for '%s' to swap them properly.",
+                        canonical, phys, phys, canonical, phys, phys, phys,
+                    )
+
         return remap
 
     def get_timing_settings(self) -> Dict[str, Any]:

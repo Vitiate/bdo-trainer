@@ -45,6 +45,7 @@ from src.editor import EditorWindow
 from src.overlay import ComboOverlay
 from src.settings_gui import SettingsWindow
 from src.tray import TRAY_AVAILABLE, TrayManager
+from src.updater import check_and_prompt as check_for_updates
 
 # Optional: global hotkeys via the `keyboard` library
 _hotkeys_available = False
@@ -114,6 +115,7 @@ class BDOTrainerApp:
                 on_setup_guide_toggle=self._on_setup_guide_toggle,
                 on_settings=self._on_settings,
                 on_editor=self._on_editor,
+                on_check_updates=self._on_check_updates,
             )
         else:
             logger.warning("Tray icon unavailable — install pystray + Pillow")
@@ -246,6 +248,24 @@ class BDOTrainerApp:
 
         logger.info("Live-reloaded settings from GUI")
 
+    def _on_check_updates(self):
+        """Called when user clicks 'Check for Updates…' in the tray."""
+        check_for_updates(
+            schedule=self.overlay.schedule,
+            parent_supplier=lambda: self.overlay.root,
+            show_no_update_dialog=True,
+            show_failure_dialog=True,
+        )
+
+    def _check_for_updates_on_startup(self):
+        """Silent update check fired once at launch."""
+        check_for_updates(
+            schedule=self.overlay.schedule,
+            parent_supplier=lambda: self.overlay.root,
+            show_no_update_dialog=False,
+            show_failure_dialog=False,
+        )
+
     def _on_editor(self):
         """Called when user clicks Class & Combo Editor in the tray."""
         self.overlay.schedule(self._open_editor)
@@ -342,6 +362,9 @@ class BDOTrainerApp:
         """Start the tray icon, then enter the overlay main-loop (blocks)."""
         if self.tray:
             self.tray.start()
+
+        # Check GitHub for a newer release in the background.
+        self._check_for_updates_on_startup()
 
         logger.info(
             "BDO Trainer is running. Right-click the tray icon to select a combo."

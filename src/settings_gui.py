@@ -17,21 +17,22 @@ from src.utils.keys import format_key_display
 logger = logging.getLogger("bdo_trainer")
 
 # ---------------------------------------------------------------------------
-# Theme colours
+# Theme colours — Solarized Dark
+# https://ethanschoonover.com/solarized/
 # ---------------------------------------------------------------------------
-BG_DARK = "#1A1A2E"
-BG_CARD = "#16213E"
-BG_INPUT = "#0F3460"
-BG_INPUT_ACTIVE = "#1A4A80"
-FG_TEXT = "#E8E8E8"
-FG_DIM = "#888888"
-ACCENT = "#E94560"
-ACCENT_HOVER = "#FF6B81"
-GOLD = "#FFD700"
-GREEN = "#4CAF50"
-GREEN_DARK = "#388E3C"
-BLUE = "#2196F3"
-RED_SOFT = "#CF6679"
+BG_DARK = "#002B36"          # base03 — deepest background
+BG_CARD = "#073642"          # base02 — secondary background / card
+BG_INPUT = "#073642"          # base02 — input field background
+BG_INPUT_ACTIVE = "#586E75"  # base01 — input selection / active row
+FG_TEXT = "#93A1A1"          # base1  — primary foreground
+FG_DIM = "#657B83"           # base00 — secondary foreground
+ACCENT = "#268BD2"           # blue   — primary accent (was magenta-pink)
+ACCENT_HOVER = "#2AA198"     # cyan   — hover / focus
+GOLD = "#B58900"             # yellow — solar accent
+GREEN = "#859900"            # green
+GREEN_DARK = "#586E75"       # base01
+BLUE = "#268BD2"             # blue
+RED_SOFT = "#DC322F"         # red
 
 # ---------------------------------------------------------------------------
 # BDO key binding definitions:  (bdo_name, section_label, default_value)
@@ -41,9 +42,6 @@ BDO_KEY_BINDINGS: List[Tuple[str, str, str]] = [
     ("Move Back", "Movement", "s"),
     ("Move Left", "Movement", "a"),
     ("Move Right", "Movement", "d"),
-    ("LMB", "Mouse", "lmb"),
-    ("RMB", "Mouse", "rmb"),
-    ("MMB", "Mouse", "mmb"),
     ("Jump", "Modifiers", "space"),
     ("Sprint", "Modifiers", "shift"),
     ("Q", "Abilities", "q"),
@@ -199,8 +197,10 @@ class KeyCapturePopup:
         current_value: str,
         on_captured: Callable[[str], None],
         *,
-        allow_mouse: bool = True,
+        allow_mouse: bool = False,
     ) -> None:
+        # ``allow_mouse`` is kept for backward-compat with existing callers
+        # but is currently ignored — mouse-button binds were removed.
         self.on_captured = on_captured
         self._done = False
 
@@ -215,7 +215,7 @@ class KeyCapturePopup:
         self.popup.grab_set()
         self.popup.protocol("WM_DELETE_WINDOW", self._cancel)
 
-        w, h = (340, 230) if allow_mouse else (340, 170)
+        w, h = 340, 170
         self.popup.geometry(f"{w}x{h}")
 
         # Centre on parent
@@ -243,31 +243,6 @@ class KeyCapturePopup:
             font=("Segoe UI", 12),
         )
         self._status.pack(pady=(12, 4), padx=16)
-
-        # Mouse-button helpers (only when relevant)
-        if allow_mouse:
-            _themed_hint(
-                self.popup,
-                "Or select a mouse button:",
-            ).pack(padx=16)
-
-            mf = tk.Frame(self.popup, bg=BG_DARK)
-            mf.pack(pady=4)
-            for label, value in [("LMB", "lmb"), ("RMB", "rmb"), ("MMB", "mmb")]:
-                tk.Button(
-                    mf,
-                    text=label,
-                    width=6,
-                    font=("Segoe UI", 9, "bold"),
-                    bg=BG_INPUT,
-                    fg=FG_TEXT,
-                    activebackground=ACCENT,
-                    activeforeground="#FFF",
-                    relief="flat",
-                    bd=0,
-                    cursor="hand2",
-                    command=lambda v=value: self._finish(v),
-                ).pack(side="left", padx=5)
 
         # Cancel
         tk.Button(
@@ -364,10 +339,21 @@ class SettingsWindow:
 
         # Instance variables populated by _build_ui → _populate_* methods
         self._keybind_buttons: Dict[str, tk.Button] = {}
+        self._keybind_detect_buttons: Dict[str, tk.Button] = {}
         self._display_vars: Dict[str, tk.BooleanVar] = {}
         self._hotkey_buttons: Dict[str, tk.Button] = {}
+        self._hotkey_detect_buttons: Dict[str, tk.Button] = {}
         self._timing_vars: Dict[str, tk.StringVar] = {}
         self._auto_advance_var: tk.BooleanVar = tk.BooleanVar(value=False)
+
+        # Inline detect-mode state. When non-None, the next key/mouse press
+        # captured at the window level is applied to this target.
+        self._inline_capture_target: Optional[Tuple[str, str]] = None
+        self._inline_capture_btn: Optional[tk.Button] = None
+        self._inline_capture_orig_text: str = ""
+        # Track our own bind_all funcids so we unbind exactly what we added,
+        # without touching unrelated global handlers.
+        self._inline_capture_funcids: List[Tuple[str, str]] = []
 
         # ---- Toplevel window ----
         self.window = tk.Toplevel(root)
@@ -615,10 +601,14 @@ class SettingsWindow:
                 row=row, column=0, sticky="w", padx=(24, 8), pady=3
             )
 
-            # Key button
+            # Container for the key button + detect icon button
+            btn_row = tk.Frame(inner, bg=BG_DARK)
+            btn_row.grid(row=row, column=1, sticky="w", padx=8, pady=3)
+
+            # Key button (opens the modal popup as before)
             current_val = current_bindings.get(bdo_name, default)
             btn = tk.Button(
-                inner,
+                btn_row,
                 text=format_key_display(current_val),
                 font=("Segoe UI", 10, "bold"),
                 width=10,
@@ -631,9 +621,32 @@ class SettingsWindow:
                 cursor="hand2",
                 command=lambda n=bdo_name: self._capture_keybind(n),
             )
-            btn.grid(row=row, column=1, sticky="w", padx=8, pady=3)
+            btn.pack(side="left")
             _bind_wheel(btn)
             self._keybind_buttons[bdo_name] = btn
+
+            # Inline detect button \u2014 listens for the next key / mouse press
+            # at the window level and applies it immediately. Useful for
+            # users who have hardware-mapped keys to mouse buttons.
+            detect_btn = tk.Button(
+                btn_row,
+                text="\u25c9",  # \u25c9 \u2014 bullseye / target glyph
+                font=("Segoe UI", 11, "bold"),
+                width=2,
+                bg=BG_CARD,
+                fg=ACCENT,
+                activebackground=ACCENT,
+                activeforeground="#FFF",
+                relief="flat",
+                bd=0,
+                cursor="hand2",
+                command=lambda n=bdo_name: self._begin_inline_capture(
+                    "keybind", n,
+                ),
+            )
+            detect_btn.pack(side="left", padx=(4, 0))
+            _bind_wheel(detect_btn)
+            self._keybind_detect_buttons[bdo_name] = detect_btn
 
             row += 1
 
@@ -653,7 +666,6 @@ class SettingsWindow:
             bdo_name,
             current_val,
             _on_captured,
-            allow_mouse=True,
         )
 
     # ==================================================================
@@ -777,10 +789,13 @@ class SettingsWindow:
             _themed_label(lbl_frame, label).pack(anchor="w")
             _themed_hint(lbl_frame, hint, font=("Segoe UI", 8)).pack(anchor="w")
 
-            # Button
+            # Container for the key button + detect icon button
+            btn_row = tk.Frame(grid, bg=BG_DARK)
+            btn_row.grid(row=i, column=1, sticky="w", padx=8, pady=6)
+
             current = hotkeys.get(key, default)
             btn = tk.Button(
-                grid,
+                btn_row,
                 text=format_key_display(current),
                 font=("Segoe UI", 10, "bold"),
                 width=10,
@@ -793,8 +808,28 @@ class SettingsWindow:
                 cursor="hand2",
                 command=lambda k=key: self._capture_hotkey(k),
             )
-            btn.grid(row=i, column=1, sticky="w", padx=8, pady=6)
+            btn.pack(side="left")
             self._hotkey_buttons[key] = btn
+
+            # Inline detect button (no mouse buttons for hotkeys).
+            detect_btn = tk.Button(
+                btn_row,
+                text="◉",
+                font=("Segoe UI", 11, "bold"),
+                width=2,
+                bg=BG_CARD,
+                fg=ACCENT,
+                activebackground=ACCENT,
+                activeforeground="#FFF",
+                relief="flat",
+                bd=0,
+                cursor="hand2",
+                command=lambda k=key: self._begin_inline_capture(
+                    "hotkey", k,
+                ),
+            )
+            detect_btn.pack(side="left", padx=(4, 0))
+            self._hotkey_detect_buttons[key] = detect_btn
 
     def _capture_hotkey(self, hotkey_name: str) -> None:
         hotkeys = self._settings.setdefault("hotkeys", {})
@@ -821,6 +856,119 @@ class SettingsWindow:
             _on_captured,
             allow_mouse=False,
         )
+
+    # ------------------------------------------------------------------
+    # Inline detect mode
+    # ------------------------------------------------------------------
+
+    def _begin_inline_capture(self, kind: str, name: str) -> None:
+        """Listen for the next key press at the window level and apply
+        it to (kind, name). ``kind`` is "keybind" or "hotkey"."""
+        if self._inline_capture_target is not None:
+            self._cancel_inline_capture()
+
+        if kind == "keybind":
+            btn = self._keybind_detect_buttons.get(name)
+        elif kind == "hotkey":
+            btn = self._hotkey_detect_buttons.get(name)
+        else:
+            return
+        if btn is None:
+            return
+
+        self._inline_capture_target = (kind, name)
+        self._inline_capture_btn = btn
+        self._inline_capture_orig_text = btn.cget("text")
+
+        # Visual feedback: highlight the detect button.
+        btn.configure(text="…", bg=ACCENT, fg="#FFF")
+
+        # Defer binding install one tick so the activating click doesn't
+        # get caught by anything we install here.
+        def _install_bindings() -> None:
+            if self._inline_capture_target != (kind, name):
+                return
+            self._inline_capture_funcids = []
+            fid = self.window.bind_all(
+                "<KeyPress>", self._on_inline_key, add="+"
+            )
+            self._inline_capture_funcids.append(("<KeyPress>", fid))
+            self.window.focus_set()
+
+        self.window.after_idle(_install_bindings)
+
+        # Auto-cancel after 6 seconds so a stale capture never gets stuck.
+        self.window.after(6000, lambda: self._timeout_inline_capture(name, kind))
+
+    def _on_inline_key(self, event: tk.Event) -> None:
+        if self._inline_capture_target is None:
+            return
+        # Allow Escape to cancel cleanly.
+        if event.keysym == "Escape":
+            self._cancel_inline_capture()
+            return
+        key = _normalize_keysym(event)
+        if key is None:
+            self._cancel_inline_capture()
+            return
+        self._apply_inline_capture(key)
+
+    def _apply_inline_capture(self, key: str) -> None:
+        target = self._inline_capture_target
+        if target is None:
+            return
+        kind, name = target
+
+        # Unbind first so a stray follow-up event can't reapply.
+        self._cleanup_inline_bindings()
+
+        # Restore the detect button's original look.
+        if self._inline_capture_btn is not None:
+            self._inline_capture_btn.configure(
+                text=self._inline_capture_orig_text, bg=BG_CARD, fg=ACCENT,
+            )
+        self._inline_capture_target = None
+        self._inline_capture_btn = None
+
+        # Apply the captured key.
+        if kind == "keybind":
+            bindings = self._settings.setdefault("key_bindings", {})
+            bindings[name] = key
+            target_btn = self._keybind_buttons.get(name)
+            if target_btn is not None:
+                target_btn.configure(text=format_key_display(key))
+        elif kind == "hotkey":
+            hotkeys = self._settings.setdefault("hotkeys", {})
+            # Function keys conventionally stored uppercase.
+            if key.startswith("f") and key[1:].isdigit():
+                key = key.upper()
+            hotkeys[name] = key
+            target_btn = self._hotkey_buttons.get(name)
+            if target_btn is not None:
+                target_btn.configure(text=format_key_display(key))
+
+    def _cancel_inline_capture(self) -> None:
+        """Abort detect mode without applying a value."""
+        self._cleanup_inline_bindings()
+        if self._inline_capture_btn is not None:
+            self._inline_capture_btn.configure(
+                text=self._inline_capture_orig_text, bg=BG_CARD, fg=ACCENT,
+            )
+        self._inline_capture_target = None
+        self._inline_capture_btn = None
+
+    def _timeout_inline_capture(self, name: str, kind: str) -> None:
+        """Cancel only if the same target is still pending (not a stale timer)."""
+        if self._inline_capture_target == (kind, name):
+            self._cancel_inline_capture()
+
+    def _cleanup_inline_bindings(self) -> None:
+        for sequence, fid in self._inline_capture_funcids:
+            try:
+                self.window.unbind_all(sequence, fid)
+            except Exception:
+                pass
+        self._inline_capture_funcids = []
 
     # ==================================================================
     # TAB: Timing
@@ -1066,6 +1214,10 @@ class SettingsWindow:
     # ------------------------------------------------------------------
 
     def _close(self) -> None:
+        # Make sure no global bindings are left behind if the user closes
+        # the window mid-capture.
+        if self._inline_capture_target is not None:
+            self._cancel_inline_capture()
         try:
             self.window.destroy()
         except tk.TclError:

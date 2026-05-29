@@ -144,6 +144,11 @@ ENV/
 env.bak/
 venv.bak/
 
+# BDO Trainer — auto-updater staging + log dir + per-user config backups
+_update/
+logs/
+config_backup_*/
+
 # Spyder project settings
 .spyderproject
 .spyproject
