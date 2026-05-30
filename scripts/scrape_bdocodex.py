@@ -62,6 +62,11 @@ REQUEST_TIMEOUT = 30
 POLITE_DELAY_S = 1.0
 MAX_RETRIES = 2
 
+# Cap fetching to one rank per base skill to keep the scrape under an
+# hour. We pick the highest-rank entry per (class, base name) — that's
+# the one with the strongest stats and the most complete tooltip.
+RANK_SUFFIX_RE = re.compile(r"\s+(I|II|III|IV|V|VI|VII|VIII|IX|X)$")
+
 
 def _fetch(url: str, *, accept_json: bool = False) -> bytes:
     headers = {
@@ -119,35 +124,58 @@ def load_index() -> Dict[str, List[List]]:
 
 def index_rows_for_class(
     class_name: str,
+    *,
+    deduped: bool = True,
 ) -> List[Dict[str, object]]:
-    """Return ``[{id, name, level}]`` for every skill in ``class_name``.
+    """Return ``[{id, name, level}]`` for skills in ``class_name``.
 
-    The HTML in the second column is stripped to a plain skill name.
+    By default this drops Black Spirit duplicates and keeps only the
+    highest-rank entry per base skill name (e.g. only "Shattering
+    Darkness V", not I–IV). Pass ``deduped=False`` for the raw list.
     """
     raw = load_index()
-    rows: List[Dict[str, object]] = []
+    all_rows: List[Dict[str, object]] = []
     for row in raw.get("aaData", []):
         if len(row) < 5:
             continue
         if row[4] != class_name:
             continue
         skill_id = row[0]
-        # Column 2 is HTML containing the skill name inside <b>...</b>.
         name_html = row[2] if isinstance(row[2], str) else ""
         m = re.search(r"<b>\s*(?:<span[^>]*></span>)?\s*([^<]+)</b>", name_html)
         if m:
             name = m.group(1)
         else:
             name = re.sub(r"<[^>]+>", "", name_html).strip()
-        # Decode the few HTML entities that show up in skill names.
         name = (
             name.replace("&#39;", "'")
             .replace("&amp;", "&")
             .replace("&quot;", '"')
             .strip()
         )
-        rows.append({"id": skill_id, "name": name, "level": row[3]})
-    return rows
+        try:
+            level = int(row[3])
+        except (TypeError, ValueError):
+            level = 0
+        all_rows.append({"id": skill_id, "name": name, "level": level})
+
+    if not deduped:
+        return all_rows
+
+    # Drop Black Spirit duplicates of base skills.
+    filtered = [
+        r for r in all_rows
+        if not str(r["name"]).lower().startswith("black spirit:")
+    ]
+
+    # Keep the highest-level entry per base name (post rank-suffix strip).
+    by_base: Dict[str, Dict[str, object]] = {}
+    for r in filtered:
+        base = RANK_SUFFIX_RE.sub("", str(r["name"])).strip()
+        existing = by_base.get(base)
+        if existing is None or int(r["level"]) > int(existing["level"]):
+            by_base[base] = r
+    return list(by_base.values())
 
 
 # ---------------------------------------------------------------------------
