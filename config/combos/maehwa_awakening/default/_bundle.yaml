@@ -1,0 +1,13 @@
+# Maehwa — Awakening — bundle: default
+# Auto-created by seed_class_shells.
+
+class: Maehwa
+spec: Awakening
+bundle_id: default
+name: Default
+description: ''
+locked_skills: []
+hotbar_skills: []
+core_skill: {}
+skill_addons:
+  pve: []

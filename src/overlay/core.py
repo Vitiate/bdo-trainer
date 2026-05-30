@@ -35,9 +35,12 @@ class ComboOverlay:
         note_color: str = "#AAAAAA",
         show_protection: bool = True,
         show_notes: bool = True,
+        show_window: bool = True,
     ) -> None:
         if not font_family:
             font_family = default_font_family()
+
+        self._show_window = show_window
 
         # --- Tk root -------------------------------------------------------
         self.root = tk.Tk()
@@ -54,6 +57,12 @@ class ComboOverlay:
         screen_w: int = self.root.winfo_screenwidth()
         screen_h: int = self.root.winfo_screenheight()
         self.root.geometry(f"{screen_w}x{screen_h}+0+0")
+
+        if not self._show_window:
+            # Hide the overlay window entirely while keeping the Tk root
+            # alive — child windows (settings, editors), the schedule
+            # queue, and the input monitor still need it.
+            self.root.withdraw()
 
         make_click_through(self.root)
 

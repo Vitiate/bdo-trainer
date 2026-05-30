@@ -1,0 +1,13 @@
+# Shai — Succession — bundle: default
+# Auto-created by seed_class_shells.
+
+class: Shai
+spec: Succession
+bundle_id: default
+name: Default
+description: ''
+locked_skills: []
+hotbar_skills: []
+core_skill: {}
+skill_addons:
+  pve: []

@@ -76,8 +76,9 @@ else:
 class BDOTrainerApp:
     """Wires together the combo loader, overlay, tray icon, and hotkeys."""
 
-    def __init__(self):
+    def __init__(self, show_overlay: bool = True):
         logger.info("=== BDO Trainer starting ===")
+        self.show_overlay = show_overlay
 
         # --- One-shot migration (if user is upgrading from 0.4.x) ---------
         try:
@@ -112,7 +113,13 @@ class BDOTrainerApp:
         self.overlay = ComboOverlay(
             show_protection=display.get("show_protection_type", True),
             show_notes=True,
+            show_window=show_overlay,
         )
+        if not show_overlay:
+            logger.info(
+                "Overlay window disabled — running tray-only "
+                "(combos will not be displayed in-game)"
+            )
         # Apply user key remappings (BDO key_bindings → physical keys)
         self.overlay.set_key_remap(self.loader.get_key_remap())
 
@@ -606,7 +613,15 @@ def main():
 
     _ensure_admin()
     _check_macos_accessibility()
-    app = BDOTrainerApp()
+    # On macOS the overlay isn't useful (BDO doesn't run there), so by
+    # default we boot the tray + editor flow without the overlay window.
+    # ``--overlay`` forces it on; ``--no-overlay`` forces it off.
+    show_overlay = sys.platform != "darwin"
+    if "--overlay" in sys.argv:
+        show_overlay = True
+    if "--no-overlay" in sys.argv:
+        show_overlay = False
+    app = BDOTrainerApp(show_overlay=show_overlay)
     app.run()
 
 

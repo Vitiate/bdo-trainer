@@ -1,0 +1,6 @@
+# Sorceress — Awakening
+# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+
+class: Sorceress
+spec: Awakening
+skills: {}

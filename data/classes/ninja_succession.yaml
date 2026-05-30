@@ -1,0 +1,6 @@
+# Ninja — Succession
+# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+
+class: Ninja
+spec: Succession
+skills: {}

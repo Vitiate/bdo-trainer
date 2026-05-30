@@ -182,6 +182,7 @@ class ComboEditorWindow:
         bundle = tk.Frame(sidebar, bg=BG_CARD)
         bundle.pack(fill="x", padx=6, pady=(6, 8))
         for label, cmd in (
+            ("Export Combo", self._on_export_single_combo),
             ("Export Combos", self._on_export_combos),
             ("Import Combos", self._on_import_combos),
             ("Inspect", self._on_inspect_bundle),
@@ -851,6 +852,113 @@ class ComboEditorWindow:
     # ------------------------------------------------------------------
     # Export / Import / Inspect
     # ------------------------------------------------------------------
+    def _on_export_single_combo(self) -> None:
+        """Export the currently-selected combo as a single-combo .bdt.
+
+        The bundle still carries its parent's loadout (hotbar / locked /
+        core / addons) as context, so when the combo gets uploaded to a
+        library the author's setup travels with it. The new bundle's
+        metadata (id / name / description) is derived from the combo,
+        not from the parent bundle, so two single-combo exports from
+        the same parent don't collide.
+        """
+        from src.editor.portability import BDT_EXTENSION, write_combo_bundle
+
+        if self._current_key is None:
+            messagebox.showinfo(
+                "Export Combo", "Select a bundle first.",
+                parent=self.window,
+            )
+            return
+        if self._combo_editor is None or not getattr(
+            self._combo_editor, "_current_combo_id", None,
+        ):
+            messagebox.showinfo(
+                "Export Combo",
+                "Select a single combo from the list to export.",
+                parent=self.window,
+            )
+            return
+
+        if self._dirty:
+            self._on_save_click()
+
+        class_name, spec_name, parent_bundle_id = self._current_key
+        combo_id = self._combo_editor._current_combo_id
+        combo = self.loader.bundles.get_combo(
+            class_name, spec_name, parent_bundle_id, combo_id,
+        )
+        if combo is None:
+            messagebox.showerror(
+                "Export Combo",
+                f"Could not find combo '{combo_id}' in bundle "
+                f"'{parent_bundle_id}'. Save and try again.",
+                parent=self.window,
+            )
+            return
+
+        # Loadout pulled from the parent bundle so the combo's gameplay
+        # context (hotbar, locked, core, addons) travels with it.
+        parent_meta = self.loader.bundles.get_bundle(
+            class_name, spec_name, parent_bundle_id,
+        ) or {}
+        loadout = {
+            k: parent_meta.get(k)
+            for k in ("locked_skills", "hotbar_skills", "core_skill", "skill_addons")
+            if k in parent_meta
+        }
+
+        # Use the combo's name/description as the bundle metadata so a
+        # library upload reads as "this combo" rather than "<parent
+        # bundle>".
+        bundle_name = combo.get("name") or combo_id
+        description = combo.get("description") or ""
+
+        default_name = (
+            f"{class_name}_{spec_name}_{combo_id}".lower().replace(" ", "_")
+            + BDT_EXTENSION
+        )
+        path = filedialog.asksaveasfilename(
+            parent=self.window,
+            title="Export Combo",
+            defaultextension=BDT_EXTENSION,
+            initialfile=default_name,
+            filetypes=[
+                ("BDO Trainer combo bundle", f"*{BDT_EXTENSION}"),
+                ("All files", "*.*"),
+            ],
+        )
+        if not path:
+            return
+
+        try:
+            written = write_combo_bundle(
+                path,
+                class_name=class_name,
+                spec_name=spec_name,
+                # Bundle-id mirrors the combo id so library tooling and
+                # diff/inspect dialogs show the right label.
+                bundle_id=combo_id,
+                name=bundle_name,
+                description=description,
+                loadout=loadout,
+                combos={combo_id: copy.deepcopy(combo)},
+            )
+        except Exception as exc:
+            logger.exception("Export single combo failed")
+            messagebox.showerror(
+                "Export Failed",
+                f"Could not export combo:\n{exc}",
+                parent=self.window,
+            )
+            return
+
+        messagebox.showinfo(
+            "Export Complete",
+            f"Exported combo '{combo_id}' to:\n{written}",
+            parent=self.window,
+        )
+
     def _on_export_combos(self) -> None:
         from src.editor.portability import BDT_EXTENSION, write_combo_bundle
 
