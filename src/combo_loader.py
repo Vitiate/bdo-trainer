@@ -1,34 +1,26 @@
-"""Loaders for class definitions, combos, and global settings.
+"""Loaders for class definitions, combo bundles, and global settings.
 
-Layout (post-0.5.0):
+Layout (post-0.5.0)::
 
-    data/classes/<class>_<spec>.yaml          # ships with app — class + skills
-        class:, spec:, skills:, locked_skills:, hotbar_skills:,
-        core_skill:, skill_addons:
+    data/classes/<slug>.yaml                       # ships with app — skills only
+        class:, spec:, skills:
 
-    config/combos/<class>_<spec>/<combo_id>.yaml   # user content — one per combo
-        combo_id:, class:, spec:, category: pve|pvp|movement,
-        name:, difficulty:, combo_window_ms:, description:, steps:
+    config/combos/<slug>/<bundle_id>/
+        _bundle.yaml                               # bundle metadata + loadout
+            class:, spec:, bundle_id:, name:, description:,
+            locked_skills:, hotbar_skills:, core_skill:, skill_addons:
+        <combo_id>.yaml                            # one file per combo
+            combo_id:, class:, spec:, bundle_id:,
+            category: pve|pvp|movement,
+            name:, difficulty:, combo_window_ms:, description:, steps:
 
-    config/combos.yaml                        # global settings (key bindings,
-                                              # hotkeys, display, timing)
-
-Three loaders live here:
-
-* :class:`ClassLoader`    — reads ``data/classes/``
-* :class:`CombosLoader`   — reads ``config/combos/``
-* :class:`SettingsLoader` — reads ``config/combos.yaml``
-
-A :class:`AppLoader` facade composes all three and exposes the union of
-methods the rest of the app expects (so ``main.py``, the overlay, and the
-tray don't need their callsites changed).
+    config/combos.yaml                             # global settings
 """
 
 from __future__ import annotations
 
 import copy
 import logging
-import shutil
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
@@ -36,22 +28,24 @@ import yaml
 
 logger = logging.getLogger("bdo_trainer")
 
-# Combo categories live under config/combos/<slug>/<combo_id>.yaml with a
-# `category:` field. These are the canonical category values.
 COMBO_CATEGORIES: List[str] = ["pve", "pvp", "movement"]
+DEFAULT_BUNDLE_ID: str = "default"
 
-# Sections of a class file that contain skill definitions. The new layout
-# normalises everything onto `skills`, but old files (and bundles) may
-# still use the legacy three-section split.
 SKILL_SECTIONS: List[str] = [
     "skills",
+    # legacy fallbacks (read-only) — older class files used these
     "awakening_skills",
     "rabam_skills",
     "preawakening_utility",
 ]
 
-# Maps BDO game-client key-binding names → canonical key names used in
-# combo step `keys:` arrays.
+LOADOUT_KEYS: List[str] = [
+    "locked_skills",
+    "hotbar_skills",
+    "core_skill",
+    "skill_addons",
+]
+
 _BDO_TO_COMBO_KEY: Dict[str, str] = {
     "Move Forward": "w",
     "Move Back": "s",
@@ -74,22 +68,26 @@ def slug_for(class_name: str, spec_name: str) -> str:
     return f"{class_name}_{spec_name}".lower().replace(" ", "_")
 
 
+def _yaml_dump(data: Dict[str, Any], fh) -> None:
+    yaml.dump(
+        data, fh,
+        default_flow_style=False,
+        allow_unicode=True,
+        sort_keys=False,
+        width=120,
+    )
+
+
 # ===========================================================================
-# Class loader (ships with app — read-mostly)
+# Class loader (data/classes/) — skills only
 # ===========================================================================
 class ClassLoader:
-    """Loads class definitions from ``data/classes/``.
-
-    Class files contain skills, locked-skill lists, hotbar setup, core
-    skill recommendations, and add-ons. They are intended to ship with
-    the app and rarely change at runtime.
-    """
+    """Loads class definitions (skills only) from ``data/classes/``."""
 
     def __init__(self, data_dir: Optional[Path] = None) -> None:
         if data_dir is None:
             data_dir = Path(__file__).parent.parent / "data" / "classes"
         self.data_dir = Path(data_dir)
-        # Keyed by (class_name, spec_name)
         self.class_configs: Dict[Tuple[str, str], Dict[str, Any]] = {}
         self.load()
 
@@ -108,9 +106,7 @@ class ClassLoader:
             class_name = data.get("class")
             spec_name = data.get("spec")
             if not class_name or not spec_name:
-                logger.warning(
-                    f"Skipping {yaml_file.name}: missing 'class' or 'spec' key"
-                )
+                logger.warning(f"Skipping {yaml_file.name}: missing 'class' or 'spec'")
                 continue
             self.class_configs[(class_name, spec_name)] = data
             logger.info(
@@ -121,7 +117,6 @@ class ClassLoader:
         self.load()
 
     def keys(self) -> List[Tuple[str, str]]:
-        """Return all loaded ``(class, spec)`` pairs sorted alphabetically."""
         return sorted(self.class_configs.keys(), key=lambda k: (k[0].lower(), k[1].lower()))
 
     def get(self, class_name: str, spec_name: str) -> Optional[Dict[str, Any]]:
@@ -136,8 +131,6 @@ class ClassLoader:
     def get_skill_info(
         self, skill_id: str, class_name: str = "", spec_name: str = ""
     ) -> Optional[Dict[str, Any]]:
-        """Look up a skill by ID within a specific class/spec, or across
-        all loaded classes if ``class_name``/``spec_name`` are empty."""
         configs_to_search: List[Dict[str, Any]] = []
         if class_name and spec_name:
             cfg = self.get(class_name, spec_name)
@@ -153,11 +146,6 @@ class ClassLoader:
         return None
 
     def get_skills(self, class_name: str, spec_name: str) -> Dict[str, Any]:
-        """Return a flat ``{skill_id: skill_dict}`` for a class/spec.
-
-        Merges all skill sections (``skills``, ``awakening_skills``, etc.)
-        into a single dict.
-        """
         out: Dict[str, Any] = {}
         cfg = self.get(class_name, spec_name) or {}
         for section in SKILL_SECTIONS:
@@ -167,57 +155,28 @@ class ClassLoader:
         return out
 
     # ------------------------------------------------------------------
-    # Setup guide accessors
+    # CRUD
     # ------------------------------------------------------------------
-    def _field(
-        self, class_name: str, spec_name: str, key: str, default: Any = None
-    ) -> Any:
-        if default is None:
-            default = {}
-        return self.class_configs.get((class_name, spec_name), {}).get(key, default)
-
-    def get_locked_skills(self, class_name: str, spec_name: str) -> List[Dict[str, Any]]:
-        return self._field(class_name, spec_name, "locked_skills", [])
-
-    def get_hotbar_skills(self, class_name: str, spec_name: str) -> List[str]:
-        return self._field(class_name, spec_name, "hotbar_skills", [])
-
-    def get_core_skill(self, class_name: str, spec_name: str) -> Dict[str, Any]:
-        return self._field(class_name, spec_name, "core_skill", {})
-
-    def get_skill_addons(self, class_name: str, spec_name: str) -> Dict[str, Any]:
-        return self._field(class_name, spec_name, "skill_addons", {})
-
-    # ------------------------------------------------------------------
-    # CRUD (used by the Class Editor)
-    # ------------------------------------------------------------------
-    def save(
-        self, class_name: str, spec_name: str, data: Dict[str, Any]
-    ) -> Path:
+    def save(self, class_name: str, spec_name: str, data: Dict[str, Any]) -> Path:
         data = copy.deepcopy(data)
         data["class"] = class_name
         data["spec"] = spec_name
+        # Strip any loadout keys that may have been carried over from the
+        # legacy layout — those belong to bundles now.
+        for k in LOADOUT_KEYS:
+            data.pop(k, None)
 
         filepath = self.data_dir / f"{slug_for(class_name, spec_name)}.yaml"
         self.data_dir.mkdir(parents=True, exist_ok=True)
-
         header = (
             f"# {class_name} — {spec_name}\n"
-            f"# Class definition (skills, hotbar, core skill, addons).\n"
-            f"# Edit via the Class Editor in BDO Trainer.\n\n"
+            f"# Class definition (skills only).\n\n"
         )
         with open(filepath, "w", encoding="utf-8") as fh:
             fh.write(header)
-            yaml.dump(
-                data, fh,
-                default_flow_style=False,
-                allow_unicode=True,
-                sort_keys=False,
-                width=120,
-            )
-
+            _yaml_dump(data, fh)
         self.class_configs[(class_name, spec_name)] = data
-        logger.info(f"Saved class definition: {class_name}/{spec_name} → {filepath.name}")
+        logger.info(f"Saved class definition: {class_name}/{spec_name}")
         return filepath
 
     def delete(self, class_name: str, spec_name: str) -> bool:
@@ -237,57 +196,90 @@ class ClassLoader:
 
 
 # ===========================================================================
-# Combo loader (user content — config/combos/)
+# Bundle loader (config/combos/<slug>/<bundle_id>/)
 # ===========================================================================
-class CombosLoader:
-    """Loads combos from ``config/combos/<slug>/*.yaml``.
+class BundleLoader:
+    """Loads bundles (loadout + combos) from ``config/combos/<slug>/<bundle_id>/``.
 
-    Each combo lives in its own file so combos can be shared, exported,
-    imported, or removed individually without rewriting a class file.
-
-    (Class name is :class:`CombosLoader` to avoid colliding with the
-    backward-compat ``ComboLoader`` shim at module bottom.)
+    A bundle directory contains ``_bundle.yaml`` (metadata + loadout) plus
+    one YAML per combo. Multiple bundles per class/spec are supported —
+    each ``<bundle_id>`` subdirectory is independent.
     """
 
     def __init__(self, combos_dir: Optional[Path] = None) -> None:
         if combos_dir is None:
             combos_dir = Path(__file__).parent.parent / "config" / "combos"
         self.combos_dir = Path(combos_dir)
-        # Keyed by (class_name, spec_name, combo_id)
-        self.combos: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
-        # Original file path on disk for each combo (so save/delete can
-        # find it again).
-        self._paths: Dict[Tuple[str, str, str], Path] = {}
+
+        # Indexed by (class, spec, bundle_id) → bundle metadata dict.
+        self.bundles: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
+        # Indexed by (class, spec, bundle_id, combo_id) → combo dict.
+        self.combos: Dict[Tuple[str, str, str, str], Dict[str, Any]] = {}
+        # Path tracking for save/delete.
+        self._bundle_paths: Dict[Tuple[str, str, str], Path] = {}
+        self._combo_paths: Dict[Tuple[str, str, str, str], Path] = {}
+
         self.load()
 
     def load(self) -> None:
+        self.bundles = {}
         self.combos = {}
-        self._paths = {}
+        self._bundle_paths = {}
+        self._combo_paths = {}
         if not self.combos_dir.is_dir():
             logger.info(f"Combos directory not present: {self.combos_dir}")
             return
+
         for slug_dir in sorted(self.combos_dir.iterdir()):
             if not slug_dir.is_dir():
                 continue
-            for combo_file in sorted(slug_dir.glob("*.yaml")):
-                try:
-                    with open(combo_file, "r", encoding="utf-8") as f:
-                        data = yaml.safe_load(f) or {}
-                except yaml.YAMLError as e:
-                    logger.error(f"Error parsing {combo_file}: {e}")
+            for bundle_dir in sorted(slug_dir.iterdir()):
+                if not bundle_dir.is_dir():
                     continue
-                class_name = data.get("class") or ""
-                spec_name = data.get("spec") or ""
-                combo_id = data.get("combo_id") or combo_file.stem
+                bundle_yaml = bundle_dir / "_bundle.yaml"
+                meta: Dict[str, Any] = {}
+                if bundle_yaml.exists():
+                    try:
+                        with open(bundle_yaml, "r", encoding="utf-8") as f:
+                            meta = yaml.safe_load(f) or {}
+                    except yaml.YAMLError as e:
+                        logger.error(f"Error parsing {bundle_yaml}: {e}")
+                        meta = {}
+
+                # Fall back to inferring class/spec from the slug folder
+                # name if the bundle yaml is missing fields.
+                class_name = meta.get("class") or ""
+                spec_name = meta.get("spec") or ""
+                bundle_id = meta.get("bundle_id") or bundle_dir.name
                 if not class_name or not spec_name:
                     logger.warning(
-                        f"Skipping {combo_file}: missing 'class' or 'spec' key"
+                        f"Skipping bundle {slug_dir.name}/{bundle_dir.name}: "
+                        f"missing class/spec in _bundle.yaml"
                     )
                     continue
-                key = (class_name, spec_name, combo_id)
-                self.combos[key] = data
-                self._paths[key] = combo_file
-        logger.info(f"Loaded {len(self.combos)} combo(s) from {self.combos_dir}")
+
+                key = (class_name, spec_name, bundle_id)
+                self.bundles[key] = meta
+                self._bundle_paths[key] = bundle_yaml
+
+                for combo_file in sorted(bundle_dir.glob("*.yaml")):
+                    if combo_file.name == "_bundle.yaml":
+                        continue
+                    try:
+                        with open(combo_file, "r", encoding="utf-8") as f:
+                            data = yaml.safe_load(f) or {}
+                    except yaml.YAMLError as e:
+                        logger.error(f"Error parsing {combo_file}: {e}")
+                        continue
+                    combo_id = data.get("combo_id") or combo_file.stem
+                    ckey = (class_name, spec_name, bundle_id, combo_id)
+                    self.combos[ckey] = data
+                    self._combo_paths[ckey] = combo_file
+
+        logger.info(
+            f"Loaded {len(self.bundles)} bundle(s) and {len(self.combos)} combo(s) "
+            f"from {self.combos_dir}"
+        )
 
     def reload(self) -> None:
         self.load()
@@ -295,42 +287,64 @@ class CombosLoader:
     # ------------------------------------------------------------------
     # Listing
     # ------------------------------------------------------------------
-    def iter_for_class(
+    def bundles_for_class(
         self, class_name: str, spec_name: str
-    ) -> Iterable[Tuple[str, Dict[str, Any]]]:
-        """Yield ``(combo_id, combo_data)`` for every combo on a class/spec.
+    ) -> List[Tuple[str, Dict[str, Any]]]:
+        """Return ``[(bundle_id, bundle_meta), ...]`` for a class/spec, sorted."""
+        out: List[Tuple[str, Dict[str, Any]]] = []
+        for (cls, spec, bid), meta in self.bundles.items():
+            if cls == class_name and spec == spec_name:
+                out.append((bid, meta))
+        out.sort(key=lambda x: (x[0] != DEFAULT_BUNDLE_ID, x[0].lower()))
+        return out
 
-        Order: by category (pve → pvp → movement), then alphabetically by
-        combo_id within a category.
-        """
+    def iter_combos_for_bundle(
+        self, class_name: str, spec_name: str, bundle_id: str
+    ) -> Iterable[Tuple[str, Dict[str, Any]]]:
+        """Yield ``(combo_id, combo_data)`` for one bundle."""
         cat_index = {cat: i for i, cat in enumerate(COMBO_CATEGORIES)}
 
         def sort_key(item):
-            (cls, spec, cid), data = item
+            (cls, spec, bid, cid), data = item
             cat = data.get("category", "pve")
             return (cat_index.get(cat, 99), cid.lower())
 
-        for (cls, spec, cid), data in sorted(self.combos.items(), key=sort_key):
-            if cls == class_name and spec == spec_name:
+        for (cls, spec, bid, cid), data in sorted(self.combos.items(), key=sort_key):
+            if cls == class_name and spec == spec_name and bid == bundle_id:
                 yield cid, data
 
-    def iter_all(self) -> Iterable[Tuple[str, str, str, Dict[str, Any]]]:
-        """Yield ``(class, spec, combo_id, data)`` for every loaded combo."""
-        for (cls, spec, cid), data in self.combos.items():
-            yield cls, spec, cid, data
+    def iter_all_bundles(self) -> Iterable[Tuple[str, str, str, Dict[str, Any]]]:
+        for (cls, spec, bid), meta in self.bundles.items():
+            yield cls, spec, bid, meta
+
+    def iter_all_combos(
+        self,
+    ) -> Iterable[Tuple[str, str, str, str, Dict[str, Any]]]:
+        for (cls, spec, bid, cid), data in self.combos.items():
+            yield cls, spec, bid, cid, data
 
     # ------------------------------------------------------------------
     # Lookup
     # ------------------------------------------------------------------
-    def get(
-        self, class_name: str, spec_name: str, combo_id: str
+    def get_bundle(
+        self, class_name: str, spec_name: str, bundle_id: str
     ) -> Optional[Dict[str, Any]]:
-        return self.combos.get((class_name, spec_name, combo_id))
+        return self.bundles.get((class_name, spec_name, bundle_id))
+
+    def get_combo(
+        self, class_name: str, spec_name: str, bundle_id: str, combo_id: str
+    ) -> Optional[Dict[str, Any]]:
+        return self.combos.get((class_name, spec_name, bundle_id, combo_id))
 
     def get_window_ms(
-        self, class_name: str, spec_name: str, combo_id: str, default: int
+        self,
+        class_name: str,
+        spec_name: str,
+        bundle_id: str,
+        combo_id: str,
+        default: int,
     ) -> int:
-        combo = self.get(class_name, spec_name, combo_id)
+        combo = self.get_combo(class_name, spec_name, bundle_id, combo_id)
         if combo and "combo_window_ms" in combo:
             try:
                 return int(combo["combo_window_ms"])
@@ -339,12 +353,130 @@ class CombosLoader:
         return default
 
     # ------------------------------------------------------------------
-    # CRUD
+    # CRUD — bundles
     # ------------------------------------------------------------------
-    def save(
+    def save_bundle(
         self,
         class_name: str,
         spec_name: str,
+        bundle_id: str,
+        meta: Dict[str, Any],
+    ) -> Path:
+        meta = copy.deepcopy(meta)
+        meta["class"] = class_name
+        meta["spec"] = spec_name
+        meta["bundle_id"] = bundle_id
+        meta.setdefault("name", bundle_id.replace("_", " ").title())
+        meta.setdefault("description", "")
+
+        target_dir = self.combos_dir / slug_for(class_name, spec_name) / bundle_id
+        target_dir.mkdir(parents=True, exist_ok=True)
+        path = target_dir / "_bundle.yaml"
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(
+                f"# {class_name} — {spec_name} — bundle: {bundle_id}\n"
+                f"# Loadout + metadata for this combo bundle.\n\n"
+            )
+            _yaml_dump(meta, fh)
+        key = (class_name, spec_name, bundle_id)
+        self.bundles[key] = meta
+        self._bundle_paths[key] = path
+        return path
+
+    def delete_bundle(
+        self, class_name: str, spec_name: str, bundle_id: str
+    ) -> bool:
+        """Delete one bundle (and every combo inside it)."""
+        key = (class_name, spec_name, bundle_id)
+        if key not in self.bundles:
+            return False
+
+        # Delete every combo first.
+        for ckey in list(self.combos.keys()):
+            if ckey[:3] == key:
+                cpath = self._combo_paths.pop(ckey, None)
+                self.combos.pop(ckey, None)
+                if cpath is not None and cpath.exists():
+                    try:
+                        cpath.unlink()
+                    except OSError as exc:
+                        logger.error(f"Failed to delete combo {cpath}: {exc}")
+
+        # Delete the bundle yaml.
+        bpath = self._bundle_paths.pop(key, None)
+        self.bundles.pop(key, None)
+        if bpath is not None and bpath.exists():
+            try:
+                bpath.unlink()
+            except OSError as exc:
+                logger.error(f"Failed to delete bundle yaml {bpath}: {exc}")
+
+        # Remove the now-empty bundle dir.
+        bundle_dir = self.combos_dir / slug_for(class_name, spec_name) / bundle_id
+        try:
+            if bundle_dir.exists() and not any(bundle_dir.iterdir()):
+                bundle_dir.rmdir()
+        except OSError:
+            pass
+        return True
+
+    def delete_for_class(self, class_name: str, spec_name: str) -> int:
+        """Delete every bundle (and all their combos) for a class/spec.
+
+        Returns the number of bundles removed.
+        """
+        n = 0
+        for key in list(self.bundles.keys()):
+            if key[0] == class_name and key[1] == spec_name:
+                if self.delete_bundle(*key):
+                    n += 1
+        slug_dir = self.combos_dir / slug_for(class_name, spec_name)
+        try:
+            if slug_dir.exists() and not any(slug_dir.iterdir()):
+                slug_dir.rmdir()
+        except OSError:
+            pass
+        return n
+
+    def rename_bundle(
+        self,
+        class_name: str,
+        spec_name: str,
+        old_id: str,
+        new_id: str,
+    ) -> bool:
+        """Rename a bundle id. Re-keys every combo and the bundle yaml on disk."""
+        if old_id == new_id or not new_id:
+            return False
+        new_key = (class_name, spec_name, new_id)
+        old_key = (class_name, spec_name, old_id)
+        if old_key not in self.bundles or new_key in self.bundles:
+            return False
+
+        meta = copy.deepcopy(self.bundles[old_key])
+        # Snapshot the combos so we can rewrite them under the new id.
+        combo_snapshots: List[Tuple[str, Dict[str, Any]]] = []
+        for cid, combo in list(self.iter_combos_for_bundle(class_name, spec_name, old_id)):
+            combo_snapshots.append((cid, copy.deepcopy(combo)))
+
+        # Tear down the old bundle on disk.
+        self.delete_bundle(class_name, spec_name, old_id)
+
+        # Recreate under the new id.
+        self.save_bundle(class_name, spec_name, new_id, meta)
+        for cid, combo in combo_snapshots:
+            combo["bundle_id"] = new_id
+            self.save_combo(class_name, spec_name, new_id, cid, combo)
+        return True
+
+    # ------------------------------------------------------------------
+    # CRUD — combos
+    # ------------------------------------------------------------------
+    def save_combo(
+        self,
+        class_name: str,
+        spec_name: str,
+        bundle_id: str,
         combo_id: str,
         data: Dict[str, Any],
     ) -> Path:
@@ -352,69 +484,48 @@ class CombosLoader:
         data["combo_id"] = combo_id
         data["class"] = class_name
         data["spec"] = spec_name
-        # Default category to pve if caller didn't supply one.
+        data["bundle_id"] = bundle_id
         data.setdefault("category", "pve")
 
-        slug = slug_for(class_name, spec_name)
-        target_dir = self.combos_dir / slug
+        # Make sure the bundle exists on disk so the combo has somewhere
+        # to live. If it doesn't, auto-create a minimal _bundle.yaml.
+        bkey = (class_name, spec_name, bundle_id)
+        if bkey not in self.bundles:
+            self.save_bundle(class_name, spec_name, bundle_id, {})
+
+        target_dir = self.combos_dir / slug_for(class_name, spec_name) / bundle_id
         target_dir.mkdir(parents=True, exist_ok=True)
-        filepath = target_dir / f"{combo_id}.yaml"
+        path = target_dir / f"{combo_id}.yaml"
+        with open(path, "w", encoding="utf-8") as fh:
+            _yaml_dump(data, fh)
+        ckey = (class_name, spec_name, bundle_id, combo_id)
+        self.combos[ckey] = data
+        self._combo_paths[ckey] = path
+        return path
 
-        with open(filepath, "w", encoding="utf-8") as fh:
-            yaml.dump(
-                data, fh,
-                default_flow_style=False,
-                allow_unicode=True,
-                sort_keys=False,
-                width=120,
-            )
-
-        key = (class_name, spec_name, combo_id)
-        self.combos[key] = data
-        self._paths[key] = filepath
-        logger.info(f"Saved combo: {class_name}/{spec_name}/{combo_id}")
-        return filepath
-
-    def delete(
-        self, class_name: str, spec_name: str, combo_id: str
+    def delete_combo(
+        self,
+        class_name: str,
+        spec_name: str,
+        bundle_id: str,
+        combo_id: str,
     ) -> bool:
-        key = (class_name, spec_name, combo_id)
-        path = self._paths.pop(key, None)
-        self.combos.pop(key, None)
+        ckey = (class_name, spec_name, bundle_id, combo_id)
+        path = self._combo_paths.pop(ckey, None)
+        self.combos.pop(ckey, None)
         if path is not None and path.exists():
             try:
                 path.unlink()
             except OSError as exc:
-                logger.error(f"Failed to delete {path}: {exc}")
+                logger.error(f"Failed to delete combo {path}: {exc}")
                 return False
-        logger.info(f"Deleted combo: {class_name}/{spec_name}/{combo_id}")
         return True
 
-    def delete_for_class(self, class_name: str, spec_name: str) -> int:
-        """Delete every combo for a class/spec. Returns count removed."""
-        removed = 0
-        slug = slug_for(class_name, spec_name)
-        for key in list(self.combos.keys()):
-            if key[0] == class_name and key[1] == spec_name:
-                if self.delete(*key):
-                    removed += 1
-        # Remove the now-empty slug directory if present.
-        target = self.combos_dir / slug
-        try:
-            if target.exists() and not any(target.iterdir()):
-                target.rmdir()
-        except OSError:
-            pass
-        return removed
-
 
 # ===========================================================================
-# Settings loader (config/combos.yaml)
+# Settings loader
 # ===========================================================================
 class SettingsLoader:
-    """Loads global settings (hotkeys, key bindings, display, timing) from
-    ``config/combos.yaml``."""
-
     def __init__(self, settings_path: Optional[Path] = None) -> None:
         if settings_path is None:
             settings_path = Path(__file__).parent.parent / "config" / "combos.yaml"
@@ -438,28 +549,14 @@ class SettingsLoader:
     def reload(self) -> None:
         self.load()
 
-    # ------------------------------------------------------------------
-    # Accessors
-    # ------------------------------------------------------------------
-    def get_settings(self) -> Dict[str, Any]:
-        return self.settings
-
-    def get_display_settings(self) -> Dict[str, Any]:
-        return self.settings.get("display", {})
-
+    def get_settings(self) -> Dict[str, Any]:                  return self.settings
+    def get_display_settings(self) -> Dict[str, Any]:          return self.settings.get("display", {})
     def get_hotkeys(self) -> Dict[str, str]:
-        return self.settings.get(
-            "hotkeys",
-            {
-                "start_combo": "F5",
-                "stop_combo": "F6",
-                "next_step": "F7",
-                "reset_combo": "F8",
-            },
-        )
-
-    def get_key_bindings(self) -> Dict[str, str]:
-        return self.settings.get("key_bindings", {})
+        return self.settings.get("hotkeys", {
+            "start_combo": "F5", "stop_combo": "F6",
+            "next_step": "F7", "reset_combo": "F8",
+        })
+    def get_key_bindings(self) -> Dict[str, str]:              return self.settings.get("key_bindings", {})
 
     def get_key_remap(self) -> Dict[str, str]:
         bindings = self.get_key_bindings()
@@ -477,35 +574,42 @@ class SettingsLoader:
                 if remap.get(phys, phys) == phys:
                     logger.warning(
                         "Key remap collision: '%s' is remapped to '%s', but "
-                        "'%s' itself is not remapped away. Combos that use "
-                        "canonical '%s' will require physical '%s', which is "
-                        "the same key as canonical '%s'. Add a matching "
-                        "binding for '%s' to swap them properly.",
-                        canonical, phys, phys, canonical, phys, phys, phys,
+                        "'%s' itself is not remapped away.",
+                        canonical, phys, phys,
                     )
         return remap
 
     def get_timing_settings(self) -> Dict[str, Any]:
-        return self.settings.get(
-            "timing",
-            {
-                "step_highlight_duration_ms": 500,
-                "transition_delay_ms": 100,
-                "auto_advance": False,
-                "idle_reset_timeout_ms": 10000,
-            },
-        )
+        return self.settings.get("timing", {
+            "step_highlight_duration_ms": 500,
+            "transition_delay_ms": 100,
+            "auto_advance": False,
+            "idle_reset_timeout_ms": 10000,
+        })
+
+    # ------------------------------------------------------------------
+    # Active-bundle persistence
+    # ------------------------------------------------------------------
+    def get_active_bundle(self, class_name: str, spec_name: str) -> str:
+        """Return the active bundle id for a class/spec, or 'default'."""
+        active = self.settings.get("active_bundle_per_class", {}) or {}
+        return active.get(f"{class_name}/{spec_name}", DEFAULT_BUNDLE_ID)
+
+    def set_active_bundle(
+        self, class_name: str, spec_name: str, bundle_id: str
+    ) -> None:
+        active = self.settings.setdefault("active_bundle_per_class", {})
+        active[f"{class_name}/{spec_name}"] = bundle_id
 
 
 # ===========================================================================
 # AppLoader facade
 # ===========================================================================
 class AppLoader:
-    """Composes :class:`ClassLoader`, :class:`CombosLoader`, and
-    :class:`SettingsLoader` and exposes the union of methods callers need.
+    """Composes class / bundle / settings loaders.
 
-    Most of the existing app code uses this as a drop-in replacement for
-    the old monolithic ``ComboLoader``; method names are preserved.
+    Most callers are unchanged from 0.4.x — this facade preserves the
+    method names ``main.py``, the overlay, and the tray expect.
     """
 
     def __init__(
@@ -515,24 +619,23 @@ class AppLoader:
         settings_path: Optional[Path] = None,
     ) -> None:
         self.classes = ClassLoader(data_dir)
-        self.combos_loader = CombosLoader(combos_dir)
+        self.bundles = BundleLoader(combos_dir)
         self.settings_loader = SettingsLoader(settings_path)
 
     # ------------------------------------------------------------------
-    # Pass-throughs that look like the old ComboLoader API
+    # Settings passthroughs
     # ------------------------------------------------------------------
     def reload(self) -> None:
         self.classes.reload()
-        self.combos_loader.reload()
+        self.bundles.reload()
         self.settings_loader.reload()
 
-    # Settings
-    def get_settings(self):       return self.settings_loader.get_settings()
-    def get_display_settings(self): return self.settings_loader.get_display_settings()
-    def get_hotkeys(self):        return self.settings_loader.get_hotkeys()
-    def get_key_bindings(self):   return self.settings_loader.get_key_bindings()
-    def get_key_remap(self):      return self.settings_loader.get_key_remap()
-    def get_timing_settings(self): return self.settings_loader.get_timing_settings()
+    def get_settings(self):                return self.settings_loader.get_settings()
+    def get_display_settings(self):        return self.settings_loader.get_display_settings()
+    def get_hotkeys(self):                 return self.settings_loader.get_hotkeys()
+    def get_key_bindings(self):            return self.settings_loader.get_key_bindings()
+    def get_key_remap(self):               return self.settings_loader.get_key_remap()
+    def get_timing_settings(self):         return self.settings_loader.get_timing_settings()
 
     @property
     def settings(self) -> Dict[str, Any]:
@@ -542,7 +645,9 @@ class AppLoader:
     def settings(self, value: Dict[str, Any]) -> None:
         self.settings_loader.settings = value
 
+    # ------------------------------------------------------------------
     # Class enumeration / data
+    # ------------------------------------------------------------------
     @property
     def class_configs(self) -> Dict[Tuple[str, str], Dict[str, Any]]:
         return self.classes.class_configs
@@ -550,90 +655,153 @@ class AppLoader:
     def get_class_config(self, class_name: str, spec_name: str):
         return self.classes.get(class_name, spec_name)
 
-    def get_skill_info(self, skill_id: str, class_name: str = "", spec_name: str = ""):
+    def get_skill_info(
+        self, skill_id: str, class_name: str = "", spec_name: str = ""
+    ):
         return self.classes.get_skill_info(skill_id, class_name, spec_name)
 
-    # Combo enumeration / data
-    def get_combo(self, class_name: str, spec_name: str, combo_id: str):
-        return self.combos_loader.get(class_name, spec_name, combo_id)
+    # ------------------------------------------------------------------
+    # Bundle / combo enumeration
+    # ------------------------------------------------------------------
+    def get_combo(
+        self,
+        class_name: str,
+        spec_name: str,
+        combo_id: str,
+        bundle_id: Optional[str] = None,
+    ) -> Optional[Dict[str, Any]]:
+        if bundle_id is None:
+            bundle_id = self.settings_loader.get_active_bundle(class_name, spec_name)
+        return self.bundles.get_combo(class_name, spec_name, bundle_id, combo_id)
 
     def get_combo_window_ms(
-        self, class_name: str, spec_name: str, combo_id: str
+        self,
+        class_name: str,
+        spec_name: str,
+        combo_id: str,
+        bundle_id: Optional[str] = None,
     ) -> int:
+        if bundle_id is None:
+            bundle_id = self.settings_loader.get_active_bundle(class_name, spec_name)
         default = self.settings.get("default_combo_window_ms", 300)
-        return self.combos_loader.get_window_ms(class_name, spec_name, combo_id, default)
+        return self.bundles.get_window_ms(
+            class_name, spec_name, bundle_id, combo_id, default
+        )
 
-    def get_class_tree(self) -> Dict[str, Dict[str, List[Tuple[str, str]]]]:
-        """Return ``{class: {spec: [(combo_id, display_name), ...]}}``.
+    def get_class_tree(
+        self,
+    ) -> Dict[str, Dict[str, Dict[str, List[Tuple[str, str]]]]]:
+        """Return ``{class: {spec: {bundle_id: [(combo_id, name), ...]}}}``.
 
-        Combos are listed in category order (pve → pvp → movement). Classes
-        with no combos still appear in the tree (with an empty list) so the
-        tray menu can show them.
+        Bundles are listed alphabetically with ``default`` first if present.
+        Combos are listed by category then alphabetically within a category.
+        Classes with no bundles still appear (with an empty bundle dict)
+        so they show up in the tray menu.
         """
-        tree: Dict[str, Dict[str, List[Tuple[str, str]]]] = {}
+        tree: Dict[str, Dict[str, Dict[str, List[Tuple[str, str]]]]] = {}
         for class_name, spec_name in self.classes.keys():
-            tree.setdefault(class_name, {})[spec_name] = []
-        for class_name, spec_name, combo_id, data in self.combos_loader.iter_all():
-            display = data.get("name", combo_id)
-            tree.setdefault(class_name, {}).setdefault(spec_name, []).append(
-                (combo_id, display)
+            tree.setdefault(class_name, {})[spec_name] = {}
+
+        # Build the bundle list in the right order using bundles_for_class.
+        for class_name, spec_name in self.classes.keys():
+            for bundle_id, _meta in self.bundles.bundles_for_class(
+                class_name, spec_name
+            ):
+                tree[class_name][spec_name][bundle_id] = []
+
+        for cls, spec, bid, cid, data in self.bundles.iter_all_combos():
+            tree.setdefault(cls, {}).setdefault(spec, {}).setdefault(bid, []).append(
+                (cid, data.get("name", cid))
             )
         return tree
 
-    def get_combo_list(self) -> List[Tuple[str, str, str, str]]:
+    def get_combo_list(
+        self,
+    ) -> List[Tuple[str, str, str, str, str]]:
+        """Flat list of ``(class, spec, bundle_id, combo_id, display)``."""
         return [
-            (cls, spec, cid, data.get("name", cid))
-            for cls, spec, cid, data in self.combos_loader.iter_all()
+            (cls, spec, bid, cid, data.get("name", cid))
+            for cls, spec, bid, cid, data in self.bundles.iter_all_combos()
         ]
 
     def get_category_display_name(self, category: str) -> str:
-        names = {"pve": "PVE Combos", "pvp": "PVP Combos", "movement": "Movement"}
-        return names.get(category, category)
+        return {"pve": "PVE Combos", "pvp": "PVP Combos", "movement": "Movement"}.get(
+            category, category
+        )
 
-    # Setup-guide passthroughs
-    def get_locked_skills(self, *args, **kwargs):
-        return self.classes.get_locked_skills(*args, **kwargs)
+    # ------------------------------------------------------------------
+    # Loadout / setup-guide passthroughs (now bundle-scoped)
+    # ------------------------------------------------------------------
+    def _bundle_for_loadout(
+        self, class_name: str, spec_name: str, bundle_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        if bundle_id is None:
+            bundle_id = self.settings_loader.get_active_bundle(class_name, spec_name)
+        return self.bundles.get_bundle(class_name, spec_name, bundle_id) or {}
 
-    def get_hotbar_skills(self, *args, **kwargs):
-        return self.classes.get_hotbar_skills(*args, **kwargs)
+    def get_locked_skills(
+        self, class_name: str, spec_name: str, bundle_id: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        return self._bundle_for_loadout(class_name, spec_name, bundle_id).get(
+            "locked_skills", []
+        )
 
-    def get_core_skill(self, *args, **kwargs):
-        return self.classes.get_core_skill(*args, **kwargs)
+    def get_hotbar_skills(
+        self, class_name: str, spec_name: str, bundle_id: Optional[str] = None
+    ) -> List[str]:
+        return self._bundle_for_loadout(class_name, spec_name, bundle_id).get(
+            "hotbar_skills", []
+        )
 
-    def get_skill_addons(self, *args, **kwargs):
-        return self.classes.get_skill_addons(*args, **kwargs)
+    def get_core_skill(
+        self, class_name: str, spec_name: str, bundle_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        return self._bundle_for_loadout(class_name, spec_name, bundle_id).get(
+            "core_skill", {}
+        )
+
+    def get_skill_addons(
+        self, class_name: str, spec_name: str, bundle_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        return self._bundle_for_loadout(class_name, spec_name, bundle_id).get(
+            "skill_addons", {}
+        )
 
     def get_setup_guide(
-        self, class_name: str, spec_name: str
+        self, class_name: str, spec_name: str, bundle_id: Optional[str] = None
     ) -> Optional[Dict[str, Any]]:
         if not self.classes.has(class_name, spec_name):
             return None
         return {
             "class": class_name,
             "spec": spec_name,
-            "locked_skills": self.classes.get_locked_skills(class_name, spec_name),
-            "hotbar_skills": self.classes.get_hotbar_skills(class_name, spec_name),
-            "core_skill": self.classes.get_core_skill(class_name, spec_name),
-            "skill_addons": self.classes.get_skill_addons(class_name, spec_name),
+            "bundle_id": bundle_id or self.settings_loader.get_active_bundle(
+                class_name, spec_name
+            ),
+            "locked_skills": self.get_locked_skills(class_name, spec_name, bundle_id),
+            "hotbar_skills": self.get_hotbar_skills(class_name, spec_name, bundle_id),
+            "core_skill": self.get_core_skill(class_name, spec_name, bundle_id),
+            "skill_addons": self.get_skill_addons(class_name, spec_name, bundle_id),
         }
 
+    # ------------------------------------------------------------------
     # CRUD passthroughs
+    # ------------------------------------------------------------------
     def save_class_config(self, class_name: str, spec_name: str, data: Dict[str, Any]) -> Path:
         return self.classes.save(class_name, spec_name, data)
 
     def delete_class_config(self, class_name: str, spec_name: str) -> bool:
-        # Remove combos when a class is deleted so we don't leave orphans.
-        self.combos_loader.delete_for_class(class_name, spec_name)
+        # Wipe every bundle before deleting the class file so we don't
+        # leave orphan combos.
+        self.bundles.delete_for_class(class_name, spec_name)
         return self.classes.delete(class_name, spec_name)
 
 
 # ---------------------------------------------------------------------------
-# Backward-compat shim: keep the old `ComboLoader` import working but make
-# it return the AppLoader facade. This lets main.py / tray / overlay keep
-# working without churn during the refactor.
+# Backward-compat shim — keeps the old `ComboLoader` import working.
 # ---------------------------------------------------------------------------
 class _LegacyComboLoaderShim(AppLoader):
-    """Drop-in for the old monolithic ``ComboLoader``."""
+    """Drop-in for the old monolithic ``ComboLoader`` class."""
 
     def __init__(self, config_dir: Optional[str] = None) -> None:
         if config_dir is None:
@@ -647,8 +815,9 @@ class _LegacyComboLoaderShim(AppLoader):
             data_dir = project_root / "data" / "classes"
             combos_dir = base / "combos"
             settings_path = base / "combos.yaml"
-        super().__init__(data_dir=data_dir, combos_dir=combos_dir, settings_path=settings_path)
+        super().__init__(
+            data_dir=data_dir, combos_dir=combos_dir, settings_path=settings_path
+        )
 
 
-# Existing imports (`from src.combo_loader import ComboLoader`) keep working.
 ComboLoader = _LegacyComboLoaderShim

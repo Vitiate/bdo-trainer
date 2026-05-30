@@ -1,6 +1,7 @@
 combo_id: succession_main_dps
 class: Dark Knight
 spec: Succession
+bundle_id: default
 category: pve
 name: Succession Main DPS
 description: Primary Succession DPS combo from the quick PvE guide.

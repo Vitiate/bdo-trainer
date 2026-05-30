@@ -1,6 +1,7 @@
 combo_id: awakening_main_combo_1
 class: Guardian
 spec: Awakening
+bundle_id: default
 category: pve
 name: Awakening Main Combo 1
 description: Primary awakening PvE rotation.

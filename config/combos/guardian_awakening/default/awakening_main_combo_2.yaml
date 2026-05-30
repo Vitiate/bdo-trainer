@@ -1,6 +1,7 @@
 combo_id: awakening_main_combo_2
 class: Guardian
 spec: Awakening
+bundle_id: default
 category: pve
 name: Awakening Main Combo 2
 description: Fireborne Rupture opener into awakening rotation.

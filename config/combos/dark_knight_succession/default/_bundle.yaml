@@ -1,0 +1,51 @@
+# Dark Knight — Succession — bundle: default
+# Loadout + metadata for this combo bundle.
+
+class: Dark Knight
+spec: Succession
+bundle_id: default
+name: Default
+description: Auto-created default bundle (migrated from legacy class config).
+locked_skills:
+- name: Evasion
+  reason: Recommended lock to avoid accidental use breaking movement and combo flow.
+- name: Shadow Bullet
+  reason: Use only with intent during stance swaps and movement chains.
+- name: Smoky Haze
+  reason: Optional lock from skill bar if you prefer controlled hotbar use only.
+- name: Nocturne
+  reason: Keep on hotbar for deliberate use rather than accidental activation.
+hotbar_skills:
+- Wheel of Fortune
+- Balanced Strike
+- Shadow Strike
+- Wrath of Vedir
+- Nocturne
+- Kamasylvia Slash
+core_skill:
+  recommended: Wheel of Fortune
+  effect: Super Armor during the skill
+  reason: 'The Succession quick PvE guide does not explicitly name a Succession Core in the text, so this should be treated
+    as a practical placeholder rather than a verified guide recommendation.
+
+    '
+skill_addons:
+  pve:
+  - skill: Air Strike
+    addon_1: Extra AP Against Monsters +20 for 7 sec
+    addon_2: Attack/Casting Speed +7% for 7 sec
+  - skill: Wheel of Fortune
+    addon_1: Critical Hit Rate +30% for 7 sec
+    addon_2: Extra AP Against Monsters +20 for 7 sec
+  - skill: Spirit Legacy
+    addon_1: All DP -15 for 10 sec for target
+    addon_2: Critical Hit Rate +20% for 7 sec
+  - skill: Pervasive Darkness
+    addon_1: Back Attack Damage +3% for 5 sec
+    addon_2: Critical Hit Damage +3% for 5 sec
+  - skill: Ravage Rake
+    addon_1: Extra AP Against Monsters +30 for 7 sec
+    addon_2: Critical Hit Rate +30% for 7 sec
+  - skill: Twilight Dash
+    addon_1: Back Attack Damage +3% for 5 sec
+    addon_2: Attack/Casting Speed +7% for 7 sec

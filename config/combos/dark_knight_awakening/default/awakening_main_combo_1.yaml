@@ -1,6 +1,7 @@
 combo_id: awakening_main_combo_1
 class: Dark Knight
 spec: Awakening
+bundle_id: default
 category: pve
 name: Awakening Main Combo 1
 description: Standard Awakening pack-clear combo from the guide.

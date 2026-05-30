@@ -1,27 +1,37 @@
 """Split legacy `config/classes/*.yaml` files into the new layout.
 
-Old layout (everything in one file):
+Old layout (everything in one file)::
+
     config/classes/<class>_<spec>.yaml
         class:, spec:, skills:, pve_combos:, pvp_combos:,
         movement_combos:, locked_skills:, hotbar_skills:,
         core_skill:, skill_addons:
 
-New layout:
-    data/classes/<class>_<spec>.yaml          (read-only — ships with app)
-        class:, spec:, skills:, locked_skills:, hotbar_skills:,
-        core_skill:, skill_addons:
-    config/combos/<class>_<spec>/<combo_id>.yaml   (one file per combo)
-        combo_id:, category: pve|pvp|movement, name:, difficulty:,
-        combo_window_ms:, description:, steps:
+New layout::
 
-The legacy file is moved to `config/classes/_legacy/` rather than deleted.
+    data/classes/<slug>.yaml
+        class:, spec:, skills:                        # static class definition
 
-Usage:
+    config/combos/<slug>/<bundle_id>/
+        _bundle.yaml                                  # loadout (locked / hotbar /
+                                                      # core / skill_addons) +
+                                                      # bundle metadata
+        <combo_id>.yaml                               # one per combo
+
+The migration writes a single ``default`` bundle per class containing the
+loadout from the old file and every combo from every category. Combos
+carry a ``category: pve|pvp|movement`` field.
+
+The legacy file is moved to ``config/classes/_legacy/`` rather than
+deleted, so the migration is reversible.
+
+Usage::
+
     python -m scripts.migrate_class_yaml --dry-run    # preview only
     python -m scripts.migrate_class_yaml              # actually do it
 
-Idempotent: if all six legacy files have already been migrated and moved
-to `_legacy/`, this is a no-op.
+Idempotent: if every legacy file has already been migrated, this is a
+no-op.
 """
 
 from __future__ import annotations
@@ -45,23 +55,30 @@ LEGACY_BACKUP_DIR = LEGACY_CLASSES_DIR / "_legacy"
 DATA_CLASSES_DIR = PROJECT_ROOT / "data" / "classes"
 COMBO_ROOT = PROJECT_ROOT / "config" / "combos"
 
-# Sections we strip from the class definition (everything else stays as-is
-# under data/classes/). The combo sections explode into per-file YAMLs.
-COMBO_SECTIONS: Dict[str, str] = {
+DEFAULT_BUNDLE_ID = "default"
+
+# Old combo sections → new category value.
+LEGACY_COMBO_SECTIONS: Dict[str, str] = {
     "pve_combos": "pve",
     "pvp_combos": "pvp",
     "movement_combos": "movement",
 }
 
-# Keys we keep on the new class-definition file. Order matters — this is
-# the order they'll appear in the output YAML.
+# Sections we keep on the new class-definition file. Order matters — the
+# output YAML follows this list.
 CLASS_DEF_KEYS: List[str] = [
     "class",
     "spec",
     "skills",
+    # Legacy split skill sections are merged into "skills" by the loader,
+    # but if a file uses them we preserve them here so nothing is lost.
     "awakening_skills",
     "rabam_skills",
     "preawakening_utility",
+]
+
+# Sections that move from the class file into the bundle's loadout.
+LOADOUT_KEYS: List[str] = [
     "locked_skills",
     "hotbar_skills",
     "core_skill",
@@ -83,8 +100,8 @@ def _yaml_dump(data: dict, fh) -> None:
     )
 
 
-def split_one(legacy_path: Path) -> Tuple[Path, List[Path]]:
-    """Split one legacy YAML. Returns (class_def_path, [combo_paths]).
+def split_one(legacy_path: Path) -> Tuple[Path, Path, List[Path]]:
+    """Split one legacy YAML. Returns (class_def_path, bundle_yaml_path, [combo_paths]).
 
     Does NOT write the files — caller decides whether dry-run."""
     with open(legacy_path, "r", encoding="utf-8") as fh:
@@ -99,43 +116,25 @@ def split_one(legacy_path: Path) -> Tuple[Path, List[Path]]:
 
     slug = _slugify(class_name, spec_name)
 
-    # Class-definition file: keep skill-shaped sections; drop combo sections.
-    class_def: Dict = {}
-    for key, value in raw.items():
-        if key in CLASS_DEF_KEYS:
-            class_def[key] = value
-
     class_def_path = DATA_CLASSES_DIR / f"{slug}.yaml"
+    bundle_dir = COMBO_ROOT / slug / DEFAULT_BUNDLE_ID
+    bundle_yaml_path = bundle_dir / "_bundle.yaml"
 
-    # Per-combo files: explode each combo with category injected.
-    combo_dir = COMBO_ROOT / slug
     combo_paths: List[Path] = []
-
-    for section_key, category in COMBO_SECTIONS.items():
+    for section_key, category in LEGACY_COMBO_SECTIONS.items():
         section_data = raw.get(section_key) or {}
         if not isinstance(section_data, dict):
             continue
         for combo_id, combo in section_data.items():
             if not isinstance(combo, dict):
                 continue
-            entry = {
-                "combo_id": combo_id,
-                "class": class_name,
-                "spec": spec_name,
-                "category": category,
-            }
-            # Preserve combo's own fields (name, difficulty, etc.) without
-            # double-writing the keys we just set.
-            for k, v in combo.items():
-                if k not in entry:
-                    entry[k] = v
-            combo_paths.append(combo_dir / f"{combo_id}.yaml")
+            combo_paths.append(bundle_dir / f"{combo_id}.yaml")
 
-    return class_def_path, combo_paths
+    return class_def_path, bundle_yaml_path, combo_paths
 
 
-def write_split(legacy_path: Path) -> Tuple[Path, List[Path]]:
-    """Write the split files to disk. Returns (class_def_path, combo_paths)."""
+def write_split(legacy_path: Path) -> Tuple[Path, Path, List[Path]]:
+    """Write the split files to disk."""
     with open(legacy_path, "r", encoding="utf-8") as fh:
         raw = yaml.safe_load(fh) or {}
 
@@ -144,10 +143,10 @@ def write_split(legacy_path: Path) -> Tuple[Path, List[Path]]:
     slug = _slugify(class_name, spec_name)
 
     DATA_CLASSES_DIR.mkdir(parents=True, exist_ok=True)
-    combo_dir = COMBO_ROOT / slug
-    combo_dir.mkdir(parents=True, exist_ok=True)
+    bundle_dir = COMBO_ROOT / slug / DEFAULT_BUNDLE_ID
+    bundle_dir.mkdir(parents=True, exist_ok=True)
 
-    # Class-def file
+    # Class-def file: skills only, no loadout, no combos.
     class_def: Dict = {}
     for key in CLASS_DEF_KEYS:
         if key in raw:
@@ -157,15 +156,32 @@ def write_split(legacy_path: Path) -> Tuple[Path, List[Path]]:
     with open(class_def_path, "w", encoding="utf-8") as fh:
         fh.write(
             f"# {class_name} — {spec_name}\n"
-            f"# Class definition (skills, hotbar, core skill, addons).\n"
-            f"# Ships with BDO Trainer; user-edited combos live in "
-            f"config/combos/{slug}/.\n\n"
+            f"# Class definition (skills only). Ships with BDO Trainer.\n"
+            f"# User-edited combos and loadouts live in config/combos/{slug}/.\n\n"
         )
         _yaml_dump(class_def, fh)
 
+    # Bundle yaml: bundle metadata + loadout that came off the legacy file.
+    bundle_data: Dict = {
+        "class": class_name,
+        "spec": spec_name,
+        "bundle_id": DEFAULT_BUNDLE_ID,
+        "name": "Default",
+        "description": "Auto-created default bundle (migrated from legacy class config).",
+    }
+    for key in LOADOUT_KEYS:
+        if key in raw:
+            bundle_data[key] = raw[key]
+    with open(bundle_yaml_path := bundle_dir / "_bundle.yaml", "w", encoding="utf-8") as fh:
+        fh.write(
+            f"# {class_name} — {spec_name} — bundle: {DEFAULT_BUNDLE_ID}\n"
+            f"# Loadout + metadata for this combo bundle.\n\n"
+        )
+        _yaml_dump(bundle_data, fh)
+
     # Per-combo files
     combo_paths: List[Path] = []
-    for section_key, category in COMBO_SECTIONS.items():
+    for section_key, category in LEGACY_COMBO_SECTIONS.items():
         section_data = raw.get(section_key) or {}
         if not isinstance(section_data, dict):
             continue
@@ -176,23 +192,23 @@ def write_split(legacy_path: Path) -> Tuple[Path, List[Path]]:
                 "combo_id": combo_id,
                 "class": class_name,
                 "spec": spec_name,
+                "bundle_id": DEFAULT_BUNDLE_ID,
                 "category": category,
             }
             for k, v in combo.items():
                 if k not in entry:
                     entry[k] = v
-            out = combo_dir / f"{combo_id}.yaml"
+            out = bundle_dir / f"{combo_id}.yaml"
             with open(out, "w", encoding="utf-8") as fh:
                 _yaml_dump(entry, fh)
             combo_paths.append(out)
 
-    return class_def_path, combo_paths
+    return class_def_path, bundle_yaml_path, combo_paths
 
 
 def archive_legacy(legacy_path: Path) -> Path:
     LEGACY_BACKUP_DIR.mkdir(parents=True, exist_ok=True)
     target = LEGACY_BACKUP_DIR / legacy_path.name
-    # If target already exists from a prior partial run, suffix it.
     n = 1
     final = target
     while final.exists():
@@ -214,7 +230,6 @@ def needs_migration() -> bool:
 
 
 def run(dry_run: bool = False) -> int:
-    """Run the migration. Returns the exit code (0 success, 1 error)."""
     if not LEGACY_CLASSES_DIR.exists():
         print(f"No legacy classes directory at {LEGACY_CLASSES_DIR} — nothing to migrate.")
         return 0
@@ -233,15 +248,15 @@ def run(dry_run: bool = False) -> int:
     failures = 0
     for legacy in legacy_files:
         try:
-            class_def_path, combo_paths = split_one(legacy)
+            class_def_path, bundle_path, combo_paths = split_one(legacy)
         except Exception as exc:
             print(f"  ERROR in {legacy.name}: {exc}", file=sys.stderr)
             failures += 1
             continue
 
-        rel_class = class_def_path.relative_to(PROJECT_ROOT)
         print(f"{legacy.name}")
-        print(f"  → {rel_class}")
+        print(f"  → {class_def_path.relative_to(PROJECT_ROOT)}")
+        print(f"  → {bundle_path.relative_to(PROJECT_ROOT)}")
         for cp in combo_paths:
             print(f"  → {cp.relative_to(PROJECT_ROOT)}")
         print(f"  → archive {legacy.relative_to(PROJECT_ROOT)} to "

@@ -1,6 +1,7 @@
 combo_id: awakening_pack_to_pack_movement
 class: Dark Knight
 spec: Awakening
+bundle_id: default
 category: movement
 name: Awakening Pack to Pack Movement
 description: 'Pack-to-pack movement route from the Awakening quick PvE guide. Chain pre-awakening dashes and engage with Air

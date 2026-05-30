@@ -1,6 +1,7 @@
 combo_id: full_rotation_e_a
 class: Witch
 spec: Awakening
+bundle_id: default
 category: pve
 name: Full Rotation (E → A Loop)
 description: Recommended dual-cycle. 1,003,328 dmg / 14.77s / 67,930 %/s. Loops infinitely.

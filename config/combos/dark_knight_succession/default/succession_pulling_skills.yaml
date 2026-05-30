@@ -1,6 +1,7 @@
 combo_id: succession_pulling_skills
 class: Dark Knight
 spec: Succession
+bundle_id: default
 category: pve
 name: Succession Pulling Skills
 description: Skills listed for pulling mobs in Succession.

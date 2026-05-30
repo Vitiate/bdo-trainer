@@ -1,6 +1,7 @@
 combo_id: awakening_main_dps
 class: Dark Knight
 spec: Awakening
+bundle_id: default
 category: pve
 name: Awakening Main DPS
 difficulty: advanced

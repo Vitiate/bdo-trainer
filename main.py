@@ -41,7 +41,7 @@ logger = logging.getLogger("bdo_trainer")
 # Imports (after path setup)
 # ---------------------------------------------------------------------------
 from src.combo_loader import ComboLoader
-from src.editor import EditorWindow
+from src.editor import ClassEditorWindow, ComboEditorWindow
 from src.overlay import ComboOverlay
 from src.settings_gui import SettingsWindow
 from src.tray import TRAY_AVAILABLE, TrayManager
@@ -79,6 +79,23 @@ class BDOTrainerApp:
     def __init__(self):
         logger.info("=== BDO Trainer starting ===")
 
+        # --- One-shot migration (if user is upgrading from 0.4.x) ---------
+        try:
+            from scripts.migrate_class_yaml import (
+                needs_migration as _needs_migration,
+                run as _run_migration,
+            )
+
+            if _needs_migration():
+                logger.info(
+                    "Detected legacy class YAML files in config/classes/ — "
+                    "running automatic migration to data/classes/ + "
+                    "config/combos/<slug>/<bundle>/."
+                )
+                _run_migration(dry_run=False)
+        except Exception:
+            logger.exception("Auto-migration failed; continuing with whatever is on disk")
+
         # --- Load combos --------------------------------------------------
         self.loader = ComboLoader()
         self.combo_list = self.loader.get_combo_list()
@@ -114,7 +131,8 @@ class BDOTrainerApp:
                 on_reposition_toggle=self._on_reposition_toggle,
                 on_setup_guide_toggle=self._on_setup_guide_toggle,
                 on_settings=self._on_settings,
-                on_editor=self._on_editor,
+                on_combo_editor=self._on_combo_editor,
+                on_class_editor=self._on_class_editor,
                 on_check_updates=self._on_check_updates,
             )
         else:
@@ -127,6 +145,7 @@ class BDOTrainerApp:
         # Track current combo for stop / restart
         self._current_class: str = ""
         self._current_spec: str = ""
+        self._current_bundle_id: str = ""
         self._current_combo_id: str = ""
         self._shutdown_done: bool = False
 
@@ -166,14 +185,23 @@ class BDOTrainerApp:
     # ------------------------------------------------------------------
     # Callbacks (may be called from tray thread — use overlay.schedule)
     # ------------------------------------------------------------------
-    def _on_combo_selected(self, class_name: str, spec_name: str, combo_id: str):
+    def _on_combo_selected(
+        self,
+        class_name: str,
+        spec_name: str,
+        bundle_id: str,
+        combo_id: str,
+    ):
         """Called when the user picks a combo from the tray menu."""
         self._current_class = class_name
         self._current_spec = spec_name
+        self._current_bundle_id = bundle_id
         self._current_combo_id = combo_id
-        # Schedule on the tkinter thread
+        # Persist active bundle so the setup guide / next-launch flow
+        # can pick the right loadout for this class/spec.
+        self.loader.settings_loader.set_active_bundle(class_name, spec_name, bundle_id)
         self.overlay.schedule(
-            lambda: self._start_combo(class_name, spec_name, combo_id)
+            lambda: self._start_combo(class_name, spec_name, bundle_id, combo_id)
         )
 
     def _on_stop(self):
@@ -199,8 +227,10 @@ class BDOTrainerApp:
             self.overlay.schedule(self.overlay.hide_setup_guide)
 
     def _show_setup_guide(self):
-        """Fetch guide data for the current class/spec and display it."""
-        cls, spec = self._current_class, self._current_spec
+        """Fetch guide data for the current class/spec/bundle and display it."""
+        cls, spec, bid = (
+            self._current_class, self._current_spec, self._current_bundle_id,
+        )
         if not cls or not spec:
             logger.warning("Setup guide: no class/spec selected yet")
             if self.tray:
@@ -209,7 +239,7 @@ class BDOTrainerApp:
                     "BDO Trainer", "Select a combo first, then open the Setup Guide."
                 )
             return
-        guide_data = self.loader.get_setup_guide(cls, spec)
+        guide_data = self.loader.get_setup_guide(cls, spec, bid or None)
         if guide_data is None:
             logger.warning(f"Setup guide: no data for {cls}/{spec}")
             if self.tray:
@@ -266,28 +296,35 @@ class BDOTrainerApp:
             show_failure_dialog=False,
         )
 
-    def _on_editor(self):
-        """Called when user clicks Class & Combo Editor in the tray."""
-        self.overlay.schedule(self._open_editor)
+    def _on_combo_editor(self):
+        """Called when user clicks 'Combo Editor' in the tray."""
+        self.overlay.schedule(self._open_combo_editor)
 
-    def _open_editor(self):
-        """Open the editor window (must run on the Tk thread)."""
-        EditorWindow.open(
+    def _open_combo_editor(self):
+        ComboEditorWindow.open(
+            self.overlay.root,
+            self.loader,
+            on_save=self._on_editor_saved,
+        )
+
+    def _on_class_editor(self):
+        """Called when user clicks 'Class Editor' in the tray."""
+        self.overlay.schedule(self._open_class_editor)
+
+    def _open_class_editor(self):
+        ClassEditorWindow.open(
             self.overlay.root,
             self.loader,
             on_save=self._on_editor_saved,
         )
 
     def _on_editor_saved(self):
-        """Called (on Tk thread) after the editor saves changes."""
-        # Reload class configs and update the tray menu
+        """Called (on Tk thread) after either editor saves changes."""
         self.loader.reload()
         self.combo_list = self.loader.get_combo_list()
-
         if self.tray:
             self.tray.refresh_menu(self.loader.get_class_tree())
-
-        logger.info("Reloaded class configs after editor save")
+        logger.info("Reloaded configs after editor save")
 
     def _hotkey_next_page(self):
         """Advance the setup-guide page (F7) when guide is showing."""
@@ -296,13 +333,16 @@ class BDOTrainerApp:
 
     def _hotkey_restart(self):
         """Re-start (or start) the current combo via hotkey."""
-        cls, spec, cid = (
+        cls, spec, bid, cid = (
             self._current_class,
             self._current_spec,
+            self._current_bundle_id,
             self._current_combo_id,
         )
         if cls and spec and cid:
-            self.overlay.schedule(lambda: self._start_combo(cls, spec, cid))
+            self.overlay.schedule(
+                lambda: self._start_combo(cls, spec, bid, cid)
+            )
 
     def _hotkey_stop(self):
         self.overlay.schedule(self.overlay.stop_combo)
@@ -310,29 +350,41 @@ class BDOTrainerApp:
     # ------------------------------------------------------------------
     # Core logic
     # ------------------------------------------------------------------
-    def _start_combo(self, class_name: str, spec_name: str, combo_id: str):
+    def _start_combo(
+        self,
+        class_name: str,
+        spec_name: str,
+        bundle_id: str,
+        combo_id: str,
+    ):
         """Resolve the combo data and hand it to the overlay."""
-        # Dismiss setup guide if it's showing
         if self.overlay.setup_guide_active:
             self.overlay.hide_setup_guide()
             if self.tray:
                 self.tray.set_setup_guide_mode(False)
 
-        combo_data = self.loader.get_combo(class_name, spec_name, combo_id)
+        combo_data = self.loader.get_combo(
+            class_name, spec_name, combo_id, bundle_id=bundle_id or None,
+        )
         if combo_data is None:
-            logger.error(f"Combo not found: {class_name}/{spec_name}/{combo_id}")
+            logger.error(
+                f"Combo not found: {class_name}/{spec_name}/{bundle_id}/{combo_id}"
+            )
             return
 
-        step_delay = self.loader.get_combo_window_ms(class_name, spec_name, combo_id)
+        step_delay = self.loader.get_combo_window_ms(
+            class_name, spec_name, combo_id, bundle_id=bundle_id or None,
+        )
         combo_name = combo_data.get("name", combo_id)
 
-        # Bind skill-info lookup to the current class/spec so the overlay
-        # resolves skill metadata from the correct context.
         self.overlay.get_skill_info = lambda sid: self.loader.get_skill_info(
             sid, class_name, spec_name
         )
 
-        logger.info(f"Starting combo: {combo_name} ({step_delay}ms)")
+        logger.info(
+            f"Starting combo: {combo_name} ({step_delay}ms) — "
+            f"{class_name}/{spec_name}/{bundle_id}"
+        )
         self.overlay.start_combo(
             combo_data=combo_data,
             combo_name=combo_name,
@@ -340,7 +392,6 @@ class BDOTrainerApp:
             loop=True,
         )
 
-        # Optional desktop notification
         if self.tray:
             self.tray.notify("BDO Trainer", f"Combo: {combo_name}")
 
@@ -489,13 +540,28 @@ def _check_macos_accessibility() -> None:
 
 
 def _run_editor_only():
-    """Launch just the Class & Combo Editor in a standalone tkinter window."""
+    """Launch the Combo + Class editors in standalone tkinter windows."""
     import tkinter as tk
 
     logger.info("=== BDO Trainer — Editor-only mode ===")
 
+    # Run migration if necessary so the editor opens against the new layout.
+    try:
+        from scripts.migrate_class_yaml import (
+            needs_migration as _needs_migration,
+            run as _run_migration,
+        )
+
+        if _needs_migration():
+            _run_migration(dry_run=False)
+    except Exception:
+        logger.exception("Auto-migration failed (editor mode)")
+
     loader = ComboLoader()
-    logger.info(f"Loaded {len(loader.get_combo_list())} combos across classes/specs")
+    logger.info(
+        f"Loaded {len(loader.get_combo_list())} combos across "
+        f"{len(loader.bundles.bundles)} bundles"
+    )
 
     root = tk.Tk()
     root.title("BDO Trainer — Editor")
@@ -503,31 +569,27 @@ def _run_editor_only():
 
     def on_editor_saved():
         loader.reload()
-        logger.info("Reloaded class configs after editor save")
+        logger.info("Reloaded configs after editor save")
 
-    def open_settings():
-        SettingsWindow.open(root, loader, on_save=lambda s: setattr(loader, 'settings', s))
+    ComboEditorWindow.open(root, loader, on_save=on_editor_saved)
+    ClassEditorWindow.open(root, loader, on_save=on_editor_saved)
 
-    EditorWindow.open(root, loader, on_save=on_editor_saved)
-
-    # Re-open the editor if the user closes it, or quit the app
+    # When the last editor window closes, exit.
     def _check_alive():
-        # EditorWindow is a singleton — check if it's still open
-        if EditorWindow._instance is None:
-            root.quit()
-            return
-        try:
-            EditorWindow._instance.window.winfo_exists()
-        except Exception:
+        combo_open = (
+            ComboEditorWindow._instance is not None
+            and ComboEditorWindow._instance.window.winfo_exists()
+        )
+        class_open = (
+            ClassEditorWindow._instance is not None
+            and ClassEditorWindow._instance.window.winfo_exists()
+        )
+        if not combo_open and not class_open:
             root.quit()
             return
         root.after(500, _check_alive)
 
     root.after(500, _check_alive)
-
-    # Add a simple menu bar for Settings access
-    menubar = tk.Menu(root)
-    menubar.add_command(label="Settings", command=open_settings)
 
     try:
         root.mainloop()

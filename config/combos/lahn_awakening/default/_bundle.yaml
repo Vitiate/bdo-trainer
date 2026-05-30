@@ -1,0 +1,16 @@
+# Lahn — Awakening — bundle: default
+# Loadout + metadata for this combo bundle.
+
+class: Lahn
+spec: Awakening
+bundle_id: default
+name: Default
+description: Auto-created default bundle (migrated from legacy class config).
+locked_skills: []
+hotbar_skills: []
+core_skill:
+  recommended: ''
+  effect: ''
+  reason: ''
+skill_addons:
+  pve: []

@@ -1,6 +1,7 @@
 combo_id: max_burst_7_5s
 class: Witch
 spec: Succession
+bundle_id: default
 category: pve
 name: 7.5s Max Burst
 description: Maximum damage in 7.5s window. 92,769 DPS. No loop - freestyle after.

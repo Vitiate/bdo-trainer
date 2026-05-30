@@ -1,6 +1,7 @@
 combo_id: awakening_main_combo_3
 class: Guardian
 spec: Awakening
+bundle_id: default
 category: pve
 name: Awakening Main Combo 3
 description: Flow Howling Light opener with Frost Slide or Frigid Wind reposition.

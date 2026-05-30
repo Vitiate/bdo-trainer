@@ -1,6 +1,6 @@
 # Lahn — Awakening
-# Class definition (skills, hotbar, core skill, addons).
-# Ships with BDO Trainer; user-edited combos live in config/combos/lahn_awakening/.
+# Class definition (skills only). Ships with BDO Trainer.
+# User-edited combos and loadouts live in config/combos/lahn_awakening/.
 
 class: Lahn
 spec: Awakening
@@ -165,11 +165,3 @@ skills:
     damage: none
     cooldown_ms: 0
     cc: []
-locked_skills: []
-hotbar_skills: []
-core_skill:
-  recommended: ''
-  effect: ''
-  reason: ''
-skill_addons:
-  pve: []

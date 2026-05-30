@@ -1,6 +1,6 @@
 # Dark Knight — Awakening
-# Class definition (skills, hotbar, core skill, addons).
-# Ships with BDO Trainer; user-edited combos live in config/combos/dark_knight_awakening/.
+# Class definition (skills only). Ships with BDO Trainer.
+# User-edited combos and loadouts live in config/combos/dark_knight_awakening/.
 
 class: Dark Knight
 spec: Awakening
@@ -539,45 +539,3 @@ skills:
     description: Shake the earth to send powerful shockwaves to your foes nearby. +50% Critical Hit Rate (PvE only). Stun
       on hits.
     notes: Pre-awakening skill usable in awakening spec. Recovers 300 HP and 150 MP per hit. Max 7 targets.
-locked_skills:
-- name: Shadow Bullet
-  reason: Lock from skill bar to avoid accidental swaps; use it from hotbar only for controlled pre-awak movement.
-- name: Smoky Haze
-  reason: Lock from skill bar to prevent misinputs during movement chains; activate via hotbar when moving pack to pack.
-- name: 'Flow: Spirit Blaze'
-  reason: Lock from skill bar and put it on hotbar instead, since it is used as a situational filler and cooldown tool.
-- name: Grip of Grudge
-  reason: Optional lock; its awkward hitbox can whiff and disrwt your rotation if triggered unintentionally.
-- name: Cluster of Despair
-  reason: Optional lock from skill bar because of its very unreliable hitbox; better controlled via hotbar only when needed.
-hotbar_skills:
-- 'Flow: Spirit Blaze'
-- Shadow Strike
-- Grip of Grudge
-core_skill:
-  recommended: Seed of Catastrophe
-  effect: Swer Armor during the skill (with Core)
-  reason: 'The Awakening quick PvE guide explicitly recommends Core: Seed of Catastrophe because the Core wgrade adds full
-    Swer Armor to an already very high damage skill, making it much safer to use as a main nuke in PvE.
-
-    '
-skill_addons:
-  pve:
-  - skill: Shattering Darkness
-    addon_1: Extra AP Against Monsters +20 for 7 sec
-    addon_2: Attack/Casting Speed +7% for 7 sec
-  - skill: Seed of Catastrophe
-    addon_1: Critical Hit Rate +30% for 7 sec
-    addon_2: Extra AP Against Monsters +20 for 7 sec
-  - skill: Spirit Legacy
-    addon_1: All DP -15 for 10 sec for target
-    addon_2: Critical Hit Rate +20% for 7 sec
-  - skill: Cluster of Despair
-    addon_1: Extra AP Against Monsters +30 for 7 sec
-    addon_2: Critical Hit Rate +30% for 7 sec
-  - skill: Trap of Vedir
-    addon_1: Extra AP Against Monsters +20 for 7 sec
-    addon_2: All DP -15 for 20 sec for target
-  - skill: Air Strike
-    addon_1: Back Attack Damage +3% for 5 sec
-    addon_2: Critical Hit Damage +3% for 5 sec

@@ -1,6 +1,7 @@
 combo_id: new_combo_2
 class: Lahn
 spec: Awakening
+bundle_id: default
 category: pve
 name: Infinite
 difficulty: beginner

@@ -1,6 +1,6 @@
 # Witch — Succession
-# Class definition (skills, hotbar, core skill, addons).
-# Ships with BDO Trainer; user-edited combos live in config/combos/witch_succession/.
+# Class definition (skills only). Ships with BDO Trainer.
+# User-edited combos and loadouts live in config/combos/witch_succession/.
 
 class: Witch
 spec: Succession
@@ -299,16 +299,3 @@ skills:
     cooldown_ms: 30000
     description: Grants casting speed and movement speed buff to self and nearby allies. Hotbar only.
     notes: Maintain buff at all times. Rebuff every 30s. Essential for combo speed.
-locked_skills:
-- name: Healing Aura
-  reason: Superseded by Healing Lighthouse in succession. Wastes input on S+Q which conflicts.
-- name: Lightning Storm
-  reason: Awakening skill, not usable in succession spec.
-- name: Yoke of Ordeal
-  reason: Awakening skill, not usable in succession spec.
-- name: Thunder Storm
-  reason: Awakening skill, not usable in succession spec.
-hotbar_skills:
-- name: Speed Spell
-  reason: Buff only, no combat input. Must maintain at all times.
-  hotbar_key: '1'

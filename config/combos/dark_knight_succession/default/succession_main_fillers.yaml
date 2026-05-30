@@ -1,6 +1,7 @@
 combo_id: succession_main_fillers
 class: Dark Knight
 spec: Succession
+bundle_id: default
 category: pve
 name: Succession Main Fillers
 description: Primary filler skills listed in the Succession quick PvE guide.

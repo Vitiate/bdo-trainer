@@ -1,6 +1,7 @@
 combo_id: succession_pack_to_pack_movement
 class: Dark Knight
 spec: Succession
+bundle_id: default
 category: movement
 name: Succession Pack to Pack Movement
 description: 'Pack-to-pack movement route from the Succession quick PvE guide. Assess distance and skip early movement tools

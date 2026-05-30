@@ -1,6 +1,7 @@
 combo_id: full_rotation
 class: Witch
 spec: Succession
+bundle_id: default
 category: pve
 name: Full Rotation (A + B + C + D)
 description: Complete 31s infinite rotation. 83,064 DPS. Loops back to Cycle A after D.

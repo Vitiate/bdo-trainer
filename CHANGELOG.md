@@ -4,6 +4,66 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.0] — 2026-05-30
+
+### Added
+- **Combo library.** Class definitions are split from combo content.
+  Skills now live under `data/classes/<slug>.yaml` (ships with the app);
+  combos live under `config/combos/<slug>/<bundle_id>/`, one file per
+  combo, alongside a `_bundle.yaml` carrying the bundle's loadout.
+- **Multiple bundles per class/spec.** Each bundle has its own
+  `bundle_id`, name, description, locked-skills list, hotbar setup,
+  core skill, and PVE add-ons. The tray menu drills four levels deep:
+  class → spec → bundle → combo.
+- **Active bundle persistence.** The active bundle for each class/spec
+  is remembered in `config/combos.yaml` under
+  `settings.active_bundle_per_class` so the in-game setup guide
+  always shows the loadout for whatever bundle the user is running.
+- **Two editor windows.** The single Class & Combo Editor was split:
+  - **Combo Editor** — sidebar tree of class → bundle, right pane has
+    bundle metadata + loadout above the existing combo step builder.
+    Bundle CRUD (new / rename / delete) plus `.bdt` export, import,
+    and inspect.
+  - **Class Editor** — sidebar of class/spec, Skills tab only. Bundle
+    CRUD (`.bdc` export, import, inspect).
+- **Tray menu has separate "Combo Editor" and "Class Editor" entries.**
+- **`.bdt` v2 schema.** Combo bundles now carry `bundle_id`, `name`,
+  `description`, `loadout` (locked / hotbar / core / addons), and
+  `combos` keyed by combo_id. Importing a `.bdt` lets you optionally
+  pull the loadout into the target bundle.
+- **`.bdc` extension** for class-only bundles (skills only, no
+  combos, no loadout).
+- **Auto-migration on launch.** When the trainer detects legacy
+  `config/classes/*.yaml` files, it splits them into the new layout
+  before constructing the loaders. The originals are archived to
+  `config/classes/_legacy/` rather than deleted.
+- **`scripts/migrate_class_yaml.py`** — manual migration script with a
+  `--dry-run` mode that prints what would happen.
+
+### Changed
+- `src/combo_loader.py` rewritten as four pieces:
+  `ClassLoader`, `BundleLoader`, `SettingsLoader`, plus an
+  `AppLoader` facade. The `ComboLoader` symbol is preserved as a
+  compatibility shim that returns `AppLoader`, so existing callsites
+  in `main.py`, the overlay, and the tray didn't change shape.
+- `src/editor/portability.py` rewritten for the v2 bundle schema with
+  a discriminator (`kind = "combos" | "class"`). v1 `.bdt` files from
+  0.4.x continue to decode and route through the class importer.
+- The combo step format gained a stable `category: pve|pvp|movement`
+  field (instead of being inferred from the legacy
+  `pve_combos` / `pvp_combos` / `movement_combos` section a combo
+  lived in).
+
+### Migration
+Users upgrading from 0.4.x get an automatic, in-place migration the
+first time the new release runs. Each existing
+`config/classes/<class>_<spec>.yaml` produces:
+- `data/classes/<slug>.yaml` (skills only)
+- `config/combos/<slug>/default/_bundle.yaml` (loadout)
+- `config/combos/<slug>/default/<combo_id>.yaml` (one per combo)
+
+The original file is moved to `config/classes/_legacy/`.
+
 ## [0.4.2] — 2026-05-28
 
 ### Fixed
@@ -121,6 +181,7 @@ and adheres to [Semantic Versioning](https://semver.org/).
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.0
 [0.4.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.2
 [0.4.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.1
 [0.4.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.0

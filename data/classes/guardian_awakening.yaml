@@ -1,6 +1,6 @@
 # Guardian — Awakening
-# Class definition (skills, hotbar, core skill, addons).
-# Ships with BDO Trainer; user-edited combos live in config/combos/guardian_awakening/.
+# Class definition (skills only). Ships with BDO Trainer.
+# User-edited combos and loadouts live in config/combos/guardian_awakening/.
 
 class: Guardian
 spec: Awakening
@@ -684,31 +684,3 @@ skills:
     description: Erupt black blood energy after a Chokeslam.
     flows_into: []
     notes: Pre-awakening flow from Chokeslam.
-locked_skills:
-- name: Merciless Kick
-  reason: Not worth using; can lead to key input mistakes.
-- name: Strike Down
-  reason: Interferes with Infernal Nemesis and Gate Crasher. Not locking this is a great way to die.
-- name: Beast Demolisher
-  reason: Not worth using; can lead to key input mistakes.
-- name: Torso Ripper
-  reason: Can mess with other inputs.
-- name: Fervor
-  reason: Can mess with other inputs.
-- name: 'Juggernaut: Smite'
-  reason: Not worth using; can lead to key input mistakes.
-- name: Evasion
-  reason: Not worth using; can lead to key input mistakes.
-- name: Fireborne Rupture
-  reason: Lock and put on hotbar.
-- name: 'Flow: To Ashes'
-  reason: Can mess with other inputs; consider using it on hotbar.
-hotbar_skills:
-- Fireborne Rupture
-- God Incinerator
-- Cleansing Flame
-- Frigid Wind
-- Infernal Nemesis
-- 'Flow: To Ashes'
-core_skill: {}
-skill_addons: {}

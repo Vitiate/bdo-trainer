@@ -1,6 +1,7 @@
 combo_id: full_pve_chain
 class: Dark Knight
 spec: Awakening
+bundle_id: default
 category: pve
 name: Full PVE Chain From Discord
 difficulty: intermediate
