@@ -1,0 +1,24 @@
+combo_id: succession_pack_to_pack_movement
+class: Dark Knight
+spec: Succession
+category: movement
+name: Succession Pack to Pack Movement
+description: 'Pack-to-pack movement route from the Succession quick PvE guide. Assess distance and skip early movement tools
+  if Air Strike alone is enough.
+
+  '
+difficulty: beginner
+combo_window_ms: 250
+steps:
+- skill: unveiled_dagger
+  note: Starter movement slash toward the next pack.
+- skill: smoky_haze
+  note: Follow-up dash.
+- skill: twilight_dash
+  note: Extra pre-awakening movement if the next pack is far.
+- skill: air_strike
+  note: Main engage; ties directly into the Succession combo.
+- skill: dusk
+  note: Use only if you still need adjustment.
+- skill: balanced_strike
+  note: Alternative extra movement tool.

@@ -1,0 +1,21 @@
+combo_id: succession_main_fillers
+class: Dark Knight
+spec: Succession
+category: pve
+name: Succession Main Fillers
+description: Primary filler skills listed in the Succession quick PvE guide.
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: ravage_rake
+  note: Reliable filler damage.
+- skill: pervasive_darkness
+  note: Strong filler and cleanup.
+- skill: wrath_of_vedir
+  note: Useful filler, especially for experienced pulling.
+- skill: corrupt_ground
+  note: Additional filler damage.
+- skill: prime_obsidian_ashes
+  note: Good filler and utility.
+- skill: kamasylvia_slash
+  note: Optional but recommended for PvE.

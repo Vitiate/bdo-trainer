@@ -1,0 +1,24 @@
+combo_id: new_combo_2
+class: Lahn
+spec: Awakening
+category: pve
+name: Infinite
+difficulty: beginner
+combo_window_ms: 300
+description: ''
+steps:
+- skill: new_skill_1
+- skill: new_skill_2
+- skill: new_skill_3
+- skill: new_skill_4
+- skill: new_skill_5
+- skill: new_skill_6
+- skill: new_skill_7
+- skill: new_skill_8
+- skill: flow_vice
+- skill: new_skill_10
+- skill: fatal_attraction
+- skill: new_skill_2
+- skill: new_skill_1_2
+- skill: furor
+- skill: flow_dancing_with_death
