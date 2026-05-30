@@ -215,3 +215,7 @@ scripts/download_icons.py
 THREAD_SUMMARY.md
 _update
 config_backup*
+
+# Scraper cache + draft YAMLs (regenerable)
+scripts/_cache/
+data/classes/*.draft.yaml
