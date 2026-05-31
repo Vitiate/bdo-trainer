@@ -6,6 +6,17 @@ All **27 BDO classes × 2 specs (54 total)** are included out of the box — Awa
 
 ![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey) ![macOS: partial](https://img.shields.io/badge/macOS-partial-yellow)
 
+> **0.5.x layout note.** Class definitions and combo bundles are now
+> split: class skills live in `data/classes/<slug>.yaml`, while combos
+> + their loadouts (locked / hotbar / core / addons) live in
+> `config/combos/<slug>/<bundle_id>/`. Each class/spec can have
+> multiple named bundles. Existing 0.4.x users get an automatic
+> migration on first launch — see the [CHANGELOG](CHANGELOG.md) for
+> details. The architecture-snapshot section at the top of
+> [THREAD_SUMMARY.md](THREAD_SUMMARY.md) is the most current
+> description of the layout; some passages of this README still
+> describe the older single-file-per-class layout.
+
 ![In-game overlay screenshot](doc/images/in-game-overlay.png)
 
 ---

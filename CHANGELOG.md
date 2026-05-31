@@ -4,6 +4,56 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.1] — 2026-05-30
+
+### Added
+- **All 54 BDO classes shipped with skill data.** The 48 class shells
+  seeded in 0.5.0 are now populated from BDOCodex via a three-stage
+  pipeline (scrape → parse → subagent enrichment). 6,535 skills total
+  across the 54 class/spec pairs. Every skill has a name, description,
+  cooldown; ~50–60 % also have parsed input keys, protection (SA / FG /
+  iframe / none), and CC tags. The 6 hand-curated classes (Dark Knight
+  A/S, Witch A/S, Lahn A, Guardian A) are preserved untouched.
+- **Live filter input** above each editor's class list. Live, case-
+  insensitive narrowing — Combo Editor matches against class + spec
+  + bundle id/name; Class Editor matches against class + spec.
+- **Editable combo IDs.** The Combo Editor's Combo ID field is now an
+  Entry instead of a Label. Renaming sanitises (lowercase / underscore
+  / alnum), checks for duplicates within the category, and re-keys the
+  in-memory combos dict; the disk file is moved at the next save.
+- **Per-combo `.bdt` export.** New "Export Combo" button next to
+  "Export Combos" exports the currently-selected combo as a single-
+  combo bundle, with the parent bundle's loadout (locked / hotbar /
+  core / addons) embedded for context.
+- **Tray-only mode on macOS.** Defaults to no overlay window so the
+  tray + editor flow is usable without an empty transparent window
+  obscuring the screen. `--overlay` forces it on; `--no-overlay` is
+  the explicit opt-out flag.
+- **scripts/seed_class_shells.py** — idempotent script that creates
+  empty class shells for any BDO class missing from `data/classes/`.
+- **scripts/scrape_bdocodex.py** — polite (1 s/page) deduped scraper
+  that caches BDOCodex skill pages locally. Idempotent + resumable.
+- **scripts/build_class_yaml.py** — reads the cache and writes
+  `data/classes/<slug>.draft.yaml` with parsed fields (name, input,
+  keys, protection, cc, cooldown, short description, full notes).
+- **scripts/apply_skill_patches.py** — merges JSON patches from
+  enrichment subagents into draft YAMLs.
+
+### Changed
+- **Combo Editor** tolerates `hotbar_skills` entries that are dicts
+  (the legacy richer format with `name` / `reason` / `hotbar_key`).
+  Entries are rendered as `name :: reason` lines and saved back as
+  dicts when a reason is present. Fixes a TypeError on Witch /
+  Awakening's bundle.
+- **Native prompt z-order on macOS.** Every `simpledialog.askstring`
+  call (New Bundle, Rename Bundle, Combo ID Conflict, Rename Class,
+  New Target Bundle) now goes through a wrapper that drops the
+  parent's `-topmost` for the duration of the prompt, so the prompt
+  doesn't sink behind the editor.
+- **Build script polish.** Arrow-glyph keybinds (↑/↓/←/→) now map to
+  `w`/`s`/`a`/`d` in the canonical key list. `"Absolute:"` skill-name
+  prefixes route to Succession only.
+
 ## [0.5.0] — 2026-05-30
 
 ### Added
@@ -181,6 +231,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.1
 [0.5.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.0
 [0.4.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.2
 [0.4.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.1

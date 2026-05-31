@@ -1,5 +1,122 @@
 # BDO Trainer — Thread Handoff Summary
 
+## Current State — v0.5.1 (2026-05-30) ✅
+
+> The sections below this one are historical task records. Treat this
+> top-of-file block as the authoritative description of the codebase
+> *now*; older sections may describe layouts that have since changed.
+
+### Layout (post-0.5.x refactor)
+
+```
+data/classes/<slug>.yaml                       # ships with app — skills only
+    class:, spec:, skills:
+
+config/combos/<slug>/<bundle_id>/              # user content
+    _bundle.yaml                               # bundle metadata + loadout
+        class:, spec:, bundle_id:, name:, description:,
+        locked_skills:, hotbar_skills:, core_skill:, skill_addons:
+    <combo_id>.yaml                            # one file per combo
+        combo_id:, class:, spec:, bundle_id:,
+        category: pve|pvp|movement,
+        name:, difficulty:, combo_window_ms:, description:, steps:
+
+config/combos.yaml                             # global settings
+                                               # (key_bindings, hotkeys, display,
+                                               # timing, active_bundle_per_class)
+```
+
+Each class/spec can host **multiple named bundles**. The tray menu is
+class → spec → bundle → combo (four levels deep). The active bundle
+per class/spec is persisted to `config/combos.yaml` so the in-game
+setup guide always shows the right loadout.
+
+### Loaders (`src/combo_loader.py`)
+
+- **`ClassLoader`** — reads `data/classes/`
+- **`BundleLoader`** — reads `config/combos/<slug>/<bundle_id>/`
+- **`SettingsLoader`** — reads `config/combos.yaml`
+- **`AppLoader`** — facade that composes all three. Backwards-compat
+  shim `ComboLoader` returns an `AppLoader` so callsites in
+  `main.py`, the overlay, and the tray didn't change shape.
+
+### Editors (`src/editor/`)
+
+Two windows now, each accessible from a separate tray menu entry:
+
+- **`ComboEditorWindow`** (`combo_window.py`) — sidebar tree of
+  class → bundle, right pane has bundle metadata + loadout above the
+  combo step builder. Bundle CRUD (new / rename / delete), per-combo
+  ID rename, single-combo or whole-bundle `.bdt` export, import,
+  inspect. Has a live filter input above the listbox.
+- **`ClassEditorWindow`** (`class_window.py`) — sidebar of class /
+  spec, Skills tab only. Class CRUD plus `.bdc` export / import /
+  inspect.
+
+`force_dialog_to_front` (in `theme.py`) plus `_ask_string` wrappers
+make sure all modal prompts stay above the editor on macOS.
+
+### Bundle file formats (`src/editor/portability.py`, v2)
+
+- **`.bdt`** — combo bundle: `kind="combos"`, `class_name`,
+  `spec_name`, `bundle_id`, `name`, `description`, `loadout`, `combos`.
+- **`.bdc`** — class bundle: `kind="class"`, `class_name`, `spec_name`,
+  `config` (skills only).
+- v1 `.bdt` files (whole-class bundles from 0.4.x) still decode and
+  route through the class importer.
+
+### Skill data pipeline (`scripts/`)
+
+Three-stage pipeline that populated 48 of the 54 classes from
+BDOCodex (the other 6 are hand-curated and intentionally untouched):
+
+1. **`scrape_bdocodex.py`** — fetches the master skills index and
+   ~3,100 deduped per-skill HTML pages into `scripts/_cache/skills/`.
+   Polite (1 s / page), idempotent, resumable. The cache is
+   gitignored.
+2. **`build_class_yaml.py`** — reads the cache (no network) and
+   writes `data/classes/<slug>.draft.yaml`. Extracts name, input,
+   canonical keys, protection, CC tags, cooldown, description, and a
+   `notes` field with the full effect block.
+3. **Subagent enrichment** — for each draft, an LLM subagent reads
+   the `notes` block and emits a JSON patch correcting keys /
+   protection / CC. `apply_skill_patches.py` merges the patches.
+
+`seed_class_shells.py` is the lightweight version: idempotent script
+that creates empty class shells for any BDO class missing from
+`data/classes/`. Run it first if BDO ever adds a class.
+
+### macOS specifics
+
+- **Tray-only by default** — overlay window suppressed unless
+  `--overlay` is passed. `keyboard` library skipped on macOS without
+  root (it Abort traps). Editor + tray remain fully functional.
+- **`AXIsProcessTrustedWithOptions` prompt** runs on first launch
+  via subprocess so a ctypes/CF crash can't take the app down.
+
+### Auto-migration
+
+If `config/classes/*.yaml` (the legacy single-file-per-class layout)
+is detected on launch, `scripts/migrate_class_yaml.py` runs
+automatically. Each old class file becomes:
+- `data/classes/<slug>.yaml` (skills only)
+- `config/combos/<slug>/default/_bundle.yaml` (loadout)
+- `config/combos/<slug>/default/<combo_id>.yaml` (one per combo)
+
+Originals are archived to `config/classes/_legacy/` rather than
+deleted.
+
+### Versions
+
+- v0.4.x — pre-refactor. Class file = skills + combos in one YAML.
+- **v0.5.0** — refactor: split class definitions from combos;
+  multi-bundle layout introduced.
+- **v0.5.1** — class skill libraries populated for all 54 classes via
+  scraper + subagent pipeline; editor UX polish (filter input,
+  editable combo IDs, single-combo export, hotbar dict tolerance).
+
+---
+
 ## Completed Task — Overlay Modularization ✅
 
 ### Refactor: 1,643-line monolith → 8 focused modules
