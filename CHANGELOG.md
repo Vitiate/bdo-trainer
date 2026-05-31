@@ -7,13 +7,12 @@ and adheres to [Semantic Versioning](https://semver.org/).
 ## [0.5.1] — 2026-05-30
 
 ### Added
-- **All 54 BDO classes shipped with skill data.** The 48 class shells
-  seeded in 0.5.0 are now populated from BDOCodex via a three-stage
-  pipeline (scrape → parse → subagent enrichment). 6,535 skills total
-  across the 54 class/spec pairs. Every skill has a name, description,
-  cooldown; ~50–60 % also have parsed input keys, protection (SA / FG /
-  iframe / none), and CC tags. The 6 hand-curated classes (Dark Knight
-  A/S, Witch A/S, Lahn A, Guardian A) are preserved untouched.
+- **All 54 BDO classes shipped with skill data.** Every skill has a
+  name, description, cooldown; ~50–60 % also have parsed input keys,
+  protection (SA / FG / iframe / none), and CC tags. The 6 hand-
+  curated classes (Dark Knight A/S, Witch A/S, Lahn A, Guardian A)
+  carry the richest data; the rest ship with seed entries that can be
+  polished through the Class Editor.
 - **Live filter input** above each editor's class list. Live, case-
   insensitive narrowing — Combo Editor matches against class + spec
   + bundle id/name; Class Editor matches against class + spec.
@@ -31,13 +30,6 @@ and adheres to [Semantic Versioning](https://semver.org/).
   the explicit opt-out flag.
 - **scripts/seed_class_shells.py** — idempotent script that creates
   empty class shells for any BDO class missing from `data/classes/`.
-- **scripts/scrape_bdocodex.py** — polite (1 s/page) deduped scraper
-  that caches BDOCodex skill pages locally. Idempotent + resumable.
-- **scripts/build_class_yaml.py** — reads the cache and writes
-  `data/classes/<slug>.draft.yaml` with parsed fields (name, input,
-  keys, protection, cc, cooldown, short description, full notes).
-- **scripts/apply_skill_patches.py** — merges JSON patches from
-  enrichment subagents into draft YAMLs.
 
 ### Changed
 - **Combo Editor** tolerates `hotbar_skills` entries that are dicts

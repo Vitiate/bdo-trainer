@@ -2,7 +2,7 @@
 
 A transparent, click-through game overlay for **Black Desert Online** that displays skill combo sequences as floating outlined text over the game window. Steps advance in real time as you press the correct key and mouse combinations. Runs quietly from the system tray.
 
-All **27 BDO classes × 2 specs (54 total)** ship with skill data, populated from BDOCodex via an automated scraper + LLM enrichment pipeline.
+All **27 BDO classes × 2 specs (54 total)** ship with skill data.
 
 ![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey) ![macOS: tray-only](https://img.shields.io/badge/macOS-tray%20only-yellow) ![Version](https://img.shields.io/badge/version-0.5.1-green)
 
@@ -38,7 +38,6 @@ All **27 BDO classes × 2 specs (54 total)** ship with skill data, populated fro
 - [Adding a New Class or Bundle](#adding-a-new-class-or-bundle)
 - [Architecture](#architecture)
 - [macOS Support](#macos-support)
-- [Skill Data Pipeline](#skill-data-pipeline)
 - [Migration from 0.4.x](#migration-from-04x)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
@@ -71,7 +70,7 @@ All **27 BDO classes × 2 specs (54 total)** ship with skill data, populated fro
 | **Idle reset** | Combo automatically resets to step 1 after a configurable inactivity timeout |
 | **Auto-migration** | Existing 0.4.x users get a transparent migration on first launch (legacy class YAMLs split into the new layout; originals archived to `config/classes/_legacy/`) |
 | **Auto-updater** | Checks GitHub Releases for newer versions; opt-in config replacement with timestamped backup |
-| **54 class skill libraries** | All 27 BDO classes × Awakening + Succession ship populated; 6 hand-curated + 48 auto-populated from BDOCodex |
+| **54 class skill libraries** | All 27 BDO classes × Awakening + Succession ship populated |
 | **macOS tray-only mode** | Runs as a tray app on macOS without the overlay window (BDO doesn't run there); editor + tray remain fully functional |
 
 ---
@@ -134,9 +133,6 @@ bdo-trainer/
 │
 ├── scripts/
 │   ├── seed_class_shells.py         # Idempotent: create empty class shells for any missing BDO class
-│   ├── scrape_bdocodex.py           # Polite (1s/page) scraper into scripts/_cache/
-│   ├── build_class_yaml.py          # Parse cache → data/classes/<slug>.draft.yaml
-│   ├── apply_skill_patches.py       # Merge subagent JSON patches into drafts
 │   └── migrate_class_yaml.py        # 0.4.x → 0.5.x layout migration (auto-runs on launch)
 │
 ├── tests/
@@ -317,7 +313,7 @@ skills:
     damage: high
 ```
 
-The 6 hand-curated classes (Dark Knight A/S, Witch A/S, Lahn A, Guardian A) carry richer skill data with full descriptions and effect notes. The other 48 classes were auto-populated from BDOCodex; their fields are reasonable but not always perfect — see [Skill Data Pipeline](#skill-data-pipeline).
+The 6 hand-curated classes (Dark Knight A/S, Witch A/S, Lahn A, Guardian A) carry the richest skill data with full descriptions and effect notes. The other 48 classes ship with seed entries you can polish through the **Class Editor** as you use them.
 
 ### Combo Bundles — `config/combos/<slug>/<bundle_id>/`
 
@@ -574,9 +570,9 @@ That `.bdt` file is everything the site needs. It carries the combo itself plus 
 
 1. Go to **https://bdodojo.com**.
 2. Click **Sign in** in the top-right corner.
-3. Pick your preferred sign-in method: Google, Discord, or email.
+3. Pick your preferred sign-in method: Discord, or email.
 
-You only need to be signed in to upload — other players can browse and download without an account.
+You only need to be signed in to upload or comment — other players can browse and download without an account.
 
 ### 3. Upload the `.bdt`
 
@@ -753,44 +749,6 @@ Run with:
 ./run.sh --editor       # Editor windows only
 ./run.sh --overlay      # Force the overlay on (rarely useful on macOS)
 ```
-
----
-
-## Skill Data Pipeline
-
-48 of the 54 class skill libraries were populated automatically from BDOCodex via a three-stage pipeline. The 6 hand-curated classes (Dark Knight A/S, Witch A/S, Lahn A, Guardian A) are intentionally untouched.
-
-### Stage 1 — Scrape
-
-```
-python -m scripts.scrape_bdocodex --all
-```
-
-- Fetches the master skills index once (~4 MB JSON).
-- Filters to one rank per base skill (drops `Black Spirit:` duplicates).
-- Polite 1 s delay between fetches.
-- Idempotent + resumable — already-cached pages are skipped.
-- Cached HTML lives under `scripts/_cache/skills/<id>.html` (gitignored).
-
-### Stage 2 — Parse
-
-```
-python -m scripts.build_class_yaml --all
-```
-
-- Reads the cache (no network).
-- Extracts skill name, input string, canonical keys, protection (SA/FG/iframe/none), CC tags, cooldown, short description, full effect block.
-- Writes to `data/classes/<slug>.draft.yaml` (or in-place with `--overwrite`).
-
-### Stage 3 — Enrichment
-
-LLM subagents (one per class/spec) read the `notes` block of each draft and emit JSON patches correcting `keys` / `protection` / `cc` based on the prose. Patches are merged into the drafts via:
-
-```
-python -m scripts.apply_skill_patches --draft <draft.yaml> --patch <patch.json>
-```
-
-Coverage on auto-extracted fields varies — `name` and `cooldown` are ~70 %, `keys` / `protection` / `cc` are ~50–60 %. The gaps are explicit (`notes_flag` markers under `_flags:` flag passive / hotbar-only / data-thin skills for human review). Polish in the editor as needed.
 
 ---
 

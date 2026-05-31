@@ -65,26 +65,15 @@ make sure all modal prompts stay above the editor on macOS.
 - v1 `.bdt` files (whole-class bundles from 0.4.x) still decode and
   route through the class importer.
 
-### Skill data pipeline (`scripts/`)
+### Class data tooling (`scripts/`)
 
-Three-stage pipeline that populated 48 of the 54 classes from
-BDOCodex (the other 6 are hand-curated and intentionally untouched):
-
-1. **`scrape_bdocodex.py`** — fetches the master skills index and
-   ~3,100 deduped per-skill HTML pages into `scripts/_cache/skills/`.
-   Polite (1 s / page), idempotent, resumable. The cache is
-   gitignored.
-2. **`build_class_yaml.py`** — reads the cache (no network) and
-   writes `data/classes/<slug>.draft.yaml`. Extracts name, input,
-   canonical keys, protection, CC tags, cooldown, description, and a
-   `notes` field with the full effect block.
-3. **Subagent enrichment** — for each draft, an LLM subagent reads
-   the `notes` block and emits a JSON patch correcting keys /
-   protection / CC. `apply_skill_patches.py` merges the patches.
-
-`seed_class_shells.py` is the lightweight version: idempotent script
-that creates empty class shells for any BDO class missing from
-`data/classes/`. Run it first if BDO ever adds a class.
+- **`seed_class_shells.py`** — idempotent script that creates empty
+  class shells for any BDO class missing from `data/classes/`. Run it
+  if BDO ever adds a class.
+- **`migrate_class_yaml.py`** — auto-migration from the 0.4.x
+  single-file-per-class layout to the new
+  `data/classes/` + `config/combos/<slug>/<bundle>/` split. Runs
+  automatically on first launch when the legacy layout is detected.
 
 ### macOS specifics
 
