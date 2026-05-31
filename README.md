@@ -12,70 +12,364 @@ All **27 BDO classes × 2 specs (54 total)** ship with skill data.
 
 ## Table of Contents
 
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Running](#running)
-- [How It Works](#how-it-works)
-- [Configuration](#configuration)
-  - [Global Settings — `config/combos.yaml`](#global-settings--configcombosyaml)
-  - [Class Definitions — `data/classes/<slug>.yaml`](#class-definitions--dataclassesslugyaml)
-  - [Combo Bundles — `config/combos/<slug>/<bundle_id>/`](#combo-bundles--configcombosslugbundle_id)
-  - [Combo Step Format](#combo-step-format)
-  - [Key Remapping](#key-remapping)
-- [Usage Guide](#usage-guide)
-  - [Tray Menu](#tray-menu)
-  - [Global Hotkeys](#global-hotkeys)
-  - [Reposition Mode](#reposition-mode)
-  - [Idle Reset](#idle-reset)
-- [Overlay Animations](#overlay-animations)
-- [Editors](#editors)
-  - [Combo Editor](#combo-editor)
-  - [Class Editor](#class-editor)
-- [Bundle Files — `.bdt` and `.bdc`](#bundle-files--bdt-and-bdc)
-- [Sharing a Combo on bdodojo.com](#sharing-a-combo-on-bdodojocom)
-- [Adding a New Class or Bundle](#adding-a-new-class-or-bundle)
-- [Architecture](#architecture)
-- [macOS Support](#macos-support)
-- [Migration from 0.4.x](#migration-from-04x)
+**Getting started**
+
+- [Install](#install)
+- [Run it](#run-it)
+- [Pick a combo and play](#pick-a-combo-and-play)
+- [Hotkeys](#hotkeys)
+- [Move the overlay](#move-the-overlay)
+- [Setup Guide](#setup-guide)
+
+**Editing combos**
+
+- [Combo Editor](#combo-editor)
+- [Class Editor](#class-editor)
+- [Adding a new class, bundle, or combo](#adding-a-new-class-bundle-or-combo)
+
+**Sharing**
+
+- [Share a combo on bdodojo.com](#share-a-combo-on-bdodojocom)
+- [Import a combo from bdodojo.com](#import-a-combo-from-bdodojocom)
+
+**Help**
+
 - [Troubleshooting](#troubleshooting)
+
+**Technical reference**
+
+- [Project structure](#project-structure)
+- [Configuration files](#configuration-files)
+- [Bundle file formats — `.bdt` and `.bdc`](#bundle-file-formats--bdt-and-bdc)
+- [Architecture](#architecture)
+- [macOS specifics](#macos-specifics)
+- [Migration from 0.4.x](#migration-from-04x)
 - [License](#license)
 
 ---
 
-## Features
+# Getting started
 
-| Feature | Description |
-|---|---|
-| **Transparent overlay** | Fullscreen, click-through window rendered on top of BDO using Win32 `WS_EX_TRANSPARENT` + `WS_EX_LAYERED` |
-| **Outlined text** | Canvas-based outlined text for readability over any background |
-| **Step-by-step combos** | Each step highlights the current input; advances when the correct keys/mouse buttons are pressed |
-| **Alternative keys** | Steps can define `alt_keys` so either input is accepted (e.g., `Shift + A` or `Shift + D`) |
-| **Hold step progress bar** | Animated amber → gold → green fill with glow and spark effects; releasing early advances to the next step |
-| **Next skill preview** | Shows the upcoming skill name + required keys below the current step; pulsates when the next step is a hold skill |
-| **Slide / fade animations** | New steps slide up with ease-out (~120 ms); old content fades upward and out for smooth crossfade |
-| **Setup Guide** | 4-page overlay showing locked skills, hotbar setup, core skill, and skill add-ons for the **active bundle** |
-| **Settings GUI** | Tabbed window for keybinds, display, hotkeys, timing — live-reloads on save |
-| **Combo Editor** | Class → bundle tree, bundle metadata + loadout panel, combo step builder. Live filter input, editable combo IDs, single-combo or whole-bundle export to `.bdt` |
-| **Class Editor** | Skills tab only. Class CRUD plus `.bdc` export / import / inspect |
-| **System tray** | Class → Spec → Bundle → Combo nested menu; Stop, Reposition, Setup Guide, Settings, two editor entries, Check for Updates, Exit |
-| **Multiple bundles per class** | Each class/spec can host any number of named bundles, each with its own loadout (locked / hotbar / core / add-ons) |
-| **Bundle import / export** | Share `.bdt` (combo bundles, gzipped JSON) or `.bdc` (class bundles, gzipped JSON) files |
-| **Bundle inspector** | Read-only viewer for any `.bdt`/`.bdc` file before importing |
-| **Diff preview** | "Preview Changes" button on the import flow categorises what will be added / overwritten |
-| **Global hotkeys** | `F5` start/restart, `F6` stop, `F7` next guide page, `F8` reset (configurable) |
-| **Key remapping** | Remap movement and ability keys to match your in-game BDO keybinds |
-| **Reposition mode** | Drag the overlay text to any screen position; saved as relative coordinates |
-| **Idle reset** | Combo automatically resets to step 1 after a configurable inactivity timeout |
-| **Auto-migration** | Existing 0.4.x users get a transparent migration on first launch (legacy class YAMLs split into the new layout; originals archived to `config/classes/_legacy/`) |
-| **Auto-updater** | Checks GitHub Releases for newer versions; opt-in config replacement with timestamped backup |
-| **54 class skill libraries** | All 27 BDO classes × Awakening + Succession ship populated |
-| **macOS tray-only mode** | Runs as a tray app on macOS without the overlay window (BDO doesn't run there); editor + tray remain fully functional |
+## Install
+
+### Windows (recommended)
+
+Double-click **`run.bat`**. It installs/updates dependencies, asks for admin (BDO runs elevated, so the trainer needs to as well), and launches.
+
+### macOS / Linux
+
+```
+chmod +x run.sh
+./run.sh
+```
+
+Creates a virtual environment, installs dependencies, and launches in tray-only mode on macOS.
+
+### Manual
+
+```
+git clone https://github.com/Vitiate/bdo-trainer
+cd bdo-trainer
+pip install -r requirements.txt
+python main.py
+```
+
+You need Python 3.8+ and Windows to use the in-game overlay. macOS users get a tray + editor-only experience (BDO doesn't run there).
 
 ---
 
-## Project Structure
+## Run it
+
+After launch, look for the **DK** icon in your system tray (Windows) or menu bar (macOS). Right-click it for the menu.
+
+Useful CLI flags:
+
+```
+python main.py                # Default
+python main.py --overlay      # Force the overlay window on (any platform)
+python main.py --no-overlay   # Force the overlay window off (any platform)
+python main.py --editor       # Editor windows only — no tray, no overlay
+```
+
+---
+
+## Pick a combo and play
+
+1. Right-click the tray icon.
+2. Drill into **Class → Spec → Bundle → Combo** and click the combo you want.
+3. The overlay appears over BDO showing step 1.
+4. Press the keys / mouse buttons it shows you. Each correct input advances to the next step with a slide-up animation.
+5. **Hold steps** show an animated progress bar — hold the keys until it fills (or release early to advance).
+6. When you reach the end, the combo loops back to step 1.
+
+Press **F6** or click **Stop Combo** in the tray menu to end it.
+
+If you stop pressing keys for a while, the combo automatically resets back to step 1 (configurable — see [Hotkeys](#hotkeys) and the Settings window).
+
+---
+
+## Hotkeys
+
+These work even while BDO is in the foreground (Windows; macOS needs `sudo`):
+
+| Hotkey | Action |
+|---|---|
+| `F5` | Start the selected combo, or restart from step 1 |
+| `F6` | Stop the current combo |
+| `F7` | Next page of the Setup Guide (when it's open) |
+| `F8` | Reset the combo to step 1 (without stopping) |
+
+To rebind: tray → **Settings → Hotkeys**.
+
+---
+
+## Move the overlay
+
+By default the overlay text sits at the bottom-centre of the screen. To reposition:
+
+1. Right-click tray → tick **Reposition Overlay**.
+2. Drag the text to where you want it.
+3. Right-click tray → untick **Reposition Overlay** to lock.
+
+Position is saved automatically and survives resolution changes. To reset, delete `config/overlay_position.json`.
+
+---
+
+## Setup Guide
+
+Each combo bundle carries a recommended **loadout** — which skills to lock, which to put on the hotbar, which Core skill to pick, and which PVE skill add-ons to use. To see it in-game:
+
+1. Pick any combo from that bundle first.
+2. Right-click tray → tick **Setup Guide**.
+3. Press `F7` to flip through pages: Core skill → Locked skills → Hotbar → Add-ons.
+
+Untick **Setup Guide** in the tray menu to dismiss.
+
+---
+
+# Editing combos
+
+The trainer ships with two editors. Open them from the tray menu.
+
+## Combo Editor
+
+Right-click tray → **Combo Editor**. This is where you create, edit, import, and export combos.
+
+The window has three parts:
+
+- **Sidebar (left)** — a tree of every loaded class/spec, with the bundles inside it. The filter input at the top narrows the list as you type — try typing your class name or a bundle name like `grind`. Each class lists its bundles; click `+ New Bundle` under any class to add a new one.
+- **Loadout panel (top right)** — bundle name, description, hotbar skills, locked skills, core skill, PVE add-ons. Edit free-text fields here. Lists like locked skills and hotbar use `name :: reason` lines (one per line).
+- **Combo step builder (bottom right)** — pick a combo from the bundle's combo list, then edit its ID, name, category (PVE / PVP / Movement), step window, description, and ordered steps. Each step row has a skill dropdown, a note field, and a hold-duration field. Use the ▲/▼/× buttons to reorder or delete steps.
+
+Action buttons in the sidebar:
+
+| Button | What it does |
+|---|---|
+| **Rename Bundle** | Change the bundle's id on disk |
+| **Delete Bundle** | Permanently remove the bundle and every combo in it |
+| **Export Combo** | Save just the currently-selected combo as a `.bdt` file (with the parent bundle's loadout for context) |
+| **Export Combos** | Save the entire bundle (loadout + all combos) as one `.bdt` file |
+| **Import Combos** | Open a `.bdt` and pick which combos to merge into a target bundle |
+| **Inspect** | Read-only viewer for any `.bdt` or `.bdc` file before importing |
+
+Click **Save Bundle** at the bottom-right when you're done editing. Combo IDs are editable — renaming one moves the file on disk at the next save.
+
+## Class Editor
+
+Right-click tray → **Class Editor**. This is where you edit the **skill library** for a class — the underlying skill definitions that combos reference.
+
+For most users this is rarely needed. The 6 hand-curated classes (Dark Knight A/S, Witch A/S, Lahn A, Guardian A) carry the richest skill data; the other 48 ship with seed entries you can polish here as you use them.
+
+The editor has:
+
+- **Sidebar** — class/spec list with a live filter.
+- **Skills tab** — full form per skill: ID, name, input string (e.g. `SHIFT + LMB`), key toggle grid, alt-keys grid, protection (SA / FG / iframe / none), damage tier, cooldown, level, CC checkboxes, description, notes, flows-into list, core-effect text.
+- **+ New Class** — pick a name and spec; auto-creates a default bundle so the class shows up in the tray menu immediately.
+- **Delete Class** — removes the class file *and* every bundle and combo for that class.
+- **Export Class / Import Class / Inspect** — for `.bdc` (class-bundle) files.
+
+Renaming a skill ID propagates to every combo step in every bundle that references it.
+
+---
+
+## Adding a new class, bundle, or combo
+
+### A new class
+
+1. **Class Editor → + New Class** — pick a name and spec.
+2. Add skill definitions in the **Skills tab**.
+3. Switch to **Combo Editor** to author combos against those skills.
+
+If BDO releases a new class, just open the Class Editor and add it.
+
+### A new bundle
+
+A "bundle" is a named group of combos with a shared loadout. Use bundles to keep, for example, your PVE grind setup separate from your PVP setup on the same class.
+
+1. **Combo Editor** → click `+ New Bundle` under any class in the sidebar.
+2. Enter a bundle id (lowercase, alnum / underscore — e.g. `grinding` or `pvp_smallscale`).
+3. Fill in the loadout fields and start adding combos.
+
+### A new combo
+
+1. Open the bundle you want it under.
+2. Click **+ New Combo** at the bottom-left of the right pane.
+3. Edit the ID, name, category, step window, description, and steps.
+4. Click **Save Bundle**.
+
+---
+
+# Sharing
+
+## Share a combo on bdodojo.com
+
+A short walkthrough for taking a combo you've built in BDO Trainer and publishing it to **https://bdodojo.com** so other players can use it.
+
+### 1. Export the combo from BDO Trainer
+
+1. Open BDO Trainer and right-click the tray icon → **Combo Editor**.
+2. In the sidebar, click the bundle that contains your combo (e.g., **Dark Knight → Awakening → default**).
+3. Click the combo you want to share so it shows up in the right pane.
+4. In the sidebar, click **Export Combo**.
+5. Choose where to save the file. It will be saved with a `.bdt` extension — for example `dark_knight_awakening_full_pve_chain.bdt`.
+
+That `.bdt` file is everything the site needs. It carries the combo itself plus your bundle's loadout (hotbar / locked skills / core skill / add-ons) so anyone who imports it later sees the same setup you were using.
+
+> **Want to share a whole bundle instead of one combo?** Click **Export Combos** in the same sidebar — that produces a single `.bdt` containing every combo in the selected bundle.
+
+### 2. Sign in to bdodojo.com
+
+1. Go to **https://bdodojo.com**.
+2. Click **Sign in** in the top-right corner.
+3. Pick your preferred sign-in method: Discord or email.
+
+You only need to be signed in to upload or comment — other players can browse and download without an account.
+
+### 3. Upload the `.bdt`
+
+1. From the top navigation, click **Upload**.
+2. Drag your `.bdt` file onto the upload area, or click to browse for it.
+3. The site will read the bundle and show you a preview with:
+   - The class and spec it's for
+   - The combo name and description from the file
+   - The loadout that will travel with it
+   - A list of the combos inside
+
+Take a moment to verify it parsed correctly. If anything looks off, cancel and re-export from the trainer.
+
+> Bundles are limited to 1 MB and you can publish up to 10 bundles a day per account.
+
+### 4. Add details before publishing
+
+The upload page lets you polish the listing before it goes public:
+
+- **Title** — what other players see in the feed (defaults to the combo name from your file).
+- **Description** — explain what it's for: grinding spot, PVP scenario, gear assumption, anything that helps someone decide if it's right for them.
+- **Tags** — pick from the suggested tags (e.g., `pve`, `grind`, `pvp`, `large-scale`) so your combo turns up in filters.
+- **YouTube link** *(optional)* — add a video showing the combo in action. The site embeds it on the listing page.
+
+### 5. Publish
+
+Click **Publish**.
+
+Your combo goes **live immediately** — no review queue. You'll be sent to its public page, which has a shareable URL like `https://bdodojo.com/config/abc123`.
+
+The combo also shows up:
+
+- In the **main feed** on the homepage
+- Under **your class's browse page** (e.g., "Dark Knight → Awakening")
+- Under your profile so people can find your other contributions
+
+### Tips for a good listing
+
+- **One combo per upload, scoped tightly.** "PVE grind — Sycraia upper" is more useful than "all my Witch combos."
+- **Mention requirements.** GS or AP/DP thresholds, gear-tier assumptions, whether it relies on specific skill add-ons.
+- **Note the loadout you exported with.** Other players see your hotbar / locked skills / core, but they won't know *why* without your description.
+- **Add a video if you can.** Even a 30-second clip of the rotation in action makes the listing far more useful.
+
+### If something goes wrong
+
+- **"Couldn't read this bundle"** — the file is probably from an older version of BDO Trainer. Re-export from a 0.5.x or newer build.
+- **"Daily limit reached"** — wait until tomorrow; the cap resets at UTC midnight.
+- **"This file is too large"** — combos shouldn't normally come close to 1 MB. If yours does, you've probably exported a bundle full of combos rather than a single one. Use **Export Combo** for one, or trim the bundle down.
+- **Need to take something down?** Delete it from your profile page, or use the **Report** button on someone else's listing if it violates the site's content rules.
+
+---
+
+## Import a combo from bdodojo.com
+
+1. Browse **https://bdodojo.com** and pick a combo you like.
+2. Click **Download `.bdt`** on its page.
+3. In BDO Trainer: tray → **Combo Editor → Import Combos**.
+4. Pick the file you downloaded.
+5. Choose the target bundle (or create a new one).
+6. Tick which combos to import. Optionally also import the author's loadout.
+7. Click **Preview Changes** to see exactly what will be added or overwritten.
+8. Click **Import**.
+
+The combos appear in your tray menu immediately under the target bundle.
+
+---
+
+# Troubleshooting
+
+### Keys aren't being detected while BDO is in focus
+
+**Cause**: BDO runs as an elevated process. Input hooks from a non-elevated process are blocked by Windows UIPI.
+
+**Fix**: Make sure the trainer is running as administrator. It auto-elevates on launch — if the UAC prompt was denied, re-run and accept it.
+
+### The overlay doesn't appear
+
+- Make sure a combo is selected (right-click tray → Class → Spec → Bundle → Combo).
+- Check that BDO is in **Fullscreen Windowed** mode — exclusive fullscreen blocks overlays.
+- Try pressing `F5` to start/restart the combo.
+
+### Overlay appears but clicks go through to the game
+
+This is **intended**. The overlay is click-through by design. The exception is **Reposition Mode**, where clicks are captured for dragging.
+
+### Steps aren't advancing
+
+- Verify you're pressing the **exact combination** shown.
+- Check if your BDO keybinds differ from defaults. If so, update them in tray → **Settings → Key Bindings**.
+- Hotbar steps auto-advance — you don't need to press anything for those.
+- Check `logs/bdo_trainer.log` for error output.
+
+### Combo resets unexpectedly
+
+The **idle reset timer** resets the combo to step 1 after a period of inactivity. Increase the timeout in tray → **Settings → Timing** (or in `config/combos.yaml` under `timing.idle_reset_timeout_ms`).
+
+### Tray icon doesn't appear
+
+- Some Windows configurations hide new tray icons. Check the system tray overflow area (the `^` arrow).
+- Make sure `pillow` is installed (`pip install pillow`).
+
+### macOS: editor opens but tray icon does nothing
+
+The `keyboard` library is intentionally skipped on macOS without root. The tray menu still works for combo selection / editor opening / settings; only the global F5–F8 hotkeys are disabled.
+
+### macOS: editor dialogs disappear behind the editor
+
+Fixed in 0.4.x – 0.5.x. If you still see it on a new dialog type, it's a regression — please file an issue.
+
+### My character does something unexpected
+
+The trainer **only displays information** — it does **not** send any keystrokes to the game. If your character is performing unexpected actions, it's not caused by this tool.
+
+### Why does it need admin?
+
+BDO runs as an elevated process. On Windows, [User Interface Privilege Isolation (UIPI)](https://learn.microsoft.com/en-us/windows/win32/winmsg/about-hooks#uipi) prevents lower-privilege processes from installing hooks into higher-privilege processes. `main.py` handles this automatically via `ShellExecuteW` with `runas`.
+
+---
+
+# Technical reference
+
+> Most users don't need anything below this line. Everything past here is for developers, modders, and people who want to understand the file formats or hack on the codebase.
+
+---
+
+## Project structure
 
 ```
 bdo-trainer/
@@ -145,16 +439,7 @@ bdo-trainer/
 └── .gitignore
 ```
 
----
-
-## Requirements
-
-- **Python 3.8+**
-- **Windows** for the in-game overlay (Win32 click-through APIs)
-- **Administrator privileges** on Windows (BDO runs elevated; see [Why Admin?](#why-does-it-need-admin))
-- **macOS** is supported as a **tray + editor only** experience (BDO doesn't run there). Linux is untested.
-
-### Python Dependencies
+### Python dependencies
 
 | Package | Purpose |
 |---|---|
@@ -168,73 +453,9 @@ bdo-trainer/
 
 ---
 
-## Installation
+## Configuration files
 
-### Option A — `run.bat` (Windows, recommended)
-
-Double-click `run.bat`. It will install/update dependencies, auto-elevate to administrator, and launch.
-
-### Option B — `run.sh` (macOS / Linux)
-
-```
-chmod +x run.sh
-./run.sh
-```
-
-Creates a virtual environment, installs dependencies, and launches in tray-only mode on macOS. See [macOS Support](#macos-support) for permission notes.
-
-### Option C — `pip` manually
-
-```
-git clone https://github.com/Vitiate/bdo-trainer
-cd bdo-trainer
-pip install -r requirements.txt
-python main.py
-```
-
----
-
-## Running
-
-### From the command line
-
-```
-python main.py                # Default: full app on Windows; tray-only on macOS
-python main.py --overlay      # Force the overlay window on (any platform)
-python main.py --no-overlay   # Force the overlay window off (any platform)
-python main.py --editor       # Editor windows only — no tray, no overlay
-```
-
-### What happens on launch
-
-1. If `config/classes/*.yaml` is detected (the 0.4.x layout), `migrate_class_yaml.py` runs automatically — see [Migration from 0.4.x](#migration-from-04x).
-2. Class definitions are loaded from `data/classes/`.
-3. Combo bundles are loaded from `config/combos/<slug>/<bundle_id>/`.
-4. Global settings are loaded from `config/combos.yaml`.
-5. The transparent overlay window is created (suppressed on macOS by default).
-6. The system tray icon appears — right-click for the menu.
-7. The auto-updater checks GitHub Releases in the background.
-
----
-
-## How It Works
-
-1. **Pick a combo** from the tray menu: `Class → Spec → Bundle → Combo`. The selected `(class, spec, bundle)` becomes the **active bundle** and is persisted to `config/combos.yaml`.
-2. The overlay displays the combo's steps as outlined text over your game.
-3. The current step is highlighted with the skill name, protection badge, and required input.
-4. **Press the correct keys/mouse buttons** — the overlay detects the input via low-level hooks and advances with a smooth slide-up animation.
-5. Steps with `alt_keys` accept either input combination.
-6. **Hold steps** display an animated progress bar — hold the keys for the specified duration, or release early to advance.
-7. **Hotbar steps** auto-advance after a delay since hotbar key presses can't be meaningfully validated.
-8. The **next-skill preview** below the current step shows what's coming up. It pulsates between grey and gold when the upcoming step is a hold skill.
-9. When you reach the end, the combo loops back to step 1.
-10. If you stop pressing keys, the **idle reset timer** returns the combo to step 1 after the configured timeout.
-
----
-
-## Configuration
-
-### Global Settings — `config/combos.yaml`
+### Global settings — `config/combos.yaml`
 
 Global settings only — no skill or combo data lives here.
 
@@ -281,9 +502,9 @@ settings:
     "Witch/Succession": "grinding"
 ```
 
-All of these can also be edited through the **Settings GUI** (right-click tray → Settings).
+All of these can be edited through the **Settings GUI** (right-click tray → Settings).
 
-### Class Definitions — `data/classes/<slug>.yaml`
+### Class definitions — `data/classes/<slug>.yaml`
 
 Class definitions ship with the app and contain **skills only**. The slug is `<class>_<spec>` lowercased with spaces replaced by underscores.
 
@@ -313,9 +534,7 @@ skills:
     damage: high
 ```
 
-The 6 hand-curated classes (Dark Knight A/S, Witch A/S, Lahn A, Guardian A) carry the richest skill data with full descriptions and effect notes. The other 48 classes ship with seed entries you can polish through the **Class Editor** as you use them.
-
-### Combo Bundles — `config/combos/<slug>/<bundle_id>/`
+### Combo bundles — `config/combos/<slug>/<bundle_id>/`
 
 User content lives here. Each bundle is a directory containing one `_bundle.yaml` (loadout + metadata) plus one YAML per combo.
 
@@ -378,7 +597,7 @@ steps:
     note: Hold to channel
 ```
 
-### Combo Step Format
+### Combo step format
 
 | Field | Required | Description |
 |---|---|---|
@@ -391,11 +610,11 @@ steps:
 
 `input` and `keys` are normally resolved from the skill definition — only override them when a combo step uses a non-default input (e.g., a directional follow-up).
 
-### Valid Key Names
+### Valid key names
 
 `w`, `a`, `s`, `d`, `shift`, `ctrl`, `alt`, `space`, `tab`, `lmb`, `rmb`, `mmb`, `q`, `e`, `f`, `x`, `z`, `r`, `c`, `v`, `hold`, `hotbar`, `down`
 
-### Key Remapping
+### Key remapping
 
 If your in-game BDO bindings differ from defaults, edit `key_bindings` in `config/combos.yaml` (or use the **Settings GUI**). The trainer translates these into the canonical key names that combo steps use.
 
@@ -413,115 +632,11 @@ The loader will warn in the log if you've half-configured a swap (e.g., `Q: "a"`
 
 ---
 
-## Usage Guide
-
-### Tray Menu
-
-Right-click the system tray icon to see:
-
-![Tray menu screenshot](doc/images/menu.png)
-
-- **Class → ClassName → SpecName → BundleName → Combo** — starts the selected combo
-- **Stop Combo** — stops the current combo and hides the overlay text
-- **Reposition Overlay** — toggles drag-to-move mode (checkable)
-- **Setup Guide** — opens the 4-page setup overlay for the active bundle
-- **Settings** — opens the Settings GUI window
-- **Combo Editor** — opens the combo + bundle editor
-- **Class Editor** — opens the class skill editor
-- **Check for Updates…** — manual auto-updater check
-- **Exit** — shuts everything down cleanly
-
-### Global Hotkeys
-
-These work globally, even when BDO is in fullscreen focus (Windows; require `sudo` on macOS):
-
-| Hotkey | Action |
-|---|---|
-| `F5` | Start the selected combo, or restart from step 1 if already running |
-| `F6` | Stop the current combo |
-| `F7` | Next Setup Guide page (when the guide is active) |
-| `F8` | Reset the current combo to step 1 (without stopping) |
-
-Hotkeys are configurable in `config/combos.yaml` under `settings.hotkeys`, or through the Settings GUI.
-
-### Reposition Mode
-
-1. Right-click the tray icon → select **Reposition Overlay** (a checkmark appears).
-2. The overlay becomes **draggable** — click and drag the text to the desired screen position.
-3. Right-click the tray icon → deselect **Reposition Overlay** to lock the position.
-4. The position is saved to `config/overlay_position.json` as relative screen coordinates.
-
-To reset to centre, delete `config/overlay_position.json` and restart.
-
-### Idle Reset
-
-If no relevant keys are pressed within the configured timeout (`idle_reset_timeout_ms`, default 10 000 ms), the combo automatically resets to step 1.
-
----
-
-## Overlay Animations
-
-### Step Layout (top to bottom)
-
-1. **Combo name** — grey italic 14pt
-2. **Skill name** — gold bold 32pt + `[PROTECTION]` badge (SA, FG, iframe)
-3. **Input keys** — white 22pt
-4. **Hold bar** — animated progress bar (only on hold steps)
-5. **Note** — grey 14pt (optional)
-6. **Step counter** — dark grey 12pt
-7. **Next skill preview** — grey 14pt: `next ▸ Skill Name · Input Keys`
-
-### Transition Animation
-
-When the correct keypress is detected:
-
-1. Old content is tagged and a green **✓ Skill Name** confirmation appears.
-2. Old content slides upward at 3 px/frame and fades toward transparent.
-3. After ~80 ms delay, the new step renders and slides up 40 px with an ease-out curve (~120 ms).
-4. Once the slide completes, input is armed for the new step.
-
-### Hold Step Progress Bar
-
-Skills with `hold_ms` show an animated progress bar that fills **amber → gold → green** as you hold the keys, with glow and spark particle effects on the fill edge. Releasing keys early advances to the next step (no need to hold for the full duration).
-
-### Next Skill Preview Pulse
-
-When the upcoming step is a hold skill, the preview text pulsates between grey and gold (~1.75 s cycle) as a visual warning.
-
----
-
-## Editors
-
-### Combo Editor
-
-Right-click tray → **Combo Editor**.
-
-- **Sidebar tree** — class → bundles. Filter input at the top narrows by class, spec, bundle id, or bundle name.
-- **Bundle metadata + loadout panel** — name, description, hotbar skills, locked skills, core skill, PVE add-ons. Each list field uses a `name :: reason` syntax for the richer entries.
-- **Combo step builder** — combo ID (editable), name, category, difficulty, step window, description, and an ordered list of steps with skill dropdowns, notes, and hold timers.
-- **Action buttons** — Rename Bundle, Delete Bundle, Export Combo (single combo, with parent loadout), Export Combos (whole bundle), Import Combos, Inspect.
-- **Live filter** — type to narrow the bundle list to matches.
-- **Editable combo IDs** — rename a combo's ID and the on-disk file is moved at the next save.
-
-### Class Editor
-
-Right-click tray → **Class Editor**.
-
-- **Sidebar** — class/spec list with a live filter.
-- **Skills tab** — full skill form per skill: ID, name, input string, key toggle grid (W/A/S/D, Shift/Space, LMB/RMB/MMB, Q/E/F/X/Z, Hotbar/Hold/Down), alt-keys grid, protection dropdown, damage dropdown, cooldown, level, CC checkboxes, description, notes, flows-into, core-effect.
-- **+ New Class** dialog — class name + spec radio (Awakening/Succession). Auto-creates a `default` bundle so the class shows up in the tray menu immediately.
-- **Delete Class** — removes the class file AND every bundle / combo for that class.
-- **Action buttons** — Export Class (`.bdc`), Import Class, Inspect.
-
-Renaming a skill ID propagates the rename through every combo's step references in every bundle.
-
----
-
-## Bundle Files — `.bdt` and `.bdc`
+## Bundle file formats — `.bdt` and `.bdc`
 
 Both formats are **gzip-compressed JSON** with a discriminator `kind` field so a single decoder handles either type.
 
-### `.bdt` — Combo bundle (`kind = "combos"`)
+### `.bdt` — combo bundle (`kind = "combos"`)
 
 Carries:
 
@@ -531,7 +646,7 @@ Carries:
 
 Used to share combo rotations between players. The Combo Editor's **Export Combo** button creates a single-combo bundle that still carries the parent's loadout for context.
 
-### `.bdc` — Class bundle (`kind = "class"`)
+### `.bdc` — class bundle (`kind = "class"`)
 
 Carries:
 
@@ -544,134 +659,11 @@ Used to share full class skill libraries. The Class Editor's **Export Class** bu
 
 `.bdt` files from 0.4.x carried both class metadata and combos in a single `config` field. They still decode and route through the class importer; their combos are surfaced via the import dialog with categories backfilled.
 
-### Inspector
-
-Both editors have an **Inspect** button that opens any `.bdt` or `.bdc` file in a read-only viewer with Combos / Skills / Loadout tabs and missing-skill warnings — no import side effects.
-
----
-
-## Sharing a Combo on bdodojo.com
-
-A short walkthrough for taking a combo you've built in BDO Trainer and publishing it to **https://bdodojo.com** so other players can use it.
-
-### 1. Export the combo from BDO Trainer
-
-1. Open BDO Trainer and right-click the tray icon → **Combo Editor**.
-2. In the sidebar, click the bundle that contains your combo (e.g., **Dark Knight → Awakening → default**).
-3. Click the combo you want to share so it shows up in the right pane.
-4. In the sidebar, click **Export Combo**.
-5. Choose where to save the file. It will be saved with a `.bdt` extension — for example `dark_knight_awakening_full_pve_chain.bdt`.
-
-That `.bdt` file is everything the site needs. It carries the combo itself plus your bundle's loadout (hotbar / locked skills / core skill / add-ons) so anyone who imports it later sees the same setup you were using.
-
-> **Want to share a whole bundle instead of one combo?** Click **Export Combos** in the same sidebar — that produces a single `.bdt` containing every combo in the selected bundle.
-
-### 2. Sign in to bdodojo.com
-
-1. Go to **https://bdodojo.com**.
-2. Click **Sign in** in the top-right corner.
-3. Pick your preferred sign-in method: Discord, or email.
-
-You only need to be signed in to upload or comment — other players can browse and download without an account.
-
-### 3. Upload the `.bdt`
-
-1. From the top navigation, click **Upload**.
-2. Drag your `.bdt` file onto the upload area, or click to browse for it.
-3. The site will read the bundle and show you a preview with:
-   - The class and spec it's for
-   - The combo name and description from the file
-   - The loadout that will travel with it
-   - A list of the combos inside
-
-Take a moment to verify it parsed correctly. If anything looks off, cancel and re-export from the trainer.
-
-> Bundles are limited to 1 MB and you can publish up to 10 bundles a day per account.
-
-### 4. Add details before publishing
-
-The upload page lets you polish the listing before it goes public:
-
-- **Title** — what other players see in the feed (defaults to the combo name from your file).
-- **Description** — explain what it's for: grinding spot, PVP scenario, gear assumption, anything that helps someone decide if it's right for them.
-- **Tags** — pick from the suggested tags (e.g., `pve`, `grind`, `pvp`, `large-scale`) so your combo turns up in filters.
-- **YouTube link** *(optional)* — add a video showing the combo in action. The site embeds it on the listing page.
-
-### 5. Publish
-
-Click **Publish**.
-
-Your combo goes **live immediately** — no review queue. You'll be sent to its public page, which has a shareable URL like `https://bdodojo.com/config/abc123`.
-
-The combo also shows up:
-
-- In the **main feed** on the homepage
-- Under **your class's browse page** (e.g., "Dark Knight → Awakening")
-- Under your profile so people can find your other contributions
-
-### How players use what you published
-
-Anyone visiting your combo's page can click **Download `.bdt`** to grab the file, then in their own BDO Trainer:
-
-1. **Combo Editor → Import Combos**
-2. Pick the `.bdt` they downloaded
-3. Choose which bundle to import it into (or create a new one)
-4. Optionally also pull in your loadout
-
-Within seconds your combo is in their tray menu, ready to run over BDO.
-
-### Tips for a good listing
-
-- **One combo per upload, scoped tightly.** "PVE grind — Sycraia upper" is more useful than "all my Witch combos."
-- **Mention requirements.** GS or AP/DP thresholds, gear-tier assumptions, whether it relies on specific skill add-ons.
-- **Note the loadout you exported with.** Other players see your hotbar / locked skills / core, but they won't know *why* without your description.
-- **Add a video if you can.** Even a 30-second clip of the rotation in action makes the listing far more useful.
-
-### If something goes wrong
-
-- **"Couldn't read this bundle"** — the file is probably from an older version of BDO Trainer. Re-export from a 0.5.x or newer build.
-- **"Daily limit reached"** — wait until tomorrow; the cap resets at UTC midnight.
-- **"This file is too large"** — combos shouldn't normally come close to 1 MB. If yours does, you've probably exported a bundle full of combos rather than a single one. Use **Export Combo** for one, or trim the bundle down.
-- **Need to take something down?** Delete it from your profile page, or use the **Report** button on someone else's listing if it violates the site's content rules.
-
----
-
-## Adding a New Class or Bundle
-
-### Adding a new class
-
-1. **Class Editor → + New Class** — pick a name + spec. A `data/classes/<slug>.yaml` shell is created plus a `default` bundle so the class shows up in the tray menu immediately.
-2. Use the **Skills tab** to add skill definitions.
-3. Switch to the **Combo Editor** to author combos against those skills.
-
-If BDO releases a new class, run `python -m scripts.seed_class_shells` first — it'll create empty shells for any class missing from `data/classes/`.
-
-### Adding a new bundle
-
-1. **Combo Editor** → click `+ New Bundle` under any class in the sidebar.
-2. Enter a bundle id (lowercase, alnum / underscore).
-3. Fill in the loadout fields and add combos.
-
-### Adding a combo
-
-1. Open the bundle in the Combo Editor.
-2. Click **+ New Combo** at the bottom-left of the right pane.
-3. Edit the combo ID, name, category, and steps.
-4. Click **Save Bundle**.
-
-### Importing combos from a `.bdt`
-
-1. **Combo Editor → Import Combos** → choose a `.bdt` file.
-2. Pick the target class and bundle (or create a new one).
-3. Tick which combos to import. Optionally also import the bundle's loadout.
-4. **Preview Changes** to see exactly what will be added / overwritten.
-5. **Import**.
-
 ---
 
 ## Architecture
 
-### Module Responsibilities
+### Module responsibilities
 
 | Module | Role |
 |---|---|
@@ -696,7 +688,7 @@ If BDO releases a new class, run `python -m scripts.seed_class_shells` first —
 | `src/platform.py` | Click-through helpers, font detection. |
 | `src/utils/keys.py` | Key display name mapping and outline offset constants. |
 
-### Threading Model
+### Threading model
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -722,7 +714,7 @@ If BDO releases a new class, run `python -m scripts.seed_class_shells` first —
 
 **Cross-thread UI updates** go through a `queue.Queue` polled by the Tk main thread (added in 0.4.x to fix a Python 3.14 GIL crash on macOS). Foreign threads enqueue work; the main thread drains the queue every 50 ms.
 
-### Key Detection Pipeline
+### Key detection pipeline
 
 1. **pynput** hooks capture raw keyboard and mouse events on daemon threads.
 2. Events are translated through the **key remap table** (built from `key_bindings` in settings).
@@ -730,19 +722,33 @@ If BDO releases a new class, run `python -m scripts.seed_class_shells` first —
 4. On a full match, the combo advances. The UI update is enqueued for the main thread.
 5. For **hold steps**, matching keys start the hold bar; releasing early or completing the hold advances the combo.
 
+### Overlay rendering details
+
+Step layout, top to bottom:
+
+1. **Combo name** — grey italic 14pt
+2. **Skill name** — gold bold 32pt + `[PROTECTION]` badge (SA, FG, iframe)
+3. **Input keys** — white 22pt
+4. **Hold bar** — animated progress bar (only on hold steps)
+5. **Note** — grey 14pt (optional)
+6. **Step counter** — dark grey 12pt
+7. **Next skill preview** — grey 14pt: `next ▸ Skill Name · Input Keys`
+
+Transition: when the correct keypress is detected, old content is tagged and a green `✓ Skill Name` confirmation appears. Old content slides upward at 3 px/frame and fades. After ~80 ms delay, the new step renders and slides up 40 px with an ease-out curve (~120 ms). Once the slide completes, input is armed for the new step.
+
+The next-skill preview pulsates between grey and gold (~1.75 s cycle) when the upcoming step is a hold skill.
+
 ---
 
-## macOS Support
+## macOS specifics
 
 macOS support is **tray + editor only** — BDO doesn't run on macOS, so the in-game overlay isn't useful there.
 
 - **Tray-only by default** — the overlay window is suppressed unless `--overlay` is passed.
 - **`keyboard` library skipped** without root (it Abort traps when its event-tap listener thread starts unprivileged). Editor + tray still work; global hotkeys do not.
-- **Accessibility permissions** are required for `pynput` (granular keyboard + mouse listening). On first launch the app pops the native macOS Accessibility prompt via `AXIsProcessTrustedWithOptions`.
+- **Accessibility permissions** are required for `pynput`. On first launch the app pops the native macOS Accessibility prompt via `AXIsProcessTrustedWithOptions`.
 - **Modal dialog z-order** — extensive workarounds in place (`force_dialog_to_front`, `_ask_string` wrappers, etc.) so editor dialogs reliably stay above the parent window.
-- **`--editor` flag** launches just the editor windows with no tray — handy for hands-off config editing.
-
-Run with:
+- **`--editor` flag** launches just the editor windows with no tray.
 
 ```
 ./run.sh                # Tray + editor (recommended)
@@ -767,64 +773,6 @@ To preview without writing anything:
 ```
 python -m scripts.migrate_class_yaml --dry-run
 ```
-
----
-
-## Troubleshooting
-
-### "Keys aren't being detected while BDO is in focus"
-
-**Cause**: BDO runs as an elevated process. Input hooks from a non-elevated process are blocked by Windows UIPI.
-
-**Fix**: Ensure the trainer is running as administrator. It auto-elevates on launch — if the UAC prompt was denied, re-run and accept it.
-
-### The overlay doesn't appear
-
-- Make sure a combo is selected (right-click tray → Class → Spec → Bundle → Combo).
-- Check that BDO is in **Fullscreen Windowed** mode — exclusive fullscreen blocks overlays.
-- Try pressing `F5` to start/restart the combo.
-
-### Overlay appears but clicks go through to the game
-
-This is **intended behavior**. The overlay is click-through by design (`WS_EX_TRANSPARENT`). The exception is **Reposition Mode**, where clicks are captured for dragging.
-
-### Steps aren't advancing
-
-- Verify you're pressing the **exact combination** shown.
-- Check if your BDO keybinds differ from defaults. If so, update `key_bindings` in `config/combos.yaml` (or use the Settings GUI).
-- Hotbar steps auto-advance — you don't need to press anything for those.
-- Check `logs/bdo_trainer.log` for error output.
-
-### Combo resets unexpectedly
-
-The **idle reset timer** resets the combo to step 1 after a period of inactivity. Increase `idle_reset_timeout_ms` in `config/combos.yaml`:
-
-```yaml
-settings:
-  timing:
-    idle_reset_timeout_ms: 30000   # 30 seconds
-```
-
-### Why does it need admin?
-
-BDO runs as an elevated process. On Windows, [User Interface Privilege Isolation (UIPI)](https://learn.microsoft.com/en-us/windows/win32/winmsg/about-hooks#uipi) prevents lower-privilege processes from installing hooks into higher-privilege processes. `main.py` handles this automatically via `ShellExecuteW` with `runas`.
-
-### macOS: "Editor opens but tray icon does nothing"
-
-The `keyboard` library is intentionally skipped on macOS without root (it Abort traps the listener thread). The tray menu still works for combo selection / editor opening / settings; only the global F5–F8 hotkeys are disabled.
-
-### macOS: Editor dialogs disappear behind the editor
-
-This was a recurring bug fixed in 0.4.x – 0.5.x via `force_dialog_to_front` (custom dialogs) and `_ask_string` wrappers (native `simpledialog.askstring` prompts). If you still see it on a new dialog type, it's a regression — please file an issue.
-
-### Tray icon doesn't appear
-
-- Some Windows configurations hide new tray icons. Check the system tray overflow area (the `^` arrow).
-- Make sure `pillow` is installed (`pip install pillow`).
-
-### Adding the wrong keys / My character does something unexpected
-
-The trainer **only displays information** — it does **not** send any keystrokes to the game. If your character is performing unexpected actions, it's not caused by this tool.
 
 ---
 
