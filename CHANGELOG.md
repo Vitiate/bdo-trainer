@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.5] — 2026-05-31
+
+### Fixed
+- **Priority combo crash on key press.** `InputMonitor._check` and
+  `_reset_edge_trigger` iterated `self._taps.values()` while tap
+  callbacks could mutate the dict (the priority player re-arms a
+  different tap on every press, so each press triggered a
+  ``RuntimeError: dictionary changed size during iteration`` from the
+  pynput listener thread). Both loops now snapshot the values via
+  ``list(...)`` before iterating, so callbacks can add/remove taps
+  freely.
+
 ## [0.5.4] — 2026-05-31
 
 ### Added
@@ -361,6 +373,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.5]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.5
 [0.5.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.4
 [0.5.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.3
 [0.5.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.2

@@ -140,7 +140,9 @@ class InputMonitor:
         Called after the user releases keys between steps.
         """
         self._matched = False
-        for tap in self._taps.values():
+        # Snapshot the values — taps may be added/removed by callbacks
+        # downstream (priority player re-arms its tap on every press).
+        for tap in list(self._taps.values()):
             req_sets: List[Set[str]] = tap["sets"]  # type: ignore[assignment]
             still_held = any(req.issubset(self._pressed) for req in req_sets)
             if not still_held:
@@ -252,8 +254,11 @@ class InputMonitor:
                     if self._on_match:
                         self._on_match()
                     break
-        # Secondary taps — independent of the primary target
-        for tap in self._taps.values():
+        # Secondary taps — independent of the primary target.
+        # Snapshot the dict so a tap's callback can add/remove taps
+        # (e.g. PriorityPlayer re-arms a different tap on every press)
+        # without "dictionary changed size during iteration".
+        for tap in list(self._taps.values()):
             if tap["matched"]:
                 continue
             req_sets: List[Set[str]] = tap["sets"]  # type: ignore[assignment]
