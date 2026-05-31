@@ -53,6 +53,7 @@ class TrayManager:
         on_stop: Optional[Callable] = None,
         on_reposition_toggle: Optional[Callable] = None,
         on_setup_guide_toggle: Optional[Callable] = None,
+        on_cc_panel_toggle: Optional[Callable] = None,
         on_settings: Optional[Callable] = None,
         on_combo_editor: Optional[Callable] = None,
         on_class_editor: Optional[Callable] = None,
@@ -67,6 +68,7 @@ class TrayManager:
             on_stop: Callback when "Stop" is selected
             on_reposition_toggle: Callback(enabled: bool)
             on_setup_guide_toggle: Callback(enabled: bool)
+            on_cc_panel_toggle: Callback(enabled: bool)
             on_settings: Callback when "Settings" is selected
             on_combo_editor: Callback when "Combo Editor" is selected
             on_class_editor: Callback when "Class Editor" is selected
@@ -81,6 +83,7 @@ class TrayManager:
         self.on_stop = on_stop
         self.on_reposition_toggle = on_reposition_toggle
         self.on_setup_guide_toggle = on_setup_guide_toggle
+        self.on_cc_panel_toggle = on_cc_panel_toggle
         self.on_settings = on_settings
         self.on_combo_editor = on_combo_editor
         self.on_class_editor = on_class_editor
@@ -91,6 +94,7 @@ class TrayManager:
         self._thread: Optional[threading.Thread] = None
         self._reposition_mode: bool = False
         self._setup_guide_mode: bool = False
+        self._cc_panel_mode: bool = False
 
     def _build_menu(self) -> pystray.Menu:
         """Build the tray context menu with Class > Spec > Combo submenus"""
@@ -149,6 +153,15 @@ class TrayManager:
                 "Setup Guide",
                 self._on_setup_guide_clicked,
                 checked=lambda item: self._setup_guide_mode,
+            )
+        )
+
+        # CC Skills panel (checkable toggle)
+        menu_items.append(
+            pystray.MenuItem(
+                "Show CC Skills",
+                self._on_cc_panel_clicked,
+                checked=lambda item: self._cc_panel_mode,
             )
         )
 
@@ -229,10 +242,23 @@ class TrayManager:
         if self.on_setup_guide_toggle:
             self.on_setup_guide_toggle(self._setup_guide_mode)
 
+    def _on_cc_panel_clicked(self, icon, item):
+        self._cc_panel_mode = not self._cc_panel_mode
+        logger.info(
+            f"Tray: CC panel toggled — {'ON' if self._cc_panel_mode else 'OFF'}"
+        )
+        if self.on_cc_panel_toggle:
+            self.on_cc_panel_toggle(self._cc_panel_mode)
+
     def set_setup_guide_mode(self, enabled: bool):
         """Allow external code to sync the checkmark state (e.g. when
         dismissed via hotkey rather than the tray menu)."""
         self._setup_guide_mode = enabled
+
+    def set_cc_panel_mode(self, enabled: bool):
+        """Sync the CC panel checkmark with externally-driven state
+        (e.g. the persisted setting on startup)."""
+        self._cc_panel_mode = enabled
 
     def _on_exit_clicked(self, icon, item):
         logger.info("Tray: exit clicked")

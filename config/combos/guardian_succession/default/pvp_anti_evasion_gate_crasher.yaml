@@ -1,0 +1,27 @@
+combo_id: pvp_anti_evasion_gate_crasher
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Anti-Evasion (Gate Crasher)'
+description: 'Anti-evasion combo with Gate Crasher mid-chain. Inputs — E → SHIFT+Q → SHIFT+LMB → SHIFT+RMB → HOLD RMB → S+F
+  → SHIFT+F → S+LMB.'
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: chokeslam
+  note: Grab. E.
+- skill: prime_black_blood_circle
+  note: SHIFT+Q.
+- skill: prime_avalanche_strike
+  note: SHIFT+LMB.
+- skill: prime_mutilation
+  note: SHIFT+RMB.
+- skill: prime_black_blood_slaughter
+  note: Hold RMB.
+- skill: gate_crasher
+  note: S+F.
+- skill: prime_mountain_slam
+  note: SHIFT+F.
+- skill: prime_boulder_crush
+  note: S+LMB.

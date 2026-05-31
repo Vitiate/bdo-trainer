@@ -1,0 +1,33 @@
+combo_id: pve_prime_pull_burst
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pve
+name: 'PvE — Prime Pull & Burst'
+description: 'Black Blood Circle / Omua''s Circle pull, Fierce Disdain repositions and self-buffs from Prime: Claw Reveal,
+  then cycle the four prime damage skills. Order varies — prioritise hits over a fixed sequence. Pulling tip — if Black Blood
+  Circle / Omua''s Circle is unavailable, use Black Blood''s Descent → Flow: Black Blood Eruption to receive Prime: Black
+  Blood Circle add-on benefits.'
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: prime_black_blood_circle
+  note: 'Pull. Substitute Omua''s Circle when available.'
+  alt_skill: black_blood_s_descent
+  alt_note: Fallback when Prime Black Blood Circle / Omua's Circle is unavailable — chain into Flow Black Blood Eruption to
+    inherit the Prime Black Blood Circle add-ons.
+- skill: fierce_disdain
+  note: Reposition.
+- skill: prime_claw_reveal
+  note: Self-buffs.
+- skill: prime_mountain_slam
+  note: Narrow but long — line up rows of mobs.
+- skill: prime_avalanche_strike
+  note: Short but wide — best when mobs are tight in front.
+- skill: prime_mutilation
+  note: Narrow but long.
+- skill: prime_black_blood_slaughter
+  note: Narrow but long.
+- skill: omua_s_objurgation
+- skill: prime_boulder_crush
+  note: Filler / cooldown bridge.

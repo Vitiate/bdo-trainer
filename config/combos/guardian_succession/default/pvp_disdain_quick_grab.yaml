@@ -1,0 +1,16 @@
+combo_id: pvp_disdain_quick_grab
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Disdain Quick Grab'
+description: 'Compact catch into grab — Fierce Disdain → Sturdy Step → grab. Inputs — A/D + RMB → SHIFT + W → E.'
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: fierce_disdain
+  note: A/D + RMB.
+- skill: sturdy_step
+  note: SHIFT + W.
+- skill: chokeslam
+  note: E.

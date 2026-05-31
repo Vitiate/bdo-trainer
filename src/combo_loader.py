@@ -601,6 +601,48 @@ class SettingsLoader:
         active = self.settings.setdefault("active_bundle_per_class", {})
         active[f"{class_name}/{spec_name}"] = bundle_id
 
+    # ------------------------------------------------------------------
+    # CC panel toggle persistence
+    # ------------------------------------------------------------------
+    def get_show_cc_panel(self) -> bool:
+        return bool(self.settings.get("show_cc_panel", False))
+
+    def set_show_cc_panel(self, enabled: bool) -> None:
+        self.settings["show_cc_panel"] = bool(enabled)
+        self._persist_top_level("show_cc_panel")
+
+    def _persist_top_level(self, *keys: str) -> None:
+        """Write the named top-level settings keys back to combos.yaml.
+
+        Preserves existing comments/structure by reading the raw file,
+        merging only the requested keys into ``settings``, and writing
+        the file back. Falls back to a full settings dump if the file
+        can't be parsed.
+        """
+        try:
+            with open(self.settings_path, "r", encoding="utf-8") as fh:
+                data = yaml.safe_load(fh) or {}
+        except FileNotFoundError:
+            data = {}
+        except yaml.YAMLError as e:
+            logger.error(f"Could not parse settings for CC panel save: {e}")
+            return
+        block = data.setdefault("settings", {})
+        for k in keys:
+            block[k] = self.settings.get(k)
+        try:
+            self.settings_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(self.settings_path, "w", encoding="utf-8") as fh:
+                yaml.dump(
+                    data, fh,
+                    default_flow_style=False,
+                    allow_unicode=True,
+                    sort_keys=False,
+                    width=120,
+                )
+        except Exception as exc:
+            logger.warning(f"Could not save settings: {exc}")
+
 
 # ===========================================================================
 # AppLoader facade
@@ -636,6 +678,10 @@ class AppLoader:
     def get_key_bindings(self):            return self.settings_loader.get_key_bindings()
     def get_key_remap(self):               return self.settings_loader.get_key_remap()
     def get_timing_settings(self):         return self.settings_loader.get_timing_settings()
+    def get_show_cc_panel(self) -> bool:   return self.settings_loader.get_show_cc_panel()
+
+    def set_show_cc_panel(self, enabled: bool) -> None:
+        self.settings_loader.set_show_cc_panel(enabled)
 
     @property
     def settings(self) -> Dict[str, Any]:

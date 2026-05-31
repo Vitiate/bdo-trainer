@@ -628,6 +628,23 @@ skills:
     description: Charge forward slaughtering enemies with black blood energy.
     flows_into: []
     notes: Pre-awakening.
+  pulverization:
+    name: Pulverization
+    input: SHIFT + X (pre-awakening)
+    keys:
+    - shift
+    - x
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    damage: high
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Strike Down III]. Forward Guard during skill.'
+    flows_into: []
+    notes: 'Critical Hit Rate +50%. Knockdown PvE only. Air Attack / Down Attack 67.94% damage in PvP. Down Attack damage +5%
+      for 10s when using the skill.'
   claw_reveal:
     name: Claw Reveal
     input: A/D + LMB (pre-awakening)

@@ -1,0 +1,31 @@
+combo_id: pvp_gate_crasher_main
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Gate Crasher Main'
+description: 'Standard Gate Crasher combo. Inputs — E → S+LMB → LMB+RMB → SHIFT+F → SHIFT+RMB → HOLD RMB → S+F → SHIFT+LMB
+  → S+LMB. Notes — Gate Crasher 2nd attack only back-attacks if the target is facing you, otherwise they can FG it. Three
+  cast speeds available (slow / medium / fast) — see https://pastebin.com/PneA025R for the cancel list. Skill applies T2
+  add-ons. Alternative — 2× Savage Hack and move Boulder Crush after Avalanche Strike if you get a smash off.'
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: chokeslam
+  note: Grab. E.
+- skill: prime_boulder_crush
+  note: 1 hit. S+LMB.
+- skill: prime_savage_hack
+  note: 1 hit. LMB+RMB.
+- skill: prime_mountain_slam
+  note: SHIFT+F.
+- skill: prime_mutilation
+  note: SHIFT+RMB.
+- skill: prime_black_blood_slaughter
+  note: Hold RMB.
+- skill: gate_crasher
+  note: S+F.
+- skill: prime_avalanche_strike
+  note: SHIFT+LMB.
+- skill: prime_boulder_crush
+  note: S+LMB. Only if Avalanche Strike down-smashed.

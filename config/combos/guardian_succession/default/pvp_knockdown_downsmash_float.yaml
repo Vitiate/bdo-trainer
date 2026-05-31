@@ -1,0 +1,22 @@
+combo_id: pvp_knockdown_downsmash_float
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Knockdown / Down Smash → Float'
+description: 'Float-finisher variant of bread ''n'' butter. Recommended attack speed so you don''t whiff. Possible outcomes —
+  Down Smash but Float gets resisted (disengage); Float without Knockdown (needs some attack speed); Knockdown only (less
+  damage, no air attack); Down Smash into Float (best case, gets air attack damage).'
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: chokeslam
+  note: Grab.
+- skill: prime_boulder_crush
+  note: 1 hit only.
+- skill: prime_savage_hack
+  note: 1 hit only.
+- skill: prime_avalanche_strike
+- skill: prime_mutilation
+- skill: prime_black_blood_slaughter
+- skill: prime_mountain_slam

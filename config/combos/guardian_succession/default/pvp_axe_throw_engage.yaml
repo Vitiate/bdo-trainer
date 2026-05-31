@@ -1,0 +1,25 @@
+combo_id: pvp_axe_throw_engage
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Axe Throw Engage'
+description: 'Long-range engage opener — Axe Throw stiffness into Foretold Encounter, Omua''s Objurgation, Sturdy Step gap-close,
+  Prime: Frigid Wind double-tap into a float follow-up or grab. Inputs — S+E → RMB → SHIFT+W+RMB → SHIFT+W → C+W → RMB / E.'
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: prime_axe_throw
+  note: S + E.
+- skill: foretold_encounter
+  note: RMB.
+- skill: omua_s_objurgation
+  note: SHIFT + W + RMB.
+- skill: sturdy_step
+  note: SHIFT + W.
+- skill: prime_frigid_wind
+  note: C + W.
+- skill: prime_frigid_wind
+  note: Float follow-up.
+  alt_skill: chokeslam
+  alt_note: Grab follow-up — E instead of RMB.

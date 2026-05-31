@@ -1,0 +1,21 @@
+combo_id: pvp_dragons_maw_burst
+class: Guardian
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Dragon''s Maw Burst (PlayLove)'
+description: Grab into Pulverization opener, finishing on Dragon's Maw → Flow Howling Light. Credit PlayLove.
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: neck_impaler
+- skill: searing_fang
+  note: First hit only.
+- skill: glorious_advance
+  note: First hit only.
+- skill: pulverization
+- skill: black_blood_slaughter
+- skill: gate_crasher
+- skill: cleansing_flame
+- skill: dragons_maw
+- skill: flow_howling_light

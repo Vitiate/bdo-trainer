@@ -1,0 +1,17 @@
+combo_id: pvp_short_grab_finisher
+class: Guardian
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Short Grab Finisher (Junso)'
+description: Compact grab opener straight into Cleansing Flame → Dragon's Maw → Flow Howling Light. Credit Junso.
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: neck_impaler
+- skill: searing_fang
+  note: 2 hits.
+- skill: glorious_advance
+- skill: cleansing_flame
+- skill: dragons_maw
+- skill: flow_howling_light
