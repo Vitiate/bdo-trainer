@@ -4,6 +4,38 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.2] — 2026-05-30
+
+### Fixed
+- **macOS startup crash in tray-only mode.** The pynput keyboard
+  listener thread was being started even when the overlay window was
+  suppressed; on macOS under Python 3.14 it could throw
+  `KeyError: 'AXIsProcessTrusted'` from a pyobjc lazy-import bug.
+  When `show_window=False` (the macOS default), the input listener
+  daemon threads are no longer started — they aren't needed without
+  an in-game overlay to drive. The `InputMonitor` instance is still
+  constructed so the player and hold bar still get their dependency.
+
+### Changed
+- **Removed three internal tooling scripts** (`scripts/scrape_bdocodex.py`,
+  `scripts/build_class_yaml.py`, `scripts/apply_skill_patches.py`).
+  These were one-off internal tools used to seed the initial 48 class
+  skill libraries; they aren't part of the shipped product and have no
+  place in the user-facing repo. The shipped class skill data stays
+  exactly as-is — `data/classes/<slug>.yaml` is the authoritative
+  source going forward, edited via the **Class Editor**.
+
+### Documentation
+- **README restructured.** Reorganised so a new user can install,
+  start a combo, and share to bdodojo.com without scrolling past
+  architecture details and YAML schemas. Layout is now Getting
+  started → Editing combos → Sharing → Troubleshooting → (divider) →
+  Technical reference.
+- **Added a full `bdodojo.com` upload walkthrough** to the README —
+  export from the Combo Editor, sign in, upload, polish the listing,
+  publish — plus tips for good listings and troubleshooting common
+  upload errors.
+
 ## [0.5.1] — 2026-05-30
 
 ### Added
@@ -223,6 +255,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.2
 [0.5.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.1
 [0.5.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.0
 [0.4.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.4.2
