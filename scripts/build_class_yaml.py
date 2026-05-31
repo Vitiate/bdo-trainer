@@ -98,6 +98,11 @@ KEY_ALIASES: Dict[str, str] = {
     "tab": "tab",
     "w": "w", "a": "a", "s": "s", "d": "d",
     "q": "q", "e": "e", "f": "f", "x": "x", "z": "z", "r": "r", "c": "c",
+    # Arrow glyphs as they appear on BDOCodex skill pages.
+    "↑": "w",
+    "↓": "s",
+    "←": "a",
+    "→": "d",
 }
 
 CC_KEYWORDS: Dict[str, str] = {
@@ -326,7 +331,11 @@ def route_to_specs(name: str, awakening_label: str) -> List[str]:
         # Black Spirit ultimates exist in both specs but rarely get used
         # in combos — route to both so the user can decide.
         return [awakening_label, "Succession"]
-    if lower.startswith("succession:") or lower.startswith("prime:"):
+    if (
+        lower.startswith("succession:")
+        or lower.startswith("prime:")
+        or lower.startswith("absolute:")  # succession-rank evolutions
+    ):
         return ["Succession"]
     if lower.startswith(awakening_label.lower() + ":"):
         return [awakening_label]

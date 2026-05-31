@@ -148,6 +148,35 @@ class ComboEditorWindow:
         ).pack(fill="x", padx=12, pady=(10, 2))
         tk.Frame(sidebar, bg=ACCENT, height=1).pack(fill="x", padx=8, pady=(0, 6))
 
+        # Filter — live narrows the listbox by class/spec/bundle text.
+        self._filter_var = tk.StringVar()
+        self._filter_var.trace_add("write", lambda *_: self._populate_sidebar())
+        filter_entry = tk.Entry(
+            sidebar,
+            font=FONT, bg=BG_INPUT, fg=FG_TEXT,
+            insertbackground=FG_TEXT, relief="flat", bd=0,
+            highlightthickness=1, highlightcolor=ACCENT,
+            highlightbackground=BG_CARD,
+            textvariable=self._filter_var,
+        )
+        filter_entry.pack(fill="x", padx=8, pady=(0, 6))
+        # Hint text via placeholder simulation: show "Filter…" when empty
+        # and the entry doesn't have focus.
+        def _on_focus_in(_e):
+            if filter_entry.get() == "Filter…":
+                filter_entry.delete(0, "end")
+                filter_entry.configure(fg=FG_TEXT)
+
+        def _on_focus_out(_e):
+            if not filter_entry.get():
+                filter_entry.insert(0, "Filter…")
+                filter_entry.configure(fg=FG_DIM)
+
+        filter_entry.insert(0, "Filter…")
+        filter_entry.configure(fg=FG_DIM)
+        filter_entry.bind("<FocusIn>", _on_focus_in)
+        filter_entry.bind("<FocusOut>", _on_focus_out)
+
         lb_frame = tk.Frame(sidebar, bg=BG_CARD)
         lb_frame.pack(fill="both", expand=True, padx=6, pady=(0, 4))
         scrollbar = tk.Scrollbar(lb_frame, orient="vertical")
@@ -412,17 +441,39 @@ class ComboEditorWindow:
     # Sidebar
     # ------------------------------------------------------------------
     def _populate_sidebar(self) -> None:
+        # Trace fires while the filter Entry inserts its placeholder,
+        # before the listbox exists.
+        if not hasattr(self, "_listbox") or self._listbox is None:
+            return
         self._listbox.delete(0, "end")
         self._sidebar_rows = []
 
+        # Apply the filter. The placeholder text "Filter…" counts as empty.
+        raw_filter = ""
+        if hasattr(self, "_filter_var"):
+            raw_filter = self._filter_var.get().strip()
+        if raw_filter == "Filter…":
+            raw_filter = ""
+        needle = raw_filter.lower()
+
         for class_name, spec_name in self.loader.classes.keys():
+            class_label = f"{class_name} — {spec_name}".lower()
+
+            # Match against class+spec, plus any bundle id/name under it,
+            # so e.g. searching "grind" finds a bundle named "grind" even
+            # if it doesn't appear in the class label.
+            bundles = self.loader.bundles.bundles_for_class(class_name, spec_name)
+            bundle_text = " ".join(
+                f"{bid} {meta.get('name', '')}" for bid, meta in bundles
+            ).lower()
+            if needle and needle not in class_label and needle not in bundle_text:
+                continue
+
             self._sidebar_rows.append(("header", class_name, spec_name))
             self._listbox.insert("end", f"{class_name} — {spec_name}")
             self._listbox.itemconfigure("end", fg=GOLD)
 
-            for bid, meta in self.loader.bundles.bundles_for_class(
-                class_name, spec_name
-            ):
+            for bid, meta in bundles:
                 count = sum(
                     1 for _ in self.loader.bundles.iter_combos_for_bundle(
                         class_name, spec_name, bid
@@ -516,11 +567,20 @@ class ComboEditorWindow:
         self._set_text(self._bundle_desc_text, meta.get("description") or "")
 
         # Loadout fields
-        self._set_text(
-            self._loadout_widgets["hotbar_skills"],
-            "\n".join(meta.get("hotbar_skills") or []),
-        )
-        locked_lines = []
+        # hotbar_skills accepts either a list of strings or a list of dicts
+        # (richer format with optional `reason` / `hotbar_key`). Normalise
+        # into "name :: reason" lines for editing — saves the same way.
+        hotbar_lines: List[str] = []
+        for entry in meta.get("hotbar_skills") or []:
+            if isinstance(entry, dict):
+                name = entry.get("name", "")
+                reason = entry.get("reason", "")
+                hotbar_lines.append(f"{name} :: {reason}" if reason else name)
+            else:
+                hotbar_lines.append(str(entry))
+        self._set_text(self._loadout_widgets["hotbar_skills"], "\n".join(hotbar_lines))
+
+        locked_lines: List[str] = []
         for entry in meta.get("locked_skills") or []:
             if isinstance(entry, dict):
                 name = entry.get("name", "")
@@ -617,10 +677,42 @@ class ComboEditorWindow:
                 self._mark_dirty()
 
     # ------------------------------------------------------------------
+    # Native-prompt z-order wrapper
+    # ------------------------------------------------------------------
+    def _ask_string(self, *args, **kwargs):
+        """``simpledialog.askstring`` wrapper that keeps the prompt on top.
+
+        On macOS, a tkinter ``simpledialog`` opened with the editor as
+        parent flashes briefly and then sinks behind the editor — the
+        same z-order bug we already worked around for our own custom
+        Toplevels via ``force_dialog_to_front``. Built-in dialogs don't
+        let us tweak their attributes, so we drop the parent's
+        ``-topmost`` for the duration of the prompt and restore it
+        once the user answers.
+        """
+        was_topmost = False
+        try:
+            was_topmost = bool(self.window.attributes("-topmost"))
+            if was_topmost:
+                self.window.attributes("-topmost", False)
+        except tk.TclError:
+            pass
+        try:
+            return simpledialog.askstring(*args, **kwargs)
+        finally:
+            if was_topmost:
+                try:
+                    self.window.attributes("-topmost", True)
+                    self.window.lift()
+                    self.window.focus_force()
+                except tk.TclError:
+                    pass
+
+    # ------------------------------------------------------------------
     # Bundle CRUD
     # ------------------------------------------------------------------
     def _on_new_bundle(self, class_name: str, spec_name: str) -> None:
-        new_id = simpledialog.askstring(
+        new_id = self._ask_string(
             "New Bundle",
             f"Bundle ID for {class_name} ({spec_name}):\n"
             "(lowercase, letters / digits / underscore)",
@@ -662,7 +754,7 @@ class ComboEditorWindow:
             )
             return
         class_name, spec_name, old_id = self._current_key
-        new_id = simpledialog.askstring(
+        new_id = self._ask_string(
             "Rename Bundle",
             f"New bundle ID for {old_id}:",
             initialvalue=old_id,
@@ -734,7 +826,16 @@ class ComboEditorWindow:
         """Read the loadout panel back into a dict matching the bundle schema."""
         # Hotbar skills: one per non-empty line.
         hotbar_text = self._loadout_widgets["hotbar_skills"].get("1.0", "end-1c")
-        hotbar = [line.strip() for line in hotbar_text.splitlines() if line.strip()]
+        hotbar: List = []
+        for line in hotbar_text.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if "::" in line:
+                name, reason = line.split("::", 1)
+                hotbar.append({"name": name.strip(), "reason": reason.strip()})
+            else:
+                hotbar.append(line)
 
         # Locked skills: "name :: reason" one per line.
         locked_text = self._loadout_widgets["locked_skills"].get("1.0", "end-1c")
@@ -1380,6 +1481,28 @@ class ImportComboBundleDialog:
             return self._target_keys[0]
         return ("", "")
 
+    def _ask_string(self, *args, **kwargs):
+        """``simpledialog.askstring`` wrapper — drops ``self.dlg``'s
+        topmost flag while the prompt is open so the prompt doesn't sink
+        behind the dialog on macOS."""
+        was_topmost = False
+        try:
+            was_topmost = bool(self.dlg.attributes("-topmost"))
+            if was_topmost:
+                self.dlg.attributes("-topmost", False)
+        except tk.TclError:
+            pass
+        try:
+            return simpledialog.askstring(*args, **kwargs)
+        finally:
+            if was_topmost:
+                try:
+                    self.dlg.attributes("-topmost", True)
+                    self.dlg.lift()
+                    self.dlg.focus_force()
+                except tk.TclError:
+                    pass
+
     def _resolve_target_bundle(
         self, target_class: str, target_spec: str,
     ) -> Optional[str]:
@@ -1387,7 +1510,7 @@ class ImportComboBundleDialog:
         if not choice:
             return None
         if choice.startswith("+ "):
-            new_id = simpledialog.askstring(
+            new_id = self._ask_string(
                 "New Target Bundle",
                 "Bundle ID for the imported combos:",
                 initialvalue=self.bundle_id,
@@ -1432,7 +1555,7 @@ class ImportComboBundleDialog:
         rename_conflicts: Dict[str, str] = {}
         for cid in selected:
             if cid in existing_ids:
-                new_id = simpledialog.askstring(
+                new_id = self._ask_string(
                     "Combo ID Conflict",
                     f"'{cid}' already exists in {target_bundle_id}.\n\n"
                     "Enter a new combo ID, or leave blank to overwrite:",

@@ -130,6 +130,34 @@ class ClassEditorWindow:
         ).pack(fill="x", padx=12, pady=(10, 2))
         tk.Frame(sidebar, bg=ACCENT, height=1).pack(fill="x", padx=8, pady=(0, 6))
 
+        # Filter — live narrows the listbox by class/spec text.
+        self._filter_var = tk.StringVar()
+        self._filter_var.trace_add("write", lambda *_: self._populate_sidebar())
+        filter_entry = tk.Entry(
+            sidebar,
+            font=FONT, bg=BG_INPUT, fg=FG_TEXT,
+            insertbackground=FG_TEXT, relief="flat", bd=0,
+            highlightthickness=1, highlightcolor=ACCENT,
+            highlightbackground=BG_CARD,
+            textvariable=self._filter_var,
+        )
+        filter_entry.pack(fill="x", padx=8, pady=(0, 6))
+
+        def _on_focus_in(_e):
+            if filter_entry.get() == "Filter…":
+                filter_entry.delete(0, "end")
+                filter_entry.configure(fg=FG_TEXT)
+
+        def _on_focus_out(_e):
+            if not filter_entry.get():
+                filter_entry.insert(0, "Filter…")
+                filter_entry.configure(fg=FG_DIM)
+
+        filter_entry.insert(0, "Filter…")
+        filter_entry.configure(fg=FG_DIM)
+        filter_entry.bind("<FocusIn>", _on_focus_in)
+        filter_entry.bind("<FocusOut>", _on_focus_out)
+
         lb_frame = tk.Frame(sidebar, bg=BG_CARD)
         lb_frame.pack(fill="both", expand=True, padx=6, pady=(0, 4))
         scrollbar = tk.Scrollbar(lb_frame, orient="vertical")
@@ -240,8 +268,28 @@ class ClassEditorWindow:
     # Sidebar
     # ------------------------------------------------------------------
     def _populate_sidebar(self) -> None:
+        # Trace fires while the filter Entry inserts its placeholder,
+        # before the listbox exists.
+        if not hasattr(self, "_listbox") or self._listbox is None:
+            return
         self._listbox.delete(0, "end")
-        self._sidebar_keys = self.loader.classes.keys()
+
+        raw_filter = ""
+        if hasattr(self, "_filter_var"):
+            raw_filter = self._filter_var.get().strip()
+        if raw_filter == "Filter…":
+            raw_filter = ""
+        needle = raw_filter.lower()
+
+        all_keys = self.loader.classes.keys()
+        if needle:
+            self._sidebar_keys = [
+                (c, s) for (c, s) in all_keys
+                if needle in f"{c} — {s}".lower()
+            ]
+        else:
+            self._sidebar_keys = all_keys
+
         for class_name, spec_name in self._sidebar_keys:
             self._listbox.insert("end", f"{class_name} — {spec_name}")
         if self._current_key and self._current_key in self._sidebar_keys:
@@ -467,6 +515,31 @@ class ClassEditorWindow:
                 logger.exception("on_save callback failed")
 
     # ------------------------------------------------------------------
+    # Native-prompt z-order wrapper
+    # ------------------------------------------------------------------
+    def _ask_string(self, *args, **kwargs):
+        """``simpledialog.askstring`` wrapper — drops the editor's
+        topmost flag for the duration of the prompt so it doesn't sink
+        behind on macOS."""
+        was_topmost = False
+        try:
+            was_topmost = bool(self.window.attributes("-topmost"))
+            if was_topmost:
+                self.window.attributes("-topmost", False)
+        except tk.TclError:
+            pass
+        try:
+            return simpledialog.askstring(*args, **kwargs)
+        finally:
+            if was_topmost:
+                try:
+                    self.window.attributes("-topmost", True)
+                    self.window.lift()
+                    self.window.focus_force()
+                except tk.TclError:
+                    pass
+
+    # ------------------------------------------------------------------
     # Save
     # ------------------------------------------------------------------
     def _on_save_click(self) -> None:
@@ -588,7 +661,7 @@ class ClassEditorWindow:
             if choice is None:
                 return
             if choice is False:
-                new_name = simpledialog.askstring(
+                new_name = self._ask_string(
                     "Rename Class", "New class name:",
                     initialvalue=class_name + " (Imported)",
                     parent=self.window,
