@@ -77,6 +77,9 @@ class PriorityPlayer:
     def set_key_remap(self, remap: Dict[str, str]) -> None:
         self._key_remap = remap
         if self._is_running:
+            # Keys changed — re-arm every tap against the new physical
+            # bindings so accidental presses still register.
+            self._arm_all_taps()
             self._resolve_and_render()
 
     @property
@@ -108,6 +111,10 @@ class PriorityPlayer:
             f"({len(self._rows)} skills, "
             f"{len(self._tier_labels)} tiers)"
         )
+        # Arm one tap per skill in the combo so accidental / out-of-turn
+        # casts also start the skill's cooldown — the next resolve will
+        # then skip that skill instead of immediately re-displaying it.
+        self._arm_all_taps()
         self._resolve_and_render()
         self._start_tick()
 
@@ -115,7 +122,7 @@ class PriorityPlayer:
         was_running = self._is_running
         self._is_running = False
         self._stop_tick()
-        self._disarm_tap()
+        self._disarm_all_taps()
         try:
             self.renderer.clear_step()
         except Exception:
@@ -125,10 +132,11 @@ class PriorityPlayer:
 
     def pause(self) -> None:
         self._stop_tick()
-        self._disarm_tap()
+        self._disarm_all_taps()
 
     def resume(self) -> None:
         if self._is_running and self._rows:
+            self._arm_all_taps()
             self._resolve_and_render()
             self._start_tick()
 
@@ -249,31 +257,62 @@ class PriorityPlayer:
         return candidates[0][2]
 
     # ------------------------------------------------------------------
-    # Tap arming
+    # Tap arming — one tap per skill so any key press stamps a cooldown
     # ------------------------------------------------------------------
-    def _arm_tap(self, row: Dict[str, Any]) -> None:
-        self._disarm_tap()
-        primary = self._remap_keys(row["keys"])
+    def _arm_all_taps(self) -> None:
+        """Register a tap for every skill in the combo.
+
+        Skills that share an identical canonical key combo are folded
+        into a single tap whose callback stamps the highest-priority
+        owner — that way a Tier-2 skill sharing keys with a Tier-0 one
+        doesn't double-burn both cooldowns on a single press.
+        """
+        self._disarm_all_taps()
+        if not INPUT_AVAILABLE:
+            return
+        # combo-key signature → list of (tier, idx, skill_id)
+        groups: Dict[tuple, List[tuple]] = {}
+        for idx, row in enumerate(self._rows):
+            for key_set in self._row_key_sets(row):
+                signature = tuple(sorted(key_set))
+                groups.setdefault(signature, []).append(
+                    (row["tier"], idx, row["id"])
+                )
+        for signature, owners in groups.items():
+            owners.sort(key=lambda o: (o[0], o[1]))
+            primary_id = owners[0][2]
+            tap_name = f"priority_player:{signature!r}"
+            self.input_monitor.add_tap(
+                tap_name,
+                [list(signature)],
+                on_match=self._make_trigger(primary_id),
+            )
+
+    def _disarm_all_taps(self) -> None:
+        # Remove every tap we may have registered. Cheap (no scan).
+        if not INPUT_AVAILABLE:
+            return
+        for row in self._rows:
+            for key_set in self._row_key_sets(row):
+                signature = tuple(sorted(key_set))
+                tap_name = f"priority_player:{signature!r}"
+                try:
+                    self.input_monitor.remove_tap(tap_name)
+                except Exception:
+                    pass
+
+    def _row_key_sets(self, row: Dict[str, Any]) -> List[List[str]]:
+        """Return the row's primary + alt key combos after key remap,
+        skipping anything empty or hotbar-only."""
         sets: List[List[str]] = []
+        primary = self._remap_keys(row["keys"])
         if primary:
             sets.append(primary)
         if row["keys_alt"]:
             alt = self._remap_keys(row["keys_alt"])
             if alt:
                 sets.append(alt)
-        if not sets or not INPUT_AVAILABLE:
-            return
-        self.input_monitor.add_tap(
-            "priority_player",
-            sets,
-            on_match=self._make_trigger(row["id"]),
-        )
-
-    def _disarm_tap(self) -> None:
-        try:
-            self.input_monitor.remove_tap("priority_player")
-        except Exception:
-            pass
+        return sets
 
     def _remap_keys(self, keys: List[str]) -> List[str]:
         return [
@@ -302,10 +341,6 @@ class PriorityPlayer:
         row = self._resolve_next()
         self._displayed_skill = row["id"] if row else None
         self._render(row)
-        if row is not None:
-            self._arm_tap(row)
-        else:
-            self._disarm_tap()
 
     def _render(self, row: Optional[Dict[str, Any]]) -> None:
         renderer = self.renderer
@@ -409,10 +444,6 @@ class PriorityPlayer:
         if new_id != self._displayed_skill:
             self._displayed_skill = new_id
             self._render(new_row)
-            if new_row is not None:
-                self._arm_tap(new_row)
-            else:
-                self._disarm_tap()
         else:
             # Same skill, but the boost label might have flipped — cheap
             # to re-render so the badge state stays accurate.
