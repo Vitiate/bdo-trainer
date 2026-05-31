@@ -101,7 +101,13 @@ class ComboOverlay:
 
         # --- Components ----------------------------------------------------
         self.input_monitor = InputMonitor()
-        self.input_monitor.start()
+        # Skip starting the pynput listener threads when the overlay
+        # window is hidden — there's no in-game UI for them to drive,
+        # and on macOS the listener thread can crash on a pyobjc
+        # lazy-import bug (KeyError: 'AXIsProcessTrusted'). The
+        # editor + tray flows do not depend on input monitoring.
+        if self._show_window:
+            self.input_monitor.start()
 
         self._hold_bar = HoldBar(self._ctx, self._renderer, self.input_monitor)
         self._player = ComboPlayer(
