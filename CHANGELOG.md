@@ -4,6 +4,67 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.4] — 2026-05-31
+
+### Added
+- **Priority combos.** Combo files now support a second mode alongside
+  sequence playback — `mode: priority` with a `priority:` block of
+  tiers, each containing an ordered skill list. The trainer walks tiers
+  top-to-bottom and shows the highest-priority skill that's currently
+  off cooldown. When you press the displayed skill's keys, it stamps
+  the cooldown and re-resolves to the next-highest off-cooldown skill.
+  - **`boost_after` rule** promotes a skill into a higher tier
+    temporarily after another skill is cast (Witch's Thorns of Denial
+    after Voltaic Pulse, for example).
+  - **Combo Editor** gains a **Mode** dropdown (sequence | priority).
+    Priority mode swaps the Steps editor for a Priority Tiers editor
+    with reorderable tiers and skills, plus per-skill `boost_after` /
+    `boost_window_ms` / `boost_to_tier` fields. Switching modes
+    preserves edits in both blocks until save.
+  - **Schema reference** at `docs/priority-combos.md` covers the YAML
+    shape, runtime resolution, editor support, and notes for
+    bdodojo.com to extend its web editor with the same shape.
+- **`PriorityPlayer` overlay component** in `src/overlay/priority_player.py`.
+  Reuses `InputMonitor.add_tap` to listen for the displayed skill's
+  keys without disturbing the combo player's primary target channel.
+  ComboOverlay's lifecycle dispatches by `mode`; setup-guide /
+  reposition / pause / resume now route to whichever player is active.
+- **Update channels — Stable | Beta.** Tray → Settings → Updates picks
+  which GitHub Releases the auto-updater watches:
+  - **Stable** (default) uses GitHub's `/releases/latest` — never
+    surfaces prereleases.
+  - **Beta** lists `/releases?per_page=30` and offers the highest
+    version, prerelease or not.
+  - The update dialog labels prerelease builds and surfaces the
+    current channel.
+  - Switching from Beta back to Stable while running a higher version
+    won't downgrade — the updater shows an "ahead of channel" notice
+    instead of silently rolling you back.
+  - Selection persists in `config/combos.yaml` under
+    `settings.update_channel`.
+- **Witch Awakening priority combo** — `pve_priority_grind`. Three
+  tiers: Highest Priority (Voltaic Pulse / Lightning Blast / Toxic
+  Flood), Main DPS (Fissure Wave, Thunderstorm, Yoke of Ordeal,
+  Barrage of Lightning, Thorns of Denial with `boost_after:
+  voltaic_pulse`), Filler (Detonative Flow, Earthen Eruption,
+  Equilibrium Break).
+- **Two missing skills added** to `data/classes/witch_awakening.yaml` —
+  Thorns of Denial (`shift+q`, 9 s cd) and Earthen Eruption
+  (`f`, 8 s cd) — so the new priority combo resolves cleanly.
+
+### Changed
+- `src/editor/portability.py` — `collect_skill_ids_used_by_combo` now
+  also walks `priority:` blocks (and `alt_skill` on sequence steps),
+  so `.bdt` exports include every referenced skill.
+- Toxic Flood notes corrected from "-20 Magic DR" to "-15 Magic DP"
+  to match the in-game tooltip.
+
+### Internal
+- `SettingsLoader._persist_top_level` reused for the new
+  `update_channel` key — same shape as `show_cc_panel`.
+- `fetch_latest_release` now takes a `channel` arg; `check_and_prompt`
+  forwards the user's preference from `main.py`.
+
 ## [0.5.3] — 2026-05-31
 
 ### Added
@@ -300,6 +361,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.4
 [0.5.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.3
 [0.5.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.2
 [0.5.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.1

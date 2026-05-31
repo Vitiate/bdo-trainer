@@ -1,0 +1,52 @@
+combo_id: pve_priority_grind
+class: Witch
+spec: Awakening
+bundle_id: default
+category: pve
+mode: priority
+name: 'PvE — Priority Grind Loop'
+description: |
+  Cooldown-driven priority loop.
+
+  Tier 0 (Highest) — buffs/debuffs that should always be on cooldown:
+    Voltaic Pulse (20% Casting Speed), Lightning Blast (18% Crit Rate),
+    Toxic Flood (-15 Magic DP debuff).
+
+  Tier 1 (Main DPS) — biggest damage skills cycled by cooldown:
+    Fissure Wave, Thunderstorm, Yoke of Ordeal, Barrage of Lightning,
+    Thorns of Denial. Thorns of Denial is promoted into Tier 0 for a
+    short window after Voltaic Pulse — its cast is faster when chained
+    that way and should fire before another Tier 1 skill.
+
+  Tier 2 (Filler) — gap fillers when nothing higher is available:
+    Detonative Flow, Earthen Eruption, Equilibrium Break.
+priority:
+  - tier: Highest Priority
+    description: Always on cooldown — buffs and debuffs.
+    skills:
+      - skill: voltaic_pulse
+        note: 20% Casting Speed buff for 10s.
+      - skill: lightning_blast
+        note: 18% Crit Rate buff.
+      - skill: toxic_flood
+        note: '-15 Magic DP debuff on affected enemies.'
+
+  - tier: Main DPS
+    description: Highest-damage skills. Cycle by cooldown.
+    skills:
+      - skill: fissure_wave
+      - skill: thunder_storm
+      - skill: yoke_of_ordeal
+      - skill: barrage_of_lightning
+      - skill: thorns_of_denial
+        boost_after: voltaic_pulse
+        boost_window_ms: 4000
+        boost_to_tier: 0
+        note: Promoted into Tier 0 briefly after Voltaic Pulse — faster cast.
+
+  - tier: Filler
+    description: Low-priority fillers when everything else is on cooldown.
+    skills:
+      - skill: detonative_flow
+      - skill: earthen_eruption
+      - skill: equilibrium_break

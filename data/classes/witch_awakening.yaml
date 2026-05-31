@@ -244,8 +244,38 @@ skills:
     damage: medium
     cooldown_ms: 15000
     description: Spread toxic energy in a wide area. 635% x1, max 23 hits over 7.5s duration. Poison 100 dmg per 3s for 36s.
-      Magic DR -20 debuff for 5s.
-    notes: Long DoT skill. Not used in optimized rotation. Can place between packs for passive damage.
+      Magic DP -15 debuff on affected enemies.
+    notes: 'Priority debuff — keep on cooldown so the -15 Magic DP stays applied to the pack.'
+  thorns_of_denial:
+    name: Thorns of Denial
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    damage: high
+    cooldown_ms: 9000
+    description: Summon piercing thorns around the caster. Super Armor during skill.
+    flows_into:
+    - fissure_wave
+    - thunder_storm
+    notes: 'Cast is faster when chained immediately after Voltaic Pulse — promote into Tier 0 briefly while the buff window
+      is live; otherwise treat as Main DPS.'
+  earthen_eruption:
+    name: Earthen Eruption
+    input: F
+    keys:
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    damage: medium
+    cooldown_ms: 8000
+    description: Erupt the ground beneath the target with stone shards. Super Armor during skill.
+    notes: 'Filler — usable in mainhand or via hotbar. Use to stagger between higher-priority skills coming back up.'
   speed_spell:
     name: Speed Spell
     input: hotbar

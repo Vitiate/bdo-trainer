@@ -14,6 +14,7 @@ from src.input_monitor import InputMonitor
 from src.overlay.cc_panel import CCPanel
 from src.overlay.combo_player import ComboPlayer
 from src.overlay.hold_bar import HoldBar
+from src.overlay.priority_player import PriorityPlayer
 from src.overlay.renderer import TRANSPARENT_COLOR, OverlayContext, OverlayRenderer
 from src.overlay.reposition import RepositionHandler
 from src.overlay.setup_guide import SetupGuide
@@ -117,6 +118,12 @@ class ComboOverlay:
             self.input_monitor,
             self._hold_bar,
         )
+        self._priority = PriorityPlayer(
+            self._ctx, self._renderer, self.input_monitor,
+        )
+        # Tracks which player is currently active so stop / pause /
+        # resume / external hooks route to the right one.
+        self._active_player: Any = self._player
         self._guide = SetupGuide(self._ctx, self._renderer)
         self._cc_panel = CCPanel(self._ctx, self._renderer, self.input_monitor)
         self._reposition = RepositionHandler(
@@ -136,7 +143,7 @@ class ComboOverlay:
         logger.info("Overlay initialised (transparent canvas, key-press mode)")
 
     # =================================================================
-    # External hooks (forwarded to player)
+    # External hooks (forwarded to all players)
     # =================================================================
     @property
     def on_combo_finished(self) -> Optional[Callable]:
@@ -145,6 +152,7 @@ class ComboOverlay:
     @on_combo_finished.setter
     def on_combo_finished(self, value: Optional[Callable]) -> None:
         self._player.on_combo_finished = value
+        self._priority.on_combo_finished = value
 
     @property
     def get_skill_info(self) -> Optional[Callable]:
@@ -153,12 +161,14 @@ class ComboOverlay:
     @get_skill_info.setter
     def get_skill_info(self, value: Optional[Callable]) -> None:
         self._player.get_skill_info = value
+        self._priority.get_skill_info = value
 
     # =================================================================
     # Configuration
     # =================================================================
     def set_key_remap(self, remap: Dict[str, str]) -> None:
         self._player.set_key_remap(remap)
+        self._priority.set_key_remap(remap)
         self._cc_panel.set_key_remap(remap)
 
     def set_idle_reset_ms(self, ms: int) -> None:
@@ -174,26 +184,36 @@ class ComboOverlay:
         step_delay_ms: Optional[int] = None,
         loop: bool = True,
     ) -> None:
-        self._player.start(combo_data, combo_name, step_delay_ms, loop)
+        # Stop whichever player is currently active before swapping.
+        self._player.stop()
+        self._priority.stop()
+        mode = (combo_data or {}).get("mode", "sequence")
+        if mode == "priority":
+            self._active_player = self._priority
+            self._priority.start(combo_data, combo_name)
+        else:
+            self._active_player = self._player
+            self._player.start(combo_data, combo_name, step_delay_ms, loop)
 
     def stop_combo(self) -> None:
         self._player.stop()
+        self._priority.stop()
 
     def is_running(self) -> bool:
-        return self._player.is_running
+        return self._player.is_running or self._priority.is_running
 
     # =================================================================
     # Setup guide
     # =================================================================
     def show_setup_guide(self, guide_data: Dict[str, Any]) -> None:
-        self._player.pause()
+        self._active_player.pause()
         self._guide.show(guide_data)
 
     def hide_setup_guide(self) -> None:
         was_active = self._guide.is_active
         self._guide.hide()
-        if was_active and self._player.is_running:
-            self._player.resume()
+        if was_active and self._active_player.is_running:
+            self._active_player.resume()
 
     def toggle_setup_guide(self, guide_data=None) -> bool:
         if self._guide.is_active:
@@ -231,13 +251,13 @@ class ComboOverlay:
     # Reposition
     # =================================================================
     def enable_reposition(self) -> None:
-        self._player.pause()
+        self._active_player.pause()
         self._reposition.enable()
 
     def disable_reposition(self) -> None:
         self._reposition.disable()
-        if self._player.is_running:
-            self._player.resume()
+        if self._active_player.is_running:
+            self._active_player.resume()
 
     def toggle_reposition(self) -> bool:
         if self._reposition.is_active:
@@ -276,6 +296,7 @@ class ComboOverlay:
             return
         self._destroyed = True
         self._player.stop()
+        self._priority.stop()
         self.input_monitor.stop()
         try:
             self.root.quit()

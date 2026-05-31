@@ -324,6 +324,7 @@ class BDOTrainerApp:
             parent_supplier=lambda: self.overlay.root,
             show_no_update_dialog=True,
             show_failure_dialog=True,
+            channel=self.loader.get_update_channel(),
         )
 
     def _check_for_updates_on_startup(self):
@@ -333,6 +334,7 @@ class BDOTrainerApp:
             parent_supplier=lambda: self.overlay.root,
             show_no_update_dialog=False,
             show_failure_dialog=False,
+            channel=self.loader.get_update_channel(),
         )
 
     def _on_combo_editor(self):

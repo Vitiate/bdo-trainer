@@ -315,11 +315,27 @@ def list_skills_in_bundle(bundle: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
 
 def collect_skill_ids_used_by_combo(combo: Dict[str, Any]) -> set:
     out: set = set()
+    # Sequence-mode combos.
     for step in combo.get("steps") or []:
         if isinstance(step, dict):
-            sid = step.get("skill")
-            if isinstance(sid, str) and sid:
-                out.add(sid)
+            for k in ("skill", "alt_skill"):
+                sid = step.get(k)
+                if isinstance(sid, str) and sid:
+                    out.add(sid)
+    # Priority-mode combos (mode: priority).
+    for tier in combo.get("priority") or []:
+        if not isinstance(tier, dict):
+            continue
+        for entry in tier.get("skills") or []:
+            if isinstance(entry, str) and entry:
+                out.add(entry)
+            elif isinstance(entry, dict):
+                sid = entry.get("skill")
+                if isinstance(sid, str) and sid:
+                    out.add(sid)
+                booster = entry.get("boost_after")
+                if isinstance(booster, str) and booster:
+                    out.add(booster)
     return out
 
 

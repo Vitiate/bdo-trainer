@@ -611,6 +611,20 @@ class SettingsLoader:
         self.settings["show_cc_panel"] = bool(enabled)
         self._persist_top_level("show_cc_panel")
 
+    # ------------------------------------------------------------------
+    # Update channel ("stable" | "beta") persistence
+    # ------------------------------------------------------------------
+    def get_update_channel(self) -> str:
+        ch = str(self.settings.get("update_channel", "stable")).lower().strip()
+        return ch if ch in ("stable", "beta") else "stable"
+
+    def set_update_channel(self, channel: str) -> None:
+        ch = str(channel).lower().strip()
+        if ch not in ("stable", "beta"):
+            ch = "stable"
+        self.settings["update_channel"] = ch
+        self._persist_top_level("update_channel")
+
     def _persist_top_level(self, *keys: str) -> None:
         """Write the named top-level settings keys back to combos.yaml.
 
@@ -679,9 +693,13 @@ class AppLoader:
     def get_key_remap(self):               return self.settings_loader.get_key_remap()
     def get_timing_settings(self):         return self.settings_loader.get_timing_settings()
     def get_show_cc_panel(self) -> bool:   return self.settings_loader.get_show_cc_panel()
+    def get_update_channel(self) -> str:   return self.settings_loader.get_update_channel()
 
     def set_show_cc_panel(self, enabled: bool) -> None:
         self.settings_loader.set_show_cc_panel(enabled)
+
+    def set_update_channel(self, channel: str) -> None:
+        self.settings_loader.set_update_channel(channel)
 
     @property
     def settings(self) -> Dict[str, Any]:

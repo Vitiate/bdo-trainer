@@ -4,7 +4,7 @@ A transparent, click-through game overlay for **Black Desert Online** that displ
 
 All **27 BDO classes × 2 specs (54 total)** ship with skill data.
 
-![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey) ![macOS: tray-only](https://img.shields.io/badge/macOS-tray%20only-yellow) ![Version](https://img.shields.io/badge/version-0.5.3-green)
+![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey) ![macOS: tray-only](https://img.shields.io/badge/macOS-tray%20only-yellow) ![Version](https://img.shields.io/badge/version-0.5.4-green)
 
 ![In-game overlay screenshot](doc/images/in-game-overlay.png)
 
@@ -20,6 +20,9 @@ All **27 BDO classes × 2 specs (54 total)** ship with skill data.
 - [Hotkeys](#hotkeys)
 - [Move the overlay](#move-the-overlay)
 - [Setup Guide](#setup-guide)
+- [Show CC Skills panel](#show-cc-skills-panel)
+- [Priority combos](#priority-combos)
+- [Update channel — Stable / Beta](#update-channel--stable--beta)
 
 **Editing combos**
 
@@ -144,6 +147,45 @@ Each combo bundle carries a recommended **loadout** — which skills to lock, wh
 3. Press `F7` to flip through pages: Core skill → Locked skills → Hotbar → Add-ons.
 
 Untick **Setup Guide** in the tray menu to dismiss.
+
+---
+
+## Show CC Skills panel
+
+A separate overlay panel that lists every CC-applying skill for your active class.
+
+- Tray → tick **Show CC Skills**.
+- Each row shows the skill name, its CC tags (PvE-only / PvP-only annotations parsed from skill notes), and the physical key combo to trigger it.
+- When you press a skill's keys the row dims to grey, then the text "fills back in" left-to-right as the cooldown ticks down — a glanceable cooldown bar.
+- Drag the panel independently of the combo overlay while Reposition Mode is on.
+- Toggle state and panel position persist across launches.
+
+Skills with only a hotbar binding are skipped — without a fixed key combo there's nothing to listen for.
+
+---
+
+## Priority combos
+
+Some combos are sequences (grab → boulder crush → savage hack), others are cooldown-driven priority lists (cast whichever Tier-0 buff is off cooldown, fall back to Tier-1 DPS, fall back to Tier-2 fillers). The trainer supports both.
+
+A priority combo carries `mode: priority` and a `priority:` block of tiers, each with an ordered skill list. The trainer walks the tiers top-to-bottom and shows the highest-priority skill that's currently off cooldown. As soon as you press the displayed skill's keys it gets stamped on cooldown and the display re-resolves.
+
+Author one in **Combo Editor** by flipping the **Mode** dropdown from `sequence` to `priority`. The Steps section is replaced by a **Priority Tiers** editor — add tiers, name them, drop skills into them, optionally mark a skill as `boost_after` another so it gets temporarily promoted (e.g. Witch's Thorns of Denial promotes into Tier 0 for a few seconds after Voltaic Pulse).
+
+Full schema reference (and notes for adding priority-combo support to bdodojo.com): [`docs/priority-combos.md`](docs/priority-combos.md).
+
+---
+
+## Update channel — Stable / Beta
+
+Tray → **Settings → Updates** picks which GitHub Releases the auto-updater watches:
+
+- **Stable** (default) — only fully tagged releases.
+- **Beta** — includes prereleases. New features land here first; ideal for testing before promotion to Stable.
+
+You can swap channels any time. If you're running a beta build that's newer than the latest stable, switching back to Stable won't downgrade you — the updater shows a one-line "you're ahead of stable" notice and waits.
+
+The Beta channel pulls from the same `Vitiate/bdo-trainer` repo — beta builds are just GitHub releases marked as prereleases.
 
 ---
 

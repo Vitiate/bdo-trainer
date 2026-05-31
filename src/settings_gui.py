@@ -110,6 +110,7 @@ _DEFAULT_SETTINGS: Dict[str, Any] = {
         "auto_advance": False,
         "idle_reset_timeout_ms": 10000,
     },
+    "update_channel": "stable",
 }
 
 
@@ -404,6 +405,7 @@ class SettingsWindow:
             ("display", "  Display  ", self._populate_display),
             ("hotkeys", "  Hotkeys  ", self._populate_hotkeys),
             ("timing", "  Timing  ", self._populate_timing),
+            ("updates", "  Updates  ", self._populate_updates),
         ]
 
         for tab_id, label, populate_fn in tab_defs:
@@ -1091,6 +1093,62 @@ class SettingsWindow:
         return value == "" or value.isdigit()
 
     # ==================================================================
+    # TAB: Updates
+    # ==================================================================
+    def _populate_updates(self, parent: tk.Frame) -> None:
+        current = str(self._settings.get("update_channel", "stable")).lower()
+        if current not in ("stable", "beta"):
+            current = "stable"
+
+        _themed_heading(parent, "Update Channel").pack(
+            anchor="w", padx=12, pady=(12, 2)
+        )
+        _themed_hint(
+            parent,
+            "Choose which GitHub Releases the trainer pulls from.",
+        ).pack(anchor="w", padx=12, pady=(0, 10))
+
+        self._update_channel_var = tk.StringVar(value=current)
+
+        for value, label, hint in (
+            (
+                "stable",
+                "Stable (recommended)",
+                "Only fully tagged releases. Skips anything marked as a "
+                "prerelease on GitHub.",
+            ),
+            (
+                "beta",
+                "Beta",
+                "Includes prereleases. You'll get new features earlier "
+                "and can help test them, but builds may be less stable. "
+                "Switch back to Stable any time — if your installed beta "
+                "is newer than the latest stable, the updater won't "
+                "downgrade you.",
+            ),
+        ):
+            row_frame = tk.Frame(parent, bg=BG_DARK)
+            row_frame.pack(anchor="w", fill="x", padx=16, pady=2)
+            tk.Radiobutton(
+                row_frame,
+                text=label,
+                value=value,
+                variable=self._update_channel_var,
+                font=("Segoe UI", 10),
+                fg=FG_TEXT,
+                bg=BG_DARK,
+                selectcolor=BG_INPUT,
+                activebackground=BG_DARK,
+                activeforeground=FG_TEXT,
+                highlightthickness=0,
+                anchor="w",
+                cursor="hand2",
+            ).pack(anchor="w")
+            _themed_hint(row_frame, hint, font=("Segoe UI", 8)).pack(
+                anchor="w", padx=(24, 0)
+            )
+
+    # ==================================================================
     # Save / Cancel / Reset
     # ==================================================================
 
@@ -1113,6 +1171,13 @@ class SettingsWindow:
             else:
                 timing[key] = val
         timing["auto_advance"] = self._auto_advance_var.get()
+
+        # Update channel
+        if hasattr(self, "_update_channel_var") and self._update_channel_var:
+            ch = self._update_channel_var.get().strip().lower()
+            self._settings["update_channel"] = (
+                ch if ch in ("stable", "beta") else "stable"
+            )
 
         # key_bindings and hotkeys are updated in-place by capture callbacks
         return self._settings
@@ -1160,6 +1225,9 @@ class SettingsWindow:
             else:
                 var.set(str(timing.get(key, 0)))
         self._auto_advance_var.set(timing.get("auto_advance", False))
+
+        if hasattr(self, "_update_channel_var") and self._update_channel_var:
+            self._update_channel_var.set(defaults.get("update_channel", "stable"))
 
         logger.info("Settings reset to defaults (not yet saved)")
 
