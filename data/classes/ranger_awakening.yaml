@@ -1,6 +1,1383 @@
 # Ranger — Awakening
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Ranger
 spec: Awakening
-skills: {}
+skills:
+  awakening_kamasylven_sword:
+    name: 'Awakening: Kamasylven Sword'
+    input: C
+    keys:
+    - c
+    protection: FG
+    cooldown_ms: 1000
+    description: You can use the kamasylven sword.
+    notes: You can use the kamasylven sword. Switch to your kamasylven sword. Can attack while switching when used during
+      an attack skill. Forward Guard applied while switching.
+  binding_arrow:
+    name: Binding Arrow
+    input: ↓ + F F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 6413% x2 Critical Hit Rate +100% Maximum 10 targets
+      Floating on hits Air Attack 22.6% damage in PvP only Attack damage 2584% x2 Maximum 10 targets Down Attack 26.02% damage
+      in PvP only'
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blasting_gust:
+    name: Blasting Gust
+    input: 'Q LMB to fire Can be used with moving attacks as well as your kamasylven sword (requires Ultimate: Evasive Shot
+      ) Hold Q + Direction + LMB to perform moving attacks Hold ↑ or ↓ + LMB to perform forward/backward moving attacks Hold
+      ← or → + LMB to perform lateral moving attacks Q + Direction + LMB with your kamasylven sword'
+    keys:
+    - q
+    - lmb
+    - w
+    - s
+    - a
+    - d
+    protection: SA
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 7000
+    description: Fire an arrow imbued with the might of the spirits that explodes on impact, dealing damage to many enemies.
+    notes: Fire an arrow imbued with the might of the spirits that explodes on impact, dealing damage to many enemies. Attack
+      damage 449% x2 Critical Hit Rate +80% Maximum 10 targets Increased attack area Recover 4 MP per target on hit All Evasion
+      -12 for 10 sec on hits Super Armor at the start of the skill Knockdown on hits (Nullified during cooldown) Air Attack
+      Consumes 80 Stamina while charging 56.78% damage in PvP only Damage -5% per each additional target hit from target 2
+      onward. (Max damage -70% .) (PvP only)
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+  bow_skill:
+    name: Bow Skill
+    input: LMB SHIFT + LMB after attack 1 to fire exploding arrow (consume 5 MP) LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - shift
+    - rmb
+    protection: none
+    description: Improve basic Ranged AP.
+    notes: Improve basic Ranged AP. Attack damage 1741% 1, max 3 hits Last attack damage 1741% x2 Airborne attack damage 5223%
+      x2 Maximum 1 targets Max 10 targets hit upon area attack Recover 20 MP on hits (Nullified during area attack) Increased
+      Attack Speed Increased attack area Mounted attack damage 150% x2 Area attack on hits while mounted 76.89% damage in
+      PvP only
+  breezy_blade:
+    name: Breezy Blade
+    input: LMB after other skills
+    keys:
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    - spin
+    cooldown_ms: 4000
+    description: Perform an instantaneous attack to the enemy ahead by swiftly approaching it like wind.
+    notes: Perform an instantaneous attack to the enemy ahead by swiftly approaching it like wind. Attack damage 3248% x2
+      Critical Hit Rate +50% (Nullified during cooldown) Maximum 10 targets Recover 20 MP per hit (Nullified during cooldown)
+      Attack Speed +10% for 10 sec when using the skill (Nullified during cooldown) Invincible while moving (Nullified during
+      cooldown) Super Armor (Nullified during cooldown) Stiffness on hits (PvE only) (Nullified during cooldown) Spin the
+      target on hits (PvE only) Down Attack Damage reduced during cooldown 44.53% damage in PvP only
+  call_of_the_earth:
+    name: Call of the Earth
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your kamasylven sword
+    protection: none
+    cooldown_ms: 60000
+    description: Use the energy of earth to amplify your concentration.
+    notes: Use the energy of earth to amplify your concentration. Ranged Accuracy +20 for 30 sec when using the skill (Nullified
+      during cooldown)
+    keys:
+    - hotbar
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  charging_wind:
+    name: Charging Wind
+    input: SHIFT + RMB Hold SHIFT + RMB to charge Direction while charging to move
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - knockdown
+    - stun
+    - air_attack
+    cooldown_ms: 7000
+    description: Shoot an arrow charged with the energy of wind.
+    notes: Shoot an arrow charged with the energy of wind. 1 and 2 times charged attack damage 651% x2 3 times charged attack
+      damage 735% x2 4 times charged attack damage 1226% x2 5 times charged attack damage 2228% x2 Maximum 10 targets Super
+      Armor while charging (Nullified during cooldown) Knockback on 1, 2, and 3 times charged attack hits (PvE only) Knockdown
+      on 4 and 5 times charged attack hits (PvE only) Air Attack Down Smash Increased attack area when charged Consumes 100
+      Stamina while charging Consumes 300 Stamina when moving while charging Arrow attack damage 685% x1, max 2 hits Prioritizes
+      and targets max 12 targets in front by proximity Attack 1 damage 1643% x1, max 5 hits Attack 2 damage 1643% x1, max
+      5 hits Last attack damage 3195% x3 Critical Hit Rate +100% (PvE only) Maximum 10 targets All AP +30 for 60 sec when
+      using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill
+      Super Armor Stun on hits Down Smash Dismount target on hits. Injures target with 50% of the damage of a hit.
+  cold_blade:
+    name: Cold Blade
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: The protectors of the woods are known to show no mercy to intruders.
+    notes: The protectors of the woods are known to show no mercy to intruders. Attacks 1, 2, and 3 damage 3315% x2 Maximum
+      10 targets Ranged Accuracy +24 for 10 sec when using the skill (Nullified during cooldown) Recover 130 HP per hit (Nullified
+      during cooldown) Stiffness on attack 1 hits (Nullified during cooldown) Knockdown on attack 3 hits (Nullified during
+      cooldown) Down Attack Damage reduced during cooldown 48.3% damage in PvP only
+  core_breezy_blade:
+    name: 'Core: Breezy Blade'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Breezy Blade III after learning this skill: Stiffness on hits
+      (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_cold_blade:
+    name: 'Core: Cold Blade'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Cold Blade IV after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_elven_rage:
+    name: 'Core: Elven Rage'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Elven Rage IV after learning this skill: Super Armor on attacks
+      Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_nature_s_tremble:
+    name: 'Core: Nature''s Tremble'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Nature''s Tremble III after learning this skill: Stun on hits'
+    keys:
+    - hotbar
+  core_wailing_wind:
+    name: 'Core: Wailing Wind'
+    input: Passive
+    protection: none
+    cc:
+    - knockback
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Wailing Wind IV after learning this skill: Knockback on hits
+      (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_waltz_of_wind:
+    name: 'Core: Waltz of Wind'
+    input: Passive
+    protection: none
+    cc:
+    - knockback
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Waltz of Wind III after learning this skill: Knockback on hits
+      (Nullified during cooldown) Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  crescent_kick:
+    name: Crescent Kick
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    description: Backflip kick that launches enemy into the air.
+    notes: Backflip kick that launches enemy into the air. Attack damage 701% x2 Extra attack damage 703% x1 Maximum 10 targets
+      Increased attack area Floating on hits Air Attack Air Smash on extra attack hits 90% damage in PvP only
+  dagger_of_protection:
+    name: Dagger of Protection
+    input: RMB while in combat RMB while sprinting ↑ + RMB during Dagger of Protection to perform a spin attack
+    keys:
+    - rmb
+    - w
+    - a
+    protection: none
+    cc:
+    - spin
+    description: Basic attack used to cut enemies with your dagger.
+    notes: Basic attack used to cut enemies with your dagger. Attack 1 damage 692% x1 Attack 2 damage 692% x2 Attack 3 damage
+      692% x1 Spin attack damage 623% x1 Maximum 10 targets Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec
+      on hits Spin the target on spin attack hits (PvE only) Push the target on sprinting attack hits (PvE only) Counter Attack
+  dash_kick:
+    name: Dash Kick
+    input: ↑ + F F on hits to perform extra attacks
+    keys:
+    - w
+    - f
+    protection: none
+    cc:
+    - knockback
+    description: Performs follow-up kick after forward kick.
+    notes: Performs follow-up kick after forward kick. Attack damage 688% x1 Extra attack damage 688% x1 Maximum 10 targets
+      Increased attack area Knockback on hits (Nullified on extra attack) 90% damage in PvP only
+  descending_current:
+    name: Descending Current
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - bound
+    - stun
+    - air_attack
+    cooldown_ms: 7000
+    description: Fire multiple arrows into the sky to rain them down on enemies.
+    notes: Fire multiple arrows into the sky to rain them down on enemies. Attack damage 1835% x2 Arrow attack damage 1835%
+      x1 Prioritizes and targets max 17 targets in front by proximity Bound on hits (PvE only) (Nullified during cooldown)
+      Air Attack Damage reduced during cooldown 48.67% damage in PvP only Attack damage 6440% x1, max 16 hits Critical Hit
+      Rate +100% (PvE only) Maximum 10 targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when
+      using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill
+      Super Armor Bound on hits Stun on hits 10.82% damage in PvP only Dismount target on hits. Injures target with 100% of
+      the damage of a hit.
+    keys:
+    - hotbar
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elven_rage:
+    name: Elven Rage
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Gather the rage of the Forest Elves onto the kamasylven sword and perform a powerful attack to the enemy
+      ahead.
+    notes: Gather the rage of the Forest Elves onto the kamasylven sword and perform a powerful attack to the enemy ahead.
+      Attack damage 5382% x3 Critical Hit Rate +100% Maximum 10 targets Recover 280 HP per hit Knockdown on hits Down Attack
+      30.8% damage in PvP only Attack damage 8493% x3 Critical Hit Rate +100% Maximum 10 targets Recover 327 HP per hit Knockdown
+      on hits Down Attack 22.54% damage in PvP only Dismount target on hits. Injures target with 10% of the damage of a hit.
+  elvia_distorted_commune:
+    name: 'Elvia: Distorted Commune'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Instantly dash forward to quickly slash your opponent with your kamasylven sword.
+    notes: Instantly dash forward to quickly slash your opponent with your kamasylven sword. Attack damage 3715% x1, max 6
+      hits Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All
+      AP -20 for 10 sec on hits Recover 105 MP per target on hit Super Armor during the skill Down Attack 21.63% damage in
+      PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your kamasylven sword
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  evasive_explosion_shot:
+    name: Evasive Explosion Shot
+    input: ↓ + RMB ← + RMB → + RMB LMB during the skill to perform extra attacks Can be used laterally with your kamasylven
+      sword
+    keys:
+    - s
+    - rmb
+    - a
+    - d
+    - lmb
+    protection: iframe
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: Shoots an explosive arrow into the ground while evading.
+    notes: Shoots an explosive arrow into the ground while evading. Attack damage 646% x2 Extra attack damage 861% x2 Maximum
+      10 targets Increased attack area Movement Speed -10% for 5 sec on attack 1 hits Invincible during the skill (Nullified
+      during cooldown) Bound on hits (PvE only) Down Attack 50% damage in PvP only Consumes 50 Stamina when used consecutively
+  evasive_landing_shot:
+    name: Evasive Landing Shot
+    input: 'SHIFT + RMB after Evasive Explosion Shot, Riding the Wind, or Twisting Wind SHIFT + RMB after Ultimate: Charging
+      Wind or Extreme: Charging Wind SPACE after backward Vine Knot, Spirit''s Shackles, Breezy Blade, Flow: Rushing Wind,
+      Wind Blade, Spirit''s Haven, or Waltz of Wind'
+    keys:
+    - shift
+    - rmb
+    - space
+    protection: iframe
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: Immediately fires an arrow after Evasive Explosion Shot.
+    notes: Immediately fires an arrow after Evasive Explosion Shot. Attack damage 2436% x2 Critical Hit Rate +50% Maximum
+      10 targets Movement Speed -10% for 5 sec on hits Invincible at the start of the skill Super Armor Down Attack Down Smash
+      No collision while moving 75.71% damage in PvP only
+  evasive_shot:
+    name: Evasive Shot
+    input: ← + LMB / ↖ + LMB ↙ + LMB / → + LMB ↗ + LMB / ↘ + LMB in particular situations.
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    description: Can shoot an arrow while evading.
+    notes: Can shoot an arrow while evading. Attack damage 582% x1 Critical Hit Rate +100% Maximum 10 targets Recover 15 MP
+      per hit Increased movement distance Push the target on hits (PvE only)
+  extreme_charging_wind:
+    name: 'Extreme: Charging Wind'
+    input: 'SPACE after Evasive Shot, Ultimate: Evasive Shot, Charging Wind, Tearing Shot, or Roaring Arrow SPACE during Fury
+      Arrow'
+    keys:
+    - space
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 4000
+    description: Activates only in certain situations.
+    notes: 'Activates only in certain situations. Multiple arrows attack damage 562% x1, max 11 hits Extra attack damage 1000%
+      x3 Maximum 10 targets Recover 5 MP per hit Forward Guard during the skill (Nullified during cooldown) Knockdown on hits
+      (PvE only) Down Attack Increased attack area greater than Ultimate: Charging Wind. 70.3% damage in PvP only'
+  flow_air_explosion_shot:
+    name: 'Flow: Air Explosion Shot'
+    input: '↓ + RMB while airborne to use "Evasive Explosion Shot" (requires skill) Hold RMB after Flow: Call from Sky to
+      use the skill Hold RMB after Prime: Evasive Explosion Shot to continue the skill'
+    keys:
+    - s
+    - rmb
+    protection: iframe
+    cc:
+    - down_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Evasive Explosion Shot I]'
+    notes: 'Preceding Skill: [Evasive Explosion Shot I] All damage applies Evasive Explosion Shot ''s damage x2 Maximum 10
+      targets Super Armor Invincible during the skill (PvE only) Down Attack'
+  flow_bypassing_wind:
+    name: 'Flow: Bypassing Wind'
+    input: 'SHIFT + RMB or LMB + RMB after certain skills ← or → + LMB + RMB after Evasive Shot or Blasting Gust RMB during
+      Prime: Razor Wind or Prime: Tearing Arrow'
+    keys:
+    - shift
+    - rmb
+    - lmb
+    - a
+    - d
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Charging Wind II]'
+    notes: 'Preceding Skill: [Charging Wind II] All damage applies 1 Charged Wind ''s charged and Prime: Charging Wind''s
+      normal attack damage x2 Critical Hit Rate +10% for 10 sec when using the skill (Nullified during cooldown) Air Attack
+      Down Attack'
+  flow_call_from_sky:
+    name: 'Flow: Call from Sky'
+    input: SPACE after shooting while sprinting or Dash Kick
+    keys:
+    - space
+    protection: SA
+    cc:
+    - spin
+    description: Spin while airborne to evade.
+    notes: Spin while airborne to evade. Jump higher and farther with the power of spirits. May even strike enemies from behind
+      if mastered. Super Armor Invincible during the skill (PvE only) Jump higher and farther with the power of spirits. May
+      even strike enemies from behind if mastered. Super Armor Invincible during the skill (PvE only) Increased movement distance
+  flow_disillusion:
+    name: 'Flow: Disillusion'
+    input: Hold RMB after using Elven Rage
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    description: 'Preceding Skill: [Elven Rage]'
+    notes: 'Preceding Skill: [Elven Rage] Attack damage 9844% x2 Critical Hit Rate +100% Maximum 10 targets Recover 80 MP
+      per target on hit Forward Guard during the skill Floating on hits (PvE only) Down Attack 24.61% damage in PvP only'
+  flow_rushing_wind:
+    name: 'Flow: Rushing Wind'
+    input: RMB after Breezy Blade LMB to perform when Breezy Blade is on cooldown
+    keys:
+    - rmb
+    - lmb
+    protection: iframe
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Breezy Blade]'
+    notes: 'Preceding Skill: [Breezy Blade] Attack damage 5447% x2 Critical Hit Rate +50% Maximum 10 targets All Damage Reduction
+      -25 for 10 sec on hits Invincible while moving Super Armor Stun on hits (PvE only) Down Attack 60.31% damage in PvP
+      only'
+  flow_tempest:
+    name: 'Flow: Tempest'
+    input: Hold SPACE during Wailing Wind
+    keys:
+    - space
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Wailing Wind I]'
+    notes: 'Preceding Skill: [Wailing Wind I] Attack damage 6824% x4 Critical Hit Rate +35% Maximum 10 targets Forward Guard
+      during the skill Knockdown on hits (PvE only) Down Attack 37.45% damage in PvP only'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+    keys:
+    - hotbar
+  fury_arrow:
+    name: Fury Arrow
+    input: SHIFT + Z to hold LMB to fire SHIFT + LMB to perform Penetrating Wind ↓ or RMB to cancel
+    keys:
+    - shift
+    - z
+    - lmb
+    - s
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Ultimate: Tearing Arrow]'
+    notes: 'Preceding Skill: [Ultimate: Tearing Arrow] Attack damage 2961% x1, max 7 hits Critical Hit Rate +20% Maximum 10
+      targets Knockdown on last attack hits Down Attack Consumes 100 Stamina while charging 42.44% damage in PvP only'
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  guardian:
+    name: Guardian
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: The guardians of the Kamasylve bless you with a burst of speed.
+    notes: The guardians of the Kamasylve bless you with a burst of speed. Attack Speed +30% for 30 sec Movement Speed +30%
+      for 30 sec All Evasion +80 for 30 sec Critical Hit Rate +20% for 30 sec Recover 500 MP Super Armor during the skill
+      Consume no Stamina for 30 sec while sprinting.
+    keys:
+    - hotbar
+  guardian_wind:
+    name: Guardian Wind
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 8000
+    description: Channel the force of wind into your kamasylven sword, then release.
+    notes: Channel the force of wind into your kamasylven sword, then release. Attack damage 5292% x2 Critical Hit Rate +30%
+      Maximum 10 targets Stiffness on hits 59.03% damage in PvP only
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  kamasylven_sword_training:
+    name: Kamasylven Sword Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    description: A basic attack to subdue your foes using your kamasylven sword.
+    notes: A basic attack to subdue your foes using your kamasylven sword. Attack 1 damage 871% x1 Attack 2 damage 871% x1
+      Attack 3 damage 871% x1 Attack 4 damage 871% x1 Lateral moving attack damage 871% x1 Jump attack damage 871% x1 Critical
+      Hit Rate +50% Maximum 10 targets Recover 56 MP per target on hit Ranged AP +12 for 10 sec on attack 2 and 3 hits Down
+      Attack on attack 1, 2, and 4 hits Air Attack on attack 3 hits Consumes 100 Stamina when using lateral moving attacks.
+      99.2% damage in PvP only
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+    keys:
+    - hotbar
+  moving_shot:
+    name: Moving Shot
+    input: Direction + LMB
+    keys:
+    - lmb
+    protection: none
+    description: Can shoot arrows while moving.
+    notes: Can shoot arrows while moving. Attack damage 1072% x1 Maximum 1 targets Recover 12 MP per target on hit 64.89%
+      damage in PvP only
+  nature_s_tremble:
+    name: Nature's Tremble
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Divide the enemy with the power of the spirit.
+    notes: Divide the enemy with the power of the spirit. Attack damage 9675% x2 Critical Hit Rate +100% Maximum 10 targets
+      All Damage Reduction -25 for 10 sec on hits Forward Guard Stun on hits (PvE only) Down Attack 32.95% damage in PvP only
+      Attack damage 17403% x2, max 6 hits Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the
+      skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP
+      +2000 for 60 sec when using the skill Super Armor Stun on hits Air Attack Down Attack 10.3% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount
+      target on hits.
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  penetrating_wind:
+    name: Penetrating Wind
+    input: 'SHIFT + LMB after Round Kick or Crescent Kick attacks SHIFT + LMB or SHIFT + RMB during Tearing Arrow, Razor Wind,
+      or Binding Arrow SHIFT + LMB during Fury Arrow SHIFT + LMB or SHIFT + RMB after Roaring Arrow or Prime: Charging Wind'
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    cooldown_ms: 6000
+    description: Fire a powerful arrow enchanted by the Wind Spirit.
+    notes: Fire a powerful arrow enchanted by the Wind Spirit. Attack damage 1890% x2 Critical Hit Rate +100% Maximum 10 targets
+      Increased attack area Recover 60 MP per hit (Nullified during cooldown) Knockdown on hits (Nullified during cooldown)
+      Consumes 400 Stamina while charging Damage reduced during cooldown 36.66% damage in PvP only
+  pinpoint:
+    name: Pinpoint
+    input: ↓ + LMB during basic attack
+    keys:
+    - s
+    - lmb
+    protection: none
+    description: Quickly fire additional arrows during basic attack.
+    notes: Quickly fire additional arrows during basic attack. Attack damage 1110% x1 Maximum 10 targets Recover 13 MP per
+      target on hit Counter Attack 50% damage in PvP only
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  razor_wind:
+    name: Razor Wind
+    input: E to hold LMB to fire ↓ to cancel
+    keys:
+    - e
+    - lmb
+    - s
+    protection: FG
+    cc:
+    - knockdown
+    - stun
+    cooldown_ms: 10000
+    description: Stabilize your stance by crouching to fire multiple arrows consecutively.
+    notes: Stabilize your stance by crouching to fire multiple arrows consecutively. Attack damage 1058% 1, max 11 hits Maximum
+      10 targets Recover 40 MP per hit (Nullified during cooldown) Forward Guard at the start of the skill (Nullified during
+      cooldown) Stun on hits (PvE only) (Nullified during cooldown) Knockdown on last attack hits (PvE only) (Nullified during
+      cooldown) Damage reduced during cooldown 54.08% damage in PvP only
+  regeneration:
+    name: Regeneration
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your longbow
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 11000
+    description: Blow the enemy away with the power of the spirit.
+    notes: Blow the enemy away with the power of the spirit. Attack damage 10612% x2 Critical Hit Rate +50% Maximum 10 targets
+      Knockdown on hits Down Attack 26.08% damage in PvP only Attack damage 3092% x2, max 2 hits Maximum 10 targets 26.08%
+      damage in PvP only A seed will grow into vines to inflict damage during Wailing Wind, Elven Rage, Nature's Tremble,
+      Wind Blade, Vine Knot, and Spirit's Haven . Attack damage 16737% x2 Critical Hit Rate +30% Maximum 10 targets Increased
+      attack area Super Armor during the skill Knockdown on hits Down Attack 23.07% damage in PvP only Dismount target on
+      hits. Injures target with 30% of the damage of a hit. Attack damage 3092% x2, max 2 hits Maximum 10 targets 26.08% damage
+      in PvP only A seed will grow into vines to inflict damage during Wailing Wind, Elven Rage, Nature's Tremble, Wind Blade,
+      Vine Knot, and Spirit's Haven .
+    keys:
+    - hotbar
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  riding_the_wind:
+    name: Riding the Wind
+    input: ← or → + SHIFT during Twisting Wind ← + SPACE or → + SPACE while airborne
+    keys:
+    - a
+    - d
+    - shift
+    - space
+    protection: iframe
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Evasive Explosion Shot III]'
+    notes: 'Preceding Skill: [Evasive Explosion Shot III] Jump and evade laterally. Super Armor (Nullified during cooldown)
+      No collision while moving Invincible during the skill (PvE only)'
+  roaring_arrow:
+    name: Roaring Arrow
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Ultimate: Tearing Arrow]'
+    notes: 'Preceding Skill: [Ultimate: Tearing Arrow] Attack damage 6248% x2 Critical Hit Rate +100% Maximum 10 targets Forward
+      Guard during the skill Knockdown on hits (PvE only) Down Attack 48.81% damage in PvP only Damage -5% per each additional
+      target hit from target 2 onward. (Max damage -70% .) (PvP only)'
+  round_kick:
+    name: Round Kick
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    - spin
+    description: Knock enemies back with a powerful spinning kick.
+    notes: Knock enemies back with a powerful spinning kick. Attack 1 damage 603% x2 Attacks 2 and 3 damage 603% x1 Maximum
+      10 targets Increased Push distance on attack 3 hits Floating on attack 3 hits Spin the target on hits (PvE only) Push
+      the target on hits (PvE only) Air Attack 73% damage in PvP only
+  sisterhood_of_bond:
+    name: Sisterhood of Bond
+    input: Passive
+    protection: none
+    description: 'Gives you the right to learn Succession: Feathers of Lemoria skill.'
+    notes: 'Gives you the right to learn Succession: Feathers of Lemoria skill. You can now learn Succession skills.'
+    keys:
+    - hotbar
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  spirit_healing:
+    name: Spirit Healing
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. All AP +1 Max Stamina +10
+    keys:
+    - hotbar
+  spirit_healing_xi:
+    name: Spirit Healing XI
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xii:
+    name: Spirit Healing XII
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xiii:
+    name: Spirit Healing XIII
+    input: Passive
+    protection: none
+    description: Move with agility and gain mighty power with the help of a spirit.
+    notes: Move with agility and gain mighty power with the help of a spirit. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xiv:
+    name: Spirit Healing XIV
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xix:
+    name: Spirit Healing XIX
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xv:
+    name: Spirit Healing XV
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xvi:
+    name: Spirit Healing XVI
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xvii:
+    name: Spirit Healing XVII
+    input: Passive
+    protection: none
+    description: Move with agility and gain mighty power with the help of a spirit.
+    notes: Move with agility and gain mighty power with the help of a spirit. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xviii:
+    name: Spirit Healing XVIII
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xx:
+    name: Spirit Healing XX
+    input: Passive
+    protection: none
+    description: Move with agility and gain mighty power with the help of a spirit.
+    notes: Move with agility and gain mighty power with the help of a spirit. All AP +1 Max Stamina +20
+    keys:
+    - hotbar
+  spirit_healing_xxi:
+    name: Spirit Healing XXI
+    input: Passive
+    protection: none
+    description: The spirits grant you a boon to become more agile.
+    notes: The spirits grant you a boon to become more agile. The spirits grant a 30% chance your alchemy stone does not consume
+      durability upon use.
+    keys:
+    - hotbar
+  spirit_s_haven:
+    name: Spirit's Haven
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: iframe
+    cc:
+    - knockback
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Gather the power of the wind to slash enemies nearby.
+    notes: Gather the power of the wind to slash enemies nearby. Attack damage 5022% x2 Critical Hit Rate +50% Maximum 10
+      targets All Evasion +36 for 10 sec when using the skill Invincible while moving Super Armor during the skill Bound on
+      hits (PvE only) Knockback on hits (PvP only) Down Attack No collision while moving 53.67% damage in PvP only
+  spirit_s_shackles:
+    name: Spirit's Shackles
+    input: E
+    keys:
+    - e
+    protection: SA
+    cc:
+    - knockdown
+    - grab
+    cooldown_ms: 15000
+    description: Bind the enemy with the spirit's power, then kick the enemy to distance yourself from it.
+    notes: Bind the enemy with the spirit's power, then kick the enemy to distance yourself from it. Attack damage 1024% x2
+      Maximum 10 targets Super Armor on Grapple/Grapple fails Knockdown on Grapple Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. 99.22% damage in PvP only
+  squall_shot:
+    name: Squall Shot
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Charging Wind IV]'
+    notes: 'Preceding Skill: [Charging Wind IV] Attack damage 8346% x2, max 2 hits Critical Hit Rate +100% Maximum 10 targets
+      Movement Speed +10% for 10 sec when using the skill Knockdown on hits (PvE only) Push the target on hits (PvE only)
+      Down Attack 27.41% damage in PvP only'
+  tearing_arrow:
+    name: Tearing Arrow
+    input: ↓ + E RMB to cancel
+    keys:
+    - s
+    - e
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - down_attack
+    description: Fire powerful arrows imbued with the might of the spirits that cause serious damage.
+    notes: Fire powerful arrows imbued with the might of the spirits that cause serious damage. 0 and 1 times charged attack
+      damage 456% 1 , max 7 hits 2 and 3 times charged attack damage 759% 1 , max 5 hits 4 times charged attack damage 2081%
+      1, max 3 hits Critical Hit Rate +100% Maximum 6 targets Recover 6 MP per hit 20 bleeding damage every 3 sec for 27 sec
+      on hits Movement Speed -15% for 5 sec on hits Knockback on hits (PvE only) Down Attack Increases number of hit targets
+      upon charging Consumes 100 Stamina while charging Damage -5% per each additional target hit from target 2 onward. (Max
+      damage -70% .) (PvP only)
+  tearing_shot:
+    name: Tearing Shot
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Charging Wind IV]'
+    notes: 'Preceding Skill: [Charging Wind IV] Attack damage 4719% x2 Critical Hit Rate +100% Maximum 10 targets Movement
+      Speed -15% for 5 sec on hits Stun on hits Down Attack 55.18% damage in PvP only Damage -5% per each additional target
+      hit from target 2 onward. (Max damage -70% .) (PvP only)'
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  twisting_wind:
+    name: Twisting Wind
+    input: ← or → + SHIFT to move laterally ↓ + SHIFT to move backward
+    keys:
+    - a
+    - d
+    - shift
+    - s
+    protection: iframe
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Riding the Wind]'
+    notes: 'Preceding Skill: [Riding the Wind] Super Armor Invincible during the skill (PvE only) No collision while moving
+      Super Armor (Nullified during cooldown) Invincible during the skill (PvE only) No collision while moving Increased movement
+      distance (Nullified during cooldown)'
+  ultimate_blasting_gust:
+    name: 'Ultimate: Blasting Gust'
+    input: SHIFT + LMB after Blasting Gust
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    description: Rapidly fire multiple arrows which explode with the energy of the spirits.
+    notes: Rapidly fire multiple arrows which explode with the energy of the spirits. Attack damage 515% 1, max 6 hits Last
+      attack damage 1123% x1 Critical Hit Rate +100% Maximum 10 targets Knockdown on last attack hits Damage -5% per each
+      additional target hit from target 2 onward. (Max damage -70% .) (PvP only)
+  ultimate_charging_wind:
+    name: 'Ultimate: Charging Wind'
+    input: 'SPACE after Evasive Shot, Ultimate: Evasive Shot, Charging Wind'
+    keys:
+    - space
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Activates only in certain situations.
+    notes: Activates only in certain situations. Multiple arrows attack damage 395% x1, max 10 hits Extra attack damage 813%
+      x2 Maximum 10 targets Recover 5 MP per hit Forward Guard during the skill (Nullified during cooldown) Knockdown on hits
+      (PvE only) Down Attack 70.3% damage in PvP only
+  ultimate_descending_current:
+    name: 'Ultimate: Descending Current'
+    input: LMB after Descending Current
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - bound
+    cooldown_ms: 8000
+    description: Fire explosive arrows into the sky after using Descending Current.
+    notes: 'Fire explosive arrows into the sky after using Descending Current. Attack damage applies Descending Current ''s
+      attack damage x1, max 4 times fired Arrow attack damage applies Descending Current ''s arrow damage x1, max 4 times
+      fired, max 17 targets ensnared (The number of ensnared enemy targets decreases during cooldown.) Bound on hits (PvE
+      only) (Nullified during cooldown) Damage reduced during cooldown Reduced damage upon learning Prime: Descending Current.'
+  ultimate_evasive_shot:
+    name: 'Ultimate: Evasive Shot'
+    input: ← OR → + LMB ← OR → + LMB after Blasting Gust or Round Kick Can be performed by canceling during a skill
+    keys:
+    - a
+    - d
+    - lmb
+    protection: none
+    description: Activates only in certain situations.
+    notes: Activates only in certain situations. Activated after canceling certain skills
+  ultimate_razor_wind:
+    name: 'Ultimate: Razor Wind'
+    input: E to hold LMB to fire ↓ to cancel
+    keys:
+    - e
+    - lmb
+    - s
+    protection: FG
+    cc:
+    - knockdown
+    - stun
+    cooldown_ms: 10000
+    description: Stabilize your stance by crouching to fire multiple arrows consecutively.
+    notes: Stabilize your stance by crouching to fire multiple arrows consecutively. Attack damage 1512% 1, max 12 hits Maximum
+      10 targets Recover 40 MP per hit (Nullified during cooldown) Forward Guard at the start of the skill (Nullified during
+      cooldown) Stun on hits (PvE only) (Nullified during cooldown) Knockdown on last attack hits (PvE only) (Nullified during
+      cooldown) Damage reduced during cooldown 54.08% damage in PvP only
+  ultimate_tearing_arrow:
+    name: 'Ultimate: Tearing Arrow'
+    input: ↓ + E RMB to cancel
+    keys:
+    - s
+    - e
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - down_attack
+    description: Fire powerful arrows imbued with the might of the spirits that cause serious damage.
+    notes: Fire powerful arrows imbued with the might of the spirits that cause serious damage. 0 and 1 times charged attack
+      damage 372% 1 , max 7 hits 2 and 3 times charged attack damage 855% 1 , max 5 hits 4 and 5 times charged attack damage
+      1637% 1 , max 4 hits Critical Hit Rate +100% Maximum 7 targets Recover 8 MP per hit 25 bleeding damage every 3 sec for
+      27 sec on hits Movement Speed -15% for 5 sec on hits Knockback on hits (PvE only) Down Attack Increases number of hit
+      targets upon charging Consumes 100 Stamina while charging Damage -5% per each additional target hit from target 2 onward.
+      (Max damage -70% .) (PvP only)
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  vine_knot:
+    name: Vine Knot
+    input: F
+    keys:
+    - f
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Let the wind send you soaring into the sky the wind while slashing enemies in the vicinity.
+    notes: Let the wind send you soaring into the sky the wind while slashing enemies in the vicinity. Attack 1 damage 3138%
+      x1 Attack 2 damage 3138% x1 Critical Hit Rate +25% Maximum 10 targets Recover 20 MP per hit Attack Speed +10% for 10
+      sec when using the skill Super Armor during the skill Floating on attack 1 hits Air Attack Air Smash on attack 2 hits
+      51.51% damage in PvP only
+  wailing_wind:
+    name: Wailing Wind
+    input: Q
+    keys:
+    - q
+    protection: FG
+    cc:
+    - stiffness
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Call upon the power of the Kamasylve to attack foes with your kamasylven sword from afar.
+    notes: Call upon the power of the Kamasylve to attack foes with your kamasylven sword from afar. Attack damage 6100% x2
+      Maximum 10 targets Recovers 50 MP when using the skill (Nullified during cooldown) Recover 150 MP per hit (Nullified
+      during cooldown) Critical Hit Rate +20% for 10 sec when using the skill (Nullified during cooldown) 50 bleeding damage
+      every 3 sec for 9 sec on hits (Nullified during cooldown) Forward Guard (Nullified during cooldown) Knockback on hits
+      (Nullified during cooldown) (PvE only) Down Attack Damage reduced during cooldown 40.78% damage in PvP only Attack damage
+      4202% x8 Last attack damage 7003% x2 Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10
+      targets All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate
+      +30% for 60 sec when using the skill 50 bleeding damage inflicted every 3 sec for 9 sec on last attack hits All Damage
+      Reduction -25 for 10 sec on last attack hits Super Armor Stiffness on hits Knockdown on last attack hits Down Attack
+      45.61% damage in PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.
+  waltz_of_wind:
+    name: Waltz of Wind
+    input: ↑ + F to perform forward moving attacks ↓ + F to perform backward moving attacks
+    keys:
+    - w
+    - f
+    - s
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: An awakened Ranger is said to attack the enemies by hiding its presence in the wind and then re-appearing
+      in front of them.
+    notes: An awakened Ranger is said to attack the enemies by hiding its presence in the wind and then re-appearing in front
+      of them. Attack damage 4519% x2 Maximum 10 targets Ranged AP +12 for 10 sec when using the skill (Nullified during cooldown)
+      Super Armor during the skill (Nullified during cooldown) Air Attack Down Attack Damage reduced during cooldown 59.02%
+      damage in PvP only Attack damage 7242% x2 Maximum 10 targets Increased attack area Ranged AP +12 for 10 sec when using
+      the skill All AP +10 for 20 sec when using the skill All AP -10 for 20 sec on hits Super Armor during the skill Air
+      Attack Down Attack 44.22% damage in PvP only Dismount target on hits. Injures target with 20% of the damage of a hit.
+      Not activated during cooldown.
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  will_of_descending_wind:
+    name: Will of Descending Wind
+    input: LMB or ↓ + LMB while charging to attack
+    keys:
+    - lmb
+    - s
+    protection: FG
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Will of the Wind V]'
+    notes: 'Preceding Skill: [Will of the Wind V] Attack damage 3155% x2 Critical Hit Rate +25% Maximum 10 targets All Damage
+      Reduction -25 for 10 sec on hits Knockdown on hits Forward Guard while charging Air Attack 58.36% damage in PvP only'
+  will_of_the_wind:
+    name: Will of the Wind
+    input: 'SHIFT + Q ← or → + F to perform moving attacks (requires Ultimate: Evasive Shot)'
+    keys:
+    - shift
+    - q
+    - a
+    - d
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Rapidly fire multiple arrows in a row.
+    notes: Rapidly fire multiple arrows in a row. Attack damage 1995% x2 Applies Evasive Shot 's damage x1 during moving attacks
+      Maximum 10 targets Increased attack area All Damage Reduction -20 for 10 sec on hits Knockdown on hits (PvE only) (Nullified
+      during cooldown) Down Attack Air Attack Damage reduced during cooldown
+  wind_blade:
+    name: Wind Blade
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Slash laterally while pushing enemies away, then overwhelm them with the Wind of the Spirit.
+    notes: Slash laterally while pushing enemies away, then overwhelm them with the Wind of the Spirit. Attack damage 7710%
+      x1, max 2 hits Critical Hit Rate +40% Maximum 10 targets Forward Guard Down Attack Down Smash 36.38% damage in PvP only
+  wind_explosion_shot:
+    name: Wind Explosion Shot
+    input: LMB after Evasive Landing Shot
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Will of the Wind V]'
+    notes: 'Preceding Skill: [Will of the Wind V] Attack damage 3306% x2 Extra attack damage 2067% 1, max 2 hits Maximum 10
+      targets Movement Speed -10% for 5 sec on hits Push the target on attack 1 hits (PvE only) Knockdown on attack 1 hits
+      (PvE only) Super Armor during the skill 53.06% damage in PvP only'
+  wind_of_the_spirit:
+    name: Wind of the Spirit
+    input: Passive
+    protection: none
+    description: Permanently increase Movement Speed by 10%.
+    notes: Permanently increase Movement Speed by 10%. Movement Speed +10% granted by the spirits
+    keys:
+    - hotbar
+  wind_step:
+    name: Wind Step
+    input: RMB or ↓ + RMB to move backward ↑ + RMB to move forward
+    keys:
+    - rmb
+    - s
+    - w
+    protection: iframe
+    cooldown_ms: 2000
+    description: An awakened Ranger's gait is as light as walking on wind.
+    notes: An awakened Ranger's gait is as light as walking on wind. All Evasion +36 for 10 sec when using the skill Invincible
+      (Nullified during cooldown) Invincible during the skill (PvE only) Character collision occurs while moving forward No
+      character collision while moving backward
+  winds_of_the_prairie:
+    name: Winds of the Prairie
+    input: SHIFT + SPACE Can be used with your longbow
+    keys:
+    - shift
+    - space
+    protection: iframe
+    cooldown_ms: 8000
+    description: Move back quickly.
+    notes: Move back quickly. Invincible -> Super Armor during the skill
+_flags:
+- cannon_attack: No notes available.
+- core_breezy_blade: Passive — no keybind.
+- core_cold_blade: Passive — no keybind.
+- core_elven_rage: Passive — no keybind.
+- core_nature_s_tremble: Passive — no keybind.
+- core_wailing_wind: Passive — no keybind.
+- core_waltz_of_wind: Passive — no keybind.
+- guild_squad_special_attack: No notes available.
+- infinite_mastery: Passive — no keybind.
+- revive_target: No notes available.
+- sisterhood_of_bond: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- spirit_healing: Passive — no keybind.
+- spirit_healing_xi: Passive — no keybind.
+- spirit_healing_xii: Passive — no keybind.
+- spirit_healing_xiii: Passive — no keybind.
+- spirit_healing_xiv: Passive — no keybind.
+- spirit_healing_xix: Passive — no keybind.
+- spirit_healing_xv: Passive — no keybind.
+- spirit_healing_xvi: Passive — no keybind.
+- spirit_healing_xvii: Passive — no keybind.
+- spirit_healing_xviii: Passive — no keybind.
+- spirit_healing_xx: Passive — no keybind.
+- spirit_healing_xxi: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.
+- wind_of_the_spirit: Passive — no keybind.

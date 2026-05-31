@@ -1,6 +1,1992 @@
 # Drakania — Succession
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Drakania
 spec: Succession
-skills: {}
+skills:
+  not_in_use_black_spirit_tip_of_the_scale:
+    name: '(Not in Use) Black Spirit: Tip of the Scale'
+    input: 'RMB while holding SHIFT + LMB in Dragonblood RMB while holding LMB in Dragonblood during Flow: Markthanan''s Wings
+      or Flow: Dragon Flight Black Spirit''s Rage -25%'
+    keys:
+    - rmb
+    - shift
+    - lmb
+    protection: none
+    description: Black Spirit's Rage
+  absolute_abyssal_fang:
+    name: 'Absolute: Abyssal Fang'
+    input: E after other skills
+    keys:
+    - e
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Separate your shard from your slayer to quickly stab your enemy.
+    notes: Separate your shard from your slayer to quickly stab your enemy. Attack damage 1064% x2 Critical Hit Rate +50%
+      Maximum 10 targets Target's MP/WP/SP -30 on hits (Nullified during cooldown) Stiffness on hits (Nullified during cooldown)
+      Air Attack Down Attack 66.25% damage in PvP only
+  absolute_azure_onslaught:
+    name: 'Absolute: Azure Onslaught'
+    input: ↑ + E ↑ + E while jumping forward
+    keys:
+    - w
+    - e
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 4000
+    description: Leap instantly and slash downward.
+    notes: 'Leap instantly and slash downward. Attack damage 2132% x2 Critical Hit Rate +50% Maximum 10 targets Recover 60
+      WP per hit Super Armor during the skill Stiffness on hits (PvE only) Down Attack 77.29% damage in PvP only Attack damage
+      3032% x2 Critical Hit Rate +50% Maximum 10 targets Recover 60 WP per hit Stockpile 3 ions into your shard on hits upon
+      learning Prime: Bloodthirst Super Armor during the skill Stiffness on hits Down Attack 60% damage in PvP only'
+  absolute_blazing_strike:
+    name: 'Absolute: Blazing Strike'
+    input: ↓ + RMB ↓ + RMB during other skills to perform instantly
+    keys:
+    - s
+    - rmb
+    protection: iframe
+    cc:
+    - knockdown
+    - floating
+    - bound
+    - down_attack
+    cooldown_ms: 9000
+    description: Slash forward with tremendous force by gathering ions into your slayer.
+    notes: Slash forward with tremendous force by gathering ions into your slayer. Attack damage 3066% x2 Critical Hit Rate
+      +50% Maximum 10 targets Forward Guard during the skill Bound on hits (PvE only) Down Attack Down Smash 77.29% damage
+      in PvP only Attack 1 damage 5024% x1, max 2 hits Attack 2 damage 5024% x2 Attack 3 damage 5481% x1, max 10 hits Last
+      attack damage 6853% x2 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Attack
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60
+      sec when using the skill Target's MP/WP/SP -30 after certain periods of time while charging ions Invincible while concealed
+      Super Armor during the skill Floating on attack 2 hits Knockdown on last attack hits Down Attack Down Smash 30.92% damage
+      in PvP only Injures target with 100% of the damage of a hit. Dismount target on hits.
+  absolute_brimbolt_raze:
+    name: 'Absolute: Brimbolt Raze'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 7000
+    description: Spin, then perform a slash after gathering ions in your slayer.
+    notes: Spin, then perform a slash after gathering ions in your slayer. Attack damage 2710% x2 Critical Hit Rate +30% Maximum
+      10 targets Target's MP/WP/SP -10 on pulled target hits Pull target before attack (PvE only) Forward Guard during the
+      skill Knockdown on hits (PvE only) Down Attack 82.82% damage in PvP only
+  absolute_brimbolt_strike:
+    name: 'Absolute: Brimbolt Strike'
+    input: SHIFT + RMB Hold RMB to charge ions SHIFT + RMB during other skills to perform instantly
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 13000
+    description: Deal a mighty blow by gathering ions in your slayer.
+    notes: Deal a mighty blow by gathering ions in your slayer. Normal attack damage 3643% x2 Attack damage 4735% x2 at max
+      ion output Extra attack damage 1894% x1 at max ion output , max 2 hits Critical Hit Rate +100% Maximum 10 targets Target's
+      MP/WP/SP -25 after certain periods of time while charging ions Pull target before attack (PvE only) Super Armor during
+      the skill Bound on hits (PvE only) Down Attack Down Smash 44.17% damage in PvP only
+  absolute_dragon_s_maw:
+    name: 'Absolute: Dragon''s Maw'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Strike your enemies upwards, then slash downward to send them flying.
+    notes: Strike your enemies upwards, then slash downward to send them flying. Attack 1 damage 2296% x2 Attack 2 damage
+      2296% x2 Critical Hit Rate +75% Maximum 10 targets All Evasion -12 for 10 sec on hits Knockdown on attack 1 hits Air
+      Attack Down Attack 69.56% damage in PvP only
+  absolute_embers:
+    name: 'Absolute: Embers'
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 3000
+    description: Retrieve your slayer quickly to perform combo attacks.
+    notes: Retrieve your slayer quickly to perform combo attacks. Attack 1 damage 2046% x1 Attack 2 damage 2046% x1 Critical
+      Hit Rate +40% Maximum 10 targets Air Attack Down Attack 66.25% damage in PvP only
+  absolute_eviscerate:
+    name: 'Absolute: Eviscerate'
+    input: 'SHIFT + F Hold F to charge ions SHIFT + F during other skills to perform instantly F during Dragon''s Advance
+      or Flow: Markthanan''s Wings to perform instantly'
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - knockback
+    - air_attack
+    cooldown_ms: 10000
+    description: Dash forward while gathering ions in your slayer to deal a powerful thrusting attack.
+    notes: Dash forward while gathering ions in your slayer to deal a powerful thrusting attack. Dash attack damage 2003%
+      x1, max 2 hits Stab attack damage 2003% x2 Rushing attack damage 2503% x1 at max ion output, max 2 hits Stab attack
+      damage 2503% x2 at max ion output Critical Hit Rate +100% Maximum 10 targets Increased movement distance at max ion
+      output Target's MP/WP/SP -25 after certain periods of time while charging ions Forward Guard during the skill Knockback
+      on stab attack hits (PvE only) Air Attack 66.25% damage in PvP only
+  absolute_flow_asphyxiate:
+    name: 'Absolute: Flow: Asphyxiate'
+    input: Hold RMB after Skewer
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 4000
+    description: Deal an upward strike to off-balance enemies.
+    notes: Deal an upward strike to off-balance enemies. Attack damage 2204% x2 Critical Hit Rate +100% (Nullified during
+      cooldown) Maximum 10 targets Floating on hits (Nullified during cooldown) Air Attack 66.25% damage in PvP only Damage
+      reduced during cooldown
+  absolute_flow_markthanan_s_claws:
+    name: 'Absolute: Flow: Markthanan''s Claws'
+    input: LMB during Dragon's Advance or Markthanan's Wings
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Strike down your enemies after becoming Markthanan's claws with the ions gathered from charging.
+    notes: Strike down your enemies after becoming Markthanan's claws with the ions gathered from charging. Attack damage
+      2583% x2 Critical Hit Rate +35% Maximum 10 targets Recover 75 WP per hit Super Armor during the skill Knockdown on hits
+      (PvE only) Down Attack 66.25% damage in PvP only
+  absolute_markthanan_s_breath:
+    name: 'Absolute: Markthanan''s Breath'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Release your shard's ions to call forth Dragon's breath.
+    notes: Release your shard's ions to call forth Dragon's breath. Attack damage 2430% x1, max 3 hits Maximum 10 targets
+      40 pain damage inflicted every 3 sec for 18 sec on hits Down Attack 77.29% damage in PvP only
+  absolute_markthanan_s_dominion:
+    name: 'Absolute: Markthanan''s Dominion'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - knockback
+    - stun
+    - down_attack
+    cooldown_ms: 11000
+    description: Lodge your slayer into the ground, then release ions to push back all nearby enemies.
+    notes: Lodge your slayer into the ground, then release ions to push back all nearby enemies. Inner attack damage 2349%
+      x3 Outer attack damage 3171% x2 Critical Hit Rate +60% Maximum 10 targets Push the target on inner attack hits (PvE
+      only) Super Armor during the skill Knockback on inner attack hits (PvE only) Stun on outer attack hits (PvE only) Down
+      Attack 27.61% damage in PvP only
+  absolute_markthanan_s_flourish:
+    name: 'Absolute: Markthanan''s Flourish'
+    input: SHIFT + LMB Hold LMB to charge ions SHIFT + LMB during other skills to perform instantly
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: Strike your enemies upwards, then strike down after gathering ions in your Slayer.
+    notes: Strike your enemies upwards, then strike down after gathering ions in your Slayer. Attack 1 damage 1034% x2 Attack
+      2 damage 3879% x2 Critical Hit Rate +100% Maximum 10 targets Target's MP/WP/SP -25 after certain periods of time while
+      charging ions Super Armor during the skill Floating on attack 1 hits (PvE only) Air Attack on attack 1 hits Down Smash
+      on attack 2 hits 82.82% damage in PvP only Attack damage 14810% x1, max 8 hits Critical Hit Rate +100% Maximum 10 targets
+      All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30%
+      for 60 sec when using the skill Target's MP/WP/SP -25 after certain periods of time while charging ions Super Armor
+      during the skill Floating on hits Air Attack Down Attack Down Smash 30.92% damage in PvP only Injures target with 50%
+      of the damage of a hit. Dismount target on hits.
+  absolute_markthanan_s_scale:
+    name: 'Absolute: Markthanan''s Scale'
+    input: SHIFT + Q ↓ or E or Q during the skill to cancel it
+    keys:
+    - shift
+    - q
+    - s
+    - e
+    protection: SA
+    cooldown_ms: 80000
+    description: Plant your slayer into the ground, gathering ions while blocking enemy attacks with Markthanan's scale.
+    notes: Plant your slayer into the ground, gathering ions while blocking enemy attacks with Markthanan's scale. Attack
+      damage 3940% x1 Maximum 10 targets Target's MP/WP/SP -25 after certain periods of time while holding the skill Super
+      Armor during the skill Damage Reduction +35% during Super Armor. 66.25% damage in PvP only
+  absolute_omnislash:
+    name: 'Absolute: Omnislash'
+    input: '↓ + LMB LMB to perform extra attacks ↓ + LMB after Skewer, Embers, Brimbolt Raze, Brimbolt Strike, or Flow: Brimbolt
+      Wave to perform attack 2'
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Skewer your enemies with your slayer, then ram your shoulder into them to draw your slayer out and strike
+      again.
+    notes: Skewer your enemies with your slayer, then ram your shoulder into them to draw your slayer out and strike again.
+      Attack 1 damage 1433% x2 Attack 2 damage 1910% x1 Attack 3 damage 1910% x2 Critical Hit Rate +50% Maximum 10 targets
+      All Damage Reduction -15 for 10 sec on hits Recover 36 WP per hit Knockdown on attack 3 hits Down Attack 77.29% damage
+      in PvP only
+  absolute_refraction:
+    name: 'Absolute: Refraction'
+    input: '← or → + RMB ← or → + RMB while charging ions with Brimbolt Strike, Eviscerate, Markthanan''s Flourish, or Prime:
+      Sundering Claw Cancel with any other key while moving Available with your trion'
+    keys:
+    - a
+    - d
+    - rmb
+    protection: iframe
+    cooldown_ms: 3000
+    description: Dodge enemy attacks by moving through their blind spots.
+    notes: Dodge enemy attacks by moving through their blind spots. Invincible during the skill No collision while moving
+      Increased movement distance
+  absolute_skewer:
+    name: 'Absolute: Skewer'
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 4000
+    description: Pierce your enemies' lungs with your slayer.
+    notes: Pierce your enemies' lungs with your slayer. Attack damage 1463% x2 Critical Hit Rate +100% (Nullified during cooldown)
+      Maximum 10 targets Recover 45 WP per hit (Nullified during cooldown) Knockback on hits (Nullified during cooldown) 66.25%
+      damage in PvP only Damage reduced during cooldown
+  absolute_slayer_training:
+    name: 'Absolute: Slayer Training'
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while sprinting to perform sprint attacks LMB while jumping forward to perform jump attacks LMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - bound
+    - stun
+    description: A basic attack with your slayer.
+    notes: A basic attack with your slayer. Standing attack damage 1686% x1, max 3 hits Forward attacks 1 and 2 damage 1686%
+      x1, max 2 hits Forward last attack damage 1686% x1 Lateral attack damage 1686% x1, max 2 hits Sprint attack damage 1686%
+      x1 Jump attack damage 1686% x1 Maximum 10 targets Recover 100 WP per hit Bound on jump attack hits Stun on sprinting
+      attack hits Push the target on forward, dash, and jump attack hits (PvE only) Push the target on lateral attack hits
+      (PvE only) 66.25% damage in PvP only
+  absolute_soaring_assault:
+    name: 'Absolute: Soaring Assault'
+    input: LMB during Refraction
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    description: Deal a counter attack by aiming for the enemies' blind spot during Refraction.
+    notes: Deal a counter attack by aiming for the enemies' blind spot during Refraction. Attack 1 damage 1550% x2 Attack
+      2 damage 1550% x2 Maximum 10 targets Critical Hit Rate +24% for 10 sec when using the skill Super Armor during the skill
+      Knockdown on attack 1 hits (PvE only) Air Attack Down Attack 66.25% damage in PvP only
+  abyssal_advance:
+    name: Abyssal Advance
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 25000
+    description: 'Preceding Skill: [Abyssal Fang IV]'
+    notes: 'Preceding Skill: [Abyssal Fang IV] Recovers HP recovered by Markthanan''s Heart x3 times Movement Speed +15% for
+      15 sec (Applied to self and allies) Critical Rate +24% for 15 sec (Applied to self and allies)'
+    keys:
+    - hotbar
+  abyssal_dominion:
+    name: Abyssal Dominion
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 35000
+    description: 'Preceding Skill: [Abyssal Fang IV]'
+    notes: 'Preceding Skill: [Abyssal Fang IV] Attack damage 3060% x2 Critical Hit Rate +25% Maximum 10 targets Movement Speed
+      -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Attack Speed -10% for 5 sec on hits Super Armor during the
+      skill Down Attack 44.17% damage in PvP only'
+    keys:
+    - hotbar
+  abyssal_fang:
+    name: Abyssal Fang
+    input: E after other skills
+    keys:
+    - e
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Separate your shard from your slayer to quickly stab your enemy.
+    notes: Separate your shard from your slayer to quickly stab your enemy. Attack damage 950% x2 Critical Hit Rate +50% Maximum
+      8 targets Target's MP/WP/SP -30 on hits (Nullified during cooldown) Stiffness on hits (Nullified during cooldown) Air
+      Attack Down Attack 66.25% damage in PvP only
+  aerial_burst:
+    name: Aerial Burst
+    input: Can be added to a Quick Slot Switch to Dragonblood when used via a Quick Slot
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion]'
+    notes: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion] Attack damage 4485% x2 Critical Hit Rate +100% Maximum 10
+      targets All Damage Reduction -20 for 10 sec on hits Push the target on hits (PvE only) Stun on hits 30.75% damage in
+      PvP only'
+    keys:
+    - hotbar
+  azure_onslaught:
+    name: Azure Onslaught
+    input: ↑ + E ↑ + E while jumping forward
+    keys:
+    - w
+    - e
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 4000
+    description: Leap instantly and slash downward.
+    notes: Leap instantly and slash downward. Attack damage 1695% x2 Critical Hit Rate +40% Maximum 7 targets Recover 60 WP
+      per hit Super Armor during the skill Stiffness on hits (PvE only) Down Attack 77.29% damage in PvP only
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blazing_strike:
+    name: Blazing Strike
+    input: ↓ + RMB ↓ + RMB during other skills to perform instantly
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: Slash forward with tremendous force by gathering ions into your slayer.
+    notes: Slash forward with tremendous force by gathering ions into your slayer. Attack damage 2024% x2 Critical Hit Rate
+      +50% Maximum 7 targets Forward Guard during the skill Bound on hits (PvE only) Down Attack Down Smash 77.29% damage
+      in PvP only Attack 1 damage 4021% x1, max 2 hits Attack 2 damage 4021% x2 Attack 3 damage 4386% x1, max 10 hits Last
+      attack damage 5483% x2 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Attack
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60
+      sec when using the skill Target's MP/WP/SP -30 after certain periods of time while charging ions Invincible while concealed
+      Super Armor during the skill Floating on attack 2 hits Knockdown on last attack hits Down Attack Down Smash 30.92% damage
+      in PvP only Injures target with 100% of the damage of a hit. Dismount target on hits.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  brimbolt_annihilation:
+    name: Brimbolt Annihilation
+    input: ↓ + E ↓ + E after Markthanan's Flourish or Soaring Claw to perform attack 2
+    keys:
+    - s
+    - e
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 5024% x2 Attack 2 damage 5024% x2 Critical
+      Hit Rate +100% Maximum 10 targets Forward Guard during the skill Stockpile 6 ions into your shard on hits upon learning
+      Prime: Bloodthirst Knockdown on attack 1 hits (PvE only) Air Attack Down Attack 32.02% damage in PvP only'
+  brimbolt_raze:
+    name: Brimbolt Raze
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 8000
+    description: Spin, then perform a slash after gathering ions in your slayer.
+    notes: Spin, then perform a slash after gathering ions in your slayer. Attack damage 1555% x2 Critical Hit Rate +25% Maximum
+      7 targets Target's MP/WP/SP -10 on pulled target hits Pull target before attack (PvE only) Forward Guard during the
+      skill Knockdown on hits (PvE only) Down Attack 82.82% damage in PvP only
+  brimbolt_strike:
+    name: Brimbolt Strike
+    input: SHIFT + RMB Hold RMB to charge ions SHIFT + RMB during other skills to perform instantly
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 14000
+    description: Deal a mighty blow by gathering ions in your slayer.
+    notes: Deal a mighty blow by gathering ions in your slayer. Normal attack damage 2498% x2 Attack damage 3248% x2 at max
+      ion output Extra attack damage 1299% x1 at max ion output , max 2 hits Critical Hit Rate +100% Maximum 10 targets Target's
+      MP/WP/SP -20 after certain periods of time while charging ions Pull target before attack (PvE only) Super Armor during
+      the skill Bound on hits (PvE only) Down Attack Down Smash 44.17% damage in PvP only
+  burning_resolve:
+    name: Burning Resolve
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: Your Dragon heart burns with unstoppable rage. "Take flight. Proclaim defiantly as you unfurl your ashen
+      wings. For oblivion shall set your fears ablaze."
+    notes: Your Dragon heart burns with unstoppable rage. "Take flight. Proclaim defiantly as you unfurl your ashen wings.
+      For oblivion shall set your fears ablaze." All AP +30 for 30 sec when using the skill Critical Hit Rate +30% for 30
+      sec when using the skill All Accuracy +60 for 30 sec when using the skill Attack Speed +10% for 30 sec when using the
+      skill Super Armor during the skill
+    keys:
+    - hotbar
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  ceaseless_vengeance:
+    name: Ceaseless Vengeance
+    input: Passive
+    protection: none
+    description: You invoke the malice of the Dragons vanquished by the traitorous tyrant who built her throne upon her kinsmen's
+      hearts.
+    notes: You invoke the malice of the Dragons vanquished by the traitorous tyrant who built her throne upon her kinsmen's
+      hearts. Collect the fossils of vanquished Dragons to draw out their lingering malice. Use Heating with Dragon Scale
+      Fossil x15 to get Shattered Dragon's Malice . Use Shattered Dragon's Malice to invoke the Dragons' malice as a boon.
+    keys:
+    - hotbar
+  core_extinction:
+    name: 'Core: Extinction'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hexeblood: Extinction III after learning this skill: Super Armor
+      during the skill'
+    keys:
+    - hotbar
+  core_savage_decree:
+    name: 'Core: Savage Decree'
+    input: Passive
+    protection: none
+    cc:
+    - floating
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hexeblood: Savage Decree III after learning this skill: Floating
+      on first hit (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_spiteful_soul:
+    name: 'Core: Spiteful Soul'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hexeblood: Spiteful Soul IV after learning this skill: Stiffness
+      on attack 3 hits (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_sundering_roar:
+    name: 'Core: Sundering Roar'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hexeblood: Sundering Roar IV after learning this skill: Super
+      Armor during the skill'
+    keys:
+    - hotbar
+  core_tectonic_slam:
+    name: 'Core: Tectonic Slam'
+    input: Passive
+    protection: none
+    cc:
+    - floating
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hexeblood: Tectonic Slam III after learning this skill: Floating
+      on last attack hits'
+    keys:
+    - hotbar
+  core_tip_of_the_scale:
+    name: 'Core: Tip of the Scale'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hexeblood: Tip of the Scale IV after learning this skill: Super
+      Armor during the skill (Nullified during cooldown)'
+    keys:
+    - hotbar
+  crackling_flame:
+    name: Crackling Flame
+    input: F in Hexeblood
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion]'
+    notes: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion] Attack damage 5591% x2 Critical Hit Rate +25% Maximum 10
+      targets Recover 125 WP per hit Down Attack 40.68% damage in PvP only'
+  doombringer:
+    name: Doombringer
+    input: 'SHIFT + Q Q during Flow: Markthanan''s Wings or Flow: Dragon Flight Switch to Dragonblood when performed'
+    keys:
+    - shift
+    - q
+    protection: iframe
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion]'
+    notes: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion] Attack 1 damage 5084% x3 Attack 2 damage 5084% x3 Critical
+      Hit Rate +100% Maximum 10 targets Super Armor -> Invincible -> Super Armor during the skill Floating on attack 1 hits
+      (PvE only) Air Attack on attack 1 hits Down Attack on attack 2 hits No collision while attacking 18.2% damage in PvP
+      only Attack 1 damage 9202% x1, max 4 hits Attack 2 damage 9202% x1, max 3 hits Attack 3 storm damage 7224% x1, max 4
+      hits Attack 3 blade damage 7224% x1, max 8 hits Last attack damage 40492% x2 Critical Hit Rate +100% Maximum 10 targets
+      All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50%
+      for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Invincible on airborne moves Super Armor
+      during the skill Stun on attack 1 hits Floating on attack 2 hits Knockdown on last attack hits Down Attack 9.94% damage
+      in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of
+      the damage of a hit. Dismount target on hits.'
+  dragon_s_advance:
+    name: Dragon's Advance
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: iframe
+    cooldown_ms: 4000
+    description: Dash quickly toward your enemies.
+    notes: Dash quickly toward your enemies. Super Armor during the skill Invincible during the skill (PvE only) Increased
+      movement distance Movement Speed +10% for 5 sec when using the skill
+  dragon_s_assault:
+    name: Dragon's Assault
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Flow: Markthanan''s Wings]'
+    notes: 'Preceding Skill: [Flow: Markthanan''s Wings] Attack damage 4231% x2 Critical Hit Rate +100% Maximum 10 targets
+      All Damage Reduction -20 for 10 sec on hits Bound on hits (PvE only) Super Armor during the skill Down Attack 66.25%
+      damage in PvP only'
+  dragon_s_maw:
+    name: Dragon's Maw
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: Strike your enemies upwards, then slash downward to send them flying.
+    notes: Strike your enemies upwards, then slash downward to send them flying. Attack 1 damage 1440% x2 Attack 2 damage
+      1440% x2 Critical Hit Rate +50% Maximum 10 targets All Evasion -12 for 10 sec on hits Knockdown on attack 1 hits Air
+      Attack Down Attack 69.56% damage in PvP only
+  dragonwalk:
+    name: Dragonwalk
+    input: ← + SHIFT → + SHIFT ↓ + SHIFT Available with your trion ↑ + SHIFT with your trion
+    keys:
+    - a
+    - shift
+    - d
+    - s
+    - w
+    protection: iframe
+    cooldown_ms: 2000
+    description: Dodge enemy attacks and prepare for the next attack.
+    notes: Dodge enemy attacks and prepare for the next attack. Super Armor during the skill Invincible during the skill (PvE
+      only) Increased movement distance Character collision occurs while moving forward No character collision while moving
+      backward or laterally
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_edict_unbound:
+    name: 'Elvia: Edict Unbound'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Channel energies into your grounded trion, then unleash them forward.
+    notes: Channel energies into your grounded trion, then unleash them forward. Attack 1 damage 13205% x1 Last attack damage
+      13205% x1 Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only)
+      All AP -20 for 10 sec on hits Recover 160 WP per hit Super Armor during the skill Down Attack 19.88% damage in PvP only
+    keys:
+    - hotbar
+  embers:
+    name: Embers
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: Retrieve your slayer quickly to perform combo attacks.
+    notes: Retrieve your slayer quickly to perform combo attacks. Attack 1 damage 1230% x1 Attack 2 damage 1230% x1 Critical
+      Hit Rate +30% Maximum 7 targets Air Attack Down Attack 66.25% damage in PvP only
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your trion
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  eviscerate:
+    name: Eviscerate
+    input: 'SHIFT + F Hold F to charge ions SHIFT + F during other skills to perform instantly F during Dragon''s Advance
+      or Flow: Markthanan''s Wings to perform instantly'
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - knockback
+    - air_attack
+    cooldown_ms: 12000
+    description: Dash forward while gathering ions in your slayer to deal a powerful thrusting attack.
+    notes: Dash forward while gathering ions in your slayer to deal a powerful thrusting attack. Dash attack damage 1483%
+      x1, max 2 hits Stab attack damage 1483% x2 Rushing attack damage 1853% x1 at max ion output, max 2 hits Stab attack
+      damage 1853% x2 at max ion output Critical Hit Rate +100% Maximum 7 targets Increased movement distance at max ion output
+      Target's MP/WP/SP -20 after certain periods of time while charging ions Forward Guard during the skill Knockback on
+      stab attack hits (PvE only) Air Attack 66.25% damage in PvP only
+  eviscerating_wings:
+    name: Eviscerating Wings
+    input: SHIFT + Z LMB to dash
+    keys:
+    - shift
+    - z
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Flow: Markthanan''s Wings]'
+    notes: 'Preceding Skill: [Flow: Markthanan''s Wings] Attack damage 1397% x1, max 6 hits Maximum 10 targets Target''s MP/WP/SP
+      -10 after certain periods of time while holding the skill Forward Guard before the attack hits Stun on hits No collision
+      while moving 55.21% damage in PvP only'
+  extinction:
+    name: Extinction
+    input: SHIFT + F Switch to Hexeblood when performed
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 7000
+    description: Stab your enemy until it's dead with your right spear.
+    notes: Stab your enemy until it's dead with your right spear. Attack damage 7507% x2 Critical Hit Rate +30% Maximum 10
+      targets All Damage Reduction -20 for 10 sec on hits Knockdown on hits Air Attack 35.47% damage in PvP only
+  fate_beckons:
+    name: Fate Beckons
+    input: ↑+ F
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion]'
+    notes: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion] Attack damage 3515% x2 Critical Hit Rate +50% Maximum 10
+      targets Recover 75 WP per hit Super Armor during the skill Knockback on hits Down Attack 85.32% damage in PvP only Attack
+      damage 2636% x1, max 8 hits Critical Hit Rate +50% Maximum 10 targets Recover 56 WP per hit Invincible -> Super Armor
+      when starting the skill Knockback on hits Down Attack 50.18% damage in PvP only Dismount target on hits. Injures target
+      with 30% of the damage of a hit.'
+  flow_asphyxiate:
+    name: 'Flow: Asphyxiate'
+    input: Hold RMB after Skewer
+    keys:
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Deal an upward strike to off-balance enemies.
+    notes: Deal an upward strike to off-balance enemies. Attack damage 1244% x2 Critical Hit Rate +100% (Nullified during
+      cooldown) Maximum 7 targets Floating on hits (Nullified during cooldown) Air Attack 66.25% damage in PvP only Damage
+      reduced during cooldown
+  flow_brimbolt_wave:
+    name: 'Flow: Brimbolt Wave'
+    input: LMB or RMB after Brimbolt Strike
+    keys:
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    description: 'Preceding Skill: [Brimbolt Strike II]'
+    notes: 'Preceding Skill: [Brimbolt Strike II] [Upon normal activation] All damage applies Brimbolt Strike ''s normal damage
+      x2 All extra attack damage applies Brimbolt Strike ''s max output extra attack damage x1, max 2 hits [At max output]
+      All damage applies Brimbolt Strike ''s max output damage x2 All extra attack damage applies Brimbolt Strike ''s max
+      output extra attack damage x1, max 2 hits Super Armor during the skill Bound on hits (PvE only) Down Attack Down Smash
+      [Upon normal activation] All damage applies Prime: Brimbolt Strike ''s normal damage x2 All extra attack damage applies
+      Prime: Brimbolt Strike ''s max output extra attack damage x1, max 2 hits [At max output] All attack damage applies Prime:
+      Brimbolt Strike''s max ion output damage x2 All extra attack damage applies Prime: Brimbolt Strike ''s max output extra
+      attack damage x1, max 2 hits Increased attack area at max ion output Super Armor during the skill Bound on hits (PvE
+      only) Down Attack Down Smash'
+  flow_cloud_s_strife:
+    name: 'Flow: Cloud''s Strife'
+    input: Hold RMB after Spiteful Soul in Dragonblood LMB + RMB after Tip of the Scale in Dragonblood
+    keys:
+    - rmb
+    - lmb
+    - hold
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Spiteful Soul III]'
+    notes: 'Preceding Skill: [Spiteful Soul III] Attack damage 10151% x2 Critical Hit Rate +100% Maximum 10 targets Recover
+      160 WP per hit Super Armor during the skill Down Attack Down Smash 35.53% damage in PvP only'
+  flow_concealed_claw:
+    name: 'Flow: Concealed Claw'
+    input: LMB + RMB during Savage Decree in Hexeblood Hold RMB after Spiteful Soul in Hexeblood LMB + RMB after Crackling
+      Flame in Hexeblood
+    keys:
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Savage Decree II]'
+    notes: 'Preceding Skill: [Savage Decree II] Attack damage 9687% x2 Critical Hit Rate +50% Maximum 10 targets Forward Guard
+      during the skill Down Attack Down Smash 46.5% damage in PvP only'
+  flow_dragon_flight:
+    name: 'Flow: Dragon Flight'
+    input: 'Hold ↑ + SPACE or SPACE after Flow: Markthanan''s Wings in Awakening Hold SPACE after Dragonwalk or Refraction
+      in Awakening ← or → for evasive maneuvers Hold F to speed up ↓ or E or LMB or ↑ + RMB to land'
+    keys:
+    - w
+    - space
+    - a
+    - d
+    - f
+    - s
+    - e
+    - lmb
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - floating
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion]'
+    notes: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion] Super Armor during the skill Immune to fall damage for 2
+      sec when using the skill No character collision during evasive maneuvers Consumes 200 Stamina (up to 250 Stamina) when
+      continuing the skill. Consumes 500 Stamina per second when accelerating. Consumes up to 250 Stamina for each direction
+      during evasive maneuvers. Activates landing with insufficient Stamina. Trion Training attack damage x1 when landing
+      from high altitudes Floating when landing from high altitudes Fall damage does not apply upon landing during Flow: Markthanan''s
+      Wings, Flow: Dragon Flight with your trion.'
+  flow_markthanan_s_claws:
+    name: 'Flow: Markthanan''s Claws'
+    input: LMB during Dragon's Advance or Markthanan's Wings
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Strike down your enemies after becoming Markthanan's claws with the ions gathered from charging.
+    notes: Strike down your enemies after becoming Markthanan's claws with the ions gathered from charging. Attack damage
+      2050% x2 Critical Hit Rate +25% Maximum 7 targets Recover 75 WP per hit Super Armor during the skill Knockdown on hits
+      (PvE only) Down Attack 66.25% damage in PvP only
+  flow_markthanan_s_wings:
+    name: 'Flow: Markthanan''s Wings'
+    input: 'SPACE while jumping forward or during Dragon''s Advance, Refraction, or Dragonwalk SPACE while charging ions with
+      Brimbolt Strike, Eviscerate, Markthanan''s Flourish, or Prime: Sundering Claw SPACE during Refraction or Dragonwalk
+      with your trion SHIFT + SPACE with your trion'
+    keys:
+    - space
+    - shift
+    protection: iframe
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Dragon''s Advance I]'
+    notes: 'Preceding Skill: [Dragon''s Advance I] Super Armor during the skill (Nullified during cooldown) Invincible during
+      the skill (PvE only) No collision while moving (Nullified during cooldown) Reduced movement distance during cooldown.
+      PQW_NO_AWAKEN'
+  flow_obliterate:
+    name: 'Flow: Obliterate'
+    input: SHIFT + E Switch to Hexeblood when performed
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion], [Extinction III]'
+    notes: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion], [Extinction III] Attack damage 10086% x2 Critical Hit Rate
+      +100% Maximum 10 targets Super Armor during the skill Bound on hits (PvE only) Down Attack Down Smash 43.16% damage
+      in PvP only'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  impale:
+    name: Impale
+    input: E LMB to perform attack 2 after Grapple
+    keys:
+    - e
+    - lmb
+    protection: SA
+    cc:
+    - floating
+    - grab
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion]'
+    notes: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion] Attack 1 damage 1987% x1 Attack 2 damage 7946% x1 Maximum
+      10 targets Super Armor on Grapple/Grapple fails Floating on Grapple Down Attack Down Smash on attack 2 hits 77.29% damage
+      in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds.'
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  legacy:
+    name: Legacy
+    input: SPACE to switch forms during other skills
+    keys:
+    - space
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 2000
+    description: By the Trion, the Legacy of Erethea, you can now shift between Hexeblood and Dragonblood forms. "My vengeance...
+      will live on eternally."
+    notes: By the Trion, the Legacy of Erethea, you can now shift between Hexeblood and Dragonblood forms. "My vengeance...
+      will live on eternally." Attack damage 5119% x1 Critical Hit Rate +50% (Nullified during cooldown) Maximum 10 targets
+      Recover 20 WP per hit (Nullified during cooldown) Forward Guard during the skill (Nullified during cooldown) Air Attack
+      Down Attack 75.3% damage in PvP only Applies the following effects while used in Hexeblood or Dragonblood . - All AP
+      +18 - Attack Speed +15% Hexeblood and Dragonblood effects activate when using skills which switch into the respective
+      form.
+  legacy_of_erethea:
+    name: Legacy of Erethea
+    input: Passive
+    protection: none
+    description: Preceding Skill for Awakening
+    keys:
+    - hotbar
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  markthanan_s_breath:
+    name: Markthanan's Breath
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 8000
+    description: Release your shard's ions to call forth Dragon's breath.
+    notes: Release your shard's ions to call forth Dragon's breath. Attack damage 1706% x1, max 3 hits Maximum 10 targets
+      40 pain damage inflicted every 3 sec for 18 sec on hits Down Attack 77.29% damage in PvP only
+  markthanan_s_dominion:
+    name: Markthanan's Dominion
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - knockback
+    - stun
+    - down_attack
+    cooldown_ms: 12000
+    description: Lodge your slayer into the ground, then release ions to push back all nearby enemies.
+    notes: Lodge your slayer into the ground, then release ions to push back all nearby enemies. Inner attack damage 1928%
+      x3 Outer attack damage 2604% x2 Critical Hit Rate +60% Maximum 8 targets Push the target on inner attack hits (PvE only)
+      Super Armor during the skill Knockback on inner attack hits (PvE only) Stun on outer attack hits (PvE only) Down Attack
+      27.61% damage in PvP only
+  markthanan_s_fang:
+    name: Markthanan's Fang
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Flow: Asphyxiate II]'
+    notes: 'Preceding Skill: [Flow: Asphyxiate II] Attack 1 damage 8034% x1 Attack 2 damage 8034% x1 Critical Hit Rate +50%
+      Maximum 10 targets Recover 120 WP per hit Floating on attack 1 hits Air Attack 34.45% damage in PvP only'
+  markthanan_s_flourish:
+    name: Markthanan's Flourish
+    input: SHIFT + LMB Hold LMB to charge ions SHIFT + LMB during other skills to perform instantly
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 12000
+    description: Strike your enemies upwards, then strike down after gathering ions in your Slayer.
+    notes: Strike your enemies upwards, then strike down after gathering ions in your Slayer. Attack 1 damage 596% x2 Attack
+      2 damage 2235% x2 Critical Hit Rate +100% Maximum 7 targets Target's MP/WP/SP -20 after certain periods of time while
+      charging ions Super Armor during the skill Floating on attack 1 hits (PvE only) Air Attack on attack 1 hits Down Smash
+      on attack 2 hits 82.82% damage in PvP only Attack damage 11850% x1, max 8 hits Critical Hit Rate +100% Maximum 10 targets
+      All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30%
+      for 60 sec when using the skill Target's MP/WP/SP -20 after certain periods of time while charging ions Super Armor
+      during the skill Floating on hits Air Attack Down Attack Down Smash 30.92% damage in PvP only Injures target with 50%
+      of the damage of a hit. Dismount target on hits.
+  markthanan_s_heart:
+    name: Markthanan's Heart
+    input: Passive
+    protection: none
+    description: When Drakania takes critical damage, her second Dragon heart begins beating, and the ions gathered nearby
+      turn into Drakania's HP to quickly heal her wounded flesh.
+    notes: 'When Drakania takes critical damage, her second Dragon heart begins beating, and the ions gathered nearby turn
+      into Drakania''s HP to quickly heal her wounded flesh. Recovers HP while charging ions when Drakania''s HP is 50% or
+      lower. Gradually recovers HP while charging ions or using skills with wings stretched out. Recovers up to the following
+      amounts per skill. Recovers 400 HP 3 times , up to 50% of Max HP - Dragonblood: Savage Decree - Dragonblood: Doombringer
+      - Hexeblood: Extinction - Dragonblood: Sundering Roar - Dragonblood: Aerial Burst - Black Spirit: Fate Beckons Recovers
+      400 HP 8 times , up to 70% of Max HP - Markthanan''s Scale - Black Spirit: Markthanan''s Flourish - Black Spirit: Tectonic
+      Slam Recovers 400 HP 10 times - Black Spirit: Blazing Strike - Black Spirit: Doombringer These skills recover HP regardless
+      of Drakania''s actual health. Recovers HP while charging or consuming ions while Drakania''s HP is 60% or lower. Recovers
+      up to the following amount per skill. Recovers only up to half the amount when performed instantly. Recovers 1000 HP
+      8 times , up to 60% of Max HP - Prime: Brimbolt Strike - Prime: Markthanan''s Flourish - Prime: Eviscerate - Prime:
+      Sundering Claw - Prime: Blazing Strike - Prime: Ascent - Markthanan''s Scale Recovers 1000 HP 12 times , up to 75% of
+      Max HP - Black Spirit: Prime: Markthanan''s Flourish Recovers 1000 HP 20 times - Prime: Markthanan''s Scale - Black
+      Spirit: Blazing Strike These skills recover HP regardless of Drakania''s current HP.'
+    keys:
+    - hotbar
+  markthanan_s_rattle:
+    name: Markthanan's Rattle
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xi:
+    name: Markthanan's Rattle XI
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xii:
+    name: Markthanan's Rattle XII
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xiii:
+    name: Markthanan's Rattle XIII
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xiv:
+    name: Markthanan's Rattle XIV
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xix:
+    name: Markthanan's Rattle XIX
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xv:
+    name: Markthanan's Rattle XV
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xvi:
+    name: Markthanan's Rattle XVI
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xvii:
+    name: Markthanan's Rattle XVII
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xviii:
+    name: Markthanan's Rattle XVIII
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_rattle_xx:
+    name: Markthanan's Rattle XX
+    input: Passive
+    protection: none
+    description: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage.
+    notes: The Dragon's skeleton is innately strong, and the power that comes from its body deals critical damage. All AP
+      +1
+    keys:
+    - hotbar
+  markthanan_s_scale:
+    name: Markthanan's Scale
+    input: SHIFT + Q ↓ or E or Q during the skill to cancel it
+    keys:
+    - shift
+    - q
+    - s
+    - e
+    protection: SA
+    cooldown_ms: 80000
+    description: Plant your slayer into the ground, gathering ions while blocking enemy attacks with Markthanan's scale.
+    notes: Plant your slayer into the ground, gathering ions while blocking enemy attacks with Markthanan's scale. Attack
+      damage 3100% x1 Maximum 10 targets Target's MP/WP/SP -25 after certain periods of time while holding the skill Super
+      Armor during the skill Damage Reduction +35% during Super Armor. 66.25% damage in PvP only
+  omnislash:
+    name: Omnislash
+    input: '↓ + LMB LMB to perform extra attacks ↓ + LMB after Skewer, Embers, Brimbolt Raze, Brimbolt Strike, or Flow: Brimbolt
+      Wave to perform attack 2'
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Skewer your enemies with your slayer, then ram your shoulder into them to draw your slayer out and strike
+      again.
+    notes: Skewer your enemies with your slayer, then ram your shoulder into them to draw your slayer out and strike again.
+      Attack 1 damage 875% x2 Attack 2 damage 1166% x1 Attack 3 damage 1166% x2 Critical Hit Rate +40% Maximum 7 targets All
+      Damage Reduction -15 for 10 sec on hits Recover 36 WP per hit Knockdown on attack 3 hits Down Attack 77.29% damage in
+      PvP only
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_abyssal_fang:
+    name: 'Prime: Abyssal Fang'
+    input: E after other skills
+    keys:
+    - e
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 3457% x2 Critical Hit Rate +50% Maximum 10 targets Target''s MP/WP/SP -60 on hits
+      (Nullified during cooldown) Stockpile 9 ions in your shard on hits (Nullified during cooldown) Stiffness on hits (Nullified
+      during cooldown) Air Attack Down Attack 22.08% damage in PvP only'
+  prime_ascent:
+    name: 'Prime: Ascent'
+    input: ↓ + C Hold C with 3 or more ions stockpiled to consume ions and perform extra attacks
+    keys:
+    - s
+    - c
+    - hold
+    protection: SA
+    cc:
+    - knockdown
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Normal attack damage 6327% x2 Extra attack damage 9844% x1 at max ion output , max 2 hits Critical
+      Hit Rate +100% Maximum 10 targets -50 MP/WP/SP to targets within extra attack area Pull in targets before extra attacks
+      (PvE only) Super Armor during the skill Bound on hits (PvE only) Knockdown on extra attack hits (PvE only) Down Attack
+      Releases 3 ions to activate at max ion output if at least 3 ions stockpiled in your shard 39.75% damage in PvP only'
+  prime_blazing_strike:
+    name: 'Prime: Blazing Strike'
+    input: ↓ + RMB ↓ + RMB during other skills to perform instantly
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Slash forward with tremendous force by gathering ions into your slayer. Deal a mighty blow when there's enough
+      ions stockpiled into your shard.
+    notes: Slash forward with tremendous force by gathering ions into your slayer. Deal a mighty blow when there's enough
+      ions stockpiled into your shard. Normal attack damage 6844% x2 Attack damage 14226% x2 at max ion output Critical Hit
+      Rate +100% Maximum 10 targets Forward Guard during the skill Bound on hits (PvE only) Down Attack Down Smash Releases
+      3 ions to activate at max ion output if at least 3 ions stockpiled in your shard Increased attack area at max ion output
+      29.81% damage in PvP only Attack 1 damage 10049% x1, max 2 hits Attack 2 damage 10049% x2 Attack 3 damage 12994% x1,
+      max 10 hits Last attack damage 20665% x2 Critical Hit Rate +100% Maximum 10 targets Stockpile 18 ions in your shard
+      when using the skill All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical
+      Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Target's MP/WP/SP -30 after
+      certain periods of time while charging ions Invincible while concealed Super Armor during the skill Floating on attack
+      2 hits Knockdown on last attack hits Down Attack Down Smash 9.16% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount target on hits.
+  prime_bloodthirst:
+    name: 'Prime: Bloodthirst'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Can now stockpile ions into your shard. Can bypass ion charging and attack at max output by consuming
+      the ions stockpiled in your shard. Performing the charging motion to full will perform attacks at max output without
+      consuming stockpiled ions. - Prime: Abyssal Fang, Prime: Skewer: 9 ions on hits - Prime: Markthanan''s Dominion, Brimbolt
+      Annihilation: 6 ions on hits - Succession: Azure Onslaught: 3 ions on hits - Prime: Brimbolt Raze: 3 ions when using
+      the skill - Black Spirit: Prime: Markthanan''s Flourish: 9 ions when using the skill - Black Spirit: Prime: Blazing
+      Strike: 18 ions when using the skill Stockpiles up to 18 ions. - Prime: Brimbolt Strike - Prime: Eviscerate - Prime:
+      Markthanan''s Flourish - Prime: Blazing Strike - Prime: Sundering Claw - Prime: Ascent Ion consuming skills consume
+      3 ions each when performed at max output.'
+    keys:
+    - hotbar
+  prime_brimbolt_raze:
+    name: 'Prime: Brimbolt Raze'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 6000
+    description: Spin, then perform a slash after gathering ions in your slayer.
+    notes: Spin, then perform a slash after gathering ions in your slayer. Attack damage 6412% x2 Critical Hit Rate +40% Maximum
+      10 targets Stockpile 3 ions in your shard when using the skill Target's MP/WP/SP -25 on pulled target hits Pull target
+      before attack (PvE only) All Damage Reduction -20 for 10 sec on hits Forward Guard during the skill Knockdown on hits
+      (PvE only) Down Attack 37.54% damage in PvP only
+  prime_brimbolt_strike:
+    name: 'Prime: Brimbolt Strike'
+    input: SHIFT + RMB Hold RMB to charge ions SHIFT + RMB during other skills to perform instantly
+    keys:
+    - shift
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 10000
+    description: Deal a mighty blow by gathering ions in your slayer. Release ions from your shard to deal a mighty blow when
+      there's enough ions stockpiled in your shard.
+    notes: Deal a mighty blow by gathering ions in your slayer. Release ions from your shard to deal a mighty blow when there's
+      enough ions stockpiled in your shard. Normal attack damage 7194% x2 Attack damage 14975% x2 at max ion output Extra
+      attack damage 3082% x1 at max ion output , max 2 hits Critical Hit Rate +100% Maximum 10 targets Target's MP/WP/SP -25
+      after certain periods of time while charging ions Pull target before attack (PvE only) Super Armor during the skill
+      Bound on hits (PvE only) Down Attack Down Smash Releases 3 ions to activate at max ion output if at least 3 ions stockpiled
+      in your shard Increased attack area at max ion output 26.5% damage in PvP only 65.15% extra attack damage in PvP only
+  prime_cinders:
+    name: 'Prime: Cinders'
+    input: Passive
+    protection: none
+    description: The Dragon's heart that absorbs nearby energy beats endlessly.
+    notes: The Dragon's heart that absorbs nearby energy beats endlessly. All Damage Reduction +2 All Accuracy +4
+    keys:
+    - hotbar
+  prime_dragon_s_fury:
+    name: 'Prime: Dragon''s Fury'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: All AP +30 for 30 sec when using the skill All Accuracy +60 for 30 sec when using the skill Attack
+      Speed +15% for 30 sec when using the skill Super Armor during the skill Stockpile 3 ions each time a Speed reduction
+      debuff is cleansed with Prime: Dragonborn Constitution during its duration. 6 ions are stockpiled while charging ions.'
+    keys:
+    - hotbar
+  prime_dragonborn_constitution:
+    name: 'Prime: Dragonborn Constitution'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: When charging ions with the following skills, you will cleanse all Speed reduction debuffs on
+      nearby allies and yourself, stockpiling up to 3 additional ions if debuffs are cleansed from yourself. (Does not remove
+      certain monsters'' Speed Reduction debuffs.) - Prime: Brimbolt Strike - Prime: Eviscerate - Prime: Markthanan''s Flourish
+      - Prime: Markthanan''s Scale - Prime: Sundering Claw - Prime: Ascent Using any of the above skills instantly will only
+      cleanse the reduction debuffs on yourself. Using Succession skills will now cleanse all Speed reduction debuffs on yourself.
+      (Does not remove certain monsters'' Speed Reduction debuffs.)'
+    keys:
+    - hotbar
+  prime_embers:
+    name: 'Prime: Embers'
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 5439% x1 Attack 2 damage 5439% x1 Critical Hit Rate +40% Maximum 10 targets All
+      AP +12 for 10 sec when using the skill Air Attack Down Attack 35.33% damage in PvP only'
+  prime_eviscerate:
+    name: 'Prime: Eviscerate'
+    input: 'SHIFT + F Hold F to charge ions SHIFT + F during other skills to perform instantly F during Dragon''s Advance
+      or Flow: Markthanan''s Wings to perform instantly'
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 8000
+    description: Gather ions in your slayer and dash forward to stab enemies with powerful force. Dash more quickly towards
+      your enemies when there's enough ions stockpiled in your shard.
+    notes: Gather ions in your slayer and dash forward to stab enemies with powerful force. Dash more quickly towards your
+      enemies when there's enough ions stockpiled in your shard. Dash attack damage 3448% x1, max 2 hits Stab attack damage
+      3448% x2 Rushing attack damage 4824% x1 at max ion output, max 2 hits Stab attack damage 4824% x2 at max ion output
+      Critical Hit Rate +100% Maximum 10 targets Target's MP/WP/SP -25 after certain periods of time while charging ions Forward
+      Guard while charging Super Armor during dash attacks Knockdown on stab attack hits Air Attack Releases 3 ions to activate
+      at max ion output if at least 3 ions stockpiled in your shard Increased movement distance at max ion output 44.61% damage
+      in PvP only
+  prime_markthanan_s_dominion:
+    name: 'Prime: Markthanan''s Dominion'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - knockback
+    - stun
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Inner attack damage 6611% x3 Outer attack damage 1852% x2 Critical Hit Rate +60% Maximum 10 targets
+      Stockpile 6 ions in your shard on inner attack hits Push the target on inner attack hits (PvE only) Super Armor during
+      the skill Knockback on inner attack hits (PvE only) Stun on outer attack hits (PvE only) Down Attack 46.38% damage in
+      PvP only'
+  prime_markthanan_s_flourish:
+    name: 'Prime: Markthanan''s Flourish'
+    input: SHIFT + LMB Hold LMB to charge ions SHIFT + LMB during other skills to perform instantly
+    keys:
+    - shift
+    - lmb
+    - hold
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Strike your enemies upwards with ions gathered in your slayer, then strike downward. Attack with max ion
+      output by spreading Markthanan's wings when you have stockpiled enough ions in your shard.
+    notes: Strike your enemies upwards with ions gathered in your slayer, then strike downward. Attack with max ion output
+      by spreading Markthanan's wings when you have stockpiled enough ions in your shard. Attack 1 damage 2117% x2 Attack
+      2 damage 6353% x2 Attack 1 damage 6214% x2 at max ion output Attack 2 damage 8577% x2 at max ion output Critical Hit
+      Rate +100% Maximum 10 targets Target's MP/WP/SP -25 after certain periods of time while charging ions Super Armor during
+      the skill Floating on attack 1 hits Air Attack on attack 1 hits Down Smash on attack 2 hits Releases 3 ions to activate
+      at max ion output if at least 3 ions stockpiled in your shard Increased attack area at max ion output 35.33% damage
+      in PvP only Attack damage 21664% x1, max 8 hits Critical Hit Rate +100% Maximum 10 targets Stockpile 9 ions in your
+      shard when using the skill All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill
+      Critical Hit Rate +30% for 60 sec when using the skill Target's MP/WP/SP -25 after certain periods of time while charging
+      ions Super Armor during the skill Floating on hits Air Attack Down Attack Down Smash 30.92% damage in PvP only Injures
+      target with 50% of the damage of a hit. Dismount target on hits.
+  prime_markthanan_s_scale:
+    name: 'Prime: Markthanan''s Scale'
+    input: SHIFT + Q ↓ or E or Q during the skill to cancel it
+    keys:
+    - shift
+    - q
+    - s
+    - e
+    protection: SA
+    cooldown_ms: 40000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 4290% x1 Maximum 10 targets Target''s MP/WP/SP -40 after certain periods of time
+      while holding the skill Super Armor during the skill Damage Reduction +80% during Super Armor. 66.25% damage in PvP
+      only'
+  prime_omnislash:
+    name: 'Prime: Omnislash'
+    input: '↓ + LMB LMB to perform extra attacks ↓ + LMB after Skewer, Eviscerate, Embers, Brimbolt Raze, Brimbolt Strike,
+      or Flow: Brimbolt Wave to perform attack 2'
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Skewer your enemies with your slayer, then ram your shoulder into them to draw your slayer out and strike
+      again.
+    notes: Skewer your enemies with your slayer, then ram your shoulder into them to draw your slayer out and strike again.
+      Attack 1 damage 3090% x2 Attack 2 damage 4120% x1 Attack 3 damage 4120% x2 Critical Hit Rate +50% Maximum 10 targets
+      Recover 54 WP per hit Forward Guard during the skill All Damage Reduction -20 for 10 sec on hits Knockdown on attack
+      3 hits Down Attack 55.21% damage in PvP only
+  prime_skewer:
+    name: 'Prime: Skewer'
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 4000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 2894% x2 Critical Hit Rate +100% (Nullified during cooldown) Maximum 10 targets
+      Recover 75 WP per hit (Nullified during cooldown) Stockpile 9 ions in your shard on hits (Nullified during cooldown)
+      Knockback on hits (Nullified during cooldown) 49.69% damage in PvP only Damage reduced during cooldown'
+  prime_sundering_claw:
+    name: 'Prime: Sundering Claw'
+    input: C Hold C to charge ions C after other skills to perform instantly
+    keys:
+    - c
+    - hold
+    protection: FG
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Normal attack damage 7070% x2 Attack damage 13359% x2 at max ion output Critical Hit Rate +100%
+      Maximum 10 targets Target''s MP/WP/SP -25 after certain periods of time while charging ions Pull in targets before attack
+      (PvE only) Forward Guard during the skill Knockdown on hits (PvE only) Down Attack Releases 3 ions to activate at max
+      ion output if at least 3 ions stockpiled in your shard Increased attack area at max ion output 29.81% damage in PvP
+      only'
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  refraction:
+    name: Refraction
+    input: '← or → + RMB ← or → + RMB while charging ions with Brimbolt Strike, Eviscerate, Markthanan''s Flourish, or Prime:
+      Sundering Claw Cancel with any other key while moving'
+    keys:
+    - a
+    - d
+    - rmb
+    protection: iframe
+    cooldown_ms: 4000
+    description: Dodge enemy attacks by moving through their blind spots.
+    notes: Dodge enemy attacks by moving through their blind spots. Invincible during the skill No collision while moving
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  savage_decree:
+    name: Savage Decree
+    input: ↓ + LMB in Dragonblood Hold LMB to continue the skill
+    keys:
+    - s
+    - lmb
+    - hold
+    protection: FG
+    cooldown_ms: 6000
+    description: Slash upwards with your right spear, then wrap your left with the winds and unleash your Dragon roar.
+    notes: Slash upwards with your right spear, then wrap your left with the winds and unleash your Dragon roar. Attack 1
+      damage 1998% x2 Attack 2 damage 5967% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill All
+      Damage Reduction -20 for 10 sec on hits 42% damage in PvP only
+  scale_bastion:
+    name: Scale Bastion
+    input: Q Available with your trion
+    keys:
+    - q
+    protection: FG
+    description: Raise up your slayer to guard against all attacks.
+    notes: Raise up your slayer to guard against all attacks. Forward Guard All Damage Reduction +10 for 20 sec when using
+      the skill Recover 150 WP on blocks
+  skewer:
+    name: Skewer
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 5000
+    description: Pierce your enemies' lungs with your slayer.
+    notes: Pierce your enemies' lungs with your slayer. Attack damage 1136% x2 Critical Hit Rate +100% (Nullified during cooldown)
+      Maximum 7 targets Recover 45 WP per hit (Nullified during cooldown) Knockback on hits (Nullified during cooldown) 66.25%
+      damage in PvP only Damage reduced during cooldown
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  slayer_training:
+    name: Slayer Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while sprinting to perform sprint attacks LMB while jumping forward to perform jump attacks LMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - bound
+    - stun
+    description: A basic attack with your slayer.
+    notes: A basic attack with your slayer. Standing attack damage 1504% x1, max 3 hits Forward attacks 1 and 2 damage 1504%
+      x1, max 2 hits Forward last attack damage 1504% x1 Lateral attack damage 1504% x1, max 2 hits Sprint attack damage 1504%
+      x1 Jump attack damage 1504% x1 Maximum 7 targets Recover 100 WP per hit Bound on jump attack hits Stun on sprinting
+      attack hits Push the target on forward, dash, and jump attack hits (PvE only) Push the target on lateral attack hits
+      (PvE only) 66.25% damage in PvP only
+  soaring_assault:
+    name: Soaring Assault
+    input: LMB during Refraction
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    description: Deal a counter attack by aiming for the enemies' blind spot during Refraction.
+    notes: Deal a counter attack by aiming for the enemies' blind spot during Refraction. Attack 1 damage 1266% x2 Attack
+      2 damage 1266% x2 Maximum 7 targets Critical Hit Rate +16% for 10 sec when using the skill Super Armor during the skill
+      Knockdown on attack 1 hits (PvE only) Air Attack Down Attack 66.25% damage in PvP only
+  soaring_claw:
+    name: Soaring Claw
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Flow: Asphyxiate II]'
+    notes: 'Preceding Skill: [Flow: Asphyxiate II] Attack damage 7746% x2 Critical Hit Rate +100% Maximum 10 targets Recover
+      100 HP per hit Floating on hits Air Attack 27.05% damage in PvP only'
+  spiteful_soul:
+    name: Spiteful Soul
+    input: SHIFT + RMB or RMB in Dragonblood Hold RMB to continue the skill
+    keys:
+    - shift
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - floating
+    cooldown_ms: 9000
+    description: Sear your foes with the flames of your right spear, then slam down with your left to unleash a storm.
+    notes: Sear your foes with the flames of your right spear, then slam down with your left to unleash a storm. Attack 1
+      damage 2689% x2 Attack 2 damage 4931% x2 Attack 3 damage 4931% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor
+      during the skill Floating on attack 2 hits (PvE only) 29.42% damage in PvP only
+  storm_maul:
+    name: Storm Maul
+    input: ↑ + RMB Switch to Hexeblood when performed
+    keys:
+    - w
+    - rmb
+    protection: iframe
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion]'
+    notes: 'Preceding Skill: [Awakening: Ashen Wings of Oblivion] Attack 1 damage 1276% x2 Attack 2 damage 3190% x2 Critical
+      Hit Rate +50% Maximum 10 targets Recover 70 WP per hit Invincible -> Super Armor during the skill Knockdown on attack
+      1 hits Down Attack 73.67% damage in PvP only'
+  storm_piercer:
+    name: Storm Piercer
+    input: '↓ + RMB in Dragonblood Hold F after Dragonblood: Sundering Roar'
+    keys:
+    - s
+    - rmb
+    - f
+    - hold
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 8000
+    description: Wrap your left spear with the winds and deliver a mighty blow that will pierce the storm.
+    notes: Wrap your left spear with the winds and deliver a mighty blow that will pierce the storm. Attack damage 8557% x2
+      Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill Stun on hits (PvE only) Down Attack 38% damage
+      in PvP only
+  succession_azure_onslaught:
+    name: 'Succession: Azure Onslaught'
+    input: ↑ + E ↑ + E while jumping forward
+    keys:
+    - w
+    - e
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 4000
+    description: Leap instantly and slash downward.
+    notes: 'Leap instantly and slash downward. Attack damage 3032% x2 Critical Hit Rate +50% Maximum 10 targets Recover 60
+      WP per hit Stockpile 3 ions into your shard on hits upon learning Prime: Bloodthirst Super Armor during the skill Stiffness
+      on hits Down Attack 60% damage in PvP only'
+  succession_flow_brimbolt_wave:
+    name: 'Succession: Flow: Brimbolt Wave'
+    input: 'LMB or RMB after Prime: Brimbolt Strike'
+    keys:
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: [Upon normal activation] All damage applies Prime: Brimbolt Strike ''s normal damage x2 All extra
+      attack damage applies Prime: Brimbolt Strike ''s max output extra attack damage x1, max 2 hits [At max output] All attack
+      damage applies Prime: Brimbolt Strike''s max ion output damage x2 All extra attack damage applies Prime: Brimbolt Strike
+      ''s max output extra attack damage x1, max 2 hits Increased attack area at max ion output Super Armor during the skill
+      Bound on hits (PvE only) Down Attack Down Smash'
+  succession_markthanan_s_heart:
+    name: 'Succession: Markthanan''s Heart'
+    input: Passive
+    protection: none
+    description: When Drakania takes critical damage, her second Dragon heart begins beating, and the ions gathered nearby
+      turn into Drakania's HP to quickly heal her wounded flesh.
+    notes: 'When Drakania takes critical damage, her second Dragon heart begins beating, and the ions gathered nearby turn
+      into Drakania''s HP to quickly heal her wounded flesh. Recovers HP while charging or consuming ions while Drakania''s
+      HP is 60% or lower. Recovers up to the following amount per skill. Recovers only up to half the amount when performed
+      instantly. Recovers 1000 HP 8 times , up to 60% of Max HP - Prime: Brimbolt Strike - Prime: Markthanan''s Flourish -
+      Prime: Eviscerate - Prime: Sundering Claw - Prime: Blazing Strike - Prime: Ascent - Markthanan''s Scale Recovers 1000
+      HP 12 times , up to 75% of Max HP - Black Spirit: Prime: Markthanan''s Flourish Recovers 1000 HP 20 times - Prime: Markthanan''s
+      Scale - Black Spirit: Blazing Strike These skills recover HP regardless of Drakania''s current HP.'
+    keys:
+    - hotbar
+  succession_markthanan_s_might:
+    name: 'Succession: Markthanan''s Might'
+    input: Passive
+    protection: none
+    description: Realize Markthanan's might to draw out all the power within your shard.
+    notes: 'Realize Markthanan''s might to draw out all the power within your shard. Allows you to charge and stockpile more
+      ions in your shard after manifesting Markthanan''s Might. Use the ions stockpiled in your shard instantly without Drakania
+      having to charge further ions to perform powerful attacks. The following skill will be empowered upon Succession. -
+      Flow: Brimbolt Wave - You must first reset your skills in order to learn Succession: Markthanan''s Might - You cannot
+      learn or use Awakening skills if you have learned Succession: Markthanan''s Might. - You cannot learn Succession skills
+      if you have learned Absolute skills. - You cannot learn Absolute skills if you have learned Succession skills.'
+    keys:
+    - hotbar
+  sundering_roar:
+    name: Sundering Roar
+    input: ↓ + F in Dragonblood
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 12000
+    description: Channel the winds into your left spear, then unleash your Dragon breath.
+    notes: Channel the winds into your left spear, then unleash your Dragon breath. Attack damage 9648% x1, max 5 hits Critical
+      Hit Rate +100% Maximum 10 targets Super Armor -> Forward Guard during the skill Casting Speed -15% for 10 sec on hits
+      Attack Speed -15% for 10 sec on hits Down Attack 27.63% damage in PvP only
+  tectonic_slam:
+    name: Tectonic Slam
+    input: ↑ + E Switch to Hexeblood when performed
+    keys:
+    - w
+    - e
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Combine your spears, wrapped in winds, then dash forward.
+    notes: Combine your spears, wrapped in winds, then dash forward. Attack damage 3252% x2 Critical Hit Rate +25% Maximum
+      10 targets Recover 100 WP per hit Super Armor during the skill All Evasion -12 for 10 sec on hits Floating on last attack
+      hits (PvE only) Air Attack 57.96% damage in PvP only Attack 1 damage 7000% x3 Last attack damage 8751% x3 Critical Hit
+      Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the
+      skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor during the skill Stun on attack 1 hits Knockdown
+      on last attack hits Down Attack 33.13% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target
+      on hits.
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tip_of_the_scale:
+    name: Tip of the Scale
+    input: 'SHIFT + LMB in Dragonblood Hold LMB during Flow: Markthanan''s Wings or Flow: Dragon Flight in Dragonblood'
+    keys:
+    - shift
+    - lmb
+    - hold
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Leap forward quickly and slam down enemies with your left spear.
+    notes: Leap forward quickly and slam down enemies with your left spear. Attack damage 8479% x2 Critical Hit Rate +100%
+      Maximum 10 targets Super Armor during the skill Knockdown on hits (PvE only) Down Attack 30% damage in PvP only Attack
+      damage 14132% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill All Evasion -12 for 20 sec
+      on hits Knockdown on hits (PvE only) Down Attack 24.8% damage in PvP only Increased attack area Dismount target on hits.
+      Injures target with 20% of the damage of a hit.
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  trion_training:
+    name: Trion Training
+    input: 'LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while sprinting to perform sprint attacks LMB while jumping forward to perform jump attacks RMB during Flow: Markthanan''s
+      Wings, Flow: Dragon Flight, or while jumping forward to perform dash attacks'
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    cc:
+    - floating
+    description: Alternate left and right trion spears in a barrage of attacks.
+    notes: Alternate left and right trion spears in a barrage of attacks. Standing attack damage 1472% x1, max 3 hits Forward
+      attacks 1, 2, and 3 damage 1472% x1 Forward last attack damage 1472% x1, max 2 hits Lateral attack damage 1472% x1,
+      max 2 hits Jump attack damage 1472% x1 Dash attack damage 1472% x1, max 6 hits Critical Hit Rate +20% Maximum 10 targets
+      Recover 80 WP per hit Floating on standing attack 2 hits Floating on forward attack 2 hits Consumes 150 Stamina during
+      charging attacks. 66.25% damage in PvP only
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+_flags:
+- ceaseless_vengeance: Passive — no keybind.
+- core_extinction: Passive — no keybind.
+- core_savage_decree: Passive — no keybind.
+- core_spiteful_soul: Passive — no keybind.
+- core_sundering_roar: Passive — no keybind.
+- core_tectonic_slam: Passive — no keybind.
+- core_tip_of_the_scale: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- legacy_of_erethea: Passive — no keybind.
+- markthanan_s_heart: Passive — no keybind.
+- markthanan_s_rattle: Passive — no keybind.
+- markthanan_s_rattle_xi: Passive — no keybind.
+- markthanan_s_rattle_xii: Passive — no keybind.
+- markthanan_s_rattle_xiii: Passive — no keybind.
+- markthanan_s_rattle_xiv: Passive — no keybind.
+- markthanan_s_rattle_xix: Passive — no keybind.
+- markthanan_s_rattle_xv: Passive — no keybind.
+- markthanan_s_rattle_xvi: Passive — no keybind.
+- markthanan_s_rattle_xvii: Passive — no keybind.
+- markthanan_s_rattle_xviii: Passive — no keybind.
+- markthanan_s_rattle_xx: Passive — no keybind.
+- prime_bloodthirst: Passive — no keybind.
+- prime_cinders: Passive — no keybind.
+- prime_dragonborn_constitution: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- succession_markthanan_s_heart: Passive — no keybind.
+- succession_markthanan_s_might: Passive — no keybind.
+- unyielding_might: Passive — no keybind.

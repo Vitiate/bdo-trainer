@@ -1,6 +1,1452 @@
 # Kunoichi — Awakening
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Kunoichi
 spec: Awakening
-skills: {}
+skills:
+  access_awakening_requirement:
+    name: Access Awakening Requirement
+    input: Automatically obtained after completing the awakening quest.
+    protection: none
+    cooldown_ms: 1000
+    description: Instantly disappear from the enemy's sight, and then reappear either from mid-air or from the bottom to inflict
+      damage.
+  ankle_cutter:
+    name: Ankle Cutter
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Cut the enemy's ankle to inflict a huge amount of damage.
+    notes: Cut the enemy's ankle to inflict a huge amount of damage. Attack damage 706% x2 Critical Hit Rate +100% Maximum
+      5 targets All Damage Reduction -20 for 5 sec on hits Forward Guard during the skill (Nullified during cooldown) Bound
+      on hits (PvE only) (Nullified during cooldown) Down Attack 51.02% damage in PvP only
+  assassin_s_trail:
+    name: Assassin's Trail
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - stun
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Heart Aiming III]'
+    notes: 'Preceding Skill: [Heart Aiming III] Attack damage 1982% x2 Critical Hit Rate +100% Maximum 10 targets All Evasion
+      +12 for 10 sec when using the skill All Damage Reduction -10 for 10 sec on hits Forward Guard at the start of the skill
+      Invincible while moving Stun on hits (PvE only) 86.56% damage in PvP only'
+  awakening_crimson_sah_chakram:
+    name: 'Awakening: Crimson Sah Chakram'
+    input: C
+    keys:
+    - c
+    protection: FG
+    cooldown_ms: 1000
+    description: Enter the battle with your sah chakram gleaming with the moon's energy.
+    notes: Enter the battle with your sah chakram gleaming with the moon's energy. Switch to your sah chakram. Attacking continued
+      while switching if used during offensive skills. Forward Guard applied while switching.
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+    keys:
+    - hotbar
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  brace:
+    name: Brace
+    input: SHIFT + SPACE
+    keys:
+    - shift
+    - space
+    protection: none
+    cooldown_ms: 13000
+    description: Calmly collect your senses to instantly recover WP.
+    notes: Calmly collect your senses to instantly recover WP. Recover 200 WP Recover 150 HP
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  chain_crash_sah_chakram:
+    name: 'Chain Crash: Sah Chakram'
+    input: F
+    keys:
+    - f
+    protection: SA
+    cc:
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 8000
+    description: Release your sah chakram, then watch it mercilessly assault the enemy ranks, leaving trails of blood in its
+      wake.
+    notes: Release your sah chakram, then watch it mercilessly assault the enemy ranks, leaving trails of blood in its wake.
+      Attack damage 5656% x4 Critical Hit Rate +100% (Nullified during cooldown) Maximum 10 targets Forward Guard during the
+      skill (Nullified during cooldown) Stun on hits (PvE only) (Nullified during cooldown) Pull in the target on hits (PvE
+      only) Down Attack 30.67% damage in PvP only Damage reduced during cooldown Attack damage 7541% x4 Critical Hit Rate
+      +100% Maximum 10 targets Increased attack area Recover 30 WP per hit Super Armor Stun on hits Pull in the target on
+      hits (PvE only) Down Attack 30.67% damage in PvP only Dismount target on hits. Injures target with 30% of the damage
+      of a hit. Not activated during cooldown.
+  core_delighted_blast:
+    name: 'Core: Delighted Blast'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Delighted Blast III after learning this skill: Forward Guard
+      during the skill'
+    keys:
+    - hotbar
+  core_half_moon_slash:
+    name: 'Core: Half Moon Slash'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Half Moon Slash IV after learning this skill: Stiffness on hits
+      (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_lethal_spin_spree:
+    name: 'Core: Lethal Spin Spree'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Lethal Spin Spree IV after learning this skill: Stiffness on
+      attack 1 hits'
+    keys:
+    - hotbar
+  core_lunar_dash:
+    name: 'Core: Lunar Dash'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Lunar Dash III after learning this skill: Stiffness on last attack
+      hits Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_sah_spree_of_sonan:
+    name: 'Core: Sah Spree of Sonan'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Sah Spree of Sonan IV after learning this skill: Forward Guard
+      during the skill (Nullified during cooldown) Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_wheel_of_wrath:
+    name: 'Core: Wheel of Wrath'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Wheel of Wrath III after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown)'
+    keys:
+    - hotbar
+  crescent_slash:
+    name: Crescent Slash
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: Perform a large upward slash to knock your enemies into the air.
+    notes: Perform a large upward slash to knock your enemies into the air. Attack damage 788% x2 Maximum 5 targets Floating
+      on hits (Nullified during cooldown) Push the target on hits (PvE only) Air Attack Damage reduced during cooldown 80.62%
+      damage in PvP only
+  crimson_eclipse:
+    name: Crimson Eclipse
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 120000
+    description: Take in the moon's aura into your body and mold it into darkness.
+    notes: Take in the moon's aura into your body and mold it into darkness. All AP +20 for 20 sec Attack Speed +10% for 20
+      sec All Accuracy +40 for 20 sec All Evasion +60 for 20 sec Critical Hit Rate +16% for 20 sec Super Armor during the
+      skill
+    keys:
+    - hotbar
+  danse_macabre:
+    name: Danse Macabre
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: Throw your sah chakram and instantly move to its position to then attack.
+    notes: Throw your sah chakram and instantly move to its position to then attack. Attack 1 damage 2124% x2 Attack 2 damage
+      2124% x2 Critical Hit Rate +100% Maximum 10 targets All Evasion +24 for 10 sec when using the skill Invincible while
+      concealed Super Armor Stiffness on attack 1 hits (PvE only) Bound on attack 2 hits (PvE only) Down Attack 77.45% damage
+      in PvP only
+  death_s_descent:
+    name: Death's Descent
+    input: E
+    keys:
+    - e
+    protection: SA
+    cc:
+    - bound
+    - grab
+    - down_attack
+    cooldown_ms: 15000
+    description: Grab your enemy into the air, then slam them down back to the surface.
+    notes: Grab your enemy into the air, then slam them down back to the surface. Attack damage 1862% x1 Maximum 10 targets
+      Super Armor on Grapple/Grapple fails Bound on Grapple Down Attack 80.62% damage in PvP only Not affected by effects
+      which increase/decrease Attack and/or Casting Speeds.
+  delighted_blast:
+    name: Delighted Blast
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 6000
+    description: Unleash the fully-charged energy of the sah chakram in front.
+    notes: Unleash the fully-charged energy of the sah chakram in front. Attack damage 1833% x2 Maximum 10 targets Down Attack
+      damage +10% for 10 sec when using the skill Knockdown on hits Air Attack 64.41% damage in PvP only Lunar attack damage
+      4067% x1 Lunar explosion attack damage 4067% x1 Critical Hit Rate +100% on Lunar hit Maximum 10 targets Knockdown on
+      hits Air Attack Down Attack 51.54% lunar attack damage in PvP only
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_melting_moon:
+    name: 'Elvia: Melting Moon'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Send your sah chakram spinning forward, dealing continuous damage to foes in the vicinity.
+    notes: Send your sah chakram spinning forward, dealing continuous damage to foes in the vicinity. Attack damage 4699%
+      x5 Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All
+      AP -20 for 10 sec on hits Recover 44 WP per hit Super Armor during the skill Down Attack 22.78% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  fatal_blow:
+    name: Fatal Blow
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - air_attack
+    cooldown_ms: 6000
+    description: Stab your enemies' vitals to deal critical damage.
+    notes: Stab your enemies' vitals to deal critical damage. Attack damage 2214% x1 Critical Hit Rate +100% Maximum 5 targets
+      Stiffness on hits (Nullified during cooldown) Counter Attack Air Attack Damage reduced during cooldown 66.57% damage
+      in PvP only
+  flash_slash:
+    name: Flash Slash
+    input: SHIFT + E Direction during the skill to move in that direction
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 15000
+    description: Slash your enemies in the blink of an eye.
+    notes: Slash your enemies in the blink of an eye. Attack damage 2460% x2 Critical Hit Rate +100% Maximum 7 targets Super
+      Armor during the skill Invincible while concealed Stiffness before attack Down Attack 61.96% damage in PvP only Attack
+      damage 1869% x2, max 3 hits Last attack damage 2804% x2 Critical Hit Rate +100% Maximum 7 targets All AP +30 for 60
+      sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using
+      the skill Super Armor Invincible while concealed Stiffness on hits Down Attack 37.02% damage in PvP only Injures target
+      with 50% of the damage of a hit. Dismount target on hits.
+  floor_sweeping:
+    name: Floor Sweeping
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Aim for your enemies' ankles and trip them, dealing massive damage.
+    notes: Aim for your enemies' ankles and trip them, dealing massive damage. Attack damage 880% x1 Maximum 5 targets Recover
+      20 WP per hit Bound on hits (Nullified during cooldown) Down Attack Down Smash 73.13% damage in PvP only Damage reduced
+      during cooldown
+  flow_block_jump:
+    name: 'Flow: Block Jump'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: iframe
+    cc:
+    - stiffness
+    description: 'Preceding Skill: [Ninjutsu: Block Jump]'
+    notes: 'Preceding Skill: [Ninjutsu: Block Jump] Can use Ninjutsu: Block Jump with your sah chakram. Melee AP +24 for 10
+      sec when using the skill Invincible while concealed Stiffness after moving behind your enemy or backward Concealment
+      after moving to the blocks of wood'
+  flow_chakram_rise:
+    name: 'Flow: Chakram Rise'
+    input: Hold RMB after Lunar Dash or Penumbral Blade
+    keys:
+    - hold
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Lunar Dash I]'
+    notes: 'Preceding Skill: [Lunar Dash I] Attack damage 6306% x2 Critical Hit Rate +100% Maximum 10 targets Recover 75 WP
+      per hit Knockdown on hits Down Attack 35% damage in PvP only'
+  flow_fatal_blow_combo:
+    name: 'Flow: Fatal Blow Combo'
+    input: Hold LMB or RMB after stabbing
+    keys:
+    - hold
+    - lmb
+    - rmb
+    protection: none
+    cooldown_ms: 6000
+    description: 'Precedent: [Fatal Blow I]'
+    notes: 'Precedent: [Fatal Blow I] Applies Fatal Blow''s damage and all effects.'
+  flow_indignation:
+    name: 'Flow: Indignation'
+    input: 'RMB after Wheel of Wrath, Flow: Pinwheel Fury, Danse Macabre LMB after Lethal Spin Spree RMB during Lethal Spin
+      Spree'
+    keys:
+    - rmb
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Wheel of Wrath]'
+    notes: 'Preceding Skill: [Wheel of Wrath] Attack damage 8917% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      during the skill Knockdown on hits (PvE only) Down Attack Down Smash 37.79% damage in PvP only'
+  flow_kick_down:
+    name: 'Flow: Kick Down'
+    input: 'Can be used with your sah chakram F during Flow: Sky Stepping'
+    keys:
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Precedent: [Flow: Sky Stepping]'
+    notes: 'Precedent: [Flow: Sky Stepping] All damage applies Throwing Kick ''s damage x2 Smash attack damage 953% x1 Maximum
+      5 targets Recover 20 WP per hit Bound on hits Down Attack 63.34% smash attack damage in PvP only'
+  flow_pinwheel_fury:
+    name: 'Flow: Pinwheel Fury'
+    input: 'LMB after Lunar Dash, Flow: Chakram Rise, Delighted Blast, Flow: Indignation, Lunatic Discus Skill'
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Lethal Spin Spree I]'
+    notes: 'Preceding Skill: [Lethal Spin Spree I] Super Armor during the skill Attack damage 3725% x8 Critical Hit Rate +100%
+      Maximum 10 targets Movement Speed -10% for 5 sec on hits Attack Speed -10% for 5 sec on hits Casting Speed -10% for
+      5 sec on hits Down Attack 20.07% damage in PvP only'
+  flow_sky_stepping:
+    name: 'Flow: Sky Stepping'
+    input: Can be used with your sah chakram ← + SPACE or → + SPACE ↓ + SPACE ↑+ SPACE while jumping
+    keys:
+    - a
+    - d
+    - s
+    - w
+    - space
+    protection: none
+    description: Jump as if taking aerial steps in the sky, then jump once more while airborne.
+    notes: Jump as if taking aerial steps in the sky, then jump once more while airborne. Movement Speed +10% for 10 sec when
+      using the skill Recovers 10 WP when using the skill Ghost Step available during the skill. Can be continued twice. Cannot
+      continue the skill in the same direction.
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  fox_claw:
+    name: Fox Claw
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - air_attack
+    - down_attack
+    cooldown_ms: 7000
+    description: Deal massive damage by slashing a wide area in front with blazing speed.
+    notes: Deal massive damage by slashing a wide area in front with blazing speed. Attack damage 465% x2 Extra attack damage
+      2109% x2 Maximum 7 targets Recover 75 HP per hit (Nullified during cooldown) Stiffness on hits (Nullified during cooldown)
+      Push the target on hits (PvE only) Air Attack on extra attack hits Down Attack on extra attack hits Damage reduced during
+      cooldown 56.2% extra attack damage in PvP only
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  ghost_greeting:
+    name: Ghost Greeting
+    input: SHIFT + ↑ + LMB LMB in certain situations while sprinting LMB
+    keys:
+    - shift
+    - w
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: Instantly appear in front of your foes, then knock them upwards.
+    notes: Instantly appear in front of your foes, then knock them upwards. Attack damage 1079% x2 Maximum 7 targets Invincible
+      while concealed (Nullified during cooldown) Floating on hits (PvE only) (Nullified during cooldown) Stiffness on hits
+      (PvP only) (Nullified during cooldown) Down Attack Air Attack Speed Attack Forward movement unavailable during cooldown.
+      Damage reduced during cooldown 61.62% damage in PvP only
+  ghost_step:
+    name: Ghost Step
+    input: SHIFT + ← SHIFT + → SHIFT + ↓ ↑ + ↑ or ↑ + F
+    keys:
+    - shift
+    - a
+    - d
+    - s
+    - w
+    - f
+    protection: iframe
+    cooldown_ms: 1000
+    description: Like a ghost in the night, move swiftly in all directions.
+    notes: 'Like a ghost in the night, move swiftly in all directions. Invincible Invincible during the skill (PvE only) Character
+      collision occurs while moving forward No character collision while moving backward or laterally Increased movement distance
+      Invincible Invincible during the skill (PvE only) Character collision occurs while moving forward No character collision
+      while moving backward or laterally Reduced Stamina consumption when using [Prime: Ninjutsu Commence]'
+  ground_thrust:
+    name: Ground Thrust
+    input: ↓ + F after a double jump
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: Descend quickly after jumping once more with Sky Stepping, dealing damage to enemies nearby.
+    notes: Descend quickly after jumping once more with Sky Stepping, dealing damage to enemies nearby. Attack damage 1419%
+      x2 Maximum 7 targets Bound on hits Down Attack Speed Attack 69.56% damage in PvP only
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  half_moon_slash:
+    name: Half Moon Slash
+    input: → or ← + LMB Hold → or ← + LMB to continue the skill Can be used with your shortsword
+    keys:
+    - d
+    - a
+    - lmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 3000
+    description: Swiftly move toward the enemy's side and slash mercilessly.
+    notes: Swiftly move toward the enemy's side and slash mercilessly. Attack damage 2781% x1, max 2 hits Critical Hit Rate
+      +50% Maximum 10 targets Recover 70 WP per hit (Nullified during cooldown) Attack Speed +10% for 10 sec when using the
+      skill (Nullified during cooldown) Super Armor during the skill (Nullified during cooldown) Down Attack No collision
+      while moving (Nullified during cooldown) 65.88% damage in PvP only
+  halo:
+    name: Halo
+    input: SPACE in certain situations
+    keys:
+    - space
+    protection: FG
+    cc:
+    - stun
+    - spin
+    - air_attack
+    cooldown_ms: 7000
+    description: Block enemy attacks and instantly counterattack to inflict damage.
+    notes: Block enemy attacks and instantly counterattack to inflict damage. Attack damage 4585% x2 Critical Hit Rate +50%
+      Maximum 10 targets Melee AP +24 for 10 sec when using the skill Forward Guard Spin the target on hits (PvE only) Stun
+      on hits (PvE only) (Nullified during cooldown) Air Attack 44.85% damage in PvP only Damage reduced during cooldown
+  heart_aiming:
+    name: Heart Aiming
+    input: Can be used with your sura katana or sah chakram LMB + RMB while concealed SPACE while concealed
+    keys:
+    - lmb
+    - rmb
+    - space
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 30000
+    description: Aim and stab the enemy's heart during Concealment.
+    notes: Aim and stab the enemy's heart during Concealment. Attack damage 1865% x2 Critical Hit Rate +100% Maximum 5 targets
+      Stun on hits (Nullified during cooldown) Counter Attack Damage reduced during cooldown 70.25% damage in PvP only
+  hidden_dagger_jutsu:
+    name: Hidden Dagger Jutsu
+    input: F Hold F on hits for chasing maneuvers F after certain skills to perform instantly
+    keys:
+    - f
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 5028% x2 Critical Hit Rate +100% Maximum 10 targets
+      Forward Guard before the attack hits Stun on hits Super Armor after chasing maneuvers Down Attack 26.2% damage in PvP
+      only'
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  killer_training:
+    name: Killer Training
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xi:
+    name: Killer Training XI
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xii:
+    name: Killer Training XII
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xiii:
+    name: Killer Training XIII
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xiv:
+    name: Killer Training XIV
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xix:
+    name: Killer Training XIX
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xv:
+    name: Killer Training XV
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xvi:
+    name: Killer Training XVI
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xvii:
+    name: Killer Training XVII
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xviii:
+    name: Killer Training XVIII
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xx:
+    name: Killer Training XX
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  killer_training_xxi:
+    name: Killer Training XXI
+    input: Passive
+    protection: none
+    description: Train your body to perform more advanced assassination skills.
+    notes: Train your body to perform more advanced assassination skills. Taking better care of your equipment can save your
+      life. The following equipment gains Durability Reduction Resistance + 25% . - Weapons, defense gear, accessories (Not
+      available for non-main weapons such as fishing rods or matchlocks.)
+    keys:
+    - hotbar
+  kunai_block:
+    name: Kunai Block
+    input: Q after equipping a kunai Auto-activated while moving backward with your kunai
+    keys:
+    - q
+    protection: FG
+    description: Block enemy attacks with your kunai. Only available with your kunai equipped.
+    notes: Block enemy attacks with your kunai. Only available with your kunai equipped. Defend with your kunai Forward Guard
+  kunai_stab:
+    name: Kunai Stab
+    input: Hold LMB + RMB after Fatal Blow or Fatal Blow Combo
+    keys:
+    - hold
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 7000
+    description: Stab enemy's vitals once more after using Fatal Blow. Only available when your kunai is equipped.
+    notes: Stab enemy's vitals once more after using Fatal Blow. Only available when your kunai is equipped. All attack damage
+      applies Fatal Blow's damage x1.5 x1 Applies Fatal Blow's maximum number of targets Stiffness on hits (Nullified during
+      cooldown) Counter Attack Damage reduced during cooldown
+  kunai_throw:
+    name: Kunai Throw
+    input: RMB with your kunai equipped
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    description: Evade laterally while throwing your kunai at your foes. Only available with your kunai equipped.
+    notes: Evade laterally while throwing your kunai at your foes. Only available with your kunai equipped. Attack damage
+      588% x1 Critical Hit Rate +100% on jump attacks (PvE only) Maximum 3 targets Recover 10 WP per hit Stiffness on airborne
+      attack hits Down Attack 73.13% damage in PvP only
+  kunai_evasive_throw:
+    name: 'Kunai: Evasive Throw'
+    input: ← + RMB → + RMB
+    keys:
+    - a
+    - d
+    - rmb
+    protection: none
+    description: Evade laterally while throwing your kunai at your foes. Only available with your kunai equipped.
+    notes: Evade laterally while throwing your kunai at your foes. Only available with your kunai equipped. Can be used twice
+      consecutively
+  kunai_paralysis:
+    name: 'Kunai: Paralysis'
+    input: Auto-activated during Kunai Throw
+    protection: none
+    description: Dip your kunai in a paralyzing toxin which slows your enemy's movements.
+    notes: Dip your kunai in a paralyzing toxin which slows your enemy's movements. Casting Speed -15% for 5 sec on hits Attack
+      Speed -15% for 5 sec on hits
+  lethal_spin_spree:
+    name: Lethal Spin Spree
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - stiffness
+    - stun
+    - down_attack
+    cooldown_ms: 8000
+    description: Spin your sah chakram with both hands, using its centrifugal force to inflict massive damage to enemies nearby.
+    notes: Spin your sah chakram with both hands, using its centrifugal force to inflict massive damage to enemies nearby.
+      Attack damage 4246% x8 Critical Hit Rate +100% Maximum 10 targets Recover 175 HP per hit Super Armor Stiffness on attack
+      1 hits (PvE only) Stun on attack 3 hits (PvE only) Down Attack 33.73% damage in PvP only Attack 1 damage 19041% x1,
+      max 8 hits Last attack damage 25020% x2 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using
+      the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max
+      HP +2000 for 60 sec when using the skill Super Armor -> Invincible -> Super Armor Stun on last attack hits Down Attack
+      8.88% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Injures target
+      with 100% of the damage of a hit. Dismount target on hits.
+  lunar_dash:
+    name: Lunar Dash
+    input: ↑ + RMB Can be used with your shortsword
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    cooldown_ms: 4000
+    description: Dash forward to stop your enemies in their tracks, then swiftly slash with moonbeam energy.
+    notes: Dash forward to stop your enemies in their tracks, then swiftly slash with moonbeam energy. Dash attack damage
+      2900% x1 Last attack damage 2900% x2 Critical Hit Rate +50% Maximum 10 targets Recover 80 WP per hit All Evasion +24
+      for 10 sec when using the skill Super Armor during the skill Stiffness on last attack hits (PvE only) 49.93% damage
+      in PvP only Dash attack damage 4315% x1 Last attack damage 4315% x2 Critical Hit Rate +50% Maximum 10 targets Recover
+      120 WP per hit All Evasion +24 for 10 sec when using the skill Super Armor during the skill Stiffness on last attack
+      hits (PvE only) 68.01% damage in PvP only Dismount target on hits. Injures target with 10% of the damage of a hit.
+  lunar_veil:
+    name: Lunar Veil
+    input: Q SHIFT + Direction while defending to perform Ghost Step in defensive stance
+    keys:
+    - q
+    - shift
+    protection: FG
+    description: Block all attacks that come your way with your sah chakram in hand.
+    notes: Block all attacks that come your way with your sah chakram in hand. Recover 25% of Max WP on blocks Guard maintained
+      while defending during Ghost Step combo Guard nullified while moving Forward Guard
+  lunatic_discus:
+    name: Lunatic Discus
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - knockback
+    - spin
+    - down_attack
+    cooldown_ms: 8000
+    description: Throw your sah chakram to inflict critical damage upon your foes.
+    notes: Throw your sah chakram to inflict critical damage upon your foes. Attack damage 10055% x2 Critical Hit Rate +100%
+      Maximum 10 targets 30 bleeding damage every 3 sec for 27 sec on hits All Damage Reduction -20 for 10 sec on hits Knockback
+      on hits (PvP only) Spin the target on hits (PvE only) Down Attack 37.3% damage in PvP only
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  moon_storm:
+    name: Moon Storm
+    input: ↓ + E Can be used via a Quick Slot with your shortsword
+    keys:
+    - s
+    - e
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 8000
+    description: Become one with your sah chakram, hiding in its shadow, then use its centrifugal force to strike down hard.
+    notes: Become one with your sah chakram, hiding in its shadow, then use its centrifugal force to strike down hard. Attack
+      damage 9919% x2 Critical Hit Rate +100% Maximum 10 targets Recover 348 HP per hit Super Armor during the skill All Damage
+      Reduction -20 for 10 sec on hits Stiffness on hits Down Attack 34.68% damage in PvP only
+  ninja_evasion:
+    name: Ninja Evasion
+    input: SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your sura katana or sah chakram For Ninja, can be used laterally
+      only with your sura katana.
+    keys:
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Dodge laterally or back with blazingly swift movements of the shinobi.
+    notes: Dodge laterally or back with blazingly swift movements of the shinobi. Invincible during the skill (PvE only) Increased
+      movement distance
+  ninjutsu_ankle_splitter:
+    name: 'Ninjutsu: Ankle Splitter'
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Ninjutsu: Shackles IV]'
+    notes: 'Preceding Skill: [Ninjutsu: Shackles IV] Attack damage 1560% x2 Extra attack damage 3120% x2 Critical Hit Rate
+      +100% Maximum 10 targets All Damage Reduction -15 for 10 sec on hits Bound on first hit Down Attack 38.84% damage in
+      PvP only'
+    keys:
+    - hotbar
+  ninjutsu_black_moonlight:
+    name: 'Ninjutsu: Black Moonlight'
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 22000
+    description: Retreat to the shadows under the cover of countless shuriken and kunai, raining down massive damage on your
+      foes.
+    notes: Retreat to the shadows under the cover of countless shuriken and kunai, raining down massive damage on your foes.
+      Attack damage 4116% x2 Maximum 7 targets Increased attack area Stiffness on hits Down Attack 65.88% damage in PvP only
+    keys:
+    - hotbar
+  ninjutsu_block_jump:
+    name: 'Ninjutsu: Block Jump'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: iframe
+    cc:
+    - stiffness
+    cooldown_ms: 18000
+    description: Swiftly disappear from sight and leave 3 blocks of wood then reappear in front/behind the enemy, or move
+      to one of the blocks of wood.
+    notes: Swiftly disappear from sight and leave 3 blocks of wood then reappear in front/behind the enemy, or move to one
+      of the blocks of wood. Melee AP +6 for 10 sec when using the skill Invincible while concealed Stiffness after moving
+      behind your enemy or backward Concealment after moving to the blocks of wood Melee AP +6 for 10 sec when using the skill
+      Invincible while concealed Stiffness after moving behind your enemy or backward Concealment after moving to the blocks
+      of wood
+  ninjutsu_concealment:
+    name: 'Ninjutsu: Concealment'
+    input: SPACE after Smokescreen
+    keys:
+    - space
+    protection: iframe
+    cooldown_ms: 20000
+    description: Hide yourself from the enemy.
+    notes: Hide yourself from the enemy. Invincible while concealed Concealed for 15 sec . Cancels Concealment if struck with
+      damage. Does not prevent monsters from attacking if detected prior to Concealment. Cancels Concealment if performing
+      any action other than basic movements. Moves concealed towards the direction faced when the skill was cast. Consumes
+      100 Stamina to move during Concealment. Recover Stamina by standing still. Cancels Concealment if at 150 Stamina or
+      below. Not affected by effects which increase or decrease Movement Speed.
+  ninjutsu_heart_snatch:
+    name: 'Ninjutsu: Heart Snatch'
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: iframe
+    cc:
+    - bound
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Heart Aiming III]'
+    notes: 'Preceding Skill: [Heart Aiming III] Attack damage 3112% x2 Critical Hit Rate +100% Maximum 10 targets Movement
+      Speed -10% for 5 sec on hits Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Invincible while
+      concealed Bound on hits (PvE only) 71.76% damage in PvP only'
+  ninjutsu_oni_shadow:
+    name: 'Ninjutsu: Oni Shadow'
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: iframe
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Smokescreen V]'
+    notes: 'Preceding Skill: [Smokescreen V] All Evasion +12 for 10 sec when using the skill Invincible at the start of the
+      skill Concealed for 15 sec . Cancels Concealment if struck with damage. Does not prevent monsters from attacking if
+      detected prior to Concealment. Cancels Concealment if performing any action other than Ghost Step or basic movements.
+      Moves concealed towards the direction faced when the skill was cast. Activates Concealment when using Ghost Step while
+      concealed. Consumes 100 Stamina to move during Concealment. Recover Stamina by standing still. Cancels Concealment if
+      at 150 Stamina or below. Not affected by effects which increase or decrease Movement Speed.'
+  ninjutsu_shackles:
+    name: 'Ninjutsu: Shackles'
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 24000
+    description: Hinder the movement of enemies in front with your jutsu.
+    notes: Hinder the movement of enemies in front with your jutsu. Attack damage 1600% x3 Critical Hit Rate +100% Maximum
+      7 targets Movement Speed -20% for 5 sec on hits Stun on attack 1 hits Down Attack 73.13% damage in PvP only
+    keys:
+    - hotbar
+  ninjutsu_shadow_clone:
+    name: 'Ninjutsu: Shadow Clone'
+    input: ↓ + RMB for Kunoichi only
+    keys:
+    - s
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 12000
+    description: Turn back, then launch an explosion of shadows at enemies in front.
+    notes: Turn back, then launch an explosion of shadows at enemies in front. Attack damage 2126% x2 Critical Hit Rate +100%
+      Maximum 7 targets Recover 90 HP per hit Down Attack Air Attack Down Smash Air Smash 42.27% damage in PvP only Attack
+      1 damage 1819% x4 Attack 2 damage 1819% x4 Last attack damage 6350% x2 Critical Hit Rate +100% (PvE only) Maximum 7
+      targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate
+      +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor Stun on hits Down Attack
+      Down Smash 38.04% damage in PvP only Injures target with 100% of the damage of a hit. Dismount target on hits.
+  ninjutsu_shadow_explosion:
+    name: 'Ninjutsu: Shadow Explosion'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 16000
+    description: Use your jutsu to unleash a powerful explosion in front, disrupting enemy lines before you.
+    notes: Use your jutsu to unleash a powerful explosion in front, disrupting enemy lines before you. Attack damage 2284%
+      x1, max 4 hits Maximum 5 targets Down Attack Damage reduced during cooldown 54% damage in PvP only Damage -5% per each
+      additional target hit from target 2 onward, while only 80% of damage dealt from 5 targets .
+  ninjutsu_shadow_stomp:
+    name: 'Ninjutsu: Shadow Stomp'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Launch your shadows to attack your enemies in front, then follow the path of your shadows.
+    notes: Launch your shadows to attack your enemies in front, then follow the path of your shadows. Attack damage 3511%
+      x2 Maximum 5 targets Forward Guard -> Super Armor during the skill Floating on hits Air Attack 45.15% damage in PvP
+      only
+  ninjutsu_sinew_cut:
+    name: 'Ninjutsu: Sinew Cut'
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Smokescreen V]'
+    notes: 'Preceding Skill: [Smokescreen V] Blade attack damage 839% x6 Slash attack damage 1133% x3 Maximum 10 targets All
+      Evasion +12 for 10 sec when using the skill Invincible at the start of the skill Stiffness on hits Down Attack Air Attack
+      80.87% damage in PvP only Concealed for 15 sec . Cancels Concealment if struck with damage. Does not prevent monsters
+      from attacking if detected prior to Concealment. Cancels Concealment if performing any action other than basic movements.
+      Moves concealed towards the direction faced when the skill was cast. Consumes 100 Stamina to move during Concealment.
+      Recover Stamina by standing still. Cancels Concealment if at 150 Stamina or below.'
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  penumbral_blade:
+    name: Penumbral Blade
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: Hidden within the shadow of the moon, move swiftly to strike at your enemy's lower flank.
+    notes: Hidden within the shadow of the moon, move swiftly to strike at your enemy's lower flank. Attack damage 3470% x2
+      Critical Hit Rate +50% Maximum 10 targets Invincible -> Super Armor during the skill Stiffness on hits (PvE only) Down
+      Attack 58.09% damage in PvP only
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  sah_chakram_training:
+    name: Sah Chakram Training
+    input: LMB to perform horizontal slash attacks RMB to perform vertical slash attacks
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - bound
+    - down_attack
+    description: A basic attack to subdue your foes with your sah chakram.
+    notes: A basic attack to subdue your foes with your sah chakram. Attack damage 2040% 1, max 2 hits Lateral attack damage
+      2040% x1, max 2 hits Jump and dash attack damage 2040% x1 Maximum 10 targets Recover 60 WP per hit Critical Hit Rate
+      +5% for 5 sec on horizontal slash attack 1 when using the skill Attack Speed +5% for 5 sec on horizontal slash attack
+      2 when using the skill Floating on vertical slash attack 1 hits Bound on vertical slash attack 2 and jump attack hits
+      Down Attack
+  sah_spree_of_sonan:
+    name: Sah Spree of Sonan
+    input: ↓ + LMB Hold LMB to perform combo attack
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Attack your foes with the deadly dance of the Sonan Clan's sah chakram. A basic stance too powerful to ignore.
+    notes: Attack your foes with the deadly dance of the Sonan Clan's sah chakram. A basic stance too powerful to ignore.
+      Attack 1 damage 3865% x2 Attack 2 damage 3865% x2 Last attack damage 6626% x2 Critical Hit Rate +50% (Nullified during
+      cooldown) Maximum 10 targets Recover 141 HP per hit (Nullified during cooldown) Floating on attack 1 hits (Nullified
+      during cooldown) Down Attack Air Attack Damage reduced during cooldown. (PvE only) 28.17% damage in PvP only Attack
+      1 damage 8835% x2 Attack 2 damage 8835% x2 Critical Hit Rate +50% Maximum 10 targets Increased attack area All Evasion
+      +40 for 20 sec when using the skill Critical Hit Rate +20% for 5 sec when using the skill Movement Speed -7% for 5 sec
+      on hits Recover 260 HP per hit Floating on attack 1 hits Air Attack Down Attack 28.16% damage in PvP only Dismount target
+      on hits. Injures target with 20% of the damage of a hit. Not activated during cooldown.
+  shackle_target:
+    name: Shackle Target
+    input: 'LMB during Ninjutsu: Sinew Cut, Assassin''s Trail, or Ninjutsu: Heart Snatch to perform'
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Ninjutsu: Shackles IV]'
+    notes: 'Preceding Skill: [Ninjutsu: Shackles IV] Attack damage 1988% x2 Critical Hit Rate +25% Maximum 10 targets Movement
+      Speed -15% for 5 sec on hits Super Armor during the skill Down Attack Consumes no Stamina and Sprint speed +20% for
+      10 sec. Unavailable out of combat. 78.7% damage in PvP only'
+  shadow_slash:
+    name: Shadow Slash
+    input: ← + LMB or → + LMB
+    keys:
+    - a
+    - d
+    - lmb
+    protection: none
+    description: Swiftly move to your enemies' sides like a shadow and perform a slash attack.
+    notes: Swiftly move to your enemies' sides like a shadow and perform a slash attack. Attack damage 1428% 1, max 2 hits
+      Maximum 7 targets Increased attack area Recover 30 WP per hit Attack Speed +5% for 10 sec when using the skill Push
+      the target on hits (PvE only) 69.56% damage in PvP only Consumes no Stamina on attack 2.
+  shining_blade:
+    name: Shining Blade
+    input: Passive
+    protection: none
+    description: Move your blade incredibly fast.
+    notes: Move your blade incredibly fast. Attack Speed +10%
+    keys:
+    - hotbar
+  shuriken_throw:
+    name: Shuriken Throw
+    input: RMB after equipping a shuriken
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    description: Throw a shuriken at your foe. Only available with your shuriken equipped.
+    notes: Throw a shuriken at your foe. Only available with your shuriken equipped. Attack damage 674% x1 Critical Hit Rate
+      +100% on jump attacks (PvE only) Maximum 3 targets Recover 20 WP per hit Down Attack 73.13% damage in PvP only
+  shuriken_moving_throw:
+    name: 'Shuriken: Moving Throw'
+    input: ↑ + RMB during Shuriken Throw ← + RMB → + RMB ↓ + RMB
+    keys:
+    - w
+    - a
+    - d
+    - s
+    - rmb
+    protection: none
+    description: Move in all directions while throwing shurikens at your foes. Only available with your shuriken equipped.
+    notes: Move in all directions while throwing shurikens at your foes. Only available with your shuriken equipped. Consumes
+      Stamina during the skill.
+  shuriken_toxic:
+    name: 'Shuriken: Toxic'
+    input: Auto-activated during Shuriken Throw
+    protection: none
+    description: Dip your shurikens in poison to deal poison damage to your foes over time.
+    notes: Dip your shurikens in poison to deal poison damage to your foes over time. 30 poison damage inflicted every 3 sec
+      for 18 sec on hits
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  smokescreen:
+    name: Smokescreen
+    input: Can be added to a Quick Slot Can be used with SPACE during other skills, but unavailable for certain skills Can
+      be used with your sura katana or sah chakram
+    protection: SA
+    cc:
+    - stun
+    cooldown_ms: 12000
+    description: Cast a smoke screen around you to confuse your enemies.
+    notes: Cast a smoke screen around you to confuse your enemies. Maximum 10 targets Stun targets on Smokescreen hits (PvE
+      only) Super Armor when using the skill
+    keys:
+    - hotbar
+  target_chase:
+    name: Target Chase
+    input: Can be used with your sura katana or sah chakram ↓ + Q
+    keys:
+    - s
+    - q
+    protection: none
+    cooldown_ms: 20000
+    description: Chase the enemy more faster and more relentlessly.
+    notes: Chase the enemy more faster and more relentlessly. Consumes no Stamina and Sprint speed +20% for 20 sec. Unavailable
+      out of combat.
+  tendon_cutter:
+    name: Tendon Cutter
+    input: ↑ + Q Hold ↑ during the skill for forward slash attacks
+    keys:
+    - w
+    - q
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: Perform countless slashes while swiftly moving laterally and below the enemy.
+    notes: Perform countless slashes while swiftly moving laterally and below the enemy. Blade attack damage 948% x2, max
+      3 hits Slash attack damage 865% x2, max 3 hits Maximum 10 targets Super Armor Stiffness on blade attack hits (PvE only)
+      Air Attack on blade attack hits Down Attack on slash attack hits 50.69% damage in PvP only Consumes 200 Stamina during
+      moving attacks.
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  throwing_kick:
+    name: Throwing Kick
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - floating
+    - spin
+    - air_attack
+    cooldown_ms: 5000
+    description: Powerfully kick the enemy upward. Kick once more after that.
+    notes: Powerfully kick the enemy upward. Kick once more after that. Attack damage 635% x1 Extra attack damage 635% x2
+      Maximum 5 targets Recover 30 WP per hit Spin the target on hits (PvE only) Floating on hits (Nullified during cooldown)
+      Air Attack 92.14% damage in PvP only Damage reduced during cooldown
+  tragic_blade:
+    name: Tragic Blade
+    input: LMB on Kunai Block blocks
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 10000
+    description: Perform a surprise attack in a moment of desperation.
+    notes: Perform a surprise attack in a moment of desperation. Attack damage 595% x2 Extra attack damage 1533% x2 Critical
+      Hit Rate +100% Maximum 5 targets Forward Guard during the skill Stun on extra attack hits (PvE only) Down Attack 72.33%
+      damage in PvP only
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  wheel_of_wrath:
+    name: Wheel of Wrath
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Wielding the rage-charged sah chakram, the Kunoichi attacks a target in front with an upward slash and follows
+      with a powerful frontal strike.
+    notes: Wielding the rage-charged sah chakram, the Kunoichi attacks a target in front with an upward slash and follows
+      with a powerful frontal strike. Attack damage 5022% 2, max 2 hits Critical Hit Rate +100% Maximum 10 targets Recover
+      30 WP per hit (Nullified during cooldown) All Evasion -12 for 10 sec on hits (Nullified during cooldown) Floating on
+      attack 1 hits (Nullified during cooldown) Air Attack Down Attack 33.86% damage in PvP only Damage reduced during cooldown
+      Attack 1 damage 7435% x2 Attack 2 damage 7435% x2 Attack 3 damage 5205% x2 Critical Hit Rate +100% Maximum 10 targets
+      Recover 45 WP per hit All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical
+      Hit Rate +30% for 60 sec when using the skill Super Armor Floating on attack 1 hits Down Attack 43.28% damage in PvP
+      only Injures target with 50% of the damage of a hit. Dismount target on hits.
+  wind_slash:
+    name: Wind Slash
+    input: LMB LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    description: Perform a basic attack with blazingly-fast techniques.
+    notes: Perform a basic attack with blazingly-fast techniques. Standing attack 1 damage 2230% x1 Standing attack 2 damage
+      2230% x1 Forward attack damage 2230% x1, max 2 hits Laceration attack damage 2230% x2 after standing attack 1 Standing
+      and forward attack 3 damage 2230% x1 Standing and forward last attack damage 2230% x1 Jump attack damage 2230% x1 Critical
+      Hit Rate +25% Maximum 5 targets Recover 36 WP per hit Recover +30 WP on jump attack hits Push the target on forward
+      attack hits (PvE only) Stiffness on jump attack hits Down Attack on forward attack hits 54.67% damage in PvP only
+_flags:
+- access_awakening_requirement: Quest unlock — no keybind.
+- cannon_attack: Mount skill — no keybind.
+- core_delighted_blast: Passive — no keybind.
+- core_half_moon_slash: Passive — no keybind.
+- core_lethal_spin_spree: Passive — no keybind.
+- core_lunar_dash: Passive — no keybind.
+- core_sah_spree_of_sonan: Passive — no keybind.
+- core_wheel_of_wrath: Passive — no keybind.
+- flute_buff: Item-use — no keybind.
+- guild_squad_special_attack: Guild skill — no keybind.
+- infinite_mastery: Passive — no keybind.
+- killer_training: Passive — no keybind.
+- killer_training_xi: Passive — no keybind.
+- killer_training_xii: Passive — no keybind.
+- killer_training_xiii: Passive — no keybind.
+- killer_training_xiv: Passive — no keybind.
+- killer_training_xix: Passive — no keybind.
+- killer_training_xv: Passive — no keybind.
+- killer_training_xvi: Passive — no keybind.
+- killer_training_xvii: Passive — no keybind.
+- killer_training_xviii: Passive — no keybind.
+- killer_training_xx: Passive — no keybind.
+- killer_training_xxi: Passive — no keybind.
+- kunai_paralysis: Auto — no keybind.
+- make_bonfire: Item-use — no keybind.
+- revive_target: Utility — no keybind.
+- shining_blade: Passive — no keybind.
+- shuriken_toxic: Auto — no keybind.
+- skilled_hunter: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

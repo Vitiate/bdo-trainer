@@ -1,6 +1,1434 @@
 # Valkyrie — Awakening
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Valkyrie
 spec: Awakening
-skills: {}
+skills:
+  awakening_holy_lancia:
+    name: 'Awakening: Holy Lancia'
+    input: C
+    keys:
+    - c
+    protection: FG
+    cooldown_ms: 1000
+    description: With the Sacred Power granted by Elion, the Valkyrie enters the battle while brandishing the lancia.
+    notes: With the Sacred Power granted by Elion, the Valkyrie enters the battle while brandishing the lancia. Switch to
+      your lancia Attacking continued while switching if used during offensive skills. Forward Guard applied while switching.
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+  blitz_stab:
+    name: Blitz Stab
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: iframe
+    cc:
+    - knockdown
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 7000
+    description: Perform blazingly-fast stabs with lancia's sacred power.
+    notes: Perform blazingly-fast stabs with lancia's sacred power. Attack damage 6108% x2 Critical Hit Rate +100% Maximum
+      10 targets 50 bleeding damage every 3 sec for 9 sec on hits All Evasion -12 for 10 sec on hits Knockdown on hits Down
+      Attack 28.7% damage in PvP only Attack 1 damage 14562% x1, max 4 hits Attack 2 damage 14562% x1, max 4 hits Last attack
+      damage 29200% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Casting Speed
+      +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec
+      when using the skill Super Armor Invincible on airborne moves Stun on attack 1 hits Pull in the target on attack 2 hits
+      Knockdown on last attack hits Down Attack 5.49% attacks 1 and 2 damage in PvP only 14.03% last attack damage in PvP
+      only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage
+      of a hit. Dismount target on hits.
+  breath_of_elion:
+    name: Breath of Elion
+    input: SHIFT + E SHIFT + E with your lancia
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 110000
+    description: Use the Sacred Power of Elion to heal yourself and your allies.
+    notes: Use the Sacred Power of Elion to heal yourself and your allies. Recover 3500 HP to self and nearby allies when
+      using the skill Recover 70% of Max SP when using the skill Movement Speed and Critical Hit Rate +20% for 30 sec to self
+      and nearby allies when using the skill Super Armor for 3 sec applied to self and nearby allies when using the skill
+      Super Armor
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  castigatio:
+    name: Castigatio
+    input: ↓ + LMB Hold ↓ + LMB to continue the skill
+    keys:
+    - s
+    - lmb
+    - hold
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 4000
+    description: Strike your lancia into the ground repeatedly to purge enemies.
+    notes: Strike your lancia into the ground repeatedly to purge enemies. Attack damage 6073% x1, max 3 hits Critical Hit
+      Rate +50% (PvE only) Maximum 10 targets Bound on first hit Down Attack 36.85% damage in PvP only
+  celestial_cry:
+    name: Celestial Cry
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: SA
+    cooldown_ms: 110000
+    description: 'Preceding Skill: [Heaven''s Echo III]'
+    notes: 'Preceding Skill: [Heaven''s Echo III] Recover 3500 HP to self and nearby allies when using the skill Recover 70%
+      of Max SP when using the skill Movement Speed +20% for 30 sec when using the skill All Damage Reduction +20 for 60 sec
+      to self and nearby allies All Accuracy +20 for 60 sec to self and nearby allies Super Armor'
+  celestial_smite:
+    name: Celestial Smite
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Heaven''s Echo III]'
+    notes: 'Preceding Skill: [Heaven''s Echo III] Attack damage 3285% x2 Critical Hit Rate +100% Maximum 10 targets Critical
+      Hit Rate +80% for 5 sec when using the skill Movement Speed -15% for 5 sec on hits Pull in the target on hits (PvE only)
+      Bound on hits Down Attack 57.8% damage in PvP only'
+  celestial_spear:
+    name: Celestial Spear
+    input: ↓ + E while casting ↓ + E with your lancia Switches from your lancia to your longsword
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Damage your foes by channeling the Sacred Power of Elion into a spear of light.
+    notes: Damage your foes by channeling the Sacred Power of Elion into a spear of light. Attack damage 627% x2 Maximum 10
+      targets Increased Casting Speed Critical Hit Rate +80% for 5 sec when using the skill Movement Speed -15% for 5 sec
+      on hits Bound on hits Down Attack 64.25% damage in PvP only Can be used by canceling other skills. Reduces casting delay
+      If you cancel a skill.
+  charging_slash:
+    name: Charging Slash
+    input: LMB while sprinting
+    keys:
+    - lmb
+    protection: none
+    description: Combo attack on an enemy after dashing forward.
+    notes: Combo attack on an enemy after dashing forward. Attack damage 1492% x1 Extra attack damage 746% x1 Maximum 10 targets
+      Increased Casting Speed Recover 35 SP per hit Speed Attack
+  core_castigatio:
+    name: 'Core: Castigatio'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Castigatio IV after learning this skill: Super Armor during the
+      skill'
+    keys:
+    - hotbar
+  core_hastiludium:
+    name: 'Core: Hastiludium'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hastiludium III after learning this skill: Knockdown on stab
+      attack hits'
+    keys:
+    - hotbar
+  core_purificatione:
+    name: 'Core: Purificatione'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Purificatione III after learning this skill: Stun on hits (Nullified
+      during cooldown)'
+    keys:
+    - hotbar
+  core_sacrum_ferit:
+    name: 'Core: Sacrum Ferit'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    - floating
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Sacrum Ferit IV after learning this skill: Stiffness on first
+      hit (Nullified during cooldown) Floating on last attack hits (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_sanctitas_de_enslar:
+    name: 'Core: Sanctitas de Enslar'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Sanctitas de Enslar III after learning this skill: Knockdown
+      on last attack hits'
+    keys:
+    - hotbar
+  core_verdict_lancia_iustitiae:
+    name: 'Core: Verdict: Lancia Iustitiae'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Verdict: Lancia Iustitiae IV after learning this skill: Knockdown
+      on first hit Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  counter:
+    name: Counter
+    input: ↓ + LMB SPACE after Counter to perform a spin attack
+    keys:
+    - s
+    - lmb
+    - space
+    - a
+    protection: none
+    cc:
+    - floating
+    - bound
+    - air_attack
+    - spin
+    cooldown_ms: 6000
+    description: Damage enemies with a strong upward strike, lifting them into the air.
+    notes: Damage enemies with a strong upward strike, lifting them into the air. Attack damage 539% x2 Spin attack damage
+      504% x2 Maximum 5 targets Floating on hits (Nullified during cooldown) Bound on spin attack hits Push the target on
+      hits (PvE only) Air Attack Spin attacks unavailable during cooldown
+  death_line_chase:
+    name: Death Line Chase
+    input: SHIFT + ↑ or SHIFT + ↓
+    keys:
+    - shift
+    - w
+    - s
+    protection: FG
+    cooldown_ms: 2000
+    description: Auto-learn The Valkyrie does not falter while courting death on the front lines chasing down her foe.
+    notes: Auto-learn The Valkyrie does not falter while courting death on the front lines chasing down her foe. Character
+      collision occurs while moving forward No character collision while moving backward Forward Guard (Nullified during cooldown)
+      All CC Resistance (except Grapple), including from Back Attacks Invincible during the skill (PvE only) On Guard after
+      skill use. Activates Shield Chase after continuing backward Death Line Chase.
+  divina_inpulsa:
+    name: Divina Inpulsa
+    input: SHIFT + Q SHIFT + Q after certain skills to perform from attack 2
+    keys:
+    - shift
+    - q
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Dash for a short distance, stab with the lancia, explode sacred power as you take your lancia back, then
+      stab all enemies in front once more.
+    notes: Dash for a short distance, stab with the lancia, explode sacred power as you take your lancia back, then stab all
+      enemies in front once more. Attack 1 damage 1876% x1 Attack 2 damage 3752% x2 Last attack damage 3752% x2 Critical Hit
+      Rate +50% Maximum 10 targets Melee AP +32 for 10 sec when using the skill Forward Guard during the skill Knockdown on
+      first hit (PvE only) Down Attack Down Smash on last attack hits 41.57% damage in PvP only
+  divine_descent:
+    name: Divine Descent
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cooldown_ms: 60000
+    description: 'Preceding Skill: [Divine Power IV]'
+    notes: 'Preceding Skill: [Divine Power IV] All Damage Reduction +40 for 20 sec (Applied to self and allies) All Special
+      Attack damage +2% for 10 sec (Applied to self and allies) Super Armor during the skill'
+  divine_judgment_of_light:
+    name: Divine Judgment of Light
+    input: 'LMB during Celestial Spear, Ultimate: Celestial Spear, or Celestial Smite'
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 22000
+    description: 'Preceding Skill: [Judgment of Light III]'
+    notes: 'Preceding Skill: [Judgment of Light III] Attack 1 damage 5424% x2 Last attack damage 5424% x2 Critical Hit Rate
+      +50% Maximum 10 targets Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Down Attack Down Smash
+      on attack 1 hits 40.87% damage in PvP only'
+  divine_power:
+    name: Divine Power
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: Harness the Sacred Power of Elion, channeling its divine essence to unleash a mighty explosion upon the ground.
+    notes: Harness the Sacred Power of Elion, channeling its divine essence to unleash a mighty explosion upon the ground.
+      Attack damage 1572% x2 Maximum 10 targets Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Super
+      Armor Bound on hits (PvE only) Down Attack Down Smash 83.52% damage in PvP only
+  divine_slam:
+    name: Divine Slam
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Divine Power IV]'
+    notes: 'Preceding Skill: [Divine Power IV] Attack damage 7607% x2 Critical Hit Rate +50% Maximum 10 targets Recover 50
+      HP per hit Forward Guard during the skill Knockdown on hits (PvE only) Down Attack Down Smash 26.73% damage in PvP only'
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  elion_s_blessing:
+    name: Elion's Blessing
+    input: Can be added to a Quick Slot Can be used with your lancia
+    protection: SA
+    cooldown_ms: 240000
+    description: Blanket Elion's protection around you to temporarily raise the DP of self and allies.
+    notes: Blanket Elion's protection around you to temporarily raise the DP of self and allies. Damage Reduction Rate +50%
+      for 6 sec to self and nearby allies Super Armor
+    keys:
+    - hotbar
+  elvia_torn_wing:
+    name: 'Elvia: Torn Wing'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Take a step backward, then strike forward with your lancia to deal massive damage.
+    notes: Take a step backward, then strike forward with your lancia to deal massive damage. Attack damage 5623% x1, max
+      4 hits Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only)
+      All AP -20 for 10 sec on hits Recover 80 SP per hit Super Armor during the skill Down Attack 22.27% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your lancia
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  fitness_training:
+    name: Fitness Training
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xi:
+    name: Fitness Training XI
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xii:
+    name: Fitness Training XII
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xiii:
+    name: Fitness Training XIII
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xiv:
+    name: Fitness Training XIV
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xix:
+    name: Fitness Training XIX
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xv:
+    name: Fitness Training XV
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xvi:
+    name: Fitness Training XVI
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xvii:
+    name: Fitness Training XVII
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xviii:
+    name: Fitness Training XVIII
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xx:
+    name: Fitness Training XX
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  flow_divina_vult:
+    name: 'Flow: Divina Vult'
+    input: 'LMB or F after Sanctitas de Enslar LMB during Verdict: Lancia Iustitiae'
+    keys:
+    - lmb
+    - f
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    description: 'Preceding Skill: [Sanctitas de Enslar I]'
+    notes: 'Preceding Skill: [Sanctitas de Enslar I] Attack damage 7171% x2 Critical Hit Rate +50% Maximum 10 targets All
+      Evasion -12 for 10 sec on hits Super Armor during the skill Air Attack Down Attack 30.15% damage in PvP only'
+  flow_double_flying_kick:
+    name: 'Flow: Double Flying Kick'
+    input: F after Flying Kick while running
+    keys:
+    - f
+    protection: none
+    cc:
+    - air_attack
+    cooldown_ms: 7000
+    description: Deliver another kick in the air.
+    notes: Deliver another kick in the air. Attack damage 765% x2 Maximum 10 targets Recover 35 SP per hit Push the target
+      on hits (PvE only) Air Attack Unavailable during Flying Kick's cooldown 44.54% damage in PvP only
+  flow_lucem_fluxum:
+    name: 'Flow: Lucem Fluxum'
+    input: Hold RMB after Sacrum Ferit
+    keys:
+    - hold
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Sacrum Ferit I]'
+    notes: 'Preceding Skill: [Sacrum Ferit I] All damage applies Sacrum Ferit ''s level damage x2 Maximum 10 targets Recover
+      75 SP per hit Forward Guard during the skill Knockdown on hits Down Attack'
+  flow_sharp_counter:
+    name: 'Flow: Sharp Counter'
+    input: Auto-activated during Just Counter Hold ↑ + LMB to continue the skill Can be used instantly without Guard
+    keys:
+    - w
+    - lmb
+    - hold
+    protection: none
+    description: 'Preceding Skill: [Just Counter I]'
+    notes: 'Preceding Skill: [Just Counter I] All damage applies Just Counter ''s damage x1, max 2 hits Prime: Just Counter''s
+      attacks apply Prime: Just Counter ''s attack damage x1'
+  flow_spinning_shield:
+    name: 'Flow: Spinning Shield'
+    input: Hold RMB or Q during Shield Throw
+    keys:
+    - hold
+    - rmb
+    - q
+    protection: FG
+    cc:
+    - stun
+    description: 'Preceding Skill: [Shield Throw I]'
+    notes: 'Preceding Skill: [Shield Throw I] All damage applies Shield Throw ''s attack damage x2, max 2 hits Maximum 10
+      targets Stun on hits All damage applies Prime: Shield Throw ''s level damage x2, max 2 hits Maximum 10 targets Forward
+      Guard during attack Stun on hits Consumes 100 Stamina per use Decreased attack area during cooldown.'
+  flurry_of_kicks:
+    name: Flurry of Kicks
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Deal damage to your foes with a strong kick.
+    notes: Deal damage to your foes with a strong kick. Attack damage 1033% x1, max 4 hits Maximum 5 targets Recover 50 SP
+      per hit Push the target on attack 3 and 4 hits (PvE only) Floating on attack 1 hits (Nullified during cooldown) Air
+      Attack 50.11% damage in PvP only Damage reduced during cooldown
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+    keys:
+    - hotbar
+  flying_kick:
+    name: Flying Kick
+    input: ↓ + F F while sprinting
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - knockback
+    - air_attack
+    cooldown_ms: 5000
+    description: Deal damage to foes with a flying kick.
+    notes: Deal damage to foes with a flying kick. Attack damage 756% x2 Maximum 10 targets Recover 30 SP per hit Knockback
+      on hits (Nullified during cooldown) Push the target on hits (PvE only) Air Attack 55.68% damage in PvP only Damage reduced
+      during cooldown
+  forward_slash:
+    name: Forward Slash
+    input: ↑ + LMB
+    keys:
+    - w
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: Move forward while performing a double slash attack.
+    notes: Move forward while performing a double slash attack. Attack damage 1791% x1 Maximum 10 targets Recover 80 SP per
+      hit Increased Casting Speed Increased attack area Push the target on hits (PvE only) Down Attack
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  gladius_gloriae:
+    name: Gladius Gloriae
+    input: F F after certain skills
+    keys:
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 7201% x3 Critical Hit Rate +20% Maximum 10 targets
+      Super Armor before the attack hits All Evasion -12 for 10 sec on hits Knockdown on hits Down Attack 32.96% damage in
+      PvP only'
+  glaring_slash:
+    name: Glaring Slash
+    input: ↓ + LMB + RMB
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - pull
+    - spin
+    description: Imbue your longsword with the Sacred Power of Elion, then slash your foes in a wide range with resplendent
+      light.
+    notes: Imbue your longsword with the Sacred Power of Elion, then slash your foes in a wide range with resplendent light.
+      Attack damage 1115% x2, max 3 hits Maximum 10 targets Increased attack area Pull in the target on attack 1 and 2 hits
+      (PvE only) Spin the target on attack 1 and 2 hits (PvE only) Stiffness on attack 3 hits
+  guard:
+    name: Guard
+    input: Q Q to cancel Direction to move during the skill SHIFT + ↑ during the skill to sprint in Succession
+    keys:
+    - q
+    - shift
+    - w
+    protection: FG
+    description: Auto-learn You can block using your shield and move in all directions while staying on guard.
+    notes: Auto-learn You can block using your shield and move in all directions while staying on guard. Recover 25% of Max
+      SP on blocks All Damage Reduction +30 for 20 sec while on Guard Forward Guard All CC Resistance (except Grapple), including
+      from Back Attacks Guard Gauge damage -30% on Forward Guard. (Applies 40% with your lancia.) Consumes 250 Stamina per
+      second while sprinting on Guard.
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+    keys:
+    - hotbar
+  hastiludium:
+    name: Hastiludium
+    input: ↑ + F Hold ↑ + F to dash continuously LMB while dashing to perform stab attack
+    keys:
+    - w
+    - f
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    cooldown_ms: 7000
+    description: Valkyrie brazenly dashes forward with her lancia leading the way. The longer the dash, the faster her pace
+      until no enemy formation can stand in her way.
+    notes: Valkyrie brazenly dashes forward with her lancia leading the way. The longer the dash, the faster her pace until
+      no enemy formation can stand in her way. Stab attack 1 damage 2981% x2 Stab attack 2 damage 4173% x2 Stab attack 3 damage
+      7511% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor Knockdown on stab attack hits (PvE only) 65.81% damage
+      in PvP only Consumes 100 Stamina to continue the skill, then 150 Stamina to continue it once again. The longer the dash,
+      the greater the stab attack damage.
+  heaven_s_echo:
+    name: Heaven's Echo
+    input: SHIFT + Q SPACE during Strong Defense with your lancia
+    keys:
+    - shift
+    - q
+    - space
+    protection: none
+    cooldown_ms: 40000
+    description: Spread the resonant chimes of Heaven's Echo. Draw the gaze of your foes, and receive the blessing of the
+      heavens upon both yourself and your allies.
+    notes: Spread the resonant chimes of Heaven's Echo. Draw the gaze of your foes, and receive the blessing of the heavens
+      upon both yourself and your allies. Maximum 10 targets All Accuracy +20 for 60 sec when using the skill (Nullified during
+      cooldown) Taunt surrounding foes. Increased effect area
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  judgment_of_light:
+    name: Judgment of Light
+    input: Can be added to a Quick Slot LMB or RMB after the skill to perform instantly
+    protection: FG
+    cc:
+    - floating
+    - pull
+    - down_attack
+    - air_attack
+    cooldown_ms: 15000
+    description: Administer judgment upon all enemies before you with Elion's light.
+    notes: Administer judgment upon all enemies before you with Elion's light. Attack damage 3438% x3 Maximum 10 targets Forward
+      Guard during the skill Floating on hits (PvE only) Down Attack Air Attack Attack 1 damage 3024% x1, max 10 hits Last
+      attack damage 2520% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets All AP +30 for 60 sec when using the skill
+      Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor
+      Floating on hits Pull in the target on attack 2 hits (PvE only) Air Attack 22.27% damage in PvP only Injures target
+      with 50% of the damage of a hit. Dismount target on hits.
+    keys:
+    - hotbar
+    - lmb
+    - rmb
+  just_counter:
+    name: Just Counter
+    input: ↑ + LMB during Guard
+    keys:
+    - w
+    - lmb
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 4000
+    description: Quickly stab your foes from a stable stance.
+    notes: Quickly stab your foes from a stable stance. Attack damage 755% x1, max 3 hits Critical Hit Rate +50% Maximum 10
+      targets Recover 60 SP per hit 30 bleeding damage every 3 sec for 9 sec on hits Forward Guard during the skill (Nullified
+      during cooldown) Stiffness on hits (PvE only) (Nullified during cooldown) Counter Attack Down Attack
+  lancia_training:
+    name: Lancia Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to move laterally
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: iframe
+    description: A basic attack to subdue your foes with your lancia.
+    notes: A basic attack to subdue your foes with your lancia. Standing attack damage 1121% x1, max 3 hits Forward attack
+      1 damage 1121% x1 Forward attack 2 damage 1121% x1 Forward attack 3 damage 1121% x1 Jump attack damage 1121% x1 Critical
+      Hit Rate +50% Maximum 10 targets Recover 56 SP per hit Movement Speed +20% for 10 sec on standing & forward attack 3
+      hits and lateral movement Push the target on hits (PvE only) Invincible when starting to move laterally Consumes 200
+      Stamina when moving laterally.
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+    keys:
+    - hotbar
+  muscle_training:
+    name: Muscle Training
+    input: Passive
+    protection: none
+    description: Improves Melee AP.
+    notes: Improves Melee AP. You can access Skill Add-ons from anywhere. - Skill Add-ons are available from the Skill window.
+    keys:
+    - hotbar
+  noble_spirit:
+    name: Noble Spirit
+    input: Can be added to a Quick Slot
+    protection: FG
+    cooldown_ms: 180000
+    description: A noble spirit stirs within, and the Valkyrie grows ever mightier.
+    notes: A noble spirit stirs within, and the Valkyrie grows ever mightier. All Damage Reduction +50 for 30 sec when using
+      the skill Casting Speed +10% for 30 sec when using the skill HP Recovery +200 for 30 sec when using the skill Super
+      Armor during the skill 324% damage while sprinting Only backward Death Line Chase available. Forward Guard while sprinting
+      All CC Resistance (except Grapple), including from Back Attacks Consume no Stamina for 30 sec while sprinting.
+    keys:
+    - hotbar
+  noble_vow:
+    name: Noble Vow
+    input: Passive
+    protection: none
+    description: Legends say those who bear the honorable soul of a Valkyrie are blessed with agility from the heavens.
+    notes: Legends say those who bear the honorable soul of a Valkyrie are blessed with agility from the heavens. Casting
+      Speed +10%
+    keys:
+    - hotbar
+  not_in_use:
+    name: Not in Use
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    description: 'Preceding Skill:'
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  promptness:
+    name: Promptness
+    input: SPACE in certain situations LMB after forward Death Line Chase SPACE in certain situations with your longsword
+      Can only be used when Holy Lancia is not on cooldown with your longsword
+    keys:
+    - space
+    - lmb
+    protection: SA
+    cc:
+    - stiffness
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: The skilled Valkyrie is adept with switching between the sword and shield with the lancia, ready to attack
+      at a moment's notice.
+    notes: The skilled Valkyrie is adept with switching between the sword and shield with the lancia, ready to attack at a
+      moment's notice. Attack damage 2833% x2 Critical Hit Rate +100% (Nullified during cooldown) Maximum 10 targets Recover
+      140 SP per hit Stiffness on hits (PvE only) Floating on LMB hits after forward Death Line Chase (PvE only) Super Armor
+      during the skill (Nullified during cooldown) Air Attack Down Attack Damage reduced during cooldown 53.3% damage in PvP
+      only Attack damage 2833% x1 Last attack damage 2833% x2 Critical Hit Rate +100% Maximum 10 targets Increased attack
+      area Recover 140 SP per hit Super Armor Stiffness on hits Floating on last attack hits Air Attack Down Attack 53.28%
+      damage in PvP only Dismount target on hits. Injures target with 30% of the damage of a hit. Not activated during cooldown.
+  proof_of_vow:
+    name: Proof of Vow
+    input: Passive
+    protection: none
+    description: Gives you the right to learn Valkyrie's Vow skill.
+    notes: Gives you the right to learn Valkyrie's Vow skill. You can now learn Succession skills.
+    keys:
+    - hotbar
+  punishment:
+    name: Punishment
+    input: E E with your lancia
+    keys:
+    - e
+    protection: SA
+    cc:
+    - floating
+    cooldown_ms: 15000
+    description: Grapple the enemy and smash them down to the ground.
+    notes: Grapple the enemy and smash them down to the ground. Attack damage 1751% x1 Maximum 10 targets Super Armor on Grapple/Grapple
+      fails Floating on Grapple Not affected by effects which increase/decrease Attack and/or Casting Speeds.
+  purificatione:
+    name: Purificatione
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    - air_attack
+    - spin
+    cooldown_ms: 6000
+    description: Release your sacred power to damage foes and cleanse yourself.
+    notes: Release your sacred power to damage foes and cleanse yourself. Attack damage 4167% x1 Energy explosion attack damage
+      4167% x2 Maximum 10 targets Recover 700 HP per hit (Nullified during cooldown) All Damage Reduction -20 for 10 sec on
+      hits (Nullified during cooldown) Forward Guard (Nullified during cooldown) Spin the target on hits (PvE only) Stun on
+      hits (PvE only) (Nullified during cooldown) Air Attack Damage reduced during cooldown 39.59% damage in PvP only
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+    keys:
+    - hotbar
+  righteous_charge:
+    name: Righteous Charge
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 8000
+    description: Charge at your foe and slam them back with your shield.
+    notes: Charge at your foe and slam them back with your shield. Attack damage 3611% x1 Maximum 10 targets Recover 100 SP
+      per hit Forward Guard Knockback on hits (PvE only) 55.68% damage in PvP only
+  sacrum_ferit:
+    name: Sacrum Ferit
+    input: RMB ← or → + RMB to perform lateral evasion Perform from attack 2 after certain skills
+    keys:
+    - rmb
+    - a
+    - d
+    protection: FG
+    cc:
+    - stiffness
+    - floating
+    - down_attack
+    cooldown_ms: 5000
+    description: Counterattack with a shield and deeply stab the enemy using lancia.
+    notes: 'Counterattack with a shield and deeply stab the enemy using lancia. Attack 1 damage 5110% x1 Attack 2 damage 5110%
+      x1 Last attack damage 5110% x2 Flow: Lucem Fluxum ''s damage 6998% Critical Hit Rate +100% (PvE only) Maximum 10 targets
+      Critical Hit Rate +80% for 5 sec when using the skill (Nullified during cooldown) Forward Guard during the skill (Nullified
+      during cooldown) Stiffness on first hit (PvE only) (Nullified during cooldown) Floating on last attack hits (PvE only)
+      (Nullified during cooldown) Counter Attack Down Attack Damage reduced during cooldown 36.7% damage in PvP only'
+  sanctitas_de_enslar:
+    name: Sanctitas de Enslar
+    input: F F after Celestial Spear Hold LMB to aim
+    keys:
+    - f
+    - lmb
+    - hold
+    protection: iframe
+    cc:
+    - stiffness
+    - knockdown
+    - stun
+    - down_attack
+    cooldown_ms: 9000
+    description: Having absorbed Enslar's Sacred Power, Valkyrie instantly teleports in the desired direction and hurls the
+      lancia to the ground to detonate in a holy explosion.
+    notes: Having absorbed Enslar's Sacred Power, Valkyrie instantly teleports in the desired direction and hurls the lancia
+      to the ground to detonate in a holy explosion. Marked attack damage 3027% x1 Last attack damage 7567% x2 Critical Hit
+      Rate +100% Maximum 10 targets Melee AP +32 for 10 sec when using the skill Super Armor Invincible on airborne moves
+      Stiffness on marked hits (PvE only) Knockdown on last attack hits (PvE only) Down Attack 23.2% damage in PvP only Moves
+      to attack target, but performs standing attack if none targeted. Taunt surrounding foes upon landing. Marked attack
+      damage 1927% x4 Last attack damage 10596% x4 Critical Hit Rate +100% (PvE only) Maximum 10 targets All AP +30 for 60
+      sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using
+      the skill Super Armor Invincible on airborne moves Stun on marked hits Knockdown on last attack hits 71.28% damage in
+      PvP only Injures target with 50% of the damage of a hit. Dismount target on hits.
+  severing_light:
+    name: Severing Light
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 9000
+    description: Swing the sword to create a beam of light that slashes through darkness. Basic Valkyrie skill.
+    notes: 'Swing the sword to create a beam of light that slashes through darkness. Basic Valkyrie skill. Attack damage 1690%
+      x2 Ultimate: Severing Light ''s damage 2535% Maximum 7 targets Knockback on hits 36.75% damage in PvP only'
+  sharp_light:
+    name: Sharp Light
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 10000
+    description: Create a sharp, powerful Elionian light and throw it toward enemies in front of you.
+    notes: Create a sharp, powerful Elionian light and throw it toward enemies in front of you. Attack damage 924% x2 Critical
+      Hit Rate +100% Maximum 10 targets Recover 90 SP per hit Push the target on hits (PvE only) Knockdown on hits (Nullified
+      during cooldown) Counter Attack Air Attack 70% damage in PvP only
+  shield_chase:
+    name: Shield Chase
+    input: Direction + SHIFT Can be used instantly after shield skills with the above command ← + SHIFT or → + SHIFT with
+      your lancia On Guard after using the skill Switches to longsword if used with your lancia
+    keys:
+    - shift
+    - a
+    - d
+    protection: iframe
+    cooldown_ms: 5000
+    description: Quickly move in all directions while staying on guard.
+    notes: Quickly move in all directions while staying on guard. Character collision occurs while moving forward No character
+      collision while moving backward Forward Guard Invincible during the skill (PvE only) All CC Resistance (except Grapple),
+      including from Back Attacks Cooldown mutually exclusive with other Shield Chase levels
+  shield_counter:
+    name: Shield Counter
+    input: RMB when struck while on Guard
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 4000
+    description: Can use Shield Counter while on Guard. [Guard]
+    notes: Can use Shield Counter while on Guard. [Guard] Attack damage 1187% x1 Maximum 5 targets Recover 15 SP per hit Stun
+      on hits
+  shield_push:
+    name: Shield Push
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    description: Block with your shield, then push your enemy away.
+    notes: Block with your shield, then push your enemy away. All damage applies Shield Strike 's damage x1 Applies Shield
+      Strike 's number of hit targets Knockback on hits
+  shield_strike:
+    name: Shield Strike
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - stun
+    - air_attack
+    - spin
+    description: Use your shield to directly inflict blows upon your foes.
+    notes: Use your shield to directly inflict blows upon your foes. Attack damage 1303% x1, max 3 hits Maximum 5 targets
+      Recover 60 SP per hit Push the target on hits (PvE only) Spin the target on hits (PvE only) Stun on attack 3 hits Air
+      Attack
+  shield_throw:
+    name: Shield Throw
+    input: ↓ + Q
+    keys:
+    - s
+    - q
+    protection: none
+    cc:
+    - stun
+    - spin
+    cooldown_ms: 12000
+    description: Toss your shield filled with SP to attack faraway enemies.
+    notes: 'Toss your shield filled with SP to attack faraway enemies. Attack damage 806% x1, max 4 hits Flow: Spinning Shield
+      ''s damage 1935% Critical Hit Rate +40% Maximum 10 targets Push the target on hits (PvE only) Spin the target on hits
+      (PvE only) Stun on hits (Nullified during cooldown) 38.98% damage in PvP only'
+  shining_dash:
+    name: Shining Dash
+    input: ↑ + RMB Hold LMB to perform extra attacks on hits Can be used with your lancia
+    keys:
+    - w
+    - rmb
+    - lmb
+    protection: FG
+    cc:
+    - stiffness
+    - knockdown
+    cooldown_ms: 15000
+    description: Harnessing the Sacred Power of Elion, unleash a devastating dash attack. Bathed in resplendent light, the
+      Valkyrie, wielding the Sacred Power, dashes towards her foes up to three times in swift succession.
+    notes: Harnessing the Sacred Power of Elion, unleash a devastating dash attack. Bathed in resplendent light, the Valkyrie,
+      wielding the Sacred Power, dashes towards her foes up to three times in swift succession. Attack damage 965% x2, max
+      3 hits Stab attack damage 965% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard at the start of the skill
+      and while moving Push the target on attack 1 hits (PvE only) Knockdown on stab attack hits 80.18% damage in PvP only
+      Attack damage 2193% x2 Last attack damage 2193% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec
+      when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using
+      the skill Max HP +2000 for 60 sec when using the skill Super Armor during the skill Stiffness on hits Push the target
+      on attack 1 hits (PvE only) Knockdown on last attack hits 55.68% damage in PvP only Injures target with 100% of the
+      damage of a hit. Dismount target on hits.
+  shining_judgment_of_light:
+    name: Shining Judgment of Light
+    input: SPACE during Righteous Charge or Shining Dash
+    keys:
+    - space
+    protection: SA
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Judgment of Light III]'
+    notes: 'Preceding Skill: [Judgment of Light III] Attack 1 damage 1810% x1, max 4 hits Attack 2 damage 3102% x2 Critical
+      Hit Rate +100% Maximum 10 targets Super Armor during the skill Pull in the target on hits (PvE only) Down Attack Down
+      Smash on attack 1 hits 44.54% damage in PvP only'
+  sideways_cut:
+    name: Sideways Cut
+    input: ← + LMB or → + LMB
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - spin
+    description: Slash enemies while evading.
+    notes: Slash enemies while evading. Attack damage 1499% x1 Maximum 10 targets Recover 30 SP per hit Push the target on
+      hits (PvE only) Spin the target on hits (PvE only)
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  skyward_strike:
+    name: Skyward Strike
+    input: SPACE while on Guard SPACE while sprinting or during Righteous Charge
+    keys:
+    - space
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 4000
+    description: Powerfully strike and lift the opponent with your shield.
+    notes: Powerfully strike and lift the opponent with your shield. Attack damage 1154% x1 Maximum 3 targets Recover 60 SP
+      per hit Floating on hits Air Attack
+  sword_of_judgment:
+    name: Sword of Judgment
+    input: ↓ + RMB Hold RMB to continue the skill
+    keys:
+    - s
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    description: Punish your foes with your longsword skills imbued with the Sacred Power of Elion.
+    notes: Punish your foes with your longsword skills imbued with the Sacred Power of Elion. Attacks 1 and 2 damage 2036%
+      x1 Attack 3 damage 1205% x2 Upon learning , Attacks 1 and 2 damage 2443% x1 Attack 3 damage 1868% x2 Maximum 10 targets
+      Push the target on hits (PvE only) Bound on attack 3 hits Down Attack 71.49% damage in PvP only
+  terra_sancta:
+    name: Terra Sancta
+    input: ↓ + RMB Hold LMB after Castigatio's last attack LMB during Castigatio
+    keys:
+    - s
+    - rmb
+    - lmb
+    - hold
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 9000
+    description: Raising her combat senses to the limits, the Valkyrie detonates and releases her Sacred Power towards all
+      in front of her.
+    notes: Raising her combat senses to the limits, the Valkyrie detonates and releases her Sacred Power towards all in front
+      of her. Attack damage 12216% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets Super Armor during the skill Bound
+      on hits (PvE only) Down Attack 35.53% damage in PvP only Attack damage 13438% x2 Critical Hit Rate +100% (PvE only)
+      Maximum 10 targets Increased attack area All AP +10 for 20 sec when using the skill All Damage Reduction +10 for 20
+      sec when using the skill Super Armor during the skill Bound on hits (PvE only) Down Attack Down Smash 48.45% damage
+      in PvP only Dismount target on hits. Injures target with 20% of the damage of a hit.
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  ultimate_blitz_stab:
+    name: 'Ultimate: Blitz Stab'
+    input: RMB after using Blitz Stab Used automatically when Blitz Stab hits
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Blitz Stab]'
+    notes: 'Preceding Skill: [Blitz Stab] Attack damage 6108% x2 Critical Hit Rate +100% Maximum 10 targets Knockback on hits
+      (PvE only) Down Attack Down Smash 28.7% damage in PvP only'
+  ultimate_celestial_spear:
+    name: 'Ultimate: Celestial Spear'
+    input: Drops another spear in the same location as where Celestial Spear landed.
+    protection: none
+    cooldown_ms: 15000
+    description: Drop an extra spear of light to cause greater damage.
+    keys:
+    - hotbar
+  ultimate_divine_power:
+    name: 'Ultimate: Divine Power'
+    input: 'Hold RMB or F during Divine Power or Ultimate: Sword of Judgment'
+    keys:
+    - rmb
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 16000
+    description: Explode concentrated Divine Power and deal continuous damage in waves to enemies nearby.
+    notes: Explode concentrated Divine Power and deal continuous damage in waves to enemies nearby. Attack damage 2277% x4
+      Critical Hit Rate +100% (PvE only) Maximum 10 targets Super Armor Bound on hits (PvE only) Down Attack 44.54% damage
+      in PvP only
+  ultimate_flurry_of_kicks:
+    name: 'Ultimate: Flurry of Kicks'
+    input: Automatically activates explosion damage on Flurry of Kicks attack 4
+    protection: none
+    cc:
+    - air_attack
+    description: Use your Sacred Power to cause explosive damage with your kicks.
+    notes: Use your Sacred Power to cause explosive damage with your kicks. Attack 4 damage 832% x1 Maximum 10 targets Recover
+      50 SP per hit Push the target on attack 3 and 4 hits (PvE only) Air Attack 50.11% damage in PvP only Damage reduced
+      during cooldown
+    keys:
+    - hotbar
+  ultimate_punishment:
+    name: 'Ultimate: Punishment'
+    input: E in certain situations
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 15000
+    description: Allows the character to use Punishment instantly while performing other moves.
+  ultimate_righteous_charge:
+    name: 'Ultimate: Righteous Charge'
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 8000
+    description: Charge at your foe and slam them back with your shield.
+    notes: Charge at your foe and slam them back with your shield. Attack damage 5158% x1 Maximum 10 targets Recover 125 SP
+      per hit Forward Guard Knockback on hits (PvE only) Increased movement distance 55.68% damage in PvP only
+  ultimate_severing_light:
+    name: 'Ultimate: Severing Light'
+    input: Auto-activated with Severing Light
+    protection: none
+    cc:
+    - knockback
+    - down_attack
+    description: Focus more Sacred Power to slash through all darkness.
+    notes: 'Focus more Sacred Power to slash through all darkness. Applies the following to Severing Light: All damage applies
+      Severing Light ''s level damage x2 Applies Severing Light''s maximum number of targets Knockback on hits Increased attack
+      area Down Attack Applies the following to Prime: Severing Light: All attack 1 damage applies Prime: Severing Light ''s
+      level damage x2 All attack 2 damage applies Prime: Severing Light ''s level damage x2 Applies Severing Light''s maximum
+      number of targets Melee AP +20 for 10 sec when using the skill Knockback on hits Increased attack area Down Attack'
+    keys:
+    - hotbar
+  ultimate_sharp_light:
+    name: 'Ultimate: Sharp Light'
+    input: Auto-activated when using Sharp Light
+    protection: none
+    cc:
+    - pull
+    description: A skilled Valkyrie can send Sharp Light farther away, pulling the enemies their way.
+    notes: A skilled Valkyrie can send Sharp Light farther away, pulling the enemies their way. Increased attack area Pull
+      in the target on hits (PvE only)
+    keys:
+    - hotbar
+  ultimate_sword_of_judgment:
+    name: 'Ultimate: Sword of Judgment'
+    input: Passive
+    protection: none
+    description: A skilled Valkyrie always aims for perfection in punishing the enemies.
+    notes: 'A skilled Valkyrie always aims for perfection in punishing the enemies. Applies the following to Sword of Judgment
+      : - Increased skill damage - Increased attack area - Increased combo speed for attacks 1 and 2'
+    keys:
+    - hotbar
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  valkyrie_slash:
+    name: Valkyrie Slash
+    input: LMB ← or → + RMB to move laterally LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - a
+    - d
+    - rmb
+    protection: iframe
+    description: Basic swordsmanship that can be learned at the Holy College of Valkyries.
+    notes: Basic swordsmanship that can be learned at the Holy College of Valkyries. Attack damage 2347% x1, max 4 hits Jump
+      attack damage 2347% x1 Maximum 8 targets Recover 34 SP per hit Invincible when starting to move laterally Consumes 200
+      Stamina when moving laterally. 53.45% damage in PvP only
+  verdict_lancia_iustitiae:
+    name: 'Verdict: Lancia Iustitiae'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: Slam the lancia down onto the surface to cleanse all enemies in the vicinity.
+    notes: Slam the lancia down onto the surface to cleanse all enemies in the vicinity. Attack damage 5706% x6 Last attack
+      damage 9731% x2 Critical Hit Rate +100% Maximum 10 targets All Damage Reduction +30 for 10 sec when using the skill
+      Movement Speed -15% for 5 sec on hits Super Armor Knockdown on first hit (PvE only) Down Attack Air Attack on last attack
+      hits Down Smash on last attack hits 17.6% attack 1 damage in PvP only 25.8% last attack damage in PvP only Attack damage
+      7876% x4 Last attack damage 12223% x2 Critical Hit Rate +100% Maximum 10 targets Increased attack area All Damage Reduction
+      +30 for 10 sec when using the skill Movement Speed -15% for 5 sec on hits Super Armor Knockdown on first hit (PvE only)
+      Down Attack Air Attack on last attack hits Down Smash on last attack hits 13.39% attack 1 damage in PvP only 23.73%
+      last attack damage in PvP only Dismount target on hits. Injures target with 10% of the damage of a hit.
+  vindicta:
+    name: Vindicta
+    input: LMB or ↑ + LMB while on Guard
+    keys:
+    - lmb
+    - w
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 5000
+    description: Attack your opponent while on Guard.
+    notes: Attack your opponent while on Guard. Attack damage 4140% x1 Maximum 10 targets Knockback on hits All Damage Reduction
+      -20 for 10 sec on hits Forward Guard All CC Resistance (except Grapple), including from Back Attacks 65% damage in PvP
+      only
+  vow_of_trust:
+    name: Vow of Trust
+    input: Hold SPACE + SHIFT Hold SPACE + SHIFT with your lancia
+    keys:
+    - hold
+    - space
+    - shift
+    protection: none
+    cooldown_ms: 1000
+    description: Pray to Elion to recover SP.
+    notes: Pray to Elion to recover SP. Recovers Level +100 SP
+  wave_of_light:
+    name: Wave of Light
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - bound
+    - pull
+    cooldown_ms: 20000
+    description: Pull in all enemies by unleashing a wave of light before you, then deal holy damage on a designated point.
+    notes: Pull in all enemies by unleashing a wave of light before you, then deal holy damage on a designated point. Summon
+      attack damage 854% x4 Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Pull in the target on hits Movement
+      and Attack/Casting Speeds -50% for 1 sec on pull attack hits Bound on summon attack hits
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+_flags:
+- cannon_attack: No notes/input — passive or unused stub.
+- guild_squad_special_attack: No notes — Guild Squad special skill stub.
+- revive_target: No notes — utility skill.
+- ultimate_sword_of_judgment: Passive — no keybind.
+- weight_training: Passive — no keybind.

@@ -1,6 +1,1805 @@
 # Maegu — Succession
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Maegu
 spec: Succession
-skills: {}
+skills:
+  absolute_bared_claws:
+    name: 'Absolute: Bared Claws'
+    input: → or ← + LMB Perform from attack 1 when using this skill backward after attack 1
+    keys:
+    - d
+    - a
+    - lmb
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Bared Claws III]'
+    notes: 'Preceding Skill: [Bared Claws III] Attack 1 damage 738% x2 Attack 2 damage 1476% x1, max 2 hits Critical Hit Rate
+      +50% (Nullified during cooldown) Maximum 10 targets Recover 38 MP per hit Forward Guard (Nullified during cooldown)
+      Stiffness on attack 2 hits (PvE only) (Nullified during cooldown) 73.51% damage in PvP only Damage -10% per each additional
+      target hit from target 2 onward. (Max damage -50% .) (PvP only) Consume 100 Stamina per attack'
+  absolute_bristling_sparks:
+    name: 'Absolute: Bristling Sparks'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 11000
+    description: 'Preceding Skill: [Bristling Sparks IV]'
+    notes: 'Preceding Skill: [Bristling Sparks IV] Attack 1 damage 2535% x1 Attack 2 damage 2535% x1, max 4 hits Attack 3
+      damage 1690% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Stun on attack 1 hits (PvE only)
+      Down Attack 48.65% damage in PvP only'
+  absolute_charm_mastery:
+    name: 'Absolute: Charm Mastery'
+    input: LMB ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    description: 'Preceding Skill: [Charm Mastery X]'
+    notes: 'Preceding Skill: [Charm Mastery X] Standing attack damage 1044% x1, max 4 hits Standing last attack damage 2089%
+      x1 Lateral attack damage 1044% x1, max 3 hits Forward attack damage 1044% x1, max 3 hits Forward last attack damage
+      2089% x1 Maximum 10 targets Recover 48 MP per hit'
+  absolute_charmed:
+    name: 'Absolute: Charmed'
+    input: ↓ + SPACE SPACE during other skills
+    keys:
+    - s
+    - space
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Charmed]'
+    notes: 'Preceding Skill: [Charmed] Attack damage 2640% x2 Maximum 10 targets All AP +20 for 10 sec when using the skill
+      (Nullified during cooldown) Recover 125 MP per hit (Nullified during cooldown) Stiffness on hits (Nullified during cooldown)
+      75.68% damage in PvP only'
+  absolute_flower_shroud:
+    name: 'Absolute: Flower Shroud'
+    input: ↑ + E to perform forward attacks ↓ + E to perform backward attacks Can be used with your foxtail fans
+    keys:
+    - w
+    - e
+    - s
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Flower Shroud IV]'
+    notes: 'Preceding Skill: [Flower Shroud IV] Attack 1 damage 1796% x1, max 3 hits Attack 2 damage 1796% x2 Critical Hit
+      Rate +50% Maximum 10 targets Forward Guard Stun on hits (PvE only) No collision while moving Down Attack Air Attack
+      45.41% damage in PvP only'
+  absolute_foxflare:
+    name: 'Absolute: Foxflare'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Foxflare IV]'
+    notes: 'Preceding Skill: [Foxflare IV] Attack damage 2938% x2 Critical Hit Rate +100% Maximum 10 targets Knockdown on
+      hits Down Attack 54.06% damage in PvP only Damage -20% per each additional target hit from target 2 onward. (Max damage
+      -20% .) (PvP only)'
+  absolute_foxspirit_tag:
+    name: 'Absolute: Foxspirit: Tag'
+    input: RMB
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Foxspirit: Tag III]'
+    notes: 'Preceding Skill: [Foxspirit: Tag III] Attack damage 2998% x2 Critical Hit Rate +30% Maximum 10 targets All Damage
+      Reduction -20 for 10 sec on hits Super Armor during the skill Floating on hits (PvE only) Down Attack Air Attack 43.24%
+      damage in PvP only'
+  absolute_ghost_bomb:
+    name: 'Absolute: Ghost Bomb'
+    input: → or ← + RMB
+    keys:
+    - d
+    - a
+    - rmb
+    protection: iframe
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Ghost Bomb IV]'
+    notes: 'Preceding Skill: [Ghost Bomb IV] Attack damage 1950% x2 Critical Hit Rate +40% Maximum 10 targets Invincible while
+      moving Down Attack 62.7% damage in PvP only Foxspirit charm ''s explosion damage 2686% x2 Maximum 10 targets 58.38%
+      damage in PvP only'
+  absolute_heavenward_dance:
+    name: 'Absolute: Heavenward Dance'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - stun
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Heavenward Dance IV]'
+    notes: 'Preceding Skill: [Heavenward Dance IV] Attack 1 damage 1538% x1, max 5 hits Attack 2 damage 1538% x2 Critical
+      Hit Rate +100% Maximum 7 targets Super Armor during the skill No collision while moving Down Attack 37.84% damage in
+      PvP only Attack 1 damage 4728% x1, max 5 hits Attack 2 damage 7880% x3 Critical Hit Rate +100% Maximum 10 targets All
+      AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for
+      60 sec when using the skill Super Armor Stun on attack 1 hits Knockdown on attack 2 hits Down Attack 33.08% damage in
+      PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.'
+  absolute_lurking_claws:
+    name: 'Absolute: Lurking Claws'
+    input: ↓ + F F after attack 2 hits to move a certain distance and perform attack 3
+    keys:
+    - s
+    - f
+    - a
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Lurking Claws IV]'
+    notes: 'Preceding Skill: [Lurking Claws IV] Attack 1 damage 1295% x2 Attack 2 damage 1295% x2 Attack 3 damage 1295% x2
+      Critical Hit Rate +30% Maximum 10 targets Super Armor during the skill Down Attack 59.46% damage in PvP only'
+  absolute_path_of_petals:
+    name: 'Absolute: Path of Petals'
+    input: ↑ + F Hold F to continue the skill
+    keys:
+    - w
+    - f
+    protection: SA
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Path of Petals]'
+    notes: 'Preceding Skill: [Path of Petals] Super Armor during the skill No collision while moving Consumes 150 Stamina
+      to continue the skill, then 100 Stamina to continue it once again.'
+  absolute_petal_play:
+    name: 'Absolute: Petal Play'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Petal Play III]'
+    notes: 'Preceding Skill: [Petal Play III] Attack damage 3660% x2 Critical Hit Rate +100% Maximum 10 targets Floating on
+      hits Down Attack 43.24% damage in PvP only Damage -20% per each additional target hit from target 2 onward. (Max damage
+      -20% .) (PvP only)'
+  absolute_petalblast:
+    name: 'Absolute: Petalblast'
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Petalblast III]'
+    notes: 'Preceding Skill: [Petalblast III] Attack damage 3118% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      during the skill Bound on hits (PvE only) Down Attack 58.38% damage in PvP only'
+  absolute_soul_tear:
+    name: 'Absolute: Soul Tear'
+    input: ↑ + Q
+    keys:
+    - w
+    - q
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Soul Tear III]'
+    notes: 'Preceding Skill: [Soul Tear III] Attack damage 1862% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      before the attack hits Stiffness on hits Down Attack 75.68% damage in PvP only'
+  absolute_soulflame:
+    name: 'Absolute: Soulflame'
+    input: E
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Soulflame III]'
+    notes: 'Preceding Skill: [Soulflame III] Attack damage 1983% x2 Flow: Hanpuri ''s damage 3966% Critical Hit Rate +50%
+      Maximum 10 targets 130 burn damage every 3 sec for 18 sec on hits 70.27% damage in PvP only Foxspirit charm ''s explosion
+      damage 2149% x2 Maximum 7 targets 58.38% damage in PvP only'
+  absolute_soulsnare:
+    name: 'Absolute: Soulsnare'
+    input: F
+    keys:
+    - f
+    protection: none
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Soulsnare III]'
+    notes: 'Preceding Skill: [Soulsnare III] Attack damage 1649% x2 Critical Hit Rate +30% Maximum 10 targets Movement Speed
+      -10% for 5 sec on hits 75.68% damage in PvP only Foxspirit charm ''s explosion damage 2686% x2 Maximum 7 targets 58.38%
+      damage in PvP only'
+  absolute_spirit_swirl:
+    name: 'Absolute: Spirit Swirl'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: iframe
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Spirit Swirl IV]'
+    notes: 'Preceding Skill: [Spirit Swirl IV] Attack 1 damage 2941% x1, max 6 hits Attack 2 damage 2406% x2 Critical Hit
+      Rate +100% Maximum 10 targets Super Armor during the skill Down Attack 27.03% damage in PvP only Attack 1 damage 3495%
+      x3 Attack 2 damage 6990% x1 Attack 3 damage 1483% x1, max 11 hits Attack 4 damage 3495% x3 Critical Hit Rate +100% Maximum
+      10 targets All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit
+      Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor -> Invincible ->
+      Super Armor during the skill Stun on attack 1 hits Down Attack 27.03% damage in PvP only Not affected by effects which
+      increase/decrease Attack and/or Casting Speeds. Dismount target on hits. Injures target with 100% of the damage of a
+      hit.'
+  absolute_spirited_away:
+    name: 'Absolute: Spirited Away'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Spirited Away IV]'
+    notes: 'Preceding Skill: [Spirited Away IV] Attack 1 damage 1606% x1, max 5 hits Attack 2 damage 2230% x2 Critical Hit
+      Rate +50% Maximum 10 targets Forward Guard Down Attack 27.03% damage in PvP only Damage -10% per each additional target
+      hit from target 2 onward. (Max damage -50% .) (PvP only)'
+  bared_claws:
+    name: Bared Claws
+    input: → or ← + LMB Perform from attack 1 when using this skill backward after attack 1
+    keys:
+    - d
+    - a
+    - lmb
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 5000
+    description: Move with spirit-like reflexes to cast a powerful incantation in front.
+    notes: Move with spirit-like reflexes to cast a powerful incantation in front. Attack 1 damage 451% x2 Attack 2 damage
+      902% x1, max 2 hits Critical Hit Rate +50% (Nullified during cooldown) Maximum 7 targets Recover 38 MP per hit Forward
+      Guard (Nullified during cooldown) Stiffness on attack 2 hits (PvE only) (Nullified during cooldown) 73.51% damage in
+      PvP only Damage -10% per each additional target hit from target 2 onward. (Max damage -50% .) (PvP only) Consume 100
+      Stamina per attack
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+  bristling_sparks:
+    name: Bristling Sparks
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 12000
+    description: Burn a charm to manifest a wall of spirit charms which deal damage over time. Stab the charms with your binyeo
+      knife to deal great damage.
+    notes: Burn a charm to manifest a wall of spirit charms which deal damage over time. Stab the charms with your binyeo
+      knife to deal great damage. Attack 1 damage 2289% x1 Attack 2 damage 2289% x1, max 4 hits Attack 3 damage 1526% x2 Critical
+      Hit Rate +100% Maximum 7 targets Super Armor during the skill Stun on attack 1 hits (PvE only) Down Attack 48.65% damage
+      in PvP only
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  chain_spirit_step:
+    name: 'Chain: Spirit Step'
+    input: SHIFT + ↑ while moving or standing SHIFT + ←/ ↓/ → after Spirit Step Can be used with your foxtail fans Cannot
+      be used backward with your foxtail fans
+    keys:
+    - shift
+    - w
+    - a
+    - s
+    - d
+    protection: iframe
+    cooldown_ms: 5000
+    description: Quickly spin your body to evade at ungodly speeds.
+    notes: Quickly spin your body to evade at ungodly speeds. Super Armor Invincible when character disappears Invincible
+      during the skill (PvE only) No collision while moving
+  charm_mastery:
+    name: Charm Mastery
+    input: LMB ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    description: Basic incantations of the Jwado School utilizing your foxspirit charm.
+    notes: Basic incantations of the Jwado School utilizing your foxspirit charm. Standing attack damage 968% x1, max 4 hits
+      Standing last attack damage 1935% x1 Lateral attack damage 968% x1, max 3 hits Forward attack damage 968% x1, max 3
+      hits Forward last attack damage 1935% x1 Maximum 7 targets Recover 42 MP per hit
+  charmed:
+    name: Charmed
+    input: ↓ + SPACE SPACE during other skills
+    keys:
+    - s
+    - space
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 8000
+    description: Toss your charm forward, then toss your binyeo knife through the previous charm to nail your foe.
+    notes: Toss your charm forward, then toss your binyeo knife through the previous charm to nail your foe. Attack damage
+      1213% x2 Maximum 7 targets Recover 125 MP per hit (Nullified during cooldown) Stiffness on hits (Nullified during cooldown)
+      75.68% damage in PvP only
+  constricting_charm:
+    name: Constricting Charm
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Petal Play III]'
+    notes: 'Preceding Skill: [Petal Play III] Attack 1 damage 4969% x2 Attack 2 damage 4969% x2 Critical Hit Rate +50% Maximum
+      10 targets Super Armor during the skill Floating on attack 1 hits (PvE only) Down Attack Air Attack 37.84% damage in
+      PvP only'
+  core_emberclaw_crush:
+    name: 'Core: Emberclaw Crush'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Emberclaw Crush III after learning this skill: Super Armor during
+      the skill Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_emberclaw_finale:
+    name: 'Core: Emberclaw Finale'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Emberclaw Finale III after learning this skill: Knockdown on
+      last attack hits'
+    keys:
+    - hotbar
+  core_emberclaw_slash:
+    name: 'Core: Emberclaw Slash'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Emberclaw Slash IV after learning this skill: Forward Guard during
+      the skill'
+    keys:
+    - hotbar
+  core_emberclaw_torrent:
+    name: 'Core: Emberclaw Torrent'
+    input: Passive
+    protection: none
+    cc:
+    - floating
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Emberclaw Torrent IV after learning this skill: Floating on attack
+      2 hits'
+    keys:
+    - hotbar
+  core_twirling_foxflare:
+    name: 'Core: Twirling Foxflare'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Twirling Foxflare IV after learning this skill: Stiffness on
+      first hit'
+    keys:
+    - hotbar
+  core_twirling_rhapsody:
+    name: 'Core: Twirling Rhapsody'
+    input: Passive
+    protection: none
+    cc:
+    - floating
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Twirling Rhapsody III after learning this skill: Floating on
+      first and last attack hits (Nullified during cooldown) Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_twirling_bloom:
+    name: 'Elvia: Twirling Bloom'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Spin backwards, then wipe the surface clean with your foxtail fans.
+    notes: Spin backwards, then wipe the surface clean with your foxtail fans. Attack damage 9060% x2 Critical Hit Rate +100%
+      (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10 sec on hits Super
+      Armor during the skill Down Attack 19.46% damage in PvP only
+    keys:
+    - hotbar
+  emberclaw_crush:
+    name: Emberclaw Crush
+    input: E E after certain skills to perform attack 2
+    keys:
+    - e
+    protection: SA
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Call upon the revered fox spirit through the fox's eye and bind it to the foxfire of your foxtail fans. Your
+      foxfire becomes the same as the foxfire of the revered fox spirit, crushing enemies in front of you with its power.
+    notes: Call upon the revered fox spirit through the fox's eye and bind it to the foxfire of your foxtail fans. Your foxfire
+      becomes the same as the foxfire of the revered fox spirit, crushing enemies in front of you with its power. Attack 1
+      damage 2753% x2 Attack 2 damage 8260% x2 Critical Hit Rate +100% Maximum 10 targets Stiffness on attack 1 hits Knockdown
+      on attack 2 hits Down Attack 25.3% damage in PvP only The revered fox spirit spiritforges into the foxfire of the foxtail
+      fans. Attack damage 8247% x3 Critical Hit Rate +100% Maximum 10 targets Increased attack area Super Armor during the
+      skill Knockdown on hits Down Attack 23.68% damage in PvP only Dismount target on hits. Injures target with 30% of the
+      damage of a hit. The revered fox spirit spiritforges into the foxfire of the foxtail fans.
+  emberclaw_finale:
+    name: Emberclaw Finale
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - knockdown
+    - stun
+    - down_attack
+    cooldown_ms: 9000
+    description: Draw power from the revered fox spirit through the fox's eye and your foxtail fans become spiritforged. When
+      the revered fox spirit is reflected in the fox eye, the presence of the spirit makes the surrounding enemies feel intimidated.
+      Then, imitate the claws of the fox spirit with the spiritforged foxfire and sweep away the enemies in front of you.
+    notes: Draw power from the revered fox spirit through the fox's eye and your foxtail fans become spiritforged. When the
+      revered fox spirit is reflected in the fox eye, the presence of the spirit makes the surrounding enemies feel intimidated.
+      Then, imitate the claws of the fox spirit with the spiritforged foxfire and sweep away the enemies in front of you.
+      Attack damage 9445% x3 Critical Hit Rate +100% Maximum 10 targets Movement Speed - 15% for enemies within range for
+      5 sec Super Armor during the skill Knockdown on hits (PvE only) Down Attack 27.89% damage in PvP only The revered fox
+      spirit spiritforges into the foxfire of the foxtail fans. Attack 1 damage 3891% x2 Attack 2 damage 3891% x1 Attack 3
+      damage 4864% x6 Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed
+      +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Movement Speed - 20% every
+      5 sec on 1 hits Attack Speed - 20% every 5 sec on 1 hits Casting Speed - 20% every 5 sec on 1 hits Super Armor Stun
+      on attack 2 hits Knockdown on attack 3 hits Down Attack 35.68% damage in PvP only Dismount target on hits. Injures target
+      with 50% of the damage of a hit.
+  emberclaw_slash:
+    name: Emberclaw Slash
+    input: SHIFT + LMB LMB after other skills
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: Call upon the revered fox spirit through the fox's eye and bind it to the foxfire of your foxtail fans The
+      spiritforged foxfire becomes sharp claws that slash through enemies.
+    notes: Call upon the revered fox spirit through the fox's eye and bind it to the foxfire of your foxtail fans The spiritforged
+      foxfire becomes sharp claws that slash through enemies. Attack damage 5241% x3 Critical Hit Rate +100% Maximum 10 targets
+      All Damage Reduction -20 for 10 sec on hits Floating on hits Air Attack 24.65% damage in PvP only The revered fox spirit
+      spiritforges into the foxfire of the foxtail fans.
+  emberclaw_torrent:
+    name: Emberclaw Torrent
+    input: 'SHIFT + RMB Hold RMB to perform attack 3 SHIFT + RMB after forward Spirit Step, forward Chain: Spirit Step, Foxflare
+      Ambush, or Twirling Retreat to perform attack 3'
+    keys:
+    - shift
+    - rmb
+    - hold
+    protection: FG
+    cc:
+    - floating
+    - stun
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Draw power from the revered fox spirit through the fox's eye and your foxtail fans become Spiritforged. Sweep
+      the front with the spiritforged foxfire of your foxtail fans.
+    notes: Draw power from the revered fox spirit through the fox's eye and your foxtail fans become Spiritforged. Sweep the
+      front with the spiritforged foxfire of your foxtail fans. Attack 1 damage 4747% x2 Attack 2 damage 4747% x2 Attack 3
+      damage 8137% x2 Critical Hit Rate +100% Maximum 10 targets Recover 141 HP per hit Forward Guard during the skill Push
+      the target on attack 1 and 3 hits (PvE only) Floating on attack 2 hits (PvE only) Down Attack on attack 1 and 3 hits
+      Air Attack on attack 2 hits Down Smash on attack 3 hits 29.08% damage in PvP only The revered fox spirit spiritforges
+      into the foxfire of the foxtail fans. Attack 1 damage 10380% x3 Attack 2 damage 14028% x7 Attack 3 damage 24388% x4
+      Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec
+      when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill
+      Super Armor Stun on attack 1 and 2 hits Knockdown on attack 3 hits Down Attack 9.95% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds. Dismount target on hits. Injures target with 100% of
+      the damage of a hit.
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your foxtail fans
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  fan_kick:
+    name: Fan Kick
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Unleash the Do energy of the Jwado School by mixing it with the martial arts of the Woodo School learned
+      in the past.
+    notes: Unleash the Do energy of the Jwado School by mixing it with the martial arts of the Woodo School learned in the
+      past. Attack 1 damage 3424% x2 Attack 2 damage 4565% x2 Critical Hit Rate +30% Maximum 10 targets Air Attack damage
+      +5% for 5 sec when using the skill Floating on attack 1 hits Air Attack Air Smash on attack 2 hits 38.16% damage in
+      PvP only Applies the following when comboing while Spiritforged . Air Attack damage +10% for 5 sec when using the skill
+      Increased attack area
+  flow_emberclaw_sweep:
+    name: 'Flow: Emberclaw Sweep'
+    input: Hold LMB after Emberclaw Slash
+    keys:
+    - hold
+    - lmb
+    protection: FG
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Emberclaw Slash III]'
+    notes: 'Preceding Skill: [Emberclaw Slash III] Attack damage 9307% x2 Critical Hit Rate +100% Maximum 10 targets Forward
+      Guard during the skill Down Attack Down Smash 29.41% damage in PvP only The revered fox spirit spiritforges into the
+      foxfire of the foxtail fans.'
+  flow_foxflare_encore:
+    name: 'Flow: Foxflare Encore'
+    input: Hold F after Twirling Foxflare
+    keys:
+    - hold
+    - f
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    description: 'Preceding Skill: [Twirling Foxflare III]'
+    notes: 'Preceding Skill: [Twirling Foxflare III] All spin attack damage applies Twirling Foxflare ''s level damage x3
+      All last attack damage applies Twirling Foxflare ''s level damage x2 Maximum 10 targets Recover 105 HP per hit Super
+      Armor during the skill Air Attack Down Smash on last attack hits Applies the following when comboing while Spiritforged
+      . Damage Increase Increased execution speed Increased attack area Down Attack'
+  flow_hanpuri:
+    name: 'Flow: Hanpuri'
+    input: E during Soulflame F during Soulsnare E during Ghost Bomb
+    keys:
+    - e
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Soulflame II]'
+    notes: 'Preceding Skill: [Soulflame II] All damage applies Soulflame ''s level damage x2 Super Armor Stiffness on hits
+      (PvE only)'
+  flow_nether_river:
+    name: 'Flow: Nether River'
+    input: 'LMB during lateral Chain: Spirit Step LMB during lateral Spirit Step LMB during Bared Claws'
+    keys:
+    - lmb
+    protection: FG
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Bared Claws II]'
+    notes: 'Preceding Skill: [Bared Claws II] Attack damage 3033% x2 Maximum 10 targets All AP +20 for 10 sec when using the
+      skill Forward Guard during the skill No collision while moving 86.49% damage in PvP only'
+  flower_shroud:
+    name: Flower Shroud
+    input: ↑ + E to perform forward attacks ↓ + E to perform backward attacks Can be used with your foxtail fans
+    keys:
+    - w
+    - e
+    - s
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Cast an incantation that establishes a forbidden zone from which no soul can escape.
+    notes: Cast an incantation that establishes a forbidden zone from which no soul can escape. Attack 1 damage 1302% x1,
+      max 3 hits Attack 2 damage 1302% x2 Critical Hit Rate +50% Maximum 7 targets Forward Guard Stun on hits (PvE only) No
+      collision while moving Down Attack Air Attack 45.41% damage in PvP only
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  forged_with_foxspirit:
+    name: Forged with Foxspirit
+    input: Passive
+    protection: none
+    description: Become Spiritforged.
+    keys:
+    - hotbar
+  foxflare:
+    name: Foxflare
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Concentrate your Do power, then explode it as a raging storm over a certain area.
+    notes: Concentrate your Do power, then explode it as a raging storm over a certain area. Attack damage 2445% x2 Critical
+      Hit Rate +100% Maximum 7 targets Knockdown on hits Down Attack 54.06% damage in PvP only Damage -20% per each additional
+      target hit from target 2 onward. (Max damage -20% .) (PvP only)
+  foxflare_ambush:
+    name: Foxflare Ambush
+    input: 'Perform Forward Attacks: F Perform Side Attacks: ← or → + F LMB while jumping to perform forward attacks Can be
+      performed instead of Soulsnare with your foxspirit charm'
+    keys:
+    - f
+    - a
+    - d
+    - lmb
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Quickly surround yourself with Foxfire and leap into the air to aim for the enemy's rear.
+    notes: Quickly surround yourself with Foxfire and leap into the air to aim for the enemy's rear. Attack damage 3623% x1,
+      max 3 hits Critical Hit Rate +30% (Nullified during cooldown) Maximum 10 targets Recover 50 MP per hit (Nullified during
+      cooldown) Super Armor during the skill (Nullified during cooldown) Floating on first hit (Nullified during cooldown)
+      Air Attack No collision while moving 36.11% damage in PvP only Damage reduced during cooldown Applies the following
+      when comboing while Spiritforged . Damage Increase Increased execution speed
+  foxflare_charge:
+    name: Foxflare Charge
+    input: ↑ + F Hold ↑ + F to perform once more Can be used with your foxspirit charm
+    keys:
+    - w
+    - f
+    - hold
+    protection: iframe
+    cc:
+    - knockback
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Absolute: Path of Petals]'
+    notes: 'Preceding Skill: [Absolute: Path of Petals] Attack damage 3578% x2 Critical Hit Rate +100% Maximum 10 targets
+      Invincible -> Super Armor during the skill Knockback on hits (PvE only) No collision while moving Consumes 200 Stamina
+      when used consecutively (Movement Speed Increase effects nullified at the start of the skill) 75.68% damage in PvP only
+      The revered fox spirit spiritforges into the foxfire of the foxtail fans.'
+  foxflare_cleave:
+    name: Foxflare Cleave
+    input: Q
+    keys:
+    - q
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Slash the enemy with your foxtail fans.
+    notes: Slash the enemy with your foxtail fans. Attack damage 4262% x2 Critical Hit Rate +20% Maximum 10 targets All Evasion
+      -12 for 10 sec on hits Floating on hits Air Attack 41.84% damage in PvP only Applies the following when comboing while
+      Spiritforged . Damage Increase Increased attack area
+  foxflare_fleche:
+    name: Foxflare Fleche
+    input: RMB
+    keys:
+    - rmb
+    protection: iframe
+    cc:
+    - knockback
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Spot the enemy's opening and swiftly dash in for a strike.
+    notes: Spot the enemy's opening and swiftly dash in for a strike. Attack damage 3044% x2 Maximum 10 targets Critical Hit
+      Rate +30% for 10 sec when using the skill (Nullified during cooldown) Recover 75 MP per hit (Nullified during cooldown)
+      Invincible at the start of the skill (Nullified during cooldown) Knockback on hits (Nullified during cooldown) Air Attack
+      Air Smash 74.27% damage in PvP only Damage reduced during cooldown Applies the following when comboing while Spiritforged
+      . Damage Increase Down Attack
+  foxflare_fling:
+    name: Foxflare Fling
+    input: E
+    keys:
+    - e
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 7000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 4757% x1, max 3 hits Critical Hit Rate +100%
+      Maximum 10 targets Forward Guard at the start of the skill Stiffness on hits'
+  foxflare_stroke:
+    name: Foxflare Stroke
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Strike down the enemy with your foxtail fans and hit them again.
+    notes: Strike down the enemy with your foxtail fans and hit them again. Attack 1 damage 3339% x2 Attack 2 damage 3339%
+      x2 Critical Hit Rate +30% Maximum 10 targets All AP +18 for 10 sec when using the skill Bound on attack 1 hits (PvE
+      only) Down Attack 42.81% damage in PvP only Applies the following when comboing while Spiritforged . Increased execution
+      speed Increased attack area
+  foxpact:
+    name: Foxpact
+    input: Passive
+    protection: none
+    description: Having made a pact with the revered fox spirit, your Do energies and power are now one with theirs.
+    notes: Having made a pact with the revered fox spirit, your Do energies and power are now one with theirs. Max Stamina
+      +300
+    keys:
+    - hotbar
+  foxspirit_conduit:
+    name: Foxspirit Conduit
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: Harmonize the foxfire of the revered fox spirit and your own power to achieve a complete unity.
+    notes: Harmonize the foxfire of the revered fox spirit and your own power to achieve a complete unity. All AP +25 for
+      30 sec when using the skill Critical Hit Rate +30% for 30 sec when using the skill Max HP +1000 for 30 sec when using
+      the skill The following effects will be applied each time you spiritforge into the foxfire of the foxtail fans. - All
+      Evasion +60 for 5 sec - Air Attack damage +10% for 5 sec Super Armor
+    keys:
+    - hotbar
+  foxspirit_atonement:
+    name: 'Foxspirit: Atonement'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All Evasion +2
+    keys:
+    - hotbar
+  foxspirit_atonement_xi:
+    name: 'Foxspirit: Atonement XI'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All AP +1
+    keys:
+    - hotbar
+  foxspirit_atonement_xii:
+    name: 'Foxspirit: Atonement XII'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All Evasion +2
+    keys:
+    - hotbar
+  foxspirit_atonement_xiii:
+    name: 'Foxspirit: Atonement XIII'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All AP +1
+    keys:
+    - hotbar
+  foxspirit_atonement_xiv:
+    name: 'Foxspirit: Atonement XIV'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All Evasion +2
+    keys:
+    - hotbar
+  foxspirit_atonement_xix:
+    name: 'Foxspirit: Atonement XIX'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All AP +1
+    keys:
+    - hotbar
+  foxspirit_atonement_xv:
+    name: 'Foxspirit: Atonement XV'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All AP +1
+    keys:
+    - hotbar
+  foxspirit_atonement_xvi:
+    name: 'Foxspirit: Atonement XVI'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All Evasion +2
+    keys:
+    - hotbar
+  foxspirit_atonement_xvii:
+    name: 'Foxspirit: Atonement XVII'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All AP +1
+    keys:
+    - hotbar
+  foxspirit_atonement_xviii:
+    name: 'Foxspirit: Atonement XVIII'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All Evasion +2
+      All AP +1
+    keys:
+    - hotbar
+  foxspirit_atonement_xx:
+    name: 'Foxspirit: Atonement XX'
+    input: Passive
+    protection: none
+    description: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife.
+    notes: The power of the extraplanar being strengthens your flesh, at a cost to be paid in the afterlife. All Evasion +2
+      All AP +1
+    keys:
+    - hotbar
+  foxspirit_tag:
+    name: 'Foxspirit: Tag'
+    input: RMB
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Scatter your charms in front, then explode them over a large area to deal damage.
+    notes: Scatter your charms in front, then explode them over a large area to deal damage. Attack damage 2013% x2 Critical
+      Hit Rate +30% Maximum 7 targets All Damage Reduction -15 for 10 sec on hits Super Armor during the skill Floating on
+      hits (PvE only) Down Attack Air Attack 43.24% damage in PvP only
+  foxtail_fans_mastery:
+    name: Foxtail Fans Mastery
+    input: 'LMB ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB while sprinting to perform
+      sprint attacks LMB during Spirit Step, Chain: Spirit Step, or Hazy Path to perform sprint attacks'
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    description: A basic training skill using your foxtail fans.
+    notes: A basic training skill using your foxtail fans. Standing attack damage 2018% x1, max 3 hits Forward attack damage
+      2018% x1, max 4 hits Lateral attack damage 2018% x1, max 2 hits Sprint attack damage 2018% x1 Maximum 10 targets Recover
+      80 MP per hit Floating on sprinting attack hits Air Attack 64.87% damage in PvP only
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  ghost_bomb:
+    name: Ghost Bomb
+    input: → or ← + RMB
+    keys:
+    - d
+    - a
+    - rmb
+    protection: iframe
+    cc:
+    - down_attack
+    cooldown_ms: 6000
+    description: Quickly evade to the side, then toss a charm that explodes after a certain period of time.
+    notes: Quickly evade to the side, then toss a charm that explodes after a certain period of time. Attack damage 1412%
+      x2 Critical Hit Rate +40% Maximum 7 targets Invincible while moving Down Attack 62.7% damage in PvP only Foxspirit charm
+      's explosion damage 2149% x2 Maximum 7 targets 58.38% damage in PvP only
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  hazy_path:
+    name: Hazy Path
+    input: ↑ + RMB Can be performed instead of Heavenward Dance with your foxspirit charm
+    keys:
+    - w
+    - rmb
+    protection: iframe
+    cc:
+    - stun
+    cooldown_ms: 4000
+    description: Deceive the enemy with your Fox Eye and appear in front of them to attack.
+    notes: Deceive the enemy with your Fox Eye and appear in front of them to attack. Attack damage 3781% x2 Maximum 10 targets
+      Recover 100 MP per hit Invincible -> Super Armor during the skill Stun on hits (PvE only) Push the target on hits (PvE
+      only) 60.97% damage in PvP only The revered fox spirit spiritforges into the foxfire of the foxtail fans.
+  heavenly_return:
+    name: Heavenly Return
+    input: 'SHIFT + X E or F during Flow: Hanpuri'
+    keys:
+    - shift
+    - x
+    - e
+    - f
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Flow: Hanpuri]'
+    notes: 'Preceding Skill: [Flow: Hanpuri] Attack damage 5486% x2 Critical Hit Rate +50% Maximum 10 targets Stun on hits
+      Down Attack 49.73% damage in PvP only'
+  heavenward_dance:
+    name: Heavenward Dance
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - stun
+    - down_attack
+    cooldown_ms: 10000
+    description: Spread out and explode your charms all at once, like flowers in bloom, to deal damage over a large area.
+    notes: Spread out and explode your charms all at once, like flowers in bloom, to deal damage over a large area. Attack
+      1 damage 1230% x1, max 5 hits Attack 2 damage 1230% x2 Critical Hit Rate +100% Maximum 7 targets Super Armor during
+      the skill No collision while moving Down Attack 37.84% damage in PvP only Attack 1 damage 3546% x1, max 5 hits Attack
+      2 damage 5910% x3 Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed
+      +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on attack
+      1 hits Knockdown on attack 2 hits Down Attack 33.08% damage in PvP only Dismount target on hits. Injures target with
+      50% of the damage of a hit.
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  lurking_claws:
+    name: Lurking Claws
+    input: ↓ + F F after attack 2 hits to move a certain distance and perform attack 3
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 10000
+    description: Toss your charm to mark your target, then teleport to their front to take them down with your binyeo knife.
+    notes: Toss your charm to mark your target, then teleport to their front to take them down with your binyeo knife. Attack
+      1 damage 1088% x2 Attack 2 damage 1088% x2 Attack 3 damage 1088% x2 Critical Hit Rate +30% Maximum 7 targets Super Armor
+      during the skill Down Attack 59.46% damage in PvP only
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  path_of_petals:
+    name: Path of Petals
+    input: ↑ + F Hold F to continue the skill
+    keys:
+    - w
+    - f
+    - hold
+    protection: SA
+    cooldown_ms: 16000
+    description: Dash forward as lithe as a fox.
+    notes: Dash forward as lithe as a fox. Super Armor during the skill No collision while moving Consumes 150 Stamina to
+      continue the skill, then 100 Stamina to continue it once again.
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  petal_play:
+    name: Petal Play
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    cooldown_ms: 8000
+    description: Gradually amplify your Do power until all enemies in front are swept away.
+    notes: Gradually amplify your Do power until all enemies in front are swept away. Attack damage 1935% x2 Critical Hit
+      Rate +100% Maximum 7 targets Floating on hits Down Attack 43.24% damage in PvP only Damage -20% per each additional
+      target hit from target 2 onward. (Max damage -20% .) (PvP only)
+  petal_snare:
+    name: Petal Snare
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Petal Play III]'
+    notes: 'Preceding Skill: [Petal Play III] Attack 1 damage 3201% x2, max 2 hits Attack 2 damage 3201% x2 Critical Hit Rate
+      +30% Maximum 10 targets Forward Guard during the skill Down Attack 42.16% damage in PvP only Foxspirit charm ''s explosion
+      damage 2686% x2, max 2 hits Maximum 10 targets 58.38% damage in PvP only'
+  petalblast:
+    name: Petalblast
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Scatter your charms while gently moving backward, then explode them to damage your foes.
+    notes: Scatter your charms while gently moving backward, then explode them to damage your foes. Attack damage 2278% x2
+      Critical Hit Rate +50% Maximum 7 targets Super Armor during the skill Bound on hits (PvE only) Down Attack 58.38% damage
+      in PvP only
+  predominance:
+    name: Predominance
+    input: Passive
+    protection: none
+    description: Now able to wield the fully-restored might of the revered fox spirit, your incantations have become even
+      more powerful.
+    notes: 'Now able to wield the fully-restored might of the revered fox spirit, your incantations have become even more
+      powerful. Attain Predominance as the pact with the revered fox spirit is complete. Use powerful magic to summon an illusory
+      double. - Succession: Predominance You must first reset your skills in order to learn the skill. - Succession: Predominance
+      You cannot learn or use awakening skills if you have learned. - You cannot learn Succession skills if you have learned
+      Absolute skills. - You cannot learn Absolute skills if you have learned Succession skills.'
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_bared_claws:
+    name: 'Prime: Bared Claws'
+    input: → or ← + LMB Perform from attack 1 when using this skill backward after attack 1
+    keys:
+    - d
+    - a
+    - lmb
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 4000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 1470% x2 Attack 2 damage 2940% x1, max 2 hits Critical Hit Rate +50% (Nullified
+      during cooldown) Maximum 10 targets Recover 38 MP per hit Forward Guard (Nullified during cooldown) All Evasion -12
+      for 10 sec on hits (Nullified during cooldown) Stiffness on attack 2 hits (PvE only) (Nullified during cooldown) 77.41%
+      damage in PvP only Damage -10% per each additional target hit from target 2 onward. (Max damage -50% .) (PvP only) Consume
+      100 Stamina per attack'
+  prime_bristling_sparks:
+    name: 'Prime: Bristling Sparks'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 11000
+    description: Burn a charm to manifest a wall of spirit charms which deal damage over time. Stab the charms with your binyeo
+      knife to deal great damage.
+    notes: Burn a charm to manifest a wall of spirit charms which deal damage over time. Stab the charms with your binyeo
+      knife to deal great damage. Attack 1 damage 6588% x1 Attack 2 damage 6588% x1, max 4 hits Attack 3 damage 7796% x2 Critical
+      Hit Rate +100% Maximum 10 targets Super Armor during the skill Stun on attack 1 hits Down Attack 23.93% damage in PvP
+      only
+  prime_fan_of_flames:
+    name: 'Prime: Fan of Flames'
+    input: ↑ + C
+    keys:
+    - w
+    - c
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 1442% x1, max 3 hits Critical Hit Rate +30% Maximum 10 targets Movement Speed
+      -15% for 5 sec on hits Stiffness on center hits (PvE only) Down Attack 79.89% damage in PvP only'
+  prime_flower_shroud:
+    name: 'Prime: Flower Shroud'
+    input: ↑ + E to perform forward attacks ↓ + E to perform backward attacks
+    keys:
+    - w
+    - e
+    - s
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Cast an incantation that establishes a forbidden zone from which no soul can escape.
+    notes: Cast an incantation that establishes a forbidden zone from which no soul can escape. Attack 1 damage 2584% x1,
+      max 3 hits Attack 2 damage 5167% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard Stun on hits No collision
+      while moving Down Attack Air Attack 20.45% damage in PvP only
+  prime_foxflare:
+    name: 'Prime: Foxflare'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Concentrate your Do power, then explode it as a raging storm over a certain area.
+    notes: Concentrate your Do power, then explode it as a raging storm over a certain area. Attack damage 10054% x2 Critical
+      Hit Rate +100% Maximum 10 targets Knockdown on hits Down Attack 35.36% damage in PvP only Damage -20% per each additional
+      target hit from target 2 onward. (Max damage -20% .) (PvP only)
+  prime_foxspirit_deceiver:
+    name: 'Prime: Foxspirit: Deceiver'
+    input: Passive Q while illusory double is active to switch locations with your double
+    keys:
+    - q
+    protection: none
+    description: Summon an illusory double of yourself with the power of the now fully-restored revered fox spirit.
+    notes: Summon an illusory double of yourself with the power of the now fully-restored revered fox spirit. Summons an illusory
+      double when using the following skills after learning the skill. (The summoned double will not damage enemies nor taunt
+      monsters.) - Bared Claws - Soul Tear - Flower Shroud (forward) Use a skill command to switch locations with the summoned
+      illusory double. (Unavailable at the start of Soul Tear and Foxflare.) Only one illusory double can be summoned/active
+      at a time. You cannot summon a double while mounted.
+  prime_foxspirit_form:
+    name: 'Prime: Foxspirit: Form'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: All AP +25 for 30 sec when using the skill Critical Hit Rate +30% for 30 sec when using the skill
+      All Damage Reduction +20 for 30 sec when using the skill Max HP +1000 for 30 sec when using the skill Super Armor during
+      the skill'
+    keys:
+    - hotbar
+  prime_foxspirit_phantom:
+    name: 'Prime: Foxspirit: Phantom'
+    input: Passive
+    protection: none
+    description: The revered fox spirit's soul greatly amplifies the power of your incantations.
+    notes: The revered fox spirit's soul greatly amplifies the power of your incantations. Magic AP +2
+    keys:
+    - hotbar
+  prime_foxspirit_tag:
+    name: 'Prime: Foxspirit: Tag'
+    input: RMB
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 6517% x2 Critical Hit Rate +30% Maximum 10 targets All Damage Reduction -20 for
+      10 sec on hits Super Armor during the skill Floating on hits (PvE only) Down Attack Air Attack 39% damage in PvP only'
+  prime_ghost_bomb:
+    name: 'Prime: Ghost Bomb'
+    input: → or ← + RMB
+    keys:
+    - d
+    - a
+    - rmb
+    protection: iframe
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 3639% x2 Critical Hit Rate +40% Maximum 10 targets Invincible while moving Down
+      Attack 77.3% damage in PvP only Foxspirit charm ''s explosion damage 2686% x2 Maximum 10 targets 58.38% damage in PvP
+      only'
+  prime_heavenward_dance:
+    name: 'Prime: Heavenward Dance'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - stun
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 3573% x1, max 5 hits Attack 2 damage 5360% x2 Critical Hit Rate +100% Maximum
+      10 targets Super Armor during the skill No collision while moving Down Attack 36.74% damage in PvP only Attack 1 damage
+      5052% x1, max 5 hits Attack 2 damage 8420% x3 Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when
+      using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the
+      skill Super Armor Stun on attack 1 hits Knockdown on attack 2 hits Down Attack 33.08% damage in PvP only Dismount target
+      on hits. Injures target with 50% of the damage of a hit.'
+  prime_lurking_claws:
+    name: 'Prime: Lurking Claws'
+    input: ↓ + F F after attack 2 hits to move and perform attack 3 behind the target
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 1814% x2 Attack 2 damage 1814% x2 Attack 3 damage 3626% x2 Critical Hit Rate
+      +30% Maximum 10 targets Recover 100 HP per hit Super Armor during the skill Down Attack 46.45% damage in PvP only'
+  prime_nukduri_dance:
+    name: 'Prime: Nukduri Dance'
+    input: SHIFT + C
+    keys:
+    - shift
+    - c
+    protection: SA
+    cooldown_ms: 12000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 6581% x3 Critical Hit Rate +50% Maximum 10 targets All AP +20 for 10 sec when using
+      the skill Recover 167 HP per hit Recover 30 MP per hit Super Armor during the skill 40.91% damage in PvP only'
+  prime_petal_play:
+    name: 'Prime: Petal Play'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    cooldown_ms: 7000
+    description: Gradually amplify your Do power until all enemies in front are swept away.
+    notes: Gradually amplify your Do power until all enemies in front are swept away. Attack damage 9110% x2 Critical Hit
+      Rate +100% Maximum 10 targets Floating on hits Down Attack 38.75% damage in PvP only Damage -20% per each additional
+      target hit from target 2 onward. (Max damage -20% .) (PvP only)
+  prime_soul_tear:
+    name: 'Prime: Soul Tear'
+    input: ↑ + Q
+    keys:
+    - w
+    - q
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Become possessed by a spirit, then quickly dash forward to attack enemies in front.
+    notes: Become possessed by a spirit, then quickly dash forward to attack enemies in front. Attack damage 5059% x2 Critical
+      Hit Rate +50% Maximum 10 targets Super Armor before the attack hits Stiffness on hits Down Attack 50.39% damage in PvP
+      only
+  prime_spirit_swirl:
+    name: 'Prime: Spirit Swirl'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: iframe
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 13000
+    description: Cast an incantation that burns wandering souls to their core, thereby guiding them to the afterlife.
+    notes: Cast an incantation that burns wandering souls to their core, thereby guiding them to the afterlife. Attack 1 damage
+      7080% x1, max 6 hits Attack 2 damage 5794% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill
+      Down Attack 28.25% damage in PvP only Attack 1 damage 10096% x3 Attack 2 damage 10992% x1 Attack 3 damage 12024% x1,
+      max 11 hits Attack 3 damage 10096% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the
+      skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max
+      HP +2000 for 60 sec when using the skill Super Armor -> Invincible -> Super Armor during the skill Stun on attack 1
+      hits Down Attack 9.41% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds.
+      Dismount target on hits. Injures target with 100% of the damage of a hit.
+  prime_spirited_away:
+    name: 'Prime: Spirited Away'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 5033% x1, max 5 hits Attack 2 damage 4194% x2 Critical Hit Rate +50% Maximum
+      10 targets Recover 51 HP per hit Forward Guard during the skill Down Attack 17.84% damage in PvP only Damage -10% per
+      each additional target hit from target 2 onward. (Max damage -50% .) (PvP only)'
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  soul_charm:
+    name: Soul Charm
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 40000
+    description: 'Preceding Skill: [Spirit Swirl IV]'
+    notes: 'Preceding Skill: [Spirit Swirl IV] Recover +250 HP every 2 sec , max 4 times Super Armor during the skill'
+    keys:
+    - hotbar
+  soul_tear:
+    name: Soul Tear
+    input: ↑ + Q
+    keys:
+    - w
+    - q
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: Become possessed by a spirit, then quickly dash forward to attack enemies in front.
+    notes: Become possessed by a spirit, then quickly dash forward to attack enemies in front. Attack damage 1160% x2 Critical
+      Hit Rate +50% Maximum 7 targets Super Armor before the attack hits Stiffness on hits Down Attack 75.68% damage in PvP
+      only
+  soul_ties:
+    name: Soul Ties
+    input: Passive
+    protection: none
+    description: The Jwado School made a pact with a being from another plane to attain greater power.
+    notes: The Jwado School made a pact with a being from another plane to attain greater power. Amity +50%
+    keys:
+    - hotbar
+  soulflame:
+    name: Soulflame
+    input: E
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 4000
+    description: Quickly lower your stance and toss a charm that burns your target over time.
+    notes: 'Quickly lower your stance and toss a charm that burns your target over time. Attack damage 1368% x2 Flow: Hanpuri
+      ''s damage 2736% Critical Hit Rate +50% Maximum 7 targets 100 burn damage every 3 sec for 18 sec on hits 70.27% damage
+      in PvP only Foxspirit charm ''s explosion damage 1396% x2 Maximum 7 targets 58.38% damage in PvP only'
+  soulsnare:
+    name: Soulsnare
+    input: F
+    keys:
+    - f
+    protection: none
+    cooldown_ms: 5000
+    description: Spin forward while throwing your charm to disrupt your target's movements.
+    notes: Spin forward while throwing your charm to disrupt your target's movements. Attack damage 1146% x2 Critical Hit
+      Rate +30% Maximum 7 targets Movement Speed -10% for 5 sec on hits 75.68% damage in PvP only Foxspirit charm 's explosion
+      damage 1396% x2 Maximum 7 targets 58.38% damage in PvP only
+  spirit_parade:
+    name: Spirit Parade
+    input: 'SHIFT + X E or F during Flow: Hanpuri'
+    keys:
+    - shift
+    - x
+    - e
+    - f
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Flow: Hanpuri]'
+    notes: 'Preceding Skill: [Flow: Hanpuri] Attack damage 4557% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      during the skill Push the target on hits (PvE only) Down Attack 47.57% damage in PvP only'
+  spirit_sparks:
+    name: Spirit Sparks
+    input: Can be added to a Quick Slot LMB after Constricting Charm to perform attack 2
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Spirit Swirl IV]'
+    notes: 'Preceding Skill: [Spirit Swirl IV] Attack 1 damage 1682% x2 Attack 2 damage 4206% x2 Attack 3 damage 5888% x2
+      Critical Hit Rate +50% Maximum 10 targets Recover 82 HP per hit Forward Guard during the skill Down Attack 32.43% damage
+      in PvP only'
+    keys:
+    - hotbar
+    - lmb
+  spirit_step:
+    name: Spirit Step
+    input: 'SHIFT + ←/ ↓/ → SHIFT + ↑ after the skill or when Chain: Spirit Step cannot be used SHIFT + ↑ during the skill
+      Can be used with your foxtail fans'
+    keys:
+    - shift
+    - a
+    - s
+    - d
+    - w
+    protection: iframe
+    cooldown_ms: 5000
+    description: Move faster than an untrained eye can see.
+    notes: Move faster than an untrained eye can see. Invincible -> Super Armor (Nullified during cooldown) Invincible during
+      the skill (PvE only) No collision while moving
+  spirit_swirl:
+    name: Spirit Swirl
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: iframe
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 14000
+    description: Cast an incantation that burns wandering souls to their core, thereby guiding them to the afterlife.
+    notes: Cast an incantation that burns wandering souls to their core, thereby guiding them to the afterlife. Attack 1 damage
+      2002% x1, max 6 hits Attack 2 damage 1638% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill
+      Down Attack 27.03% damage in PvP only Attack 1 damage 2388% x3 Attack 2 damage 4776% x1 Attack 3 damage 1013% x1, max
+      11 hits Attack 4 damage 2388% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill
+      Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000
+      for 60 sec when using the skill Super Armor -> Invincible -> Super Armor during the skill Stun on attack 1 hits Down
+      Attack 27.03% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Dismount
+      target on hits. Injures target with 100% of the damage of a hit.
+  spirited_away:
+    name: Spirited Away
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: Cast an incantation that charms the soul, then engulfs them in a path of flames.
+    notes: Cast an incantation that charms the soul, then engulfs them in a path of flames. Attack 1 damage 1008% x1, max
+      5 hits Attack 2 damage 1400% x2 Critical Hit Rate +50% Maximum 7 targets Forward Guard Down Attack 27.03% damage in
+      PvP only Damage -10% per each additional target hit from target 2 onward. (Max damage -50% .) (PvP only)
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  twirling_crane:
+    name: Twirling Crane
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: none
+    cooldown_ms: 16000
+    description: Reinterpret the Woodo School's style learned in the past and cast it in the Jwado School's style.
+    notes: 'Reinterpret the Woodo School''s style learned in the past and cast it in the Jwado School''s style. Recover 2000
+      HP to self. Magic AP +4 / 8 / 12 in the following situations when comboing into the skills below while the revered fox
+      spirit is spiritforged into the foxfire of the foxtail fans: - Skill hits with the following: Twirling Foxflare, Flow:
+      Foxflare Encore, Twirling Rhapsody, Foxflare Stroke, Foxflare Cleave, Foxflare Fleche, Twirling Retreat, Fan Kick -
+      Using Foxflare Ambush'
+  twirling_foxflare:
+    name: Twirling Foxflare
+    input: SHIFT + F F after Foxflare Ambush
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Strike down the enemy multiple times with your foxtail fans. If you are Spiritforged, Foxfire sharpens the
+      edge of your fan, leaving a more deadly wound on the enemy.
+    notes: 'Strike down the enemy multiple times with your foxtail fans. If you are Spiritforged, Foxfire sharpens the edge
+      of your fan, leaving a more deadly wound on the enemy. Attack damage 4245% x1, max 3 hits Flow: Foxflare Encore ''s
+      damage 2972% Critical Hit Rate +30% Maximum 10 targets Recover 150 HP per hit Forward Guard during the skill Air Attack
+      Air Smash 42.05% damage in PvP only Applies the following when comboing while Spiritforged . Increased execution speed
+      Increased attack area Down Attack'
+  twirling_retreat:
+    name: Twirling Retreat
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 6000
+    description: Elegantly move away from the enemy.
+    notes: Elegantly move away from the enemy. Attack damage 3714% x1, max 3 hits Last attack damage 3342% x2 Critical Hit
+      Rate +60% Maximum 10 targets Super Armor during the skill Bound on last attack hits (PvE only) Pull in the target on
+      hits (PvE only) No collision while moving 35.03% damage in PvP only Applies the following when comboing while Spiritforged
+      . Increased attack area Down Attack Attack 1 damage 3714% x1, max 3 hits Attack 2 damage 3342% x2 Attack 3 damage 6683%
+      x2 Critical Hit Rate +60% Maximum 10 targets Increased attack area All Evasion -48 for 20 sec on hits Super Armor during
+      the skill Bound on attack 3 hits (PvE only) Pull in the target on hits (PvE only) No collision while moving Down Attack
+      Down Smash on attack 3 hits 31.03% damage in PvP only Dismount target on hits. Injures target with 20% of the damage
+      of a hit. The revered fox spirit spiritforges into the foxfire of the foxtail fans.
+  twirling_rhapsody:
+    name: Twirling Rhapsody
+    input: ← or → + RMB Can be performed instead of Ghost Bomb with your foxspirit charm
+    keys:
+    - a
+    - d
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Rotate like a dance and charge into the enemy's side, striking them.
+    notes: Rotate like a dance and charge into the enemy's side, striking them. Attack damage 3483% x1, max 3 hits Critical
+      Hit Rate +30% (Nullified during cooldown) Maximum 10 targets Super Armor during the skill (Nullified during cooldown)
+      Floating on first and last attack hits (PvE only) (Nullified during cooldown) No collision while moving Air Attack 52.87%
+      damage in PvP only Damage reduced during cooldown Applies the following when comboing while Spiritforged . Damage Increase
+      Increased attack area Attack damage 6268% x1, max 3 hits Critical Hit Rate +30% Maximum 10 targets Increased attack
+      area Increased movement distance Super Armor during the skill Floating on first and last attack hits (PvE only) No collision
+      while moving Air Attack 52.87% damage in PvP only Dismount target on hits. Injures target with 10% of the damage of
+      a hit. The revered fox spirit spiritforges into the foxfire of the foxtail fans.
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+_flags:
+- cannon_attack: No notes available.
+- core_emberclaw_crush: Passive — no keybind.
+- core_emberclaw_finale: Passive — no keybind.
+- core_emberclaw_slash: Passive — no keybind.
+- core_emberclaw_torrent: Passive — no keybind.
+- core_twirling_foxflare: Passive — no keybind.
+- core_twirling_rhapsody: Passive — no keybind.
+- flute_buff: No combat notes.
+- forged_with_foxspirit: Passive — no keybind.
+- foxpact: Passive — no keybind.
+- foxspirit_atonement: Passive — no keybind.
+- foxspirit_atonement_xi: Passive — no keybind.
+- foxspirit_atonement_xii: Passive — no keybind.
+- foxspirit_atonement_xiii: Passive — no keybind.
+- foxspirit_atonement_xiv: Passive — no keybind.
+- foxspirit_atonement_xix: Passive — no keybind.
+- foxspirit_atonement_xv: Passive — no keybind.
+- foxspirit_atonement_xvi: Passive — no keybind.
+- foxspirit_atonement_xvii: Passive — no keybind.
+- foxspirit_atonement_xviii: Passive — no keybind.
+- foxspirit_atonement_xx: Passive — no keybind.
+- guild_squad_special_attack: No detailed notes.
+- infinite_mastery: Passive — no keybind.
+- make_bonfire: Utility — no combat keys.
+- predominance: Passive — no keybind.
+- prime_foxspirit_deceiver: Passive trigger; Q switches with double.
+- prime_foxspirit_phantom: Passive — no keybind.
+- revive_target: Utility — no notes.
+- skilled_hunter: Passive — no keybind.
+- soul_ties: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

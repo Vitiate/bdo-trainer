@@ -1,6 +1,2241 @@
 # Nova — Succession
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Nova
 spec: Succession
-skills: {}
+skills:
+  absolute_affliction:
+    name: 'Absolute: Affliction'
+    input: RMB ← or → + RMB to perform lateral attacks
+    keys:
+    - rmb
+    - a
+    - d
+    protection: none
+    cc:
+    - down_attack
+    description: Swing your morning star to administer devastating judgment.
+    notes: Swing your morning star to administer devastating judgment. Attack damage 1239% x2, max 3 hits Critical Hit Rate
+      +100% Maximum 10 targets Down Attack 80.92% damage in PvP only Attack damage 1681% x2, max 3 hits Critical Hit Rate
+      +100% Maximum 10 targets Recover 60 HP per attack on hit while Axian is summoned Down Attack 69.36% damage in PvP only
+  absolute_bitter_reign:
+    name: 'Absolute: Bitter Reign'
+    input: ↓ + LMB Hold LMB to continue the skill ↓ + LMB after certain skills to perform attack 2
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Strike out your morning star in front of you to hit your foe's body, then strike down hard.
+    notes: Strike out your morning star in front of you to hit your foe's body, then strike down hard. Attack 1 damage 1688%
+      x2 Attack 2 damage 3375% x2 Chain attack damage 451% x1, max 3 hits Maximum 10 targets Knockback on chain attack hits
+      (PvE only) Knockdown on attack 1 hits Down Attack 92.48% damage in PvP only
+  absolute_chain_strike:
+    name: 'Absolute: Chain Strike'
+    input: LMB + RMB after certain skills Hold RMB to continue the skill LMB + RMB after certain skills to perform attack
+      2
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Strike upwards with the morning star, then smash down hard.
+    notes: Strike upwards with the morning star, then smash down hard. Attack 1 damage 1865% x2 Attack 2 damage 1865% x2 Critical
+      Hit Rate +40% Maximum 10 targets Floating on attack 1 hits Air Attack Down Attack on attack 2 hits Air Smash on attack
+      2 hits Down Smash on attack 2 hits 80.92% damage in PvP only
+  absolute_command_blooming_icy_thorns:
+    name: 'Absolute: Command: Blooming Icy Thorns'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cooldown_ms: 10000
+    description: Blooms icy thorns in front of you with the aura of the quoratum.
+    notes: 'Blooms icy thorns in front of you with the aura of the quoratum. Attack 1 damage 2550% x2 Attack 2 damage 2550%
+      x2 Critical Hit Rate +50% Maximum 10 targets Push the target on hits (PvE only) Super Armor 75.14% damage in PvP only
+      Command: Passed Pawn damage x2 Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s
+      effects as there are summoned guards.'
+  absolute_command_fianchetto:
+    name: 'Absolute: Command: Fianchetto'
+    input: 'SHIFT + LMB LMB after Icy Fog RMB after Command: Frozen Darkness'
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: Call forth priests from within the quoratum and command them to judge your enemies.
+    notes: 'Call forth priests from within the quoratum and command them to judge your enemies. Chain attack damage 1350%
+      x1, max 2 hits Last attack damage 1800% x2 Maximum 10 targets Super Armor Knockback on chain attack hits (PvE only)
+      Floating on last attack hits (PvE only) Air Attack 69.36% chain attack damage in PvP only 57.8% last attack damage in
+      PvP only Command: Passed Pawn''s attack damage x1, max 3 hits Applies maximum number of targets to Command: Passed Pawn
+      Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  absolute_command_frozen_darkness:
+    name: 'Absolute: Command: Frozen Darkness'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Cover an area with darkness and destroy it with your frozen morning star.
+    notes: 'Cover an area with darkness and destroy it with your frozen morning star. Attack damage 2796% x2 Chain attack
+      damage 932% x1, max 2 hits Critical Hit Rate +100% Maximum 10 targets Super Armor Knockback on chain attack hits (PvE
+      only) Knockdown on hits (PvE only) Down Attack Down Smash 69.36% damage in PvP only 80.92% chain attack damage in PvP
+      only Command: Passed Pawn''s attack damage x1, max 2 hits Applies maximum number of targets to Command: Passed Pawn
+      Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  absolute_command_frozen_earth:
+    name: 'Absolute: Command: Frozen Earth'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - knockdown
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 16000
+    description: Unleash ice energy, then gather it into your morning star and slam the ground. The ice energy flowing from
+      the morning star freezes the ground around you.
+    notes: 'Unleash ice energy, then gather it into your morning star and slam the ground. The ice energy flowing from the
+      morning star freezes the ground around you. Attack damage 2503% x4 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      Pull in the target on hits (PvE only) Spin the target on hits (PvE only) Bound on hits (PvE only) Attack Speed -10%
+      for 5 sec on hits Casting Speed -10% for 5 sec on hits Down Attack 75.14% damage in PvP only Command: Passed Pawn damage
+      x1 Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s effects as there are
+      summoned guards. Attack 1 damage 3675% x1, max 4 hits Attack 2 damage 3675% x3 Last attack damage 6432% x2 Critical
+      Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using
+      the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super
+      Armor Knockdown on last attack hits Down Attack 33.52% damage in PvP only Dismount target on hits. Injures target with
+      100% of the damage of a hit. Maximum 10 targets Push the target on hits Knockdown on hits Applies as many Thornwood
+      Guard''s effects as there are summoned guards.'
+  absolute_command_passed_pawn:
+    name: 'Absolute: Command: Passed Pawn'
+    input: Auto-activated when using Quoratum's Protection without guards SPACE during Quoratum's Protection SPACE while guards
+      are summoned to draw them close
+    keys:
+    - space
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 3000
+    description: Summons soldiers contained within the quoratum. Kanat as cavalry, Luka as shield bearers, Vishur as spearmen,
+      Pau as infantry are summoned to join Nova in defeating the enemy.
+    notes: 'Summons soldiers contained within the quoratum. Kanat as cavalry, Luka as shield bearers, Vishur as spearmen,
+      Pau as infantry are summoned to join Nova in defeating the enemy. Forward Guard All CC Resistance (except Grapple),
+      including from Back Attacks Summons the Thornwood Guard for 30 sec. Ordering commands will extend their duration up
+      to a maximum of 2 min. Guards will become stronger and attack any enemies near Nova. The Thornwood Guard will assist
+      you when you use the following skills. - Command: Stamma''s Mate, Command: Blooming Icy Thorns, Command: Frozen Earth,
+      Command: Rime Ice, Command: Fianchetto, Command: Frozen Darkness, Queen''s Gambit Guard damage 632% Maximum 10 targets
+      All Damage Reduction -15 for 10 sec on Thornwood Guard hits Movement Speed -20% for 5 sec on Thornwood Guard hits Air
+      Attack Down Attack 57.8% damage in PvP only Only summoned guards apply All Damage Reduction and Movement Speed debuffs
+      while casting Quoratum''s Protection.'
+  absolute_command_rime_ice:
+    name: 'Absolute: Command: Rime Ice'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - stun
+    cooldown_ms: 4000
+    description: Evade enemy attacks and conjure up rime ice to counter with your legion.
+    notes: 'Evade enemy attacks and conjure up rime ice to counter with your legion. Attack 1 damage 2807% x2 Attack 2 damage
+      2807% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Stun on attack 1 hits (PvE only) 52.14%
+      damage in PvP only Command: Passed Pawn damage x1 Applies maximum number of targets to Command: Passed Pawn Applies
+      as many Thornwood Guard''s effects as there are summoned guards. Attack 1 damage 2807% x2 Attack 2 damage 2807% x2 Critical
+      Hit Rate +100% Maximum 10 targets All AP +32 for 10 sec when using the skill Recover 50 HP per attack on hit while Axian
+      is summoned Super Armor during the skill Stun on attack 1 hits 52.14% damage in PvP only Command: Passed Pawn damage
+      x2 Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s effects as there are
+      summoned guards.'
+  absolute_command_stamma_s_mate:
+    name: 'Absolute: Command: Stamma''s Mate'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Slam your quoratum down onto the surface, disrupting enemy lines while sending your cavalry charging.
+    notes: 'Slam your quoratum down onto the surface, disrupting enemy lines while sending your cavalry charging. Attack damage
+      3000% x1, max 3 hits Critical Hit Rate +50% Maximum 10 targets Super Armor Push the target on hits (PvE only) Down Attack
+      80.92% damage in PvP only Command: Passed Pawn''s attack damage x1, max 3 hits Applies maximum number of targets to
+      Command: Passed Pawn Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  absolute_countergambit:
+    name: 'Absolute: Countergambit'
+    input: E
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 7000
+    description: Unleash your morning star at the enemy to freeze them. Then charge forward and smite them down.
+    notes: Unleash your morning star at the enemy to freeze them. Then charge forward and smite them down. Attack damage 1674%
+      x2 Extra attack damage 1674% x2 Maximum 10 targets 100 pain damage inflicted every 2 sec for 4 sec on hits Freezing
+      on hits Increased attack range 92.48% damage in PvP only
+  absolute_face_the_darkness:
+    name: 'Absolute: Face the Darkness'
+    input: F during Quoratum's Protection F after certain skills
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 4000
+    description: Swiftly attack your foe with the quoratum.
+    notes: Swiftly attack your foe with the quoratum. Attack damage 3550% x2 Maximum 10 targets Critical Hit Rate +50% for
+      10 sec when using the skill Recover 40 SP per hit Push the target on hits (PvE only) Stiffness on hits Down Attack 80.92%
+      damage in PvP only
+  absolute_flowing_star:
+    name: 'Absolute: Flowing Star'
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while jumping to perform jump attacks LMB while sprinting to perform sprint attacks LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    description: A basic attack that breaks enemies by swinging your morning star.
+    notes: A basic attack that breaks enemies by swinging your morning star. Standing attack damage 2904% x1, max 5 hits Forward
+      attack damage 2904% x1, max 4 hits Lateral attack damage 2904% x1, max 3 hits Sprint attack damage 2904% x1 Jump attack
+      damage 2904% x1, max 2 hits Jump attacks consume Stamina. Maximum 10 targets Recover 105 SP on hits Down Attack 80.92%
+      damage in PvP only
+  absolute_icy_kiss:
+    name: 'Absolute: Icy Kiss'
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 3000
+    description: Swiftly kick the enemy's lower section, toppling them over.
+    notes: Swiftly kick the enemy's lower section, toppling them over. Attack damage 1972% x2 Critical Hit Rate +100% Maximum
+      10 targets Critical Hit Rate +50% for 10 sec when using the skill Recover 105 SP per hit Knockdown on hits Air Attack
+      Down Attack 80.92% damage in PvP only
+  absolute_icy_prison:
+    name: 'Absolute: Icy Prison'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: SA
+    cc:
+    - knockback
+    - floating
+    cooldown_ms: 6000
+    description: Strike your morning star against the enemy with concentrated ice energy. Any summoned guards will also be
+      commanded to attack as well.
+    notes: 'Strike your morning star against the enemy with concentrated ice energy. Any summoned guards will also be commanded
+      to attack as well. Attack damage 880% x2 Critical Hit Rate +40% Maximum 10 targets Freezing on hits 80.92% damage in
+      PvP only If Thornwood Guards are summoned, only their effects are applied. Command: Passed Pawn damage x4 Applies maximum
+      number of targets to Command: Passed Pawn Floating on hits Applies as many Thornwood Guard''s effects as there are summoned
+      guards. Attack 1 damage 3188% x1 Attack 2 damage 3696% x1, max 3 hits Attack 1 damage 2480% x9 when Thornwood Guards
+      are present Attack 2 damage 2904% x6 when Thornwood Guards are present Critical Hit Rate +100% (PvE only) Critical Hit
+      Rate +50% (PvP only) Maximum 10 targets All AP +30 for 40 sec when using the skill Casting Speed +25% for 40 sec when
+      using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Knockback on attack 1 hits Freezing
+      on attack 2 hits (Nullified in certain situations) Additional effects applied when guards are summoned. 20% attack 1
+      damage in PvP only 52.02% attack 2 damage in PvP only Dismount target on hits. Injures target with 50% of the damage
+      of a hit. Command: Passed Pawn''s attack damage x3, max 4 hits Applies maximum number of targets to Command: Passed
+      Pawn All AP -60 for 10 sec on hits'
+  absolute_icy_thorns:
+    name: 'Absolute: Icy Thorns'
+    input: ↓ + RMB Hold RMB to continue the skill
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Strike the enemy upwards with your morning star, then pierce them with sharp thorns of ice.
+    notes: Strike the enemy upwards with your morning star, then pierce them with sharp thorns of ice. Attack damage 3816%
+      1, max 2 hits Last attack damage 2544% x2 Critical Hit Rate +75% Maximum 10 targets Floating on attack 1 hits Air Attack
+      Down Attack on last attack hits Down Smash on last attack hits 71.67% damage in PvP only
+  absolute_punishing_trap:
+    name: 'Absolute: Punishing Trap'
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: SA
+    cc:
+    - floating
+    - pull
+    cooldown_ms: 17000
+    description: Place a trap on retreating foes and pull them back.
+    notes: Place a trap on retreating foes and pull them back. Attack damage 1572% x2 Maximum 10 targets Super Armor on Grapple/Grapple
+      fails Pull in target on Grapple Floating on Grapple 80.92% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds.
+  absolute_quoratum_s_ascension:
+    name: 'Absolute: Quoratum''s Ascension'
+    input: ↑ + F Hold F to continue the skill
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 4000
+    description: Slam your enemy upwards with the quoratum, then smite them once more.
+    notes: Slam your enemy upwards with the quoratum, then smite them once more. Attack 1 damage 1582% x2 Attack 2 damage
+      1582% x2 Maximum 10 targets Super Armor Floating on attack 1 hits (PvE only) Air Attack 80.92% damage in PvP only
+  absolute_quoratum_s_binding:
+    name: 'Absolute: Quoratum''s Binding'
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 90000
+    description: Unleash the ice energy contained within the quoratum to freeze your foes.
+    notes: Unleash the ice energy contained within the quoratum to freeze your foes. 200 pain damage inflicted every 2 sec
+      for 6 sec on hits Freezing for 6 sec on hits Maximum 10 targets
+  absolute_quoratum_s_protection:
+    name: 'Absolute: Quoratum''s Protection'
+    input: Q Direction to move during the skill
+    keys:
+    - q
+    protection: FG
+    description: Raise your quoratum and maintain a sturdy defensive stance.
+    notes: Raise your quoratum and maintain a sturdy defensive stance. Recover 25% of Max SP on blocks Forward Guard All CC
+      Resistance (except Grapple), including from Back Attacks Movement available during Quoratum's Protection. Recover 25%
+      of Max SP on blocks All Damage Reduction +50 for 10 sec when guards are summoned Forward Guard All CC Resistance (except
+      Grapple), including from Back Attacks Guard Gauge damage -60% on Forward Guard. Movement available during Quoratum's
+      Protection. Increased Movement Speed No recoil on blocks. However, when Guard Gauge is below 40% , the character will
+      recoil on blocks.
+  absolute_storming_star:
+    name: 'Absolute: Storming Star'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - spin
+    cooldown_ms: 14000
+    description: Spin your morning star, drawing in icy energy to unleash unrelenting attacks on the enemy.
+    notes: Spin your morning star, drawing in icy energy to unleash unrelenting attacks on the enemy. Spin attack damage 1050%
+      x1, max 6 hits Last attack damage 6615% x2 Critical Hit Rate +50% on last attacks Maximum 10 targets Recover 59 HP per
+      hit Super Armor during the skill Knockdown on last attack hits (PvE only) Down Attack 43.93% damage in PvP only
+  absolute_vengeful_star:
+    name: 'Absolute: Vengeful Star'
+    input: ↑ + RMB Hold RMB to continue the skill RMB
+    keys:
+    - w
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Strike with the quoratum to push back the enemy, then smash their vital organs with the morning star.
+    notes: Strike with the quoratum to push back the enemy, then smash their vital organs with the morning star. Attack 1
+      damage 2191% x2 Attack 2 damage 2191% x2 Attack 3 damage 2191% x2 Chain attack damage 455% x1, max 2 hits Critical Hit
+      Rate +50% Maximum 10 targets Push the target on hits (PvE only) Knockback on chain attack hits (PvE only) Stiffness
+      on attack 1 and 2 hits Knockdown on attack 3 hits Down Attack 92.48% damage in PvP only Attack 1 damage 3314% x2 Attack
+      2 damage 3314% x2 Attack 3 damage 3314% x2 Chain attack damage 689% x1, max 2 hits Critical Hit Rate +50% Maximum 10
+      targets Recover 60 HP per attack on hit while Axian is summoned Push the target on hits (PvE only) Knockback on chain
+      attack hits (PvE only) Stiffness on attack 1 and 2 hits Knockdown on attack 3 hits Down Attack 63% normal attack damage
+      in PvP only 63% chain attack damage in PvP only
+  accel_break_orbit:
+    name: 'Accel: Break Orbit'
+    input: SHIFT + Direction while in Accel Hold SHIFT + Direction to continue the skill
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 2000
+    description: Instantly change your location to adjust the distance with your foe.
+    notes: Instantly change your location to adjust the distance with your foe. Invincible during the skill (Nullified during
+      cooldown) Invincible during the skill (PvE only) Character collision occurs while moving forward No character collision
+      while moving backward or laterally
+  accel_frozen_ring:
+    name: 'Accel: Frozen Ring'
+    input: SHIFT + Q while in Accel
+    keys:
+    - shift
+    - q
+    protection: FG
+    cc:
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 6000
+    description: The scythe thrown forward continues to deal damage over time on enemies nearby.
+    notes: The scythe thrown forward continues to deal damage over time on enemies nearby. Attack damage 6273% x4 Critical
+      Hit Rate +50% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Forward Guard Stun on first hit (PvE only)
+      Pull in the target on hits (PvE only) Down Attack 32.37% damage in PvP only
+  accel_royal_fencing_fleche:
+    name: 'Accel: Royal Fencing: Fleche'
+    input: ↓ + F while in Accel
+    keys:
+    - s
+    - f
+    protection: SA
+    cooldown_ms: 6000
+    description: Hold your sting at the short end and deliver rapid strikes to enemies in front.
+    notes: Hold your sting at the short end and deliver rapid strikes to enemies in front. Attack damage 3638% x1, max 9 hits
+      Critical Hit Rate +50% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Super Armor during the skill 33.64%
+      damage in PvP only
+  accel_royal_fencing_remise:
+    name: 'Accel: Royal Fencing: Remise'
+    input: ↓ + LMB while in Accel Hold LMB to continue the skill
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Quickly swing sting to attack the opponent's vital organs.
+    notes: Quickly swing sting to attack the opponent's vital organs. Attack 1 damage 7054% x1, max 3 hits Attack 2 damage
+      7054% x2 Critical Hit Rate +50% Maximum 10 targets Recover 160 HP per hit Knockdown on attack 2 hits (Nullified during
+      cooldown) Down Attack 30.06% damage in PvP only
+  accel_star_s_call:
+    name: 'Accel: Star''s Call'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Leap forward and stab mightily, dealing powerful damage to your enemies in an instant.
+    notes: Leap forward and stab mightily, dealing powerful damage to your enemies in an instant. Stab attack damage 10832%
+      x2 Critical Hit Rate +100% Maximum 10 targets Recover 400 HP per hit Super Armor before the attack hits Knockdown on
+      hits Down Attack 37.57% damage in PvP only
+  accel_star_s_ring:
+    name: 'Accel: Star''s Ring'
+    input: RMB while in Accel ← or → + RMB to summon a distant star
+    keys:
+    - rmb
+    - a
+    - d
+    protection: FG
+    cc:
+    - knockback
+    - pull
+    cooldown_ms: 10000
+    description: Throw your scythe forward, then summon a star. The gravitational pull of the star will immobilize any enemies
+      in its vicinity.
+    notes: Throw your scythe forward, then summon a star. The gravitational pull of the star will immobilize any enemies in
+      its vicinity. Attack 1 damage 2845% x1, max 2 hits Attack 2 damage 2845% x1, max 2 hits Critical Hit Rate +100% Maximum
+      10 targets Forward Guard during the skill (Nullified during cooldown) Knockback on hits (PvE only) (Nullified during
+      cooldown) 46.24% damage in PvP only Damage reduced during cooldown Summon 1 star(s) per attack (Nullified during cooldown)
+      Pull in the target on hits Movement and Attack/Casting Speeds -50% for 1 sec on pull attack hits When two stars fuse,
+      they briefly create a wider pull-in effect, and then one star vanishes.
+  accel_swooping_ring:
+    name: 'Accel: Swooping Ring'
+    input: ↑ + Q while in Accel or when En Garde is available Using the skill will switch to Accel
+    keys:
+    - w
+    - q
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Throw your scythe in front, then dashforward to slash all enemies nearby.
+    notes: Throw your scythe in front, then dashforward to slash all enemies nearby. Attack damage 8456% x2 Critical Hit Rate
+      +50% Maximum 10 targets Super Armor during the skill Down Attack 37.69% damage in PvP only
+  accel_twisted_orbit:
+    name: 'Accel: Twisted Orbit'
+    input: 'LMB after Comet, Royal Fencing: Lunge, Royal Fencing: Riposte, Swooping Ring, or Break Orbit while in Accel'
+    keys:
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 3000
+    description: Dash forward quickly after Break Orbit to pierce your foe.
+    notes: 'Dash forward quickly after Break Orbit to pierce your foe. Attack damage 7869% x1 Critical Hit Rate +100% Maximum
+      10 targets Invincible while moving Stiffness on hits Down Attack 58.96% damage in PvP only Attacks reset the cooldowns
+      of Break Orbit , Accel: Break Orbit , and Accel: Twisted Orbit .'
+  affliction:
+    name: Affliction
+    input: RMB ← or → + RMB to perform lateral attacks
+    keys:
+    - rmb
+    - a
+    - d
+    protection: none
+    cc:
+    - down_attack
+    description: Swing your morning star to administer devastating judgment.
+    notes: Swing your morning star to administer devastating judgment. Attack damage 1113% x2, max 3 hits Critical Hit Rate
+      +50% Maximum 10 targets Down Attack 80.92% damage in PvP only
+  binding_star:
+    name: Binding Star
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: none
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Bitter Reign V]'
+    notes: 'Preceding Skill: [Bitter Reign V] Attack damage 4220% x2 Chain attack damage 652% x1, max 2 hits Maximum 10 targets
+      100 pain damage inflicted every 2 sec for 4 sec on hits Freezing for 4 sec on hits 80.92% damage in PvP only'
+  bitter_reign:
+    name: Bitter Reign
+    input: ↓ + LMB Hold LMB to continue the skill ↓ + LMB after certain skills to perform attack 2
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Strike out your morning star in front of you to hit your foe's body, then strike down hard.
+    notes: Strike out your morning star in front of you to hit your foe's body, then strike down hard. Attack 1 damage 1419%
+      x2 Attack 2 damage 2838% x2 Chain attack damage 379% x1, max 3 hits Maximum 7 targets Knockback on chain attack hits
+      (PvE only) Knockdown on attack 1 hits Down Attack 92.48% damage in PvP only
+  bitter_star:
+    name: Bitter Star
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Bitter Reign V]'
+    notes: 'Preceding Skill: [Bitter Reign V] Attack 1 damage 3395% x2 Attack 2 damage 2830% x2 Chain attack damage 1131%
+      x1, max 2 hits Critical Hit Rate +100% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Push the target
+      on attack 2 hits (PvE only) Down Attack 57.8% damage in PvP only'
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  break_orbit:
+    name: Break Orbit
+    input: SHIFT + Direction Can be used with your morning star
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 2000
+    description: Instantly change your location to adjust the distance with your foe.
+    notes: Instantly change your location to adjust the distance with your foe. Invincible -> Super Armor during the skill
+      (Nullified during cooldown) Invincible during the skill (PvE only) Character collision occurs while moving forward No
+      character collision while moving backward or laterally Invincible during the skill (Nullified during cooldown) Invincible
+      during the skill (PvE only) Character collision occurs while moving forward No character collision while moving backward
+      or laterally
+  brutal_ring:
+    name: Brutal Ring
+    input: SHIFT + F LMB or SHIFT + F after Slicing Ring, Frozen Ring, or Star's Ring
+    keys:
+    - shift
+    - f
+    - lmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Frozen Ring IV]'
+    notes: 'Preceding Skill: [Frozen Ring IV] Attack damage 7066% x3 Critical Hit Rate +100% Maximum 10 targets Recover 1.7%
+      Star''s Breath per hit (Nullified in Accel) Recover 33 SP per hit Forward Guard during the skill Bound on hits (PvE
+      only) Down Attack 32.95% damage in PvP only'
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+    keys:
+    - hotbar
+  chain_strike:
+    name: Chain Strike
+    input: LMB + RMB after certain skills Hold RMB to continue the skill LMB + RMB after certain skills to perform attack
+      2
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Strike upwards with the morning star, then smash down hard.
+    notes: Strike upwards with the morning star, then smash down hard. Attack 1 damage 1688% x2 Attack 2 damage 1688% x2 Critical
+      Hit Rate +35% Maximum 7 targets Floating on attack 1 hits Air Attack Down Attack on attack 2 hits Air Smash on attack
+      2 hits Down Smash on attack 2 hits 80.92% damage in PvP only
+  cold_dark_star:
+    name: Cold, Dark Star
+    input: Passive
+    protection: none
+    description: Morning star of the distorted goddess breaks through enemy shields and dents their armor.
+    notes: 'Morning star of the distorted goddess breaks through enemy shields and dents their armor. The following effects
+      are applied to enemies on morning star tip hits. - Removes All Damage Reduction increase effects. (Excluding those applied
+      by certain skills.) - All AP -16 for 10 sec Activates on the following skill hits: - Affliction - Mauling Star''s attack
+      1 - Bitter Reign''s attack 2 - Chain Strike''s attack 2 - Vengeful Star''s attacks 2 and 3 - Icy Thorns'' attack 1 -
+      Command: Frozen Darkness''s attack 2 - Command: Fianchetto''s last attack - Storming Star - Prime: Swooping Ring - Bitter
+      Star - Binding Star - Queen''s Gambit'
+    keys:
+    - hotbar
+  combust_life:
+    name: Combust Life
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Quoratum''s Guard]'
+    notes: 'Preceding Skill: [Quoratum''s Guard] Consumes 1000 HP when using the skill Star''s Breath Recovery +40% when using
+      the skill Available from 1500 HP. Consumes 500 HP when using the skill Super Armor for 10 sec after the skill Super
+      Armor during the skill Available from 1000 HP.'
+  comet:
+    name: Comet
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    cooldown_ms: 5000
+    description: Extend sting forward as you dash to attack the opponent's vital organs.
+    notes: 'Extend sting forward as you dash to attack the opponent''s vital organs. Attack damage 7570% x2 Critical Hit Rate
+      +100% Maximum 10 targets Recover 1% Star''s Breath per hit (Nullified in Accel) Super Armor during the skill Knockdown
+      on hits (PvE only) No collision while moving 42.77% damage in PvP only Attacks reset the cooldowns of Break Orbit and
+      Accel: Break Orbit .'
+  command_blooming_icy_thorns:
+    name: 'Command: Blooming Icy Thorns'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cooldown_ms: 11000
+    description: Blooms icy thorns in front of you with the aura of the quoratum.
+    notes: 'Blooms icy thorns in front of you with the aura of the quoratum. Attack 1 damage 2406% x2 Attack 2 damage 2406%
+      x2 Critical Hit Rate +25% Maximum 10 targets Push the target on hits (PvE only) Super Armor 75.14% damage in PvP only
+      Command: Passed Pawn damage x2 Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s
+      effects as there are summoned guards.'
+  command_fianchetto:
+    name: 'Command: Fianchetto'
+    input: 'SHIFT + LMB LMB after Icy Fog RMB after Command: Frozen Darkness'
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: Call forth priests from within the quoratum and command them to judge your enemies.
+    notes: 'Call forth priests from within the quoratum and command them to judge your enemies. Chain attack damage 1212%
+      x1, max 2 hits Last attack damage 1616% x2 Maximum 10 targets Super Armor Knockback on chain attack hits (PvE only)
+      Floating on last attack hits (PvE only) Air Attack 69.36% chain attack damage in PvP only 57.8% last attack damage in
+      PvP only Command: Passed Pawn''s attack damage x1, max 3 hits Applies maximum number of targets to Command: Passed Pawn
+      Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  command_frozen_darkness:
+    name: 'Command: Frozen Darkness'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 9000
+    description: Cover an area with darkness and destroy it with your frozen morning star.
+    notes: 'Cover an area with darkness and destroy it with your frozen morning star. Attack damage 2463% x2 Chain attack
+      damage 822% x1, max 2 hits Critical Hit Rate +100% Maximum 10 targets Super Armor Knockback on chain attack hits (PvE
+      only) Knockdown on hits (PvE only) Down Attack Down Smash 69.36% damage in PvP only 80.92% chain attack damage in PvP
+      only Command: Passed Pawn''s attack damage x1, max 2 hits Applies maximum number of targets to Command: Passed Pawn
+      Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  command_frozen_earth:
+    name: 'Command: Frozen Earth'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - knockdown
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 17000
+    description: Unleash ice energy, then gather it into your morning star and slam the ground. The ice energy flowing from
+      the morning star freezes the ground around you.
+    notes: 'Unleash ice energy, then gather it into your morning star and slam the ground. The ice energy flowing from the
+      morning star freezes the ground around you. Attack damage 2248% x4 Critical Hit Rate +35% Maximum 10 targets Super Armor
+      Pull in the target on hits (PvE only) Spin the target on hits (PvE only) Bound on hits (PvE only) Attack Speed -10%
+      for 5 sec on hits Casting Speed -10% for 5 sec on hits Down Attack 75.14% damage in PvP only Command: Passed Pawn damage
+      x1 Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s effects as there are
+      summoned guards. Attack 1 damage 3089% x1, max 4 hits Attack 2 damage 3089% x3 Last attack damage 5406% x2 Critical
+      Hit Rate +65% Maximum 10 targets All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using
+      the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super
+      Armor Knockdown on last attack hits Down Attack 33.52% damage in PvP only Dismount target on hits. Injures target with
+      100% of the damage of a hit. Maximum 10 targets Push the target on hits Knockdown on hits Applies as many Thornwood
+      Guard''s effects as there are summoned guards.'
+    keys:
+    - hotbar
+  command_opening:
+    name: 'Command: Opening'
+    input: Can be added to a Quick Slot
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 3000
+    description: Command the summoned guard(s) to attack your target.
+    notes: 'Command the summoned guard(s) to attack your target. Commands your Thornwood Guards summoned with Command: Passed
+      Pawn to attack your target. Forward Guard All CC Resistance (except Grapple), including from Back Attacks Command: Passed
+      Pawn''s attack damage x1, max 2 hits Applies maximum number of targets to Command: Passed Pawn Stiffness on hits Applies
+      as many Thornwood Guard''s effects as there are summoned guards.'
+    keys:
+    - hotbar
+  command_passed_pawn:
+    name: 'Command: Passed Pawn'
+    input: Auto-activated when using Quoratum's Protection without guards SPACE during Quoratum's Protection SPACE while guards
+      are summoned to draw them close
+    keys:
+    - space
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 3000
+    description: Summons soldiers contained within the quoratum. Kanat as cavalry, Luka as shield bearers, Vishur as spearmen,
+      Pau as infantry are summoned to join Nova in defeating the enemy.
+    notes: 'Summons soldiers contained within the quoratum. Kanat as cavalry, Luka as shield bearers, Vishur as spearmen,
+      Pau as infantry are summoned to join Nova in defeating the enemy. Forward Guard All CC Resistance (except Grapple),
+      including from Back Attacks Summons the Thornwood Guard for 30 sec. Ordering commands will extend their duration up
+      to a maximum of 2 min. Guards will become stronger and attack any enemies near Nova. The Thornwood Guard will assist
+      you when you use the following skills. - Command: Stamma''s Mate, Command: Blooming Icy Thorns, Command: Frozen Earth,
+      Command: Rime Ice, Command: Fianchetto, Command: Frozen Darkness, Queen''s Gambit Guard damage 538% Maximum 7 targets
+      All Damage Reduction -15 for 10 sec on Thornwood Guard hits Movement Speed -20% for 5 sec on Thornwood Guard hits Air
+      Attack Down Attack 57.8% damage in PvP only Only summoned guards apply All Damage Reduction and Movement Speed debuffs
+      while casting Quoratum''s Protection.'
+  command_rime_ice:
+    name: 'Command: Rime Ice'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - stun
+    cooldown_ms: 5000
+    description: Evade enemy attacks and conjure up rime ice to counter with your legion.
+    notes: 'Evade enemy attacks and conjure up rime ice to counter with your legion. Attack 1 damage 1330% x2 Attack 2 damage
+      1330% x2 Critical Hit Rate +50% Maximum 7 targets Super Armor during the skill Stun on attack 1 hits (PvE only) 69.36%
+      damage in PvP only Command: Passed Pawn damage x1 Applies maximum number of targets to Command: Passed Pawn Applies
+      as many Thornwood Guard''s effects as there are summoned guards.'
+  command_stamma_s_mate:
+    name: 'Command: Stamma''s Mate'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Slam your quoratum down onto the surface, disrupting enemy lines while sending your cavalry charging.
+    notes: 'Slam your quoratum down onto the surface, disrupting enemy lines while sending your cavalry charging. Attack damage
+      2747% x1, max 3 hits Critical Hit Rate +30% Maximum 10 targets Super Armor Push the target on hits (PvE only) Down Attack
+      80.92% damage in PvP only Command: Passed Pawn''s attack damage x1, max 3 hits Applies maximum number of targets to
+      Command: Passed Pawn Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  core_comet:
+    name: 'Core: Comet'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Comet IV after learning this skill: Knockdown on hits'
+    keys:
+    - hotbar
+  core_frozen_ring:
+    name: 'Core: Frozen Ring'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Frozen Ring IV after learning this skill: Stun on first hit Not
+      applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_royal_fencing_fleche:
+    name: 'Core: Royal Fencing: Fleche'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Royal Fencing: Fleche III and Accel: Royal Fencing: Fleche after
+      learning this skill: Stiffness on attack 1 hits (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_royal_fencing_remise:
+    name: 'Core: Royal Fencing: Remise'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Royal Fencing: Remise III and Accel: Royal Fencing: Remise after
+      learning this skill: Super Armor during the skill (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_starfall:
+    name: 'Core: Starfall'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Starfall III after learning this skill: Forward Guard during
+      the skill Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_swooping_ring:
+    name: 'Core: Swooping Ring'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Swooping Ring IV and Accel: Swooping Ring after learning this
+      skill: Stiffness on hits'
+    keys:
+    - hotbar
+  countergambit:
+    name: Countergambit
+    input: E
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 8000
+    description: Unleash your morning star at the enemy to freeze them. Then charge forward and smite them down.
+    notes: Unleash your morning star at the enemy to freeze them. Then charge forward and smite them down. Attack damage 1197%
+      x2 Extra attack damage 1197% x2 Maximum 7 targets 100 pain damage inflicted every 2 sec for 4 sec on hits Freezing on
+      hits Increased attack range 92.48% damage in PvP only
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_distorted_eternity:
+    name: 'Elvia: Distorted Eternity'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Take down countless foes with a powerful, frontal magic attack.
+    notes: Take down countless foes with a powerful, frontal magic attack. Attack damage 7860% x3 Critical Hit Rate +100%
+      (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10 sec on hits Recover
+      175 SP per hit Super Armor during the skill Down Attack 23.12% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  en_garde:
+    name: En Garde
+    input: E Using the skill will switch to Accel
+    keys:
+    - e
+    protection: SA
+    cooldown_ms: 30000
+    description: Wield transcending power to deal critical, modified attacks on your foes.
+    notes: 'Wield transcending power to deal critical, modified attacks on your foes. Each Awakening skill recovers Star''s
+      Breath per hit. If your recovery rate reaches the limit, use En Garde to enter into Accel state. The following skills
+      are affected in Accel. [Break Orbit], [Twisted Orbit], [Royal Fencing: Remise], [Royal Fencing: Fleche], [Swooping Ring],
+      [Star''s Ring], [Star''s Call] All AP +40 for 30 sec when using the skill Casting Speed +15% for 30 sec when using the
+      skill Super Armor during the skill'
+  enter_the_darkness:
+    name: Enter the Darkness
+    input: Can be added to a Quick Slot
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Command: Frozen Darkness V]'
+    notes: 'Preceding Skill: [Command: Frozen Darkness V] Attack 1 damage 2603% x2 Attack 2 damage 2603% x2 Critical Hit Rate
+      +50% Maximum 10 targets Recover 56 HP per hit Forward Guard Down Attack 51.44% damage in PvP only'
+    keys:
+    - hotbar
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your sting
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Roll to evade attacks.
+    notes: Roll to evade attacks. Invincible during the skill (PvE only)
+  face_the_darkness:
+    name: Face the Darkness
+    input: F during Quoratum's Protection F after certain skills
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Swiftly attack your foe with the quoratum.
+    notes: Swiftly attack your foe with the quoratum. Attack damage 1586% x2 Maximum 10 targets Critical Hit Rate +30% for
+      10 sec when using the skill Recover 30 SP per hit Push the target on hits (PvE only) Stiffness on hits Down Attack 80.92%
+      damage in PvP only
+  flowing_star:
+    name: Flowing Star
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while jumping to perform jump attacks LMB while sprinting to perform sprint attacks LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    description: A basic attack that breaks enemies by swinging your morning star.
+    notes: A basic attack that breaks enemies by swinging your morning star. Standing attack damage 2625% x1, max 5 hits Forward
+      attack damage 2625% x1, max 4 hits Lateral attack damage 2625% x1, max 3 hits Sprint attack damage 2625% x1 Jump attack
+      damage 2625% x1, max 2 hits Jump attacks consume Stamina. Maximum 10 targets Recover 90 SP on hits Down Attack 80.92%
+      damage in PvP only
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+    keys:
+    - hotbar
+  frozen_chain:
+    name: Frozen Chain
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Icy Thorns IV]'
+    notes: 'Preceding Skill: [Icy Thorns IV] Attack 1 damage 1935% x1, max 2 hits Attack 2 damage 3868% x2 Critical Hit Rate
+      +50% Maximum 10 targets Floating on attack 2 hits Push the target on hits (PvE only) Super Armor during attack 1 Air
+      Attack Down Smash on attack 2 hits Air Smash on attack 2 hits 55.49% damage in PvP only'
+  frozen_ring:
+    name: Frozen Ring
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: FG
+    cc:
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 6000
+    description: The scythe thrown forward continues to deal damage over time on enemies nearby.
+    notes: The scythe thrown forward continues to deal damage over time on enemies nearby. Attack damage 6521% x1, max 5 hits
+      Critical Hit Rate +50% Maximum 10 targets Recover 4.8% Star's Breath per hit (Nullified in Accel) All Damage Reduction
+      -20 for 10 sec on hits Forward Guard Stun on first hit (PvE only) Pull in the target on hits (PvE only) Down Attack
+      38.26% damage in PvP only Attack damage 6273% x4 Critical Hit Rate +50% Maximum 10 targets All Damage Reduction -20
+      for 10 sec on hits Forward Guard Stun on first hit (PvE only) Pull in the target on hits (PvE only) Down Attack 32.37%
+      damage in PvP only
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  fuse_gravity:
+    name: Fuse Gravity
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Star''s Ring]'
+    notes: 'Preceding Skill: [Star''s Ring] Recover 15% Star''s Breath when retrieving star Recover 800 HP when retrieving
+      star Activates [Star''s Ring] when used with no star'
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+    keys:
+    - hotbar
+  icy_fog:
+    name: Icy Fog
+    input: Direction + SHIFT Automatically activates Quoratum's Protection after skill Maintains guard when moving after skill
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 5000
+    description: Conjure an Icy Fog while moving.
+    notes: Conjure an Icy Fog while moving. Forward Guard Invincible during the skill (PvE only) All CC Resistance (except
+      Grapple), including from Back Attacks Character collision occurs while moving forward No character collision while moving
+      backward or laterally
+  icy_kiss:
+    name: Icy Kiss
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: Swiftly kick the enemy's lower section, toppling them over.
+    notes: Swiftly kick the enemy's lower section, toppling them over. Attack damage 1304% x2 Critical Hit Rate +50% Maximum
+      7 targets Critical Hit Rate +30% for 10 sec when using the skill Recover 75 SP per hit Knockdown on hits Air Attack
+      Down Attack 80.92% damage in PvP only
+  icy_prison:
+    name: Icy Prison
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: SA
+    cc:
+    - knockback
+    - floating
+    cooldown_ms: 12000
+    description: Strike your morning star against the enemy with concentrated ice energy. Any summoned guards will also be
+      commanded to attack as well.
+    notes: 'Strike your morning star against the enemy with concentrated ice energy. Any summoned guards will also be commanded
+      to attack as well. Attack damage 570% x2 Critical Hit Rate +30% Maximum 7 targets Freezing on hits 80.92% damage in
+      PvP only If Thornwood Guards are summoned, only their effects are applied. Command: Passed Pawn damage x4 Applies maximum
+      number of targets to Command: Passed Pawn Floating on hits Applies as many Thornwood Guard''s effects as there are summoned
+      guards. Attack 1 damage 3094% x1 Attack 2 damage 2394% x1, max 3 hits Attack 1 damage 2406% x9 when Thornwood Guards
+      are present Attack 2 damage 1881% x6 when Thornwood Guards are present Critical Hit Rate +100% (PvE only) Critical Hit
+      Rate +50% (PvP only) Maximum 10 targets All AP +30 for 40 sec when using the skill Casting Speed +25% for 40 sec when
+      using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Knockback on attack 1 hits Freezing
+      on attack 2 hits (Nullified in certain situations) Additional effects applied when guards are summoned. 20% attack 1
+      damage in PvP only 52.02% attack 2 damage in PvP only Dismount target on hits. Injures target with 50% of the damage
+      of a hit. Command: Passed Pawn''s attack damage x3, max 4 hits Applies maximum number of targets to Command: Passed
+      Pawn All AP -60 for 10 sec on hits'
+  icy_thorns:
+    name: Icy Thorns
+    input: ↓ + RMB Hold RMB to continue the skill
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Strike the enemy upwards with your morning star, then pierce them with sharp thorns of ice.
+    notes: Strike the enemy upwards with your morning star, then pierce them with sharp thorns of ice. Attack damage 3146%
+      1, max 2 hits Last attack damage 2097% x2 Critical Hit Rate +40% Maximum 10 targets Floating on attack 1 hits Air Attack
+      Down Attack on last attack hits Down Smash on last attack hits 71.67% damage in PvP only
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+    keys:
+    - hotbar
+  mauling_star:
+    name: Mauling Star
+    input: LMB after Face the Darkness LMB after certain skills Hold LMB to continue the skill
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: Wildly attack the enemy with your morning star, then slam down with the quoratum.
+    notes: Wildly attack the enemy with your morning star, then slam down with the quoratum. Attack 1 damage applies Face
+      the Darkness' damage x2 x1, max 2 hits Last attack damage applies Face the Darkness' damage x2 x2 Recover 65 SP per
+      hit Super Armor during the skill Bound on last attack hits (PvE only) Air Attack on attack 1 hits Down Smash on last
+      attack hits Down Attack
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_bitter_reign:
+    name: 'Prime: Bitter Reign'
+    input: ↓ + LMB Hold ↓ + LMB to continue the skill
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Strike out your morning star in front of you to hit your foe's body, then strike down hard.
+    notes: Strike out your morning star in front of you to hit your foe's body, then strike down hard. Attack 1 damage 4114%
+      x2 Attack 2 damage 6193% x2 Chain attack damage 761% x1, max 3 hits Critical Hit Rate +50% Maximum 10 targets Recover
+      71 HP per attack on hit while Axian is summoned Knockback on chain attack hits (PvE only) Knockdown on attack 1 hits
+      Down Attack 50.75% damage in PvP only
+  prime_black_morning_star:
+    name: 'Prime: Black Morning Star'
+    input: Passive
+    protection: none
+    description: The King of the Dead darkens your morning star, making it heavier, but, for some strange reason, can be wielded
+      faster than before.
+    notes: The King of the Dead darkens your morning star, making it heavier, but, for some strange reason, can be wielded
+      faster than before. Casting Speed +1%
+    keys:
+    - hotbar
+  prime_distorted_guard:
+    name: 'Prime: Distorted Guard'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Recovers 1500 HP when using the skill Max HP +750 for 30 sec when using the skill All Damage
+      Reduction +50 for 30 sec when using the skill Nullifies All Damage Reduction debuffs for 30 sec , with some exceptions.
+      Removes All Damage Reduction debuffs when using the skill. Super Armor Using this skill resets the cooldown of Winter''s
+      Bulwark .'
+    keys:
+    - hotbar
+  prime_entangling_icy_thorns:
+    name: 'Prime: Entangling Icy Thorns'
+    input: SHIFT + F SHIFT + F after certain skills to perform last attacks
+    keys:
+    - shift
+    - f
+    protection: SA
+    cooldown_ms: 7000
+    description: Release the chilling aura of the quoratum in front to entangle your enemies in thorns of ice.
+    notes: 'Release the chilling aura of the quoratum in front to entangle your enemies in thorns of ice. Attack 1 damage
+      5034% x1, max 2 hits Last attack damage 9975% x2 Critical Hit Rate +100% Maximum 10 targets Recover 60 SP per attack
+      on hit while Axian is summoned Push the target on hits (PvE only) Super Armor 31.33% attack 1 damage in PvP only 26.36%
+      last attack damage in PvP only Command: Passed Pawn damage x2 Applies maximum number of targets to Command: Passed Pawn
+      Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  prime_fianchetto:
+    name: 'Prime: Fianchetto'
+    input: 'SHIFT + LMB LMB after certain skills RMB after Prime: Frozen Darkness'
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: Call forth priests from within the quoratum and command them to judge your enemies.
+    notes: 'Call forth priests from within the quoratum and command them to judge your enemies. Chain attack damage 2322%
+      x1, max 2 hits Last attack damage 8360% x2 Critical Hit Rate +25% (PvE only) Maximum 10 targets Recover 30 SP per attack
+      on hit while Axian is summoned Super Armor Knockback on chain attack hits (PvE only) Floating on last attack hits Air
+      Attack 52.02% chain attack damage in PvP only 16.88% last attack damage in PvP only Command: Passed Pawn''s attack damage
+      x1, max 3 hits Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s effects
+      as there are summoned guards.'
+  prime_frozen_darkness:
+    name: 'Prime: Frozen Darkness'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 8397% x2 Chain attack damage 1632% x1, max 2 hits Critical Hit Rate +100% Maximum
+      10 targets All AP +32 for 10 sec when using the skill Recover 25 SP per attack on hit while Axian is summoned Super
+      Armor Knockback on chain attack hits (PvE only) Knockdown on hits (PvE only) Down Attack Down Smash 19.88% damage in
+      PvP only 51.1% chain attack damage in PvP only Command: Passed Pawn''s attack damage x1, max 2 hits Applies maximum
+      number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  prime_frozen_earth:
+    name: 'Prime: Frozen Earth'
+    input: SHIFT + C
+    keys:
+    - shift
+    - c
+    protection: SA
+    cc:
+    - knockdown
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 11000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 6308% x5 Critical Hit Rate +100% Maximum 10 targets Recover 35 SP per attack on
+      hit while Axian is summoned Super Armor Pull in the target on hits (PvE only) Spin the target on hits (PvE only) Bound
+      on hits (PvE only) Attack Speed -15% for 5 sec on hits Casting Speed -15% for 5 sec on hits Down Attack 26.82% damage
+      in PvP only Command: Passed Pawn damage x1 Applies maximum number of targets to Command: Passed Pawn Applies as many
+      Thornwood Guard''s effects as there are summoned guards. Attack 1 damage 20118% x1, max 4 hits Attack 2 damage 20118%
+      x3 Last attack damage 33818% x2 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill
+      Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000
+      for 60 sec when using the skill Super Armor Knockdown on last attack hits Down Attack 11.21% damage in PvP only Not
+      affected by effects which increase/decrease Attack and/or Casting Speeds. Dismount target on hits. Injures target with
+      100% of the damage of a hit. Maximum 10 targets Push the target on hits Knockdown on hits Applies as many Thornwood
+      Guard''s effects as there are summoned guards.'
+  prime_icy_prison:
+    name: 'Prime: Icy Prison'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: SA
+    cc:
+    - knockback
+    - floating
+    cooldown_ms: 6000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Summons Axian when using the skill. Prime: King of the Dead''s damage x1, max 6 hits Freezing
+      on hits while summoned Command: Passed Pawn damage x2 Applies maximum number of targets to Command: Passed Pawn Floating
+      on hits Applies as many Thornwood Guard''s effects as there are summoned guards. Attack 1 damage 3124% x1 Attack 2 damage
+      4408% x1, max 3 hits Attack 1 damage 2429% x9 when Thornwood Guards are present Attack 2 damage 3934% x6 when Thornwood
+      Guards are present Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All AP +30
+      for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec
+      when using the skill Super Armor Knockback on attack 1 hits Freezing on attack 2 hits (Nullified in certain situations)
+      19.65% attack 1 damage in PvP only 38.96% attack 2 damage in PvP only Dismount target on hits. Injures target with 50%
+      of the damage of a hit. Command: Passed Pawn''s attack damage x3, max 4 hits Applies maximum number of targets to Command:
+      Passed Pawn All AP -60 for 10 sec on hits'
+  prime_icy_thorns:
+    name: 'Prime: Icy Thorns'
+    input: ↓ + RMB ↓ + RMB after certain skills to perform last attacks Hold RMB to continue the skill
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Strike the enemy upwards with your morning star, then pierce them with sharp thorns of ice.
+    notes: Strike the enemy upwards with your morning star, then pierce them with sharp thorns of ice. Attack 1 damage 7973%
+      x1, max 2 hits Last attack damage 4329% x2 Critical Hit Rate +75% Maximum 10 targets Casting Speed +10% for 10 sec when
+      using the skill Recover 105 HP per attack on hit while Axian is summoned Floating on attack 1 hits Air Attack Down Attack
+      on last attack hits Down Smash on last attack hits 40.69% attack 1 damage in PvP only 39.07% last attack damage in PvP
+      only
+  prime_king_of_the_dead:
+    name: 'Prime: King of the Dead'
+    input: 'Prime: Passed Pawn to summon when Thornwood Guards are present SHIFT + SPACE to summon while on the ground SHIFT
+      + SPACE while Axian is summoned to cancel the summon'
+    keys:
+    - shift
+    - space
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Summons Axian for 1 hour(s) . Commanding Axian consumes Nova''s SP as follows: - 120 SP on command
+      - 100 SP on command - 80 SP on command You cannot command Axian if Nova''s health goes below 40% . Instead, Axian will
+      go berserk and begin attacking all enemies that approach Nova. Axian will attack for the following skills. - Prime:
+      Storming Star, Prime: Fianchetto, Prime: Stamma''s Mate, Prime: Entangling Icy Thorns, Prime: Frozen Earth, Prime: Frozen
+      Darkness, Prime: Icy Prison, Command: Opening, Queen''s Gambit Summoned Axian will activate additional effects for certain
+      skills. Axian ''s damage 868% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits 200 pain damage inflicted
+      every 2 sec for 6 sec on hits Stun on ground summon hits Air Attack Down Attack 45.66% damage in PvP only Forward Guard
+      All CC Resistance (except Grapple), including from Back Attacks'
+  prime_passed_pawn:
+    name: 'Prime: Passed Pawn'
+    input: Auto-activated when using Quoratum's Protection without guards SPACE during Quoratum's Protection SPACE while guards
+      are summoned to draw them close
+    keys:
+    - space
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 3000
+    description: Summons soldiers contained within the quoratum. Kanat as cavalry, Luka as shield bearers, Vishur as spearmen,
+      Pau as infantry are summoned to join Nova in defeating the enemy.
+    notes: 'Summons soldiers contained within the quoratum. Kanat as cavalry, Luka as shield bearers, Vishur as spearmen,
+      Pau as infantry are summoned to join Nova in defeating the enemy. Summons the Thornwood Guard for 30 sec. Each command
+      will extend their duration up to a maximum of 2 min. They will attack any enemies near Nova. The Thornwood Guard will
+      assist you during the following skills. - Prime: Storming Star, Prime: Passed Pawn, Prime: Entangling Icy Thorns, Prime:
+      Frozen Earth, Command: Rime Ice, Prime: Fianchetto, Prime: Frozen Darkness, Queen''s Gambit Guard damage 774% Maximum
+      10 targets All Damage Reduction -20 for 10 sec on Thornwood Guard hits Movement Speed -20% for 5 sec on Thornwood Guard
+      hits Air Attack Down Attack 47.4% damage in PvP only Forward Guard All CC Resistance (except Grapple), including from
+      Back Attacks'
+  prime_quoratum_s_ascension:
+    name: 'Prime: Quoratum''s Ascension'
+    input: ↑ + F Hold F to continue the skill Quoratum's Protection automatically cast after skill
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 4000
+    description: Slam your enemy upwards with the quoratum, then smite them once more.
+    notes: Slam your enemy upwards with the quoratum, then smite them once more. Attack 1 damage 2926% x2 Attack 2 damage
+      2926% x2 Maximum 10 targets Movement Speed +10% for 10 sec when using the skill Super Armor Floating on attack 1 hits
+      (PvE only) Air Attack 56.07% damage in PvP only
+  prime_stamma_s_mate:
+    name: 'Prime: Stamma''s Mate'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: Slam your quoratum down onto the surface, disrupting enemy lines while sending your cavalry charging.
+    notes: 'Slam your quoratum down onto the surface, disrupting enemy lines while sending your cavalry charging. Attack damage
+      8960% x1, max 3 hits Critical Hit Rate +100% Maximum 10 targets Recover 58 SP per attack on hit while Axian is summoned
+      All Evasion -12 for 10 sec on hits Super Armor Push the target on hits (PvE only) Down Attack 26.36% damage in PvP only
+      Command: Passed Pawn''s attack damage x1, max 3 hits Applies maximum number of targets to Command: Passed Pawn Applies
+      as many Thornwood Guard''s effects as there are summoned guards.'
+  prime_star_s_call:
+    name: 'Prime: Star''s Call'
+    input: ↓ + C Hold C to charge Quoratum's Protection automatically cast after skill
+    keys:
+    - s
+    - c
+    protection: iframe
+    cooldown_ms: 10000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 2509% x1, max 4 hits Critical Hit Rate +100% Maximum 10 targets Invincible while
+      moving backward Super Armor No collision while moving 46.24% damage in PvP only Command: Passed Pawn''s attack damage
+      x2, max 3 hits Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s effects
+      as there are summoned guards.'
+  prime_storming_star:
+    name: 'Prime: Storming Star'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 11000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Spin attack damage 1724% x1, max 6 hits Last attack damage 12871% x2 Critical Hit Rate +100%
+      on last attacks Maximum 10 targets Recover 120 HP per hit Super Armor during the skill Knockdown on last attack hits
+      Down Attack 25.66% spin attack damage in PvP only 21.27% last attack damage in PvP only Command: Passed Pawn''s attack
+      damage x1, max 3 hits Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s effects
+      as there are summoned guards.'
+  prime_swooping_ring:
+    name: 'Prime: Swooping Ring'
+    input: ↑ + C C during Quoratum's Opening Quoratum's Protection automatically cast after skill
+    keys:
+    - w
+    - c
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 6787% x2 Critical Hit Rate +50% Maximum 10 targets Forward Guard Recover 125 HP
+      per attack on hit while Axian is summoned Down Attack 40.46% damage in PvP only Command: Passed Pawn''s attack damage
+      x1, max 4 hits Applies maximum number of targets to Command: Passed Pawn Applies as many Thornwood Guard''s effects
+      as there are summoned guards.'
+  punishing_trap:
+    name: Punishing Trap
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: SA
+    cc:
+    - floating
+    - pull
+    cooldown_ms: 17000
+    description: Place a trap on retreating foes and pull them back.
+    notes: Place a trap on retreating foes and pull them back. Attack damage 966% x2 Maximum 7 targets Super Armor on Grapple/Grapple
+      fails Pull in target on Grapple Floating on Grapple 80.92% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds.
+  queen_s_gambit:
+    name: Queen's Gambit
+    input: E
+    keys:
+    - e
+    protection: SA
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 11000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 7419% x1, max 4 hits Last attack damage 5582%
+      x2 Critical Hit Rate +50% Maximum 10 targets Recover 160 HP per hit Super Armor Knockback on hits (PvE only) Knockdown
+      on last attack hits (PvE only) Down Attack 33.99% normal attack damage in PvP only 38.96% last attack damage in PvP
+      only Command: Passed Pawn''s attack damage x1, max 3 hits Command: Passed Pawn damage x1 Applies maximum number of targets
+      to Command: Passed Pawn Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  quoratum_s_ascension:
+    name: Quoratum's Ascension
+    input: ↑ + F Hold F to continue the skill
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Slam your enemy upwards with the quoratum, then smite them once more.
+    notes: Slam your enemy upwards with the quoratum, then smite them once more. Attack 1 damage 1318% x2 Attack 2 damage
+      1318% x2 Maximum 7 targets Super Armor Floating on attack 1 hits (PvE only) Air Attack 80.92% damage in PvP only
+  quoratum_s_aura:
+    name: Quoratum's Aura
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP
+      and HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP and HP.
+      Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  quoratum_s_aura_xi:
+    name: Quoratum's Aura XI
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP. Max
+      HP +15
+    keys:
+    - hotbar
+  quoratum_s_aura_xii:
+    name: Quoratum's Aura XII
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP
+      and HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP and HP.
+      Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  quoratum_s_aura_xiii:
+    name: Quoratum's Aura XIII
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP. Max
+      HP +15
+    keys:
+    - hotbar
+  quoratum_s_aura_xiv:
+    name: Quoratum's Aura XIV
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP
+      and HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP and HP.
+      Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  quoratum_s_aura_xix:
+    name: Quoratum's Aura XIX
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP. Max
+      HP +15
+    keys:
+    - hotbar
+  quoratum_s_aura_xv:
+    name: Quoratum's Aura XV
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP. Max
+      HP +15
+    keys:
+    - hotbar
+  quoratum_s_aura_xvi:
+    name: Quoratum's Aura XVI
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP
+      and HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP and HP.
+      Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  quoratum_s_aura_xvii:
+    name: Quoratum's Aura XVII
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your HP. Max
+      HP +15
+    keys:
+    - hotbar
+  quoratum_s_aura_xviii:
+    name: Quoratum's Aura XVIII
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP
+      and HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP and HP.
+      Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  quoratum_s_aura_xx:
+    name: Quoratum's Aura XX
+    input: Passive
+    protection: none
+    description: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP
+      and HP.
+    notes: The distorted goddess grants a boon with the quietly emitted powers from the quoratum to increase your DP and HP.
+      Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  quoratum_s_binding:
+    name: Quoratum's Binding
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 120000
+    description: Unleash the ice energy contained within the quoratum to freeze your foes.
+    notes: Unleash the ice energy contained within the quoratum to freeze your foes. 150 pain damage inflicted every 2 sec
+      for 5 sec on hits Freezing for 5 sec on hits Maximum 7 targets
+    keys:
+    - hotbar
+  quoratum_s_closing:
+    name: Quoratum's Closing
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: FG
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Icy Thorns IV]'
+    notes: 'Preceding Skill: [Icy Thorns IV] Attack damage 1011% x2 Maximum 10 targets Movement Speed -15% for 5 sec on hits
+      Attack Speed -15% for 5 sec on hits Casting Speed -15% for 5 sec on hits Forward Guard during the skill No character
+      collision while moving backwards 57.8% damage in PvP only'
+  quoratum_s_earth:
+    name: Quoratum's Earth
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Command: Frozen Darkness V]'
+    notes: 'Preceding Skill: [Command: Frozen Darkness V] Attack damage 6849% x2 Critical Hit Rate +100% Maximum 10 targets
+      Recover 160 SP per hit Down Attack Down Smash 34.68% damage in PvP only'
+    keys:
+    - hotbar
+  quoratum_s_guard:
+    name: Quoratum's Guard
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: Cover yourself with the power of the quoratum, momentarily enhancing your flesh.
+    notes: Cover yourself with the power of the quoratum, momentarily enhancing your flesh. Recovers 500 HP when using the
+      skill All Damage Reduction +50 for 30 sec when using the skill Removes All Damage Reduction debuffs when using the skill.
+      Super Armor
+    keys:
+    - hotbar
+  quoratum_s_opening:
+    name: Quoratum's Opening
+    input: Hold E after Countergambit hits Hold ↑ + SHIFT after frontal or lateral Icy Fog Automatically activates Quoratum's
+      Protection after the skill Maintains guard when moving after the skill
+    keys:
+    - e
+    - w
+    - shift
+    protection: iframe
+    cc:
+    - spin
+    cooldown_ms: 7000
+    description: Raise your quoratum, then dash forward.
+    notes: Raise your quoratum, then dash forward. Push the target on hits (PvE only) Spin the target on hits (PvE only) Forward
+      Guard All CC Resistance (except Grapple), including from Back Attacks (Nullified during cooldown) Invincible during
+      the skill (PvE only) Push the target on hits (PvE only) Spin the target on hits (PvE only) Forward Guard All CC Resistance
+      (except Grapple), including from Back Attacks (Nullified during cooldown) Invincible during the skill (PvE only)
+  quoratum_s_protection:
+    name: Quoratum's Protection
+    input: Q Direction to move during the skill
+    keys:
+    - q
+    protection: FG
+    description: Raise your quoratum and maintain a sturdy defensive stance.
+    notes: Raise your quoratum and maintain a sturdy defensive stance. Recover 25% of Max SP on blocks Forward Guard All CC
+      Resistance (except Grapple), including from Back Attacks Movement available during Quoratum's Protection.
+  quoratum_s_vigor:
+    name: Quoratum's Vigor
+    input: Passive
+    protection: none
+    description: The distorted goddess grants an unwavering physique through her blessings.
+    notes: The distorted goddess grants an unwavering physique through her blessings. Max HP +300
+    keys:
+    - hotbar
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+    keys:
+    - hotbar
+  royal_fencing_attack:
+    name: 'Royal Fencing: Attack'
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while holding ↑ + SPACE to perform jump attacks LMB while sprinting to perform sprint attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - space
+    protection: none
+    cc:
+    - bound
+    description: Basic attack stance to wield and attack with sting.
+    notes: Basic attack stance to wield and attack with sting. Standing attack damage 2589% x1, max 4 hits Lateral attack
+      damage 2589% x1, max 2 hits Forward attack damage 2589% x1, max 3 hits Jump attack damage 2589% x1 Sprint attack damage
+      2589% x1 All AP +20 for 5 sec on standing attack 3 hits Lateral and jump attacks consume Stamina Maximum 10 targets
+      Recover 105 SP per hit Recover 1.5% Star's Breath per hit (Nullified in Accel) Bound on jump attack hits (PvE only)
+      57.8% damage in PvP only
+  royal_fencing_fleche:
+    name: 'Royal Fencing: Fleche'
+    input: ↓ + F Hold ↓ + F to continue the skill
+    keys:
+    - s
+    - f
+    protection: SA
+    cooldown_ms: 6000
+    description: Hold your sting at the short end and deliver rapid strikes to enemies in front.
+    notes: Hold your sting at the short end and deliver rapid strikes to enemies in front. Attack 1 damage 4309% x1, max 2
+      hits Attack 2 damage 4309% x1, max 4 hits Attack 3 damage 4309% x1 Critical Hit Rate +25% Maximum 10 targets Recover
+      1.6% Star's Breath per hit (Nullified in Accel) All Damage Reduction -20 for 10 sec on hits (Nullified during cooldown)
+      Super Armor during the skill (Nullified during cooldown) Damage reduced during cooldown 38.84% damage in PvP only Attack
+      damage 3638% x1, max 9 hits Critical Hit Rate +50% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Super
+      Armor during the skill 33.64% damage in PvP only
+  royal_fencing_lunge:
+    name: 'Royal Fencing: Lunge'
+    input: F LMB to perform when Twisted Orbit is on cooldown
+    keys:
+    - f
+    - lmb
+    protection: SA
+    cc:
+    - stun
+    cooldown_ms: 5000
+    description: Instantly narrow the distance with your foe to attack them.
+    notes: 'Instantly narrow the distance with your foe to attack them. Attack damage 5078% x2 Critical Hit Rate +50% Maximum
+      10 targets Casting Speed +15% for 10 sec when using the skill (Nullified during cooldown) Recover 1.5% Star''s Breath
+      per hit (Nullified in Accel) Super Armor during the skill (Nullified during cooldown) Push the target on hits (PvE only)
+      Stun on hits (Nullified during cooldown) Damage reduced during cooldown 46.24% damage in PvP only Attacks reset the
+      cooldowns of Break Orbit and Accel: Break Orbit . (Nullified during cooldown)'
+  royal_fencing_remise:
+    name: 'Royal Fencing: Remise'
+    input: ↓ + LMB Hold LMB to continue the skill
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Quickly swing sting to attack the opponent's vital organs.
+    notes: Quickly swing sting to attack the opponent's vital organs. Attack 1 damage 5835% x1, max 2 hits Attack 2 damage
+      5835% x1 Attack 3 damage 5835% x2 Critical Hit Rate +50% Maximum 10 targets Recover 2.6% Star's Breath per hit (Nullified
+      in Accel) Recover 120 HP per hit (Nullified during cooldown) Knockdown on attack 2 hits (Nullified during cooldown)
+      Down Attack Damage reduced during cooldown 31.21% damage in PvP only Attack 1 damage 7054% x1, max 3 hits Attack 2 damage
+      7054% x2 Critical Hit Rate +50% Maximum 10 targets Recover 160 HP per hit Knockdown on attack 2 hits (Nullified during
+      cooldown) Down Attack 30.06% damage in PvP only
+  royal_fencing_riposte:
+    name: 'Royal Fencing: Riposte'
+    input: '↓ + Q Hold Q to continue attacks Use after Comet, Star''s Call, Accel: Star''s Call, or Starfall to perform last
+      attacks Can be used with your morning star'
+    keys:
+    - s
+    - q
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Wield sting to keep the enemy at bay, then instantly draw close to launch the enemy.
+    notes: Wield sting to keep the enemy at bay, then instantly draw close to launch the enemy. Attack 1 damage 5720% x1 Attack
+      2 damage 5720% x1 Attack 3 damage 5565% x2 Critical Hit Rate +50% Maximum 10 targets Recover 2.8% Star's Breath per
+      hit (Nullified in Accel) All AP +20 for 10 sec when using the skill Forward Guard Floating on attack 3 hits (PvE only)
+      Air Attack Down Attack 36.41% damage in PvP only
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  slicing_ring:
+    name: Slicing Ring
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 10000
+    description: Spin your scythe around your vicinity to rain attacks on your foes.
+    notes: Spin your scythe around your vicinity to rain attacks on your foes. Attack damage 7311% x3 Critical Hit Rate +50%
+      Maximum 10 targets Recover 300 HP per hit Recover 3% Star's Breath per hit (Nullified in Accel) Star's Breath Recovery
+      +10% when using the skill (Nullified in Accel) Super Armor during the skill Down Attack 34.68% damage in PvP only
+  star_s_call:
+    name: Star's Call
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    cooldown_ms: 8000
+    description: Gather all enemies in front, preventing their escape, then unleash a mighty, frontal attack.
+    notes: Gather all enemies in front, preventing their escape, then unleash a mighty, frontal attack. Stab attack damage
+      10018% x2 Last attack damage 10018% x1 Critical Hit Rate +50% Maximum 10 targets Recover 213 HP per hit Recover 5% Star's
+      Breath per hit (Nullified in Accel) Super Armor before the attack hits Knockdown on hits Pull in the target on hits
+      (PvE only) Down Attack 30.87% damage in PvP only Stab attack damage 10832% x2 Critical Hit Rate +100% Maximum 10 targets
+      Recover 400 HP per hit Super Armor before the attack hits Knockdown on hits Down Attack 37.57% damage in PvP only
+  star_s_ring:
+    name: Star's Ring
+    input: RMB ← or → + RMB to summon a distant star
+    keys:
+    - rmb
+    - a
+    - d
+    protection: FG
+    cc:
+    - knockback
+    - pull
+    cooldown_ms: 10000
+    description: Throw your scythe forward, then summon a star. The gravitational pull of the star will immobilize any enemies
+      in its vicinity.
+    notes: Throw your scythe forward, then summon a star. The gravitational pull of the star will immobilize any enemies in
+      its vicinity. Attack 1 damage 1128% x1, max 2 hits Attack 2 damage 1128% x1, max 2 hits Critical Hit Rate +50% Maximum
+      10 targets Forward Guard during the skill (Nullified during cooldown) Knockback on hits (PvE only) (Nullified during
+      cooldown) 52.02% damage in PvP only Summon 1 star(s) per attack (Nullified during cooldown) Pull in the target on hits
+      Movement and Attack/Casting Speeds -50% for 1 sec on pull attack hits When two stars fuse, they briefly create a wider
+      pull-in effect, and then one star vanishes. Attack 1 damage 2845% x1, max 2 hits Attack 2 damage 2845% x1, max 2 hits
+      Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill (Nullified during cooldown) Knockback on hits
+      (PvE only) (Nullified during cooldown) 46.24% damage in PvP only Damage reduced during cooldown Summon 1 star(s) per
+      attack (Nullified during cooldown) Pull in the target on hits Movement and Attack/Casting Speeds -50% for 1 sec on pull
+      attack hits When two stars fuse, they briefly create a wider pull-in effect, and then one star vanishes.
+  starfall:
+    name: Starfall
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: Inflict critical damage by summoning countless swords of light, then unleashing to all enemies in front.
+    notes: Inflict critical damage by summoning countless swords of light, then unleashing to all enemies in front. Attack
+      damage 10053% x2 Critical Hit Rate +100% Maximum 10 targets Recover 2.1% Star's Breath per hit (Nullified in Accel)
+      Knockdown on hits Down Attack 34.68% damage in PvP only Attack damage 33450% x6 Critical Hit Rate +100% Maximum 10 targets
+      All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50%
+      for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor Knockdown on hits Down Attack
+      8.67% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Dismount target
+      on hits. Injures target with 100% of the damage of a hit.
+  storming_star:
+    name: Storming Star
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 15000
+    description: Spin your morning star, drawing in icy energy to unleash unrelenting attacks on the enemy.
+    notes: Spin your morning star, drawing in icy energy to unleash unrelenting attacks on the enemy. Spin attack damage 810%
+      x1, max 6 hits Last attack damage 5096% x2 Critical Hit Rate +40% on last attacks Maximum 7 targets Recover 48 HP per
+      hit Super Armor during the skill Knockdown on last attack hits (PvE only) Down Attack 55.49% damage in PvP only
+  succession_affliction:
+    name: 'Succession: Affliction'
+    input: RMB ← or → + RMB to perform lateral attacks
+    keys:
+    - rmb
+    - a
+    - d
+    protection: none
+    cc:
+    - down_attack
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 1681% x2, max 3 hits Critical Hit Rate +100% Maximum 10 targets Recover 60 HP per
+      attack on hit while Axian is summoned Down Attack 69.36% damage in PvP only'
+  succession_ancient_echo:
+    name: 'Succession: Ancient Echo'
+    input: Passive
+    protection: none
+    cooldown_ms: 2000
+    description: You hear the ancient echoes from the quoratum. Will you answer the call?
+    notes: You hear the ancient echoes from the quoratum. Will you answer the call? You can now learn Succession skills.
+    keys:
+    - hotbar
+  succession_ancient_pact:
+    name: 'Succession: Ancient Pact'
+    input: Passive
+    protection: none
+    description: Forges a pact with the source of the ancient echo, Axian. Nova trades in her sacred power to Axian, who in
+      turn administers the chill of death upon the living.
+    notes: 'Forges a pact with the source of the ancient echo, Axian. Nova trades in her sacred power to Axian, who in turn
+      administers the chill of death upon the living. Nova can now trade her sacred power to call forth the King of the Dead,
+      who empowers her morning star with dark energies that allow her to steal health from enemies. The following skills will
+      be empowered upon Succession. - Affliction, Quoratum''s Protection, Quoratum''s Opening - You must first reset your
+      skills in order to learn Succession: Ancient Pact. - You cannot learn or use awakening skills if you have learned Succession:
+      Ancient Pact. - You cannot learn Succession skills if you have learned Absolute skills. - You cannot learn Absolute
+      skills if you have learned Succession skills.'
+    keys:
+    - hotbar
+  succession_face_the_darkness:
+    name: 'Succession: Face the Darkness'
+    input: F during Quoratum's Protection F after certain skills
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 986% x4 Maximum 10 targets Critical Hit Rate +20% for 10 sec when using the skill
+      Recover 20 SP per hit Push the target on hits (PvE only) Stiffness on hits Down Attack 80.92% damage in PvP only'
+  succession_quoratum_s_opening:
+    name: 'Succession: Quoratum''s Opening'
+    input: Hold E after Countergambit hits ↑ + SHIFT after certain skills Automatically activates Quoratum's Protection after
+      the skill Maintains guard when moving after the skill
+    keys:
+    - e
+    - w
+    - shift
+    protection: iframe
+    cc:
+    - spin
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Push the target on hits (PvE only) Spin the target on hits (PvE only) Forward Guard All CC Resistance
+      (except Grapple), including from Back Attacks (Nullified during cooldown) Invincible during the skill (PvE only)'
+  succession_quoratum_s_protection:
+    name: 'Succession: Quoratum''s Protection'
+    input: Q Move with Direction(s) during Quoratum's Protection
+    keys:
+    - q
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Recover 25% of Max SP on blocks All Damage Reduction +50 for 10 sec when guards are summoned
+      Forward Guard All CC Resistance (except Grapple), including from Back Attacks Guard Gauge damage -60% on Forward Guard.
+      Movement available during Quoratum''s Protection. Increased Movement Speed No recoil on blocks. However, when Guard
+      Gauge is below 40% , the character will recoil on blocks.'
+  succession_rime_ice:
+    name: 'Succession: Rime Ice'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - stun
+    cooldown_ms: 4000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 2807% x2 Attack 2 damage 2807% x2 Critical Hit Rate +100% Maximum 10 targets
+      All AP +32 for 10 sec when using the skill Recover 50 HP per attack on hit while Axian is summoned Super Armor during
+      the skill Stun on attack 1 hits 52.14% damage in PvP only Command: Passed Pawn damage x2 Applies maximum number of targets
+      to Command: Passed Pawn Applies as many Thornwood Guard''s effects as there are summoned guards.'
+  succession_vengeful_star:
+    name: 'Succession: Vengeful Star'
+    input: ↑ + RMB Hold RMB to continue the skill ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 3314% x2 Attack 2 damage 3314% x2 Attack 3 damage 3314% x2 Chain attack damage
+      689% x1, max 2 hits Critical Hit Rate +50% Maximum 10 targets Recover 60 HP per attack on hit while Axian is summoned
+      Push the target on hits (PvE only) Knockback on chain attack hits (PvE only) Stiffness on attack 1 and 2 hits Knockdown
+      on attack 3 hits Down Attack 63% normal attack damage in PvP only 63% chain attack damage in PvP only'
+  swooping_ring:
+    name: Swooping Ring
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Throw your scythe in front, then dash forward to slash all enemies nearby.
+    notes: Throw your scythe in front, then dash forward to slash all enemies nearby. Attack damage 7544% x2 Critical Hit
+      Rate +50% Maximum 10 targets Recover 4% Star's Breath per hit (Nullified in Accel) Super Armor during the skill Down
+      Attack 34.1% damage in PvP only Attack damage 8456% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor during
+      the skill Down Attack 37.69% damage in PvP only
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  twisted_orbit:
+    name: Twisted Orbit
+    input: 'LMB after Comet, Royal Fencing: Lunge, Royal Fencing: Riposte, Swooping Ring, or Break Orbit'
+    keys:
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Break Orbit]'
+    notes: 'Preceding Skill: [Break Orbit] Attack damage 6595% x1 Critical Hit Rate +50% Maximum 10 targets Recover 0.8% Star''s
+      Breath per hit (Nullified in Accel) Super Armor while moving Stiffness on hits Down Attack 61.85% damage in PvP only
+      Attacks reset the cooldowns of Break Orbit , Accel: Break Orbit , and Twisted Orbit . Attack damage 7869% x1 Critical
+      Hit Rate +100% Maximum 10 targets Invincible while moving Stiffness on hits Down Attack 58.96% damage in PvP only Attacks
+      reset the cooldowns of Break Orbit , Accel: Break Orbit , and Accel: Twisted Orbit .'
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  vengeful_star:
+    name: Vengeful Star
+    input: ↑ + RMB Hold RMB to continue the skill RMB
+    keys:
+    - w
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Strike with the quoratum to push back the enemy, then smash their vital organs with the morning star.
+    notes: Strike with the quoratum to push back the enemy, then smash their vital organs with the morning star. Attack 1
+      damage 2071% x2 Attack 2 damage 2071% x2 Attack 3 damage 2071% x2 Chain attack damage 431% x1, max 2 hits Critical Hit
+      Rate +40% Maximum 7 targets Push the target on hits (PvE only) Knockback on chain attack hits (PvE only) Stiffness on
+      attack 1 and 2 hits Knockdown on attack 3 hits Down Attack 92.48% damage in PvP only
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  winter_s_bulwark:
+    name: Winter's Bulwark
+    input: Can be added to a Quick Slot Quoratum's Protection will be activated after the skill
+    protection: FG
+    cooldown_ms: 180000
+    description: Unleash the might of your quoratum into a towering defense. The quoratum grows ever more resilient.
+    notes: 'Unleash the might of your quoratum into a towering defense. The quoratum grows ever more resilient. Super Armor
+      during the skill Empowered by your quoratum''s might, become a defensive bulwark for 20 sec . Using Quoratum''s Protection
+      grants the following effects based on skill level: - Guard Gauge damage -10% during Forward Guard - Movement unavailable
+      (Using other skills cancels Winter''s Bulwark) - Guard Gauge damage -15% during Forward Guard - Movement unavailable
+      (Using other skills cancels Winter''s Bulwark) - Guard Gauge damage -20% during Forward Guard - Movement unavailable
+      (Using other skills cancels Winter''s Bulwark) - Guard Gauge damage -99% during Forward Guard - Movement available -
+      All Damage Reduction +50 for allies behind you, excluding self'
+    keys:
+    - hotbar
+  unnamed_skill:
+    name: 크라툼의 신성
+    input: Passive
+    protection: none
+    description: 블랙스톤의 힘으로 크라툼의 신성을 더 강화한다.
+    notes: 블랙스톤의 힘으로 크라툼의 신성을 더 강화한다. Imbue your quoratum with Black Stone energies to enhance its sanctity. Imbue Black Stone
+      x 50 into your quoratum through the Black Spirit.
+    keys:
+    - hotbar
+_flags:
+- cannon_attack: Passive — no keybind.
+- cold_dark_star: Passive — no keybind.
+- core_comet: Passive — no keybind.
+- core_frozen_ring: Passive — no keybind.
+- core_royal_fencing_fleche: Passive — no keybind.
+- core_royal_fencing_remise: Passive — no keybind.
+- core_starfall: Passive — no keybind.
+- core_swooping_ring: Passive — no keybind.
+- guild_squad_special_attack: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- prime_black_morning_star: Passive — no keybind.
+- quoratum_s_aura: Passive — no keybind.
+- quoratum_s_aura_xi: Passive — no keybind.
+- quoratum_s_aura_xii: Passive — no keybind.
+- quoratum_s_aura_xiii: Passive — no keybind.
+- quoratum_s_aura_xiv: Passive — no keybind.
+- quoratum_s_aura_xix: Passive — no keybind.
+- quoratum_s_aura_xv: Passive — no keybind.
+- quoratum_s_aura_xvi: Passive — no keybind.
+- quoratum_s_aura_xvii: Passive — no keybind.
+- quoratum_s_aura_xviii: Passive — no keybind.
+- quoratum_s_aura_xx: Passive — no keybind.
+- quoratum_s_vigor: Passive — no keybind.
+- revive_target: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- succession_ancient_echo: Passive — no keybind.
+- succession_ancient_pact: Passive — no keybind.
+- unnamed_skill: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

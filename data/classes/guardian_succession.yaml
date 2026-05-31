@@ -1,6 +1,1826 @@
 # Guardian — Succession
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Guardian
 spec: Succession
-skills: {}
+skills:
+  absolute_avalanche_strike:
+    name: 'Absolute: Avalanche Strike'
+    input: SHIFT + LMB SHIFT + LMB after certain skills to perform instantly LMB after Mutilation or Black Blood Slaughter
+      to perform instantly
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 9000
+    description: Gather strength to your battle axe and slash horizontally. Those within the attack range will find it difficult
+      to block the attack.
+    notes: Gather strength to your battle axe and slash horizontally. Those within the attack range will find it difficult
+      to block the attack. Attack damage 1662% x2 Attack damage 1454% x4 when fully charged Critical Hit Rate +100% Maximum
+      10 targets All AP +20 for 10 sec when fully charged (Nullified in certain situations) Increased attack area Forward
+      Guard while charging Knockdown on hits Down Attack 66.26% damage in PvP only
+  absolute_axe_throw:
+    name: 'Absolute: Axe Throw'
+    input: ↓ + E Hold ↓ + E to continue the skill
+    keys:
+    - s
+    - e
+    protection: FG
+    cooldown_ms: 16000
+    description: Throw your battle axe at the target with all your might. Aiming can be tricky, but the resulting damage is
+      devastating.
+    notes: Throw your battle axe at the target with all your might. Aiming can be tricky, but the resulting damage is devastating.
+      Attack damage 1548% x1, max 3 hits Maximum 10 targets Increased attack range Attack Speed -20% for 5 sec on hits Casting
+      Speed -20% for 5 sec on hits Movement Speed -20% for 5 sec on hits Forward Guard during attack 1 71.78% damage in PvP
+      only
+  absolute_beast_demolisher:
+    name: 'Absolute: Beast Demolisher'
+    input: RMB Hold RMB to continue the skill
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - bound
+    - down_attack
+    description: A basic attack stance, wielding your battle axe two-handedly. Although it is a basic stance, it cannot be
+      taken lightly.
+    notes: A basic attack stance, wielding your battle axe two-handedly. Although it is a basic stance, it cannot be taken
+      lightly. Attack 1 damage 1507% x2 Attack 2 damage 1507% x2 Attack 3 damage 1507% x2 Critical Hit Rate +50% Maximum 10
+      targets All Damage Reduction -20 for 10 sec on hits Knockback on attack 2 hits Bound on last attack hits Down Attack
+      71.78% damage in PvP only
+  absolute_black_blood_circle:
+    name: 'Absolute: Black Blood Circle'
+    input: SHIFT + Q LMB to attack instantly
+    keys:
+    - shift
+    - q
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - floating
+    - pull
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 9000
+    description: Instill your battle axe with forces of the earth to create a circle around you. Those who enter your attack
+      range shall pay the price for their actions.
+    notes: Instill your battle axe with forces of the earth to create a circle around you. Those who enter your attack range
+      shall pay the price for their actions. Attack damage 2470% x3 Critical Hit Rate +50% Maximum 10 targets All Evasion
+      -12 for 10 sec on hits Recover 200 HP while casting Increased attack area Super Armor Pull in the target on hits (PvE
+      only) Spin the target on hits (PvE only) Floating on hits (PvE only) Air Attack Charging consumes Stamina. Auto-attacks
+      after a certain period of time. 71.78% damage in PvP only Attack 1 damage 6488% x2 Attack 2 damage 6488% x1 Attack 3
+      damage 6488% x4 Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All AP +55 for
+      60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when
+      using the skill Max HP +2000 for 60 sec when using the skill Super Armor Pull in the target on hits (PvE only) Spin
+      the target on hits (PvE only) Knockdown on hits Down Attack Down Smash 52.45% damage in PvP only Dismount target on
+      hits. Injures target with 100% of the damage of a hit.
+  absolute_black_blood_slaughter:
+    name: 'Absolute: Black Blood Slaughter'
+    input: RMB after Torso Ripper attack 1 or Mutilation LMB during Beast Demolisher
+    keys:
+    - rmb
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: A combo skill that cannot be performed independently. Blasts a dragon's force ahead that is powerful enough
+      to slay gods.
+    notes: A combo skill that cannot be performed independently. Blasts a dragon's force ahead that is powerful enough to
+      slay gods. Attack damage 4408% x1, max 2 hits Critical Hit Rate +50% Maximum 10 targets Forward Guard Knockdown on hits
+      Air Attack Down Attack 53.01% damage in PvP only
+  absolute_black_blood_s_descent:
+    name: 'Absolute: Black Blood''s Descent'
+    input: ↑ + Q Q while moving during Guard
+    keys:
+    - w
+    - q
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Jumps at the enemy in an instant to create a black blood circle around it.
+    notes: Jumps at the enemy in an instant to create a black blood circle around it. Attack damage 3618% x2 Critical Hit
+      Rate +50% Maximum 10 targets Movement Speed +10% for 10 sec when using the skill All Damage Reduction +15 for 10 sec
+      when using the skill No character collision during the skill Super Armor Bound on hits (PvE only) Down Attack 71.78%
+      damage in PvP only
+  absolute_boulder_crush:
+    name: 'Absolute: Boulder Crush'
+    input: ↓ + LMB Hold LMB to continue the skill Performs faster when continued
+    keys:
+    - s
+    - lmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: Hold your battle axe by the base and swing it consecutively with force powerful enough to shatter anything
+      in the front.
+    notes: Hold your battle axe by the base and swing it consecutively with force powerful enough to shatter anything in the
+      front. Attack 1 damage 1935% x2 Attack 2 damage 1935% x2 Attack 3 damage 1935% x2 Critical Hit Rate +50% Maximum 10
+      targets Recover 50 HP per hit Super Armor (Nullified during cooldown) Bound on last attack hits (Nullified during cooldown)
+      Down Attack 77.3% damage in PvP only Damage reduced during cooldown
+  absolute_chokeslam:
+    name: 'Absolute: Chokeslam'
+    input: E F or RMB during skill to headbutt
+    keys:
+    - e
+    - f
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - bound
+    - grab
+    cooldown_ms: 15000
+    description: Rapidly approach the opponent and grab them by the neck.
+    notes: Rapidly approach the opponent and grab them by the neck. Attack damage 490% x2 Maximum 10 targets Increased movement
+      distance Super Armor on Grapple/Grapple fails Knockdown on Grapple Bound on headbutt hits 77.3% damage in PvP only Not
+      affected by effects which increase/decrease Attack and/or Casting Speeds.
+  absolute_claw_reveal:
+    name: 'Absolute: Claw Reveal'
+    input: SPACE
+    keys:
+    - space
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 4000
+    description: A combo skill that rapidly rotates by using the rotation of the previous skill and chops at the enemy.
+    notes: A combo skill that rapidly rotates by using the rotation of the previous skill and chops at the enemy. Attack damage
+      942% x2 Critical Hit Rate +100% Maximum 10 targets Recover 75 WP per hit (Nullified during cooldown) Forward Guard (Nullified
+      during cooldown) Down Attack 77.3% damage in PvP only Attack damage 9660% x1, max 4 hits Critical Hit Rate +100% (PvE
+      only) Maximum 10 targets All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill
+      Critical Hit Rate +30% for 60 sec when using the skill Super Armor Bound on hits Down Attack Down Smash 46.71% damage
+      in PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.
+  absolute_fervor:
+    name: 'Absolute: Fervor'
+    input: RMB during Guard Hold RMB to continue the skill Hold RMB after Claw Reveal Hold F after Frenzy or Strike Down
+    keys:
+    - rmb
+    - f
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 5000
+    description: A successive attack using the shield that can be rapidly used in combos.
+    notes: A successive attack using the shield that can be rapidly used in combos. Attack 1 damage 1464% x1 Attack 2 damage
+      1464% x1 Attack 3 damage 1464% x1 Last attack damage 1464% x2 Critical Hit Rate +50% Maximum 10 targets Forward Guard
+      during attacks 1 and 2 Knockback on attack 3 hits 71.78% damage in PvP only
+  absolute_fierce_disdain:
+    name: 'Absolute: Fierce Disdain'
+    input: ← OR → + RMB Can be used with your jordun
+    keys:
+    - a
+    - d
+    - rmb
+    protection: iframe
+    cc:
+    - stiffness
+    cooldown_ms: 3000
+    description: Simultaneously evade attacks and perform counterattacks while moving sideways quickly.
+    notes: Simultaneously evade attacks and perform counterattacks while moving sideways quickly. Attack damage 2733% x1 Critical
+      Hit Rate +50% Maximum 10 targets Recover 60 WP per hit (Nullified during cooldown) Attack Speed +10% for 10 sec when
+      using the skill Invincible -> Super Armor (Nullified during cooldown) Invincible during the skill (PvE only) Stiffness
+      on hits (Nullified during cooldown) 66.26% damage in PvP only Damage reduced during cooldown
+  absolute_frenzy:
+    name: 'Absolute: Frenzy'
+    input: F Hold F to continue the skill
+    keys:
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Strike the enemy with your adamant body, ignoring the opponent's attack. The fallen opponent becomes an easy
+      prey.
+    notes: Strike the enemy with your adamant body, ignoring the opponent's attack. The fallen opponent becomes an easy prey.
+      Attack 1 damage 869% x2 Attack 2 damage 869% x2 Maximum 10 targets Super Armor (Nullified during cooldown) Bound on
+      attack 1 hits (Nullified during cooldown) Down Attack Down Smash (Nullified during cooldown) 71.78% damage in PvP only
+  absolute_frost_strike:
+    name: 'Absolute: Frost Strike'
+    input: LMB to perform standing attacks ← or → + LMB to perform lateral attacks ↑ + LMB to perform forward attacks LMB
+      while sprinting to perform sprint attacks LMB while jumping forward or jumping while sprinting to perform jump attacks
+    keys:
+    - lmb
+    - a
+    - d
+    - w
+    protection: none
+    cc:
+    - bound
+    description: Stab and slash enemies with your battle axe with this basic attack.
+    notes: Stab and slash enemies with your battle axe with this basic attack. Standing attacks 1 and 2 damage 2261% x1 Standing
+      attack 3 damage 2261% x1 Standing attack 4 damage 2261% x1 Standing last attack damage 2261% x1 Lateral attack damage
+      2261% x1, max 3 hits Forward attacks 1 and 2 damage 2261% x1 Forward attack 3 damage 2261% x1 Jump attack damage 2261%
+      x1 Sprint attack damage 2261% x1 Maximum 10 targets Recover 124 WP per hit Push the target on forward, dash, and jump
+      attack hits (PvE only) Bound on standing attack 4 hits Bound on last attack hits Bound on jump attack hits 77.3% damage
+      in PvP only
+  absolute_juggernaut_smite:
+    name: 'Absolute: Juggernaut: Smite'
+    input: LMB during Juggernaut LMB after Sturdy Step
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - knockback
+    description: Smash the enemy with your shield after approaching the target with Juggernaut.
+    notes: Smash the enemy with your shield after approaching the target with Juggernaut. Attack damage 1624% x1 Maximum 10
+      targets Recover 100 WP per hit Knockback on hits 77.3% damage in PvP only
+  absolute_mountain_slam:
+    name: 'Absolute: Mountain Slam'
+    input: SHIFT + F F after a headbutt during Chokeslam
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 13000
+    description: Slam your battle axe at the opponent, sending out powerful waves.
+    notes: Slam your battle axe at the opponent, sending out powerful waves. Attack damage 2178% x3 Critical Hit Rate +50%
+      Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Increased attack area Super Armor Down Attack 66.26%
+      damage in PvP only
+  absolute_mutilation:
+    name: 'Absolute: Mutilation'
+    input: SHIFT + RMB RMB after a headbutt during Chokeslam
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: A skill of dragon's might, delivering a powerful lateral blow.
+    notes: A skill of dragon's might, delivering a powerful lateral blow. Attack damage 1622% x2, max 2 hits Critical Hit
+      Rate +50% Maximum 10 targets Knockdown on hits Down Attack 57.42% damage in PvP only
+  absolute_omua_s_objurgation:
+    name: 'Absolute: Omua''s Objurgation'
+    input: ↑ + RMB RMB during Rockslide Use after certain skills to strike with your shield
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Leap and smash the ground with powerful force.
+    notes: Leap and smash the ground with powerful force. Attack damage 4524% x2 Critical Hit Rate +20% Maximum 10 targets
+      Recover 20 WP per hit Movement Speed +10% for 10 sec when using the skill All AP -20 for 10 sec on hits Super Armor
+      Bound on hits (PvE only) Down Attack 60.74% damage in PvP only
+  absolute_savage_hack:
+    name: 'Absolute: Savage Hack'
+    input: ↓ + LMB + RMB Hold LMB + RMB to continue the skill
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 5000
+    description: A continuous and nimble attack skill used as you hold the upper helve of battle axe, attacking horizontally.
+    notes: A continuous and nimble attack skill used as you hold the upper helve of battle axe, attacking horizontally. Attack
+      1 damage 2060% x1 Attack 2 damage 2060% x1 Attack 3 damage 2060% x2 Critical Hit Rate +50% Maximum 10 targets Recover
+      100 WP per hit All Damage Reduction -20 for 10 sec on hits Super Armor Stun on last attack hits Down Attack 77.3% damage
+      in PvP only
+  absolute_strike_down:
+    name: 'Absolute: Strike Down'
+    input: ↓ + F Attack if the enemy is in front ↓ + F after attack to continue the skill Only available via a Quick Slot
+      after learning Gate Crasher
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 5000
+    description: Strike down the enemy in front with your battle axe, then kick them away.
+    notes: Strike down the enemy in front with your battle axe, then kick them away. Attack 1 damage 1116% x2 Attack 2 damage
+      1116% x2 Maximum 10 targets Down Attack damage +5% for 10 sec when using the skill Pull in the target on hits (PvE only)
+      Spin the target on hits (PvE only) Super Armor Bound on attack 1 hits Push the target on attack 2 hits (PvE only) Down
+      Attack Down Smash on attack 2 hits 77.3% damage in PvP only
+  absolute_torso_ripper:
+    name: 'Absolute: Torso Ripper'
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: A skill that was made to demolish the opponent's heart.
+    notes: A skill that was made to demolish the opponent's heart. Attack damage 3211% x1, max 2 hits Maximum 10 targets Floating
+      on attack 1 hits Air Attack Air Smash on attack 2 hits Down Smash on attack 2 hits 71.78% damage in PvP only
+  avalanche_strike:
+    name: Avalanche Strike
+    input: SHIFT + LMB SHIFT + LMB after certain skills to perform instantly LMB after Mutilation or Black Blood Slaughter
+      to perform instantly
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: Gather strength to your battle axe and slash horizontally. Those within the attack range will find it difficult
+      to block the attack.
+    notes: Gather strength to your battle axe and slash horizontally. Those within the attack range will find it difficult
+      to block the attack. Attack damage 1422% x2 Attack damage 1244% x4 when fully charged Critical Hit Rate +100% Maximum
+      10 targets All AP +20 for 10 sec when fully charged (Nullified in certain situations) Increased attack area Forward
+      Guard while charging Knockdown on hits Down Attack 66.26% damage in PvP only
+  axe_throw:
+    name: Axe Throw
+    input: ↓ + E Hold ↓ + E to continue the skill
+    keys:
+    - s
+    - e
+    protection: FG
+    cooldown_ms: 17000
+    description: Throw your battle axe at the target with all your might. Aiming can be tricky, but the resulting damage is
+      devastating.
+    notes: Throw your battle axe at the target with all your might. Aiming can be tricky, but the resulting damage is devastating.
+      Attack damage 762% x1, max 3 hits Maximum 7 targets Increased attack range Attack Speed -20% for 5 sec on hits Casting
+      Speed -20% for 5 sec on hits Movement Speed -20% for 5 sec on hits Forward Guard during attack 1 71.78% damage in PvP
+      only
+  beast_demolisher:
+    name: Beast Demolisher
+    input: RMB Hold RMB to continue the skill
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - bound
+    - down_attack
+    description: A basic attack stance, wielding your battle axe two-handedly. Although it is a basic stance, it cannot be
+      taken lightly.
+    notes: A basic attack stance, wielding your battle axe two-handedly. Although it is a basic stance, it cannot be taken
+      lightly. Attack 1 damage 966% x2 Attack 2 damage 966% x2 Attack 3 damage 966% x2 Critical Hit Rate +50% Maximum 10 targets
+      All Damage Reduction -15 for 10 sec on hits Knockback on attack 2 hits Bound on last attack hits Down Attack 71.78%
+      damage in PvP only
+  black_blood_circle:
+    name: Black Blood Circle
+    input: SHIFT + Q LMB to attack instantly
+    keys:
+    - shift
+    - q
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - floating
+    - pull
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 9000
+    description: Instill your battle axe with forces of the earth to create a circle around you. Those who enter your attack
+      range shall pay the price for their actions.
+    notes: Instill your battle axe with forces of the earth to create a circle around you. Those who enter your attack range
+      shall pay the price for their actions. Attack damage 1824% x3 Critical Hit Rate +50% Maximum 7 targets All Evasion -12
+      for 10 sec on hits Recover 100 HP while casting Increased attack area Super Armor Pull in the target on hits (PvE only)
+      Spin the target on hits (PvE only) Floating on hits (PvE only) Air Attack Charging consumes Stamina. Auto-attacks after
+      a certain period of time. 71.78% damage in PvP only Attack 1 damage 5216% x2 Attack 2 damage 5216% x1 Attack 3 damage
+      5216% x4 Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 7 targets All AP +55 for 60 sec
+      when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using
+      the skill Max HP +2000 for 60 sec when using the skill Super Armor Pull in the target on hits (PvE only) Spin the target
+      on hits (PvE only) Knockdown on hits Down Attack Down Smash 52.45% damage in PvP only Dismount target on hits. Injures
+      target with 100% of the damage of a hit.
+  black_blood_slaughter:
+    name: Black Blood Slaughter
+    input: RMB after Torso Ripper attack 1 or Mutilation LMB during Beast Demolisher
+    keys:
+    - rmb
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: A combo skill that cannot be performed independently. Blasts a dragon's force ahead that is powerful enough
+      to slay gods.
+    notes: A combo skill that cannot be performed independently. Blasts a dragon's force ahead that is powerful enough to
+      slay gods. Attack damage 1486% x1, max 2 hits Critical Hit Rate +50% Maximum 10 targets Forward Guard Knockdown on hits
+      Air Attack Down Attack 53.01% damage in PvP only
+  black_blood_s_descent:
+    name: Black Blood's Descent
+    input: ↑ + Q Q while moving during Guard
+    keys:
+    - w
+    - q
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Jumps at the enemy in an instant to create a black blood circle around it.
+    notes: Jumps at the enemy in an instant to create a black blood circle around it. Attack damage 2064% x2 Critical Hit
+      Rate +50% Maximum 7 targets Movement Speed +10% for 10 sec when using the skill All Damage Reduction +12 for 10 sec
+      when using the skill No character collision during the skill Super Armor Bound on hits (PvE only) Down Attack 71.78%
+      damage in PvP only
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+  bone_freezing_wind:
+    name: Bone Freezing Wind
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xi:
+    name: Bone Freezing Wind XI
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xii:
+    name: Bone Freezing Wind XII
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xiii:
+    name: Bone Freezing Wind XIII
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xiv:
+    name: Bone Freezing Wind XIV
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xix:
+    name: Bone Freezing Wind XIX
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xv:
+    name: Bone Freezing Wind XV
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xvi:
+    name: Bone Freezing Wind XVI
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xvii:
+    name: Bone Freezing Wind XVII
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xviii:
+    name: Bone Freezing Wind XVIII
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xx:
+    name: Bone Freezing Wind XX
+    input: Passive
+    protection: none
+    description: As unyielding as Everfrost's winds, your axe swings with unwavering resolve.
+    notes: As unyielding as Everfrost's winds, your axe swings with unwavering resolve. All AP +1
+  bone_freezing_wind_xxi:
+    name: Bone Freezing Wind XXI
+    input: Passive
+    protection: none
+    description: Perceptive sense allows you to strike the enemy's weak point and inflict critical damage.
+    notes: Perceptive sense allows you to strike the enemy's weak point and inflict critical damage. Absorb the lingering
+      malice from Dragon fossils and wield their power for your cause. Use Heating with Dragon Scale Fossil x15 to get Shattered
+      Dragon's Malice . Use Shattered Dragon's Malice to invoke the Dragons' malice as a boon.
+  boulder_crush:
+    name: Boulder Crush
+    input: ↓ + LMB Hold LMB to continue the skill Performs faster when continued
+    keys:
+    - s
+    - lmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: Hold your battle axe by the base and swing it consecutively with force powerful enough to shatter anything
+      in the front.
+    notes: Hold your battle axe by the base and swing it consecutively with force powerful enough to shatter anything in the
+      front. Attack 1 damage 953% x2 Attack 2 damage 953% x2 Attack 3 damage 953% x2 Critical Hit Rate +50% Maximum 7 targets
+      Recover 33 HP per hit Super Armor (Nullified during cooldown) Bound on last attack hits (Nullified during cooldown)
+      Down Attack 77.3% damage in PvP only Damage reduced during cooldown
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  chokeslam:
+    name: Chokeslam
+    input: E F or RMB during skill to headbutt
+    keys:
+    - e
+    - f
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - bound
+    - grab
+    cooldown_ms: 16000
+    description: Rapidly approach the opponent and grab them by the neck.
+    notes: Rapidly approach the opponent and grab them by the neck. Attack damage 310% x2 Maximum 7 targets Increased movement
+      distance Super Armor on Grapple/Grapple fails Knockdown on Grapple Bound on headbutt hits 77.3% damage in PvP only Not
+      affected by effects which increase/decrease Attack and/or Casting Speeds.
+  claw_reveal:
+    name: Claw Reveal
+    input: SPACE
+    keys:
+    - space
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: A combo skill that rapidly rotates by using the rotation of the previous skill and chops at the enemy.
+    notes: A combo skill that rapidly rotates by using the rotation of the previous skill and chops at the enemy. Attack damage
+      695% x2 Critical Hit Rate +100% Maximum 10 targets Recover 60 WP per hit (Nullified during cooldown) Forward Guard (Nullified
+      during cooldown) Down Attack 77.3% damage in PvP only Attack damage 7680% x1, max 4 hits Critical Hit Rate +100% (PvE
+      only) Maximum 10 targets All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill
+      Critical Hit Rate +30% for 60 sec when using the skill Super Armor Bound on hits Down Attack Down Smash 46.71% damage
+      in PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.
+  cleansing_flame:
+    name: Cleansing Flame
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - floating
+    cooldown_ms: 6000
+    description: Spin around, then slash across with a powerful circular swing.
+    notes: Spin around, then slash across with a powerful circular swing. Attack damage 11583% x2 Critical Hit Rate +50% Maximum
+      10 targets All AP -20 for 10 sec on hits Super Armor Floating on hits (PvE only) Down Smash 31.89% damage in PvP only
+      Attack damage 14479% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor Floating on hits Down Smash 31.89% damage
+      in PvP only Dismount target on hits. Injures target with 30% of the damage of a hit.
+  core_cleansing_flame:
+    name: 'Core: Cleansing Flame'
+    input: Passive
+    protection: none
+    cc:
+    - floating
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Cleansing Flame IV after learning this skill: Floating on hits
+      Not applied to Black Spirit skills.'
+  core_dragon_s_maw:
+    name: 'Core: Dragon''s Maw'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Dragon''s Maw III after learning this skill: Knockdown on hits'
+  core_glorious_advance:
+    name: 'Core: Glorious Advance'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Glorious Advance IV after learning this skill: Forward Guard
+      during the skill'
+  core_god_incinerator:
+    name: 'Core: God Incinerator'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to God Incinerator III after learning this skill: Bound on hits
+      Not applied to Black Spirit skills.'
+  core_scornful_slash:
+    name: 'Core: Scornful Slash'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Scornful Slash IV after learning this skill: Forward Guard during
+      the skill'
+  core_searing_fang:
+    name: 'Core: Searing Fang'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Searing Fang III after learning this skill: Bound on attack 1
+      hits'
+  dragon_s_calling:
+    name: Dragon's Calling
+    input: Passive
+    protection: none
+    description: With the dragon's blood within your vein, you are born with formidable strength and tenacious resilience.
+    notes: 'With the dragon''s blood within your vein, you are born with formidable strength and tenacious resilience. Flame
+      of the Calling effects apply on hits. Flame of the Calling effects: - Movement/Attack/Casting Speed -20% for 5 sec -
+      Critical Hit Rate +5% per stack (up to 10 times) Flame of the Calling''s effects do not apply when the skill is on cooldown.
+      On one-handed skill hits - Critical Hit Rate +1 for 20 sec - Recover 100 HP On two-handed skill hits - Critical Hit
+      Rate +2 for 20 sec - Recover 200 HP Recover twice as much on hit with your jordun. However, Frost Strike or Jordun Training
+      hits won''t recover HP. List of one-handed skills - Frost Strike, Fierce Disdain, Merciless Kick, Frenzy, Strike Down,
+      Flow: Low Blow, Rockslide, Axe Throw, Boulder Crush, Savage Hack, Avalanche Strike, Fervor, Juggernaut: Smite, Sturdy
+      Step, Claw Reveal, Chokeslam, Black Blood Circle, Flow: Black Blood Eruption, Black Blood''s Descent, Mountain''s Echo,
+      Sturdy Smite List of two-handed skills - Frost Strike, Beast Demolisher, Mountain Slam, Omua''s Objurgation, Torso Ripper,
+      Mutilation, Black Blood Slaughter, Merciless Smash, Pulverization, Gate Crasher - Jordun Training, Glorious Advance,
+      Searing Fang, Flow: Suppress, Scornful Slash, God Incinerator, Cleansing Flame, Dragon''s Maw, Flow: Howling Light,
+      Flow: To Ashes, Infernal Steps, Fireborne Rupture, Scalding Thorn, Infernal Nemesis, Frigid Wind Succession: Flame of
+      the Calling effects apply on hits. Succession: Flame of the Calling effects: - Movement/Attack/Casting Speed -20% for
+      5 sec - Critical Hit Rate +5% per stack (up to 10 times) Flame of the Calling''s effects do not apply when the skill
+      is on cooldown. On one-handed skill hits - Critical Hit Rate +1 for 20 sec - Recover 200 HP On two-handed skill hits
+      - Critical Hit Rate +2 for 20 sec - Recover 400 HP However, Frost Strike won''t recover HP. List of one-handed skills
+      - Frost Strike, Fierce Disdain, Merciless Kick, Frenzy, Strike Down, Flow: Low Blow, Rockslide, Axe Throw, Boulder Crush,
+      Savage Hack, Avalanche Strike, Fervor, Juggernaut: Smite, Sturdy Step, Claw Reveal, Chokeslam, Black Blood Circle, Flow:
+      Black Blood Eruption, Black Blood''s Descent, Prime: Frigid Wind, Prime: Infernal Nemesis, Mountain''s Echo, Sturdy
+      Smite List of two-handed skills - Frost Strike, Beast Demolisher, Mountain Slam, Omua''s Objurgation, Torso Ripper,
+      Mutilation, Black Blood Slaughter, Merciless Smash, Pulverization, Gate Crasher'
+  dragon_s_maw:
+    name: Dragon's Maw
+    input: SHIFT + LMB Hold SHIFT + LMB to maintain the charging stance
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: Kindle the flames within your jordun, then blast it forward to set enemies ablaze.
+    notes: Kindle the flames within your jordun, then blast it forward to set enemies ablaze. Attack damage 14953% x2 Critical
+      Hit Rate +100% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Forward Guard Knockdown on hits (PvE only)
+      Down Attack 25.07% damage in PvP only
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  elvia_steadfast_corruption:
+    name: 'Elvia: Steadfast Corruption'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Raise your jordun towards the heavens, then strike down hard onto the ground to release your strength.
+    notes: Raise your jordun towards the heavens, then strike down hard onto the ground to release your strength. Attack damage
+      5016% x5 Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only)
+      All AP -20 for 10 sec on hits Recover 60 WP per hit Super Armor during the skill Down Attack 22.53% damage in PvP only
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your jordun
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Tuck and roll to your desired direction.
+    notes: Tuck and roll to your desired direction. Invincible during the skill (PvE only)
+  fervor:
+    name: Fervor
+    input: RMB during Guard Hold RMB to continue the skill Hold RMB after Claw Reveal Hold F after Frenzy or Strike Down
+    keys:
+    - rmb
+    - f
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 5000
+    description: A successive attack using the shield that can be rapidly used in combos.
+    notes: A successive attack using the shield that can be rapidly used in combos. Attack 1 damage 834% x1 Attack 2 damage
+      834% x1 Attack 3 damage 834% x1 Last attack damage 834% x2 Critical Hit Rate +40% Maximum 7 targets Forward Guard during
+      attacks 1 and 2 Knockback on attack 3 hits 71.78% damage in PvP only
+  fierce_disdain:
+    name: Fierce Disdain
+    input: ← OR → + RMB Can be used with your jordun
+    keys:
+    - a
+    - d
+    - rmb
+    protection: iframe
+    cc:
+    - stiffness
+    cooldown_ms: 3000
+    description: Simultaneously evade attacks and perform counterattacks while moving sideways quickly.
+    notes: Simultaneously evade attacks and perform counterattacks while moving sideways quickly. Attack damage 1899% x1 Critical
+      Hit Rate +40% Maximum 7 targets Recover 60 WP per hit (Nullified during cooldown) Attack Speed +10% for 10 sec when
+      using the skill Invincible -> Super Armor (Nullified during cooldown) Invincible during the skill (PvE only) Stiffness
+      on hits (Nullified during cooldown) 66.26% damage in PvP only Damage reduced during cooldown
+  fireborne_rupture:
+    name: Fireborne Rupture
+    input: SPACE
+    keys:
+    - space
+    protection: SA
+    cc:
+    - knockdown
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 4000
+    description: Slam your jordun on the ground to pull, then push enemies away.
+    notes: Slam your jordun on the ground to pull, then push enemies away. Attack damage 6370% x2 Critical Hit Rate +50% Maximum
+      10 targets All AP +20 for 10 sec when using the skill Pull in the target on hits (PvE only) Spin the target on hits
+      (PvE only) Knockdown on hits (PvE only) Down Smash Air Smash 26.3% damage in PvP only Attack 1 damage 14150% x1, max
+      8 hits Attack 2 damage 32072% x3 Extra attack damage 7009% x1, max 4 hits Critical Hit Rate +100% Maximum 10 targets
+      All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50%
+      for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor Bound on attack 1 hits Knockdown
+      on attack 2 hits Down Attack Down Smash on extra attack hits 10.38% damage in PvP only Not affected by effects which
+      increase/decrease Attack and/or Casting Speeds. Dismount target on hits. Injures target with 100% of the damage of a
+      hit.
+  flow_black_blood_eruption:
+    name: 'Flow: Black Blood Eruption'
+    input: LMB or Q after Black Blood Circle or Black Blood's Descent
+    keys:
+    - lmb
+    - q
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Black Blood Circle I], [Black Blood''s Descent I]'
+    notes: 'Preceding Skill: [Black Blood Circle I], [Black Blood''s Descent I] Inflicts Black Blood Circle''s damage Maximum
+      10 targets Recover 167 HP per hit Super Armor Down Attack'
+  flow_howling_light:
+    name: 'Flow: Howling Light'
+    input: LMB OR RMB after Dragon's Maw
+    keys:
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Dragon''s Maw I]'
+    notes: 'Preceding Skill: [Dragon''s Maw I] All damage applies Dragon''s Maw ''s damage x2 Recover 210 HP per hit Super
+      Armor Down Attack Jordun''s Fire attack damage 633% x1, max 6 hits Maximum 10 targets 90 burn damage every 3 sec for
+      18 sec on hits'
+  flow_low_blow:
+    name: 'Flow: Low Blow'
+    input: ↓ + F after Strike Down F after Merciless Kick
+    keys:
+    - s
+    - f
+    protection: none
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Strike Down II]'
+    notes: 'Preceding Skill: [Strike Down II] Applies Strike Down''s damage x1 Down Smash'
+  flow_suppress:
+    name: 'Flow: Suppress'
+    input: RMB after Searing Fang
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    description: 'Preceding Skill: [Searing Fang I]'
+    notes: 'Preceding Skill: [Searing Fang I] Attack damage 9609% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor
+      during the skill Bound on hits Down Attack 34.82% damage in PvP only'
+  flow_to_ashes:
+    name: 'Flow: To Ashes'
+    input: LMB after Cleansing Flame LMB after Frost Slide
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Cleansing Flame III]'
+    notes: 'Preceding Skill: [Cleansing Flame III] Attack damage 8637% x2 Critical Hit Rate +100% Maximum 10 targets Bound
+      on hits Down Attack 31.09% damage in PvP only'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  foretold_encounter:
+    name: Foretold Encounter
+    input: RMB after using Axe Throw RMB while jumping
+    keys:
+    - rmb
+    protection: iframe
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Axe Throw II]'
+    notes: 'Preceding Skill: [Axe Throw II] Forward Guard while moving Invincible during the skill (PvE only)'
+  frenzy:
+    name: Frenzy
+    input: F Hold F to continue the skill
+    keys:
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Strike the enemy with your adamant body, ignoring the opponent's attack. The fallen opponent becomes an easy
+      prey.
+    notes: Strike the enemy with your adamant body, ignoring the opponent's attack. The fallen opponent becomes an easy prey.
+      Attack 1 damage 780% x2 Attack 2 damage 780% x2 Maximum 7 targets Super Armor (Nullified during cooldown) Bound on attack
+      1 hits (Nullified during cooldown) Down Attack Down Smash (Nullified during cooldown) 71.78% damage in PvP only
+  frigid_wind:
+    name: Frigid Wind
+    input: ↑ + RMB RMB after skill to perform slash attacks Hold RMB after slash attack to perform extra attacks RMB after
+      Infernal Nemesis landing to perform slash attacks ↑ + RMB after Neck Impaler or Fireborne Rupture to perform from extra
+      attacks
+    keys:
+    - w
+    - rmb
+    protection: iframe
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Slide forward, then swing your jordun. The swing knocks enemies senseless.
+    notes: Slide forward, then swing your jordun. The swing knocks enemies senseless. Slash attack damage 1777% x2 Extra attack
+      damage 2375% 1, max 3 hits Extra attack Critical Hit Rate +100% Recover 104 WP per hit Super Armor Invincible while
+      concealed Floating on slash attack hits (PvE only) Down Attack Air Attack 73.52% slash attack damage in PvP only 84.03%
+      extra attack damage in PvP only
+  frost_slide:
+    name: Frost Slide
+    input: SHIFT + Direction SHIFT + → or ← or ↓ with your battle axe
+    keys:
+    - shift
+    - d
+    - a
+    - s
+    protection: iframe
+    cooldown_ms: 3000
+    description: Evade enemies by dashing quickly in a direction.
+    notes: Evade enemies by dashing quickly in a direction. Invincible during the skill Movement Speed +10% for 10 sec when
+      using the skill Character collision occurs while moving forward No character collision while moving backward or laterally
+  frost_strike:
+    name: Frost Strike
+    input: LMB to perform standing attacks ← or → + LMB to perform lateral attacks ↑ + LMB to perform forward attacks LMB
+      while sprinting to perform sprint attacks LMB while jumping forward or jumping while sprinting to perform jump attacks
+    keys:
+    - lmb
+    - a
+    - d
+    - w
+    protection: none
+    cc:
+    - bound
+    description: Auto-learn Stab and slash enemies with your battle axe with this basic attack.
+    notes: Auto-learn Stab and slash enemies with your battle axe with this basic attack. Standing attacks 1 and 2 damage
+      2098% x1 Standing attack 3 damage 2098% x1 Standing attack 4 damage 2098% x1 Standing last attack damage 2098% x1 Lateral
+      attack damage 2098% x1, max 3 hits Forward attacks 1 and 2 damage 2098% x1 Forward attack 3 damage 2098% x1 Jump attack
+      damage 2098% x1 Sprint attack damage 2098% x1 Maximum 10 targets Recover 116 WP per hit Push the target on forward,
+      dash, and jump attack hits (PvE only) Bound on standing attack 4 hits Bound on last attack hits Bound on jump attack
+      hits 77.3% damage in PvP only
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  gate_crasher:
+    name: Gate Crasher
+    input: ↓ + F ↓ + F to perform instantly after certain skills
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 7557% x2 Attack 2 damage 7557% x2 Critical
+      Hit Rate +50% Maximum 10 targets Super Armor Knockdown on attack 1 hits (PvE only) Pull in the target on attack 2 hits
+      (PvE only) Down Attack Down Smash on attack 1 hits 30.14% damage in PvP only'
+  glorious_advance:
+    name: Glorious Advance
+    input: ↓ + LMB Hold LMB to continue the skill
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 5000
+    description: Attack enemies by taking quick and short swings with your jordun.
+    notes: Attack enemies by taking quick and short swings with your jordun. Attack 1 damage 4863% x2 Attack 2 damage 4863%
+      x2 Last attack damage 4863% x2 Critical Hit Rate +50% Maximum 10 targets Recover 55 WP per hit Attack Speed +20% for
+      20 sec when using the skill Knockback on attack 2 hits 22.14% damage in PvP only
+  god_incinerator:
+    name: God Incinerator
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Erupt the flames within your jordun upon the surface.
+    notes: Erupt the flames within your jordun upon the surface. Attack damage 6745% x7 Critical Hit Rate +50% Maximum 10
+      targets All Damage Reduction -20 for 10 sec on hits Recover 100 HP per hit Super Armor Bound on hits (PvE only) Down
+      Attack 29.29% damage in PvP only Attack 1 damage 8993% x3 Attack 2 damage 8993% x3 Critical Hit Rate +50% Maximum 10
+      targets All Damage Reduction -20 for 10 sec on hits Recover 100 HP per hit All AP +10 for 20 sec when using the skill
+      All Damage Reduction +10 for 20 sec when using the skill Super Armor Bound on hits (PvE only) Down Attack 29.29% damage
+      in PvP only Dismount target on hits. Injures target with 20% of the damage of a hit.
+  guard:
+    name: Guard
+    input: Q Q to cancel Direction to move during the skill SHIFT + ↑ during the skill to sprint with your battle axe Can
+      be used with your jordun
+    keys:
+    - q
+    - shift
+    - w
+    protection: FG
+    description: Auto-learn Can use the shield for defense. You can move while on guard.
+    notes: Auto-learn Can use the shield for defense. You can move while on guard. All Damage Reduction +20 for 10 sec while
+      on Guard (Effect empowered in Succession or Awakening) Recover 25% of Max WP on blocks Movement Speed +10% for 10 sec
+      while sprinting on Guard Flame of the Calling's Critical Hit Rate +1 on blocks Forward Guard All CC Resistance (except
+      Grapple), including from Back Attacks Guard Gauge damage -40% on Forward Guard. (Nullified with your jordun)
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  infernal_nemesis:
+    name: Infernal Nemesis
+    input: ↓ + F LMB to attack instantly
+    keys:
+    - s
+    - f
+    - lmb
+    protection: iframe
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 18000
+    description: Ascend with the power of the Holy Flame, then swoop down on enemies.
+    notes: Ascend with the power of the Holy Flame, then swoop down on enemies. Attack damage 3308% x2 Maximum 10 targets
+      Recover 200 HP per hit Invincible while moving Super Armor on attacks Knockdown on hits (PvE only) Down Attack Down
+      Smash 78.59% damage in PvP only Fire trail attack damage 4780% x1, max 3 hits Last attack damage 12603% x3 Critical
+      Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using
+      the skill Critical Hit Rate +30% for 60 sec when using the skill Recover 533 HP per hit Super Armor Knockdown on hits
+      Down Attack 30.7% damage in PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.
+  infernal_steps:
+    name: Infernal Steps
+    input: Hold RMB to continue the skill
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - stun
+    - down_attack
+    cooldown_ms: 7000
+    description: Hold your jordun lower on its haft, then move forward slowly, attacking with destructive force.
+    notes: Hold your jordun lower on its haft, then move forward slowly, attacking with destructive force. Attack damage 1847%
+      x2, max 3 hits Critical Hit Rate +50% Maximum 10 targets Recover 75 HP per hit (Nullified during cooldown) Stun on attack
+      2 hits (PvE only) (Nullified during cooldown) Knockback on attack 3 hits (PvE only) (Nullified during cooldown) Down
+      Attack (Nullified during cooldown) 73.32% damage in PvP only
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+  jordun_training:
+    name: Jordun Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    description: Auto-learn Scatter the flames within your jordun with this basic attack.
+    notes: Auto-learn Scatter the flames within your jordun with this basic attack. Standing attacks 1 and 2 damage 1353%
+      x1 Standing attack 3 damage 1353% x1 Lateral attack damage 1353% x1, max 2 hits Forward attacks 1 and 2 damage 1353%
+      x1 Forward attack 3 damage 1353% x1 Jump attack damage 1353% x1 Sprint attack damage 1353% x1 Standing and jumping fire
+      trail attack damage 697% x1, max 2 hits Stun on forward attack 3 Maximum 10 targets Recover 75 WP per hit 20 burn damage
+      every 3 sec for 9 sec on fire trail hits Push the target on hits (PvE only) Down Attack 71.78% damage in PvP only
+  juggernaut:
+    name: Juggernaut
+    input: ↑ + F Can be used with your jordun
+    keys:
+    - w
+    - f
+    protection: FG
+    cooldown_ms: 12000
+    description: Dash to the target while holding up your shield.
+    notes: Dash to the target while holding up your shield. Attack damage 1342% x1, max 12 hits Maximum 10 targets Recover
+      42 WP per hit Movement Speed +10% for 10 sec when using the skill All Damage Reduction -20 for 10 sec on hits Forward
+      Guard 77.3% damage in PvP only Attack damage 1342% x1, max 12 hits Maximum 10 targets Recover 42 WP per hit Movement
+      Speed +10% for 10 sec when using the skill All Damage Reduction -20 for 10 sec on hits Forward Guard All CC Resistance
+      (except Grapple), including from Back Attacks 77.3% damage in PvP only
+  juggernaut_smite:
+    name: 'Juggernaut: Smite'
+    input: LMB during Juggernaut LMB after Sturdy Step
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - knockback
+    description: Smash the enemy with your shield after approaching the target with Juggernaut.
+    notes: Smash the enemy with your shield after approaching the target with Juggernaut. Attack damage 882% x1 Maximum 7
+      targets Recover 100 WP per hit Knockback on hits 77.3% damage in PvP only
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  merciless_kick:
+    name: Merciless Kick
+    input: Hold RMB after using Fierce Disdain
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    cooldown_ms: 6000
+    description: Strike the enemy's abdomen after performing Fierce Disdain.
+    notes: Strike the enemy's abdomen after performing Fierce Disdain. Inflicts Fierce Disdain's damage x1 Recover 60 WP per
+      hit (Nullified during cooldown) Super Armor (Nullified during cooldown) Knockback on hits (PvE only) (Nullified during
+      cooldown) Damage reduced during cooldown
+  merciless_smash:
+    name: Merciless Smash
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 14000
+    description: 'Preceding Skill: [Strike Down III]'
+    notes: 'Preceding Skill: [Strike Down III] Attack damage 2508% x4 Critical Hit Rate +50% Maximum 10 targets Recover 45
+      WP per hit Down Attack damage +5% for 10 sec when using the skill Super Armor Bound on hits (PvE only) Down Attack 59.95%
+      damage in PvP only'
+  mountain_slam:
+    name: Mountain Slam
+    input: SHIFT + F F after a headbutt during Chokeslam
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 14000
+    description: Slam your battle axe at the opponent, sending out powerful waves.
+    notes: Slam your battle axe at the opponent, sending out powerful waves. Attack damage 1824% x3 Critical Hit Rate +50%
+      Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Increased attack area Super Armor Down Attack 66.26%
+      damage in PvP only
+  mountain_s_echo:
+    name: Mountain's Echo
+    input: Can be added to a Quick Slot Can be performed instead when Rockslide I is unavailable
+    protection: SA
+    cooldown_ms: 22000
+    description: 'Preceding Skill: [Sturdy Step III]'
+    notes: 'Preceding Skill: [Sturdy Step III] Attack damage 4452% x2 Critical Hit Rate +50% Maximum 10 targets All Damage
+      Reduction +20 for 10 sec when using the skill Super Armor during the skill 62.63% damage in PvP only'
+  mutilation:
+    name: Mutilation
+    input: SHIFT + RMB RMB after a headbutt during Chokeslam
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: A skill of dragon's might, delivering a powerful lateral blow.
+    notes: A skill of dragon's might, delivering a powerful lateral blow. Attack damage 1304% x2, max 2 hits Critical Hit
+      Rate +50% Maximum 10 targets Knockdown on hits Down Attack 57.42% damage in PvP only
+  neck_impaler:
+    name: Neck Impaler
+    input: E
+    keys:
+    - e
+    protection: SA
+    cc:
+    - knockdown
+    - grab
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Absolute: Chokeslam]'
+    notes: 'Preceding Skill: [Absolute: Chokeslam] Attack damage 597% x2 Maximum 10 targets All Damage Reduction -15 for 10
+      sec on hits Super Armor on Grapple/Grapple fails Knockdown on Grapple Applies only the attack damage on Grapple fails.
+      77.3% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds.'
+  omua_s_blessing:
+    name: Omua's Blessing
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill: [Omua''s Glare]'
+    notes: 'Preceding Skill: [Omua''s Glare] All AP +20 for 30 sec when using the skill Critical Hit Rate +50% for 30 sec
+      when using the skill All Accuracy +60 for 30 sec when using the skill Movement Speed +30% for 30 sec when using the
+      skill Critical Hit Damage +20% for 30 sec when using the skill Super Armor for 10 sec when using the skill Super Armor
+      during the skill'
+  omua_s_circle:
+    name: Omua's Circle
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cooldown_ms: 50000
+    description: 'Preceding Skill: [Omua''s Glare]'
+    notes: 'Preceding Skill: [Omua''s Glare] Attack damage 3731% x1 Maximum 10 targets Recovers 2500 HP when using the skill
+      Super Armor Applies Flame of the Calling ''s all speed reduction debuffs on hits. 67.78% damage in PvP only'
+  omua_s_flame:
+    name: Omua's Flame
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Omua''s Glare]'
+    notes: 'Preceding Skill: [Omua''s Glare] Attack 1 damage 1710% x2 Attack 2 damage 1710% x2 Maximum 10 targets Forward
+      Guard during the skill Down Attack 68.09% damage in PvP only'
+  omua_s_glare:
+    name: Omua's Glare
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: Raises the dragon's blood for a while to gain Omua's strength.
+    notes: Raises the dragon's blood for a while to gain Omua's strength. All AP +20 for 30 sec when using the skill Critical
+      Hit Rate +50% for 30 sec when using the skill All Accuracy +60 for 30 sec when using the skill Movement Speed +30% for
+      30 sec when using the skill Critical Hit Damage +20% for 30 sec when using the skill Super Armor
+  omua_s_objurgation:
+    name: Omua's Objurgation
+    input: ↑ + RMB RMB during Rockslide Use after certain skills to strike with your shield
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Leap and smash the ground with powerful force.
+    notes: Leap and smash the ground with powerful force. Attack damage 3126% x2 Critical Hit Rate +20% Maximum 10 targets
+      Recover 20 WP per hit Movement Speed +10% for 10 sec when using the skill All AP -16 for 10 sec on hits Super Armor
+      Bound on hits (PvE only) Down Attack 71.78% damage in PvP only
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  prime_avalanche_strike:
+    name: 'Prime: Avalanche Strike'
+    input: SHIFT + LMB LMB after Mutilation or Black Blood Slaughter
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Gather strength to your battle axe and slash horizontally. Those within the attack range will find it difficult
+      to block the attack.
+    notes: Gather strength to your battle axe and slash horizontally. Those within the attack range will find it difficult
+      to block the attack. Attack damage 14692% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill
+      Knockdown on hits Down Attack 25.74% damage in PvP only
+  prime_axe_throw:
+    name: 'Prime: Axe Throw'
+    input: ↓ + E Hold ↓ + E to continue the skill
+    keys:
+    - s
+    - e
+    protection: FG
+    cc:
+    - stun
+    cooldown_ms: 13000
+    description: 'Preceding Skills:'
+    notes: 'Preceding Skills: Attack damage 2668% x1, max 3 hits Maximum 10 targets Forward Guard during the skill Attack
+      Speed -20% for 5 sec on hits Casting Speed -20% for 5 sec on hits Movement Speed -20% for 5 sec on hits Stun on attack
+      2 hits 62.69% damage in PvP only'
+  prime_beast_demolisher:
+    name: 'Prime: Beast Demolisher'
+    input: RMB Hold RMB to continue the skill
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    description: 'Preceding Skills:'
+    notes: 'Preceding Skills: Attack 1 damage 2275% x2 Attack 2 damage 2275% x2 Attack 3 damage 2275% x2 Critical Hit Rate
+      +50% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Knockback on attack 2 hits Knockdown on last attack
+      hits Down Attack 63.32% damage in PvP only'
+  prime_black_blood_blessing:
+    name: 'Prime: Black Blood Blessing'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: All Damage Reduction +10'
+  prime_black_blood_circle:
+    name: 'Prime: Black Blood Circle'
+    input: SHIFT + Q LMB during the skill to attack instantly
+    keys:
+    - shift
+    - q
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - floating
+    - pull
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 9000
+    description: Instill your battle axe with forces of the earth to create a circle around you. Those who enter your attack
+      range shall pay the price for their actions.
+    notes: Instill your battle axe with forces of the earth to create a circle around you. Those who enter your attack range
+      shall pay the price for their actions. Attack 1 damage 1126% x1, max 14 hits Attack 2 damage 10237% x3 Critical Hit
+      Rate +50% Maximum 10 targets Recover 200 HP while casting Super Armor All AP -20 for 10 sec on hits Pull in the target
+      on attack 1 hits (PvE only) Spin the target on attack 1 hits (PvE only) Floating on attack 2 hits (PvE only) Air Attack
+      Charging consumes Stamina. Auto-attacks after a certain period of time. 25.78% damage in PvP only Damage Reduction +50%
+      during Super Armor. Attack 1 damage 34256% x2 Attack 2 damage 34256% x1 Attack 3 damage 34256% x4 Critical Hit Rate
+      +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill
+      Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor Pull
+      in the target on hits (PvE only) Spin the target on hits (PvE only) Knockdown on hits Down Attack Down Smash 10.16%
+      damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Dismount target on
+      hits. Injures target with 100% of the damage of a hit.
+  prime_black_blood_slaughter:
+    name: 'Prime: Black Blood Slaughter'
+    input: RMB after Torso Ripper attack 1 or Mutilation SHIFT + RMB after Boulder Crush attack 1 LMB during Beast Demolisher
+    keys:
+    - rmb
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skills:'
+    notes: 'Preceding Skills: Attack damage 8951% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor during the skill
+      Air Attack Down Attack Down Smash 34.77% damage in PvP only'
+  prime_boulder_crush:
+    name: 'Prime: Boulder Crush'
+    input: ↓ + LMB ↓ + LMB after certain skills to perform from attack 3 Hold LMB to continue the skill Performs faster when
+      continued
+    keys:
+    - s
+    - lmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: Hold your battle axe by the base and swing it consecutively with force powerful enough to shatter anything
+      in the front.
+    notes: Hold your battle axe by the base and swing it consecutively with force powerful enough to shatter anything in the
+      front. Attack damage 5086% x2, max 4 hits Critical Hit Rate +50% Maximum 10 targets Recover 75 HP per hit Super Armor
+      (Nullified during cooldown) Bound on attack 1 hits (Nullified during cooldown) Down Attack 46.16% damage in PvP only
+      Damage reduced during cooldown
+  prime_claw_reveal:
+    name: 'Prime: Claw Reveal'
+    input: SPACE
+    keys:
+    - space
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skills:'
+    notes: 'Preceding Skills: Attack damage 6917% x2 Critical Hit Rate +100% Maximum 10 targets Down Attack damage +5% for
+      10 sec when using the skill Recover 125 WP per hit Forward Guard Down Attack 34.77% damage in PvP only Melee attack
+      damage 11521% x3 Ranged attack damage 11521% x1 Critical Hit Rate +100% (PvE only) Maximum 10 targets All AP +30 for
+      60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when
+      using the skill Super Armor Bound on hits Down Attack Down Smash 36.99% damage in PvP only Dismount target on hits.
+      Injures target with 50% of the damage of a hit.'
+  prime_frigid_wind:
+    name: 'Prime: Frigid Wind'
+    input: ↑ + C ↑ + LMB during Juggernaut RMB during the skill to attack
+    keys:
+    - w
+    - c
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 1867% x2 Critical Hit Rate +100% Recover 80 WP per hit Super Armor during the skill
+      Floating on hits Air Attack Down Attack 68.69% damage in PvP only'
+  prime_frostbitten_axe:
+    name: 'Prime: Frostbitten Axe'
+    input: Passive
+    protection: none
+    description: Strike down with your chilled axeblade which paralyzes and increases critical damage dealt to the enemy.
+    notes: Strike down with your chilled axeblade which paralyzes and increases critical damage dealt to the enemy. All AP
+      +4 Max HP +30
+  prime_infernal_nemesis:
+    name: 'Prime: Infernal Nemesis'
+    input: '↓ + C C during Juggernaut LMB to attack instantly Enables Flow: Black Blood Eruption right after instant attack'
+    keys:
+    - s
+    - c
+    - lmb
+    protection: iframe
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 3490% x2 Maximum 10 targets Recover 200 HP per hit Invincible while moving Super
+      Armor on attacks Knockdown on hits (PvE only) Down Attack Down Smash 73.16% damage in PvP only'
+  prime_mountain_slam:
+    name: 'Prime: Mountain Slam'
+    input: SHIFT + F F after a Grappling skill or Headbutt
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Slam your battle axe at the opponent, sending out powerful waves.
+    notes: Slam your battle axe at the opponent, sending out powerful waves. Attack damage 10345% x3 Critical Hit Rate +50%
+      Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Super Armor Down Attack 22.83% damage in PvP only
+  prime_mutilation:
+    name: 'Prime: Mutilation'
+    input: SHIFT + RMB RMB after a headbutt during Chokeslam
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: A skill of dragon's might that delivers a powerful lateral blow.
+    notes: A skill of dragon's might that delivers a powerful lateral blow. Attack damage 8975% x2 Critical Hit Rate +50%
+      Maximum 10 targets Super Armor during the skill Floating on hits (PvE only) Down Attack Air Attack 36.3% damage in PvP
+      only
+  prime_omua_s_aura:
+    name: 'Prime: Omua''s Aura'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skills:'
+    notes: 'Preceding Skills: All AP +20 for 30 sec when using the skill Critical Hit Rate +50% for 30 sec when using the
+      skill All Accuracy +60 for 30 sec when using the skill Movement Speed +30% for 30 sec when using the skill Critical
+      Hit Damage +20% for 30 sec when using the skill Super Armor for 10 sec when using the skill Super Armor'
+  prime_savage_hack:
+    name: 'Prime: Savage Hack'
+    input: Hold LMB + RMB LMB + RMB during Boulder Crush attacks 1 and 3 to perform from attack 2 LMB + RMB during Boulder
+      Crush attack 2 to perform from attack 3 LMB + RMB after certain skills to perform from attack 2
+    keys:
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 7000
+    description: A continuous and nimble attack skill used as you hold the upper helve of the battle axe, attacking horizontally.
+    notes: A continuous and nimble attack skill used as you hold the upper helve of the battle axe, attacking horizontally.
+      Attacks 1, 2, and 3 damage 4438% x2 Last attack damage 4438% x2 Critical Hit Rate +50% Maximum 10 targets Recover 110
+      WP per hit All Damage Reduction -20 for 10 sec on hits Forward Guard Stun on last attack hits (PvE only) Down Attack
+      48.41% damage in PvP only
+  pulverization:
+    name: Pulverization
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Strike Down III]'
+    notes: 'Preceding Skill: [Strike Down III] Attack damage 3475% x1, max 2 hits Critical Hit Rate +50% Maximum 10 targets
+      Down Attack damage +5% for 10 sec when using the skill Forward Guard Knockdown on hits (PvE only) Air Attack Down Attack
+      67.94% damage in PvP only'
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  rockslide:
+    name: Rockslide
+    input: Hold SPACE after Rockslide II for extra attacks Can be used with your jordun
+    keys:
+    - space
+    protection: SA
+    cc:
+    - bound
+    description: Leap towards the enemy in an instant.
+    notes: Leap towards the enemy in an instant. Attack damage 1030% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor
+      Bound on hits
+  savage_hack:
+    name: Savage Hack
+    input: ↓ + LMB + RMB Hold LMB + RMB to continue the skill
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 6000
+    description: A continuous and nimble attack skill used as you hold the upper helve of battle axe, attacking horizontally.
+    notes: A continuous and nimble attack skill used as you hold the upper helve of battle axe, attacking horizontally. Attack
+      1 damage 1153% x1 Attack 2 damage 1153% x1 Attack 3 damage 1153% x2 Critical Hit Rate +50% Maximum 7 targets Recover
+      75 WP per hit All Damage Reduction -20 for 10 sec on hits Super Armor Stun on last attack hits Down Attack 77.3% damage
+      in PvP only
+  scalding_thorn:
+    name: Scalding Thorn
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 5000
+    description: Stab enemies using the lower half of the jordun.
+    notes: Stab enemies using the lower half of the jordun. Attack damage 4599% x2 Maximum 10 targets Recover 100 WP per hit
+      (Nullified during cooldown) Stun on hits (Nullified during cooldown) 30.59% damage in PvP only Attack damage 5750% x2
+      Maximum 10 targets Recover 100 WP per hit Increased attack area Stun on hits 30.58% damage in PvP only Dismount target
+      on hits. Injures target with 10% of the damage of a hit. Not activated during cooldown.
+  scornful_slash:
+    name: Scornful Slash
+    input: ↓ + RMB Hold RMB to continue the skill ↓ + RMB after certain skills to perform attack 2
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    cooldown_ms: 5000
+    description: Strike enemies up into the air with your jordun, leaving a trail of fire.
+    notes: Strike enemies up into the air with your jordun, leaving a trail of fire. Attack 1 fire trail damage 7352% x2 Attack
+      2 fire trail damage 7352% x2 Critical Hit Rate +20% Maximum 10 targets 20 burn damage every 3 sec for 9 sec on fire
+      trail hits Floating on hits 51.08% damage in PvP only
+  searing_fang:
+    name: Searing Fang
+    input: SHIFT + RMB Hold RMB to continue the skill
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Charge forward after smashing down on the ground with your jordun.
+    notes: Charge forward after smashing down on the ground with your jordun. Attack 1 damage 5552% x2 Attack 1 fire trail
+      damage 4887% x2 Attack 2 damage 5552% x2 Critical Hit Rate +50% Maximum 10 targets Recover 105 WP per hit 20 burn damage
+      every 3 sec for 9 sec on fire trail hits All Evasion -12 for 10 sec on hits Super Armor during attack 1 Bound on attack
+      1 hits (PvE only) Down Attack Down Smash on attack 2 hits 48.99% normal attack damage in PvP only 28.09% fire trail
+      attack damage in PvP only
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+  strike_down:
+    name: Strike Down
+    input: ↓ + F Attack if the enemy is in front ↓ + F after attack to continue the skill Only available via a Quick Slot
+      after learning Gate Crasher
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 5000
+    description: Strike down the enemy in front with your battle axe, then kick them away.
+    notes: Strike down the enemy in front with your battle axe, then kick them away. Attack 1 damage 632% x2 Attack 2 damage
+      632% x2 Maximum 7 targets Down Attack damage +5% for 10 sec when using the skill Pull in the target on hits (PvE only)
+      Spin the target on hits (PvE only) Super Armor Bound on attack 1 hits Push the target on attack 2 hits (PvE only) Down
+      Attack Down Smash on attack 2 hits 77.3% damage in PvP only
+  sturdy_smite:
+    name: Sturdy Smite
+    input: 'Can be added to a Quick Slot Can be performed instead of Juggernaut: Smite'
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Sturdy Step III]'
+    notes: 'Preceding Skill: [Sturdy Step III] Attack damage 3481% x2 Critical Hit Rate +50% Maximum 10 targets Forward Guard
+      during the skill All Damage Reduction -20 for 10 sec on hits Bound on hits (PvE only) Down Attack 62.85% damage in PvP
+      only'
+  sturdy_step:
+    name: Sturdy Step
+    input: ↑ + SHIFT ↑ + SHIFT after fully charged Avalanche Strike
+    keys:
+    - w
+    - shift
+    protection: iframe
+    cooldown_ms: 3000
+    description: Hold up your shield and rapidly move a short distance to approach the opponent. Immediately switches to combat
+      stance if there is an enemy in front.
+    notes: Hold up your shield and rapidly move a short distance to approach the opponent. Immediately switches to combat
+      stance if there is an enemy in front. Increased movement distance Forward Guard Invincible during the skill (PvE only)
+  succession_dragon_s_calling:
+    name: 'Succession: Dragon''s Calling'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Succession: Flame of the Calling effects apply on hits. Succession: Flame of the Calling effects:
+      - Movement/Attack/Casting Speed -20% for 5 sec - Critical Hit Rate +5% per stack (up to 10 times) Flame of the Calling''s
+      effects do not apply when the skill is on cooldown. On one-handed skill hits - Critical Hit Rate +1 for 20 sec - Recover
+      200 HP On two-handed skill hits - Critical Hit Rate +2 for 20 sec - Recover 400 HP However, Frost Strike won''t recover
+      HP. List of one-handed skills - Frost Strike, Fierce Disdain, Merciless Kick, Frenzy, Strike Down, Flow: Low Blow, Rockslide,
+      Axe Throw, Boulder Crush, Savage Hack, Avalanche Strike, Fervor, Juggernaut: Smite, Sturdy Step, Claw Reveal, Chokeslam,
+      Black Blood Circle, Flow: Black Blood Eruption, Black Blood''s Descent, Prime: Frigid Wind, Prime: Infernal Nemesis,
+      Mountain''s Echo, Sturdy Smite List of two-handed skills - Frost Strike, Beast Demolisher, Mountain Slam, Omua''s Objurgation,
+      Torso Ripper, Mutilation, Black Blood Slaughter, Merciless Smash, Pulverization, Gate Crasher'
+  succession_guardian_s_glory:
+    name: 'Succession: Guardian''s Glory'
+    input: Passive
+    protection: none
+    description: Valiantly unleash the aura of Omua through your honed battle axe.
+    notes: 'Valiantly unleash the aura of Omua through your honed battle axe. The aura surrounding the Guardian''s battle
+      axe has been empowered. The Guardian now wields greater power and can launch an unceasing barrage of attacks. The following
+      skills will be empowered upon Succession. - Dragon''s Calling You can now instantly channel great power into the battle
+      axe to wield it faster. - You must first reset your skills in order to learn Succession: Guardian''s Glory. - You cannot
+      learn or use awakening skills if you have learned Succession: Guardian''s Glory. - You cannot learn Succession skills
+      if you have learned Absolute skills. - You cannot learn Absolute skills if you have learned Succession skills.'
+  succession_juggernaut:
+    name: 'Succession: Juggernaut'
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: FG
+    cooldown_ms: 12000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 1342% x1, max 12 hits Maximum 10 targets Recover 42 WP per hit Movement Speed +10%
+      for 10 sec when using the skill All Damage Reduction -20 for 10 sec on hits Forward Guard All CC Resistance (except
+      Grapple), including from Back Attacks 77.3% damage in PvP only'
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  torso_ripper:
+    name: Torso Ripper
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: A skill that was made to demolish the opponent's heart.
+    notes: A skill that was made to demolish the opponent's heart. Attack damage 2709% x1, max 2 hits Maximum 10 targets Floating
+      on attack 1 hits Air Attack Air Smash on attack 2 hits Down Smash on attack 2 hits 71.78% damage in PvP only
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+_flags:
+- cannon_attack: Scrape was empty — no description, input, or notes.
+- guild_squad_special_attack: Scrape was empty — no input or notes; description-only entry.
+- revive_target: Scrape was empty — no input or notes; description-only entry.
+- make_bonfire: Scrape missing notes; combat fields N/A (utility skill).
+- cannon_attack: Scrape was empty — no description, input, or notes.
+- guild_squad_special_attack: Scrape was empty — no input or notes; description-only entry.
+- revive_target: Scrape was empty — no input or notes; description-only entry.
+- make_bonfire: Scrape missing notes; combat fields N/A (utility skill).

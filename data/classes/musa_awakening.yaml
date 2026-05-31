@@ -1,6 +1,1580 @@
 # Musa — Awakening
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Musa
 spec: Awakening
-skills: {}
+skills:
+  arrow_grapple:
+    name: Arrow Grapple
+    input: 'SPACE after firing Stub Arrow SPACE after Upper Kick, Blunt Kick, Sweep Kick, or Roundhouse Kick SPACE after Prime:
+      Flame Rush attacks ↑ + F after Flame Rush attacks'
+    keys:
+    - space
+    - w
+    - f
+    protection: none
+    cc:
+    - stun
+    - pull
+    cooldown_ms: 10000
+    description: Your arrow pulls you forward as you deliver an additional hit.
+    notes: Your arrow pulls you forward as you deliver an additional hit. Attack damage 2074% x2 Maximum 10 targets Stun on
+      hits 90% damage in PvP only
+  awakening_haeam_s_crescent_blade:
+    name: 'Awakening: Haeam''s Crescent Blade'
+    input: C
+    keys:
+    - c
+    protection: FG
+    cooldown_ms: 1000
+    description: After learning Haeam's secret method, Musa joins the battle with the mighty Crescent Blade.
+    notes: After learning Haeam's secret method, Musa joins the battle with the mighty Crescent Blade. Switch to your crescent
+      blade. Attacking continued while switching if used during offensive skills. Forward Guard applied while switching.
+  backstep_slash:
+    name: Backstep Slash
+    input: ↓ + SPACE ↓ + SHIFT ↓ + SHIFT with your crescent blade
+    keys:
+    - s
+    - space
+    - shift
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Slash enemies in front while stepping backward.
+    notes: Slash enemies in front while stepping backward. Attack damage 939% x2 Maximum 7 targets Stiffness on hits Down
+      Smash Increased attack area
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+    keys:
+    - hotbar
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  blind_slash:
+    name: Blind Slash
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - floating
+    cooldown_ms: 5000
+    description: Slash enemies upwards while turning your back to them.
+    notes: Slash enemies upwards while turning your back to them. Attack damage 814% x2 Maximum 7 targets Floating on last
+      attack hits Counter Attack
+  blind_thrust:
+    name: Blind Thrust
+    input: SPACE in certain situations ↑ + SPACE to perform forward
+    keys:
+    - space
+    - w
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 6000
+    description: Cancel current attack motion, then stab enemies with your back turned. Can also be used to quickly close
+      the distance to enemies.
+    notes: Cancel current attack motion, then stab enemies with your back turned. Can also be used to quickly close the distance
+      to enemies. Attack damage 1645% x2 Critical Hit Rate +100% Maximum 7 targets Recover 15 WP per hit Critical Hit Rate
+      +30% for 10 sec when using the skill (Nullified during cooldown) All Accuracy -24 for 10 sec on hits (Nullified during
+      cooldown) Push the target on hits (PvE only) Stiffness on hits (Nullified during cooldown) Counter Attack Forward Blind
+      Thrust motion unavailable during cooldown. 40.82% damage in PvP only
+  blooming:
+    name: Blooming
+    input: SHIFT + LMB + RMB Instant activation after Carver, Chase, or forward Blind Thrust Can be used instantly with your
+      crescent blade during forward/backward Chase Cannot be used with Tiger Blade drawn
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: iframe
+    cc:
+    - stun
+    cooldown_ms: 22000
+    description: Summons the Tiger Blade to perform a powerful slash attack.
+    notes: Summons the Tiger Blade to perform a powerful slash attack. Attack damage 1227% x2 Critical Hit Rate +100% Maximum
+      7 targets Invincible at the start of the skill Stun on hits 80% damage in PvP only
+  blooming_phantom:
+    name: 'Blooming: Phantom'
+    input: Auto-activated when using Blooming Cannot be used with Tiger Blade drawn
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 15000
+    description: Use Blooming after activating Tiger Blade, then cut down all enemies in front five times with illusion-inducing
+      speed.
+    notes: Use Blooming after activating Tiger Blade, then cut down all enemies in front five times with illusion-inducing
+      speed. Attack damage 1227% x2 Extra attack damage 948% x4 Critical Hit Rate +30% Maximum 7 targets 20 bleeding damage
+      every 3 sec for 27 sec on hits Target's MP/WP/SP -10 per extra attack hit Stun on attack 1 hits 80% damage in PvP only
+  blunt_kick:
+    name: Blunt Kick
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 7000
+    description: Kick the chin of an enemy in front.
+    notes: Kick the chin of an enemy in front. Attack damage 338% x2 Maximum 5 targets Recover 5 WP per hit Push the target
+      on hits (PvE only) Stiffness on hits (Nullified during cooldown) Counter Attack 81.64% damage in PvP only Damage reduced
+      during cooldown
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  carver:
+    name: Carver
+    input: Hold SHIFT + LMB during Slice Hold SHIFT + LMB while sprinting Hold ↑ + SHIFT + LMB
+    keys:
+    - hold
+    - shift
+    - lmb
+    - w
+    protection: none
+    cc:
+    - floating
+    cooldown_ms: 6000
+    description: Dash towards enemies to cut them down by attacking their weak spots.
+    notes: Dash towards enemies to cut them down by attacking their weak spots. Attack damage 1173% x2 Tiger Blade attack
+      damage 1173% x1, max 2 hits Maximum 6 targets Recover 20 WP per hit (Nullified with Tiger Blade drawn) Floating on hits
+      (Nullified during cooldown) Speed Attack on hits
+  carver_typhoon:
+    name: 'Carver: Typhoon'
+    input: Auto-activated when using Carver
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Carver III]'
+    notes: 'Preceding Skill: [Carver III] Applies Cyclone Slash ''s level damage x2 Applies the Critical Hit Rate of Cyclone
+      Slash ''s extra attack. Maximum 10 targets Floating on hits Air Attack Carver''s Floating effect nullified.'
+  charged_stub_arrow:
+    name: Charged Stub Arrow
+    input: Hold SHIFT + RMB to charge Release RMB to fire after charging
+    keys:
+    - hold
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 8000
+    description: Fire your horn bow charged with your energy.
+    notes: Fire your horn bow charged with your energy. Attack damage 1058% x2 Critical Hit Rate +100% Maximum 5 targets Knockback
+      on hits Consumes 100 Stamina while charging Only available when holding stub arrows 81.64% damage in PvP only
+  charged_stub_arrow_enhanced:
+    name: 'Charged Stub Arrow: Enhanced'
+    input: Hold SHIFT + RMB to charge Release RMB to fire after charging
+    keys:
+    - hold
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 7000
+    description: Fire your Charged Stub Arrow which now hits an even larger area.
+    notes: Fire your Charged Stub Arrow which now hits an even larger area. Attack damage 1680% x2 Critical Hit Rate +100%
+      Maximum 7 targets Knockback on hits Consumes 100 Stamina while charging Only available when holding stub arrows 81.64%
+      damage in PvP only
+  chase:
+    name: Chase
+    input: ↑ + RMB or ↑ + ↑ to move forward ↓ + RMB or ↓ + ↓ to move backward RMB to move backward Can be used with Tiger
+      Blade drawn Can be used instantly with your crescent blade
+    keys:
+    - w
+    - rmb
+    - s
+    protection: iframe
+    cooldown_ms: 3000
+    description: Quickly move forward or backward.
+    notes: Quickly move forward or backward. Character collision occurs while moving forward No character collision while
+      moving backward Increased movement distance Invincible -> Super Armor Invincible during the skill (PvE only) Super Armor
+      during cooldown Consumes 100 Stamina per use during cooldown
+  core_crosscut:
+    name: 'Core: Crosscut'
+    input: Passive
+    protection: none
+    cc:
+    - floating
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Crosscut IV after learning this skill: Floating on attack 2 hits
+      (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_crust_crusher:
+    name: 'Core: Crust Crusher'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Crust Crusher IV after learning this skill: Knockdown on hits'
+    keys:
+    - hotbar
+  core_projection:
+    name: 'Core: Projection'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Projection III after learning this skill: Super Armor during
+      the skill'
+    keys:
+    - hotbar
+  core_pyrostorm:
+    name: 'Core: Pyrostorm'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Pyrostorm III after learning this skill: Bound on hits Not applied
+      to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_searing_slam:
+    name: 'Core: Searing Slam'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Searing Slam III after learning this skill: Super Armor during
+      the skill'
+    keys:
+    - hotbar
+  core_spinner:
+    name: 'Core: Spinner'
+    input: Passive
+    protection: FG
+    cc:
+    - spin
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Spinner IV after learning this skill: Forward Guard during the
+      skill (Nullified during cooldown)'
+    keys:
+    - hotbar
+  counter_assassination:
+    name: Counter Assassination
+    input: Q Hold Q to perform extra slash attacks
+    keys:
+    - q
+    - hold
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 7000
+    description: Swiftly block an attack and perform a powerful swing to mortally wound your foes.
+    notes: Swiftly block an attack and perform a powerful swing to mortally wound your foes. Counter attack damage 722% x2
+      Extra attack damage 722% x2 Maximum 10 targets Forward Guard on counter Attack Speed -20% for 5 sec on hits (Nullified
+      during cooldown) Casting Speed -20% for 5 sec on hits (Nullified during cooldown) Forward Guard during extra attacks
+      (Nullified during cooldown) Knockback on extra attack hits (PvE only) (Nullified during cooldown) 93.89% damage in PvP
+      only Auto-activated if attacked while moving backward
+  crescent_blade_training:
+    name: Crescent Blade Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks
+    keys:
+    - lmb
+    - w
+    protection: none
+    cc:
+    - knockback
+    description: A basic attack to subdue your foes with your crescent blade.
+    notes: A basic attack to subdue your foes with your crescent blade. Attack damage 1514% 1, max 4 hits Forward attack 1
+      damage 1514% x1 Forward attacks 2 and 3 damage 1514% x1 Jump attack damage 1514% x1 Dash attack Damage 1514% x1 Critical
+      Hit Rate +50% Maximum 10 targets Recover 50 WP per hit Knockback on sprinting attack hits Push the target on forward
+      attack hits (PvE only)
+  crosscut:
+    name: Crosscut
+    input: → or ← + LMB Hold → or ← + LMB to continue the skill Can be performed instead of Whirlwind Cut with your blade
+    keys:
+    - d
+    - a
+    - lmb
+    protection: SA
+    cc:
+    - spin
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Dauntlessly dodges enemy attack to slash back.
+    notes: Dauntlessly dodges enemy attack to slash back. Attack 1 damage 1336% x1, max 4 hits Attack 2 damage 3555% x2 (Nullified
+      during cooldown) Critical Hit Rate +50% Maximum 10 targets Recover 125 WP per attack 2 hit (Nullified during cooldown)
+      Attack Speed +10% for 10 sec when using the skill (Nullified during cooldown) Super Armor during the skill (Nullified
+      during cooldown) Spin the target on attack 2 hits (PvE only) Down Attack 93.3% attack 1 damage in PvP only 42.1% attack
+      2 damage in PvP only Blade attack damage 2802% x1, max 4 hits Air Attack Down Attack Applies the blade effect after
+      learning Projection III . 46.65% damage in PvP only
+  crust_crusher:
+    name: Crust Crusher
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    cooldown_ms: 12000
+    description: Engulf the crescent blade with Musa's energy and strike the ground to create destructive waves in all directions.
+    notes: Engulf the crescent blade with Musa's energy and strike the ground to create destructive waves in all directions.
+      Attack damage 10178% x2 Critical Hit Rate +50% Maximum 10 targets Forward Guard during the skill Pull in the target
+      on hits (PvE only) Knockdown on hits (PvE only) Down Attack 37.79% damage in PvP only Attack 1 damage 13400% x4 Attack
+      2 damage 13400% x4 Attack 3 damage 31049% x4 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using
+      the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max
+      HP +2000 for 60 sec when using the skill Super Armor during the skill Knockdown on attack 1 or 3 hits Down Attack 11.2%
+      damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Injures target with
+      100% of the damage of a hit. Dismount target on hits.
+  cyclone_slash:
+    name: Cyclone Slash
+    input: 'Can be added to a Quick Slot Hold LMB + RMB after Whirlwind Cut: Cyclone Hold LMB + RMB after Rising Storm'
+    protection: none
+    cc:
+    - knockback
+    - floating
+    - air_attack
+    cooldown_ms: 10000
+    description: Create a cyclone with your blade that rushes forward.
+    notes: 'Create a cyclone with your blade that rushes forward. Attack damage 683% x1 Extra attack damage 1017% x2 Carver:
+      Typhoon ''s damage 850% Extra attack Critical Hit Rate +10% Maximum 5 targets Increased extra attack area Knockback
+      on hits Floating on extra attack hits Air Attack on extra attack hits'
+    keys:
+    - hotbar
+    - hold
+    - lmb
+    - rmb
+  deep_slice:
+    name: Deep Slice
+    input: Auto-activated during Slice Cannot be used with Tiger Blade drawn
+    protection: none
+    description: Slice deeper into enemies, causing severe wounds.
+    notes: Slice deeper into enemies, causing severe wounds. 15 bleeding damage every 3 sec for 9 sec on hits
+  divider:
+    name: Divider
+    input: E
+    keys:
+    - e
+    protection: SA
+    cc:
+    - knockback
+    description: Consecutively slice enemies with a charged blade.
+    notes: Consecutively slice enemies with a charged blade. Attack damage 1857% 1, max 2 hits Extra attack damage 1658% x2
+      Maximum 7 targets Recover 35 HP per hit Super Armor when used with Tiger Blade drawn Push the target on hits (PvE only)
+      Knockback on attack 2 hits
+  dragon_bite:
+    name: Dragon Bite
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    - knockback
+    - air_attack
+    - down_attack
+    cooldown_ms: 3000
+    description: Focus your energy into a single stabbing attack.
+    notes: Focus your energy into a single stabbing attack. Attack damage 725% x2 Tiger Blade attack damage 444% x1 Tiger
+      Blade spin attack damage 966% x3 Maximum 10 targets Forward Guard Stun on hits (Nullified with Tiger Blade drawn) Knockback
+      on spin attack hits with Tiger Blade drawn Push the target on hits (PvE only) (Nullified with Tiger Blade drawn) Down
+      Attack (Nullified with Tiger Blade drawn) 67.76% normal attack damage in PvP only Attack damage 1290% x2, max 9 hits
+      Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 5 targets All AP +30 for 60 sec when using
+      the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Invincible
+      at the start of the skill Super Armor on attacks Stun on hits Air Attack Counter Attack Speed Attack 51.32% damage in
+      PvP only Injures target with 50% of the damage of a hit. Dismount target on hits.
+  dragon_claw:
+    name: Dragon Claw
+    input: LMB on Dragon Bite hits LMB during Dragon Bite spin attacks with Tiger Blade drawn
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - spin
+    cooldown_ms: 6000
+    description: Perform a powerful spin attack after Dragon Bite.
+    notes: Perform a powerful spin attack after Dragon Bite. Attack damage 1241% x2 Tiger Blade attack damage 1878% x2 Critical
+      Hit Rate +100% Maximum 5 targets Push the target on hits (PvE only) 58.32% normal attack damage in PvP only 70% Tiger
+      Blade attack damage in PvP only
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_immovable_path:
+    name: 'Elvia: Immovable Path'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Spins towards the front with the crescent blade, then cuts diagonally.
+    notes: Spins towards the front with the crescent blade, then cuts diagonally. Attack damage 7830% x3 Critical Hit Rate
+      +100% (PvE only) Maximum 10 targets Recover 20 WP per hit All Damage Reduction -20 for 10 sec on hits (PvE only) All
+      AP -20 for 10 sec on hits Super Armor during the skill Down Attack 23.33% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  eradicate:
+    name: Eradicate
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Leap forward, then instantly slash and stab with your crescent blade.
+    notes: Leap forward, then instantly slash and stab with your crescent blade. Attack damage 4027% x2, max 2 hits Critical
+      Hit Rate +50% Maximum 10 targets All Evasion -12 for 10 sec on hits Super Armor during the skill Down Attack 43.62%
+      damage in PvP only
+  flame_rush:
+    name: Flame Rush
+    input: ↑ + F LMB while moving to attack Can be used via a Quick Slot with your blade
+    keys:
+    - w
+    - f
+    - lmb
+    - hotbar
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Dash with fiery energy and float the enemy ahead.
+    notes: Dash with fiery energy and float the enemy ahead. Attack damage 1041% x2 Critical Hit Rate +100% Maximum 10 targets
+      All Evasion +24 for 10 sec when using the skill Super Armor during the skill Floating on hits (PvE only) Air Attack
+      No collision while moving 78.84% damage in PvP only Attack damage 2776% x2 Critical Hit Rate +100% Maximum 10 targets
+      Increased attack area Increased movement distance All Evasion +24 for 10 sec when using the skill All AP +10 for 20
+      sec when using the skill All AP -10 for 20 sec on hits Super Armor during the skill Floating on hits (PvE only) Air
+      Attack No collision while moving 78.84% damage in PvP only Dismount target on hits. Injures target with 20% of the damage
+      of a hit.
+  flow_backflow:
+    name: 'Flow: Backflow'
+    input: → or ← + RMB
+    keys:
+    - d
+    - a
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - air_attack
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Crosscut I]'
+    notes: 'Preceding Skill: [Crosscut I] Attack damage 8010% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets Super
+      Armor Stiffness on hits (PvE only) Air Attack 43.39% damage in PvP only Blade attack damage 2802% x1, max 4 hits Air
+      Attack Down Attack Applies the blade effect after learning Projection III . 46.65% damage in PvP only'
+  flow_dash_slash:
+    name: 'Flow: Dash Slash'
+    input: Hold LMB after Pyrostorm, Eradicate, or Inferno Slash Can be used via Quick Slot with your blade
+    keys:
+    - hold
+    - lmb
+    - hotbar
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Pyrostorm I]'
+    notes: 'Preceding Skill: [Pyrostorm I] Attack damage 6268% x2 Critical Hit Rate +100% Maximum 10 targets Recover 25 WP
+      per hit All Damage Reduction -20 for 10 sec on hits Knockdown on hits Down Attack 53.65% damage in PvP only Attack damage
+      10028% x2 Critical Hit Rate +100% Maximum 10 targets Increased attack area Recover 40 WP per hit All Damage Reduction
+      -20 for 10 sec on hits Knockdown on hits Down Attack 53.65% damage in PvP only Dismount target on hits. Injures target
+      with 10% of the damage of a hit.'
+  flow_double_down:
+    name: 'Flow: Double Down'
+    input: Hold RMB after Projection SHIFT + RMB if Projection is not available
+    keys:
+    - hold
+    - rmb
+    - shift
+    protection: none
+    cc:
+    - floating
+    - stiffness
+    - air_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Projection I]'
+    notes: 'Preceding Skill: [Projection I] Attack damage applies Projection''s attack damage x2 Extra attack damage applies
+      Projection''s attack damage x1, max 3 hits Floating on hits Stiffness on extra attack hits Air Attack'
+  flow_low_blow:
+    name: 'Flow: Low Blow'
+    input: F after Crust Crusher
+    keys:
+    - f
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    description: 'Preceding Skill: [Crust Crusher I]'
+    notes: 'Preceding Skill: [Crust Crusher I] Attack damage 11729% x2 Critical Hit Rate +100% Maximum 10 targets Recover
+      400 HP per hit Forward Guard Knockback on hits (PvE only) Down Attack Down Smash 37.79% damage in PvP only'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  force_of_the_sword:
+    name: Force of the Sword
+    input: Passive
+    protection: none
+    description: Absorb the energy of your blade to increase your chance of dealing critical attacks.
+    notes: Absorb the energy of your blade to increase your chance of dealing critical attacks. Critical Hit Rate +5%
+    keys:
+    - hotbar
+  forward_roll:
+    name: Forward Roll
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your crescent blade
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Evade with a forward roll maneuver.
+    notes: Evade with a forward roll maneuver. Invincible during the skill (PvE only)
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  gale:
+    name: Gale
+    input: Hold LMB + RMB
+    keys:
+    - hold
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - spin
+    - floating
+    - air_attack
+    cooldown_ms: 10000
+    description: Draw energy into your blade, then deal a series of light attacks.
+    notes: Draw energy into your blade, then deal a series of light attacks. Attacks 1 and 2 damage 1120% x2 Attack 3 damage
+      1866% x2 Maximum 8 targets Push the target on hits (PvE only) Spin the target on attack 3 hits (PvE only) Floating on
+      attack 2 and 3 hits Air Attack
+  gale_slash:
+    name: Gale Slash
+    input: LMB during Pouncing Dragon or Quick Shot to perform an extra hit
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Cyclone Slash II]'
+    notes: 'Preceding Skill: [Cyclone Slash II] Attack 1 damage 3051% x2 Attack 2 damage 3051% x2 Critical Hit Rate +100%
+      Maximum 10 targets Floating on attack 1 and 2 hits Air Attack 52.48% damage in PvP only'
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  inferno_slash:
+    name: Inferno Slash
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Step back quickly then charge energy into your crescent blade and strike enemies up.
+    notes: Step back quickly then charge energy into your crescent blade and strike enemies up. Attack damage 10172% x2 Critical
+      Hit Rate +50% Maximum 10 targets Recover 400 HP per hit Forward Guard during the skill Down Attack Down Smash 32.89%
+      damage in PvP only Blade attack damage 2802% x1, max 4 hits Air Attack Down Attack Applies the blade effect after learning
+      Projection III . 46.65% damage in PvP only
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  inner_conviction:
+    name: Inner Conviction
+    input: Passive
+    protection: none
+    description: Earns the right to learn the skill Musa's Resolve.
+    keys:
+    - hotbar
+  lunar_slash:
+    name: Lunar Slash
+    input: 'LMB after Dragon Claw or Ultimate: Dragon Claw hits Hold LMB to spin twice Cannot be used with Tiger Blade drawn'
+    keys:
+    - lmb
+    - hold
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: Perform two upward slash attacks after Dragon Claw.
+    notes: Perform two upward slash attacks after Dragon Claw. Attack damage 875% x2 Extra attack damage 875% x2 Critical
+      Hit Rate +100% Maximum 7 targets Floating on extra attack hits Air Attack
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  maneuver_training:
+    name: Maneuver Training
+    input: Passive
+    protection: none
+    description: 단련을 통해 더 빠르게 성장할 수 있게 된다.
+    notes: 단련을 통해 더 빠르게 성장할 수 있게 된다. All types of Fitness EXP increased by 20% .
+    keys:
+    - hotbar
+  mountain_divide:
+    name: Mountain Divide
+    input: 'SHIFT + F SHIFT + F after certain skills to perform instantly LMB after One Step Back, Flow: Backflow, Projection,
+      or Flow: Double Down'
+    keys:
+    - shift
+    - f
+    - lmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 6846% x2 Critical Hit Rate +100% Maximum 10 targets
+      Forward Guard during the skill Bound on hits (PvE only) Down Attack Down Smash 44.99% damage in PvP only'
+  musa_spirit:
+    name: Musa Spirit
+    input: SHIFT + E SHIFT + E with Tiger Blade drawn Can be used with your crescent blade
+    keys:
+    - shift
+    - e
+    protection: none
+    cooldown_ms: 15000
+    description: Excellent Musas can focus their minds to increase WP.
+    notes: Excellent Musas can focus their minds to increase WP. Recover 150 WP
+  musa_s_resolve:
+    name: Musa's Resolve
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - stun
+    - pull
+    cooldown_ms: 9000
+    description: The thunderous shout will greatly confuse the enemies nearby.
+    notes: The thunderous shout will greatly confuse the enemies nearby. Attack damage 3758% x2 Critical Hit Rate +100% (PvE
+      only) Maximum 10 targets All AP +20 for 10 sec when using the skill Pull in the target on hits (PvE only) Stun on hits
+      Taunts distant monsters when using the skill. 25.89% damage in PvP only
+  musa_s_soul:
+    name: Musa's Soul
+    input: E
+    keys:
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: Engulf the crescent blade with Musa's soul to make a powerful synergy effect.
+    notes: Engulf the crescent blade with Musa's soul to make a powerful synergy effect. All AP +30 for 30 sec when using
+      the skill All Accuracy +60 for 30 sec when using the skill All Evasion +60 for 30 sec when using the skill Movement
+      Speed +20% for 30 sec when using the skill Super Armor during the skill Crosscut available without WP cost during cooldown
+  nemesis_slash:
+    name: Nemesis Slash
+    input: SPACE after Blind Thrust
+    keys:
+    - space
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 13000
+    description: Perform a slash attack to enemies in front after Blind Thrust.
+    notes: Perform a slash attack to enemies in front after Blind Thrust. Attack damage 1537% x2 Maximum 5 targets Forward
+      Guard during the skill Stiffness on hits (PvE only) 34.99% damage in PvP only
+  one_step_back:
+    name: One Step Back
+    input: ↓ + F Can be used via a Quick Slot with your blade
+    keys:
+    - s
+    - f
+    - hotbar
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Step back while you brandish the crescent blade.
+    notes: Step back while you brandish the crescent blade. Attack damage 5119% x2 Critical Hit Rate +50% (PvE only) Maximum
+      10 targets Recover 40 WP per hit Super Armor during the skill Down Attack No collision while moving Increased attack
+      area after learning Projection III . 37.67% damage in PvP only Blade attack damage 2802% x1, max 4 hits Air Attack Down
+      Attack Applies the blade effect after learning Projection III . 46.65% damage in PvP only
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  pouncing_dragon:
+    name: Pouncing Dragon
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Rising Storm III]'
+    notes: 'Preceding Skill: [Rising Storm III] Attack 1 damage 3084% x2 Attack 2 damage 3084% x2 Critical Hit Rate +50% Maximum
+      10 targets Super Armor during the skill All Damage Reduction -20 for 10 sec on hits Floating on attack 1 hits (PvE only)
+      Air Attack Air Smash 43.15% damage in PvP only'
+  precise_martial_arts:
+    name: Precise Martial Arts
+    input: Passive
+    protection: none
+    description: Each precise technique pierces your enemy's weakness with flawless intent.
+    notes: Each precise technique pierces your enemy's weakness with flawless intent. All AP +5
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  projection:
+    name: Projection
+    input: SHIFT + RMB Can be used via a Quick Slot with your blade
+    keys:
+    - shift
+    - rmb
+    - hotbar
+    protection: iframe
+    cc:
+    - floating
+    - stiffness
+    - air_attack
+    cooldown_ms: 7000
+    description: Realize the crescent blade's energy and project it forward to inflict damage.
+    notes: Realize the crescent blade's energy and project it forward to inflict damage. Attack damage 1298% x2 Extra attack
+      damage 4896% x1, max 3 hits Maximum 10 targets Floating on hits Stiffness on extra attack hits Air Attack 60.65% damage
+      in PvP only 33.12% extra attack damage in PvP only Attack 1 damage 1995% x2, max 2 hits Attack 2 damage 5985% x1, max
+      8 hits Last attack damage 5985% x1 Summon attack damage 3591% x5 Critical Hit Rate +100% (PvE only) Maximum 10 targets
+      All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30%
+      for 60 sec when using the skill Invincible -> Super Armor Floating on hits 53.65% damage in PvP only 99.14% summon attack
+      damage in PvP only Injures target with 50% of the damage of a hit. Dismount target on hits.
+  pyrostorm:
+    name: Pyrostorm
+    input: SHIFT + LMB Hold LMB after Spinner Form 1
+    keys:
+    - shift
+    - lmb
+    - hold
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Lower your stance and attack the enemy's lower half.
+    notes: Lower your stance and attack the enemy's lower half. Attack damage 4477% x3 Extra attack damage 4030% x2 Critical
+      Hit Rate +50% Maximum 10 targets Recover 32 WP per hit Super Armor during the skill Push the target on hits (PvE only)
+      Bound on hits (PvE only) Down Attack 35.34% damage in PvP only Attack damage 5494% x3 Extra attack damage 6856% x2 Critical
+      Hit Rate +50% Maximum 10 targets Increased attack area Recover 88 HP per hit Recover 44 WP per hit Super Armor Push
+      the target on hits (PvE only) Bound on hits Down Attack 30.32% damage in PvP only Dismount target on hits. Injures target
+      with 30% of the damage of a hit.
+  quick_shot:
+    name: Quick Shot
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Rising Storm III]'
+    notes: 'Preceding Skill: [Rising Storm III] Attack damage 2099% 1, max 5 hits Critical Hit Rate +100% Maximum 3 targets
+      Movement Speed -5% for 5 sec on hits Stiffness on hits 75.81% damage in PvP only'
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  retaliation:
+    name: Retaliation
+    input: LMB during Retaliation Stance
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    cooldown_ms: 20000
+    description: Counter with successive slash attacks to enemies in front when struck in Retaliation Stance.
+    notes: Counter with successive slash attacks to enemies in front when struck in Retaliation Stance. Attack damage 816%
+      x2 Critical Hit Rate +100% Maximum 7 targets Recover 10 WP per hit Forward Guard on counter Knockdown on hits
+  retaliation_stance:
+    name: Retaliation Stance
+    input: Q
+    keys:
+    - q
+    protection: FG
+    description: Auto-learn Perform a temporary Forward Guard stance.
+    notes: Auto-learn Perform a temporary Forward Guard stance. Blocks attacks with your weapon Forward Guard
+  retaliation_decapitation:
+    name: 'Retaliation: Decapitation'
+    input: Hold LMB after casting Retaliation
+    keys:
+    - hold
+    - lmb
+    protection: none
+    cooldown_ms: 50000
+    description: Perform another large slash attack after Retaliation.
+    notes: Perform another large slash attack after Retaliation. Attack damage 1218% x2 Critical Hit Rate +100% Maximum 7
+      targets
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  rising_storm:
+    name: Rising Storm
+    input: ↓ + LMB + RMB or SHIFT + Q
+    keys:
+    - s
+    - lmb
+    - rmb
+    - shift
+    - q
+    protection: SA
+    cc:
+    - spin
+    - pull
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: Swing your blade to create a large whirlwind that launches every surrounding enemy into the sky.
+    notes: Swing your blade to create a large whirlwind that launches every surrounding enemy into the sky. Attack damage
+      1808% x3 Critical Hit Rate +30% Maximum 7 targets Spin the target on hits (Nullified in certain situations) Pull in
+      the target on hits (Nullified in certain situations) Floating on hits (Nullified during cooldown) Air Attack Damage
+      reduced during cooldown 69.28% damage in PvP only Attack damage 2070% x5 Critical Hit Rate +100% (PvE only) Critical
+      Hit Rate +50% (PvP only) Maximum 10 targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec
+      when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill
+      Super Armor Floating on hits Air Attack 69.98% damage in PvP only Injures target with 100% of the damage of a hit. Dismount
+      target on hits.
+  rising_storm_blaze:
+    name: 'Rising Storm: Blaze'
+    input: Hold LMB after Rising Storm or Steel Gale
+    keys:
+    - hold
+    - lmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    cooldown_ms: 10000
+    description: Can use Rising Storm twice in a row.
+    notes: 'Can use Rising Storm twice in a row. All damage applies Rising Storm ''s damage x3 Applies Rising Storm ''s number
+      of hit targets Floating on hits Prime: Rising Storm ''s damage x4 Super Armor during the skill Down Attack Down Smash
+      When Rising Storm: Blaze is on cooldown, consuming the Serene Mind buff to perform the skill consumes 50 Stamina. Reduced
+      Rising Storm: Blaze damage if Serene Mind is used during cooldown.'
+  roundhouse_kick:
+    name: Roundhouse Kick
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 7000
+    description: Land a powerful kick into the midsection of all enemies in front, knocking them down.
+    notes: Land a powerful kick into the midsection of all enemies in front, knocking them down. Attack damage 595% x2 Maximum
+      5 targets Recover 5 WP per hit Push the target on hits (PvE only) Knockback on hits (Nullified during cooldown) 85%
+      damage in PvP only Damage reduced during cooldown
+  searing_slam:
+    name: Searing Slam
+    input: F Can be used via a Quick Slot with your blade
+    keys:
+    - f
+    - hotbar
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Divide the earth with your crescent blade loaded with fiery aura.
+    notes: Divide the earth with your crescent blade loaded with fiery aura. Attack damage 7875% x2 Critical Hit Rate +50%
+      Maximum 10 targets Recover 175 HP per hit All Damage Reduction -20 for 10 sec on hits Knockdown on hits Down Attack
+      40.7% damage in PvP only
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  slice:
+    name: Slice
+    input: LMB Can be used with Tiger Blade drawn LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    description: Perform a basic attack with your blade.
+    notes: Perform a basic attack with your blade. Attack damage 2241% x1, max 3 hits Forward attack damage 2241% x1, max
+      3 hits Last attack damage 2241% x1 on standing and forward attacks Tiger Blade attack damage 2988% x1 Maximum 7 targets
+      Recover 23 WP per hit Recover 24 HP per hit with Tiger Blade drawn Recover 40 WP per hit with Tiger Blade drawn Push
+      the target on forward attack hits (PvE only) (Nullified on last attack) Down Attack Air Attack on hits with Tiger Blade
+      drawn 41.99% damage in PvP only 60.3% Tiger Blade attack damage in PvP only
+  spinner:
+    name: Spinner
+    input: '↓ + LMB Hold LMB to continue the skill ↓ + LMB after Crust Crusher, Pyrostorm, Eradicate, Flow: Backflow, Flow:
+      Dash Slash, Searing Slam, One Step Back, Flame Rush, or Counter Assassination''s extra attacks to perform Form 2'
+    keys:
+    - s
+    - lmb
+    - hold
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Repeatedly brandish the Mushinto to oppress the enemy and boost your will power.
+    notes: Repeatedly brandish the Mushinto to oppress the enemy and boost your will power. Form 1 attack 1 damage 2816% x2,
+      max 2 hits Form 1 last attack damage 5660% x2 Form 2 attacks 1, 2, and 3 damage 2816% x2 Form 2 last attack damage 2816%
+      x4 Critical Hit Rate +20% (Nullified during cooldown) Maximum 10 targets Recover 20 WP per hit (Nullified during cooldown)
+      Critical Hit Rate +30% for 10 sec when using the skill (Nullified during cooldown) Stiffness on first hit (Nullified
+      during cooldown) Down Smash on last attack hits 43.85% damage in PvP only Damage reduced during cooldown
+  steel_gale:
+    name: Steel Gale
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - pull
+    - spin
+    - floating
+    - air_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Musa Spirit III]'
+    notes: 'Preceding Skill: [Musa Spirit III] Attack damage 1908% x4 Critical Hit Rate +50% Maximum 10 targets Recover 450
+      HP Recover 17 WP per hit Pull in the target on hits (PvE only) Spin the target on hits (PvE only) Floating on hits Air
+      Attack 58.43% damage in PvP only'
+  storm_slash:
+    name: Storm Slash
+    input: 'LMB during Pouncing Dragon, Rising Storm: Blaze, Mountain Divide to perform'
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - pull
+    - spin
+    - floating
+    - air_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Cyclone Slash II]'
+    notes: 'Preceding Skill: [Cyclone Slash II] Attack damage 3442% x4 Critical Hit Rate +50% Maximum 10 targets Recover 100
+      HP per hit Forward Guard during the skill Pull in the target on hits (PvE only) Spin the target on hits (PvE only) Floating
+      on hits (PvE only) Air Attack 60.65% damage in PvP only'
+  stub_arrow:
+    name: Stub Arrow
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 15000
+    description: Skillfully fire at enemies in front with your horn bow.
+    notes: Skillfully fire at enemies in front with your horn bow. Create 1 stub arrows when first performed. Created stub
+      arrows are held for 180 sec . The stub arrow's attack damage is shown below. Applies cooldown after the last held stub
+      arrow is fired. Attack damage 846% x2 Maximum 4 targets Stiffness on hits 81.64% damage in PvP only
+  stub_arrow_double_shot:
+    name: 'Stub Arrow: Double Shot'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill: [Stub Arrow II]'
+    notes: 'Preceding Skill: [Stub Arrow II] Creates arrow x1 when Stub Arrow is first performed.'
+    keys:
+    - hotbar
+  stub_arrow_evasive_shot:
+    name: 'Stub Arrow: Evasive Shot'
+    input: ← + RMB or → + RMB ← + RMB or → + RMB or ↓ + SHIFT during Charged Stub Arrow while holding stub arrows
+    keys:
+    - a
+    - rmb
+    - d
+    - s
+    - shift
+    protection: iframe
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Stub Arrow II], [Charged Stub Arrow]'
+    notes: 'Preceding Skill: [Stub Arrow II], [Charged Stub Arrow] Attack damage applies Stub Arrow ''s attack damage x2 Applies
+      Stub Arrow ''s number of hit targets Invincible -> Super Armor during the skill No collision while moving Applies Charged
+      Stub Arrow''s effect Invincible at the start of the skill No collision while moving'
+  sweep_kick:
+    name: Sweep Kick
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Make enemies fall over by kicking their legs.
+    notes: Make enemies fall over by kicking their legs. Attack damage 432% x2 Maximum 5 targets Recover 10 WP per hit Bound
+      on hits (Nullified during cooldown) Down Attack 81.64% damage in PvP only Damage reduced during cooldown
+  sword_training:
+    name: Sword Training
+    input: Passive
+    protection: none
+    description: Hone your sword mastery to strengthen your blade.
+    notes: Hone your sword mastery to strengthen your blade. All Evasion +2
+    keys:
+    - hotbar
+  sword_training_xi:
+    name: Sword Training XI
+    input: Passive
+    protection: none
+    description: Hone your sword and physical mastery to strengthen your blade and increase your stamina.
+    notes: Hone your sword and physical mastery to strengthen your blade and increase your stamina. All AP +1 All Evasion
+      +2
+    keys:
+    - hotbar
+  sword_training_xii:
+    name: Sword Training XII
+    input: Passive
+    protection: none
+    description: Hone your sword mastery to strengthen your blade.
+    notes: Hone your sword mastery to strengthen your blade. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  sword_training_xiii:
+    name: Sword Training XIII
+    input: Passive
+    protection: none
+    description: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate.
+    notes: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate. All AP +1 All Evasion
+      +2
+    keys:
+    - hotbar
+  sword_training_xiv:
+    name: Sword Training XIV
+    input: Passive
+    protection: none
+    description: Hone your sword mastery to strengthen your blade.
+    notes: Hone your sword mastery to strengthen your blade. All Evasion +2
+    keys:
+    - hotbar
+  sword_training_xix:
+    name: Sword Training XIX
+    input: Passive
+    protection: none
+    description: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate.
+    notes: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate. All AP +1 All Evasion
+      +2
+    keys:
+    - hotbar
+  sword_training_xv:
+    name: Sword Training XV
+    input: Passive
+    protection: none
+    description: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate.
+    notes: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate. All AP +1 All Evasion
+      +2
+    keys:
+    - hotbar
+  sword_training_xvi:
+    name: Sword Training XVI
+    input: Passive
+    protection: none
+    description: Hone your sword mastery to strengthen your blade.
+    notes: Hone your sword mastery to strengthen your blade. All Evasion +2
+    keys:
+    - hotbar
+  sword_training_xvii:
+    name: Sword Training XVII
+    input: Passive
+    protection: none
+    description: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate.
+    notes: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate. All AP +1 All Evasion
+      +2
+    keys:
+    - hotbar
+  sword_training_xviii:
+    name: Sword Training XVIII
+    input: Passive
+    protection: none
+    description: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate.
+    notes: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate. All AP +1 All Evasion
+      +2
+    keys:
+    - hotbar
+  sword_training_xx:
+    name: Sword Training XX
+    input: Passive
+    protection: none
+    description: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate.
+    notes: Hone your sword and physical mastery to strengthen your blade and increase your evasion rate. All AP +1 All Evasion
+      +2
+    keys:
+    - hotbar
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tiger_blade:
+    name: Tiger Blade
+    input: Can be added to a Quick Slot
+    protection: iframe
+    cooldown_ms: 150000
+    description: Draw the Tiger Blade, a manifestation of your resolve, in your left hand. With the Tiger Blade in hand, only
+      the thought of slashing down your foes comes to mind.
+    notes: 'Draw the Tiger Blade, a manifestation of your resolve, in your left hand. With the Tiger Blade in hand, only the
+      thought of slashing down your foes comes to mind. Draw your Tiger Blade and unleash a flurry of attacks with dual swords
+      for 30 sec . Available Skills: Slice, Dragon Bite, Dragon Claw, Ultimate: Dragon Claw, Carver, Whirlwind Cut, Divider,
+      Prime: Gale, Prime: Blind Slash, Prime: Sea Tornado Invincible at the start of the skill Super Armor during all actions
+      with Tiger Blade drawn Invincible once skill ends All Evasion +24 for 30 sec when using the skill Attack Speed +23%
+      for 31 sec when using the skill Movement Speed +23% for 31 sec when using the skill'
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  twister:
+    name: Twister
+    input: SPACE in certain situations
+    keys:
+    - space
+    protection: none
+    cc:
+    - spin
+    - floating
+    - air_attack
+    cooldown_ms: 4000
+    description: Quickly brandish your crescent blade to spin the target and prepare to land a critical hit.
+    notes: Quickly brandish your crescent blade to spin the target and prepare to land a critical hit. Attack damage 4688%
+      x2 Critical Hit Rate +50% (Nullified during cooldown) Maximum 10 targets Recover 50 WP per hit (Nullified during cooldown)
+      Spin the target on hits (PvE only) (Nullified during cooldown) Floating on hits (Nullified during cooldown) Air Attack
+      Damage reduced during cooldown 24.96% damage in PvP only
+  ultimate_blind_slash:
+    name: 'Ultimate: Blind Slash'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 10000
+    description: Slash enemies upwards with the power of the Rising Storm while turning your back to them.
+    notes: Slash enemies upwards with the power of the Rising Storm while turning your back to them. Attack damage 1222% x2
+      Maximum 7 targets Floating on last attack hits Air Attack Counter Attack
+  ultimate_blunt_kick:
+    name: 'Ultimate: Blunt Kick'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 7000
+    description: Kick the chin of an enemy in front.
+    notes: Kick the chin of an enemy in front. Attack damage 452% x2 Maximum 7 targets Recover 5 WP per hit Increased Attack
+      Speed Push the target on hits (PvE only) Stiffness on hits (Nullified during cooldown) Counter Attack 81.64% damage
+      in PvP only Damage reduced during cooldown
+  ultimate_dragon_claw:
+    name: 'Ultimate: Dragon Claw'
+    input: LMB on Dragon Bite hits LMB during Dragon Bite spin attacks with Tiger Blade drawn
+    keys:
+    - lmb
+    protection: none
+    cooldown_ms: 5000
+    description: Enhance the power of Dragon Claw to attack in a wider area.
+    notes: Enhance the power of Dragon Claw to attack in a wider area. Attack damage 1670% x2 Tiger Blade attack damage 2165%
+      x2 Critical Hit Rate +100% Maximum 5 targets Push the target on hits (PvE only) Increased attack area 58.32% normal
+      attack damage in PvP only 70% Tiger Blade attack damage in PvP only
+  ultimate_gale:
+    name: 'Ultimate: Gale'
+    input: Auto-activated when using Gale
+    protection: none
+    description: 'Preceding Skill: [Gale V]'
+    notes: 'Preceding Skill: [Gale V] All AP +20 for 10 sec when using the skill Increased attack area'
+  ultimate_musa_spirit:
+    name: 'Ultimate: Musa Spirit'
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - pull
+    - spin
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Musa Spirit III]'
+    notes: 'Preceding Skill: [Musa Spirit III] Maximum 10 targets Recover 450 HP Critical Hit Rate +30% for 10 sec when using
+      the skill Pull in the target on hits (PvE only) Spin the target on hits (PvE only)'
+  ultimate_nemesis_slash:
+    name: 'Ultimate: Nemesis Slash'
+    input: Auto-activated when using Nemesis Slash
+    protection: FG
+    description: Perform a whirlwind attack during Nemesis Slash.
+    notes: Perform a whirlwind attack during Nemesis Slash. Upon learning Attack damage 1248% x3 Maximum 7 targets Recover
+      200 HP per hit Forward Guard during the skill 34.99% damage in PvP only Upon learning Attack damage 3120% x3 Critical
+      Hit Rate +50% Maximum 10 targets Recover 300 HP per hit Forward Guard during the skill 34.99% damage in PvP only
+  ultimate_roundhouse_kick:
+    name: 'Ultimate: Roundhouse Kick'
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 7000
+    description: Land a powerful kick into the midsection of all enemies in front, knocking them down.
+    notes: Land a powerful kick into the midsection of all enemies in front, knocking them down. Attack damage 973% x2 Maximum
+      7 targets Recover 15 WP per hit Increased attack area Push the target on hits (PvE only) Knockdown on hits (Nullified
+      during cooldown) Air Attack 85% damage in PvP only Damage reduced during cooldown
+  ultimate_sweep_kick:
+    name: 'Ultimate: Sweep Kick'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Make enemies fall over by kicking their legs.
+    notes: Make enemies fall over by kicking their legs. Attack damage 555% x2 Maximum 7 targets Recover 10 WP per hit Increased
+      attack area Increased Attack Speed Bound on hits (Nullified during cooldown) Down Attack 81.64% damage in PvP only Damage
+      reduced during cooldown
+  ultimate_upper_kick:
+    name: 'Ultimate: Upper Kick'
+    input: Hold F
+    keys:
+    - hold
+    - f
+    protection: none
+    cc:
+    - spin
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: KIck your enemy upwards to launch them into the air.
+    notes: KIck your enemy upwards to launch them into the air. Attack damage 433% x2 Maximum 7 targets Recover 5 WP per hit
+      Increased attack area Spin the target on hits (PvE only) Floating on hits (Nullified during cooldown) Air Attack 87.47%
+      damage in PvP only Damage reduced during cooldown
+  ultimate_whirlwind_cut:
+    name: 'Ultimate: Whirlwind Cut'
+    input: Auto-activated with last attacks of Whirlwind Cut Cannot be used with Tiger Blade drawn
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 8000
+    description: Inflict Stiffness on enemies with Whirlwind Cut's last attack hits.
+    notes: Inflict Stiffness on enemies with Whirlwind Cut's last attack hits. Stiffness on hits
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  upper_kick:
+    name: Upper Kick
+    input: Hold F
+    keys:
+    - hold
+    - f
+    protection: none
+    cc:
+    - spin
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: KIck your enemy upwards to launch them into the air.
+    notes: KIck your enemy upwards to launch them into the air. Attack damage 302% x2 Maximum 5 targets Recover 5 WP per hit
+      Spin the target on hits (PvE only) Floating on hits (Nullified during cooldown) Air Attack 87.47% damage in PvP only
+      Damage reduced during cooldown
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  whirlwind_cut:
+    name: Whirlwind Cut
+    input: ← + LMB or → + LMB Can use consecutively Can be used with Tiger Blade drawn
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - spin
+    description: Spin laterally while slashing with Whirlwind Cut up to three times in a row.
+    notes: Spin laterally while slashing with Whirlwind Cut up to three times in a row. Attack damage 1784% x1, max 3 hits
+      Maximum 7 targets All Damage Reduction -10 for 10 sec on hits Recover 90 WP per hit Recover 36 HP per hit with Tiger
+      Blade drawn Recover 30 WP per hit with Tiger Blade drawn
+  whirlwind_cut_cyclone:
+    name: 'Whirlwind Cut: Cyclone'
+    input: Hold LMB + RMB in any direction on Whirlwind Cut attack 2 Cannot be used with Tiger Blade drawn
+    keys:
+    - hold
+    - lmb
+    - rmb
+    protection: none
+    cooldown_ms: 15000
+    description: Create a whirlwind in front of you with the rotating motion of Whirlwind Cut.
+    notes: Create a whirlwind in front of you with the rotating motion of Whirlwind Cut. Attack damage 2015% x2 Applies Whirlwind
+      Cut 's number of hit targets All Damage Reduction -10 for 10 sec on hits
+_flags:
+- core_crosscut: Passive — no keybind.
+- core_crust_crusher: Passive — no keybind.
+- core_projection: Passive — no keybind.
+- core_pyrostorm: Passive — no keybind.
+- core_searing_slam: Passive — no keybind.
+- core_spinner: Passive — no keybind.
+- force_of_the_sword: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- inner_conviction: Passive — no keybind.
+- maneuver_training: Passive — no keybind.
+- precise_martial_arts: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- stub_arrow_double_shot: Passive — no keybind.
+- sword_training: Passive — no keybind.
+- sword_training_xi: Passive — no keybind.
+- sword_training_xii: Passive — no keybind.
+- sword_training_xiii: Passive — no keybind.
+- sword_training_xiv: Passive — no keybind.
+- sword_training_xix: Passive — no keybind.
+- sword_training_xv: Passive — no keybind.
+- sword_training_xvi: Passive — no keybind.
+- sword_training_xvii: Passive — no keybind.
+- sword_training_xviii: Passive — no keybind.
+- sword_training_xx: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

@@ -1,6 +1,1511 @@
 # Striker — Awakening
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Striker
 spec: Awakening
-skills: {}
+skills:
+  adamantine:
+    name: Adamantine
+    input: RMB Performs a rear attack when used during forward Flash Step
+    keys:
+    - rmb
+    - a
+    protection: FG
+    cc:
+    - stun
+    cooldown_ms: 4000
+    description: Perform a heavy shoulder charge against enemies.
+    notes: Perform a heavy shoulder charge against enemies. Attack damage 1106% x2 Critical Hit Rate +100% Maximum 5 targets
+      Recover 60 WP per hit Forward Guard during the skill (Nullified during cooldown) Stun on hits (Nullified during cooldown)
+      Damage reduced during cooldown 71.35% damage in PvP only
+  ankle_hook:
+    name: Ankle Hook
+    input: F after forward attack with Adamantine Hold F to perform a kick
+    keys:
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Trip the target at the ankle, then connect with your elbow to incur great damage. Can deal additional damage
+      with a strong kick in certain cases.
+    notes: Trip the target at the ankle, then connect with your elbow to incur great damage. Can deal additional damage with
+      a strong kick in certain cases. Attack 1 damage 1997% x1 Attack 2 damage 1997% x1 Extra attack damage 1331% x2 Maximum
+      7 targets Bound on attack 1 hits Down Attack 72.64% damage in PvP only
+  autumn_blaze:
+    name: Autumn Blaze
+    input: LMB
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Strike your opponent's vital points, then strike upwards.
+    notes: Strike your opponent's vital points, then strike upwards. Attack 1 damage 4637% x1 Last attack damage 4637% x2
+      Critical Hit Rate +100% Maximum 10 targets Down Attack damage +10% for 10 sec when using the skill Forward Guard during
+      the skill Floating on last attack hits (PvE only) Air Attack Down Attack 34.61% damage in PvP only Attack damage 943%
+      x2 Maximum 10 targets 24.97% damage in PvP only
+  awakening_enlightened_gardbrace:
+    name: 'Awakening: Enlightened Gardbrace'
+    input: C SHIFT + C to perform Spiral Cannon and switch to gardbrace from gauntlet mode SHIFT + C to perform Knee Hammer
+      and switch to gauntlet from gardbrace mode.
+    keys:
+    - c
+    - shift
+    protection: FG
+    cooldown_ms: 1000
+    description: A sudden flow of energy overcomes Striker, making him tap into his inner energy.
+    notes: A sudden flow of energy overcomes Striker, making him tap into his inner energy. Switch to your gardbrace. Attacking
+      continued while switching if used during offensive skills. Forward Guard applied while switching.
+  battle_cry:
+    name: Battle Cry
+    input: ↓ + RMB Hold F after Infernal Destruction ↓ during the skill to evade backward
+    keys:
+    - s
+    - rmb
+    - f
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Infernal Destruction I]'
+    notes: 'Preceding Skill: [Infernal Destruction I] Attack damage 5112% x4 Last attack damage 5858% x1 Critical Hit Rate
+      +50% Maximum 10 targets Recover 224 HP per hit Super Armor during the skill Invincible while evading backward Stun on
+      first hit Stun on last attack hits Down Attack 32.06% damage in PvP only'
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+  bloody_fang:
+    name: Bloody Fang
+    input: Passive Auto-activated when using skills consuming Martial Spirits
+    protection: none
+    description: Move your hands and feet like sharp fangs each time you use your Martial Spirit.
+    notes: 'Move your hands and feet like sharp fangs each time you use your Martial Spirit. Applies the following effects
+      when using a Martial Spirit consuming skill to increase damage or Flow: Prey Hunt in Succession: Critical Hit Rate +30%
+      for 10 sec when using the skill'
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  combo_final_blow:
+    name: 'Combo: Final Blow'
+    input: 'LMB after using Combo: Venom Fang'
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Flow: Explosive Blow I]'
+    notes: 'Preceding Skill: [Flow: Explosive Blow I] All damage applies Flow: Explosive Blow ''s damage x2 Applies Flow:
+      Explosive Blow ''s number of hit targets Recover 30 WP per hit Down Attack Down Smash All damage applies Flow: Explosive
+      Blow ''s damage x2 All Discharge Energy damage applies Crimson Fang ''s Discharge Energy damage x2 Maximum 10 targets
+      Recover 35 WP per hit Down Attack Down Smash'
+  combo_hurricane:
+    name: 'Combo: Hurricane'
+    input: F after Crimson Fang Hold F to perform kicks consecutively F after Taebaek Kick to perform attack 2
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - floating
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Crimson Fang I]'
+    notes: 'Preceding Skill: [Crimson Fang I] All attack 1 damage applies Crimson Fang ''s damage x1.5 x2 All attack 2 damage
+      applies Crimson Fang ''s damage x2 x2 Applies Crimson Fang ''s number of hit targets Recover 35 WP per hit Stiffness
+      on attack 1 hits Floating on attack 2 hits Down Attack All attack 1 damage applies Crimson Fang ''s damage x1 x2 All
+      attack 2 damage applies Crimson Fang ''s damage x1.34 x2 Applies Crimson Fang ''s number of hit targets Recover 35 WP
+      per hit Stiffness on attack 1 hits Floating on attack 2 hits Down Attack'
+  combo_venom_fang:
+    name: 'Combo: Venom Fang'
+    input: 'LMB after using Flow: Explosive Blow'
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Flow: Explosive Blow I]'
+    notes: 'Preceding Skill: [Flow: Explosive Blow I] All damage applies Flow: Explosive Blow ''s damage x2 Applies Flow:
+      Explosive Blow ''s number of hit targets Recover 20 WP per hit Attack Speed -10% for 5 sec on hits Casting Speed -10%
+      for 5 sec on hits Push the target on hits (PvE only) Down Attack'
+  core_endless_explosion:
+    name: 'Core: Endless Explosion'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Endless Explosion III after learning this skill: Forward Guard
+      during the skill (Nullified during cooldown)'
+  core_infernal_destruction:
+    name: 'Core: Infernal Destruction'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Infernal Destruction IV after learning this skill: Super Armor
+      during the skill (Nullified during cooldown)'
+  core_rampaging_predator:
+    name: 'Core: Rampaging Predator'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Rampaging Predator III after learning this skill: Stun on hits'
+  core_skull_crusher:
+    name: 'Core: Skull Crusher'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Skull Crusher IV after learning this skill: Knockdown on hits
+      Not applied to Black Spirit skills.'
+  core_spiral_cannon:
+    name: 'Core: Spiral Cannon'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Spiral Cannon III after learning this skill: Super Armor during
+      the skill (Nullified during cooldown)'
+  core_ultimate_crush:
+    name: 'Core: Ultimate Crush'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Ultimate Crush IV after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown) Not applied to Black Spirit skills.'
+  crimson_fang:
+    name: Crimson Fang
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    - spin
+    cooldown_ms: 4000
+    description: Deal quick blows with your elbow to immobilize your foes.
+    notes: Deal quick blows with your elbow to immobilize your foes. Attack damage 769% x2 Maximum 7 targets Recover 20 WP
+      per hit Forward Guard during the skill Spin the target on hits (PvE only) Stiffness on hits (PvE only) Down Attack
+  crouching_wolf:
+    name: Crouching Wolf
+    input: SPACE
+    keys:
+    - space
+    protection: SA
+    cc:
+    - pull
+    - spin
+    cooldown_ms: 5000
+    description: Release a burst of energy to draw in enemies and gain powerful strength momentarily.
+    notes: Release a burst of energy to draw in enemies and gain powerful strength momentarily. Maximum 5 targets Recovers
+      100 WP when using the skill Attack Speed +10% for 10 sec when using the skill Attack Speed +20% for 20 sec when using
+      the skill with 3 Martial Spirits Super Armor during the skill Invincible while evading backward Pull in the target on
+      hits (PvE only) Spin the target on hits (PvE only) Taunts faraway enemies when using the skill. Applies energy explosion
+      damage when using Wolf's Fang, Wolf's Explosive Fangs, or Rage Hammer. No collision while evading backward Maximum 10
+      targets Recovers 500 HP when using the skill Recovers 100 WP when using the skill Attack Speed +10% for 10 sec when
+      using the skill Attack Speed +20% for 20 sec when using the skill with 3 Martial Spirits Gain Martial Spirit by consuming
+      Stamina upon charging. Super Armor during the skill Invincible while evading backward Pull in the target on hits (PvE
+      only) Spin the target on hits (PvE only) Taunts faraway enemies when using the skill. Applies energy explosion damage
+      when using Wolf's Fang, Wolf's Explosive Fangs, or Rage Hammer. No collision while evading backward
+  descent_of_fury:
+    name: Descent of Fury
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: Instantly amplifies the power of your gardbrace, thereby releasing the ultimate power.
+    notes: Instantly amplifies the power of your gardbrace, thereby releasing the ultimate power. Recovers 500 HP when using
+      the skill All AP +35 for 30 sec when using the skill All Damage Reduction +50 for 30 sec when using the skill All Evasion
+      +60 for 30 sec when using the skill Attack Speed +30% for 30 sec when using the skill Super Armor during the skill Super
+      Armor while moving or sprinting with your gardbrace.
+  double_flash:
+    name: Double Flash
+    input: Passive
+    protection: iframe
+    description: 'Preceding Skill: [Flash Step II]'
+    notes: 'Preceding Skill: [Flash Step II] Flash Step can be continued 1 more time after learning Flash Step II Flash Step
+      can be continued up to 2 more times after learning Flash Step III Super Armor when using the skill Cannot continue Flash
+      Step when consuming Martial Spirits. Invincible during the skill (PvE only)'
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  echo_spirit:
+    name: Echo Spirit
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - stun
+    cooldown_ms: 12000
+    description: Summon echoes of your spiritual self who shall deal powerful combo attacks upon your foes.
+    notes: Summon echoes of your spiritual self who shall deal powerful combo attacks upon your foes. Attack damage 2107%
+      x8 Critical Hit Rate +50% Maximum 10 targets Super Armor during the skill Invincible while moving Stun on hits (PvE
+      only) 57.49% damage in PvP only Attack damage 4840% x10 Critical Hit Rate +100% (PvE only) Maximum 10 targets All AP
+      +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60
+      sec when using the skill Super Armor -> Invincible -> Super Armor 53.42% damage in PvP only Injures target with 50%
+      of the damage of a hit. Dismount target on hits.
+  elvia_predatory_instincts:
+    name: 'Elvia: Predatory Instincts'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Gather strength while charging forward, then smash upwards with your fist.
+    notes: Gather strength while charging forward, then smash upwards with your fist. Attack damage 7486% x3 Critical Hit
+      Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10 sec
+      on hits Recover 94 WP per hit Super Armor during the skill Down Attack 23.59% damage in PvP only
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  endless_explosion:
+    name: Endless Explosion
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Unleash your explosive fury in a frontal combo attack.
+    notes: Unleash your explosive fury in a frontal combo attack. Attacks 1, 2, and 3 damage 3199% x2 Attack 4 damage 3199%
+      x2 Critical Hit Rate +20% Maximum 10 targets Recover 200 HP per hit (Nullified during cooldown) Push the target on hits
+      (PvE only) Knockback on attack 2 hits (Nullified during cooldown) Down Attack Air Attack Damage reduced during cooldown
+      37.29% damage in PvP only Attack damage 1132% x1, max 4 hits Maximum 10 targets Down Attack Summon effect nullified
+      during cooldown 24.97% damage in PvP only
+  endless_fight:
+    name: Endless Fight
+    input: Hold SPACE during Crouching Wolf LMB during Ferocious Assault or Spiral Cannon LMB after Endless Explosion's last
+      attack
+    keys:
+    - space
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 4000
+    description: Crouch down, then dash forward with the momentum to deal a powerful combo.
+    notes: Crouch down, then dash forward with the momentum to deal a powerful combo. Attack damage 3057% x2 Critical Hit
+      Rate +50% Maximum 10 targets Recover 60 WP per hit Stiffness on hits Down Attack Down Smash Upon obtaining at least
+      Martial Spirit x2 , automatically consumes Martial Spirit x1 and increases damage. 46.46% damage in PvP only
+  enhanced_mass_destruction:
+    name: 'Enhanced: Mass Destruction'
+    input: ← + RMB or → + RMB Hold RMB to perform elbow attacks ← or → + C to switch between gardbrace and gauntlet
+    keys:
+    - a
+    - rmb
+    - d
+    - c
+    protection: none
+    description: 'Preceding Skill: [Absolute: Mass Destruction]'
+    notes: 'Preceding Skill: [Absolute: Mass Destruction] Flow: Mass Destruction can be used with your gardbrace.'
+  enlightenment:
+    name: Enlightenment
+    input: Passive
+    protection: none
+    description: 'Gives you the right to learn Succession: Striker''s Vigor.'
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your gardbrace
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  explosive_jolt:
+    name: Explosive Jolt
+    input: 'Can be added to a Quick Slot LMB after Combo: Final Blow or Roaring Tiger'
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Flow: Explosive Blow II]'
+    notes: 'Preceding Skill: [Flow: Explosive Blow II] Attack 1 damage 2606% x1 Attack 2 damage 5241% x2 Critical Hit Rate
+      +50% Maximum 10 targets Recover 117 HP per hit Bound on attack 1 hits (PvE only) Super Armor during the skill Down Attack
+      Down Smash on attack 2 hits 39.51% damage in PvP only'
+    keys:
+    - lmb
+  fallout:
+    name: Fallout
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Deal an upward strike as explosive as a volcano, immediately followed up with a downward strike.
+    notes: Deal an upward strike as explosive as a volcano, immediately followed up with a downward strike. Attack damage
+      6624% x2 Maximum 10 targets Knockdown on attack 1 hits (Nullified during cooldown) Down Attack Upon obtaining at least
+      Martial Spirit x2 , automatically consumes Martial Spirit x1 and increases damage. (Nullified during cooldown) Damage
+      reduced during cooldown 42.63% damage in PvP only
+  ferocious_assault:
+    name: Ferocious Assault
+    input: ↑ + RMB Hold ↑ + RMB while airborne to perform combos Can be used with your gauntlet
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: Leap a great distance forward to overwhelm your foe.
+    notes: Leap a great distance forward to overwhelm your foe. Attack damage 1559% x2 Maximum 10 targets Super Armor during
+      the skill Bound on hits (PvE only) Down Attack No collision at the start of a skill 89.89% damage in PvP only Attack
+      damage 2598% x2 Maximum 10 targets Increased movement distance Super Armor during the skill Bound on hits (PvE only)
+      Down Attack No collision at the start of a skill 89.93% damage in PvP only Dismount target on hits. Injures target with
+      10% of the damage of a hit.
+  fist_fury:
+    name: Fist Fury
+    input: ↓ + RMB Hold ↓ + RMB to perform attacks
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - floating
+    - down_attack
+    - air_attack
+    description: Unload a barrage of lightning-fast punches.
+    notes: Unload a barrage of lightning-fast punches. Attack damage 1724% x1, max 3 hits Last attack damage 1724% x2 Maximum
+      10 targets Recover 80 HP per hit Floating on attack 3 hits Knockdown on last attack hits Down Attack Air Attack on last
+      attack hits 63.68% damage in PvP only
+  fist_of_true_strength:
+    name: Fist of True Strength
+    input: LMB during Flash Step or Sprint Hold LMB for extra attacks Can be used with your gardbrace
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 5000
+    description: Deal a powerful punch forward while moving quickly.
+    notes: Deal a powerful punch forward while moving quickly. Attack damage 1988% x1, max 2 hits Maximum 10 targets Recover
+      90 WP per hit Push the target on hits (PvE only) Knockback on hits (PvP only)
+  flash_step:
+    name: Flash Step
+    input: ↑ + SHIFT ↓ + SHIFT Can be used with your gardbrace
+    keys:
+    - w
+    - shift
+    - s
+    protection: iframe
+    cooldown_ms: 4000
+    description: Swiftly move forward and backward to dodge enemy attacks.
+    notes: Swiftly move forward and backward to dodge enemy attacks. Movement Speed +30% for 10 sec when using the skill No
+      character collision during the skill Increased movement distance Invincible during the skill Super Armor when consuming
+      Martial Spirits Invincible during the skill (PvE only) Consume Martial Spirit x1 to use the skill without cooldown nor
+      consuming Stamina. Movement Speed +30% for 10 sec when using the skill No character collision during the skill Invincible
+      during the skill Super Armor when consuming Martial Spirits Super Armor while continuing the skill Invincible during
+      the skill (PvE only) Consume Martial Spirit x1 to use the skill without cooldown nor consuming Stamina. Can be performed
+      up to 2 times However, cannot continue the skill if Martial Spirit was consumed. Using Flash Step twice continuously
+      will consume 200 Stamina
+  flow_back_step:
+    name: 'Flow: Back Step'
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: iframe
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Flow: Mass Destruction]'
+    notes: 'Preceding Skill: [Flow: Mass Destruction] Movement Speed +30% for 10 sec Invincible during the skill No character
+      collision during the skill'
+  flow_bite_off:
+    name: 'Flow: Bite Off'
+    input: Hold F during Rampaging Predator ↑ + F to perform when Rampaging Predator is on cooldown
+    keys:
+    - f
+    - w
+    protection: SA
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Rampaging Predator I]'
+    notes: 'Preceding Skill: [Rampaging Predator I] Attack damage 7895% x2 Critical Hit Rate +100% Maximum 10 targets Super
+      Armor during the skill 31.82% damage in PvP only Attack damage 2384% x3 Attack damage 2616% x3 Attack damage 2846% x3
+      20.91% damage in PvP only'
+  flow_bombardment:
+    name: 'Flow: Bombardment'
+    input: 'RMB during Flow: Deathstrike RMB after Martial Deva'
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Flow: Deathstrike]'
+    notes: 'Preceding Skill: [Flow: Deathstrike] All damage applies Crimson Fang ''s damage x1.5 x2} Applies Crimson Fang
+      ''s number of hit targets Recover 30 WP per hit Forward Guard during the skill Bound on hits (PvE only) Down Attack
+      All damage applies Crimson Fang ''s damage x2 All Discharge Energy damage applies Crimson Fang ''s Discharge Energy
+      damage x2 Maximum 10 targets Recover 30 WP per hit Forward Guard during the skill Bound on hits (PvE only) Down Attack'
+  flow_crosswind:
+    name: 'Flow: Crosswind'
+    input: SPACE during Spiral Cannon, Twisted Collision, Rising Blast Combo Can be used with your gauntlet
+    keys:
+    - space
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Spiral Cannon I]'
+    notes: 'Preceding Skill: [Spiral Cannon I] Attack damage 4800% x2 Critical Hit Rate +100% Maximum 10 targets Floating
+      on hits Down Attack Air Attack 28.22% damage in PvP only'
+  flow_deathstrike:
+    name: 'Flow: Deathstrike'
+    input: RMB during Crimson Fang RMB after Adamantine
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Crimson Fang I]'
+    notes: 'Preceding Skill: [Crimson Fang I] All damage applies Crimson Fang ''s damage x2 Applies Crimson Fang ''s number
+      of hit targets Recover 20 WP per hit Forward Guard during the skill All Damage Reduction -20 for 10 sec on hits Push
+      the target on hits (PvE only) Down Attack'
+  flow_explosive_blow:
+    name: 'Flow: Explosive Blow'
+    input: 'LMB after Crimson Fang LMB during Prime: Wolf''s Hunger or Flow: Mass Destruction in Succession'
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 3000
+    description: Knockdown the enemy with a powerful strike after an elbow strike with the other hand.
+    notes: Knockdown the enemy with a powerful strike after an elbow strike with the other hand. Attack damage 2370% x2 Critical
+      Hit Rate +50% Maximum 7 targets Recover 20 WP per hit Knockdown on hits Down Attack 62.5% damage in PvP only
+  flow_fatal_smash:
+    name: 'Flow: Fatal Smash'
+    input: RMB during Twisted Collision
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - air_attack
+    cooldown_ms: 5000
+    description: Sends off the enemy flying after a heavier strike in midair.
+    notes: Sends off the enemy flying after a heavier strike in midair. All damage applies Twisted Collision 's damage x1.4
+      x2 Maximum 7 targets All Damage Reduction -8 for 10 sec on hits Super Armor during the skill Air Attack Down Smash (PvP
+      only) No collision while landing
+  flow_landslide:
+    name: 'Flow: Landslide'
+    input: LMB during Twisted Collision
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: With a mighty leap, ascend to the heights where your foe hovers, and bring them crashing down to the earth,
+      delivering a devastating blow with your fist.
+    notes: With a mighty leap, ascend to the heights where your foe hovers, and bring them crashing down to the earth, delivering
+      a devastating blow with your fist. All damage applies Twisted Collision 's damage x1.4 x3 Maximum 7 targets All Evasion
+      -12 for 10 sec on attack 1 hits Super Armor during the skill Air Attack on attack 1 hits Down Attack on attack 2 hits
+      Air Smash on attack 1 hits Down Smash on attack 2 hits No collision while landing
+  flow_mass_destruction:
+    name: 'Flow: Mass Destruction'
+    input: ← + RMB or → + RMB Hold RMB to perform elbow attacks Can be used with your gardbrace
+    keys:
+    - a
+    - rmb
+    - d
+    protection: iframe
+    cc:
+    - stun
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Adamantine I]'
+    notes: 'Preceding Skill: [Adamantine I] Attack damage 861% x1, max 3 hits Critical Hit Rate +100% Maximum 5 targets Recover
+      40 WP per hit Super Armor during the skill (Nullified during cooldown) Invincible before attack Stun on hits (Nullified
+      during cooldown) No collision while moving'
+  flow_nimbus_strike:
+    name: 'Flow: Nimbus Strike'
+    input: F during Twisted Collision
+    keys:
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Twisted Collision I]'
+    notes: 'Preceding Skill: [Twisted Collision I] All damage applies Twisted Collision ''s damage x1 Maximum 7 targets Super
+      Armor during the skill Bound on hits Down Attack No collision while landing'
+  flow_prey_hunt:
+    name: 'Flow: Prey Hunt'
+    input: Auto-activated when using Crouching Wolf and consumes Martial Spirit x3
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Crouching Wolf]'
+    notes: 'Preceding Skill: [Crouching Wolf] Attack damage 1012% x2 Maximum 10 targets Increased attack area Stiffness on
+      hits consuming 3 Martial Spirit (PvE only) SUCCESSION_COMBATTANT_HUNTING_HEAL Using this skill resets the cooldown of
+      Flash Step .'
+  flow_rock_smash:
+    name: 'Flow: Rock Smash'
+    input: RMB after Knee Hammer
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Vanish from the immobilized enemy and reappear to strike down hard with your fist to trip the enemy over.
+    notes: Vanish from the immobilized enemy and reappear to strike down hard with your fist to trip the enemy over. Attack
+      damage 1979% x2 Critical Hit Rate +50% Maximum 7 targets Bound on hits Down Attack Upon obtaining Martial Spirit x3
+      , automatically consumes Martial Spirit x1 and increases damage. 86.4% damage in PvP only
+  flow_savage_fang:
+    name: 'Flow: Savage Fang'
+    input: Hold LMB after using Hidden Claw Hold LMB after using Martial Deva
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Hidden Claw I]'
+    notes: 'Preceding Skill: [Hidden Claw I] All damage applies Hidden Claw ''s attack damage x2 Maximum 10 targets Recover
+      40 WP per hit Air Attack Down Attack Down Smash Upon obtaining Martial Spirit x3 , automatically consumes Martial Spirit
+      x1 and increases damage. All damage applies Prime: Hidden Claw ''s attack damage x2 All Discharge Energy damage applies
+      Prime: Hidden Claw ''s Discharge Energy damage x3 Maximum 10 targets Recover 40 WP per hit Air Attack Down Attack Down
+      Smash Upon obtaining Martial Spirit x3 , automatically consumes Martial Spirit x1 and increases damage.'
+  flow_strikethrough:
+    name: 'Flow: Strikethrough'
+    input: 'RMB during Flow: Fatal Smash'
+    keys:
+    - rmb
+    protection: iframe
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Flow: Fatal Smash I]'
+    notes: 'Preceding Skill: [Flow: Fatal Smash I] All damage applies Twisted Collision ''s damage x2 Maximum 7 targets Super
+      Armor > Invincible > Normal when using the skill Knockdown on hits Down Attack No collision while landing'
+  flow_tornado_kick:
+    name: 'Flow: Tornado Kick'
+    input: F after Knee Hammer Can be used
+    keys:
+    - f
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Performs a rapid triple-kick combo to launch an immobilized target in the air.
+    notes: Performs a rapid triple-kick combo to launch an immobilized target in the air. Attack damage 2477% x2 Maximum 7
+      targets Recover 50 WP per hit Floating on hits (Nullified during cooldown) Air Attack Air Smash Damage reduced during
+      cooldown 86.4% damage in PvP only
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  gardbrace_training:
+    name: Gardbrace Training
+    input: LMB ↑ + LMB ← + LMB → + LMB LMB while jumping forward
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - spin
+    description: As you grow accustomed to your gardbrace, you're able to better control the blazing energy within.
+    notes: As you grow accustomed to your gardbrace, you're able to better control the blazing energy within. Standing attack
+      damage 1170% x1, max 3 hits Forward attack damage 1170% x1, max 4 hits Lateral attacks 1 and 2 damage 1170% x1, max
+      2 hits Lateral attack 3 damage 1170% x1 Jump attack damage 1170% x1 Maximum 10 targets Recover 90 WP per hit All AP
+      +32 for 10 sec when using the skill Spin the target on lateral attack hits (PvE only) Push the target on lateral attack
+      hits (PvE only) 98.46% damage in PvP only
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  heart_and_soul:
+    name: Heart and Soul
+    input: ↓ + F Hold F to charge ↓ + F after certain skills to perform instantly ↓ + F during Crouching Wolf to perform charged
+      attack instantly
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 6856% x2 Attack damage 6528% x3 when fully charged
+      Critical Hit Rate +50% Maximum 10 targets Recover 300 HP when fully charged Increased attack area when charged Super
+      Armor before the attack hits Knockdown on hits Down Attack 39.62% damage in PvP only'
+  heavy_fist:
+    name: Heavy Fist
+    input: LMB ↑ + LMB LMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    protection: none
+    cc:
+    - pull
+    description: Deal powerful punches to the target.
+    notes: Deal powerful punches to the target. Standing attack damage 1568% x1, max 3 hits Forward attack damage 1568% x1,
+      max 4 hits Standing and forward last attack damage 1568% x1 Jump attack damage 1568% x1 Maximum 10 targets Recover 101
+      WP per hit Pull in the target on standing attack hits (PvE only) 83.73% damage in PvP only
+  hell_break:
+    name: Hell Break
+    input: E E after Spiral Cannon, Endless Explosion attack 4, Endless Fight attack 2, Fallout, Rampaging Predator, Ferocious
+      Assault, or Tornado Kick in Awakening to use another Grapple move ↓ to evade backward when Grapple fails
+    keys:
+    - e
+    - s
+    protection: iframe
+    cc:
+    - bound
+    - grab
+    - down_attack
+    cooldown_ms: 25000
+    description: Grab your foe, then slam them down hard.
+    notes: 'Grab your foe, then slam them down hard. Effects will be applied when using Absolute: Massive Suppression . The
+      following effects will apply when Massive Suppression cannot be used. Attack damage 2182% x1 Maximum 10 targets Super
+      Armor on Grapple/Grapple fails Invincible while evading backward Bound on Grapple Down Attack Move backwards on Grapple
+      fails. 88.64% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Attack
+      damage 775% x1, max 5 hits Maximum 10 targets 81.27% damage in PvP only'
+  hidden_claw:
+    name: Hidden Claw
+    input: ↓ + LMB Hold LMB to attack LMB during Knee Hammer
+    keys:
+    - s
+    - lmb
+    protection: iframe
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 4000
+    description: Step back swiftly to dodge, then inflict massive damage upon unsuspecting enemies.
+    notes: 'Step back swiftly to dodge, then inflict massive damage upon unsuspecting enemies. Attack damage 1031% x2 Flow:
+      Savage Fang ''s damage 1374% Maximum 7 targets Increased movement distance All Damage Reduction -15 for 10 sec on hits
+      (Nullified during cooldown) Invincible while evading backward (Nullified during cooldown) Push the target on hits (PvE
+      only) Floating on hits (Nullified during cooldown) Air Attack No character collision while evading backward 64.86% damage
+      in PvP only'
+  howling_wolf:
+    name: Howling Wolf
+    input: Passive
+    protection: none
+    description: Your body becomes more agile to respond faster to enemy attacks.
+    notes: Your body becomes more agile to respond faster to enemy attacks. All Evasion +40
+  infernal_destruction:
+    name: Infernal Destruction
+    input: F Hold F to spin again F after Somersault
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 6000
+    description: Sweep the ground to knockdown enemies, then strike down hard with your fist.
+    notes: Sweep the ground to knockdown enemies, then strike down hard with your fist. Attack damage 5496% x2, max 2 hits
+      Last attack damage 3664% x1 Critical Hit Rate +50% (PvE only) Maximum 10 targets Recover 28 WP per hit Pull in the target
+      on attack 1 hits (PvE only) Bound on last attack hits Down Attack Down Smash on last attack hits 41.81% attack 1 damage
+      in PvP only 55.63% last attack damage in PvP only Attack damage 943% x1, max 3 hits Maximum 10 targets Down Attack on
+      attack 1 hits 24.97% damage in PvP only
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+  iron_fist_fury:
+    name: Iron Fist Fury
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    - air_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Fist of True Strength III]'
+    notes: 'Preceding Skill: [Fist of True Strength III] Attack damage 3134% x2 Critical Hit Rate +100% Maximum 10 targets
+      Recover 175 HP per hit Super Armor during the skill Push the target on hits (PvE only) Bound on hits (PvE only) Air
+      Attack Down Attack 50.83% damage in PvP only'
+  knee_hammer:
+    name: Knee Hammer
+    input: SHIFT + LMB SHIFT + C with your gardbrace to switch to gauntlet mode LMB after Crouching Wolf in gauntlet mode
+      RMB after Crouching Wolf with your gardbrace
+    keys:
+    - shift
+    - lmb
+    - c
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Close in instantly and strike hard with your knee to immobilize enemies.
+    notes: Close in instantly and strike hard with your knee to immobilize enemies. Attack damage 454% x2 Maximum 7 targets
+      Stiffness on hits (Nullified during cooldown) Down Attack Reduced movement distance during cooldown.
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  martial_deva:
+    name: Martial Deva
+    input: RMB after Ankle Hook or Taebaek Kick
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Smash the ground to inflict head damage to enemies standing nearby.
+    notes: Smash the ground to inflict head damage to enemies standing nearby. Attack damage 1420% x2 Critical Hit Rate +50%
+      Maximum 7 targets Bound on hits Down Attack 61.32% damage in PvP only
+  martial_spirit:
+    name: Martial Spirit
+    input: Passive
+    protection: none
+    description: Your burning spirit as a martial artist strengthens your entire body.
+    notes: 'Your burning spirit as a martial artist strengthens your entire body. Recover Martial Spirit Shards on certain
+      skill hits (Up to Martial Spirit x3) Movement Speed +30% for 5 sec and All Accuracy +24 when using the following skills:
+      Fist of True Strength, Ultimate Crush, Ferocious Assault, Autumn Blaze, Flow: Crosswind, Triple Flying Kick, Crimson
+      Fang, Knee Hammer, Spiral Cannon, Rampaging Predator, Prime: Wolf''s Fang, Prime: Rage Hammer, Prime: Wolf''s Hunger,
+      Prime: Adamantine -10 WP/MP/SP to target on skill hits with the following skills: Adamantine, Ankle Hook, Martial Deva,
+      Flow: Mass Destruction, Fist Fury, Somersault, Rising Blast Combo, Crimson Fang, Combo: Hurricane, Flow: Explosive Blow,
+      Combo: Venom Fang, Combo: Final Blow, Flow: Deathstrike, Knee Hammer, Flow: Rock Smash, Flow: Tornado Kick, Taebaek
+      Kick, Hidden Claw, Flow: Savage Fang, Ultimate Crush, Spiral Cannon, Flow: Crosswind, Fallout, Ferocious Assault'
+  massive_suppression:
+    name: Massive Suppression
+    input: E ↓ when Grapple fails to retreat back
+    keys:
+    - e
+    - s
+    protection: iframe
+    cc:
+    - knockdown
+    cooldown_ms: 15000
+    description: Pound your enemy 3 times after a choke-hold to send them flying.
+    notes: Pound your enemy 3 times after a choke-hold to send them flying. Attack damage 800% x3 Maximum 10 targets Super
+      Armor on Grapple/Grapple fails Invincible while evading backward Knockdown on Grapple Move backwards on Grapple fails.
+      Not affected by effects which increase/decrease Attack and/or Casting Speeds.
+  mountain_aura:
+    name: Mountain Aura
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. All Damage Reduction +2 Critical Hit
+      Rate +1%
+  mountain_aura_xi:
+    name: Mountain Aura XI
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. Critical Hit Rate +1%
+  mountain_aura_xii:
+    name: Mountain Aura XII
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. All Damage Reduction +2 Critical Hit
+      Rate +1%
+  mountain_aura_xiii:
+    name: Mountain Aura XIII
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. Critical Hit Rate +1%
+  mountain_aura_xiv:
+    name: Mountain Aura XIV
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. All Damage Reduction +2 Critical Hit
+      Rate +1%
+  mountain_aura_xix:
+    name: Mountain Aura XIX
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. Critical Hit Rate +1%
+  mountain_aura_xv:
+    name: Mountain Aura XV
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. Critical Hit Rate +1%
+  mountain_aura_xvi:
+    name: Mountain Aura XVI
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. All Damage Reduction +2 Critical Hit
+      Rate +1%
+  mountain_aura_xvii:
+    name: Mountain Aura XVII
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. Critical Hit Rate +1%
+  mountain_aura_xviii:
+    name: Mountain Aura XVIII
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. All Damage Reduction +2 Critical Hit
+      Rate +1%
+  mountain_aura_xx:
+    name: Mountain Aura XX
+    input: Passive
+    protection: none
+    description: Fortify the body through intense training to increase defense and deftness.
+    notes: Fortify the body through intense training to increase defense and deftness. All Damage Reduction +2 Critical Hit
+      Rate +1%
+  mountain_aura_xxi:
+    name: Mountain Aura XXI
+    input: Passive
+    protection: none
+    description: You've fortified your body through intense training, increasing defense.
+    notes: 'You''ve fortified your body through intense training, increasing defense. The following effects will apply when
+      using Book of Training: - Combat EXP +300% - Skill EXP +100%'
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  perfect_blow:
+    name: Perfect Blow
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Fist of True Strength III]'
+    notes: 'Preceding Skill: [Fist of True Strength III] Attack damage 2502% x2 Critical Hit Rate +50% Maximum 10 targets
+      Recover 90 WP per hit Forward Guard Knockdown on hits (PvE only) Down Attack 86.4% damage in PvP only'
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_hammer:
+    name: Rage Hammer
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 8000
+    description: Charge all your energy into your hands, then smash hard onto the ground, dealing damage to enemies nearby.
+    notes: 'Charge all your energy into your hands, then smash hard onto the ground, dealing damage to enemies nearby. Attack
+      damage 2500% x2 Attack damage 3000% x2 during Flow: Prey Hunt Maximum 10 targets Super Armor Pull in the target on hits
+      (PvE only) (Nullified in certain situations) Bound on hits (PvE only) Down Attack Increased attack area during Flow:
+      Prey Hunt 89.16% damage in PvP only Attack damage 4136% x6 Critical Hit Rate +100% (PvE only) Maximum 10 targets All
+      AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for
+      60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor Pull in the target on hits (PvE
+      only) Bound on hits Down Attack 39.51% damage in PvP only Injures target with 100% of the damage of a hit. Dismount
+      target on hits.'
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  rampaging_predator:
+    name: Rampaging Predator
+    input: ↑ + F Can be used with your gauntlet
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - floating
+    - stun
+    cooldown_ms: 8000
+    description: Brutally ravage your foes like a starving predator.
+    notes: Brutally ravage your foes like a starving predator. Attack damage 6712% x2 Critical Hit Rate +100% Maximum 10 targets
+      30 bleeding damage every 3 sec for 27 sec on hits Super Armor during the skill Stun on hits (PvE only) Upon obtaining
+      at least Martial Spirit x2 , automatically consumes Martial Spirit x1 and increases damage. 34.84% damage in PvP only
+      Attack damage 1226% x5 Maximum 10 targets 20.9% damage in PvP only Attacks 1 and 2 damage 16568% x2 Attacks 3 and 4
+      damage 16568% x2 Last attack damage 29403% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when
+      using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill
+      Max HP +2000 for 60 sec when using the skill Super Armor Stun on attack 1, 2, 3, and 4 hits Floating on last attack
+      hits Summons Echo Spirit during the skill. 10.69% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount target on hits.
+  recoil:
+    name: Recoil
+    input: Passive
+    protection: none
+    description: A basic skill to collect Martial Spirit Shards.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  rising_blast_combo:
+    name: Rising Blast Combo
+    input: Auto-activated when using Somersault (Unavailable if Somersault is on cooldown)
+    protection: SA
+    cc:
+    - knockdown
+    - floating
+    - air_attack
+    description: 'Preceding Skill: [Somersault I]'
+    notes: 'Preceding Skill: [Somersault I] Applies the following to Somersault: All attack 1 damage applies Somersault ''s
+      damage x2 All attack 2 damage applies Somersault ''s damage x2 Applies Somersault ''s number of hit targets Applies
+      Somersault level''s "Recover WP per hit" effect All Evasion -12 for 10 sec on hits Super Armor during the skill Floating
+      on hits Air Attack Applies the following to Prime: Somersault: All attack 1 damage applies Prime: Somersault ''s damage
+      x2 All attack 2 damage applies Prime: Somersault ''s damage x2 All Discharge Energy damage applies Prime: Somersault
+      ''s damage x1 Applies Somersault ''s number of hit targets Applies Somersault level''s "Recover WP per hit" effect All
+      Evasion -12 for 10 sec on hits Super Armor during the skill Knockdown on hits Air Attack Recovers more Martial Spirits
+      on hits.'
+  rising_wolf_fang:
+    name: Rising Wolf Fang
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - floating
+    - stun
+    - stiffness
+    - air_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Flow: Mass Destruction]'
+    notes: 'Preceding Skill: [Flow: Mass Destruction] Attack 1 damage 2881% x2 Attack 2 damage 2881% x2 Critical Hit Rate
+      +50% Maximum 10 targets Floating on attack 1 hits Stun on attack 2 hits (PvE only) Stiffness on attack 2 hits (PvP only)
+      Air Attack 58.97% damage in PvP only'
+  roaring_tiger:
+    name: Roaring Tiger
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: Deliver a deadly blow after charging energy in both fists.
+    notes: Deliver a deadly blow after charging energy in both fists. Attack damage 3018% x2 Maximum 7 targets Push the target
+      on hits (PvE only) Down Attack Down Smash Air Smash Upon obtaining Martial Spirit x3 , automatically consumes Martial
+      Spirit x1 and increases damage. 64.86% damage in PvP only 58.38% Martial Spirit attack damage in PvP only
+  savage_somersault:
+    name: Savage Somersault
+    input: ↓ + F ↓ + F after Tornado Kick with your gardbrace ↓ + F after Rising Blast Combo with your gauntlet
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: Strike enemies upward twice to send them flying up into the air.
+    notes: Strike enemies upward twice to send them flying up into the air. Attack damage 5200% x2 Critical Hit Rate +50%
+      Maximum 10 targets All AP +32 for 10 sec when using the skill Super Armor during the skill Floating on hits (PvE only)
+      Air Attack 38.21% damage in PvP only
+  silent_step:
+    name: Silent Step
+    input: ← + SHIFT → + SHIFT Can be used with your gardbrace
+    keys:
+    - a
+    - shift
+    - d
+    protection: iframe
+    cooldown_ms: 4000
+    description: Evade enemy attacks by moving fast laterally.
+    notes: Evade enemy attacks by moving fast laterally. Movement Speed +30% for 10 sec when using the skill No character
+      collision during the skill Increased movement distance Invincible -> Super Armor during the skill Super Armor when consuming
+      Martial Spirits Invincible during the skill (PvE only) Consume Martial Spirit x1 to use the skill without cooldown nor
+      consuming Stamina.
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+  skull_crusher:
+    name: Skull Crusher
+    input: 'SHIFT + F Hold F to perform extra attacks F after Twisted Collision, Rising Blast Combo, Flow: Crosswind, Savage
+      Somersault'
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Cartwheel to strike down hard onto the ground.
+    notes: Cartwheel to strike down hard onto the ground. Attack damage 5524% x2 Extra attack damage 7164% x2 Critical Hit
+      Rate +100% Maximum 10 targets Super Armor during the skill Knockdown on hits (PvE only) Down Attack Upon obtaining at
+      least Martial Spirit x2 , automatically consumes Martial Spirit x1 and increases damage. 32.98% damage in PvP only Attack
+      damage 1132% x3 Maximum 10 targets Down Attack on last attack hits 24.97% damage in PvP only Attack damage 7007% x2
+      Extra attack damage 9829% x2 Critical Hit Rate +100% Maximum 10 targets Increased attack area Super Armor during the
+      skill Knockdown on hits Down Attack 29.73% damage in PvP only Dismount target on hits. Injures target with 30% of the
+      damage of a hit. Attack damage 1132% x3 Maximum 10 targets Down Attack on last attack hits 24.97% damage in PvP only
+  somersault:
+    name: Somersault
+    input: ↓ + Q Can be used with your gardbrace
+    keys:
+    - s
+    - q
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: Somersault to launch enemies into the air.
+    notes: Somersault to launch enemies into the air. Attack damage 1744% x2 Maximum 7 targets Recover 60 WP per hit Floating
+      on hits (Nullified during cooldown) Air Attack 80.43% damage in PvP only
+  spiral_cannon:
+    name: Spiral Cannon
+    input: SHIFT + LMB Hold LMB to perform extra attacks SHIFT + C to switch to your gardbrace with your gauntlet SHIFT +
+      LMB after Knee Hammer with your gauntlet RMB after Crouching Wolf with your gauntlet LMB after Crouching Wolf with your
+      gardbrace
+    keys:
+    - shift
+    - lmb
+    - c
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - spin
+    cooldown_ms: 6000
+    description: With the force of a freshly fired bullet, you surge forward in a powerful spin, delivering a mighty dashing
+      attack.
+    notes: With the force of a freshly fired bullet, you surge forward in a powerful spin, delivering a mighty dashing attack.
+      Attack damage 2941% x3 Extra attack damage 2522% x2 (Nullified during cooldown) Maximum 10 targets All Evasion +24 for
+      10 sec when using the skill (Nullified during cooldown) All Damage Reduction -20 for 10 sec on hits (Nullified during
+      cooldown) Knockdown on hits (Nullified during cooldown) Down Attack Reduced movement distance during cooldown. Damage
+      reduced during cooldown 69.8% damage in PvP only
+  stalking_wolf:
+    name: Stalking Wolf
+    input: ↑+ F after Knee Hammer or Taebaek Kick ↑+ F after Flash Step or Rising Blast Combo to perform attack 2 Hold F to
+      perform kicks consecutively
+    keys:
+    - w
+    - f
+    protection: none
+    cc:
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Knee Hammer I]'
+    notes: 'Preceding Skill: [Knee Hammer I] Attack 1 damage 565% x2 Attack 2 damage 621% x2 Attack 3 damage 678% x2 Critical
+      Hit Rate +100% Maximum 7 targets Air Attack 86.4% damage in PvP only'
+  sweeping_kick:
+    name: Sweeping Kick
+    input: ↓ + F Hold ↓ + F to continue the skill
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Trip your enemies, then perform a somersault connecting with a kick.
+    notes: Trip your enemies, then perform a somersault connecting with a kick. Attack 1 damage 1202% x2 Attack 2 damage 1202%
+      x2 Maximum 7 targets Knockdown on attack 1 hits Down Attack Upon obtaining Martial Spirit x3 , automatically consumes
+      Martial Spirit x1 and increases damage. 86.4% damage in PvP only
+  taebaek_kick:
+    name: Taebaek Kick
+    input: F F while sprinting or during Flash Step Can be used with your gardbrace
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 3000
+    description: Shows off flashy footwork while inflicting damage on the target.
+    notes: Shows off flashy footwork while inflicting damage on the target. Attack damage 2200% x2 Dash attack damage 2200%
+      x2, max 2 hits Critical Hit Rate +20% (Nullified during cooldown) Maximum 7 targets Recover 40 WP per hit Movement Speed
+      -10% for 5 sec on hits Stiffness on hits (Nullified during cooldown) Down Attack Air Attack on dash kick hits Down Smash
+      Upon obtaining Martial Spirit x3 , automatically consumes Martial Spirit x1 and increases charged kick damage. (Nullified
+      during cooldown) 55.07% damage in PvP only
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  triple_flying_kick:
+    name: Triple Flying Kick
+    input: ← + LMB or → + LMB
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - spin
+    description: While moving laterally, attack the target with flashy footwork.
+    notes: While moving laterally, attack the target with flashy footwork. Attacks 1 and 2 damage 1267% x1 Attack 3 damage
+      1327% x1 Maximum 10 targets Recover 35 WP per hit All Evasion +24 for 10 sec when using the skill All AP +10 for 10
+      sec on attack 3 Spin the target on hits (PvE only) Push the target on hits (PvE only)
+  twisted_collision:
+    name: Twisted Collision
+    input: Q Can be used with your gardbrace
+    keys:
+    - q
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Uppercuts to launch the enemy in the air.
+    notes: Uppercuts to launch the enemy in the air. Attack damage 1468% x2 Maximum 7 targets Forward Guard during the skill
+      (Nullified during cooldown) Floating on hits (Nullified during cooldown) Air Attack Damage reduced during cooldown 57.31%
+      damage in PvP only
+  ultimate_crush:
+    name: Ultimate Crush
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: A combo skill that launches targets in midair, then finishes with a decisive strike.
+    notes: A combo skill that launches targets in midair, then finishes with a decisive strike. Attack 1 damage 3827% x1 Attack
+      2 damage 3827% x2 Attack 3 damage 3827% x2 Critical Hit Rate +50% Maximum 10 targets Recover 30 WP per hit All Damage
+      Reduction -20 for 10 sec on hits (Nullified during cooldown) Floating on attack 2 hits (Nullified during cooldown) Down
+      Attack on attack 1 hits Air Attack on attack 2 and 3 hits Air Smash on attack 3 hits (Nullified during cooldown) Damage
+      reduced during cooldown 29.97% damage in PvP only Attacks 1 and 2 damage 1132% x1 Attack 3 damage 1132% x1, max 2 hits
+      Maximum 10 targets Down Attack on attack 1 and 2 hits Air Attack on attack 3 hits Summon effect nullified during cooldown
+      24.97% damage in PvP only Attack damage 11483% x2 Critical Hit Rate +50% Maximum 10 targets Increased attack area Critical
+      Hit Rate +10% for 20 sec when using the skill Recover 90 WP per hit Movement Speed -10% for 5 sec on hits All Damage
+      Reduction -20 for 10 sec on hits Knockdown on hits Down Attack 29.97% damage in PvP only Dismount target on hits. Injures
+      target with 20% of the damage of a hit. Not activated during cooldown. Attacks 1 and 2 damage 1132% x1 Attack 3 damage
+      1132% x1, max 2 hits Maximum 10 targets Down Attack on attack 1 and 2 hits Air Attack on attack 3 hits 24.97% damage
+      in PvP only
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+  wolf_s_explosive_fangs:
+    name: Wolf's Explosive Fangs
+    input: Can be added to a Quick Slot LMB after Wolf's Fang
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Flow: Explosive Blow II]'
+    notes: 'Preceding Skill: [Flow: Explosive Blow II] Attack 1 damage 3571% x2 Attack 2 damage 3571% x2 Attack 1 damage 4214%
+      x2 during Flow: Prey Hunt Attack 2 damage 4214% x2 during Flow: Prey Hunt Critical Hit Rate +100% Maximum 10 targets
+      Recover 60 WP per hit Stun on attack 1 hits Down Attack Increased attack area during Flow: Prey Hunt 32.19% damage in
+      PvP only'
+    keys:
+    - lmb
+  wolf_s_fang:
+    name: Wolf's Fang
+    input: ↓ + LMB + RMB ↓ after the skill to evade backward
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 8000
+    description: Shoot a blast of energy to inflict heavy damage.
+    notes: 'Shoot a blast of energy to inflict heavy damage. Forward push attack damage 2896% x1 Attack damage 2896% x2 Attack
+      damage 4223% x2 during Flow: Prey Hunt Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill (Nullified
+      during cooldown) Push the target on forward push hits (PvE only) Stun on hits (Nullified during cooldown) Down Attack
+      Increased attack area during Flow: Prey Hunt Damage reduced during cooldown 58.97% damage in PvP only'
+  wolf_s_hunger:
+    name: Wolf's Hunger
+    input: SHIFT + F ↓ to evade backward
+    keys:
+    - shift
+    - f
+    - s
+    protection: iframe
+    cc:
+    - stun
+    - air_attack
+    cooldown_ms: 12000
+    description: Vanish before your enemies to attack them from the shadows. You can reappear in front of a maximum of 3 targets,
+      dealing 1 blow each, and adding to their confusion.
+    notes: Vanish before your enemies to attack them from the shadows. You can reappear in front of a maximum of 3 targets,
+      dealing 1 blow each, and adding to their confusion. Attack 1 damage 986% x1 Attack 2 damage 986% x2 Attack 3 damage
+      986% x2 Critical Hit Rate +100% Maximum 7 targets Invincible while moving Invincible while evading backward Stun on
+      hits Push the target on hits (PvE only) Evades backwards if there are no enemies to target. No character collision while
+      evading backward 64.86% damage in PvP only Attack damage 6172% x4 Critical Hit Rate +100% Maximum 10 targets All AP
+      +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60
+      sec when using the skill Super Armor -> Invincible -> Super Armor Stun on hits Air Attack 41.28% damage in PvP only
+      Injures target with 50% of the damage of a hit. Dismount target on hits.
+_flags:
+- battle_cry: Notes mention SA during skill and Invincible while evading backward; SA chosen as primary protection.
+- black_spirit_illusion: Black Spirit / utility skill — quick-slot only, not combo-relevant.
+- bloody_fang: Passive — auto-activated when using Martial Spirit-consuming skills.
+- cannon_attack: No notes/description in scrape — cannot determine keys/protection/cc.
+- core_endless_explosion: Passive — modifies Endless Explosion III. No in-combat keybind.
+- core_infernal_destruction: Passive — modifies Infernal Destruction IV. No in-combat keybind.
+- core_rampaging_predator: Passive — modifies Rampaging Predator III. No in-combat keybind.
+- core_skull_crusher: Passive — modifies Skull Crusher IV. No in-combat keybind.
+- core_spiral_cannon: Passive — modifies Spiral Cannon III. No in-combat keybind.
+- core_ultimate_crush: Passive — modifies Ultimate Crush IV. No in-combat keybind.
+- crouching_wolf: Notes say Super Armor during the skill, with Invincible only while evading backward; SA is primary.
+- double_flash: Passive — extends Flash Step. Notes mention SA when continuing and iframe (PvE only).
+- echo_spirit: Notes say SA during skill, Invincible only while moving — SA chosen as primary.
+- enhanced_mass_destruction: 'Notes only describe gardbrace usage modification of Flow: Mass Destruction; protection/cc inherit
+    from parent.'
+- enlightenment: Passive — grants right to learn Succession skill.
+- flow_prey_hunt: Auto-activated when using Crouching Wolf with 3 Martial Spirits — no standalone keybind.
+- flute_buff: Triggered by using Flute item — not combo-relevant.
+- guild_squad_special_attack: No usable input/notes in scrape.
+- make_bonfire: Item-based bonfire skill — not combo-relevant.
+- rising_blast_combo: Auto-activated with Somersault (when off cooldown). No standalone keybind.
+- battle_cry: Notes mention SA during skill and Invincible while evading backward; SA chosen as primary protection.
+- black_spirit_illusion: Black Spirit / utility skill — quick-slot only, not combo-relevant.
+- bloody_fang: Passive — auto-activated when using Martial Spirit-consuming skills.
+- cannon_attack: No notes/description in scrape — cannot determine keys/protection/cc.
+- core_endless_explosion: Passive — modifies Endless Explosion III. No in-combat keybind.
+- core_infernal_destruction: Passive — modifies Infernal Destruction IV. No in-combat keybind.
+- core_rampaging_predator: Passive — modifies Rampaging Predator III. No in-combat keybind.
+- core_skull_crusher: Passive — modifies Skull Crusher IV. No in-combat keybind.
+- core_spiral_cannon: Passive — modifies Spiral Cannon III. No in-combat keybind.
+- core_ultimate_crush: Passive — modifies Ultimate Crush IV. No in-combat keybind.
+- crouching_wolf: Notes say Super Armor during the skill, with Invincible only while evading backward; SA is primary.
+- double_flash: Passive — extends Flash Step. Notes mention SA when continuing and iframe (PvE only).
+- echo_spirit: Notes say SA during skill, Invincible only while moving — SA chosen as primary.
+- enhanced_mass_destruction: 'Notes only describe gardbrace usage modification of Flow: Mass Destruction; protection/cc inherit
+    from parent.'
+- enlightenment: Passive — grants right to learn Succession skill.
+- flow_prey_hunt: Auto-activated when using Crouching Wolf with 3 Martial Spirits — no standalone keybind.
+- flute_buff: Triggered by using Flute item — not combo-relevant.
+- guild_squad_special_attack: No usable input/notes in scrape.
+- make_bonfire: Item-based bonfire skill — not combo-relevant.
+- rising_blast_combo: Auto-activated with Somersault (when off cooldown). No standalone keybind.

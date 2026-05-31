@@ -1,6 +1,2109 @@
 # Wizard — Succession
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Wizard
 spec: Succession
-skills: {}
+skills:
+  absolute_blizzard:
+    name: 'Absolute: Blizzard'
+    input: LMB during Blizzard
+    keys:
+    - lmb
+    protection: none
+    cooldown_ms: 60000
+    description: 'Preceding Skill: [Ultimate: Blizzard]'
+    notes: 'Preceding Skill: [Ultimate: Blizzard] Attack damage 3048% x6, max 3 hits Maximum 10 targets MP will constantly
+      drain while Blizzard is in effect. Reduces all speeds of struck targets. 62.74% damage in PvP only When 2 or more targets
+      are hit, the damage is equally divided among all targets. (PvP only)'
+  absolute_concentrated_magic_arrow:
+    name: 'Absolute: Concentrated Magic Arrow'
+    input: LMB + RMB Fires if LMB or RMB is not pressed
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Concentrated Magic Arrow III]'
+    notes: 'Preceding Skill: [Concentrated Magic Arrow III] Attack damage 1450% x2 Critical Hit Rate +50% Maximum 10 targets
+      Knockdown on hits (PvE only) (Nullified during cooldown) Stiffness on hits (PvP only) (Nullified during cooldown) Down
+      Attack 73.2% damage in PvP only'
+  absolute_dagger_stab:
+    name: 'Absolute: Dagger Stab'
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Dagger Stab V]'
+    notes: 'Preceding Skill: [Dagger Stab V] Attack damage 1525% x2 Critical Hit Rate +100% (Nullified during cooldown) Maximum
+      10 targets Increased attack area Stiffness on hits (Nullified during cooldown) Push the target on hits (PvE only) Counter
+      Attack Damage reduced during cooldown 83.66% damage in PvP only'
+  absolute_earth_s_response:
+    name: 'Absolute: Earth''s Response'
+    input: ← + LMB or → + LMB
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - floating
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Earth''s Response III]'
+    notes: 'Preceding Skill: [Earth''s Response III] Attack damage 1280% x2 Maximum 10 targets Floating on hits'
+  absolute_earthquake:
+    name: 'Absolute: Earthquake'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Earthquake IV]'
+    notes: 'Preceding Skill: [Earthquake IV] Attack damage 2436% x6 Maximum 10 targets Recover 15 MP per hit Increased Casting
+      Speed Super Armor Pull in the target on hits (PvE only) Bound on hits (PvE only) Stiffness on hits (PvP only) Down Attack
+      62.74% damage in PvP only'
+  absolute_fireball:
+    name: 'Absolute: Fireball'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Fireball IV]'
+    notes: 'Preceding Skill: [Fireball IV] Attack damage 1838% x2 Maximum 10 targets 15 burn damage every 3 sec for 9 sec
+      on hits Knockdown on hits (PvE only) Stiffness on hits (PvP only) Down Attack Fireball buff for 7 sec after Fireball
+      Damage is reduced when used instantly during casting. 73.2% damage in PvP only'
+  absolute_fireball_explosion:
+    name: 'Absolute: Fireball Explosion'
+    input: RMB after Fireball SHIFT + LMB while the Fireball buff lasts Can be used via a Quick Slot while the Fireball buff
+      lasts
+    keys:
+    - rmb
+    - shift
+    - lmb
+    - a
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 11000
+    description: 'Preceding Skill: [Fireball Explosion III]'
+    notes: 'Preceding Skill: [Fireball Explosion III] Attack damage 2980% x2 Critical Hit Rate +100% Maximum 10 targets 20
+      burn damage every 3 sec for 9 sec on hits Knockdown on hits Down Attack 58.56% damage in PvP only'
+  absolute_freeze:
+    name: 'Absolute: Freeze'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Freeze V]'
+    notes: 'Preceding Skill: [Freeze V] Attack damage 1365% x2 Maximum 10 targets Freezing on hits Increased attack area'
+  absolute_frigid_fog:
+    name: 'Absolute: Frigid Fog'
+    input: ↓ + Q
+    keys:
+    - s
+    - q
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Frigid Fog IV]'
+    notes: 'Preceding Skill: [Frigid Fog IV] Attack damage 1451% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      Freezing on hits Down Attack'
+  absolute_lightning:
+    name: 'Absolute: Lightning'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Lightning V]'
+    notes: 'Preceding Skill: [Lightning V] Attack damage 1731% x2 Maximum 10 targets Stun on hits (Nullified during cooldown)
+      Down Attack Applies "Shocked" effect (reduced all speeds to struck targets) 50.19% damage in PvP only Attack damage
+      6464% x4, max 3 hits Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when
+      using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on hits Push the target on hits
+      (PvE only) Air Attack Down Attack 36.6% attack 1 damage in PvP only Injures target with 50% of the damage of a hit.
+      Dismount target on hits.'
+  absolute_lightning_chain:
+    name: 'Absolute: Lightning Chain'
+    input: SHIFT + RMB Hold RMB to perform consecutively
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill: [Lightning Chain IV]'
+    notes: 'Preceding Skill: [Lightning Chain IV] Attack damage 860% x3, max 5 hits Maximum 10 targets Stiffness on hits Lightning
+      Storm buff for 7 sec after using Lightning Chain Applies "Shocked" effect (reduced all speeds to struck targets) 73.2%
+      damage in PvP only Damage -15% per each additional target hit from target 2 onward. (Max damage -40% .)'
+  absolute_lightning_storm:
+    name: 'Absolute: Lightning Storm'
+    input: LMB + RMB after Lightning Chain Can be used via a Quick Slot while the Lightning Storm buff lasts Cannot be added
+      to a Quick Slot
+    keys:
+    - lmb
+    - rmb
+    - a
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 11000
+    description: 'Preceding Skill: [Lightning Storm III]'
+    notes: 'Preceding Skill: [Lightning Storm III] Attack damage 2413% x2 Critical Hit Rate +100% Maximum 10 targets Stiffness
+      on hits Applies "Shocked" effect (reduced all speeds to struck targets) 73.2% damage in PvP only'
+  absolute_meteor_shower:
+    name: 'Absolute: Meteor Shower'
+    input: ↓ + LMB + RMB
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Meteor Shower III]'
+    notes: 'Preceding Skill: [Meteor Shower III] Attack damage 2930% x2 Meteor attack damage 3200% x2 Critical Hit Rate +50%
+      (PvE only) Maximum 10 targets Increased Casting Speed 60 burn damage every 3 sec for 18 sec on hits Forward Guard while
+      casting Stiffness on hits Knockdown on meteor attack hits Down Attack 62.74% damage in PvP only Meteor attack damage
+      4687% x6 Last attack damage 2560% x5 Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% on last attacks (PvP
+      only) Maximum 10 targets All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill
+      Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill 60 burn damage every
+      3 sec for 18 sec on hits Super Armor Stiffness on hits Knockdown on meteor attack hits (PvP only) Down Attack 59.6%
+      meteor attack damage in PvP only 89.53% last attack damage in PvP only Injures target with 100% of the damage of a hit.
+      Dismount target on hits.'
+  absolute_multiple_magic_arrows:
+    name: 'Absolute: Multiple Magic Arrows'
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your sphera
+    protection: none
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Multiple Magic Arrows]'
+    notes: 'Preceding Skill: [Multiple Magic Arrows] Attack damage 4788% x2 Critical Hit Rate +100% Maximum 10 targets 39.21%
+      damage in PvP only'
+  absolute_residual_lightning:
+    name: 'Absolute: Residual Lightning'
+    input: RMB after Lightning RMB after Lightning Arrows (Witch only)
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - bound
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Residual Lightning IV]'
+    notes: 'Preceding Skill: [Residual Lightning IV] Attack damage 3313% x2 Last attack damage 1325% x2 Critical Hit Rate
+      +86% Maximum 10 targets Bound on hits Applies "Shocked" effect (reduced all speeds to struck targets) 52.29% attack
+      1 damage in PvP only 62.64% last attack damage in PvP only'
+  absolute_staff_attack:
+    name: 'Absolute: Staff Attack'
+    input: LMB
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Staff Attack X]'
+    notes: 'Preceding Skill: [Staff Attack X] Attack damage 1889% x1, max 3 hits Forward attack damage 1889% x1, max 2 hits
+      Last attack damage 1889% x1 Maximum 10 targets Recover 60 MP per hit Down Attack 92.02% damage in PvP only'
+  access_awakening_requirement:
+    name: Access Awakening Requirement
+    input: Automatically obtained after completing the awakening quest.
+    protection: none
+    cooldown_ms: 1000
+    description: Automatically obtained after completing the awakening quest.
+  aqua_jail_explosion:
+    name: Aqua Jail Explosion
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - stiffness
+    - stun
+    - down_attack
+    cooldown_ms: 6000
+    description: Create a small sealed space with water walls to confine and suppress the target.
+    notes: Create a small sealed space with water walls to confine and suppress the target. Attack damage 3312% x6 Critical
+      Hit Rate +100% Maximum 10 targets Movement Speed -20% for 5 sec on hits Super Armor during the skill Stiffness on hits
+      (PvE only) Down Attack 45% damage in PvP only is empowered into while Marg or Arne is summoned. Attack damage 2094%
+      x3 Maximum 10 targets Down Attack 52% damage in PvP only Attack damage 2094% x3 Maximum 10 targets All AP -16 for 10
+      sec on hits Down Attack 52% damage in PvP only Attack 1 damage 7168% x1, max 3 hits Attack 2 damage 18855% x1, max 8
+      hits Last attack damage 18855% x2 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill
+      Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000
+      for 60 sec when using the skill Super Armor Invincible on airborne moves All Evasion -36 for 10 sec on hits Stun on
+      attack 1 hits Down Attack 8.78% damage in PvP only Injures target with 100% of the damage of a hit. Dismount target
+      on hits.
+  archwizardry_mass_teleport:
+    name: 'Archwizardry: Mass Teleport'
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your sphera LMB to move while casting
+    protection: iframe
+    cooldown_ms: 180000
+    description: The Archwizard unleashes a large-scale teleportation with immense magical power, capable of moving all nearby
+      allies.
+    notes: 'The Archwizard unleashes a large-scale teleportation with immense magical power, capable of moving all nearby
+      allies. Super Armor -> Invincible -> Super Armor Teleports max 4 party or platoon members to the front. Saturated magic
+      effect for 90 seconds upon using Archwizardry: Mass Teleport. However, the following party or platoon members will not
+      be able to join the Archwizardry: Mass Teleport: - Under the Saturated Magic effect - Afflicted by the Grapple condition
+      - Under the Invincible effect - Riding a mount - Equipped with tools like the matchlock or fishing rod - If the caster
+      is in a safe zone'
+  barrage_of_water:
+    name: Barrage of Water
+    input: ↑ + RMB Hold RMB after Magma Bomb
+    keys:
+    - w
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Gather the power of water to strike enemies nearby with water magic.
+    notes: Gather the power of water to strike enemies nearby with water magic. Attack damage 8994% x2 Critical Hit Rate +100%
+      Maximum 10 targets Super Armor during the skill All Evasion -36 for 10 sec on hits Down Attack 30.6% damage in PvP only
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  blizzard:
+    name: Blizzard
+    input: SHIFT + LMB + RMB
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: FG
+    cooldown_ms: 80000
+    description: Summon a powerful blizzard by controlling the climate. Enemies become powerless in front of the blizzard.
+    notes: Summon a powerful blizzard by controlling the climate. Enemies become powerless in front of the blizzard. Attack
+      damage 1656% x5, max 3 hits Maximum 10 targets Forward Guard while casting MP will constantly drain while Blizzard is
+      in effect. Reduces all speeds of struck targets. 83.66% damage in PvP only When 2 or more targets are hit, the damage
+      is equally divided among all targets. (PvP only)
+  bolide_of_destruction:
+    name: Bolide of Destruction
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 11000
+    description: Summon a majestic orb of fire and drop it, eradicating everything where the orb dropped.
+    notes: Summon a majestic orb of fire and drop it, eradicating everything where the orb dropped. Attack damage 10202% x2
+      Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Knockdown on hits (PvE only) Down Attack 37%
+      damage in PvP only is activated while Marg or Arne is summoned. Attack damage 846% x3 Maximum 10 targets 50 burn damage
+      every 3 sec for 9 sec on hits Down Attack 61.29% damage in PvP only Attack damage 13710% x3 Critical Hit Rate +100%
+      Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical
+      Hit Rate +30% for 60 sec when using the skill Super Armor Knockdown on hits Down Attack 28.6% damage in PvP only Injures
+      target with 50% of the damage of a hit. Dismount target on hits.
+  burning_pulse:
+    name: Burning Pulse
+    input: Passive Fire Element skills are cast instantly when performed by commands
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Magic AP +1 Critical Hit Rate +2% Learning this skill will let you cast Fire Element skills faster.
+      - Tier 1: Prime: Fireball - Tier 2: Prime: Fireball Explosion, Prime: Bolide of Destruction, Rain of Fire - Tier 3:
+      Prime: Meteor Shower Upon learning Prime: Elemental Flow , the Quickened Spell effect will be applied as follows. -
+      Tier 1: -4 sec - Tier 2: -6 sec'
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  cataclysm:
+    name: Cataclysm
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: Outraged, the Wizard discharges a flame surge to incur a storm.
+    notes: Outraged, the Wizard discharges a flame surge to incur a storm. Attack damage 7906% x2 Critical Hit Rate +30% Maximum
+      10 targets Casting Speed +20% for 10 sec when using the skill Recover 105 MP per hit Super Armor Bound on hits Down
+      Attack 45% damage in PvP only is empowered into while Marg or Arne is summoned. Attack damage 2380% x2 Maximum 10 targets
+      Down Attack 47.57% damage in PvP only Attack damage 2380% x3 Maximum 10 targets Down Attack 47.57% damage in PvP only
+      Attack damage 10828% x2 Critical Hit Rate +30% Maximum 10 targets Increased attack area Casting Speed +20% for 10 sec
+      when using the skill Recover 105 MP per hit 50 burn damage every 3 sec for 9 sec on hits Super Armor Bound on hits Down
+      Attack 38% damage in PvP only Dismount target on hits. Injures target with 10% of the damage of a hit. Attack damage
+      2380% x2 Maximum 10 targets Down Attack 47.57% damage in PvP only Attack damage 2380% x3 Maximum 10 targets Down Attack
+      47.57% damage in PvP only
+  chilling_wave:
+    name: Chilling Wave
+    input: ↓ + LMB + RMB
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 11000
+    description: Project a cold wave forward to attack the target.
+    notes: Project a cold wave forward to attack the target. Attack 1 damage 4618% x2 Attack 2 damage 4618% x1, max 3 hits
+      Attack 3 damage 4618% x2 Maximum 10 targets Critical Hit Rate +30% for 10 sec when using the skill Forward Guard during
+      the skill Knockback on attack 1 hits (PvE only) Down Attack 37% damage in PvP only
+  commune_attack:
+    name: 'Commune: Attack'
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 1000
+    description: Command the Keeper Arne or Marg to attack a designated target.
+    notes: Command the Keeper Arne or Marg to attack a designated target. Command the summoned creature to attack a designated
+      target. Attacks targets far away from the summoner when used.
+    keys:
+    - hotbar
+  commune_calling:
+    name: 'Commune: Calling'
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 1000
+    description: Command the Keeper Arne or Marg to follow you.
+    notes: Command the Keeper Arne or Marg to follow you. Command the summoned creature to follow you. Attacks targets around
+      the summoner when used.
+    keys:
+    - hotbar
+  concentrated_magic_arrow:
+    name: Concentrated Magic Arrow
+    input: LMB + RMB Fires if LMB or RMB is not pressed
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 4000
+    description: Shoots a powerful arrow with collected magical powers.
+    notes: Shoots a powerful arrow with collected magical powers. Attack damage 899% x2 Critical Hit Rate +40% Maximum 5 targets
+      Knockdown on hits (PvE only) (Nullified during cooldown) Stiffness on hits (PvP only) (Nullified during cooldown) Down
+      Attack 73.2% damage in PvP only
+  controlled_madness:
+    name: Controlled Madness
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: Exude an aura of madness just enough to buff your allies without going actually mad.
+    notes: Exude an aura of madness just enough to buff your allies without going actually mad. Recovers 700 MP when using
+      the skill Casting Speed +20% for 30 sec Critical Hit Rate +30% for 30 sec All Damage Reduction +15 for 30 sec All Evasion
+      +48 for 30 sec All Accuracy +60 for 30 sec (Applied to self and allies) All AP +20 for 30 sec (Applied to self and allies)
+      Recovers 80 MP when using the skill with your godr sphera Super Armor during the skill
+  core_aqua_jail_explosion:
+    name: 'Core: Aqua Jail Explosion'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 6000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Aqua Jail Explosion IV after learning this skill: Stiffness on
+      hits'
+  core_bolide_of_destruction:
+    name: 'Core: Bolide of Destruction'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Bolide of Destruction III after learning this skill: Knockdown
+      on hits'
+  core_cataclysm:
+    name: 'Core: Cataclysm'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+  core_chilling_wave:
+    name: 'Core: Chilling Wave'
+    input: Passive
+    protection: none
+    cc:
+    - knockback
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Chilling Wave III after learning this skill: Knockback on attack
+      1 hits'
+  core_hellfire:
+    name: 'Core: Hellfire'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+  core_water_sphere:
+    name: 'Core: Water Sphere'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Water Sphere III after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown) Not applied to Black Spirit skills.'
+  dagger_stab:
+    name: Dagger Stab
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 10000
+    description: Imbue your dagger with magical power, then attack the enemy.
+    notes: Imbue your dagger with magical power, then attack the enemy. Attack damage 993% x2 Critical Hit Rate +100% (Nullified
+      during cooldown) Maximum 5 targets Stiffness on hits (Nullified during cooldown) Push the target on hits (PvE only)
+      Counter Attack Damage reduced during cooldown
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  earth_s_response:
+    name: Earth's Response
+    input: ← + LMB or → + LMB
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - floating
+    cooldown_ms: 3000
+    description: While swiftly dodging left and right, strike the ground hard to attack the enemy ahead with protruding rocks.
+    notes: While swiftly dodging left and right, strike the ground hard to attack the enemy ahead with protruding rocks. Attack
+      damage 952% x2 Maximum 7 targets Floating on hits
+  earthquake:
+    name: Earthquake
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 60000
+    description: Use your magic to summon a massive earthquake to damage foes nearby.
+    notes: Use your magic to summon a massive earthquake to damage foes nearby. Attack damage 2061% x6 Maximum 7 targets Recover
+      15 MP per hit Increased Casting Speed Super Armor Pull in the target on hits (PvE only) Bound on hits (PvE only) Stiffness
+      on hits (PvP only) Down Attack 62.74% damage in PvP only
+  elementalization:
+    name: Elementalization
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: iframe
+    cooldown_ms: 5000
+    description: Elementalize your body to retreat back.
+    notes: Elementalize your body to retreat back. Invincible -> Super Armor during the skill
+  elvia_unbalanced_eye:
+    name: 'Elvia: Unbalanced Eye'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Gather elemental energies to cast powerful magics upon foes in the vicinity.
+    notes: Gather elemental energies to cast powerful magics upon foes in the vicinity. Attack 1 damage 3870% x2 Attack 2
+      damage 7740% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE
+      only) All AP -20 for 10 sec on hits Recover 158 MP per hit Super Armor during the skill Down Attack 20.91% damage in
+      PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  fireball:
+    name: Fireball
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 3000
+    description: Form a powerful ball of flame with your magic to deal great damage upon your foes.
+    notes: Form a powerful ball of flame with your magic to deal great damage upon your foes. Attack damage 1150% x2 Maximum
+      7 targets 15 burn damage every 3 sec for 9 sec on hits Knockdown on hits (PvE only) Stiffness on hits (PvP only) Down
+      Attack Fireball buff for 7 sec after Fireball Damage is reduced when used instantly during casting.
+  fireball_explosion:
+    name: Fireball Explosion
+    input: RMB after Fireball SHIFT + LMB while the Fireball buff lasts Can be used via a Quick Slot while the Fireball buff
+      lasts
+    keys:
+    - rmb
+    - shift
+    - lmb
+    - a
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 13000
+    description: Explodes the fireball thrown at the enemies to inflict heavier damage.
+    notes: Explodes the fireball thrown at the enemies to inflict heavier damage. Attack damage 2500% x2 Critical Hit Rate
+      +80% Maximum 10 targets 20 burn damage every 3 sec for 9 sec on hits Knockdown on hits Down Attack 58.56% damage in
+      PvP only
+  flame_knot:
+    name: Flame Knot
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cc:
+    - bound
+    cooldown_ms: 15000
+    description: Bind the target with the power of fire, making it unable to move.
+    notes: Bind the target with the power of fire, making it unable to move. Attack damage 1649% x2 Maximum 10 targets Super
+      Armor on Grapple/Grapple fails Bound on Grapple 97.69% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds.
+  flame_s_calling:
+    name: Flame's Calling
+    input: Auto-activated when using Magma Bomb
+    protection: none
+    cc:
+    - down_attack
+    description: Call upon the flames to attack your enemies.
+    notes: Call upon the flames to attack your enemies. Attack damage 4172% x1, max 3 hits Maximum 10 targets Down Attack
+      25% damage in PvP only
+  flow_aqua_bomb:
+    name: 'Flow: Aqua Bomb'
+    input: Hold RMB after using Water Sphere
+    keys:
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: Instantly inject a great force into the Water Sphere to cause a huge explosion.
+    notes: Instantly inject a great force into the Water Sphere to cause a huge explosion. Attack damage 5878% x2 Critical
+      Hit Rate +50% Maximum 10 targets Down Attack Air Smash Down Smash 32.72% damage in PvP only Damage -5% per each additional
+      target hit from target 2 onward. (Max damage -70% .) (PvP only)
+  flow_arne_s_guidance:
+    name: 'Flow: Arne''s Guidance'
+    input: Auto-activated when using Chilling Wave
+    protection: none
+    cc:
+    - down_attack
+    description: Chilling wave becomes even more dangerous with Arne's guidance.
+    notes: Chilling wave becomes even more dangerous with Arne's guidance. Attack damage 1309% x1, max 7 hits Critical Hit
+      Rate +25% Maximum 10 targets Down Attack 64.98% damage in PvP only The skill effect is empowered into while Marg or
+      Arne is summoned. Attack damage 1309% x1, max 8 hits Critical Hit Rate +25% Maximum 10 targets Down Attack Increased
+      attack area 64.98% damage in PvP only
+  flow_arne_s_stream:
+    name: 'Flow: Arne''s Stream'
+    input: Auto-activated when using Aqua Jail Explosion
+    protection: none
+    cc:
+    - down_attack
+    description: The aquatic barrier becomes even stronger with Arne's flow.
+    notes: The aquatic barrier becomes even stronger with Arne's flow. Attack damage 2094% x4 Maximum 10 targets Down Attack
+  flow_fire_breath_marg:
+    name: 'Flow: Fire Breath Marg'
+    input: Auto-activated when using Cataclysm
+    protection: none
+    cc:
+    - down_attack
+    description: Adds Marg's fiery breath to the Wizard's Cataclysm.
+    notes: Adds Marg's fiery breath to the Wizard's Cataclysm. Attack damage 846% x4 Maximum 10 targets Down Attack 61.29%
+      damage in PvP only
+  flow_fire_fist_marg:
+    name: 'Flow: Fire Fist Marg'
+    input: Auto-activated when using Hellfire
+    protection: none
+    cc:
+    - down_attack
+    description: Marg joins in and throws fiery punches during the Wizard's Hellfire.
+    notes: Marg joins in and throws fiery punches during the Wizard's Hellfire. Attack damage 2380% x5 Maximum 10 targets
+      Down Attack 47.57% damage in PvP only
+  flow_magical_evasion:
+    name: 'Flow: Magical Evasion'
+    input: SHIFT + ← SHIFT + → SHIFT + ↓ ↑ + ↑ to perform forward
+    keys:
+    - shift
+    - a
+    - d
+    - s
+    - w
+    protection: iframe
+    cooldown_ms: 3000
+    description: Dodge quickly in all directions using magical power.
+    notes: Dodge quickly in all directions using magical power. Invincible -> Super Armor (Nullified during cooldown) Invincible
+      during the skill (PvE only)
+  flow_mana_augmentation:
+    name: 'Flow: Mana Augmentation'
+    input: Passive
+    protection: none
+    description: Empowers Spellbound Heart to release even more potent mana.
+    notes: Empowers Spellbound Heart to release even more potent mana. Applies the following effects when Spellbound Heart
+      is summoned. - Max MP +2000 for 60 sec when using Magical Shield - Recover 50% of MP when using Healing Aura Applies
+      the following effects when Gorr or Tett is summoned. - Max MP +2800 for 60 sec when using Magical Shield - Recover 50%
+      of MP when using Healing Aura Applies the following effects when Arne or Marg is summoned. - Max MP +2800 for 60 sec
+      when using Magical Shield - Recover 50% of MP when using Healing Aura
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  freeze:
+    name: Freeze
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cooldown_ms: 6000
+    description: Perform a strong chill attack on enemies at close range. Enemies hit by the attack become frozen.
+    notes: Perform a strong chill attack on enemies at close range. Enemies hit by the attack become frozen. Attack damage
+      761% x2 Maximum 5 targets Freezing on hits Increased attack area
+  freezing_gaze:
+    name: Freezing Gaze
+    input: Passive Ice Element skills are cast instantly when performed by commands
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Magic AP +1 All Evasion +8 Learning this skill will let you cast Ice Element skills faster. -
+      Tier 1: Prime: Freezing - Tier 2: Prime: Frigid Fog, Prime: Aqua Jail Explosion - Tier 3: Prime: Blizzard Upon learning
+      Prime: Elemental Flow , the Quickened Spell effect will be applied as follows. - Tier 1: -2 sec - Tier 2: -5 sec'
+  frigid_fog:
+    name: Frigid Fog
+    input: ↓ + Q
+    keys:
+    - s
+    - q
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Spread a frigid fog in your vicinity to attack enemies with the cold.
+    notes: Spread a frigid fog in your vicinity to attack enemies with the cold. Attack damage 1208% x2 Maximum 10 targets
+      Super Armor Freezing on hits Down Attack
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  godr_sphera_training:
+    name: Godr Sphera Training
+    input: LMB or RMB to perform standing attacks ← or ↑ or → + LMB or RMB to perform moving attacks
+    keys:
+    - lmb
+    - rmb
+    - a
+    - w
+    - d
+    protection: none
+    description: A basic training skill using your godr sphera.
+    notes: A basic training skill using your godr sphera. Attack damage 1333% x1 Maximum 10 targets Recover 300 MP per hit
+      Consumes Stamina during moving attacks. 97.69% damage in PvP only
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  healing_aura:
+    name: Healing Aura
+    input: E
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 10000
+    description: Recovers a certain amount of faraway friends' HP.
+    notes: Recovers a certain amount of faraway friends' HP. Recover 1400 HP to self and 1 ally Recover 20% of MP to self
+      Applies effect to max 10 allies
+  healing_lighthouse:
+    name: Healing Lighthouse
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: none
+    cooldown_ms: 30000
+    description: Use a generous amount of magic to recover the HP of self and allies.
+    notes: Use a generous amount of magic to recover the HP of self and allies. Recover 1500 of HP to self Recover 1000 HP
+      for nearby allies Recover max 3 times Recover 150 MP, max 3 times, when using the skill Applies effect to max 10 allies
+  hellfire:
+    name: Hellfire
+    input: ↑ + F Hold F to charge LMB while dashing to attack
+    keys:
+    - w
+    - f
+    - lmb
+    protection: FG
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Collect the element of fire in your hand, dash forward, then set the target ablaze.
+    notes: Collect the element of fire in your hand, dash forward, then set the target ablaze. Attack damage 4887% x3 Critical
+      Hit Rate +50% Maximum 10 targets Forward Guard -> Super Armor during the skill Magic Damage Reduction -20 for 10 sec
+      on hits Stiffness before attack Knockdown on hits Down Attack 23% damage in PvP only is empowered into while Marg or
+      Arne is summoned. Attack damage 2380% x2 Maximum 10 targets Down Attack 47.57% damage in PvP only Attack 1 damage 2380%
+      x2 Attack 2 damage 2380% x2 Maximum 10 targets Down Attack 47.57% damage in PvP only Attack damage 6413% x3 Critical
+      Hit Rate +50% Maximum 10 targets Increased attack area Forward Guard -> Super Armor during the skill Magic Damage Reduction
+      -20 for 10 sec on hits Stiffness before attack Knockdown on hits Down Attack 31.2% damage in PvP only Dismount target
+      on hits. Injures target with 30% of the damage of a hit. Attack damage 2380% x2 Maximum 10 targets Down Attack 47.57%
+      damage in PvP only Attack 1 damage 2380% x2 Attack 2 damage 2380% x2 Maximum 10 targets Down Attack 47.57% damage in
+      PvP only
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+  lava_field:
+    name: Lava Field
+    input: E
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 15000
+    description: Inflict damage by making the area ahead of you filled with lava.
+    notes: Inflict damage by making the area ahead of you filled with lava. Attack damage 650% x1, max 23 hits Maximum 10
+      targets 100 burn damage every 3 sec for 36 sec on attack 1 hits Magic Damage Reduction -20 for 5 sec on hits Lasts 7.5
+      sec. 74.58% damage in PvP only
+  lightning:
+    name: Lightning
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Drop powerful lightning from the sky to attack enemies.
+    notes: Drop powerful lightning from the sky to attack enemies. Attack damage 1574% x3 Maximum 10 targets Stun on hits
+      (Nullified during cooldown) Down Attack Applies "Shocked" effect (reduced all speeds to struck targets) 50.19% damage
+      in PvP only Attack damage 5874% x4, max 3 hits Maximum 10 targets All AP +30 for 60 sec when using the skill Casting
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on
+      hits Push the target on hits (PvE only) Air Attack Down Attack 36.6% attack 1 damage in PvP only Injures target with
+      50% of the damage of a hit. Dismount target on hits.
+  lightning_chain:
+    name: Lightning Chain
+    input: SHIFT + RMB Hold RMB to perform consecutively
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    description: Harness your magic to forge a chain of lightning, ensnaring foes within its reach and delivering relentless
+      damage.
+    notes: Harness your magic to forge a chain of lightning, ensnaring foes within its reach and delivering relentless damage.
+      Attack damage 792% x3, max 2 hits Maximum 6 targets Stiffness on hits Lightning Storm buff for 7 sec after using Lightning
+      Chain Applies "Shocked" effect (reduced all speeds to struck targets) 73.2% damage in PvP only Damage -15% per each
+      additional target hit from target 2 onward. (Max damage -40% .)
+  lightning_spear:
+    name: Lightning Spear
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Multiple Magic Arrows]'
+    notes: 'Preceding Skill: [Multiple Magic Arrows] Attack damage 10260% x2 Critical Hit Rate +100% Maximum 10 targets Applies
+      "Shocked" effect (reduced all speeds to struck targets) 32.63% damage in PvP only'
+    keys:
+    - hotbar
+  lightning_storm:
+    name: Lightning Storm
+    input: LMB + RMB after Lightning Chain Can be used via a Quick Slot while the Lightning Storm buff lasts Cannot be added
+      to a Quick Slot
+    keys:
+    - lmb
+    - rmb
+    - a
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 12000
+    description: Use your magic to deal great electrical damage to enemies within a certain area.
+    notes: Use your magic to deal great electrical damage to enemies within a certain area. Attack damage 2038% x2 Critical
+      Hit Rate +75% Maximum 6 targets Stiffness on hits Applies "Shocked" effect (reduced all speeds to struck targets) 73.2%
+      damage in PvP only
+  luminous_touch:
+    name: Luminous Touch
+    input: Passive Lightning Element skills are cast instantly when performed by commands
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Magic AP +1 Critical Hit Rate +2% Learning this skill will let you cast Lightning Element skills
+      faster. - Tier 1: Prime: Lightning - Tier 2: Prime: Lightning Storm, Prime: Residual Lightning, Prime: Voltaic Pulse
+      - Tier 3: Prime: Voltaic Discharge Upon learning Prime: Elemental Flow , the Quickened Spell effect will be applied
+      as follows. - Tier 1: -4 sec - Tier 2: -6 sec'
+  magic_arrow:
+    name: Magic Arrow
+    input: RMB LMB or RMB while mounted
+    keys:
+    - rmb
+    - lmb
+    protection: none
+    description: Use magic to form arrows and rain them upon your foes.
+    notes: Use magic to form arrows and rain them upon your foes. Attack damage 1543% x1 Critical Hit Rate +30% Maximum 5
+      targets Consumes Stamina during moving attacks. 31.37% damage in PvP only Attack 1 damage 1543% x1 Attacks 2 and 3 damage
+      1800% x1 Attack 4 damage 1800% x1 Critical Hit Rate +30% Maximum 10 targets Consumes Stamina during moving attacks.
+      30% attack 1 damage in PvP only 50% attacks 2, 3, and 4 damage in PvP only
+  magic_power_boost:
+    name: Magic Power Boost
+    input: Passive
+    protection: none
+    description: Increases Magic AP permanently by 24.
+    notes: Increases Magic AP permanently by 24. Magic AP +24
+  magical_evasion:
+    name: Magical Evasion
+    input: SHIFT + ← SHIFT + → SHIFT + ↓ ↑ + ↑ to perform forward
+    keys:
+    - shift
+    - a
+    - d
+    - s
+    - w
+    protection: iframe
+    cooldown_ms: 3000
+    description: Dodge quickly in all directions using magical power.
+    notes: Dodge quickly in all directions using magical power. Invincible during the skill (PvE only) Super Armor during
+      the skill Invincible during the skill (PvE only) Consecutive evasion unavailable during cooldown.
+  magical_shield:
+    name: Magical Shield
+    input: Q Can be used via a Quick Slot with your sphera
+    keys:
+    - q
+    - a
+    protection: none
+    cooldown_ms: 120000
+    description: Consume mana instead of HP for a portion of damage taken.
+    notes: Consume mana instead of HP for a portion of damage taken. All Resistance +30% for 30 sec when using the skill Consume
+      MP equal to 10% of damage received for 60 sec.
+  magma_bomb:
+    name: Magma Bomb
+    input: '↓ + RMB RMB after Hellfire, Flow: Aqua Bomb, Bolide of Destruction, or Torrential Cascade'
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 7000
+    description: Focus your magic into the godr sphera, then release it as mighty flames towards the front.
+    notes: Focus your magic into the godr sphera, then release it as mighty flames towards the front. Attack damage 6295%
+      x2 Critical Hit Rate +100% Maximum 10 targets 60 burn damage every 3 sec for 18 sec on hits Forward Guard Stun on hits
+      (PvE only) Down Attack 35.8% damage in PvP only
+  magnificent_steps:
+    name: Magnificent Steps
+    input: Passive Earth Element skills are cast instantly when performed by commands
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Magic AP +1 All Damage Reduction +2 Learning this skill will let you cast Earth Element skills
+      faster. - Tier 1: Prime: Earth Arrow, Prime: Earth''s Response - Tier 2: Prime: Equilibrium Break - Tier 3: Prime: Earthquake
+      Upon learning Prime: Elemental Flow , the Quickened Spell effect will be applied as follows. - Tier 1: -3 sec - Tier
+      2: -6 sec'
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  mana_absorption:
+    name: Mana Absorption
+    input: SPACE after other skills
+    keys:
+    - space
+    protection: FG
+    cooldown_ms: 7000
+    description: Recover your mana by stealing from your opponent.
+    notes: Recover your mana by stealing from your opponent. Attack damage 1357% x1, max 2 hits Maximum 10 targets Recovers
+      30% MP when using the skill Movement Speed -20% for 5 sec on hits Forward Guard
+  mana_arrows:
+    name: Mana Arrows
+    input: Can be added to a Quick Slot
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 18000
+    description: 'Preceding Skill: [Multiple Magic Arrows]'
+    notes: 'Preceding Skill: [Multiple Magic Arrows] Attack 1 damage 2592% x2, max 3 hits Attack 2 damage 1616% x2 Critical
+      Hit Rate +50% Maximum 10 targets Absorb 30% of 1 targets'' MP Forward Guard during the skill Down Attack 36.6% damage
+      in PvP only'
+    keys:
+    - hotbar
+  meteor_shower:
+    name: Meteor Shower
+    input: ↓ + LMB + RMB
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 90000
+    description: Use your magic to drop meteorites drifting in the atmosphere upon enemies over a wide area.
+    notes: Use your magic to drop meteorites drifting in the atmosphere upon enemies over a wide area. Attack damage 2454%
+      x2 Meteor attack damage 2668% x2 Maximum 10 targets Increased Casting Speed 50 burn damage every 3 sec for 18 sec on
+      hits Forward Guard while casting Super Armor on attacks Stiffness on hits Knockdown on meteor attack hits Down Attack
+      62.74% damage in PvP only Meteor attack damage 3620% x6 Last attack damage 1923% x5 Critical Hit Rate +100% (PvE only)
+      Critical Hit Rate +50% on last attacks (PvP only) Maximum 10 targets All AP +55 for 60 sec when using the skill Casting
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60
+      sec when using the skill 50 burn damage every 3 sec for 18 sec on hits Super Armor Stiffness on hits Knockdown on meteor
+      attack hits (PvP only) Down Attack 59.6% meteor attack damage in PvP only 89.53% last attack damage in PvP only Injures
+      target with 100% of the damage of a hit. Dismount target on hits.
+  mind_training:
+    name: Mind Training
+    input: Passive
+    protection: none
+    description: Increases Casting Speed.
+    notes: Increases Casting Speed. All AP +1 Casting Speed +0.5%
+  mind_training_xi:
+    name: Mind Training XI
+    input: Passive
+    protection: none
+    description: Increases Casting Speed and enhances the power of your magic.
+    notes: Increases Casting Speed and enhances the power of your magic. Casting Speed +0.5%
+  mind_training_xii:
+    name: Mind Training XII
+    input: Passive
+    protection: none
+    description: Increases Casting Speed.
+    notes: Increases Casting Speed. Casting Speed +0.5%
+  mind_training_xiii:
+    name: Mind Training XIII
+    input: Passive
+    protection: none
+    description: Increases Casting Speed and enhances the power of your magic.
+    notes: Increases Casting Speed and enhances the power of your magic. All AP +1 Casting Speed +0.5%
+  mind_training_xiv:
+    name: Mind Training XIV
+    input: Passive
+    protection: none
+    description: Increases Casting Speed.
+    notes: Increases Casting Speed. Casting Speed +0.5%
+  mind_training_xix:
+    name: Mind Training XIX
+    input: Passive
+    protection: none
+    description: Increases Casting Speed and enhances the power of your magic.
+    notes: Increases Casting Speed and enhances the power of your magic. All AP +1 Casting Speed +0.5%
+  mind_training_xv:
+    name: Mind Training XV
+    input: Passive
+    protection: none
+    description: Increases Casting Speed and enhances the power of your magic.
+    notes: Increases Casting Speed and enhances the power of your magic. Casting Speed +0.5%
+  mind_training_xvi:
+    name: Mind Training XVI
+    input: Passive
+    protection: none
+    description: Increases Casting Speed.
+    notes: Increases Casting Speed. All AP +1 Casting Speed +0.5%
+  mind_training_xvii:
+    name: Mind Training XVII
+    input: Passive
+    protection: none
+    description: Increases Casting Speed and enhances the power of your magic.
+    notes: Increases Casting Speed and enhances the power of your magic. Casting Speed +0.5%
+  mind_training_xviii:
+    name: Mind Training XVIII
+    input: Passive
+    protection: none
+    description: Increases Casting Speed.
+    notes: Increases Casting Speed. Casting Speed +0.5%
+  mind_training_xx:
+    name: Mind Training XX
+    input: Passive
+    protection: none
+    description: Increases Casting Speed.
+    notes: Increases Casting Speed. All AP +1 Casting Speed +0.5%
+  mind_training_xxi:
+    name: Mind Training XXI
+    input: Passive
+    protection: none
+    description: Increases Casting Speed.
+    notes: Increases Casting Speed. Knowledge Gain Chance +10% Higher Grade Knowledge Gain Chance +5% when learning Knowledge
+  multiple_magic_arrows:
+    name: Multiple Magic Arrows
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your sphera
+    protection: none
+    cooldown_ms: 11000
+    description: 'Preceding Skill: [Magic Arrow V]'
+    notes: 'Preceding Skill: [Magic Arrow V] Attack damage 1581% x2 Critical Hit Rate +100% Maximum 10 targets Damage reduced
+      during cooldown'
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_aqua_jail_explosion:
+    name: 'Prime: Aqua Jail Explosion'
+    input: '↓ + C RMB or ↓ + E after using skills of the same element (requires Prime: Elemental Flow )'
+    keys:
+    - s
+    - c
+    - rmb
+    - e
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 2891% x6 Attack damage 8676% x2 when comboed with other skills Critical Hit Rate
+      +100% Maximum 10 targets Magic Damage Reduction -20 for 10 sec on hits Super Armor Stiffness on hits (PvE only) Down
+      Attack 28.73% damage in PvP only'
+  prime_blizzard_domain:
+    name: 'Prime: Blizzard: Domain'
+    input: SHIFT + LMB + RMB
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: FG
+    cooldown_ms: 20000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 5621% x1, max 8 hits Critical Hit Rate +50% Maximum 10 targets All AP -16 for 5
+      sec on hits Movement Speed -15% for 5 sec on hits Forward Guard during the skill 36.8% damage in PvP only'
+  prime_blizzard_storm:
+    name: 'Prime: Blizzard: Storm'
+    input: 'SHIFT + LMB + RMB Hold LMB to perform consecutively (requires Ultimate: Blizzard )'
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: FG
+    cooldown_ms: 60000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 4834% x1, max 9 hits Extra attack damage 3223% 6, max 3 hits Maximum 10 targets
+      Forward Guard while casting MP will constantly drain while Blizzard is in effect. Reduces all speeds of struck targets.
+      48.42% damage in PvP only When 2 or more targets are hit, the damage is equally divided among all targets. (PvP only)'
+  prime_bolide_of_destruction:
+    name: 'Prime: Bolide of Destruction'
+    input: '↑ + C RMB after using skills of the same element (requires Prime: Elemental Flow )'
+    keys:
+    - w
+    - c
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 5796% x3 Critical Hit Rate +100% Maximum 10 targets Casting Speed +20% for 10 sec
+      when using the skill Super Armor Bound on hits Down Attack Down Smash 30.64% damage in PvP only'
+  prime_earth_arrow:
+    name: 'Prime: Earth Arrow'
+    input: 'LMB + RMB RMB after using skills of the same element (requires Prime: Elemental Flow )'
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 3000
+    description: Channel magics to fire an arrow at your enemies.
+    notes: Channel magics to fire an arrow at your enemies. Attack damage 5216% x2 Critical Hit Rate +50% Maximum 10 targets
+      Magic Damage Reduction -20 for 10 sec on hits Knockdown on hits (PvE only) Stiffness on hits (PvP only) Down Attack
+      35.14% damage in PvP only
+  prime_earth_s_response_destruction:
+    name: 'Prime: Earth''s Response: Destruction'
+    input: '← + LMB or → + LMB LMB during Succession: Magical Evasion'
+    keys:
+    - a
+    - lmb
+    - d
+    protection: SA
+    cc:
+    - floating
+    cooldown_ms: 3000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 5675% x2 Maximum 10 targets Magic Damage Reduction -20 for 10 sec on hits Super
+      Armor Floating on hits (PvE only) 44.44% damage in PvP only'
+  prime_earth_s_response_flow:
+    name: 'Prime: Earth''s Response: Flow'
+    input: '← + LMB or → + LMB LMB during Succession: Magical Evasion'
+    keys:
+    - a
+    - lmb
+    - d
+    protection: SA
+    cc:
+    - floating
+    cooldown_ms: 3000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 3756% x2 Maximum 10 targets Magic Damage Reduction -20 for 10 sec on hits Floating
+      on hits (Nullified during cooldown) Super Armor while moving (Nullified during cooldown) Damage reduced during cooldown
+      35.34% damage in PvP only'
+  prime_earthquake_destruction:
+    name: 'Prime: Earthquake: Destruction'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 18164% x2 Critical Hit Rate +50% (PvE only) Maximum 10 targets Recover 135 MP per
+      hit Super Armor Pull in the target on hits (PvE only) Bound on hits (PvE only) Stiffness on hits (PvP only) Down Attack
+      31.72% damage in PvP only'
+  prime_earthquake_evade:
+    name: 'Prime: Earthquake: Evade'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - bound
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 10184% x2 Maximum 10 targets Recover 150 MP per hit (Nullified during cooldown)
+      Super Armor during the skill (Nullified during cooldown) Bound on hits (PvE only) (Nullified during cooldown) Stiffness
+      on hits (PvP only) (Nullified during cooldown) No character collision while evading backward Down Attack Reduced movement
+      distance during cooldown. Damage reduced during cooldown 41.1% damage in PvP only'
+  prime_elemental_flow:
+    name: 'Prime: Elemental Flow'
+    input: 'Passive RMB after an elemental skill to activate skills of the same element. Cast succession skills instantly
+      when performed by commands after Succession: Magical Evasion . Upon learning Burning Pulse, Freezing Gaze, Luminous
+      Touch, or Magnificent Steps : Succession skills are cast instantly when performed by commands after a succession skill.
+      Cast succession skills instantly when performed by commands after Teleport.'
+    keys:
+    - rmb
+    - a
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Applies the following effects upon learning this skill. - Cannot use Sage''s Memory . - Ultimate:
+      Teleport can be performed as a separate skill. - Easier to combo each of the elemental spells together. - Perform Succession
+      skill combos faster. - The above effect does not apply for Succession skills during cooldown . When a Tier 3 elemental
+      skill is on cooldown, activating a skill of the same element will reduce its cooldown time based on the used skill''s
+      tier and element .'
+  prime_elemental_palace:
+    name: 'Prime: Elemental Palace'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Casting Speed +20% for 30 sec Critical Hit Rate +30% for 30 sec All AP +20 for 30 sec All Accuracy
+      +60 for 30 sec All Damage Reduction +15 for 30 sec Super Armor during the skill'
+    keys:
+    - hotbar
+  prime_equilibrium_break:
+    name: 'Prime: Equilibrium Break'
+    input: '↓ + C RMB after using skills of the same element (requires Prime: Elemental Flow )'
+    keys:
+    - s
+    - c
+    - rmb
+    protection: FG
+    cc:
+    - stiffness
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 11582% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets Magic Damage Reduction
+      -20 for 10 sec on hits Forward Guard Stiffness before attack (PvE only) Bound on hits (PvE only) Down Attack 21.91%
+      damage in PvP only'
+  prime_fireball:
+    name: 'Prime: Fireball'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 3000
+    description: Form a powerful ball of flame with your magic to deal great damage upon your foes.
+    notes: Form a powerful ball of flame with your magic to deal great damage upon your foes. Attack damage 6951% x2 Maximum
+      10 targets 20 burn damage every 3 sec for 9 sec on hits Knockdown on hits (PvE only) Stiffness on hits (PvP only) Down
+      Attack 23.3% damage in PvP only
+  prime_fireball_explosion_areal:
+    name: 'Prime: Fireball Explosion: Areal'
+    input: 'SHIFT + LMB RMB after Prime: Fireball RMB after using skills of the same element (requires Prime: Elemental Flow
+      )'
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Cause an enormous explosion at a targeted location
+    notes: Cause an enormous explosion at a targeted location Attack damage 6894% x2 Critical Hit Rate +100% Maximum 10 targets
+      35 burn damage every 3 sec for 9 sec on hits Knockdown on hits Down Attack 30.16% damage in PvP only
+  prime_fireball_explosion_spread:
+    name: 'Prime: Fireball Explosion: Spread'
+    input: 'SHIFT + LMB RMB after Prime: Fireball RMB after using skills of the same element (requires Prime: Elemental Flow
+      )'
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Cause a fire storm by wrapping your staff in flames, then unleashing them over a large area in your vicinity
+    notes: Cause a fire storm by wrapping your staff in flames, then unleashing them over a large area in your vicinity Attack
+      damage 8576% x2 Critical Hit Rate +100% Maximum 10 targets 35 burn damage every 3 sec for 9 sec on hits Super Armor
+      during the skill Down Attack 28.85% damage in PvP only
+  prime_freeze:
+    name: 'Prime: Freeze'
+    input: '↓ + E Hold ↓ + E or RMB to perform an extra attack RMB or ↓ + E after using skills of the same element (requires
+      Prime: Elemental Flow )'
+    keys:
+    - s
+    - e
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 6000
+    description: Condense the icy energy to a focal point and shoot it to freeze enemies in an instance. Afterwards, explode
+      the condensed energy to freeze surrounding enemies again.
+    notes: Condense the icy energy to a focal point and shoot it to freeze enemies in an instance. Afterwards, explode the
+      condensed energy to freeze surrounding enemies again. Attack damage 3265% x2 Extra attack damage 4870% x2 Maximum 10
+      targets Freezing on hits (PvP only) Down Attack 37.02% damage in PvP only
+  prime_frigid_fog_control:
+    name: 'Prime: Frigid Fog: Control'
+    input: '↓ + Q RMB or KeyBind:MoveBack} + E after using skills of the same element (requires Prime: Elemental Flow )'
+    keys:
+    - s
+    - q
+    - rmb
+    - e
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Shoots a frigid fog forward to attack and freezes
+    notes: Shoots a frigid fog forward to attack and freezes Attack damage 8817% x2 Critical Hit Rate +50% Maximum 10 targets
+      Freezing on hits (PvP only) Down Attack 32.58% damage in PvP only
+  prime_frigid_fog_disrupt:
+    name: 'Prime: Frigid Fog: Disrupt'
+    input: '↓ + Q RMB or KeyBind:MoveBack} + E after using skills of the same element (requires Prime: Elemental Flow )'
+    keys:
+    - s
+    - q
+    - rmb
+    - e
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Spread a frigid fog into a large area and disrupt enemy movement
+    notes: Spread a frigid fog into a large area and disrupt enemy movement Attack damage 5556% x2 Critical Hit Rate +50%
+      Maximum 10 targets Movement Speed -7% for 5 sec on hits Forward Guard Down Attack 43.5% damage in PvP only
+  prime_lightning:
+    name: 'Prime: Lightning'
+    input: '↓ + F Hold F to perform extra attacks F or RMB after using skills of the same element (requires Prime: Elemental
+      Flow )'
+    keys:
+    - s
+    - f
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Mold lighting-bolts into the form of sharp thorns, then rain them down upon your foes.
+    notes: Mold lighting-bolts into the form of sharp thorns, then rain them down upon your foes. Attack damage 4023% x2 Extra
+      attack damage 4023% x2 Maximum 10 targets Stun on attack 1 hits (Nullified during cooldown) Down Attack Applies "Shocked"
+      effect (reduced all speeds to struck targets) Damage reduced during cooldown 34.3% damage in PvP only Attack damage
+      11433% x4 Last attack damage 4932% x3 Critical Hit Rate +100% (PvE only) Maximum 10 targets All AP +30 for 60 sec when
+      using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the
+      skill Super Armor Stun on hits Air Attack Down Attack Applies "Shocked" effect (reduced all speeds to struck targets)
+      59.6% damage in PvP only 73.2% last attack damage in PvP only Injures target with 50% of the damage of a hit. Dismount
+      target on hits.
+  prime_lightning_storm_high_voltage:
+    name: 'Prime: Lightning Storm: High Voltage'
+    input: 'SHIFT + C LMB + RMB after Lightning Chain Hold RMB or F or C to charge RMB or F after using skills of the same
+      element (requires Prime: Elemental Flow ) to perform instantly'
+    keys:
+    - shift
+    - c
+    - lmb
+    - rmb
+    - f
+    - hold
+    protection: FG
+    cc:
+    - stun
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 9266% x2 Critical Hit Rate +100% Maximum 10 targets Stun on hits (PvE only) Forward
+      Guard during the skill Applies "Shocked" effect (reduced all speeds to struck targets) 35.03% damage in PvP only'
+  prime_lightning_storm_strike:
+    name: 'Prime: Lightning Storm: Strike'
+    input: 'SHIFT + C LMB + RMB after Lightning Chain RMB or F after using skills of the same element (requires Prime: Elemental
+      Flow ) to perform instantly'
+    keys:
+    - shift
+    - c
+    - lmb
+    - rmb
+    - f
+    protection: FG
+    cc:
+    - stiffness
+    - pull
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 7792% x2 Critical Hit Rate +100% Maximum 10 targets Pull in the target on standing
+      attack hits (PvE only) Stiffness on hits (PvE only) Forward Guard during the skill Down Attack Applies "Shocked" effect
+      (reduced all speeds to struck targets) 40.75% damage in PvP only'
+  prime_meteor_shower_areal:
+    name: 'Prime: Meteor Shower: Areal'
+    input: ↓ + LMB + RMB
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 30000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 4576% x2 Meteor attack damage 8951% x2 Critical Hit Rate +50% (PvE only) Maximum
+      10 targets 60 burn damage every 3 sec for 18 sec on hits Forward Guard while casting Stiffness on hits Knockdown on
+      meteor attack hits Down Attack 48.01% normal attack damage in PvP only 38.95% meteor attack damage in PvP only Attack
+      damage 27240% x2, max 3 hits Meteor attack damage 27240% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for
+      60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when
+      using the skill Max HP +2000 for 60 sec when using the skill 60 burn damage every 3 sec for 18 sec on hits Super Armor
+      Stiffness on hits Knockdown on meteor attack hits Down Attack 10.35% damage in PvP only Not affected by effects which
+      increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount target on
+      hits.'
+  prime_meteor_shower_focus:
+    name: 'Prime: Meteor Shower: Focus'
+    input: ↓ + LMB + RMB
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 30000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Meteor attack damage 15008% x3 Critical Hit Rate +100% Maximum 10 targets 60 burn damage every
+      3 sec for 18 sec on hits Forward Guard Knockdown on meteor attack hits (PvE only) Down Attack 18.63% damage in PvP only
+      Attack 1 damage 22276% x1, max 6 hits Attack 2 damage 22276% x1, max 3 hits Critical Hit Rate +100% Maximum 10 targets
+      All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50%
+      for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill 60 burn damage every 3 sec for 18 sec on
+      hits Super Armor Knockdown on hits Down Attack 9.2% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount target on hits.'
+  prime_multiple_magic_arrows:
+    name: 'Prime: Multiple Magic Arrows'
+    input: ↓ + RMB Hold ↓ + RMB to perform extra attacks
+    keys:
+    - s
+    - rmb
+    - hold
+    protection: none
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 5115% x2 Extra attack damage 5115% x2 Critical Hit Rate +100% Maximum 10 targets
+      21.77% damage in PvP only'
+  prime_residual_lightning_combo:
+    name: 'Prime: Residual Lightning: Combo'
+    input: 'RMB or F after Prime: Lightning Hold RMB , F , or LMB to perform extra attacks RMB or F after using skills of
+      the same element (requires Prime: Elemental Flow ) to perform instantly RMB after Lightning Arrows (Witch only)'
+    keys:
+    - rmb
+    - f
+    - lmb
+    - hold
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Widely spread remaining lightning energies to deal constant damage
+    notes: Widely spread remaining lightning energies to deal constant damage Attack 1 damage 2653% x2 Attack 2 damage 2835%
+      x2 Attack 3 damage 2835% x2 Critical Hit Rate +100% Maximum 10 targets Recover 28 MP per hit Super Armor during the
+      skill Down Attack Applies "Shocked" effect (reduced all speeds to struck targets) 39.41% damage in PvP only
+  prime_residual_lightning_high_voltage:
+    name: 'Prime: Residual Lightning: High Voltage'
+    input: 'RMB or F after Prime: Lightning RMB or F after using skills of the same element (requires Prime: Elemental Flow
+      ) to perform instantly RMB during Lightning Arrows (Witch only)'
+    keys:
+    - rmb
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Widely spread remaining lightning energies to deal immense damage
+    notes: Widely spread remaining lightning energies to deal immense damage Attack damage 5401% x3 Critical Hit Rate +100%
+      Maximum 10 targets Recover 47 MP per hit Bound on hits Down Attack Applies "Shocked" effect (reduced all speeds to struck
+      targets) 37.85% damage in PvP only
+  prime_voltaic_discharge_diffuse:
+    name: 'Prime: Voltaic Discharge: Diffuse'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 30000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 13874% x1, max 3 hits Critical Hit Rate +100% Maximum 10 targets Forward Guard
+      while casting Knockback on hits Down Attack Applies "Shocked" effect (reduced all speeds to struck targets) 19.83% damage
+      in PvP only'
+  prime_voltaic_discharge_focus:
+    name: 'Prime: Voltaic Discharge: Focus'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - stiffness
+    - stun
+    cooldown_ms: 30000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 5346% x1, max 4 hits Last attack damage 11378% x2 Critical Hit Rate +100% Maximum
+      10 targets Forward Guard during the skill Stiffness on attack 1 hits (PvE only) Stun on last attack hits (PvE only)
+      17.9% damage in PvP only'
+  prime_voltaic_pulse:
+    name: 'Prime: Voltaic Pulse'
+    input: '↑ + C RMB or F after using skills of the same element (requires Prime: Elemental Flow )'
+    keys:
+    - w
+    - c
+    - rmb
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 8910% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets Recover 120 MP per
+      hit Casting Speed +20% for 10 sec when using the skill All Evasion -12 for 10 sec on hits Super Armor Bound on hits
+      Down Attack 33.01% damage in PvP only'
+  protected_area:
+    name: Protected Area
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cooldown_ms: 210000
+    description: Create a large, protected area around you which greatly increases DP for self and all allies within.
+    notes: Create a large, protected area around you which greatly increases DP for self and all allies within. Damage Reduction
+      Rate +50% for 8 sec to self and nearby allies Applies effect to max 10 allies Super Armor during the skill
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  rain_of_fire:
+    name: Rain of Fire
+    input: 'F Prime: Elemental Flow effects applied after learning Burning Pulse and Prime: Elemental Flow'
+    keys:
+    - f
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 4367% x2 Attack 2 damage 4367% x4 Critical
+      Hit Rate +100% Maximum 10 targets Recover +500 MP every 1 sec , max 6 times Forward Guard during the skill Bound on
+      attack 2 hits (PvE only) Down Attack 27.99% damage in PvP only'
+  residual_lightning:
+    name: Residual Lightning
+    input: RMB after Lightning RMB after Lightning Arrows (Witch only)
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - bound
+    cooldown_ms: 11000
+    description: Widely spread remaining lightning energies to attack enemies.
+    notes: Widely spread remaining lightning energies to attack enemies. Attack damage 2573% x2 Last attack damage 1235% x2
+      Critical Hit Rate +75% Maximum 10 targets Bound on hits Applies "Shocked" effect (reduced all speeds to struck targets)
+      52.29% attack 1 damage in PvP only 62.64% last attack damage in PvP only
+  resurrection:
+    name: Resurrection
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your sphera
+    protection: none
+    cooldown_ms: 300000
+    description: Revive allies and completely recover their HP and MP/WP/SP.
+    notes: Revive allies and completely recover their HP and MP/WP/SP. Resurrect nearby dead allies and recover 100% of their
+      HP and MP (including WP and SP).
+    keys:
+    - hotbar
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  sage_s_light:
+    name: Sage's Light
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cooldown_ms: 100000
+    description: 'Preceding Skill: [Sage''s Memory]'
+    notes: 'Preceding Skill: [Sage''s Memory] Recover 1500 of HP to self Recover 1000 HP for nearby allies Recover max 3 times
+      Recover 150 MP, max 3 times, when using the skill Applies effect to max 10 allies'
+  sage_s_memory:
+    name: Sage's Memory
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your sphera
+    protection: none
+    cooldown_ms: 210000
+    description: Weave through memories of old to eliminate parts of your casting time.
+    notes: Weave through memories of old to eliminate parts of your casting time. Ignore all casting actions for 15 sec. Inapplicable
+      to sphera and Black Spirit skills.
+    keys:
+    - hotbar
+  sage_s_rage:
+    name: Sage's Rage
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Sage''s Memory]'
+    notes: 'Preceding Skill: [Sage''s Memory] Attack damage 2958% x2 Critical Hit Rate +50% Maximum 10 targets 15 burn damage
+      every 3 sec for 9 sec on hits Knockdown on hits Down Attack 78.43% damage in PvP only Fireball buff for 7 sec after
+      using Sage''s Rage'
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+  speed_spell:
+    name: Speed Spell
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your sphera
+    protection: none
+    cooldown_ms: 50000
+    description: Use magical power to raise Movement and Attack/Casting Speed on self and nearby allies.
+    notes: Use magical power to raise Movement and Attack/Casting Speed on self and nearby allies. Movement Speed +20% for
+      30 sec (Applied to self and allies) Attack Speed +20% for 30 sec (Applied to self and allies) Casting Speed +20% for
+      30 sec (Applied to self and allies) Applies effect to max 10 allies
+    keys:
+    - hotbar
+  spellbound_heart:
+    name: Spellbound Heart
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 30000
+    description: Summons a magical object to replenish MP.
+    notes: Summons a magical object to replenish MP. Recover +250 MP every 10 sec for 10 min. Movement Speed + 10% for 10
+      min when using the skill
+    keys:
+    - hotbar
+  staff_attack:
+    name: Staff Attack
+    input: LMB
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: Use your staff imbued with your magic to deal damage to your foes.
+    notes: Use your staff imbued with your magic to deal damage to your foes. Attack damage 1775% x1, max 3 hits Forward attack
+      damage 1775% x1, max 2 hits Last attack damage 1775% x1 Maximum 10 targets Recover 50 MP per hit Down Attack 92.02%
+      damage in PvP only
+  succession_elemental_revelation:
+    name: 'Succession: Elemental Revelation'
+    input: Passive
+    protection: none
+    description: Imbues mana with the elements. The elements make it easier to cast spells even faster. It even allows the
+      same spells to be cast in different ways.
+    notes: 'Imbues mana with the elements. The elements make it easier to cast spells even faster. It even allows the same
+      spells to be cast in different ways. Calls out the elements to infuse them into mana. Succession skills are not affected
+      by Sage''s Memory. The following skills will be empowered upon Succession. - Magic Arrow, Magical Evasion - You must
+      first reset your skills in order to learn Succession: Elemental Revelation. - You cannot learn or use awakening skills
+      if you have learned Succession: Elemental Revelation. - You cannot learn Succession skills if you have learned Absolute
+      skills. - You cannot learn Absolute skills if you have learned Succession skills.'
+  succession_magic_arrow:
+    name: 'Succession: Magic Arrow'
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 1543% x1 Attacks 2 and 3 damage 1800% x1 Attack 4 damage 1800% x1 Critical Hit
+      Rate +30% Maximum 10 targets Consumes Stamina during moving attacks. 30% attack 1 damage in PvP only 50% attacks 2,
+      3, and 4 damage in PvP only'
+  succession_magical_evasion:
+    name: 'Succession: Magical Evasion'
+    input: SHIFT + ← SHIFT + → SHIFT + ↓ ↑ + ↑ to perform forward Hold SHIFT + ← or SHIFT + → while moving laterally to evade
+      continuously
+    keys:
+    - shift
+    - a
+    - d
+    - s
+    - w
+    protection: iframe
+    cooldown_ms: 3000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Super Armor during the skill Invincible during the skill (PvE only) Consecutive evasion unavailable
+      during cooldown.'
+  summon_keeper_arne:
+    name: 'Summon: Keeper Arne'
+    input: F
+    keys:
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - bound
+    cooldown_ms: 6000
+    description: Summon Arne, keeper of water.
+    notes: 'Summon Arne, keeper of water. Arne''s attack damage 579% Super Armor during the skill Max 2 targets Stiffness
+      on Arne''s special attack hits Arne special attack hits max 2 targets Arne Effect of Flow: Arne''s Guidance auto-activates
+      with special attacks Effective for 1 hr after summoning Gain Arne''s Touch by using the skill. [Arne''s Touch] - Recover
+      250 MP every 10 sec - Movement Speed +10% Spellbound Heart effects will not be activated when using your godr sphera
+      with the Arne''s Touch buff. The following skills are empowered while Marg or Arne is summoned . - Aqua Jail Explosion,
+      Flow: Arne''s Guidance'
+  summon_keeper_marg:
+    name: 'Summon: Keeper Marg'
+    input: F
+    keys:
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - bound
+    cooldown_ms: 6000
+    description: Summon Marg, keeper of fire.
+    notes: Summon Marg, keeper of fire. Marg's attack damage 579% Super Armor during the skill Max 10 targets Stiffness on
+      Marg's special attack hits Marg special attack hits max 2 targets Marg effect of Hellfire auto-activates with special
+      attacks Effective for 1 hr after summoning Gain Marg's Rage by using the skill. [Marg's Rage] - Recover 250 MP every
+      10 sec - Movement Speed +10% Spellbound Heart effects will not be activated when using your godr sphera with the Marg's
+      Rage buff. The following skills are empowered while Marg or Arne is summoned. - Cataclysm, Bolide of Destruction, Hellfire
+  swift_earthquake:
+    name: Swift Earthquake
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Earthquake IV]'
+    notes: 'Preceding Skill: [Earthquake IV] Attack damage 1280% x6 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      during the skill Pull in the target on hits (PvE only) Bound on hits (PvE only) Down Attack 73.2% damage in PvP only'
+  teleport:
+    name: Teleport
+    input: SHIFT + SPACE ↓ + C to switch to your sphera Can be used with your sphera SPACE after using sphera skills
+    keys:
+    - shift
+    - space
+    - s
+    - c
+    protection: iframe
+    cooldown_ms: 7000
+    description: Instantly teleports within range using magical power.
+    notes: Instantly teleports within range using magical power. Movement Speed +10% for 10 sec when using the skill Invincible
+      during the skill (Movement Speed Increase effects nullified at the start of the skill)
+  testament_of_wisdom:
+    name: Testament of Wisdom
+    input: Passive
+    protection: none
+    description: Proves that you are truly a sage and attests to your wisdom.
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  torrential_cascade:
+    name: Torrential Cascade
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Harness the waters, forging droplets that gather into a mighty torrent, then unleash it upon your enemies.
+    notes: Harness the waters, forging droplets that gather into a mighty torrent, then unleash it upon your enemies. Attack
+      damage 6554% x2 Critical Hit Rate +100% Maximum 10 targets Movement Speed -20% for 5 sec on hits Stiffness on hits Air
+      Attack Down Attack 36.19% damage in PvP only
+  trembling_thunder:
+    name: Trembling Thunder
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Earthquake IV]'
+    notes: 'Preceding Skill: [Earthquake IV] Attack damage 6342% x2 Maximum 10 targets Bound on hits Down Attack Down Smash
+      Applies "Shocked" effect (reduced all speeds to struck targets) 57.51% damage in PvP only'
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  ultimate_blizzard:
+    name: 'Ultimate: Blizzard'
+    input: LMB during Blizzard
+    keys:
+    - lmb
+    protection: none
+    cooldown_ms: 60000
+    description: Some may use extra mana to enhance a blizzard while it is already going on.
+    notes: Some may use extra mana to enhance a blizzard while it is already going on. Attack damage 1972% x6, max 3 hits
+      Maximum 10 targets MP will constantly drain while Blizzard is in effect. Reduces all speeds of struck targets. 83.66%
+      damage in PvP only When 2 or more targets are hit, the damage is equally divided among all targets. (PvP only)
+  ultimate_teleport:
+    name: 'Ultimate: Teleport'
+    input: SPACE after Teleport
+    keys:
+    - space
+    protection: iframe
+    cooldown_ms: 10000
+    description: Instantly teleports within range using the ultimate magical power.
+    notes: Instantly teleports within range using the ultimate magical power. Invincible during the skill
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+  water_sphere:
+    name: Water Sphere
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 5000
+    description: Project a condensed Water Sphere. The ball will explode upon touching the enemy, inflicting great damage.
+    notes: Project a condensed Water Sphere. The ball will explode upon touching the enemy, inflicting great damage. Attack
+      damage 3714% x2 Maximum 10 targets Recover 100 MP per hit (PvE only) (Nullified during cooldown) Knockdown on hits (Nullified
+      during cooldown) Air Attack Damage reduced during cooldown 46.95% damage in PvP only Damage -5% per each additional
+      target hit from target 2 onward. (Max damage -70% .) (PvP only) Attack damage 3714% x2 Maximum 10 targets Increased
+      attack range Projectile Speed Up You cannot move when using the skill. Recover 100 MP per hit (PvE only) Critical Hit
+      Rate +10% for 20 sec when using the skill Knockdown on hits Air Attack 46.95% damage in PvP only Damage -5% per each
+      additional target hit from target 2 onward. (Max damage -70% .) (PvP only) Dismount target on hits. Injures target with
+      20% of the damage of a hit. Not activated during cooldown.
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+_flags:
+- access_awakening_requirement: Passive — no keybind.
+- burning_pulse: Passive — no keybind.
+- cannon_attack: Passive — no keybind.
+- core_aqua_jail_explosion: Passive — no keybind.
+- core_bolide_of_destruction: Passive — no keybind.
+- core_cataclysm: Passive — no keybind.
+- core_chilling_wave: Passive — no keybind.
+- core_hellfire: Passive — no keybind.
+- core_water_sphere: Passive — no keybind.
+- flame_s_calling: Auto-activated — no keybind.
+- flow_arne_s_guidance: Auto-activated — no keybind.
+- flow_arne_s_stream: Auto-activated — no keybind.
+- flow_fire_breath_marg: Auto-activated — no keybind.
+- flow_fire_fist_marg: Auto-activated — no keybind.
+- flow_mana_augmentation: Passive — no keybind.
+- flute_buff: Use Flute — no keybind.
+- freezing_gaze: Passive — no keybind.
+- guild_squad_special_attack: No keybind data.
+- infinite_mastery: Passive — no keybind.
+- luminous_touch: Passive — no keybind.
+- magic_power_boost: Passive — no keybind.
+- magnificent_steps: Passive — no keybind.
+- make_bonfire: No keybind data.
+- mind_training: Passive — no keybind.
+- mind_training_xi: Passive — no keybind.
+- mind_training_xii: Passive — no keybind.
+- mind_training_xiii: Passive — no keybind.
+- mind_training_xiv: Passive — no keybind.
+- mind_training_xix: Passive — no keybind.
+- mind_training_xv: Passive — no keybind.
+- mind_training_xvi: Passive — no keybind.
+- mind_training_xvii: Passive — no keybind.
+- mind_training_xviii: Passive — no keybind.
+- mind_training_xx: Passive — no keybind.
+- mind_training_xxi: Passive — no keybind.
+- prime_elemental_flow: Passive — no keybind.
+- revive_target: No keybind data.
+- skilled_hunter: Passive — no keybind.
+- succession_elemental_revelation: Passive — no keybind.
+- testament_of_wisdom: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

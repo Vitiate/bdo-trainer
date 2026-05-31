@@ -1,6 +1,1267 @@
 # Sage — Awakening
-# Class definition (skills only). Empty shell — populate via the Class Editor or import a .bdc.
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
 
 class: Sage
 spec: Awakening
-skills: {}
+skills:
+  ancients_wisdom:
+    name: Ancients' Wisdom
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xi:
+    name: Ancients' Wisdom XI
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xii:
+    name: Ancients' Wisdom XII
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xiii:
+    name: Ancients' Wisdom XIII
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xiv:
+    name: Ancients' Wisdom XIV
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xix:
+    name: Ancients' Wisdom XIX
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xv:
+    name: Ancients' Wisdom XV
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xvi:
+    name: Ancients' Wisdom XVI
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xvii:
+    name: Ancients' Wisdom XVII
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xviii:
+    name: Ancients' Wisdom XVIII
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  ancients_wisdom_xx:
+    name: Ancients' Wisdom XX
+    input: Passive
+    protection: none
+    description: Recover Sage's memories.
+    notes: Recover Sage's memories. All Accuracy +1 Casting Speed +0.5%
+    keys:
+    - hotbar
+  atomagia:
+    name: Atomagia
+    input: RMB during Ator's Energy
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 25000
+    description: The energies of Ator contained within the kyve fuse with Sage's potential to rain down lightning.
+    notes: The energies of Ator contained within the kyve fuse with Sage's potential to rain down lightning. Attack damage
+      2740% x1, max 10 hits Critical Hit Rate +100% Maximum 7 targets 50 pain damage inflicted every 3 sec for 18 sec on hits
+      Super Armor Bound on hits (PvE only) Down Attack 52.48% damage in PvP only
+  ator_s_energy:
+    name: Ator's Energy
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    - bound
+    - knockdown
+    - down_attack
+    cooldown_ms: 14000
+    description: Fill the kyve with the energies of Ator, then release it all at once.
+    notes: Fill the kyve with the energies of Ator, then release it all at once. Attack damage 4895% x2 Critical Hit Rate
+      +50% Maximum 7 targets Forward Guard Knockdown on hits (PvE only) Down Attack 64.15% damage in PvP only Attack damage
+      4745% x1, max 7 hits Last attack damage 7612% x2 Critical Hit Rate +100% Maximum 7 targets All AP +55 for 60 sec when
+      using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the
+      skill Max HP +2000 for 60 sec when using the skill Super Armor Stun on first hit Bound on hits Knockdown on last attack
+      hits Down Smash on last attack hits Down Attack 38.49% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. Reduces all speeds of struck targets. Injures target with 100% of the damage of a hit.
+      Dismount target on hits.
+  ator_s_eye:
+    name: Ator's Eye
+    input: Passive
+    protection: none
+    description: One step is all it takes to return to Sage's homeland.
+    notes: 'One step is all it takes to return to Sage''s homeland. Grants entry to the following Ancient regions without
+      the usual requirements upon learning Ator''s Eye: - Aakman - Hystria - Kratuga - Sycraia Underwater Ruins (Abyssal Zone)'
+    keys:
+    - hotbar
+  ator_s_fist:
+    name: Ator's Fist
+    input: F F after certain skills
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Sage calls forth the mighty arm of Ator to deal a powerful blow to enemies in front.
+    notes: Sage calls forth the mighty arm of Ator to deal a powerful blow to enemies in front. Attack damage 3348% x2 Maximum
+      7 targets All Damage Reduction -13 for 10 sec on hits Knockdown on hits Down Attack 65.31% damage in PvP only
+  ator_s_illusion:
+    name: Ator's Illusion
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: iframe
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 10000
+    description: Sidestep enemy attacks, then counter.
+    notes: Sidestep enemy attacks, then counter. Attack damage 4022% x2 Maximum 10 targets Stun on hits Down Attack 82.81%
+      damage in PvP only
+  ator_s_mark:
+    name: Ator's Mark
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Uphold the punishment of Ator. Behold the merciless power of Ator.
+    notes: Uphold the punishment of Ator. Behold the merciless power of Ator. Attack damage 2862% x2 Critical Hit Rate +40%
+      Maximum 7 targets Increased Casting Speed All Evasion -24 for 10 sec on hits Forward Guard while casting Bound on hits
+      Down Attack 64.15% damage in PvP only Attack 1 damage 6847% x2 Attack 2 damage 6847% x3 Critical Hit Rate +100% Maximum
+      7 targets All AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit
+      Rate +30% for 60 sec when using the skill Super Armor Bound on hits Down Attack 34.99% damage in PvP only Injures target
+      with 50% of the damage of a hit. Dismount target on hits.
+  ator_s_palm:
+    name: Ator's Palm
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Channel your energy and push back with a mighty force.
+    notes: Channel your energy and push back with a mighty force. Attack damage 7249% x2 Maximum 10 targets Recover 360 HP
+      per hit All Damage Reduction -20 for 10 sec on hits Forward Guard during the skill Knockdown on hits (PvE only) Down
+      Attack 43.15% damage in PvP only
+  ator_s_spear:
+    name: Ator's Spear
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Harness the power of the Arkanon to summon a great spear to hurl at enemies.
+    notes: Harness the power of the Arkanon to summon a great spear to hurl at enemies. Attack damage 6287% x2 Critical Hit
+      Rate +50% Maximum 10 targets All Evasion -24 for 10 sec on hits Knockdown on hits Down Attack 42% damage in PvP only
+      Attack damage 10059% x2 Critical Hit Rate +50% Maximum 10 targets All Evasion -24 for 10 sec on hits Super Armor Knockdown
+      on hits Down Attack 41.99% damage in PvP only Dismount target on hits. Injures target with 30% of the damage of a hit.
+  ator_s_thorn:
+    name: Ator's Thorn
+    input: RMB RMB after certain skills to perform quickly RMB again after Form Shift
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - air_attack
+    - down_attack
+    description: Summon forth Ator's Thorn and throw it mightily towards all enemies in front.
+    notes: Summon forth Ator's Thorn and throw it mightily towards all enemies in front. Attack damage 868% x1 Critical Hit
+      Rate +100% Maximum 7 targets Knockback on hits Air Smash Down Smash 81.64% damage in PvP only
+  augmentation:
+    name: Augmentation
+    input: Passive
+    protection: none
+    description: By acquiring experience, Sage restores a portion of his original power.
+    notes: By acquiring experience, Sage restores a portion of his original power. Magic AP +20
+    keys:
+    - hotbar
+  awakening_absolute_wisdom:
+    name: 'Awakening: Absolute Wisdom'
+    input: Passive
+    protection: none
+    description: Passive
+    keys:
+    - hotbar
+  awakening_ancient_kibelius:
+    name: 'Awakening: Ancient Kibelius'
+    input: C
+    keys:
+    - c
+    protection: FG
+    cooldown_ms: 1000
+    description: 'Preceding Skill: [Awakening: Absolute Wisdom]'
+    notes: 'Preceding Skill: [Awakening: Absolute Wisdom] Switch to Awakening. Attacking continued while switching if used
+      during offensive skills. Forward Guard applied while switching. Combo skills to have Sage become Overcharged. When Overcharged,
+      the follow effects are applied. - Skills used after Bolt or Lightning Surge are performed faster. - Changes the skill
+      effects of Bolt and Lightning Surge . Skills comboed during cooldown will not activate Overcharged.'
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+    keys:
+    - hotbar
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  bolt:
+    name: Bolt
+    input: SHIFT + Direction Can be used with your kyve
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 2000
+    description: Instantly transform into lightning to charge at the opponent. If you've already used the power of lightning,
+      you will become Overcharged.
+    notes: Instantly transform into lightning to charge at the opponent. If you've already used the power of lightning, you
+      will become Overcharged. All Evasion +36 for 5 sec when using the skill Super Armor Invincible -> Super Armor when Overcharged
+      (Nullified during cooldown) Invincible during the skill (PvE only) Using this skill after other skills will Overcharge
+      it. Available during cooldown if activated while Overcharged. Consumes 200 Stamina when used during cooldown
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+    keys:
+    - hotbar
+  chain_lightning:
+    name: Chain Lightning
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Concentrate lightning into your kibelius, then fire it forward. The lightning covers and electrifies the
+      opponent.
+    notes: Concentrate lightning into your kibelius, then fire it forward. The lightning covers and electrifies the opponent.
+      Attack damage 4271% x3 Maximum 10 targets Recover 100 MP per hit All Damage Reduction -25 for 10 sec on hits Forward
+      Guard during the skill Down Attack 44.32% damage in PvP only
+  core_divine_executioner:
+    name: 'Core: Divine Executioner'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Divine Executioner IV after learning this skill: Bound on attack
+      2 hits'
+    keys:
+    - hotbar
+  core_enlightening_bolt:
+    name: 'Core: Enlightening Bolt'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Enlightening Bolt III after learning this skill: Forward Guard
+      during the skill'
+    keys:
+    - hotbar
+  core_lightning_prison:
+    name: 'Core: Lightning Prison'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Lightning Prison IV after learning this skill: Stiffness on first
+      hit'
+    keys:
+    - hotbar
+  core_rift_storm:
+    name: 'Core: Rift Storm'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Rift Storm III after learning this skill: Bound on hits'
+    keys:
+    - hotbar
+  core_spear_bolt:
+    name: 'Core: Spear Bolt'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Spear Bolt III after learning this skill: Knockdown on dash attack
+      hits'
+    keys:
+    - hotbar
+  core_upsurge:
+    name: 'Core: Upsurge'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Upsurge IV after learning this skill: Stun on last attack hits'
+    keys:
+    - hotbar
+  dimensional_compression:
+    name: Dimensional Compression
+    input: SHIFT + Q SHIFT + Q after certain skills to perform instantly
+    keys:
+    - shift
+    - q
+    protection: FG
+    cc:
+    - stiffness
+    - stun
+    - down_attack
+    cooldown_ms: 14000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 3586% x3 Attack 2 damage 3586% x4 Attack 3
+      damage 5175% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill Stiffness on attack 1 hits
+      (PvE only) Stun on attack 3 hits (PvE only) Down Attack 46.87% attacks 1 and 2 damage in PvP only 38.4% attack 3 damage
+      in PvP only'
+  divine_executioner:
+    name: Divine Executioner
+    input: SHIFT + Q SHIFT + Q after Rift Storm or Ator's Spear to perform instantly
+    keys:
+    - shift
+    - q
+    protection: iframe
+    cc:
+    - knockdown
+    - bound
+    - down_attack
+    cooldown_ms: 12000
+    description: Tossing the kibelius into the air and leaping to catch it mid-flight, Sage wraps himself in lightning, hurling
+      it back down with all his might to electrify the surrounding area.
+    notes: Tossing the kibelius into the air and leaping to catch it mid-flight, Sage wraps himself in lightning, hurling
+      it back down with all his might to electrify the surrounding area. Attack 1 damage 3564% x2 Attack 2 damage 8941% x2
+      Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Invincible while concealed Invincible on airborne
+      moves Bound on attack 2 hits (PvE only) Down Attack Applies "Shocked" effect (reduced all speeds to struck targets)
+      50.73% attack 1 damage in PvP only 30.32% attack 2 damage in PvP only Attack 1 damage 8106% x5 Attack 2 damage 17863%
+      x6 Last attack damage 23570% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill
+      Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000
+      for 60 sec when using the skill Super Armor -> Invincible -> Super Armor Bound on attack 2 hits Knockdown on last attack
+      hits Down Attack Applies "Shocked" effect (reduced all speeds to struck targets) 10.38% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount
+      target on hits.
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  electrify:
+    name: Electrify
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cooldown_ms: 180000
+    description: Harness the power of lightning, greatly enhancing your strength, and allowing you to discharge electrical
+      currents for a short duration.
+    notes: Harness the power of lightning, greatly enhancing your strength, and allowing you to discharge electrical currents
+      for a short duration. All AP +30 for 30 sec when using the skill All Accuracy +60 for 30 sec when using the skill Critical
+      Hit Rate +50% for 30 sec when using the skill Super Armor during the skill
+  elvia_malignant_charge:
+    name: 'Elvia: Malignant Charge'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Open a rift and overload the spear with its energies, then unleash devastation onto the surface.
+    notes: Open a rift and overload the spear with its energies, then unleash devastation onto the surface. Attack 1 damage
+      3642% x4 Last attack damage 3642% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20
+      for 10 sec on hits (PvE only) All AP -20 for 10 sec on hits Recover 65 MP per hit Super Armor during the skill Down
+      Attack 23.33% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  energized_thorn:
+    name: Energized Thorn
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 13000
+    description: Imbue Ator's Thorn with energy, which makes a powerful explosion at the point of impact.
+    notes: Imbue Ator's Thorn with energy, which makes a powerful explosion at the point of impact. Attack damage 6619% x2
+      Critical Hit Rate +50% Maximum 10 targets Forward Guard during the skill Down Attack 52.48% damage in PvP only
+  enlightening_bolt:
+    name: Enlightening Bolt
+    input: ↓ + LMB ↓ + LMB after certain skills to perform last attacks
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: A lightning storm rises from the ground, followed by a powerful attack with the Arkanon that devastates opponents.
+    notes: A lightning storm rises from the ground, followed by a powerful attack with the Arkanon that devastates opponents.
+      Attack damage 4260% x3 Critical Hit Rate +30% Maximum 10 targets All Damage Reduction -25 for 10 sec on hits Floating
+      on hits Air Attack Applies "Shocked" effect (reduced all speeds to struck targets) 39.07% damage in PvP only Attack
+      damage 4314% x2 Air Attack Down Attack 23.33% damage in PvP only
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your kibelius
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  flow_aftershock:
+    name: 'Flow: Aftershock'
+    input: 'Hold F after Spear Bolt''s dash attack ↑ + F after Shock Relay, Flow: Interrogate to dash instantly'
+    keys:
+    - hold
+    - w
+    - f
+    protection: iframe
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Spear Bolt III]'
+    notes: 'Preceding Skill: [Spear Bolt III] All of attack 2 damage applies Spear Bolt ''s attack and dash attack damage
+      +15% All of attack 3 damage applies Spear Bolt ''s attack and dash attack damage +30% Maximum 10 targets All AP +20
+      for 10 sec when using the skill Recover 160 HP per hit Super Armor at the start of the skill Invincible while concealed
+      Super Armor when character reappears Stiffness on hits (PvE only) Stiffness on dash attack hits (PvE only) Knockdown
+      on dash attack hits (PvE only) Learning the skill will make only Spear Bolt''s dash attack activate. Attack damage 2478%
+      x2 Down Attack 44.32% damage in PvP only The Arkanon effect is applied on Spear Bolt dash hits.'
+  flow_finishing_touch:
+    name: 'Flow: Finishing Touch'
+    input: ↑ + F LMB after Spatial Collapse
+    keys:
+    - w
+    - f
+    - lmb
+    protection: none
+    cc:
+    - floating
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Spatial Collapse III]'
+    notes: 'Preceding Skill: [Spatial Collapse III] All damage applies Spatial Collapse ''s level damage x2 Floating on hits'
+  flow_form_recall:
+    name: 'Flow: Form Recall'
+    input: Hold RMB during Form Shift ↑ + RMB during the Dimensional Power buff
+    keys:
+    - hold
+    - rmb
+    - w
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Form Shift IV]'
+    notes: 'Preceding Skill: [Form Shift IV] All damage applies Form Shift ''s damage x1, max 6 hits Super Armor during the
+      skill Knockdown on hits (PvE only) Down Attack No collision while moving Grants the Dimensional Power buff when using
+      Form Shift in Succession.'
+  flow_illusion_detonation:
+    name: 'Flow: Illusion Detonation'
+    input: Hold F after using Illusion Expansion
+    keys:
+    - hold
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    description: 'Preceding Skill: [Illusion Expansion II]'
+    notes: 'Preceding Skill: [Illusion Expansion II] All damage applies Illusion Expansion ''s level damage x2 Knockdown on
+      hits Down Attack'
+  flow_interrogate:
+    name: 'Flow: Interrogate'
+    input: Hold F after Lightning Prison LMB during Lightning Prison F during Lightning Prison after Bolt F after Upsurge
+    keys:
+    - hold
+    - f
+    - lmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Lightning Prison III]'
+    notes: 'Preceding Skill: [Lightning Prison III] All damage applies Lightning Prison ''s attack 3 damage x5 Maximum 10
+      targets Forward Guard during the skill Bound on hits (PvE only) Down Attack Attack damage 12221% x2 Critical Hit Rate
+      +75% Maximum 10 targets Casting Speed +10% for 20 sec when using the skill All AP -10 for 20 sec on hits Forward Guard
+      during the skill Bound on hits (PvE only) Down Attack 33.82% damage in PvP only Dismount target on hits. Injures target
+      with 20% of the damage of a hit.'
+  flow_judgment:
+    name: 'Flow: Judgment'
+    input: ↑ + Q LMB before attack 1 of Divine Executioner to move behind your enemy LMB after attack 1 of Divine Executioner
+      to perform from attack 2 Q while airborne to perform attack 2 of Divine Executioner Can be used with your kyve
+    keys:
+    - w
+    - q
+    - lmb
+    protection: iframe
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Divine Executioner III]'
+    notes: 'Preceding Skill: [Divine Executioner III] Attack 1 damage 7213% x1 Attack 2 damage 7213% x2 Attack 3 damage 3968%
+      x1 Critical Hit Rate +100% Maximum 10 targets All AP +20 for 10 sec when using the skill Super Armor during the skill
+      Invincible while concealed Bound on attack 2 hits (PvE only) Down Attack Applies "Shocked" effect (reduced all speeds
+      to struck targets) 38.49% damage in PvP only'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+    keys:
+    - hotbar
+  form_shift:
+    name: Form Shift
+    input: ↑ + RMB Can be used with your kibelius
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 9000
+    description: Gather power in both hands, then push enemies in front away as you pass them by.
+    notes: Gather power in both hands, then push enemies in front away as you pass them by. Attack damage 1790% x1, max 6
+      hits Critical Hit Rate +30% Maximum 7 targets Super Armor during the skill Knockdown on hits (PvE only) Down Attack
+      No collision while moving 53.65% damage in PvP only
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  gravity_rift:
+    name: Gravity Rift
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: FG
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 10000
+    description: Gather all enemies in front into one place, then push them away.
+    notes: Gather all enemies in front into one place, then push them away. Attack damage 3172% x2 Critical Hit Rate +50%
+      Maximum 7 targets Forward Guard during the skill Recover 400 HP per hit Pull in target while charging (PvE only) Spin
+      the target on hits (PvE only) Knockdown on hits (PvE only) Down Attack 46.65% damage in PvP only
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+    keys:
+    - hotbar
+  illusion_barrier:
+    name: Illusion Barrier
+    input: Q
+    keys:
+    - q
+    protection: FG
+    cooldown_ms: 1000
+    description: Dimensional energies created before Sage absorbs all frontal attacks.
+    notes: Dimensional energies created before Sage absorbs all frontal attacks. Forward Guard Unable to move during the skill
+      Recover 10% of Max MP on blocks
+  illusion_compression:
+    name: Illusion Compression
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - stiffness
+    - floating
+    - pull
+    - down_attack
+    cooldown_ms: 10000
+    description: Distort minor rifts, then use their momentary gravitational force to pull everything in.
+    notes: Distort minor rifts, then use their momentary gravitational force to pull everything in. Attack 1 damage 665% x1
+      Last attack damage 2660% x2 Maximum 7 targets Pull in the target on hits Movement and Attack/Casting Speeds -50% for
+      1 sec on pull attack hits Stiffness on attack 1 hits Floating on last attack hits Down Attack 75.81% damage in PvP only
+  illusion_expansion:
+    name: Illusion Expansion
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 7000
+    description: Unleash a large amount of dimensional energies to the sides.
+    notes: Unleash a large amount of dimensional energies to the sides. Attack damage 4550% x2 Maximum 10 targets All AP +15
+      for 10 sec when using the skill Stiffness on hits Down Attack 72.31% damage in PvP only
+  impaling_flash:
+    name: Impaling Flash
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: iframe
+    cc:
+    - knockback
+    cooldown_ms: 8000
+    description: Sage summons forth lightning, and breaks through enemy lines in a flash. If any enemies are caught in his
+      path, he will speedily deliver a shocking blow before stopping.
+    notes: Sage summons forth lightning, and breaks through enemy lines in a flash. If any enemies are caught in his path,
+      he will speedily deliver a shocking blow before stopping. Attack damage 4225% x1, max 3 hits Critical Hit Rate +50%
+      Maximum 10 targets Super Armor -> Invincible -> Super Armor during the skill Knockback on hits Applies "Shocked" effect
+      (reduced all speeds to struck targets) No collision while moving (Movement Speed Increase effects nullified at the start
+      of the skill) 46.65% damage in PvP only Attack damage 5866% x1, max 3 hits Critical Hit Rate +50% Maximum 10 targets
+      Super Armor -> Invincible -> Super Armor during the skill Knockback on hits Applies "Shocked" effect (reduced all speeds
+      to struck targets) (Movement Speed Increase effects nullified at the start of the skill) 43.97% damage in PvP only Dismount
+      target on hits. Injures target with 10% of the damage of a hit.
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  kibelius_training:
+    name: Kibelius Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    description: The kibelius is thrown in a standard attack.
+    notes: The kibelius is thrown in a standard attack. Standing attack damage 1228% x1, max 4 hits Forward attack damage
+      1228% x1, max 3 hits Lateral attack damage 1228% x1, max 1 hits Sprint attack damage 1228% x1 Casting Speed +5% for
+      10 sec when using standing, forward, 2nd lateral, and sprint attacks Critical Hit Rate +30% Maximum 10 targets Recover
+      60 MP per hit 81.64% damage in PvP only
+  kyve_mastery:
+    name: Kyve Mastery
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while mounted
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - knockback
+    description: A basic maneuver to control your kyve.
+    notes: A basic maneuver to control your kyve. Standing attacks 1, 2, and 3 damage 2515% x1 Standing last attack damage
+      2515% x1 Forward attack damage 2515% x1, max 5 hits Lateral attack damage 2515% x1, max 3 hits Jump attack damage 2515%
+      x1 Sprint attack damage 2515% x1 Maximum 10 targets Recover 125 MP per hit Knockback on jump attack hits Knockback on
+      sprinting attack hits Consumes Stamina while using jumping/sprinting attacks. 81.64% damage in PvP only
+  lightning_prison:
+    name: Lightning Prison
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 10000
+    description: Opening a rift, Sage summons countless bolts of lightning to rain upon his enemies.
+    notes: Opening a rift, Sage summons countless bolts of lightning to rain upon his enemies. Attack 1 damage 6062% x2 Attack
+      2 damage 6666% x2 Attack 3 damage 4888% x3 Critical Hit Rate +25% for attack 1 hits Critical Hit Rate +50% for attack
+      2 hits Critical Hit Rate +75% for attack 3 hits Maximum 10 targets Recover 180 HP per hit Forward Guard during the skill
+      Down Attack 33.82% damage in PvP only
+  lightning_surge:
+    name: Lightning Surge
+    input: SPACE after certain skills LMB while jumping forward Can be used with your kyve
+    keys:
+    - space
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Instantly transform into lightning to charge at the opponent. If you've already used the power of lightning,
+      you will become Overcharged.
+    notes: Instantly transform into lightning to charge at the opponent. If you've already used the power of lightning, you
+      will become Overcharged. Attack damage 5184% x2 Critical Hit Rate +50% Maximum 10 targets Critical Hit Rate +30% for
+      5 sec when using the skill (Nullified during cooldown) Super Armor during the skill (Nullified during cooldown) Invincible
+      -> Super Armor when Overcharged (Nullified during cooldown) Stiffness on hits (PvE only) (Nullified during cooldown)
+      Air Attack Down Attack Damage reduced during cooldown Skills comboed during cooldown will not activate Overcharged.
+      48.98% damage in PvP only Using this skill after other skills will Overcharge it.
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+    keys:
+    - hotbar
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  piercing_thorn:
+    name: Piercing Thorn
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 11000
+    description: Create a piercing thorn, then send it through all enemies in front.
+    notes: Create a piercing thorn, then send it through all enemies in front. Attack damage 4154% x2 Critical Hit Rate +50%
+      Maximum 10 targets Knockdown on hits Down Attack 75.81% damage in PvP only
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  radiant_annihilation:
+    name: Radiant Annihilation
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Summon the Arkanon, which begins to charge electricity. Once fully-charged, the Arkanon razes the area with
+      lightning.
+    notes: Summon the Arkanon, which begins to charge electricity. Once fully-charged, the Arkanon razes the area with lightning.
+      Attack damage 4350% x1 Maximum 10 targets 40.82% damage in PvP only Attack damage 2665% x3 Extra attack damage 3465%
+      x2 Maximum 10 targets Air Attack Down Attack Applies "Shocked" effect (reduced all speeds to struck targets) 34.99%
+      damage in PvP only
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  realm_of_anguish:
+    name: Realm of Anguish
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 20000
+    description: Throw the compressed energies of the kyve to deal damage within a certain area.
+    notes: Throw the compressed energies of the kyve to deal damage within a certain area. Attack damage 777% x1, max 14 hits
+      Maximum 7 targets All Damage Reduction -15 for 10 sec on hits Bound on summon attack hits Down Attack 51.32% damage
+      in PvP only
+  reset:
+    name: Reset
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your kibelius
+    protection: SA
+    cooldown_ms: 600000
+    description: Turn back the flow of time to reset the cooldowns on all Sage skills.
+    notes: Turn back the flow of time to reset the cooldowns on all Sage skills. Super Armor during the skill Resets the cooldown
+      of all Sage class skills. Does not apply to Emergency Escape, Black Spirit's Rage, and other skills shared by all classes.
+    keys:
+    - hotbar
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+    keys:
+    - hotbar
+  rift_chain:
+    name: Rift Chain
+    input: SHIFT + Direction Can move while concealed Can be used with your kibelius after Bolt
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 4000
+    description: Enter the space within the kyve to travel a short distance, then safely return.
+    notes: 'Enter the space within the kyve to travel a short distance, then safely return. Super Armor at the start of the
+      skill Invincible while concealed Super Armor when character reappears Increased execution speed No character collision
+      at the start of the skill No character collision while concealed Collision check when character reappears Moving while
+      concealed will continue to consume stamina. Able to use the skill Rift Chain during the following skills: Spatial Collapse,
+      Flow: Finishing Touch, Realm of Anguish, Flow: Illusion Detonation after Illusion Expansion, Ator''s Mark, Atomagia,
+      Ator''s Energy, Gravity Rift, Void Gateways, Energized Thorn, Piercing Thorn'
+  rift_storm:
+    name: Rift Storm
+    input: SHIFT + LMB RMB during the skill to perform last attacks
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 10000
+    description: The kibelius channels an electric charge and opens a portal with the Arkanon. The portal reacts to the electric
+      charge, and rains down lightning.
+    notes: The kibelius channels an electric charge and opens a portal with the Arkanon. The portal reacts to the electric
+      charge, and rains down lightning. Attack damage 5655% x3 Last attack damage 5655% x2 Critical Hit Rate +50% Maximum
+      10 targets Super Armor during the skill Bound on hits (PvE only) Down Attack Down Smash on last attack hits 41.99% damage
+      in PvP only Attack damage 6892% x1, max 6 hits Last attack damage 4308% x2 Critical Hit Rate +100% (PvE only) Critical
+      Hit Rate +50% (PvP only) Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec
+      when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Pull in the target on hits Bound
+      on last attack hits Down Attack Down Smash on last attack hits 30.32% damage in PvP only Injures target with 50% of
+      the damage of a hit. Dismount target on hits.
+  seize:
+    name: Seize
+    input: E
+    keys:
+    - e
+    protection: SA
+    cc:
+    - floating
+    - bound
+    - grab
+    cooldown_ms: 18000
+    description: Sage grabs his opponent by the neck and slams them to the ground. If they're far away, he will throw the
+      kibelius to knock them away.
+    notes: Sage grabs his opponent by the neck and slams them to the ground. If they're far away, he will throw the kibelius
+      to knock them away. Attack damage 1098% x2 Maximum 10 targets Super Armor on Grapple/Grapple fails Bound on melee grapple
+      Floating on ranged grapple 75.81% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting
+      Speeds.
+  shock_relay:
+    name: Shock Relay
+    input: RMB Can be performed instead of Ator's Thorn with your kyve
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 3000
+    description: The Arkanon shoots out an electrical discharge to fry Sage's enemies.
+    notes: The Arkanon shoots out an electrical discharge to fry Sage's enemies. Attack damage 5369% x2 Critical Hit Rate
+      +100% Maximum 10 targets Critical Hit Rate +30% for 5 sec when using the skill (Nullified during cooldown) Stiffness
+      on hits (Nullified during cooldown) Air Attack Down Attack Damage reduced during cooldown. (PvE only) Skills comboed
+      during cooldown will not activate Overcharged. 25.66% damage in PvP only
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  spatial_collapse:
+    name: Spatial Collapse
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 13000
+    description: Open up the heavens with spatial energies to rain destruction on everything below.
+    notes: Open up the heavens with spatial energies to rain destruction on everything below. Attack damage 3002% x2 Critical
+      Hit Rate +100% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Forward Guard while casting Bound on hits
+      Down Attack 64.15% damage in PvP only
+  spatial_fissure:
+    name: Spatial Fissure
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Sage has no blind spots. He attacks swiftly with a mighty blast.
+    notes: Sage has no blind spots. He attacks swiftly with a mighty blast. Attack 1 damage 1965% x2 Attack 2 damage 2751%
+      x2 Maximum 7 targets Recover 60 MP per hit Knockdown on hits (PvE only) Down Attack Down Smash on attack 2 hits 75.81%
+      damage in PvP only
+  spear_bolt:
+    name: Spear Bolt
+    input: ↑ + F Hold F to dash Can be used with your kyve
+    keys:
+    - w
+    - f
+    protection: iframe
+    cc:
+    - stiffness
+    - knockdown
+    cooldown_ms: 7000
+    description: Throws your kibelius with all your might. Phase through enemies as they're hit, then catch the kibelius mid-flight.
+    notes: Throws your kibelius with all your might. Phase through enemies as they're hit, then catch the kibelius mid-flight.
+      Attack 1 damage 2699% x2 Dash attack 1 damage 2699% x1, max 3 hits Critical Hit Rate +100% Maximum 10 targets All AP
+      +20 for 10 sec when using the skill Recover 128 HP per hit Super Armor at the start of the skill Invincible while concealed
+      Super Armor when character reappears Stiffness on hits (PvE only) Knockdown on dash attack hits (PvE only) 40.8% damage
+      in PvP only
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  upsurge:
+    name: Upsurge
+    input: SHIFT + RMB LMB during the skill to perform forward attacks SHIFT + RMB after certain skills to perform forward
+      or lateral attacks
+    keys:
+    - shift
+    - rmb
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 7000
+    description: Channel an electric charge, then unleash it at enemies laterally or in front.
+    notes: Channel an electric charge, then unleash it at enemies laterally or in front. Attack damage 3463% x3 Lateral attack
+      damage 10389% x2 Forward attack damage 10389% x2 Critical Hit Rate +50% Maximum 10 targets Down Attack damage +10% for
+      5 sec when using the skill Forward Guard during the skill Stun on last attack hits (PvE only) Down Attack 34.99% damage
+      in PvP only
+  void_blast:
+    name: Void Blast
+    input: X or LMB after Ator's Palm
+    keys:
+    - x
+    - lmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 8000
+    description: Absorb energies of the void in the vicinity with your kyve, then unleash it in a single, mighty release.
+    notes: Absorb energies of the void in the vicinity with your kyve, then unleash it in a single, mighty release. Attack
+      damage 8160% x2 Critical Hit Rate +50% Maximum 10 targets Forward Guard during the skill Recover 300 HP per hit Down
+      Attack 41.99% damage in PvP only
+  void_eruption:
+    name: Void Eruption
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 10000
+    description: Use the kyve to open a rift and blast its light forward.
+    notes: Use the kyve to open a rift and blast its light forward. Attack damage 3304% x2 Critical Hit Rate +100% Maximum
+      10 targets Super Armor during the skill Recover 120 MP per hit Down Attack 58.32% damage in PvP only
+    keys:
+    - hotbar
+  void_gateways:
+    name: Void Gateways
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    - down_attack
+    cooldown_ms: 8000
+    description: Shoot fierce beams of light from the empty void.
+    notes: Shoot fierce beams of light from the empty void. Attack damage 3668% x2 Critical Hit Rate +75% Maximum 10 targets
+      Forward Guard Floating on hits (PvE only) Air Smash Air Attack Down Attack 58.32% damage in PvP only
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+_flags:
+- ancients_wisdom: Passive — no keybind.
+- ancients_wisdom_xi: Passive — no keybind.
+- ancients_wisdom_xii: Passive — no keybind.
+- ancients_wisdom_xiii: Passive — no keybind.
+- ancients_wisdom_xiv: Passive — no keybind.
+- ancients_wisdom_xix: Passive — no keybind.
+- ancients_wisdom_xv: Passive — no keybind.
+- ancients_wisdom_xvi: Passive — no keybind.
+- ancients_wisdom_xvii: Passive — no keybind.
+- ancients_wisdom_xviii: Passive — no keybind.
+- ancients_wisdom_xx: Passive — no keybind.
+- ator_s_eye: Passive — no keybind.
+- augmentation: Passive — no keybind.
+- awakening_absolute_wisdom: Passive — no keybind.
+- core_divine_executioner: Passive — no keybind.
+- core_enlightening_bolt: Passive — no keybind.
+- core_lightning_prison: Passive — no keybind.
+- core_rift_storm: Passive — no keybind.
+- core_spear_bolt: Passive — no keybind.
+- core_upsurge: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.
