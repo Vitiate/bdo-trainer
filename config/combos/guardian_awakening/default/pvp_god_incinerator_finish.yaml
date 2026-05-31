@@ -1,0 +1,25 @@
+combo_id: pvp_god_incinerator_finish
+class: Guardian
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — God Incinerator Finish (PlayLove)'
+description: Grab opener finishing through Fireborne Rupture → God Incinerator → Frigid Wind. Gate Crasher or Avalanche Strike
+  in the middle depending on range. Credit PlayLove.
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: neck_impaler
+- skill: searing_fang
+  note: First hit only.
+- skill: glorious_advance
+  note: First hit only.
+- skill: pulverization
+- skill: black_blood_slaughter
+- skill: gate_crasher
+  note: Use when enemies are in range.
+  alt_skill: avalanche_strike
+  alt_note: SA gap-closer alternative when Gate Crasher is out of range.
+- skill: fireborne_rupture
+- skill: god_incinerator
+- skill: frigid_wind

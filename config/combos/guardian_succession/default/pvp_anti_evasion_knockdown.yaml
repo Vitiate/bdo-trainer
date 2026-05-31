@@ -1,0 +1,18 @@
+combo_id: pvp_anti_evasion_knockdown
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Anti-Evasion Knockdown Only'
+description: Knockdown-only anti-evasion variant ending on Omua's Objurgation. Recommended higher attack speed.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: chokeslam
+  note: Grab.
+- skill: prime_black_blood_circle
+- skill: prime_mountain_slam
+- skill: prime_avalanche_strike
+- skill: prime_mutilation
+- skill: prime_black_blood_slaughter
+- skill: omua_s_objurgation

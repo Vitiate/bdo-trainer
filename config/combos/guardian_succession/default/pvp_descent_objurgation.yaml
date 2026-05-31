@@ -1,0 +1,14 @@
+combo_id: pvp_descent_objurgation
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Descent → Objurgation'
+description: 'Black Blood''s Descent into Omua''s Objurgation. Inputs — Q + W → RMB + W.'
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: black_blood_s_descent
+  note: Q + W.
+- skill: omua_s_objurgation
+  note: RMB + W.

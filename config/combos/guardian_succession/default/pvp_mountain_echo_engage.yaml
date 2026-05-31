@@ -1,0 +1,14 @@
+combo_id: pvp_mountain_echo_engage
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Mountain''s Echo → Juggernaut'
+description: 'Mountain''s Echo from hotbar into Juggernaut engage. Inputs — Hotbar → W + F.'
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: mountain_s_echo
+  note: Hotbar.
+- skill: succession_juggernaut
+  note: W + F.

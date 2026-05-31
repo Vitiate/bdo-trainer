@@ -15,12 +15,21 @@ POSITION_FILE = (
 
 
 class RepositionHandler:
-    def __init__(self, ctx: OverlayContext, renderer: OverlayRenderer) -> None:
+    def __init__(
+        self,
+        ctx: OverlayContext,
+        renderer: OverlayRenderer,
+        cc_panel=None,
+    ) -> None:
         self.ctx = ctx
         self.renderer = renderer
+        self._cc_panel = cc_panel
         self._active: bool = False
         self._drag_last_x: int = 0
         self._drag_last_y: int = 0
+        # Which target the user is currently dragging
+        # ("center" — combo overlay anchor, "cc_panel" — CC panel anchor).
+        self._drag_target: str = "center"
 
     @property
     def is_active(self) -> bool:
@@ -47,6 +56,8 @@ class RepositionHandler:
         self.renderer.clear("reposition")
         make_click_through(self.ctx.root)
         self.save_position()
+        if self._cc_panel is not None:
+            self._cc_panel.end_reposition()
         logger.info("Reposition mode disabled — position saved")
 
     def toggle(self) -> bool:
@@ -133,15 +144,34 @@ class RepositionHandler:
     def _on_drag_start(self, event) -> None:
         self._drag_last_x = event.x
         self._drag_last_y = event.y
+        self._drag_target = self._target_for_point(event.x, event.y)
+        if self._drag_target == "cc_panel" and self._cc_panel is not None:
+            self._cc_panel.begin_reposition()
 
     def _on_drag_motion(self, event) -> None:
         dx = event.x - self._drag_last_x
         dy = event.y - self._drag_last_y
-        self.ctx.canvas.move("all", dx, dy)
-        self.ctx.cx += dx
-        self.ctx.cy += dy
+        if self._drag_target == "cc_panel" and self._cc_panel is not None:
+            self._cc_panel.offset(dx, dy)
+        else:
+            self.ctx.canvas.move("step", dx, dy)
+            self.ctx.canvas.move("hold_bar", dx, dy)
+            self.ctx.canvas.move("reposition", dx, dy)
+            self.ctx.cx += dx
+            self.ctx.cy += dy
         self._drag_last_x = event.x
         self._drag_last_y = event.y
+
+    def _target_for_point(self, x: int, y: int) -> str:
+        """Decide whether this drag is operating on the CC panel or the
+        combo center, based on which is closer to the press point."""
+        if self._cc_panel is None or not self._cc_panel.is_active:
+            return "center"
+        cx, cy = self.ctx.cx, self.ctx.cy
+        px, py = self._cc_panel.px, self._cc_panel.py
+        d_center = (x - cx) ** 2 + (y - cy) ** 2
+        d_panel = (x - px) ** 2 + (y - py) ** 2
+        return "cc_panel" if d_panel < d_center else "center"
 
     # ----- persistence ---------------------------------------------------
 

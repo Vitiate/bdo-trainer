@@ -1,0 +1,32 @@
+combo_id: pve_pack_to_pack_juggernaut
+class: Guardian
+spec: Awakening
+bundle_id: default
+category: pve
+name: 'PvE — Pack-to-Pack Juggernaut Engage'
+description: Pre-buff with block + Fireborne Rupture before Awakening Juggernaut. Flow To Ashes opener through Gate Crasher
+  + Frost Slide reposition into the full burst sequence.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: guard
+  note: 'Pre-buff: hold Guard before engaging.'
+- skill: fireborne_rupture
+  note: 'Pre-buff: cast before Awakening Juggernaut.'
+- skill: awakening_juggernaut
+  note: Engage to next pack.
+- skill: flow_to_ashes
+- skill: glorious_advance
+  note: First hit only.
+- skill: fierce_disdain
+- skill: gate_crasher
+- skill: frost_slide
+- skill: fireborne_rupture
+  note: Use if needed.
+- skill: cleansing_flame
+- skill: dragons_maw
+- skill: god_incinerator
+- skill: searing_fang
+- skill: flow_suppress
+- skill: scornful_slash
+  note: Use if needed.

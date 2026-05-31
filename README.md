@@ -4,7 +4,7 @@ A transparent, click-through game overlay for **Black Desert Online** that displ
 
 All **27 BDO classes × 2 specs (54 total)** ship with skill data.
 
-![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey) ![macOS: tray-only](https://img.shields.io/badge/macOS-tray%20only-yellow) ![Version](https://img.shields.io/badge/version-0.5.2-green)
+![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue) ![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey) ![macOS: tray-only](https://img.shields.io/badge/macOS-tray%20only-yellow) ![Version](https://img.shields.io/badge/version-0.5.3-green)
 
 ![In-game overlay screenshot](doc/images/in-game-overlay.png)
 

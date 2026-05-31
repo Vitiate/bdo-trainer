@@ -1,13 +1,16 @@
-combo_id: awakening_main_combo_2
+combo_id: pve_to_ashes_opener
 class: Guardian
 spec: Awakening
 bundle_id: default
 category: pve
-name: Awakening Main Combo 2
-description: Fireborne Rupture opener into awakening rotation.
+name: 'PvE — Flow To Ashes Opener'
+description: Lead with Flow To Ashes → Glorious Advance → Fireborne Rupture, then full burst sequence.
 difficulty: intermediate
 combo_window_ms: 300
 steps:
+- skill: flow_to_ashes
+- skill: glorious_advance
+  note: First hit only.
 - skill: fireborne_rupture
 - skill: cleansing_flame
 - skill: dragons_maw

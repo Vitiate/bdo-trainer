@@ -1,0 +1,22 @@
+combo_id: pvp_1v1_grab_recc_downsmash
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — 1v1 Grab Re-CC Down Smash'
+description: Viable now that Avalanche Strike has FG. Grab → Claw Reveal buffs → Mountain Slam → Avalanche Strike (knockdown
+  re-CC) → Mutilation → Slaughter → Gate Crasher for a double down-smash attempt.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: chokeslam
+  note: Grab.
+- skill: prime_claw_reveal
+  note: Self-buffs.
+- skill: prime_mountain_slam
+- skill: prime_avalanche_strike
+  note: Knockdown re-CC.
+- skill: prime_mutilation
+- skill: prime_black_blood_slaughter
+- skill: gate_crasher
+  note: Double down-smash attempt.

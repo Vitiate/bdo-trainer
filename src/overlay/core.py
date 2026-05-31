@@ -11,6 +11,7 @@ import tkinter as tk
 from typing import Any, Callable, Dict, Optional
 
 from src.input_monitor import InputMonitor
+from src.overlay.cc_panel import CCPanel
 from src.overlay.combo_player import ComboPlayer
 from src.overlay.hold_bar import HoldBar
 from src.overlay.renderer import TRANSPARENT_COLOR, OverlayContext, OverlayRenderer
@@ -117,7 +118,10 @@ class ComboOverlay:
             self._hold_bar,
         )
         self._guide = SetupGuide(self._ctx, self._renderer)
-        self._reposition = RepositionHandler(self._ctx, self._renderer)
+        self._cc_panel = CCPanel(self._ctx, self._renderer, self.input_monitor)
+        self._reposition = RepositionHandler(
+            self._ctx, self._renderer, cc_panel=self._cc_panel,
+        )
 
         # Load saved overlay position
         self._reposition.load_position()
@@ -155,6 +159,7 @@ class ComboOverlay:
     # =================================================================
     def set_key_remap(self, remap: Dict[str, str]) -> None:
         self._player.set_key_remap(remap)
+        self._cc_panel.set_key_remap(remap)
 
     def set_idle_reset_ms(self, ms: int) -> None:
         self._player.set_idle_reset_ms(ms)
@@ -205,6 +210,22 @@ class ComboOverlay:
 
     def next_setup_page(self) -> None:
         self._guide.next_page()
+
+    # =================================================================
+    # CC Skills panel
+    # =================================================================
+    def show_cc_panel(self, skills: Dict[str, Any]) -> None:
+        self._cc_panel.show(skills)
+
+    def hide_cc_panel(self) -> None:
+        self._cc_panel.hide()
+
+    def update_cc_panel(self, skills: Dict[str, Any]) -> None:
+        self._cc_panel.update_class(skills)
+
+    @property
+    def cc_panel_active(self) -> bool:
+        return self._cc_panel.is_active
 
     # =================================================================
     # Reposition

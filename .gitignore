@@ -222,3 +222,4 @@ scripts/build_class_yaml.py
 scripts/apply_skill_patches.py
 scripts/_cache/
 data/classes/*.draft.yaml
+config/cc_panel_position.json

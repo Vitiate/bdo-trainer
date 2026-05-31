@@ -1,0 +1,31 @@
+combo_id: pvp_anti_evasion_full_burst
+class: Guardian
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Anti-Evasion Full Burst'
+description: 'Full anti-evasion burst when the shorter Gate Crasher version isn''t enough. Inputs — E → SHIFT+Q → SHIFT+F →
+  SHIFT+LMB → S+LMB → LMB+RMB → SHIFT+RMB → HOLD RMB → S+F → W+RMB.'
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: chokeslam
+  note: Grab. E.
+- skill: prime_black_blood_circle
+  note: SHIFT+Q.
+- skill: prime_mountain_slam
+  note: SHIFT+F.
+- skill: prime_avalanche_strike
+  note: SHIFT+LMB.
+- skill: prime_boulder_crush
+  note: S+LMB.
+- skill: prime_savage_hack
+  note: LMB+RMB.
+- skill: prime_mutilation
+  note: SHIFT+RMB.
+- skill: prime_black_blood_slaughter
+  note: Hold RMB.
+- skill: gate_crasher
+  note: S+F.
+- skill: omua_s_objurgation
+  note: W+RMB.

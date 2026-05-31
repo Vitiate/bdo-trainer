@@ -74,6 +74,11 @@ class InputMonitor:
         self._matched: bool = False
         self._kb_listener = None
         self._mouse_listener = None
+        # Secondary watchers — fire alongside the main target. Used by
+        # the CC panel to track skill activations without disturbing the
+        # combo player's exclusive ``set_target`` channel.
+        # name → {"sets": [Set[str]], "on_match": Callable, "matched": bool}
+        self._taps: Dict[str, Dict[str, object]] = {}
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -135,6 +140,38 @@ class InputMonitor:
         Called after the user releases keys between steps.
         """
         self._matched = False
+        for tap in self._taps.values():
+            req_sets: List[Set[str]] = tap["sets"]  # type: ignore[assignment]
+            still_held = any(req.issubset(self._pressed) for req in req_sets)
+            if not still_held:
+                tap["matched"] = False
+
+    # ------------------------------------------------------------------
+    # Taps — secondary watchers (e.g. CC panel)
+    # ------------------------------------------------------------------
+    def add_tap(
+        self, name: str, key_sets: List[List[str]], on_match: Callable
+    ) -> None:
+        """Add a named secondary watcher.
+
+        Independent of ``set_target``; fires once per press whenever any
+        of *key_sets* is fully held. Holding the keys does not re-fire;
+        the trigger resets when no required set remains held.
+        """
+        sets = [
+            {k.lower() for k in ks if k.lower() != "hotbar"} for ks in key_sets
+        ]
+        sets = [s for s in sets if s]
+        if not sets:
+            self._taps.pop(name, None)
+            return
+        self._taps[name] = {"sets": sets, "on_match": on_match, "matched": False}
+
+    def remove_tap(self, name: str) -> None:
+        self._taps.pop(name, None)
+
+    def clear_taps(self) -> None:
+        self._taps.clear()
 
     # ------------------------------------------------------------------
     # Key normalization
@@ -206,12 +243,24 @@ class InputMonitor:
     # Match check
     # ------------------------------------------------------------------
     def _check(self) -> None:
-        """Fire the callback if any required key set is fully held."""
-        if self._matched or not self._required_sets:
-            return
-        for req in self._required_sets:
-            if req.issubset(self._pressed):
-                self._matched = True
-                if self._on_match:
-                    self._on_match()
-                return
+        """Fire callbacks for any matching primary target or tap."""
+        # Primary target — single edge-triggered channel
+        if not self._matched and self._required_sets:
+            for req in self._required_sets:
+                if req.issubset(self._pressed):
+                    self._matched = True
+                    if self._on_match:
+                        self._on_match()
+                    break
+        # Secondary taps — independent of the primary target
+        for tap in self._taps.values():
+            if tap["matched"]:
+                continue
+            req_sets: List[Set[str]] = tap["sets"]  # type: ignore[assignment]
+            for req in req_sets:
+                if req.issubset(self._pressed):
+                    tap["matched"] = True
+                    cb = tap["on_match"]
+                    if callable(cb):
+                        cb()
+                    break

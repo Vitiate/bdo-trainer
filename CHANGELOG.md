@@ -4,6 +4,51 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.3] — 2026-05-31
+
+### Added
+- **CC Skills overlay panel** — new tray menu entry **Show CC Skills**.
+  Toggle it on to see a list of every CC-applying skill for the
+  currently-selected class: skill name, CC tags, and the physical key
+  combo to trigger it. Each row uses outlined text so it stays readable
+  over the BDO client.
+  - **Cooldown wipe.** When you press a skill's keys, the row dims to
+    grey and "fills back in" left-to-right as the cooldown ticks down,
+    using the skill's `cooldown_ms` as the timer.
+  - **PvE / PvP-only annotations.** CC tags are parsed from the skill's
+    notes and labelled `(PvE)` / `(PvP)` when an effect only applies in
+    one mode (e.g. `Floating (PvE)` on Cleansing Flame).
+  - **Roman-numeral grades stripped** from displayed names so
+    "Glorious Advance IV" reads as "Glorious Advance".
+  - **Hotbar-only skills are skipped** — the panel only lists skills
+    that have a fixed physical key combo to listen for.
+  - **Repositionable.** The panel can be dragged independently of the
+    combo overlay while Reposition Mode is active; its position saves
+    to `config/cc_panel_position.json`.
+  - **Persisted across launches.** The toggle state is stored in
+    `config/combos.yaml` under `settings.show_cc_panel`.
+- **Secondary input taps** in `InputMonitor` (`add_tap` /
+  `remove_tap` / `clear_taps`) so multiple consumers can listen for key
+  combinations at once. The combo player keeps its exclusive
+  `set_target` channel; the new CC panel uses taps so the two coexist.
+- **22 Guardian combos** under `config/combos/guardian_awakening/` and
+  `config/combos/guardian_succession/` — full PvE rotations, PvP catch
+  / mobility chains, Gate Crasher cancel combos, anti-evasion variants,
+  and the Bread 'n' Butter family. Existing legacy Guardian Awakening
+  combos (`awakening_main_combo_1/2/3`, `infinite_combo_1`) were
+  removed in favour of the new set.
+- **Pulverization skill** added to `data/classes/guardian_awakening.yaml`
+  so the new PvP combos resolve.
+
+### Changed
+- **Reposition mode handles the CC panel.** `RepositionHandler` now
+  routes a drag to whichever target's anchor is closer — combo overlay
+  or CC panel — and saves both positions when reposition mode ends.
+- **Guardian Awakening loadout** updated with rationale for each locked
+  / hotbarred skill (Lock & hotbar Fireborne Rupture, hotbar God
+  Incinerator + Cleansing Flame as awakening swaps, etc.) so the setup
+  guide matches community recommendations.
+
 ## [0.5.2] — 2026-05-30
 
 ### Fixed
@@ -255,6 +300,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.3
 [0.5.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.2
 [0.5.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.1
 [0.5.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.0

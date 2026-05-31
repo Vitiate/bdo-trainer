@@ -137,6 +137,7 @@ class BDOTrainerApp:
                 on_exit=self._on_exit,
                 on_reposition_toggle=self._on_reposition_toggle,
                 on_setup_guide_toggle=self._on_setup_guide_toggle,
+                on_cc_panel_toggle=self._on_cc_panel_toggle,
                 on_settings=self._on_settings,
                 on_combo_editor=self._on_combo_editor,
                 on_class_editor=self._on_class_editor,
@@ -200,6 +201,9 @@ class BDOTrainerApp:
         combo_id: str,
     ):
         """Called when the user picks a combo from the tray menu."""
+        class_changed = (
+            class_name != self._current_class or spec_name != self._current_spec
+        )
         self._current_class = class_name
         self._current_spec = spec_name
         self._current_bundle_id = bundle_id
@@ -207,6 +211,9 @@ class BDOTrainerApp:
         # Persist active bundle so the setup guide / next-launch flow
         # can pick the right loadout for this class/spec.
         self.loader.settings_loader.set_active_bundle(class_name, spec_name, bundle_id)
+        if class_changed and self.overlay.cc_panel_active:
+            skills = self.loader.classes.get_skills(class_name, spec_name)
+            self.overlay.schedule(lambda: self.overlay.update_cc_panel(skills))
         self.overlay.schedule(
             lambda: self._start_combo(class_name, spec_name, bundle_id, combo_id)
         )
@@ -232,6 +239,31 @@ class BDOTrainerApp:
             self.overlay.schedule(self._show_setup_guide)
         else:
             self.overlay.schedule(self.overlay.hide_setup_guide)
+
+    def _on_cc_panel_toggle(self, enabled: bool):
+        """Called when user toggles 'Show CC Skills' in the tray."""
+        self.loader.set_show_cc_panel(enabled)
+        if enabled:
+            self.overlay.schedule(self._show_cc_panel)
+        else:
+            self.overlay.schedule(self.overlay.hide_cc_panel)
+
+    def _show_cc_panel(self):
+        """Resolve the active class's skills and display the CC panel."""
+        cls, spec = self._current_class, self._current_spec
+        if not cls or not spec:
+            # Fallback: use the first class/spec we know about so the
+            # panel isn't empty if the user opens it before picking a combo.
+            keys = self.loader.classes.keys()
+            if keys:
+                cls, spec = keys[0]
+        if not cls or not spec:
+            logger.warning("CC panel: no class data available")
+            if self.tray:
+                self.tray.set_cc_panel_mode(False)
+            return
+        skills = self.loader.classes.get_skills(cls, spec)
+        self.overlay.show_cc_panel(skills)
 
     def _show_setup_guide(self):
         """Fetch guide data for the current class/spec/bundle and display it."""
@@ -420,6 +452,10 @@ class BDOTrainerApp:
         """Start the tray icon, then enter the overlay main-loop (blocks)."""
         if self.tray:
             self.tray.start()
+            # Restore the persisted "Show CC Skills" toggle from settings.
+            if self.loader.get_show_cc_panel():
+                self.tray.set_cc_panel_mode(True)
+                self.overlay.schedule(self._show_cc_panel)
 
         # Check GitHub for a newer release in the background.
         self._check_for_updates_on_startup()
