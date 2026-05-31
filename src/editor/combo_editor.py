@@ -346,15 +346,29 @@ class ComboEditor(tk.Frame):
             anchor="w",
         ).grid(row=row, column=0, sticky="w", padx=(8, 4), pady=(8, 2))
 
-        self._id_label = tk.Label(
+        # Combo ID — editable. Renaming re-keys the in-memory combos
+        # dict so the next save writes a new file (and the old one is
+        # diffed away by the host window).
+        self._id_entry = tk.Entry(
             ff,
-            text="",
             font=FONT_BOLD,
             fg=ACCENT,
-            bg=BG_DARK,
-            anchor="w",
+            bg=BG_INPUT,
+            insertbackground=FG_TEXT,
+            relief="flat",
+            bd=0,
+            highlightthickness=1,
+            highlightcolor=ACCENT,
+            highlightbackground=BG_CARD,
         )
-        self._id_label.grid(row=row, column=1, sticky="w", padx=4, pady=(8, 2))
+        self._id_entry.grid(row=row, column=1, sticky="ew", padx=4, pady=(8, 2))
+        self._id_entry.bind("<FocusOut>", self._on_id_changed)
+        self._id_entry.bind("<Return>", self._on_id_changed)
+        # Backwards-compat alias for the few sites that still poke
+        # ``self._id_label``. The Entry has both ``configure`` and the
+        # widget API, so most existing calls work transparently — the
+        # ones that read ``cget('text')`` will need a code review.
+        self._id_label = self._id_entry
         row += 1
 
         # ---- Name ----
@@ -675,9 +689,10 @@ class ComboEditor(tk.Frame):
 
         self._show_form(True)
 
-        # Combo ID
-        assert self._id_label is not None
-        self._id_label.configure(text=combo_id)
+        # Combo ID — populate the Entry without firing dirty.
+        assert self._id_entry is not None
+        self._id_entry.delete(0, "end")
+        self._id_entry.insert(0, combo_id)
 
         # Name
         assert self._name_entry is not None
@@ -724,8 +739,8 @@ class ComboEditor(tk.Frame):
 
     def _clear_form(self):
         """Reset all form widgets to empty / default and hide the form."""
-        if self._id_label:
-            self._id_label.configure(text="")
+        if self._id_entry:
+            self._id_entry.delete(0, "end")
         if self._name_entry:
             self._name_entry.delete(0, "end")
         if self._category_var:
@@ -1037,6 +1052,72 @@ class ComboEditor(tk.Frame):
             self._steps_data[index],
         )
         self._rebuild_steps()
+
+    # ------------------------------------------------------------------
+    # Combo ID rename (live)
+    # ------------------------------------------------------------------
+    def _on_id_changed(self, _event=None) -> None:
+        """User edited the Combo ID Entry. Sanitise + re-key in-memory.
+
+        The actual on-disk move happens at save time — the host window
+        diffs the new combo ids against what's currently in the bundle
+        and writes/deletes accordingly.
+        """
+        if self._id_entry is None:
+            return
+        if self._current_combo_id is None or self._current_category is None:
+            return
+
+        raw = self._id_entry.get().strip()
+        sanitized = raw.lower().replace(" ", "_")
+        sanitized = "".join(c for c in sanitized if c.isalnum() or c == "_")
+
+        old_id = self._current_combo_id
+        category = self._current_category
+
+        # No-op or empty — revert.
+        if not sanitized or sanitized == old_id:
+            self._id_entry.delete(0, "end")
+            self._id_entry.insert(0, old_id)
+            return
+
+        # Collision check — only within the same category.
+        if sanitized in self._combos.get(category, {}):
+            from tkinter import messagebox
+            messagebox.showwarning(
+                "Duplicate Combo ID",
+                f"A combo with id '{sanitized}' already exists in this "
+                "category. Choose a different id.",
+                parent=self.winfo_toplevel(),
+            )
+            self._id_entry.delete(0, "end")
+            self._id_entry.insert(0, old_id)
+            return
+
+        # Re-key the dict in place. Preserve insertion order by rebuilding.
+        new_section: Dict[str, dict] = {}
+        for k, v in self._combos.get(category, {}).items():
+            if k == old_id:
+                # Stamp the new combo_id into the combo dict too so that
+                # save_combo() writes the right filename.
+                v = dict(v)
+                v["combo_id"] = sanitized
+                new_section[sanitized] = v
+            else:
+                new_section[k] = v
+        self._combos[category] = new_section
+
+        self._current_combo_id = sanitized
+        self._id_entry.delete(0, "end")
+        self._id_entry.insert(0, sanitized)
+        self._refresh_list()
+
+        # Notify the host window so it knows there's pending work.
+        if self._on_change:
+            try:
+                self._on_change()
+            except Exception:
+                logger.exception("Error in on_change callback")
 
     # ------------------------------------------------------------------
     # Save / collect current form data

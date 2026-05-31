@@ -1,0 +1,40 @@
+combo_id: succession_main_dps
+class: Dark Knight
+spec: Succession
+bundle_id: default
+category: pve
+name: Succession Main DPS
+description: Primary Succession DPS combo from the quick PvE guide.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: air_strike
+  note: Engage the pack.
+- skill: furia_di_vedir
+  note: Move into the pull.
+- skill: slanted_balance
+  note: Group mobs before the back-attack section.
+- skill: kamasylvia_slash
+  note: Use with Dusk to get behind mobs.
+- skill: unveiled_dagger
+  note: Bridge into the main damage chain.
+- skill: wheel_of_fortune
+  note: Main burst spin.
+- skill: lunacy_of_vedir
+  note: Follow-up damage.
+- skill: nocturne
+  note: Use RMB from Nocturne for reposition.
+- skill: movement_followup
+  note: Micro-adjust before Legacy.
+- skill: spirit_legacy
+  note: Major frontal burst.
+- skill: pervasive_darkness
+  note: Continue damage after Legacy.
+- skill: enforcement
+  note: Begin finisher pair.
+- skill: termination
+  note: Follow Enforcement.
+- skill: ravage_rake
+  note: Main cleanup hit.
+- skill: rake_flow
+  note: Finish survivors.

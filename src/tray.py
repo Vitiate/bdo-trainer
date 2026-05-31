@@ -48,25 +48,28 @@ class TrayManager:
 
     def __init__(
         self,
-        class_tree: Dict[str, Dict[str, List[Tuple[str, str]]]],
+        class_tree: Dict[str, Dict[str, Dict[str, List[Tuple[str, str]]]]],
         on_combo_selected: Optional[Callable] = None,
         on_stop: Optional[Callable] = None,
         on_reposition_toggle: Optional[Callable] = None,
         on_setup_guide_toggle: Optional[Callable] = None,
         on_settings: Optional[Callable] = None,
-        on_editor: Optional[Callable] = None,
+        on_combo_editor: Optional[Callable] = None,
+        on_class_editor: Optional[Callable] = None,
         on_check_updates: Optional[Callable] = None,
         on_exit: Optional[Callable] = None,
     ):
         """
         Args:
-            class_tree: {class_name: {spec_name: [(combo_id, display_name), ...]}}
-            on_combo_selected: Callback(class_name, spec_name, combo_id) when a combo is picked
+            class_tree: {class: {spec: {bundle_id: [(combo_id, display_name), ...]}}}
+            on_combo_selected: Callback(class, spec, bundle_id, combo_id)
+                when a combo is picked
             on_stop: Callback when "Stop" is selected
-            on_reposition_toggle: Callback(enabled: bool) when reposition is toggled
-            on_setup_guide_toggle: Callback(enabled: bool) when setup guide is toggled
+            on_reposition_toggle: Callback(enabled: bool)
+            on_setup_guide_toggle: Callback(enabled: bool)
             on_settings: Callback when "Settings" is selected
-            on_editor: Callback when "Class & Combo Editor" is selected
+            on_combo_editor: Callback when "Combo Editor" is selected
+            on_class_editor: Callback when "Class Editor" is selected
             on_check_updates: Callback when "Check for Updates…" is selected
             on_exit: Callback when "Exit" is selected
         """
@@ -79,7 +82,8 @@ class TrayManager:
         self.on_reposition_toggle = on_reposition_toggle
         self.on_setup_guide_toggle = on_setup_guide_toggle
         self.on_settings = on_settings
-        self.on_editor = on_editor
+        self.on_combo_editor = on_combo_editor
+        self.on_class_editor = on_class_editor
         self.on_check_updates = on_check_updates
         self.on_exit = on_exit
 
@@ -96,18 +100,26 @@ class TrayManager:
         menu_items.append(pystray.MenuItem("BDO Trainer", None, enabled=False))
         menu_items.append(pystray.Menu.SEPARATOR)
 
-        # Build Class > Spec > Combo hierarchy
+        # Build Class > Spec > Bundle > Combo hierarchy.
         class_sub_items = []
         for class_name, specs in self.class_tree.items():
             spec_sub_items = []
-            for spec_name, combos in specs.items():
-                combo_items = []
-                for combo_id, display_name in combos:
-                    action = self._make_combo_action(class_name, spec_name, combo_id)
-                    combo_items.append(pystray.MenuItem(display_name, action))
-                if combo_items:
+            for spec_name, bundles in specs.items():
+                bundle_sub_items = []
+                for bundle_id, combos in bundles.items():
+                    combo_items = []
+                    for combo_id, display_name in combos:
+                        action = self._make_combo_action(
+                            class_name, spec_name, bundle_id, combo_id,
+                        )
+                        combo_items.append(pystray.MenuItem(display_name, action))
+                    if combo_items:
+                        bundle_sub_items.append(
+                            pystray.MenuItem(bundle_id, pystray.Menu(*combo_items))
+                        )
+                if bundle_sub_items:
                     spec_sub_items.append(
-                        pystray.MenuItem(spec_name, pystray.Menu(*combo_items))
+                        pystray.MenuItem(spec_name, pystray.Menu(*bundle_sub_items))
                     )
             if spec_sub_items:
                 class_sub_items.append(
@@ -142,11 +154,13 @@ class TrayManager:
 
         menu_items.append(pystray.Menu.SEPARATOR)
 
-        # Settings
+        # Settings + editors
         menu_items.append(pystray.MenuItem("Settings", self._on_settings_clicked))
-
         menu_items.append(
-            pystray.MenuItem("Class && Combo Editor", self._on_editor_clicked)
+            pystray.MenuItem("Combo Editor", self._on_combo_editor_clicked)
+        )
+        menu_items.append(
+            pystray.MenuItem("Class Editor", self._on_class_editor_clicked)
         )
 
         menu_items.append(
@@ -160,13 +174,17 @@ class TrayManager:
 
         return pystray.Menu(*menu_items)
 
-    def _make_combo_action(self, class_name: str, spec_name: str, combo_id: str):
-        """Create a callback closure for a specific combo"""
+    def _make_combo_action(
+        self, class_name: str, spec_name: str, bundle_id: str, combo_id: str,
+    ):
+        """Create a callback closure for a specific combo."""
 
         def action(icon, item):
-            logger.info(f"Tray: combo selected — {class_name}/{spec_name}/{combo_id}")
+            logger.info(
+                f"Tray: combo selected — {class_name}/{spec_name}/{bundle_id}/{combo_id}"
+            )
             if self.on_combo_selected:
-                self.on_combo_selected(class_name, spec_name, combo_id)
+                self.on_combo_selected(class_name, spec_name, bundle_id, combo_id)
 
         return action
 
@@ -180,10 +198,15 @@ class TrayManager:
         if self.on_settings:
             self.on_settings()
 
-    def _on_editor_clicked(self, icon, item):
-        logger.info("Tray: editor clicked")
-        if self.on_editor:
-            self.on_editor()
+    def _on_combo_editor_clicked(self, icon, item):
+        logger.info("Tray: combo editor clicked")
+        if self.on_combo_editor:
+            self.on_combo_editor()
+
+    def _on_class_editor_clicked(self, icon, item):
+        logger.info("Tray: class editor clicked")
+        if self.on_class_editor:
+            self.on_class_editor()
 
     def _on_check_updates_clicked(self, icon, item):
         logger.info("Tray: check for updates clicked")

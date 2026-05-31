@@ -1,0 +1,87 @@
+combo_id: full_rotation
+class: Witch
+spec: Succession
+bundle_id: default
+category: pve
+name: Full Rotation (A + B + C + D)
+description: Complete 31s infinite rotation. 83,064 DPS. Loops back to Cycle A after D.
+steps:
+- skill: prime_voltaic_pulse
+  note: '--- Cycle A (7.583s) ---'
+- skill: prime_mma_elemental
+  note: FG filler
+- skill: prime_earth_arrow
+  note: fast filler
+- skill: prime_fireball
+  note: fast filler
+- skill: prime_equilibrium_break
+  note: FG bound
+- skill: lightning_chain
+  note: 1st hit cancel into RMB
+- skill: residual_lightning
+  note: first RMB
+- skill: residual_lightning
+  note: second RMB (flows via Shift+C)
+- skill: prime_frigid_fog_control
+  note: freeze CC
+- skill: prime_mma_elemental
+  note: FG filler
+- skill: prime_earth_arrow
+  note: fast filler
+- skill: prime_fireball
+  note: fast filler
+- skill: prime_fireball_explosion
+  note: RMB flow from fireball (Shift+LMB)
+- skill: prime_voltaic_discharge_diffuse
+  note: Cycle A finisher
+- skill: prime_voltaic_pulse
+  note: '--- Cycle B (7.567s) ---'
+- skill: prime_mma_elemental
+- skill: prime_earth_arrow
+- skill: prime_fireball
+- skill: prime_equilibrium_break
+- skill: lightning_chain
+  note: 1st hit cancel
+- skill: residual_lightning
+- skill: residual_lightning
+- skill: prime_frigid_fog_control
+- skill: prime_mma_elemental
+- skill: prime_earth_arrow
+- skill: prime_fireball
+- skill: prime_fireball_explosion
+- skill: prime_meteor_shower_focus
+  note: Cycle B finisher
+- skill: prime_voltaic_pulse
+  note: '--- Cycle C (8.417s) ---'
+- skill: prime_mma_elemental
+- skill: prime_earth_arrow
+- skill: prime_fireball
+- skill: prime_equilibrium_break
+- skill: lightning_chain
+  note: 1st hit cancel
+- skill: residual_lightning
+- skill: residual_lightning
+- skill: prime_frigid_fog_control
+- skill: prime_mma_elemental
+- skill: prime_earth_arrow
+- skill: prime_fireball
+- skill: prime_fireball_explosion
+- skill: prime_blizzard_domain
+  note: Cycle C finisher - longest CD, highest burst
+- skill: prime_voltaic_pulse
+  note: '--- Cycle D (7.467s) ---'
+- skill: prime_mma_elemental
+- skill: prime_earth_arrow
+- skill: prime_fireball
+- skill: prime_equilibrium_break
+- skill: lightning_chain
+  note: 1st hit cancel
+- skill: residual_lightning
+- skill: residual_lightning
+- skill: prime_frigid_fog_control
+- skill: prime_mma_elemental
+- skill: prime_earth_arrow
+- skill: prime_fireball
+- skill: prime_fireball_explosion
+- skill: prime_earthquake_destruction
+  note: Cycle D finisher - fastest cycle, then loop to A

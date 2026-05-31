@@ -1,0 +1,24 @@
+combo_id: awakening_main_dps
+class: Dark Knight
+spec: Awakening
+bundle_id: default
+category: pve
+name: Awakening Main DPS
+difficulty: advanced
+combo_window_ms: 300
+description: Primary Awakening DPS string listed in the quick PvE guide.
+steps:
+- skill: shattering_darkness
+- skill: unveiled_fate
+- skill: blooming_black_rose
+- skill: spirit_legacy
+  note: Heavy damage nuke.
+- skill: root_of_catastrophe
+  note: Continue the Seed follow-w.
+  hold_ms: 1500
+- skill: spirit_legacy
+  note: Big frontal hit in the main DPS string.
+- skill: dark_nebula
+  note: Use as quickcast after Legacy.
+- skill: twilight_dash
+  note: Use once crit chance addon is active.

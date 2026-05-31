@@ -1,0 +1,1426 @@
+# Warrior — Awakening
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Warrior
+spec: Awakening
+skills:
+  apprehend:
+    name: Apprehend
+    input: Passive
+    protection: none
+    description: 'Preceding Skill: [Instant Grapple]'
+    notes: 'Preceding Skill: [Instant Grapple] Extra attack damage 1517% x1 after Take Down hits'
+    keys:
+    - hotbar
+  awakening_goyen_s_greatsword:
+    name: 'Awakening: Goyen''s Greatsword'
+    input: C
+    keys:
+    - c
+    protection: FG
+    cooldown_ms: 1000
+    description: You can use the greatsword.
+    notes: You can use the greatsword. Switch to your greatsword. Attacking continued while switching if used during offensive
+      skills. Forward Guard applied while switching.
+  balance_strike:
+    name: Balance Strike
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - air_attack
+    cooldown_ms: 5000
+    description: Move forward quickly, then hit your enemy with a powerful shoulder attack.
+    notes: Move forward quickly, then hit your enemy with a powerful shoulder attack. Attack damage 5063% x2 Maximum 10 targets
+      Recover 200 WP per hit Super Armor Stiffness on hits (PvE only) Air Attack 19.09% damage in PvP only
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  burning_moxie:
+    name: Burning Moxie
+    input: Passive
+    protection: none
+    description: Auto-learn The greater the number of foes, the fiercer the charge, fueled by a burning moxie.
+    notes: 'Auto-learn The greater the number of foes, the fiercer the charge, fueled by a burning moxie. Increases Attack
+      and Movement Speed with Awakening Skill attacks when more than 1 / 5 enemies are nearby. - Attack and Movement Speed
+      +10% / +15% for 5 / 10 sec Recover 51 / 153 HP per hit based on the number of nearby enemies when using the following:
+      - Grave Digging - Flow: Slashing the Dead - Flow: Reckless Blow Recover 105 / 314 HP per hit based on the number of
+      nearby enemies when using the following: - Flow: Tempest Burning Moxie effects do not apply when using skills that are
+      on cooldown. Also, Greatsword Training, Greatsword Defense, Head Chase, Executioner, Elvia: Divided Will, and Awakening:
+      Goyen''s Greatsword cannot activate Burning Moxie.'
+    keys:
+    - hotbar
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+    keys:
+    - hotbar
+  chain_heaven_s_cleave:
+    name: 'Chain: Heaven''s Cleave'
+    input: 'F F or RMB after Flow: Hilt Strike'
+    keys:
+    - f
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Balance Strike II]'
+    notes: 'Preceding Skill: [Balance Strike II] Attack 1 damage 5493% x1 Attack 2 damage 5493% x2 Critical Hit Rate +100%
+      Maximum 10 targets All AP +32 for 10 sec when using the skill Super Armor during the skill Floating on attack 2 hits
+      (PvE only) Air Attack 33.95% damage in PvP only'
+  charge_counter:
+    name: Charge Counter
+    input: RMB after Guard blocks
+    keys:
+    - rmb
+    protection: none
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Guard], [Shield Charge I]'
+    notes: 'Preceding Skill: [Guard], [Shield Charge I] All damage applies Shield Charge ''s damage x2 Applies all of Shield
+      Charge ''s effects.'
+  charging_slash:
+    name: Charging Slash
+    input: LMB while sprinting LMB while moving forward on Guard Hold ↑ + LMB to continue the skill
+    keys:
+    - lmb
+    - w
+    - hold
+    protection: none
+    description: Unleash a flurry of attacks as you sprint forward.
+    notes: Unleash a flurry of attacks as you sprint forward. Attack damage 2388% x1 Continuous attack damage 2388% x1, max
+      2 hits Maximum 10 targets Recover 70 WP per hit Can be used while on Guard Speed Attack
+  charging_thrust:
+    name: Charging Thrust
+    input: ↑ + F Hold ↑ while moving to continue the skill Hold F to perform kicks on hits Can be used with your greatsword
+    keys:
+    - w
+    - f
+    - hold
+    protection: SA
+    cooldown_ms: 5000
+    description: Can guard while moving forward with Charging Thrust III.
+    notes: Can guard while moving forward with Charging Thrust III. Attack damage 1019% x2 Critical Hit Rate +100% Maximum
+      10 targets Super Armor while moving Speed Attack
+  chopping_kick:
+    name: Chopping Kick
+    input: ↓ + F ↓ + F in certain situations to perform instantly
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Can use Chopping Kick twice.
+    notes: Can use Chopping Kick twice. Attack damage 536% x2 Maximum 10 targets Recover 35 WP per hit Super Armor (Nullified
+      during cooldown) Bound on hits (PvE only) (Nullified during cooldown) Counter Attack Air Attack 80.21% damage in PvP
+      only Damage reduced during cooldown WP Recovery -50% during cooldown Can perform 1 times after the skill
+  core_balance_strike:
+    name: 'Core: Balance Strike'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Balance Strike III after learning this skill: Stiffness on hits'
+    keys:
+    - hotbar
+  core_frenzied_strikes:
+    name: 'Core: Frenzied Strikes'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Frenzied Strikes III after learning this skill: Knockdown on
+      last attack hits'
+    keys:
+    - hotbar
+  core_grave_digging:
+    name: 'Core: Grave Digging'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Grave Digging IV after learning this skill: Knockdown on smash
+      attack hits'
+    keys:
+    - hotbar
+  core_merciless:
+    name: 'Core: Merciless'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Merciless IV after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown) Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_pulverize:
+    name: 'Core: Pulverize'
+    input: Passive
+    protection: none
+    cc:
+    - knockback
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Pulverize III after learning this skill: Knockback on last attack
+      hits Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_solar_flare:
+    name: 'Core: Solar Flare'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Solar Flare IV after learning this skill: Stiffness on hits'
+    keys:
+    - hotbar
+  counter:
+    name: Counter
+    input: ↓ + LMB Hold ↓ before attacking to maintain Counter SPACE during Counter to perform Spin Counter Spin Counter consumes
+      30 WP Hold LMB to perform Energy Counter Energy Counter consumes 40 WP
+    keys:
+    - s
+    - lmb
+    - space
+    - hold
+    protection: FG
+    cc:
+    - knockdown
+    - floating
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 5000
+    description: Step backwards and take up a Counter stance. Can instantly performs skills not mentioned in the description.
+    notes: Step backwards and take up a Counter stance. Can instantly performs skills not mentioned in the description. Counter
+      damage 704% x2 Spin Counter damage 450% x1 Energy Counter damage 779% x2 Maximum 5 targets Forward Guard at the start
+      of the skill (Nullified during cooldown) Floating on Counter and Energy Counter hits (PvE only) (Nullified during cooldown)
+      Knockdown on Spin Counter hits (PvE only) (Nullified during cooldown) Air Attack on counter and Energy Counter hits
+      Down Attack on Spin Counter hits
+  counter_slash:
+    name: Counter Slash
+    input: LMB to perform attack 2 during Seismic Strike, Shield Assault, or Shield Tide LMB to perform attack 2 after Frenzied
+      Spear hits
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Spinning Slash IV]'
+    notes: 'Preceding Skill: [Spinning Slash IV] Attack 1 damage 2334% x2 Attack 2 damage 5658% x2 Critical Hit Rate +50%
+      Maximum 10 targets Floating on attack 1 hits (PvE only) Forward Guard during the skill Air Attack 27.74% attack 1 damage
+      in PvP only 24.86% attack 2 damage in PvP only'
+  deep_ground_slash:
+    name: Deep Ground Slash
+    input: LMB during Ground Slash
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: Perform a wide horizontal slash after Ground Slash.
+    notes: Perform a wide horizontal slash after Ground Slash. Attack damage 2282% x2 Maximum 10 targets Down Attack Down
+      Smash
+  deep_thrust:
+    name: Deep Thrust
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - knockback
+    - air_attack
+    description: Strong stabbing attack with a sword.
+    notes: Strong stabbing attack with a sword. Attack damage 514% x2, max 4 hits Critical Hit Rate +100% Maximum 5 targets
+      Recover +38 HP per hit 30 bleeding damage every 3 sec for 18 sec on hits Knockback on attack 1 hits Air Attack Counter
+      Attack Air Smash
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  dusk_slash:
+    name: Dusk Slash
+    input: LMB to perform attack 2 during Seismic Strike, Shield Assault, or Shield Tide LMB to perform attack 2 after Frenzied
+      Spear hits
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - spin
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Spinning Slash IV]'
+    notes: 'Preceding Skill: [Spinning Slash IV] Attack 1 damage 2863% x2 Attack 2 damage 7874% x2 Critical Hit Rate +100%
+      Maximum 10 targets 35 bleeding damage every 3 sec for 27 sec on hits All Damage Reduction +10 for 20 sec when using
+      the skill Push the target on hits (PvE only) 57.85% attack 1 damage in PvP only 29.46% attack 2 damage in PvP only'
+  elvia_divided_will:
+    name: 'Elvia: Divided Will'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Gather strength into your greatsword and smash down upon the surface, dealing damage to enemies over a wide
+      area.
+    notes: Gather strength into your greatsword and smash down upon the surface, dealing damage to enemies over a wide area.
+      Attack damage 7793% x3 Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on
+      hits (PvE only) All AP -20 for 10 sec on hits Recover 20 WP per hit Super Armor during the skill Down Attack 22.92%
+      damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + →
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  executioner:
+    name: Executioner
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: Bring out your internal strength to move much more swiftly.
+    notes: Bring out your internal strength to move much more swiftly. Max HP +500 for 30 sec when using the skill All AP
+      +45 for 30 sec when using the skill Attack Speed +30% for 30 sec when using the skill Movement Speed +40% for 30 sec
+      when using the skill Super Armor during the skill
+  fitness_training:
+    name: Fitness Training
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xi:
+    name: Fitness Training XI
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xii:
+    name: Fitness Training XII
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xiii:
+    name: Fitness Training XIII
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xiv:
+    name: Fitness Training XIV
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xix:
+    name: Fitness Training XIX
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xv:
+    name: Fitness Training XV
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xvi:
+    name: Fitness Training XVI
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xvii:
+    name: Fitness Training XVII
+    input: Passive
+    protection: none
+    description: Increase your maximum HP permanently.
+    notes: Increase your maximum HP permanently. Max HP +15
+    keys:
+    - hotbar
+  fitness_training_xviii:
+    name: Fitness Training XVIII
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  fitness_training_xx:
+    name: Fitness Training XX
+    input: Passive
+    protection: none
+    description: Increase your maximum HP and all DP permanently.
+    notes: Increase your maximum HP and all DP permanently. Max HP +15 All Damage Reduction +2
+    keys:
+    - hotbar
+  flow_ankle_break:
+    name: 'Flow: Ankle Break'
+    input: ↓+ F Hold F or LMB to perform extra attacks
+    keys:
+    - s
+    - f
+    - lmb
+    - hold
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Using the greatsword's weight, damage enemies' ankles and trip them within a broad range.
+    notes: Using the greatsword's weight, damage enemies' ankles and trip them within a broad range. Attack damage 5043% x2,
+      max 2 hits Critical Hit Rate +50% Maximum 10 targets Down Attack damage +10% for 10 sec when using the skill Forward
+      Guard during the skill Movement Speed -15% for 5 sec on hits Bound on hits (PvE only) Down Attack Down Smash (PvP only)
+      38.05% damage in PvP only
+  flow_armor_break:
+    name: 'Flow: Armor Break'
+    input: SPACE during other skills
+    keys:
+    - space
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    - spin
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Greatsword Defense]'
+    notes: 'Preceding Skill: [Greatsword Defense] Attack damage 4949% x2 Critical Hit Rate +100% Maximum 10 targets Recover
+      84 WP per hit All Damage Reduction -25 for 10 sec on hits (Nullified during cooldown) Push the target on hits (PvE only)
+      Spin the target on hits (PvE only) Stiffness on hits (Nullified during cooldown) Down Attack Damage reduced during cooldown
+      28.59% damage in PvP only'
+  flow_hilt_strike:
+    name: 'Flow: Hilt Strike'
+    input: Hold RMB after Balance Strike
+    keys:
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - stiffness
+    - air_attack
+    description: 'Precedent: [Balance Strike I]'
+    notes: 'Precedent: [Balance Strike I] Attack damage 4205% x2 Critical Hit Rate +100% Maximum 10 targets Stiffness on hits
+      Air Attack 19.45% damage in PvP only'
+  flow_knee_kick:
+    name: 'Flow: Knee Kick'
+    input: 'Can be added to a Quick Slot Hold F after Chain: Heaven''s Cleave'
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Precedent: [Balance Strike I]'
+    notes: 'Precedent: [Balance Strike I] Attack damage 3905% x2 Critical Hit Rate +100% Maximum 10 targets Recover 40 WP
+      per hit Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Stiffness on hits Air Attack Down Attack
+      30.77% damage in PvP only'
+    keys:
+    - hotbar
+    - f
+    - hold
+  flow_overwhelm:
+    name: 'Flow: Overwhelm'
+    input: SPACE after using Solar Flare SPACE during frontal Head Chase
+    keys:
+    - space
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Precedent: [Solar Flare I]'
+    notes: 'Precedent: [Solar Flare I] Attack damage 4614% x2 Maximum 10 targets Forward Guard during the skill Floating on
+      hits Air Attack 28.97% damage in PvP only'
+  flow_reckless_blow:
+    name: 'Flow: Reckless Blow'
+    input: LMB + RMB Hold LMB + RMB to charge Auto-activated when fully charged Able to use Head Chase when fully charged
+    keys:
+    - lmb
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Precedent: [Pulverize II]'
+    notes: 'Precedent: [Pulverize II] Attack damage 7604% x2 before fully charged Attack damage 12601% x2 when fully charged
+      Critical Hit Rate +100% Maximum 10 targets Increased attack area when charged Super Armor during the skill Knockdown
+      on hits Down Attack Available without charging during Executioner 36% attack damage before fully charged in PvP only
+      41.22% attack damage when fully charged in PvP only'
+  flow_slashing_the_dead:
+    name: 'Flow: Slashing the Dead'
+    input: SHIFT + RMB RMB while jumping or in mid-air SHIFT + RMB or RMB during Grave Digging
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Grave Digging I]'
+    notes: 'Preceding Skill: [Grave Digging I] Grave Digging spin attack damage x2 Grave Digging smash attack damage x2 Maximum
+      10 targets All Damage Reduction +20 for 10 sec when using the skill Super Armor during the skill Knockdown on smash
+      attack hits (PvE only) No collision while moving Down Attack Spin attack damage 8638% x2 Smash attack damage 10392%
+      x2 Critical Hit Rate +100% Maximum 10 targets All Damage Reduction +20 for 10 sec when using the skill Super Armor during
+      the skill Knockdown on hits Down Attack No collision while moving 33.46% damage in PvP only Dismount target on hits.
+      Injures target with 30% of the damage of a hit.'
+  flow_tempest:
+    name: 'Flow: Tempest'
+    input: 'Hold LMB after Pulverize or Flow: Reckless Blow'
+    keys:
+    - lmb
+    - hold
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Pulverize I]'
+    notes: 'Preceding Skill: [Pulverize I] All damage applies Pulverize ''s damage x3 Maximum 10 targets Recover 350 HP per
+      hit Forward Guard Down Attack Down Smash'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+    keys:
+    - hotbar
+  force_slash:
+    name: Force Slash
+    input: Auto-activated on Energy Counter
+    protection: none
+    cooldown_ms: 9000
+    description: Send out a stream of energy that slashes enemies in front.
+    notes: Send out a stream of energy that slashes enemies in front. Greatly increases Energy Counter range
+    keys:
+    - hotbar
+  forward_slash:
+    name: Forward Slash
+    input: ↑ + LMB ↑ + RMB during use to cast Shield Charge
+    keys:
+    - w
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    description: Move forward while performing a slash attack.
+    notes: Move forward while performing a slash attack. Attack damage 708% x2 Maximum 5 targets Recover 39 WP per hit Push
+      the target on hits (PvE only) Down Attack
+  frenzied_dash:
+    name: Frenzied Dash
+    input: SHIFT + Q Hold LMB while moving to perform upward strike attacks
+    keys:
+    - shift
+    - q
+    - lmb
+    - hold
+    protection: FG
+    cc:
+    - floating
+    cooldown_ms: 12000
+    description: Dash forward in a frenzy with the power of the Black Spirit. Approach and attack enemies quickly in a frenzied
+      state.
+    notes: Dash forward in a frenzy with the power of the Black Spirit. Approach and attack enemies quickly in a frenzied
+      state. Attack damage 2190% x2 Maximum 10 targets Forward Guard All CC Resistance (except Grapple), including from Back
+      Attacks Floating on hits (PvE only) 85.94% damage in PvP only
+  frenzied_spear:
+    name: Frenzied Spear
+    input: SHIFT + X LMB after attack 1 to perform last attack
+    keys:
+    - shift
+    - x
+    - lmb
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Ground Smash IV]'
+    notes: 'Preceding Skill: [Ground Smash IV] Attack 1 damage 1584% x1 Last attack damage 2775% x2 Critical Hit Rate +100%
+      on last attacks Maximum 10 targets Super Armor during last attack Stiffness on attack 1 hits Down Attack on last attack
+      hits 53.86% attack 1 damage in PvP only 52.77% last attack damage in PvP only'
+  frenzied_strikes:
+    name: Frenzied Strikes
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: FG
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Widely swing your greatsword three times to lay waste to enemies in front.
+    notes: Widely swing your greatsword three times to lay waste to enemies in front. Attack 1 damage 4052% x2 Attack 2 damage
+      4052% x2 Last attack damage 10434% x2 Critical Hit Rate +50% (PvE only) Maximum 10 targets Recover 134 HP per hit All
+      Damage Reduction -25 for 10 sec on hits Forward Guard during the skill Knockback on attack 1 and 2 hits (PvE only) Knockdown
+      on last attack hits (PvE only) Down Attack 25.71% damage in PvP only
+  furious_blow:
+    name: Furious Blow
+    input: 'F after Guard blocks F or C after Succession: Guard blocks'
+    keys:
+    - f
+    - c
+    protection: none
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Guard], [Scars of Dusk I]'
+    notes: 'Preceding Skill: [Guard], [Scars of Dusk I] All damage applies Scars of Dusk ''s damage x1.15 Applies all of Scars
+      of Dusk ''s effects. Prime: Scars of Dusk empowers the Recover HP effect.'
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  grave_digging:
+    name: Grave Digging
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: After jumping and performing left-to-right slash, powerfully strike the ground to damage the nearby enemies.
+    notes: After jumping and performing left-to-right slash, powerfully strike the ground to damage the nearby enemies. Spin
+      attack damage 5601% x2 Smash attack damage 9228% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor Knockdown
+      on smash attack hits (PvE only) Down Attack 40% spin attack damage in PvP only 32% smash attack damage in PvP only Dash
+      attack damage 8898% x2 Continuous attack damage 8898% x1, max 7 hits Last attack damage 10032% x3 Blade attack damage
+      10032% x1, max 3 hits Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Attack Speed
+      +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec
+      when using the skill Invincible at the start of the skill Super Armor during the skill Stiffness on dash attack hits
+      Knockdown on smash attack hits during continuous attacks Knockdown on last attack hits Air Attack Down Attack 10.43%
+      damage in PvP only 16.96% last attack damage in PvP only Dash attack available, max 2 times Not affected by effects
+      which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount target
+      on hits.
+  greatsword_defense:
+    name: Greatsword Defense
+    input: Q
+    keys:
+    - q
+    protection: FG
+    description: Auto-learn Block enemy attacks using your greatsword.
+    notes: Auto-learn Block enemy attacks using your greatsword. Recover 25% of Max WP on blocks All Damage Reduction +20
+      for 10 sec while on Guard All AP +32 for 10 sec while on Guard Forward Guard All CC Resistance (except Grapple), including
+      from Back Attacks Cannot move forward/backward while on Guard.
+  greatsword_training:
+    name: Greatsword Training
+    input: LMB to perform horizontal slash attacks RMB to perform vertical slash attacks
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    description: A basic attack to subdue your foes using your greatsword.
+    notes: A basic attack to subdue your foes using your greatsword. Horizontal slash attack damage 1784% 1, max 2 hits Vertical
+      slash attack damage 1572% 1, max 3 hits Maximum 10 targets Recover 108 WP per hit All AP +32 for 10 sec on horizontal
+      slash attack 2 hits Critical Hit Rate +26% for 10 sec on vertical slash attack 3 hits Bound on vertical slash attack
+      3 hits Down Attack on vertical slash attack 1 and 3 hits Consumes 250 Stamina during lateral attacks.
+  ground_roar:
+    name: Ground Roar
+    input: SHIFT + RMB Hold RMB after the skill to continue the skill RMB to perform Ground Roar in the air during a forward
+      jump
+    keys:
+    - shift
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - pull
+    - down_attack
+    - spin
+    description: Create a wide shockwave by bashing the ground with your sword. Range & Accuracy increase.
+    notes: Create a wide shockwave by bashing the ground with your sword. Range & Accuracy increase. Attack damage 398% x1
+      Maximum 6 targets Increased attack area Spin the target on hits (PvE only) Pull in the target on hits (PvE only) Down
+      Attack Can be used while on Guard
+  ground_slash:
+    name: Ground Slash
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - down_attack
+    description: Quickly perform a double upper slash.
+    notes: Quickly perform a double upper slash. Attack damage 1243% x2 Maximum 10 targets Down Attack
+  ground_smash:
+    name: Ground Smash
+    input: SHIFT + F Can be used with your greatsword
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - bound
+    - stun
+    - down_attack
+    cooldown_ms: 10000
+    description: Topple targets on hits with Ground Smash III's effects.
+    notes: Topple targets on hits with Ground Smash III's effects. Attack damage 1807% x2 Maximum 10 targets Movement Speed
+      -20% for 5 sec on hits Super Armor Bound on hits (PvE only) Down Attack Down Smash 56.72% damage in PvP only Attack
+      1 damage 3133% x3 Attack 2 damage 5875% x4 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using
+      the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max
+      HP +2000 for 60 sec when using the skill Super Armor Bound on attack 1 hits Stun on attack 2 hits Down Attack Down Smash
+      No character collision during the skill 20.85% damage in PvP only Injures target with 100% of the damage of a hit. Dismount
+      target on hits.
+  guard:
+    name: Guard
+    input: Q Q or move laterally to cancel ↑ or ↓ to move during the skill
+    keys:
+    - q
+    - w
+    - s
+    protection: FG
+    description: Auto-learn Can use shield for defense. You can move back and forth while on guard.
+    notes: Auto-learn Can use shield for defense. You can move back and forth while on guard. Recover 25% of Max WP on blocks
+      All Damage Reduction +15 for 10 sec while on Guard Forward Guard All CC Resistance (except Grapple), including from
+      Back Attacks Consumes 300 Stamina per sec while moving forward/backward on Guard. Guard Gauge damage -40% on Forward
+      Guard. Recover 25% of Max WP on blocks All Damage Reduction +40 for 20 sec while on Guard All Damage Reduction +20 for
+      20 sec to nearby allies while on Guard Forward Guard All CC Resistance (except Grapple), including from Back Attacks
+      Consumes 75 Stamina per sec while moving on Guard. Guard Gauge damage -40% on Forward Guard.
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+    keys:
+    - hotbar
+  head_chase:
+    name: Head Chase
+    input: ↑ + SHIFT to move forward ↓ + SHIFT to move backward ← + SHIFT to move left → + SHIFT to move right Can be used
+      with your longsword
+    keys:
+    - w
+    - shift
+    - s
+    - a
+    - d
+    protection: iframe
+    cooldown_ms: 2000
+    description: Quickly move in all directions.
+    notes: Quickly move in all directions. Character collision occurs while moving forward No character collision while moving
+      backward or laterally Invincible when using the skill (Nullified during cooldown) Invincible during the skill (PvE only)
+  heavy_strike:
+    name: Heavy Strike
+    input: LMB + RMB Hold LMB + RMB to perform extra attacks
+    keys:
+    - lmb
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - spin
+    description: Powerfully inflict continuous attacks on enemies in front of you.
+    notes: Powerfully inflict continuous attacks on enemies in front of you. Attack damage 551% x2, max 3 hits Last attack
+      damage 827% x2 Maximum 10 targets 15 bleeding damage every 3 sec for 18 sec on hits Recover 12 HP per hit Spin the target
+      on hits (PvE only)
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  jump_slash:
+    name: Jump Slash
+    input: ↓ + RMB after Spinning Slash
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - spin
+    description: Jump and slash once more after Spinning Slash.
+    notes: Jump and slash once more after Spinning Slash. Applies all of Spinning Slash's damage and effects
+  kick:
+    name: Kick
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Auto-learn Kick enemies to push them back.
+    notes: Auto-learn Kick enemies to push them back. Attack damage 1313% x1, max 2 hits Maximum 10 targets Recover 70 WP
+      per hit Push the target on hits (PvE only) Down Attack on attack 1 hits Air Attack on attack 2 hits Down Smash on Kick
+      Down or Low Kick hits (Nullified during cooldown) Air Smash on side Kick hits 80.21% damage in PvP only
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+    keys:
+    - hotbar
+  meditation:
+    name: Meditation
+    input: SPACE + SHIFT
+    keys:
+    - space
+    - shift
+    protection: none
+    cooldown_ms: 20000
+    description: Regroup the scattered front lines by raising their morale.
+    notes: Regroup the scattered front lines by raising their morale. Recovers 500 HP when using the skill Recovers 500 WP
+      when using the skill
+  merciless:
+    name: Merciless
+    input: ↓ + RMB Hold RMB to perform extra attacks
+    keys:
+    - s
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - floating
+    - bound
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Powerfully strike the enemy upward, and smash down the fallen enemy again.
+    notes: Powerfully strike the enemy upward, and smash down the fallen enemy again. Attack damage 5089% x2, max 2 hits Critical
+      Hit Rate +100% Maximum 10 targets Floating on upward strike attack hits (Nullified during cooldown) Bound on downward
+      strike attack hits (Nullified during cooldown) Air Attack on upward strike attack hits Down Attack on downward strike
+      attack hits Damage reduced during cooldown 30.13% damage in PvP only Attack damage 5441% x2, max 2 hits Critical Hit
+      Rate +100% Maximum 10 targets Increased attack area All AP +10 for 20 sec when using the skill All AP -10 for 20 sec
+      on hits Floating on upward strike attack hits Bound on downward strike attack hits Air Attack on upward strike attack
+      hits Down Attack on downward strike attack hits 32.54% damage in PvP only Dismount target on hits. Injures target with
+      20% of the damage of a hit. Not activated during cooldown.
+  muscle_training:
+    name: Muscle Training
+    input: Passive
+    protection: none
+    description: Improves Melee AP.
+    notes: Improves Melee AP. You can access Skill Add-ons from anywhere. - Skill Add-ons are available from the Skill window.
+    keys:
+    - hotbar
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  piercing_spear:
+    name: Piercing Spear
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 11000
+    description: Throw a spear made with the power of the Black Spirit. The spear will explode upon impact, stiffening enemies.
+    notes: Throw a spear made with the power of the Black Spirit. The spear will explode upon impact, stiffening enemies.
+      Attack damage 2318% x1 Maximum 8 targets Stiffness on hits (Nullified during cooldown) 57.29% damage in PvP only Damage
+      reduced during cooldown
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  proof_of_fighting_spirit:
+    name: Proof of Fighting Spirit
+    input: Passive
+    protection: none
+    description: 'Gives you the right to learn Succession: Warrior''s Spirit skill.'
+    notes: 'Gives you the right to learn Succession: Warrior''s Spirit skill. You can now learn Succession skills.'
+    keys:
+    - hotbar
+  pulverize:
+    name: Pulverize
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - down_attack
+    - spin
+    cooldown_ms: 8000
+    description: Widely spin in place, inflicting damage to surrounding enemies. Inflicts even bigger damage when spinning
+      stops.
+    notes: Widely spin in place, inflicting damage to surrounding enemies. Inflicts even bigger damage when spinning stops.
+      Attack damage 4366% x3 Critical Hit Rate +50% Maximum 10 targets Recovers 400 HP when using the skill Forward Guard
+      Spin the target on hits (PvE only) Down Attack Down Smash on last attack hits 43.81% damage in PvP only Attack damage
+      6006% x3 Critical Hit Rate +50% Maximum 10 targets Increased attack area Recovers 400 HP when using the skill Recover
+      84 HP per hit Forward Guard Spin the target on hits (PvE only) Down Attack Down Smash on last attack hits 41.82% damage
+      in PvP only Dismount target on hits. Injures target with 10% of the damage of a hit.
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+    keys:
+    - hotbar
+  scars_of_dusk:
+    name: Scars of Dusk
+    input: Can be added to a Quick Slot ↑ before attacking to perform quick attacks ↑ or RMB before attack 3 to perform forward
+      attacks Can be used with your greatsword
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 10000
+    description: Use Black Energy to perform a deadly slash attack on enemies in a wide area in front of you.
+    notes: Use Black Energy to perform a deadly slash attack on enemies in a wide area in front of you. Attack damage 765%
+      x2, max 2 hits Last attack damage 1569% x2 Critical Hit Rate +100% Maximum 10 targets Recover 30 WP per hit 35 bleeding
+      damage inflicted every 3 sec for 27 sec on last attack hits All Damage Reduction +10 for 20 sec when using the skill
+      Forward Guard Down Attack 64.16% damage in PvP only
+    keys:
+    - hotbar
+    - w
+    - rmb
+  seismic_strike:
+    name: Seismic Strike
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Ground Smash IV]'
+    notes: 'Preceding Skill: [Ground Smash IV] Attack damage 9475% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      All Damage Reduction -25 for 10 sec on hits Spin the target on hits (PvE only) Pull in the target on hits (PvE only)
+      Bound on hits (PvE only) Down Attack Down Smash 29.61% damage in PvP only'
+  severing_thrust:
+    name: Severing Thrust
+    input: 'SHIFT + LMB SHIFT + LMB after certain skills to perform attack 2 instantly LMB during Solar Flare or Flow: Overwhelm
+      with your greatsword'
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 3586% x2 Attack 2 damage 6276% x2 Critical
+      Hit Rate +50% Maximum 10 targets Floating on attack 1 hits Air Attack 33.02% damage in PvP only'
+  shield_assault:
+    name: Shield Assault
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - knockback
+    - bound
+    - spin
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Shield Charge II]'
+    notes: 'Preceding Skill: [Shield Charge II] Attack 1 damage 1721% x2 Attack 2 damage 2426% x2 Maximum 10 targets Forward
+      Guard during attack 1 Super Armor during attack 2 Knockback on attack 1 hits (PvE only) Bound on attack 2 hits (PvE
+      only) Spin the target on attack 2 hits (PvE only) 75.61% attack 1 damage in PvP only 57% attack 2 damage in PvP only'
+  shield_charge:
+    name: Shield Charge
+    input: ↑ + RMB Hold ↑ + RMB to continue the skill
+    keys:
+    - w
+    - rmb
+    - hold
+    protection: FG
+    cc:
+    - stiffness
+    - air_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Shield Charge I]'
+    notes: 'Preceding Skill: [Shield Charge I] Attack damage 1032% x1, max 2 hits Critical Hit Rate +100% Maximum 3 targets
+      Increased movement distance Recover 30 WP per hit Forward Guard Stiffness on hits Air Attack 74.48% damage in PvP only'
+  shield_push:
+    name: Shield Push
+    input: ↑ + RMB after Shield Charge
+    keys:
+    - w
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - air_attack
+    description: Push enemies away from you with your shield.
+    notes: Push enemies away from you with your shield. All damage applies Shield Strike 's damage x1 Knockback on hits Air
+      Attack Air Smash
+  shield_strike:
+    name: Shield Strike
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - stun
+    - air_attack
+    - spin
+    description: Can temporarily Stun enemies with successful Shield Strike II combo.
+    notes: Can temporarily Stun enemies with successful Shield Strike II combo. Attack damage 1185% x1, max 2 hits Last attack
+      damage 2370% x1 Maximum 10 targets Recover 32 WP per hit Spin the target on hits (PvE only) Stun on last attack hits
+      Air Attack
+  shield_tide:
+    name: Shield Tide
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Shield Charge II]'
+    notes: 'Preceding Skill: [Shield Charge II] Attack 1 damage 1095% x2 Attack 2 damage 1648% x2 Critical Hit Rate +50% Maximum
+      10 targets Super Armor during attack 2 Knockback on attack 1 hits Down Smash on attack 2 hits Down Attack 75.61% attack
+      1 damage in PvP only 57% attack 2 damage in PvP only'
+  sideways_cut:
+    name: Sideways Cut
+    input: ← + RMB or → + RMB No cooldown
+    keys:
+    - a
+    - rmb
+    - d
+    protection: none
+    description: Move swiftly to the left or right, striking your foes. You can also chain your attacks.
+    notes: Move swiftly to the left or right, striking your foes. You can also chain your attacks. Attack damage 1242% x1
+      Maximum 10 targets Recover 40 WP per hit Can instantly be used once more after use
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  slash:
+    name: Slash
+    input: LMB LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    description: Improve basic Melee AP.
+    notes: Improve basic Melee AP. Attack damage 1432% x1, max 4 hits Last attack damage 4297% x1 Maximum 5 targets Recover
+      45 WP per hit 94% damage in PvP only
+  solar_flare:
+    name: Solar Flare
+    input: ↑ + LMB ↑ + LMB while sprinting or during Head Chase to perform quickly
+    keys:
+    - w
+    - lmb
+    protection: SA
+    cc:
+    - stiffness
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Powerfully stab forward with your greatsword to inflict major damage to the enemy.
+    notes: Powerfully stab forward with your greatsword to inflict major damage to the enemy. Attack damage 4700% x2 Critical
+      Hit Rate +100% Maximum 10 targets Recover 63 WP per hit Super Armor during the skill 60 bleeding damage every 3 sec
+      for 9 sec on hits All Evasion -12 for 10 sec on hits Stiffness on hits (PvE only) Push the target on hits (PvE only)
+      Air Attack 33.19% damage in PvP only Attack 1 damage 5190% x1, max 2 hits Last attack damage 8650% x4 Critical Hit Rate
+      +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill
+      Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on hits Push the target on hits (PvE only) Air
+      Attack Down Attack 39.87% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target on hits.
+  soul_of_warrior:
+    name: Soul of Warrior
+    input: Passive
+    protection: none
+    description: Warriors can attack even faster and respond more quickly to situations.
+    notes: Warriors can attack even faster and respond more quickly to situations. Attack Speed +10%
+    keys:
+    - hotbar
+  spinning_slash:
+    name: Spinning Slash
+    input: ↓ + RMB ↓ + RMB in certain situations to perform jump attacks
+    keys:
+    - s
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    description: Attack even more foes in front with greater speeds and might.
+    notes: Attack even more foes in front with greater speeds and might. Normal attack damage 2030% x2, max 2 hits Critical
+      Hit Rate +100% Maximum 7 targets Increased Attack Speed 41.59% damage in PvP only Attack damage 6639% x4 Extra attack
+      damage 6639% x1 Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Attack Speed +25%
+      for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on hits Push
+      the target on hits (PvE only) 34.37% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target
+      on hits.
+  take_down:
+    name: Take Down
+    input: E
+    keys:
+    - e
+    protection: SA
+    cc:
+    - bound
+    - grab
+    cooldown_ms: 15000
+    description: Attack an enemy in front with Take Down.
+    notes: Attack an enemy in front with Take Down. Attack damage 1957% x1 Maximum 10 targets All Accuracy -20 for 5 sec on
+      hits Super Armor on Grapple/Grapple fails Bound on Grapple Not affected by effects which increase/decrease Attack and/or
+      Casting Speeds.
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  ultimate_forward_slash:
+    name: 'Ultimate: Forward Slash'
+    input: ↑ + LMB in certain situations
+    keys:
+    - w
+    - lmb
+    protection: none
+    description: Can immediately use Forward Slash during any action.
+  ultimate_ground_smash:
+    name: 'Ultimate: Ground Smash'
+    input: SHIFT + F after Ground Smash
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 30000
+    description: Performs Ground Smash twice in a row. Can Knockdown the enemies who withstood the first Ground Smash. Those
+      already downed will be launched into the air.
+    notes: Performs Ground Smash twice in a row. Can Knockdown the enemies who withstood the first Ground Smash. Those already
+      downed will be launched into the air. Attack damage 2121% x3 Critical Hit Rate +100% Maximum 10 targets Spin the target
+      on hits (PvE only) Pull in the target on hits (PvE only) Bound on hits Down Attack Down Smash 51.56% damage in PvP only
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  upper_shield_strike:
+    name: Upper Shield Strike
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 3000
+    description: Attack upwards with your shield to launch an enemy into the air.
+    notes: Attack upwards with your shield to launch an enemy into the air. Attack damage 1325% x2 Maximum 10 targets Floating
+      on hits Air Attack Air Smash
+    keys:
+    - hotbar
+  war_cry:
+    name: War Cry
+    input: Can be added to a Quick Slot
+    protection: FG
+    cooldown_ms: 60000
+    description: Slam your longsword twice on your shield and shout to invigorate allies.
+    notes: Slam your longsword twice on your shield and shout to invigorate allies. Applies effect to max 10 allies All Damage
+      Reduction +20 to self and all allies nearby for 20 sec Taunt surrounding foes. Forward Guard
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  whirl_smash:
+    name: Whirl Smash
+    input: LMB after Guard blocks
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - spin
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Guard], [Spinning Slash I]'
+    notes: 'Preceding Skill: [Guard], [Spinning Slash I] All damage applies Spinning Slash ''s damage x1.2 Applies all of
+      Spinning Slash ''s effects.'
+_flags:
+- apprehend: Passive — no keybind.
+- burning_moxie: Passive — no keybind.
+- core_balance_strike: Passive — no keybind.
+- core_frenzied_strikes: Passive — no keybind.
+- core_grave_digging: Passive — no keybind.
+- core_merciless: Passive — no keybind.
+- core_pulverize: Passive — no keybind.
+- core_solar_flare: Passive — no keybind.
+- fitness_training: Passive — no keybind.
+- fitness_training_xi: Passive — no keybind.
+- fitness_training_xii: Passive — no keybind.
+- fitness_training_xiii: Passive — no keybind.
+- fitness_training_xiv: Passive — no keybind.
+- fitness_training_xix: Passive — no keybind.
+- fitness_training_xv: Passive — no keybind.
+- fitness_training_xvi: Passive — no keybind.
+- fitness_training_xvii: Passive — no keybind.
+- fitness_training_xviii: Passive — no keybind.
+- fitness_training_xx: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- muscle_training: Passive — no keybind.
+- proof_of_fighting_spirit: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- soul_of_warrior: Passive — no keybind.
+- unyielding_might: Passive — no keybind.

@@ -215,3 +215,10 @@ scripts/download_icons.py
 THREAD_SUMMARY.md
 _update
 config_backup*
+
+# Reserved tooling paths — these scripts are not part of the project.
+scripts/scrape_bdocodex.py
+scripts/build_class_yaml.py
+scripts/apply_skill_patches.py
+scripts/_cache/
+data/classes/*.draft.yaml

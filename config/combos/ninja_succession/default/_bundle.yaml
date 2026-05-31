@@ -1,0 +1,13 @@
+# Ninja — Succession — bundle: default
+# Auto-created by seed_class_shells.
+
+class: Ninja
+spec: Succession
+bundle_id: default
+name: Default
+description: ''
+locked_skills: []
+hotbar_skills: []
+core_skill: {}
+skill_addons:
+  pve: []

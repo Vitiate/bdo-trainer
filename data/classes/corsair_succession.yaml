@@ -1,0 +1,2068 @@
+# Corsair — Succession
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Corsair
+spec: Succession
+skills:
+  absolute_crashing_wave:
+    name: 'Absolute: Crashing Wave'
+    input: SHIFT + F Hold F after Storming Gale Hold LMB after Wave Lash
+    keys:
+    - shift
+    - f
+    - lmb
+    protection: FG
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 8000
+    description: Charge the power of the waves into the serenaca, then cut down with a mighty slash.
+    notes: Charge the power of the waves into the serenaca, then cut down with a mighty slash. Attack 1 damage 4883% x1 Attack
+      2 damage 3329% x2 Extra attack damage 6658% x1 Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill
+      Pull in the target on hits (PvE only) Down Attack Down Smash on attack 2 hits 63.75% attack 1 damage in PvP only 44.89%
+      attack 2 damage in PvP only 44.89% extra attack damage in PvP only
+  absolute_mareca_jet_stream:
+    name: 'Absolute: Mareca: Jet Stream'
+    input: Can be added to a Quick Slot LMB during the skill to attack instantly Can be used via a Quick Slot with your patraca
+    protection: iframe
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 24000
+    description: Submerge into the Lost Sea of Dreams, then unleash an enormous stream of water onto your foes.
+    notes: Submerge into the Lost Sea of Dreams, then unleash an enormous stream of water onto your foes. Attack 1 damage
+      3443% x2 Attack 2 damage 3443% x2 Critical Hit Rate +100% Maximum 10 targets Movement Speed -10% for 5 sec on hits Casting
+      Speed -10% for 5 sec on hits Attack Speed -10% for 5 sec on hits Super Armor -> Invincible -> Super Armor Floating on
+      attack 1 hits (PvE only) Air Attack Not affected by effects which increase/decrease Attack and/or Movement Speeds. 69.95%
+      damage in PvP only
+  absolute_mareca_sea_stroll:
+    name: 'Absolute: Mareca: Sea Stroll'
+    input: ↑ + E ↓ during skill to perform attack 2
+    keys:
+    - w
+    - e
+    - s
+    protection: iframe
+    cc:
+    - floating
+    cooldown_ms: 20000
+    description: Ride on waves in Mermaid form to navigate through enemies. A tidal wave will wash over your enemies soon
+      after.
+    notes: Ride on waves in Mermaid form to navigate through enemies. A tidal wave will wash over your enemies soon after.
+      Attack damage 2027% x1, max 4 hits while moving Attack 1 damage 1802% x2 Attack 2 damage 2590% x1, max 2 hits Critical
+      Hit Rate +100% for attack 2 hits Maximum 10 targets Super Armor -> Invincible -> Super Armor Floating on attack 1 hits
+      (PvE only) No collision while moving Not affected by effects which increase/decrease Attack and/or Movement Speeds.
+      69.95% damage in PvP only Attack damage 2909% x1, max 8 hits Last attack damage 8720% x4 Critical Hit Rate +100% (PvE
+      only) Critical Hit Rate +50% (PvP only) Maximum 10 targets Max HP +700 for 20 sec (Applied to self and allies) Recover
+      +700 HP (Applied to self and allies) Recover 100 HP every 2 sec for 10 sec (Applied to self and allies) All AP +30 for
+      60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when
+      using the skill Movement Speed -20% for 5 sec on hits Casting Speed -20% for 5 sec on hits Attack Speed -20% for 5 sec
+      on hits Super Armor -> Invincible -> Super Armor No collision while moving Not affected by effects which increase/decrease
+      Attack and/or Movement Speeds. 19.5% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target
+      on hits.
+  absolute_mareca_spiral_soak:
+    name: 'Absolute: Mareca: Spiral Soak'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: iframe
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 16000
+    description: While in Mermaid form, call forth the Dream Whales to drown your enemies.
+    notes: While in Mermaid form, call forth the Dream Whales to drown your enemies. Attack 1 damage 3033% x1, max 2 hits
+      Attack 2 damage 5055% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor -> Invincible -> Super Armor Knockdown
+      on attack 2 hits (PvE only) Down Attack Not affected by effects which increase/decrease Attack and/or Movement Speeds.
+      69.95% damage in PvP only
+  absolute_mareca_whale_song:
+    name: 'Absolute: Mareca: Whale Song'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: iframe
+    cc:
+    - knockback
+    - floating
+    - stun
+    - down_attack
+    cooldown_ms: 20000
+    description: While in Mermaid form, call forth a large Dream Whale to overwhelm all enemies in front.
+    notes: While in Mermaid form, call forth a large Dream Whale to overwhelm all enemies in front. Attack 1 damage 2104%
+      x3 Attack 2 damage 5260% x2 Critical Hit Rate +100% Maximum 10 targets Recover 112 HP per hit Super Armor Stun on attack
+      1 hits (PvE only) Knockback on attack 2 hits (PvE only) Down Attack Not affected by effects which increase/decrease
+      Attack and/or Movement Speeds. 69.95% damage in PvP only Attack 1 damage 4158% x1, max 6 hits Attack 2 damage 4158%
+      x1, max 3 hits Attack 3 damage 2835% x3 Last attack damage 6804% x3 Critical Hit Rate +100% Maximum 10 targets All AP
+      +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60
+      sec when using the skill Max HP +2000 for 60 sec when using the skill No Guard Gauge recovery for 10 sec on hits Invincible
+      -> Super Armor Knockback on attack 1 hits Floating on attack 3 hits Down Attack 28.45% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount
+      target on hits.
+  absolute_ocean_melancholy:
+    name: 'Absolute: Ocean Melancholy'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: Leap backward while swinging the serenaca to stop your foes in their tracks.
+    notes: Leap backward while swinging the serenaca to stop your foes in their tracks. Attack damage 2528% x1, max 3 hits
+      Critical Hit Rate +50% Maximum 10 targets Recover 53 MP per hit Forward Guard during the skill Floating on hits (PvE
+      only) Air Attack 69.95% damage in PvP only
+  absolute_ocean_s_pearl:
+    name: 'Absolute: Ocean''s Pearl'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Throw a spherical manifestation of the tides, then slash it with your serenaca to detonate it mid-air.
+    notes: Throw a spherical manifestation of the tides, then slash it with your serenaca to detonate it mid-air. Attack damage
+      2934% x1 Explosion attack damage 2934% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill
+      Floating on explosion attack hits (PvE only) Air Attack Down Attack 69.95% damage in PvP only
+  absolute_overflow:
+    name: 'Absolute: Overflow'
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Detonate an Ocean's Pearl within the waters, then raise the waters all around you.
+    notes: Detonate an Ocean's Pearl within the waters, then raise the waters all around you. Attack damage 6214% x1, max
+      3 hits Critical Hit Rate +100% Maximum 10 targets Recover 150 MP per hit All Damage Reduction -20 for 10 sec on hits
+      Super Armor during the skill Knockdown on hits Air Attack Down Attack 25.03% damage in PvP only
+  absolute_riding_waves:
+    name: 'Absolute: Riding Waves'
+    input: Direction + SHIFT Can be used with your patraca
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 3000
+    description: Slide through the waves to dodge your enemies' attacks.
+    notes: Slide through the waves to dodge your enemies' attacks. Invincible -> Super Armor during the skill (Invincible
+      duration decreases when used with your patraca) Invincible during the skill (PvE only) Increased movement distance
+  absolute_sea_prowler:
+    name: 'Absolute: Sea Prowler'
+    input: RMB RMB after certain skills to perform from attack 2
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Extend your serenaca and cut through everything.
+    notes: Extend your serenaca and cut through everything. Attack damage 3408% x1, max 3 hits Critical Hit Rate +30% (Nullified
+      during cooldown) Maximum 10 targets Floating on attack 2 hits (Nullified during cooldown) Air Attack Damage reduced
+      during cooldown 75.78% damage in PvP only
+  absolute_smooth_sailin:
+    name: 'Absolute: Smooth Sailin'''
+    input: ↑ during Mareca Swing for frontal Smooth Sailin' ← or → for lateral Smooth Sailin' Pressing in the opposite direction
+      of the skill will cause all movement to stop Can be used with your patraca Auto-activated while airborne with your patraca
+    keys:
+    - w
+    - a
+    - d
+    protection: iframe
+    cooldown_ms: 2000
+    description: Slide with the Mareca Swing as if you're sailing atop waves.
+    notes: Slide with the Mareca Swing as if you're sailing atop waves. Super Armor during the skill (Nullified during cooldown)
+      Invincible during the skill (PvE only) Character collision occurs while moving forward Not affected by effects which
+      increase/decrease Attack and/or Movement Speeds.
+  absolute_splashin_around:
+    name: 'Absolute: Splashin'' Around'
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    description: A basic attack with your serenaca to cut through the waters.
+    notes: A basic attack with your serenaca to cut through the waters. Standing attacks 1 and 2 damage 2133% x1 Standing
+      last attack damage 2133% x1 Forward attacks 1 and 2 damage 2133% x1 Forward last attack damage 2133% x1 Lateral attack
+      1 damage 2133% x1 Lateral attack 2 damage 2133% x1 Maximum 10 targets Recover 117 MP on hits Down Attack 69.95% damage
+      in PvP only
+  absolute_squall:
+    name: 'Absolute: Squall'
+    input: F during Mareca Swing or Whirling Slash F after Crashing Wave, Tidal Slash, or Wipe Out
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Quickly slash all that stands before you with the fury of a squall.
+    notes: Quickly slash all that stands before you with the fury of a squall. Attack damage 5721% x2 Critical Hit Rate +60%
+      Maximum 10 targets Recover 100 HP per hit (Nullified during cooldown) Stiffness on hits (Nullified during cooldown)
+      Down Attack Down Smash (Nullified during cooldown) Damage reduced during cooldown 31.55% damage in PvP only
+  absolute_storm_surge:
+    name: 'Absolute: Storm Surge'
+    input: '↑ + RMB ↑ + RMB while jumping forward or during Prime: Wipe Out'
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - bound
+    - down_attack
+    - spin
+    cooldown_ms: 9000
+    description: Spin your body with all your might to unleash a storm containing the concentrated power of the waves.
+    notes: Spin your body with all your might to unleash a storm containing the concentrated power of the waves. Attack 1
+      damage 2111% x1, max 2 hits Last attack damage 2111% x2 Critical Hit Rate +50% Maximum 10 targets All Damage Reduction
+      -15 for 10 sec on hits Super Armor during the skill Bound on attack 1 hits (PvE only) Floating on last attack hits (PvE
+      only) Down Attack No collision while moving 69.95% damage in PvP only
+  absolute_storming_gale:
+    name: 'Absolute: Storming Gale'
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - air_attack
+    cooldown_ms: 8000
+    description: Channel all of your strength to unleash a mighty squall with the serenaca.
+    notes: Channel all of your strength to unleash a mighty squall with the serenaca. Attack damage 1718% x2, max 2 hits Critical
+      Hit Rate +50% Maximum 10 targets All AP +20 for 10 sec when using the skill Air Attack 69.95% damage in PvP only
+  absolute_tidal_slash:
+    name: 'Absolute: Tidal Slash'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Wrap the rippling tides around you, then slash while moving forward.
+    notes: Wrap the rippling tides around you, then slash while moving forward. Attack damage 2481% x2 Critical Hit Rate +100%
+      Maximum 10 targets Recover 75 HP per hit Forward Guard during the skill Bound on hits (PvE only) Down Attack 53.57%
+      damage in PvP only
+  absolute_tide_s_kiss:
+    name: 'Absolute: Tide''s Kiss'
+    input: Hold RMB after Wave Pout
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - air_attack
+    cooldown_ms: 6000
+    description: Knock the enemy into the air and throw an Ocean's Pearl to finish them off.
+    notes: Knock the enemy into the air and throw an Ocean's Pearl to finish them off. Attack damage 7057% x2 Critical Hit
+      Rate +100% Maximum 10 targets Recover 113 MP on hits Air Attack Air Smash 31.76% damage in PvP only
+  absolute_wave_breaker:
+    name: 'Absolute: Wave Breaker'
+    input: 'LMB during Riding Waves or Flow: Wave Skedaddle LMB while sprinting or jumping forward LMB after Whirling Slash,
+      Whirlpool, Ocean Melancholy, Storm Surge, or Flow: After the Storm'
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: Use Mareca Swing to rush towards your foe and cut them down.
+    notes: Use Mareca Swing to rush towards your foe and cut them down. Attack damage 3000% x1 Maximum 10 targets Down Attack
+      69.95% damage in PvP only
+  absolute_wave_lash:
+    name: 'Absolute: Wave Lash'
+    input: SHIFT + LMB SHIFT + LMB during Riding Waves or Smooth Sailin'
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 12000
+    description: Slash the serenaca to the left and right, summoning waves in the process.
+    notes: Slash the serenaca to the left and right, summoning waves in the process. Attack damage 2253% x2, max 2 hits Critical
+      Hit Rate +50% Maximum 10 targets Knockdown on first hit Air Attack on attack 1 hits Down Attack on attack 2 hits 69.95%
+      damage in PvP only
+  absolute_wave_pout:
+    name: 'Absolute: Wave Pout'
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Instantly close the gap and strike your foe upwards with the serenaca.
+    notes: Instantly close the gap and strike your foe upwards with the serenaca. Attack damage 1308% x2 Critical Hit Rate
+      +50% Maximum 10 targets All Evasion -12 for 10 sec on hits Floating on hits Air Attack 69.95% damage in PvP only
+  absolute_whirling_slash:
+    name: 'Absolute: Whirling Slash'
+    input: '← or → + RMB RMB while jumping forward or during Riding Waves or Flow: Wave Skedaddle RMB after Whirlpool, Ocean
+      Melancholy, Storm Surge, or Flow: After the Storm Skill'
+    keys:
+    - a
+    - d
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Use Mareca Swing to propel towards your enemy and slice them down with your momentum.
+    notes: Use Mareca Swing to propel towards your enemy and slice them down with your momentum. Attack damage 1616% x2 Extra
+      attack damage 5050% x1 Critical Hit Rate +50% Maximum 10 targets Super Armor while moving Stiffness on extra attack
+      hits Down Attack 69.95% damage in PvP only
+  absolute_whirlpool:
+    name: 'Absolute: Whirlpool'
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 7000
+    description: Quickly spin your body to unleash a whirlpool upon your foes.
+    notes: Quickly spin your body to unleash a whirlpool upon your foes. Attack 1 damage 2228% x1, max 3 hits Last attack
+      damage 2228% x2 Critical Hit Rate +50% Maximum 10 targets Recover 90 MP on hits Air Attack Down Attack on last attack
+      hits 63.44% damage in PvP only
+  absolute_wipe_out:
+    name: 'Absolute: Wipe Out'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: Extend your serenaca while airborne to slash your foe and strike them down.
+    notes: Extend your serenaca while airborne to slash your foe and strike them down. Attack 1 damage 3006% x1 Last attack
+      damage 3507% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor during the skill Bound on attack 1 hits (PvE only)
+      Down Attack Down Smash on last attack hits 69.95% damage in PvP only
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  cap_n_s_call:
+    name: Cap'n's Call
+    protection: none
+    description: The Cap'n's mighty voice rids her Scallywags of their fears and assembles them onto the battlefield.
+  cap_n_s_orders_open_fire:
+    name: 'Cap''n''s Orders: Open Fire!'
+    input: SHIFT + F Hold F to perform last attacks
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 12000
+    description: Fire a powerful harpoon shot into the air to signal the Scallywags to fire a large anchor from the ship.
+    notes: Fire a powerful harpoon shot into the air to signal the Scallywags to fire a large anchor from the ship. Attack
+      damage 9415% x2 Last attack damage 12554% x2 Critical Hit Rate +50% Maximum 10 targets All Accuracy -24 for 10 sec on
+      hits Forward Guard during the skill Bound on hits (PvE only) Down Attack Down Smash on last attack hits 33.17% damage
+      in PvP only Damage -5% per each additional target hit from target 2 onward. (Max damage -70% .) (PvP only) Attack 1
+      damage 11471% x6 Attack 2 damage 16723% x6 Last attack damage 32450% x2 Critical Hit Rate +100% Maximum 10 targets All
+      AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for
+      60 sec when using the skill Max HP +2000 for 60 sec when using the skill All Accuracy -48 for 10 sec on hits All Evasion
+      -36 for 10 sec on hits Super Armor Stun on attack 1 hits Bound on attack 2 hits Knockdown on last attack hits Down Attack
+      11.31% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Injures target
+      with 100% of the damage of a hit. Dismount target on hits.
+  close_quarters_basic:
+    name: 'Close Quarters: Basic'
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while sprinting to perform sprint attacks LMB while jumping forward to perform jump attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - down_attack
+    description: A basic melee attack performed by swinging your patraca.
+    notes: A basic melee attack performed by swinging your patraca. Standing attacks 1 and 2 damage 2103% x1 Standing last
+      attack damage 2103% x1 Forward attacks 1 and 2 damage 2103% x1 Forward last attack damage 2103% x1 Lateral attack damage
+      2103% x1, max 3 hits Sprint attack damage 2103% x1 Jump attack damage 2103% x1, max 3 hits Maximum 10 targets Recover
+      150 MP on hits Down Attack 75.78% damage in PvP only
+  close_quarters_charge:
+    name: 'Close Quarters: Charge'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Gather the mists, then dash in to strike down your foes. The mists will spread over the surface, making Corsair
+      temporarily difficult to sight.
+    notes: Gather the mists, then dash in to strike down your foes. The mists will spread over the surface, making Corsair
+      temporarily difficult to sight. Attack damage 8171% x2 Critical Hit Rate +50% Maximum 10 targets All Damage Reduction
+      -20 for 10 sec on hits Recover 150 HP per hit Bound on hits Down Attack 48.62% damage in PvP only Create a mist around
+      the area attacked. All Evasion +24 for 5 sec to self and all allies within the mist Movement Speed +20% for 5 sec to
+      self and all allies within the mist Attack damage 10325% x2 Critical Hit Rate +50% Maximum 10 targets Increased attack
+      area Attack Speed +10% for 20 sec when using the skill Movement Speed +10% for 20 sec when using the skill All Damage
+      Reduction -20 for 10 sec on hits Recover 200 HP per hit Bound on hits Down Attack 51.3% damage in PvP only Dismount
+      target on hits. Injures target with 20% of the damage of a hit. Create a mist around the area attacked. All Evasion
+      +6 for 5 sec to self and all allies within the mist Movement Speed +20% for 5 sec to self and all allies within the
+      mist
+  close_quarters_suppress:
+    name: 'Close Quarters: Suppress'
+    input: '↓ + LMB Hold ↓ + LMB to continue the skill ↓ + LMB after Riding Waves, Sea Mist, Close Quarters: Charge, Spare
+      No Quarter! to perform last attacks'
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Swing the patraca downwards in melee range and knock the enemy off balance.
+    notes: Swing the patraca downwards in melee range and knock the enemy off balance. Attack 1 damage 3719% x2 Last attack
+      damage 5579% x2 Critical Hit Rate +50% (Nullified during cooldown) Maximum 10 targets Critical Hit Rate +24% for 10
+      sec when using the skill (Nullified during cooldown) Recover 200 HP per hit (Nullified during cooldown) Floating on
+      attack 1 hits (Nullified during cooldown) Down Attack Air Attack Down Smash on last attack hits 53.85% damage in PvP
+      only Damage reduced during cooldown Attack 1 damage 5369% x2 Last attack damage 5369% x2 Critical Hit Rate +50% Maximum
+      10 targets Critical Hit Rate +24% for 10 sec when using the skill Recover 240 HP per hit Floating on attack 1 hits Down
+      Attack Air Attack Down Smash on last attack hits 55.96% damage in PvP only Dismount target on hits. Injures target with
+      10% of the damage of a hit. Not activated during cooldown.
+  code_of_the_scallywags:
+    name: Code of the Scallywags
+    input: Passive
+    protection: none
+    cc:
+    - down_attack
+    description: The Slippery Scallywags' code demands complete loyalty to the Cap'n. They will fight by her side at her behest.
+    notes: 'The Slippery Scallywags'' code demands complete loyalty to the Cap''n. They will fight by her side at her behest.
+      The following scallywags appear to support you during certain skills: - Wave-breaker Patraca, Wind-piercer Patraca,
+      Sun-shielder Patraca, Tide-splitter Patraca, Surface-slicer Patraca - No Mercy, Scallywags!, Cap''n''s Orders: Open
+      Fire! - Crow''s Mark, Flow: Earth-render Patraca, Entangling Vortex Attack damage 1962% x2 Maximum 10 targets Down Attack
+      34.87% damage in PvP only The Actin'' Cap''n and Scallywag Trio can call up to 5 scallywags. Attack damage 2632% x2
+      Maximum 10 targets Down Attack 34.87% damage in PvP only The Actin'' Cap''n and Scallywag Trio can call up to 5 scallywags.
+      Attack damage 1846% x2, max 6 hits Maximum 10 targets Down Attack 34.87% damage in PvP only Cannoneer Duo''s shots reset
+      if already summoned. Deals extra damage to Node/Conquest War forts and annexes.'
+    keys:
+    - hotbar
+  core_cap_n_s_orders_open_fire:
+    name: 'Core: Cap''n''s Orders: Open Fire!'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Cap''n''s Orders: Open Fire! IV after learning this skill: Bound
+      on hits'
+    keys:
+    - hotbar
+  core_close_quarters_suppress:
+    name: 'Core: Close Quarters: Suppress'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Close Quarters: Suppress IV after learning this skill: Super
+      Armor during the skill (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_crow_s_mark:
+    name: 'Core: Crow''s Mark'
+    input: Passive
+    protection: none
+    cc:
+    - knockback
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Crow''s Mark III after learning this skill: Knockback on hits'
+    keys:
+    - hotbar
+  core_sea_mist:
+    name: 'Core: Sea Mist'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Sea Mist IV after learning this skill: Stun on hits'
+    keys:
+    - hotbar
+  core_spare_no_quarter:
+    name: 'Core: Spare No Quarter!'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Spare No Quarter! IV after learning this skill: Bound on hits'
+    keys:
+    - hotbar
+  core_sun_shielder_patraca:
+    name: 'Core: Sun-shielder Patraca'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Sun-shielder Patraca III after learning this skill: Stiffness
+      on hits'
+    keys:
+    - hotbar
+  crashing_wave:
+    name: Crashing Wave
+    input: SHIFT + F Hold F after Storming Gale Hold LMB after Wave Lash
+    keys:
+    - shift
+    - f
+    - lmb
+    protection: FG
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 9000
+    description: Charge the power of the waves into the serenaca, then cut down with a mighty slash.
+    notes: Charge the power of the waves into the serenaca, then cut down with a mighty slash. Attack 1 damage 4060% x1 Attack
+      2 damage 1949% x2 Extra attack damage 3897% x1 Critical Hit Rate +50% Maximum 7 targets Forward Guard during the skill
+      Pull in the target on hits (PvE only) Down Attack Down Smash on attack 2 hits 63.75% attack 1 damage in PvP only 63.75%
+      attack 2 damage in PvP only 63.75% extra attack damage in PvP only
+  crow_s_mark:
+    name: Crow's Mark
+    input: SHIFT + LMB LMB after Riding Waves or Smooth Sailin' with your patraca
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 7000
+    description: Load, aim, then fire a harpoon that pierces through your enemies.
+    notes: Load, aim, then fire a harpoon that pierces through your enemies. Attack damage 7654% x2 Critical Hit Rate +35%
+      Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Forward Guard during the skill Knockback on hits (PvE
+      only) Down Attack Down Smash 48.03% damage in PvP only Attack 1 damage 6325% x2 Attack 2 damage 6325% x2 Attack 3 damage
+      6325% x2 Attack 4 damage 3163% x2, max 2 hits Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when
+      using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill
+      Super Armor Stun on attack 1 hits Pull in the target on attack 2 hits Knockdown on attack 4 hits Air Attack Down Attack
+      50.95% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target on hits.
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_dark_mists:
+    name: 'Elvia: Dark Mists'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Gather the misty aura wrapped around the patraca to lay down a mighty blow.
+    notes: Gather the misty aura wrapped around the patraca to lay down a mighty blow. Attack 1 damage 11790% x1 Last attack
+      damage 11790% x1 Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE
+      only) All AP -20 for 10 sec on hits Recover 263 MP per hit Super Armor during the skill Down Attack 23.32% damage in
+      PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  entangling_vortex:
+    name: Entangling Vortex
+    input: ↓ + Q
+    keys:
+    - s
+    - q
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 6000
+    description: Fire the harpoon to create a fog vortex. Entangled enemies will become helpless.
+    notes: Fire the harpoon to create a fog vortex. Entangled enemies will become helpless. Attack damage 6631% x2 Critical
+      Hit Rate +50% Maximum 10 targets Forward Guard before the attack hits All Evasion -12 for 10 sec on hits Knockback on
+      hits Down Attack No collision while moving 48.67% damage in PvP only
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your patraca
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  family_s_honor:
+    name: Family's Honor
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your serenaca
+    protection: SA
+    cooldown_ms: 180000
+    description: Enter the mist and invoke the family's honor that lies deep within the patraca.
+    notes: 'Enter the mist and invoke the family''s honor that lies deep within the patraca. All AP +20 for 30 sec when using
+      the skill Attack Speed +20% for 30 sec when using the skill Critical Hit Rate +20% for 30 sec when using the skill Super
+      Armor during the skill Retaining the Family''s Honor buff will add the following effects: - Spare No Quarter!, Sun-shielder
+      Patraca, Wind-piercer Patraca, Wave-breaker Patraca will now create mists (nullified during cooldown). - Allies and
+      self recover 100 HP within the mists every 1 sec (nullified during cooldown).'
+    keys:
+    - hotbar
+  flow_after_the_storm:
+    name: 'Flow: After the Storm'
+    input: Hold ↑ + RMB after Storm Surge ↑ + LMB during other skills
+    keys:
+    - w
+    - rmb
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Storm Surge IV]'
+    notes: 'Preceding Skill: [Storm Surge IV] Attack damage applies Storm Surge ''s damage x1, max 2 hits Last attack damage
+      applies Storm Surge ''s damage x2 Recover 68 HP per hit Forward Guard during the skill Knockdown on last attack hits
+      (PvE only) Air Attack Down Attack'
+  flow_dreamswirl:
+    name: 'Flow: Dreamswirl'
+    input: '↑ before Mareca: Jet Stream attack 2'
+    keys:
+    - w
+    protection: iframe
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Mareca: Jet Stream I]'
+    notes: 'Preceding Skill: [Mareca: Jet Stream I] Invincible Use Mareca: Jet Stream to move while submerged, then combo
+      into Mareca: Jet Stream attack 2 upon resurfacing.'
+  flow_earth_render_patraca:
+    name: 'Flow: Earth-render Patraca'
+    input: Hold Q or LMB after Sun-shielder Patraca LMB after Spare No Quarter! or Ocean's Allure LMB after harpoon firing
+      skills
+    keys:
+    - q
+    - lmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Sun-shielder Patraca II]'
+    notes: 'Preceding Skill: [Sun-shielder Patraca II] Attack damage 7189% x2 Critical Hit Rate +50% Maximum 10 targets Super
+      Armor during the skill Down Attack Down Smash 44.98% damage in PvP only'
+  flow_raging_torrent:
+    name: 'Flow: Raging Torrent'
+    input: 'Hold LMB during Tidal Slash LMB + RMB after Whirlpool, Crashing Wave, Storm Surge, Flow: After the Storm, Wave
+      Lash attack 1, or Storming Gale attack 1'
+    keys:
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 6000
+    description: Unleash a raging torrent as you advance relentlessly
+    notes: Unleash a raging torrent as you advance relentlessly All attack 1 damage applies Tidal Slash 's damage x2 All extra
+      attack damage applies Tidal Slash 's damage x2 Recover HP on Tidal Slash hits Forward Guard Down Attack Down Smash on
+      extra attack hits
+  flow_squall:
+    name: 'Flow: Squall'
+    input: F during Mareca Swing or Whirling Slash F after Crashing Wave, Tidal Slash, or Wipe Out
+    keys:
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Quickly slash all that stands before you with the fury of a squall.
+    notes: Quickly slash all that stands before you with the fury of a squall. Attack damage 4468% x2 Critical Hit Rate +40%
+      Maximum 7 targets Recover 75 HP per hit (Nullified during cooldown) Stiffness on hits (Nullified during cooldown) Down
+      Attack Down Smash (Nullified during cooldown) Damage reduced during cooldown 31.55% damage in PvP only
+  flow_tide_s_kiss:
+    name: 'Flow: Tide''s Kiss'
+    input: Hold RMB after Wave Pout
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - air_attack
+    cooldown_ms: 7000
+    description: Knock the enemy into the air and throw an Ocean's Pearl to finish them off.
+    notes: Knock the enemy into the air and throw an Ocean's Pearl to finish them off. Attack damage 5634% x2 Critical Hit
+      Rate +50% Maximum 7 targets Recover 90 MP on hits Air Attack Air Smash 35.69% damage in PvP only
+  flow_wave_skedaddle:
+    name: 'Flow: Wave Skedaddle'
+    input: ← or → + SPACE during Riding Waves or Smooth Sailin' to perform laterally ↓ + SPACE during Riding Waves or Smooth
+      Sailin' to perform backward Can be used with your patraca
+    keys:
+    - a
+    - d
+    - space
+    - s
+    protection: iframe
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Riding Waves II]'
+    notes: 'Preceding Skill: [Riding Waves II] Invincible Invincible'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  heart_catcher_patraca:
+    name: Heart-catcher Patraca
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - grab
+    cooldown_ms: 17000
+    description: Fire a harpoon to pierce your enemy's heart. Impaled enemies will be dragged along by Corsair.
+    notes: Fire a harpoon to pierce your enemy's heart. Impaled enemies will be dragged along by Corsair. Attack damage 1664%
+      x1 Maximum 10 targets Super Armor on Grapple/Grapple fails Pull in target on Grapple Bound on Grapple 75.78% damage
+      in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds.
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  labao_on_deck:
+    name: Labao on Deck!
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your serenaca
+    protection: SA
+    cooldown_ms: 60000
+    description: Raise the morale of the Slippery Scallywags by calling forth Labao.
+    notes: 'Raise the morale of the Slippery Scallywags by calling forth Labao. Super Armor Summons Corsair''s first mate,
+      Labao . When Corsair is in danger (HP drops below 50% ), Labao will aid her with the following effects, then disappear:
+      Corsair''s Damage Reduction Rate +50% for 5 sec Recovers 800 of Corsair''s HP'
+    keys:
+    - hotbar
+  light_em_up:
+    name: Light 'Em Up
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your serenaca
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 9000
+    description: The Slippery Scallywags appear, armed with all sorts of Ott-illery, to begin a dazzling display of fireworks.
+    notes: The Slippery Scallywags appear, armed with all sorts of Ott-illery, to begin a dazzling display of fireworks. Attack
+      damage 3046% x2 Maximum 10 targets Stun on hits 48.38% damage in PvP only Using the skill will summon all scallywags.
+    keys:
+    - hotbar
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  mareca_swing:
+    name: Mareca Swing
+    input: E Hold Direction + SHIFT after Riding Waves to combo into Smooth Sailin' in the desired direction Can be used with
+      your patraca ↓ + E to get airborne with your patraca
+    keys:
+    - e
+    - shift
+    - s
+    protection: iframe
+    cooldown_ms: 4000
+    description: Throw the rope imbued with the might of the waves and get ready to move farther.
+    notes: Throw the rope imbued with the might of the waves and get ready to move farther. All damage applies Splashin' Around
+      's damage x1 Maximum 1 targets Invincible at the start of the skill (Nullified during cooldown) Forward Guard during
+      the skill (Nullified during cooldown) Invincible during the skill except when used in place (PvE only)
+  mareca_jet_stream:
+    name: 'Mareca: Jet Stream'
+    input: Can be added to a Quick Slot LMB during the skill to attack instantly Can be used via a Quick Slot with your patraca
+    protection: iframe
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 26000
+    description: Submerge into the Lost Sea of Dreams, then unleash an enormous stream of water onto your foes.
+    notes: Submerge into the Lost Sea of Dreams, then unleash an enormous stream of water onto your foes. Attack 1 damage
+      2640% x2 Attack 2 damage 2640% x2 Critical Hit Rate +100% Maximum 7 targets Movement Speed -10% for 5 sec on hits Casting
+      Speed -10% for 5 sec on hits Attack Speed -10% for 5 sec on hits Super Armor -> Invincible -> Super Armor Floating on
+      attack 1 hits (PvE only) Air Attack Not affected by effects which increase/decrease Attack and/or Movement Speeds. 69.95%
+      damage in PvP only
+    keys:
+    - hotbar
+  mareca_sea_of_dreams:
+    name: 'Mareca: Sea of Dreams'
+    input: Can be added to a Quick Slot Direction to move underwater LMB to perform standing attacks while underwater
+    protection: iframe
+    cooldown_ms: 45000
+    description: 'Preceding Skill: [Mareca: Sea Stroll III]'
+    notes: 'Preceding Skill: [Mareca: Sea Stroll III] Attack 1 damage 2476% x2 Last attack damage 2476% x2 Critical Hit Rate
+      +100% Maximum 10 targets Super Armor -> Invincible -> Super Armor during the skill Underwater for 3 sec during the skill
+      Not affected by effects which increase/decrease Attack and/or Movement Speeds. 75.78% damage in PvP only'
+    keys:
+    - hotbar
+  mareca_sea_stroll:
+    name: 'Mareca: Sea Stroll'
+    input: ↑ + E ↓ during skill to perform attack 2
+    keys:
+    - w
+    - e
+    - s
+    protection: iframe
+    cc:
+    - floating
+    cooldown_ms: 22000
+    description: Ride on waves in Mermaid form to navigate through enemies. A tidal wave will wash over your enemies soon
+      after.
+    notes: Ride on waves in Mermaid form to navigate through enemies. A tidal wave will wash over your enemies soon after.
+      Attack damage 1332% x1, max 4 hits while moving Attack 1 damage 1184% x2 Attack 2 damage 1703% x1, max 2 hits Critical
+      Hit Rate +100% for attack 2 hits Maximum 7 targets Super Armor -> Invincible -> Super Armor Floating on attack 1 hits
+      (PvE only) No collision while moving Not affected by effects which increase/decrease Attack and/or Movement Speeds.
+      69.95% damage in PvP only Attack damage 1624% x1, max 8 hits Last attack damage 4875% x4 Critical Hit Rate +100% (PvE
+      only) Critical Hit Rate +50% (PvP only) Maximum 7 targets Max HP +700 for 20 sec (Applied to self and allies) Recover
+      +700 HP (Applied to self and allies) Recover 100 HP every 2 sec for 10 sec (Applied to self and allies) All AP +30 for
+      60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when
+      using the skill Movement Speed -20% for 5 sec on hits Casting Speed -20% for 5 sec on hits Attack Speed -20% for 5 sec
+      on hits Super Armor -> Invincible -> Super Armor No collision while moving Not affected by effects which increase/decrease
+      Attack and/or Movement Speeds. 19.5% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target
+      on hits.
+  mareca_spiral_of_dreams:
+    name: 'Mareca: Spiral of Dreams'
+    input: RMB during mareca skills to instantly perform the last attack
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Mareca: Sea Stroll III]'
+    notes: 'Preceding Skill: [Mareca: Sea Stroll III] Attack 1 damage 3598% x1, max 2 hits Last attack damage 9354% x2 Critical
+      Hit Rate +100% Maximum 10 targets Recover 135 HP per hit Super Armor Floating on attack 1 hits (PvE only) Down Attack
+      Not affected by effects which increase/decrease Attack and/or Movement Speeds. 31.48% damage in PvP only'
+  mareca_spiral_soak:
+    name: 'Mareca: Spiral Soak'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: iframe
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 17000
+    description: While in Mermaid form, call forth the Dream Whales to drown your enemies.
+    notes: While in Mermaid form, call forth the Dream Whales to drown your enemies. Attack 1 damage 2706% x1, max 2 hits
+      Attack 2 damage 4510% x2 Critical Hit Rate +50% Maximum 7 targets Super Armor -> Invincible -> Super Armor Knockdown
+      on attack 2 hits (PvE only) Down Attack Not affected by effects which increase/decrease Attack and/or Movement Speeds.
+      69.95% damage in PvP only
+  mareca_whale_song:
+    name: 'Mareca: Whale Song'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: iframe
+    cc:
+    - knockback
+    - stun
+    - down_attack
+    cooldown_ms: 20000
+    description: While in Mermaid form, call forth a large Dream Whale to overwhelm all enemies in front.
+    notes: While in Mermaid form, call forth a large Dream Whale to overwhelm all enemies in front. Attack 1 damage 1372%
+      x3 Attack 2 damage 3430% x2 Critical Hit Rate +100% Maximum 7 targets Recover 96 HP per hit Super Armor Stun on attack
+      1 hits (PvE only) Knockback on attack 2 hits (PvE only) Down Attack Not affected by effects which increase/decrease
+      Attack and/or Movement Speeds. 69.95% damage in PvP only Attack 1 damage 3769% x1, max 6 hits Attack 2 damage 3769%
+      x1, max 3 hits Attack 3 damage 2570% x3 Last attack damage 6168% x3 Critical Hit Rate +100% Maximum 7 targets All AP
+      +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60
+      sec when using the skill Max HP +2000 for 60 sec when using the skill No Guard Gauge recovery for 10 sec on hits Invincible
+      -> Super Armor Knockback on attack 1 hits Floating on attack 3 hits Down Attack 24.25% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount
+      target on hits.
+  no_mercy_scallywags:
+    name: No Mercy, Scallywags!
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 6000
+    description: Slippery Scallywags armed with bombs, a cannon, and a hand cannon come to Corsair's aid.
+    notes: 'Slippery Scallywags armed with bombs, a cannon, and a hand cannon come to Corsair''s aid. Super Armor during the
+      skill Supplies the Slippery Scallywags with a secret weapon . Using the skill will change the type of secret weapon
+      equipped. When the Scallywags attack with a secret weapon, the following effects are added. However, the Scallywags
+      may have "technical" issues when using the cannon/hand cannon. Damage Increase All Accuracy -24 for 10 sec on hits Damage
+      Increase 80 burn damage every 3 sec for 18 sec on hits Damage Increase Stun on hits The following scallywags appear
+      to support you during certain skills: - Wave-breaker Patraca, Wind-piercer Patraca, Sun-shielder Patraca, Tide-splitter
+      Patraca, Surface-slicer Patraca - No Mercy, Scallywags!, Cap''n''s Orders: Open Fire! - Crow''s Mark, Flow: Earth-render
+      Patraca, Entangling Vortex Attack damage 1962% x2 Maximum 10 targets Down Attack 34.87% damage in PvP only The Actin''
+      Cap''n and Scallywag Trio can call up to 5 scallywags. Attack damage 2632% x2 Maximum 10 targets Down Attack 34.87%
+      damage in PvP only The Actin'' Cap''n and Scallywag Trio can call up to 5 scallywags. Attack damage 1846% x2, max 6
+      hits Maximum 10 targets Down Attack 34.87% damage in PvP only Cannoneer Duo''s shots reset if already summoned. Deals
+      extra damage to Node/Conquest War forts and annexes.'
+    keys:
+    - hotbar
+  ocean_melancholy:
+    name: Ocean Melancholy
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 9000
+    description: Leap backward while swinging the serenaca to stop your foes in their tracks.
+    notes: Leap backward while swinging the serenaca to stop your foes in their tracks. Attack damage 1880% x1, max 3 hits
+      Critical Hit Rate +25% Maximum 7 targets Recover 40 MP per hit Forward Guard during the skill Floating on hits (PvE
+      only) Air Attack 69.95% damage in PvP only
+  ocean_s_allure:
+    name: Ocean's Allure
+    input: SPACE after firing harpoon
+    keys:
+    - space
+    protection: FG
+    cc:
+    - knockback
+    - pull
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Crow''s Mark II]'
+    notes: 'Preceding Skill: [Crow''s Mark II] Attack damage 5298% x2 Critical Hit Rate +50% Maximum 10 targets Recover 180
+      MP per hit Pull in the target on hits (PvE only) Down Attack 46.28% damage in PvP only Attack damage 1091% x3 Critical
+      Hit Rate +50% Maximum 10 targets Pull in the target on hits Movement and Attack/Casting Speeds -50% for 1 sec on pull
+      attack hits Knockback on hits Down Attack 46.28% damage in PvP only Attack damage 8333% x2 Critical Hit Rate +50% Maximum
+      10 targets Recover 180 MP per hit Pull in the target on hits (PvE only) Forward Guard during the skill Down Attack 48.5%
+      damage in PvP only Dismount target on hits. Injures target with 30% of the damage of a hit. Attack damage 1639% x1 Critical
+      Hit Rate +50% Maximum 10 targets Pull in the target on hits Movement and Attack/Casting Speeds -50% for 1 sec on pull
+      attack hits Knockback on hits Down Attack 48.5% damage in PvP only Dismount target on hits. Injures target with 30%
+      of the damage of a hit.'
+  ocean_s_pearl:
+    name: Ocean's Pearl
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: Throw a spherical manifestation of the tides, then slash it with your serenaca to detonate it mid-air.
+    notes: Throw a spherical manifestation of the tides, then slash it with your serenaca to detonate it mid-air. Attack damage
+      2610% x1 Explosion attack damage 2610% x2 Critical Hit Rate +50% Maximum 7 targets Forward Guard during the skill Floating
+      on explosion attack hits (PvE only) Air Attack Down Attack 69.95% damage in PvP only
+  overflow:
+    name: Overflow
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Detonate an Ocean's Pearl within the waters, then raise the waters all around you.
+    notes: Detonate an Ocean's Pearl within the waters, then raise the waters all around you. Attack damage 5298% x1, max
+      3 hits Critical Hit Rate +50% Maximum 7 targets Recover 120 MP per hit All Damage Reduction -10 for 10 sec on hits Super
+      Armor during the skill Knockdown on hits Air Attack Down Attack 25.03% damage in PvP only
+  pearl_blast:
+    name: Pearl Blast
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - stiffness
+    - floating
+    - air_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Mareca: Whale Song III]'
+    notes: 'Preceding Skill: [Mareca: Whale Song III] Attack 1 damage 1409% x1, max 2 hits Last attack damage 2817% x2 Critical
+      Hit Rate +50% Maximum 10 targets Super Armor before last attack Stiffness on attack 1 hits (PvE only) Floating on last
+      attack hits Air Attack 64.12% damage in PvP only'
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  pirate_s_life_for_me:
+    name: Pirate's Life For Me
+    input: F LMB during Sea Mist F after firing harpoon to perform extra attacks
+    keys:
+    - f
+    - lmb
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 4000
+    description: Stab the enemy with the harpoon, then fire, showing them what the pirate's life is all about.
+    notes: Stab the enemy with the harpoon, then fire, showing them what the pirate's life is all about. Attack damage 3881%
+      x2 Extra attack damage 5821% x2 Critical Hit Rate +100% (Nullified during cooldown) Maximum 10 targets All AP +20 for
+      10 sec when using the skill (Nullified during cooldown) Stun on extra attack hits (PvE only) (Nullified during cooldown)
+      Down Attack Down Smash on extra attack hits (Nullified during cooldown) 38.11% damage in PvP only Damage reduced during
+      cooldown
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_cap_n_s_orders_open_fire:
+    name: 'Prime: Cap''n''s Orders: Open Fire!'
+    input: '↓ + C ↓ + C after Ocean''s Pearl, Ocean Melancholy, Overflow, Tidal Slash, Flow: Raging Torrent, or Flow: Tide''s
+      Kiss to perform instantly'
+    keys:
+    - s
+    - c
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Succession: Song of the Waves]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves] Attack damage 9126% x2 Critical Hit Rate +100% Maximum 10 targets
+      All Damage Reduction -20 for 10 sec on hits Forward Guard during the skill Bound on hits (PvE only) Down Attack 32.65%
+      damage in PvP only'
+  prime_heirloom_of_the_crow:
+    name: 'Prime: Heirloom of the Crow'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill: [Succession: Song of the Waves]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves] You unlock the Heirloom of the Crow - Mareca. - Restrict Guard
+      Gauge Recovery for 5 sec on hits with skills and succession skills that extends your Serenaca . Not applied during cooldown.
+      The following skills are improved due to unlocking the mareca''s potential: - Overflow, Tide''s Kiss'
+    keys:
+    - hotbar
+  prime_hydropower:
+    name: 'Prime: Hydropower'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill: [Succession: Song of the Waves]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves] All AP +10 for 30 sec when using the skill All Evasion +60 for
+      30 sec when using the skill Attack Speed +15% for 30 sec when using the skill Movement Speed +15% for 30 sec when using
+      the skill Super Armor'
+    keys:
+    - hotbar
+  prime_mareca_jet_stream:
+    name: 'Prime: Mareca: Jet Stream'
+    input: SHIFT + C LMB during the skill to attack instantly
+    keys:
+    - shift
+    - c
+    - lmb
+    protection: iframe
+    cc:
+    - floating
+    - pull
+    - air_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Succession: Song of the Waves], [Mareca: Jet Stream III]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves], [Mareca: Jet Stream III] Attack 1 damage 3575% x5 (PvE only)
+      Attack 2 damage 5063% x2 Last attack damage 5063% x2 Critical Hit Rate +100% Maximum 10 targets Recovers 500 HP when
+      using the skill Invincible -> Super Armor during the skill Pull in targets before attack Movement and Attack/Casting
+      Speeds -50% for 1 sec on pull attack hits Floating on attack 2 hits (PvE only) Air Attack Damage Reduction +50% during
+      Super Armor. Not affected by effects which increase/decrease Attack and/or Movement Speeds. 54.5% damage in PvP only'
+  prime_mareca_sea_stroll:
+    name: 'Prime: Mareca: Sea Stroll'
+    input: ↑ + E ↓ during skill to perform attacks
+    keys:
+    - w
+    - e
+    - s
+    protection: iframe
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Succession: Song of the Waves], [Mareca: Sea Stroll III]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves], [Mareca: Sea Stroll III] Attack 1 damage 6048% x2 Attack 2 damage
+      4253% x2 Critical Hit Rate +100% for attack 2 hits Maximum 10 targets All Evasion +24 for 20 sec when using the skill
+      Super Armor -> Invincible -> Super Armor All Accuracy -36 for 10 sec on hits Floating on attack 1 hits (PvE only) Air
+      Attack No collision while moving Increased movement distance Damage Reduction +50% during Super Armor. Not affected
+      by effects which increase/decrease Attack and/or Movement Speeds. 58.29% damage in PvP only Attack damage 3500% x1,
+      max 8 hits Last attack damage 10500% x4 Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum
+      10 targets Max HP +700 for 20 sec (Applied to self and allies) Recover +700 HP (Applied to self and allies) Recover
+      200 HP every 2 sec for 10 sec (Applied to self and allies) All AP +30 for 60 sec when using the skill Attack Speed +25%
+      for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Movement Speed -20% for 5 sec
+      on hits Casting Speed -20% for 5 sec on hits Attack Speed -20% for 5 sec on hits Super Armor -> Invincible -> Super
+      Armor No collision while moving Damage Reduction +50% during Super Armor. 19.5% damage in PvP only Not affected by effects
+      which increase/decrease Attack and/or Movement Speeds. Injures target with 50% of the damage of a hit. Dismount target
+      on hits.'
+  prime_mareca_spiral_soak:
+    name: 'Prime: Mareca: Spiral Soak'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: iframe
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Succession: Song of the Waves], [Mareca: Spiral Soak IV]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves], [Mareca: Spiral Soak IV] Attack 1 damage 8774% x1, max 2 hits
+      Attack 2 damage 14623% x2 Critical Hit Rate +100% Maximum 10 targets Invincible -> Super Armor during the skill No Guard
+      Gauge recovery for 10 sec on hits Knockdown on attack 2 hits (PvE only) Down Attack Damage Reduction +50% during Super
+      Armor. Not affected by effects which increase/decrease Attack and/or Movement Speeds. 24.87% damage in PvP only'
+  prime_mareca_whale_song:
+    name: 'Prime: Mareca: Whale Song'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: iframe
+    cc:
+    - stun
+    - knockdown
+    - down_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Succession: Song of the Waves], [Mareca: Whale Song III]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves], [Mareca: Whale Song III] Attack 1 damage 3664% x3 Attack 2 damage
+      9159% x2 Critical Hit Rate +100% Maximum 10 targets Recover 400 HP per attack 2 hit Super Armor during the skill Stun
+      on attack 1 hits (PvE only) Knockdown on attack 2 hits (PvE only) Down Attack Damage Reduction +50% during Super Armor.
+      Not affected by effects which increase/decrease Attack and/or Movement Speeds. 40.6% damage in PvP only Attack 1 damage
+      10177% x1, max 6 hits Attack 2 damage 10177% x1, max 3 hits Attack 3 damage 16002% x3 Last attack damage 27645% x3 Critical
+      Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using
+      the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill No Guard
+      Gauge recovery for 10 sec on hits Invincible -> Super Armor Knockback on attack 1 hits Floating on attack 3 hits Down
+      Attack Damage Reduction +50% during Super Armor. 10.61% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount target on hits.'
+  prime_ocean_melancholy:
+    name: 'Prime: Ocean Melancholy'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: Leap backward while swinging the serenaca to stop your foes in their tracks.
+    notes: Leap backward while swinging the serenaca to stop your foes in their tracks. Attack damage 3588% x1, max 3 hits
+      Critical Hit Rate +50% Maximum 10 targets Recover 90 MP per hit Super Armor during the skill Floating on hits Air Attack
+      48.96% damage in PvP only
+  prime_ocean_s_allure:
+    name: 'Prime: Ocean''s Allure'
+    input: ↑ + C ↑ + C after Whirling Slash, Ocean Melancholy, Mareca Swing, Smooth Sailin', or Tidal Surge to perform instantly
+    keys:
+    - w
+    - c
+    protection: SA
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Succession: Song of the Waves]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves] Attack 1 damage 1326% x2 Attack 2 damage 3536% x2 Critical Hit
+      Rate +100% Maximum 10 targets Super Armor during the skill Stiffness on attack 1 hits Knockdown on attack 2 hits Down
+      Attack 69.95% damage in PvP only'
+  prime_ocean_s_embrace:
+    name: 'Prime: Ocean''s Embrace'
+    input: Passive
+    protection: none
+    description: The ocean's currents bear the dreams of Corsair, and its waters have honed her skills.
+    notes: The ocean's currents bear the dreams of Corsair, and its waters have honed her skills. All AP +1 Max HP +50
+    keys:
+    - hotbar
+  prime_ocean_s_pearl:
+    name: 'Prime: Ocean''s Pearl'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Throw a spherical manifestation of the tides, then slash it with your serenaca to detonate it mid-air.
+    notes: Throw a spherical manifestation of the tides, then slash it with your serenaca to detonate it mid-air. Explosion
+      attack damage 10760% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard during the skill Floating on explosion
+      attack hits (PvE only) Air Attack Down Attack Increased attack area 38.71% damage in PvP only
+  prime_storm_surge:
+    name: 'Prime: Storm Surge'
+    input: '↑ + RMB ↑ + RMB while jumping forward or during Prime: Wipe Out'
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Spin your body with all your might to unleash a storm containing the concentrated power of the waves.
+    notes: Spin your body with all your might to unleash a storm containing the concentrated power of the waves. Attack 1
+      damage 2996% x1, max 2 hits Last attack damage 2996% x2 Critical Hit Rate +50% Maximum 10 targets All Damage Reduction
+      -20 for 10 sec on hits Super Armor during the skill Bound on attack 1 hits (PvE only) Floating on last attack hits (PvE
+      only) Down Attack No collision while moving 53.63% damage in PvP only
+  prime_storming_gale:
+    name: 'Prime: Storming Gale'
+    input: F
+    keys:
+    - f
+    protection: FG
+    cc:
+    - air_attack
+    cooldown_ms: 7000
+    description: Channel all of your strength to unleash a mighty squall with the serenaca.
+    notes: Channel all of your strength to unleash a mighty squall with the serenaca. Attack damage 4012% x2, max 2 hits Wave
+      attack damage 4012% x1, max 2 hits (Nullified during cooldown) Critical Hit Rate +50% Maximum 10 targets All AP +20
+      for 10 sec when using the skill (Nullified during cooldown) Forward Guard during the skill (Nullified during cooldown)
+      Air Attack Increased attack area Damage reduced during cooldown 30.08% damage in PvP only
+  prime_wave_lash:
+    name: 'Prime: Wave Lash'
+    input: SHIFT + LMB SHIFT + LMB during Riding Waves or Smooth Sailin'
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: Slash the serenaca to the left and right, summoning waves in the process.
+    notes: Slash the serenaca to the left and right, summoning waves in the process. Attack damage 4906% x2, max 2 hits Wave
+      attack damage 4906% x1, max 2 hits (Nullified during cooldown) Critical Hit Rate +50% Maximum 10 targets Knockdown on
+      first hit (Nullified during cooldown) Air Attack on attack 1 hits Down Attack on attack 2 hits Damage reduced during
+      cooldown 26.55% damage in PvP only
+  prime_wave_pout:
+    name: 'Prime: Wave Pout'
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Succession: Song of the Waves], [Wave Pout IV]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves], [Wave Pout IV] Attack damage 7302% x2 Critical Hit Rate +50%
+      Maximum 10 targets All Evasion -24 for 10 sec on hits Floating on hits Air Attack Increased attack area 29.65% damage
+      in PvP only'
+  prime_whirling_slash:
+    name: 'Prime: Whirling Slash'
+    input: '← or → + RMB RMB while jumping forward or during Riding Waves or Flow: Wave Skedaddle RMB after Whirlpool, Ocean
+      Melancholy, Storm Surge, or Flow: After the Storm Skill'
+    keys:
+    - a
+    - d
+    - rmb
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Succession: Song of the Waves], [Whirling Slash III]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves], [Whirling Slash III] Attack damage 1902% x2 Extra attack damage
+      6325% x1 Critical Hit Rate +50% Maximum 10 targets Invincible -> Super Armor during the skill Stiffness on extra attack
+      hits (PvE only) Down Attack 75.78% damage in PvP only'
+  prime_wipe_out:
+    name: 'Prime: Wipe Out'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 9000
+    description: Extend the serenaca while airborne to cut your target, then slam an Ocean's Pearl down to detonate it.
+    notes: Extend the serenaca while airborne to cut your target, then slam an Ocean's Pearl down to detonate it. Attack 1
+      damage 7354% x1 Last attack damage 9805% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor Bound on attack 1
+      hits (PvE only) Down Attack Down Smash on last attack hits 32.36% damage in PvP only
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  riding_waves:
+    name: Riding Waves
+    input: Direction + SHIFT Can be used with your patraca
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 3000
+    description: Slide through the waves to dodge your enemies' attacks.
+    notes: Slide through the waves to dodge your enemies' attacks. Super Armor during the skill Invincible during the skill
+      (PvE only)
+  rising_whirlpool:
+    name: Rising Whirlpool
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Overflow III]'
+    notes: 'Preceding Skill: [Overflow III] Attack damage 6784% x2 Critical Hit Rate +25% Maximum 10 targets Super Armor during
+      the skill Bound on hits (PvE only) Recover 123 MP per hit Down Attack Down Smash 41% damage in PvP only'
+  sea_lungs:
+    name: Sea Lungs
+    input: Passive
+    protection: none
+    description: Your sea lungs lets you sail ships faster and also stay underwater longer.
+    notes: Your sea lungs lets you sail ships faster and also stay underwater longer. All Big Ship Stats +1% Underwater Breathing
+      +20 sec You can transform into a Mermaid to swim faster if you move forward while underwater.
+    keys:
+    - hotbar
+  sea_mist:
+    name: Sea Mist
+    input: ↑ + F Can be used with your serenaca instead of Whirlpool
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 8000
+    description: Charge into the fray while covered in a mist that rusts enemy weapons. The dense mists will prevent her enemies
+      from attacking her.
+    notes: Charge into the fray while covered in a mist that rusts enemy weapons. The dense mists will prevent her enemies
+      from attacking her. Attack damage 2165% x1, max 5 hits Critical Hit Rate +25% Maximum 10 targets Super Armor during
+      the skill Stun on hits (PvE only) Down Attack 75.78% damage in PvP only Create a mist around the area attacked. All
+      Evasion +24 for 5 sec to self and all allies within the mist Movement Speed +20% for 5 sec to self and all allies within
+      the mist
+  sea_prowler:
+    name: Sea Prowler
+    input: RMB RMB after certain skills to perform from attack 2
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Extend your serenaca and cut through everything.
+    notes: Extend your serenaca and cut through everything. Attack damage 2008% x1, max 3 hits Critical Hit Rate +25% (Nullified
+      during cooldown) Maximum 7 targets Floating on attack 2 hits (Nullified during cooldown) Air Attack Damage reduced during
+      cooldown 75.78% damage in PvP only
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  smooth_sailin:
+    name: Smooth Sailin'
+    input: ↑ during Mareca Swing for frontal Smooth Sailin' ← or → for lateral Smooth Sailin' Pressing in the opposite direction
+      of the skill will cause all movement to stop Can be used with your patraca Auto-activated while airborne with your patraca
+    keys:
+    - w
+    - a
+    - d
+    protection: iframe
+    cooldown_ms: 3000
+    description: Slide with the Mareca Swing as if you're sailing atop waves.
+    notes: Slide with the Mareca Swing as if you're sailing atop waves. Super Armor during the skill (Nullified during cooldown)
+      Invincible during the skill (PvE only) Character collision occurs while moving forward Not affected by effects which
+      increase/decrease Attack and/or Movement Speeds.
+  spare_no_quarter:
+    name: Spare No Quarter!
+    input: ↑ + RMB RMB while jumping ↑ + RMB while leaping with Mareca Swing
+    keys:
+    - w
+    - rmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Majestically throw your rope as you leap into the air, wrap yourself in the mists, then slash your foes.
+    notes: Majestically throw your rope as you leap into the air, wrap yourself in the mists, then slash your foes. Attack
+      1 damage 4350% x1, max 2 hits Last attack damage 6524% x2 Critical Hit Rate +40% Maximum 10 targets Recover 75 MP per
+      hit Forward Guard during the skill Bound on hits (PvE only) Down Attack 38.38% damage in PvP only Create a mist around
+      the area attacked. All Evasion +24 for 5 sec to self and all allies within the mist Movement Speed +20% for 5 sec to
+      self and all allies within the mist
+  splashin_around:
+    name: Splashin' Around
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    description: A basic attack with your serenaca to cut through the waters.
+    notes: A basic attack with your serenaca to cut through the waters. Standing attacks 1 and 2 damage 1907% x1 Standing
+      last attack damage 1907% x1 Forward attacks 1 and 2 damage 1907% x1 Forward last attack damage 1907% x1 Lateral attack
+      1 damage 1907% x1 Lateral attack 2 damage 1907% x1 Maximum 10 targets Recover 100 MP on hits Down Attack 69.95% damage
+      in PvP only
+  storm_surge:
+    name: Storm Surge
+    input: '↑ + RMB ↑ + RMB while jumping forward or during Prime: Wipe Out'
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - bound
+    - down_attack
+    cooldown_ms: 9000
+    description: Spin your body with all your might to unleash a storm containing the concentrated power of the waves.
+    notes: Spin your body with all your might to unleash a storm containing the concentrated power of the waves. Attack 1
+      damage 1825% x1, max 2 hits Last attack damage 1825% x2 Critical Hit Rate +30% Maximum 7 targets All Damage Reduction
+      -15 for 10 sec on hits Super Armor during the skill Bound on attack 1 hits (PvE only) Floating on last attack hits (PvE
+      only) Down Attack No collision while moving 69.95% damage in PvP only
+  storming_gale:
+    name: Storming Gale
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - air_attack
+    cooldown_ms: 8000
+    description: Channel all of your strength to unleash a mighty squall with the serenaca.
+    notes: Channel all of your strength to unleash a mighty squall with the serenaca. Attack damage 1028% x2, max 2 hits Critical
+      Hit Rate +50% Maximum 7 targets All AP +16 for 10 sec when using the skill Air Attack 69.95% damage in PvP only
+  succession_flow_wave_skedaddle:
+    name: 'Succession: Flow: Wave Skedaddle'
+    input: ← or → + SPACE during Riding Waves or Smooth Sailin' to perform laterally ↓ + SPACE during Riding Waves or Smooth
+      Sailin' to perform backward ← or → + SPACE after other skills to perform laterally ↓ + SPACE after other skills to perform
+      backward
+    keys:
+    - a
+    - d
+    - space
+    - s
+    protection: iframe
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Succession: Song of the Waves]'
+    notes: 'Preceding Skill: [Succession: Song of the Waves] Invincible'
+  succession_song_of_the_waves:
+    name: 'Succession: Song of the Waves'
+    input: Passive
+    protection: none
+    description: The song heard over the waves will unlock the heirloom of the Crow.
+    notes: 'The song heard over the waves will unlock the heirloom of the Crow. The song heard from the waves will unlock
+      the Heirloom of the Crow - Mareca. The following skill will be strengthened after Succession: - Flow: Wave Skedaddle
+      - You cannot learn or use awakening skills if you have learned Succession: Song of the Waves. - You cannot learn Succession
+      skills if you have learned Absolute skills. - You cannot learn Absolute skills if you have learned Succession skills.'
+    keys:
+    - hotbar
+  sun_shielder_patraca:
+    name: Sun-shielder Patraca
+    input: SHIFT + Q Q while jumping SHIFT + Q while leaping with Mareca Swing
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 8000
+    description: Throw a rope towards the sun to leap into the air, then fire the harpoon. Impaled enemies will be covered
+      in a mist and become neutralized.
+    notes: Throw a rope towards the sun to leap into the air, then fire the harpoon. Impaled enemies will be covered in a
+      mist and become neutralized. Attack damage 7753% x2 Critical Hit Rate +50% Maximum 10 targets Movement Speed -15% for
+      5 sec on hits Super Armor during the skill Stiffness on hits (PvE only) Down Attack 47.08% damage in PvP only
+  surface_slicer_patraca:
+    name: Surface-slicer Patraca
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    cooldown_ms: 6000
+    description: Carefully aim, then fire the harpoon. Air pressurized within the patraca makes the harpoon reach its target
+      instantly.
+    notes: Carefully aim, then fire the harpoon. Air pressurized within the patraca makes the harpoon reach its target instantly.
+      Attack damage 5750% x2 Critical Hit Rate +30% (Nullified during cooldown) Maximum 10 targets Knockdown on hits (Nullified
+      during cooldown) 58.56% damage in PvP only Damage reduced during cooldown
+  sword_song:
+    name: Sword Song
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xi:
+    name: Sword Song XI
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xii:
+    name: Sword Song XII
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xiii:
+    name: Sword Song XIII
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xiv:
+    name: Sword Song XIV
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xix:
+    name: Sword Song XIX
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xv:
+    name: Sword Song XV
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xvi:
+    name: Sword Song XVI
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xvii:
+    name: Sword Song XVII
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xviii:
+    name: Sword Song XVIII
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  sword_song_xx:
+    name: Sword Song XX
+    input: Passive
+    protection: none
+    description: You honed your skills in brandishing the Serenaca to achieve your dreams.
+    notes: You honed your skills in brandishing the Serenaca to achieve your dreams. All AP +1 All Evasion +2
+    keys:
+    - hotbar
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tidal_slash:
+    name: Tidal Slash
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: Wrap the rippling tides around you, then slash while moving forward.
+    notes: Wrap the rippling tides around you, then slash while moving forward. Attack damage 2127% x2 Critical Hit Rate +50%
+      Maximum 7 targets Recover 63 HP per hit Forward Guard during the skill Bound on hits (PvE only) Down Attack 53.57% damage
+      in PvP only
+  tidal_surge:
+    name: Tidal Surge
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Overflow III]'
+    notes: 'Preceding Skill: [Overflow III] Attack damage 3495% x2 Critical Hit Rate +50% Maximum 10 targets Floating on hits
+      Down Attack 69.95% damage in PvP only'
+  tide_splitter_patraca:
+    name: Tide-splitter Patraca
+    input: ←, →, ↓ + F ←, →, ↓ + F while leaping with Mareca Swing, or during Sun-shielder Patraca ←, → + F with your serenaca
+    keys:
+    - a
+    - d
+    - s
+    - f
+    protection: iframe
+    cc:
+    - down_attack
+    cooldown_ms: 9000
+    description: Take a flashy leap up into the air to quickly attack.
+    notes: Take a flashy leap up into the air to quickly attack. Attack damage 4547% x2 Critical Hit Rate +100% Maximum 10
+      targets Invincible at the start of the skill Super Armor on attacks Down Attack 46.54% damage in PvP only
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  vigor_rush:
+    name: Vigor Rush
+    input: RMB RMB after certain skills to perform instantly
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 6178% x1 Attack 2 damage 7722% x2 Critical
+      Hit Rate +50% Maximum 10 targets All AP +20 for 10 sec when using the skill Super Armor during the skill Stun on attack
+      1 hits (PvE only) Down Attack 41.45% damage in PvP only'
+  wave_blast:
+    name: Wave Blast
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Mareca: Whale Song III]'
+    notes: 'Preceding Skill: [Mareca: Whale Song III] Attack damage 7578% x2 Critical Hit Rate +50% Maximum 10 targets Forward
+      Guard during the skill Down Attack 36.22% damage in PvP only'
+  wave_breaker:
+    name: Wave Breaker
+    input: 'LMB during Riding Waves or Flow: Wave Skedaddle LMB while sprinting or jumping forward LMB after Whirling Slash,
+      Whirlpool, Ocean Melancholy, Storm Surge, or Flow: After the Storm'
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: Use Mareca Swing to rush towards your foe and cut them down.
+    notes: Use Mareca Swing to rush towards your foe and cut them down. Attack damage 2106% x1 Maximum 7 targets Down Attack
+      69.95% damage in PvP only
+  wave_lash:
+    name: Wave Lash
+    input: SHIFT + LMB SHIFT + LMB during Riding Waves or Smooth Sailin'
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 12000
+    description: Slash the serenaca to the left and right, summoning waves in the process.
+    notes: Slash the serenaca to the left and right, summoning waves in the process. Attack damage 1280% x2, max 2 hits Critical
+      Hit Rate +50% Maximum 7 targets Knockdown on first hit Air Attack on attack 1 hits Down Attack on attack 2 hits 69.95%
+      damage in PvP only
+  wave_pout:
+    name: Wave Pout
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Instantly close the gap and strike your foe upwards with the serenaca.
+    notes: Instantly close the gap and strike your foe upwards with the serenaca. Attack damage 1086% x2 Critical Hit Rate
+      +40% Maximum 7 targets All Evasion -12 for 10 sec on hits Floating on hits Air Attack 69.95% damage in PvP only
+  wave_breaker_patraca:
+    name: Wave-breaker Patraca
+    input: ← or → + RMB to fire laterally ↓ + RMB to fire while retreating RMB during Riding Waves, Smooth Sailin', or Tide-splitter
+      Patraca with your patraca Can be performed instead of Whirling Slash with your serenaca
+    keys:
+    - a
+    - d
+    - rmb
+    - s
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Load the patraca with a harpoon, then fire.
+    notes: Load the patraca with a harpoon, then fire. Attack damage 2714% x2 Critical Hit Rate +25% Maximum 10 targets Super
+      Armor on attacks (Nullified during cooldown) Stiffness on hits (PvE only) (Nullified during cooldown) Down Attack Character
+      collision occurs while moving forward No character collision while moving backward or laterally (Nullified during cooldown)
+      81.61% damage in PvP only Damage reduced during cooldown Reduced movement distance during cooldown. Consumes 100 Stamina
+      when used during cooldown
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  whirling_slash:
+    name: Whirling Slash
+    input: '← or → + RMB RMB while jumping forward or during Riding Waves or Flow: Wave Skedaddle RMB after Whirlpool, Ocean
+      Melancholy, Storm Surge, or Flow: After the Storm Skill'
+    keys:
+    - a
+    - d
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: Use Mareca Swing to propel towards your enemy and slice them down with your momentum.
+    notes: Use Mareca Swing to propel towards your enemy and slice them down with your momentum. Attack damage 950% x2 Extra
+      attack damage 2970% x1 Critical Hit Rate +35% Maximum 7 targets Super Armor while moving Stiffness on extra attack hits
+      Down Attack 69.95% damage in PvP only
+  whirlpool:
+    name: Whirlpool
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: Quickly spin your body to unleash a whirlpool upon your foes.
+    notes: Quickly spin your body to unleash a whirlpool upon your foes. Attack 1 damage 1122% x1, max 3 hits Last attack
+      damage 1122% x2 Maximum 7 targets Recover 72 MP on hits Air Attack Down Attack on last attack hits 63.44% damage in
+      PvP only
+  wind_piercer_patraca:
+    name: Wind-piercer Patraca
+    input: SHIFT + RMB SHIFT + RMB during other skills to fire instantly
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Quickly load up and fire a harpoon that pierces the winds.
+    notes: Quickly load up and fire a harpoon that pierces the winds. Attack damage 7195% x2 Critical Hit Rate +50% Maximum
+      10 targets Movement Speed -15% for 5 sec on hits Forward Guard before the attack hits Knockdown on hits Down Attack
+      38.43% damage in PvP only
+  wipe_out:
+    name: Wipe Out
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: Extend your serenaca while airborne to slash your foe and strike them down.
+    notes: Extend your serenaca while airborne to slash your foe and strike them down. Attack 1 damage 1974% x1 Last attack
+      damage 2303% x2 Critical Hit Rate +40% Maximum 7 targets Super Armor during the skill Bound on attack 1 hits (PvE only)
+      Down Attack Down Smash on last attack hits 69.95% damage in PvP only
+_flags:
+- cannon_attack: Scrape was empty — no description, input, or notes.
+- cap_n_s_call: Scrape missing input/notes; utility/lore entry.
+- code_of_the_scallywags: Passive — no keybind.
+- core_cap_n_s_orders_open_fire: Passive — no keybind.
+- core_close_quarters_suppress: Passive — no keybind.
+- core_crow_s_mark: Passive — no keybind.
+- core_sea_mist: Passive — no keybind.
+- core_spare_no_quarter: Passive — no keybind.
+- core_sun_shielder_patraca: Passive — no keybind.
+- flute_buff: Utility flute item; not a combat skill.
+- guild_squad_special_attack: Scrape was empty — no input or notes; description-only entry.
+- infinite_mastery: Passive — no keybind.
+- make_bonfire: Scrape missing notes; combat fields N/A (utility skill).
+- prime_heirloom_of_the_crow: Passive — no keybind.
+- prime_ocean_s_embrace: Passive — no keybind.
+- revive_target: Scrape was empty — no input or notes; description-only entry.
+- sea_lungs: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- succession_song_of_the_waves: Passive — no keybind.
+- sword_song: Passive — no keybind.
+- sword_song_xi: Passive — no keybind.
+- sword_song_xii: Passive — no keybind.
+- sword_song_xiii: Passive — no keybind.
+- sword_song_xiv: Passive — no keybind.
+- sword_song_xix: Passive — no keybind.
+- sword_song_xv: Passive — no keybind.
+- sword_song_xvi: Passive — no keybind.
+- sword_song_xvii: Passive — no keybind.
+- sword_song_xviii: Passive — no keybind.
+- sword_song_xx: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

@@ -1,0 +1,1306 @@
+# Archer — Awakening
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Archer
+spec: Awakening
+skills:
+  agile_strike:
+    name: Agile Strike
+    input: Passive
+    protection: none
+    description: Gather the spirits' energies to launch lateral attacks.
+    notes: Gather the spirits' energies to launch lateral attacks. The spirits grant a 30% chance your alchemy stone does
+      not consume durability upon use.
+  arrow_explosion:
+    name: Arrow Explosion
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 12000
+    description: Hurl a spirit bomb into the air, then hit it with an arrow from your crossbow. The bomb will detonate, releasing
+      arrows that inflict damage over a wide area in the vicinity.
+    notes: Hurl a spirit bomb into the air, then hit it with an arrow from your crossbow. The bomb will detonate, releasing
+      arrows that inflict damage over a wide area in the vicinity. Attack damage 4603% x2 Critical Hit Rate +80% Maximum 7
+      targets Forward Guard during the skill Down Attack Damage -5% per each additional target hit from target 2 onward. (Max
+      damage -70% .) (PvP only) 33.09% damage in PvP only
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  bolt_of_radiance:
+    name: Bolt of Radiance
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 13000
+    description: Gather the spirits' energies, then fire a powerful arrow infused with the power of light.
+    notes: Gather the spirits' energies, then fire a powerful arrow infused with the power of light. Attack damage 5522% x2
+      Critical Hit Rate +50% Maximum 10 targets Knockback on hits 40.13% damage in PvP only Attack damage 17613% x2 Critical
+      Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All AP +30 for 60 sec when using the
+      skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super
+      Armor during the skill Knockback on hits Down Attack 26% damage in PvP only Injures target with 50% of the damage of
+      a hit. Dismount target on hits.
+  breath_of_the_spirit:
+    name: Breath of the Spirit
+    input: 'Can be added to a Quick Slot ← for Breath: Recover after skill ↓ for Breath: Stun after skill → for Breath: Deceleration
+      after skill Can be used with your greatbow'
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 3000
+    description: The spirits' energies grant a variety of different-colored boons. Borrow one and engrave your ra'ghon with
+      a special boon.
+    notes: 'The spirits'' energies grant a variety of different-colored boons. Borrow one and engrave your ra''ghon with a
+      special boon. Exhale activates Breath of the Spirit''s effect Press the directional key after the skill to imbue the
+      following effects on your ra''ghon. Breath: Recover (green light) Attack damage 600% x2 Recover 500 HP and 200 MP for
+      self and allies in range Breath: Stun (yellow light) Attack damage 400% x2 50% chance to Stun enemies in range Breath:
+      Deceleration (white light) Attack damage 1000% x2 Movement Speed -15% for 5 sec to all enemies in range Attack/Casting
+      Speed -10% for 5 sec to all enemies in range Maximum 10 targets'
+    keys:
+    - hotbar
+  breath_deceleration:
+    name: 'Breath: Deceleration'
+    input: Passive
+    protection: none
+    description: Catch your breath as you apply a special effect to the skill.
+    notes: 'Catch your breath as you apply a special effect to the skill. Adds the following effect(s) to Meteor Dive after
+      learning this skill: Movement Speed -15% for 5 sec on hits (Nullified during cooldown)'
+  breath_recover:
+    name: 'Breath: Recover'
+    input: Passive
+    protection: none
+    description: Catch your breath as you apply a special effect to the skill.
+    notes: 'Catch your breath as you apply a special effect to the skill. Adds the following effect(s) to Wrath of Nature
+      after learning this skill: Recover 300 HP when fully charged'
+  breath_stigma:
+    name: 'Breath: Stigma'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill: [Light''s Mark]'
+    notes: 'Preceding Skill: [Light''s Mark] Adds the following effect(s) to Arrow Explosion after learning this skill: On
+      hits, the target cannot hide name for 3 sec On hits, the target cannot be concealed for 3 sec'
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  core_full_bloom:
+    name: 'Core: Full Bloom'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Full Bloom III after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown) Not applied to Black Spirit skills.'
+  core_luthraghon_s_call:
+    name: 'Core: Luthraghon''s Call'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Luthraghon''s Call IV after learning this skill: Forward Guard
+      during the skill'
+  core_piercing_light:
+    name: 'Core: Piercing Light'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Piercing Light III after learning this skill: Super Armor during
+      the skill'
+  core_radiant_explosion:
+    name: 'Core: Radiant Explosion'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Radiant Explosion IV after learning this skill: Bound on hits'
+  core_spear_of_sylvia:
+    name: 'Core: Spear of Sylvia'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Spear of Sylvia IV after learning this skill: Forward Guard during
+      the skill'
+  core_uproot:
+    name: 'Core: Uproot'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Uproot III after learning this skill: Super Armor during the
+      skill'
+  covering_fire:
+    name: Covering Fire
+    input: → or ← + F Can be used with your greatbow
+    keys:
+    - d
+    - a
+    - f
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: Quickly slide to the side, firing multiple arrows.
+    notes: Quickly slide to the side, firing multiple arrows. Attack damage 3421% x2 Critical Hit Rate +50% Maximum 10 targets
+      Forward Guard during the skill Down Attack 42.21% damage in PvP only
+  deadly_explosion:
+    name: Deadly Explosion
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 19000
+    description: 'Preceding Skill: [Arrow Explosion VI]'
+    notes: 'Preceding Skill: [Arrow Explosion VI] Attack damage 2233% x1, max 5 hits Critical Hit Rate +50% Maximum 10 targets
+      Knockdown on hits Down Attack 61.9% damage in PvP only'
+  double_tap:
+    name: Double Tap
+    input: SHIFT + Q Switches to your greatbow after using the skill
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 2345% x2 Attack 2 damage 7815% x2 Critical
+      Hit Rate +50% Maximum 10 targets Knockback on attack 1 hits Knockdown on attack 2 hits Down Attack on attack 2 hits
+      45.02% damage in PvP only Recover +300 HP after learning Breath: Recover'
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  earth_kick:
+    name: Earth Kick
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 3000
+    description: Dash instantly to the enemy, then strike them down with a powerful kick.
+    notes: Dash instantly to the enemy, then strike them down with a powerful kick. Attack damage 1289% x2 Critical Hit Rate
+      +50% Maximum 7 targets All Damage Reduction -8 for 10 sec (Nullified during cooldown) Bound on hits (Nullified during
+      cooldown) Down Attack
+  earth_shatter:
+    name: Earth Shatter
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Imbue your crossbow with the spirits' energies, then fire a powerful space-splitting arrow in front. Hit
+      targets will lose their balance.
+    notes: Imbue your crossbow with the spirits' energies, then fire a powerful space-splitting arrow in front. Hit targets
+      will lose their balance. Attack damage 4233% x3 Maximum 7 targets Recover 120 MP per hit Forward Guard during the skill
+      Knockdown on hits (PvE only) Air Attack Down Attack Down Smash 39.4% damage in PvP only Attack 1 damage 11780% x1, max
+      3 hits Attack 2 damage 11780% x1, max 2 hits Attack 3 damage 11780% x1, max 2 hits Last attack damage 12819% x2 Critical
+      Hit Rate +100% Maximum 7 targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using
+      the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Recover
+      107 MP per hit Super Armor when using the skill Invincible while concealed Super Armor during last attack Knockback
+      on attack 1 and 2 hits Knockdown on attack 3 hits Knockback on last attack hits Down Attack 10.58% damage in PvP only
+      Not affected by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage
+      of a hit. Dismount target on hits.
+  earth_s_judgment:
+    name: Earth's Judgment
+    input: Can be added to a Quick Slot
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Earth Shatter V]'
+    notes: 'Preceding Skill: [Earth Shatter V] Attack damage 3141% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard
+      during the skill Knockback on hits (PvE only) 67.53% damage in PvP only'
+    keys:
+    - hotbar
+  elvia_resenting_arrow:
+    name: 'Elvia: Resenting Arrow'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Lower your stance to carefully take aim, then fire a barrage of arrows to take down your foes.
+    notes: Lower your stance to carefully take aim, then fire a barrage of arrows to take down your foes. Attack 1 damage
+      1498% x2 Attack 2 damage 1498% x2 Last attack damage 5992% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets
+      All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10 sec on hits Recover 70 MP per hit Super Armor
+      during the skill Down Attack 22.51% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  ensnare:
+    name: Ensnare
+    input: Can be added to a Quick Slot Can be used with your greatbow
+    protection: SA
+    cc:
+    - spin
+    - pull
+    cooldown_ms: 6000
+    description: Borrow the trees' energies to pull in enemies.
+    notes: Borrow the trees' energies to pull in enemies. Attack 1 damage 712% x2 Attack 2 damage 1069% x2 Maximum 10 targets
+      Movement Speed -10% for 5 sec on hits Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Super
+      Armor during the skill Spin the target on hits (PvE only) Pull in the target on attack 2 hits (PvE only)
+    keys:
+    - hotbar
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your greatbow
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Lower your body and roll to dodge incoming attacks.
+    notes: Lower your body and roll to dodge incoming attacks. Invincible during the skill (PvE only)
+  exhale:
+    name: Exhale
+    input: E → or ← + E
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 5000
+    description: Uses the selected effect of the [Breath of the Spirit]
+    notes: Uses the selected effect of the [Breath of the Spirit] You can change the applied effect for Breath of the Spirit
+      . You will lose the selected Breath of the Spirit . Shares the cooldown with Steady Breath .
+  flow_ascending_spirit:
+    name: 'Flow: Ascending Spirit'
+    input: ↓ + F after Earth Kick
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - spin
+    - down_attack
+    cooldown_ms: 7000
+    description: Perform a roundhouse kick to enemies nearby. You can follow up with a consecutive attack after the kick.
+    notes: Perform a roundhouse kick to enemies nearby. You can follow up with a consecutive attack after the kick. Attack
+      damage 1749% x1, max 2 hits Maximum 7 targets Knockdown on attack 1 hits Spin the target on attack 2 hits (PvE only)
+      Down Attack
+  flow_echoes_of_the_call:
+    name: 'Flow: Echoes of the Call'
+    input: RMB again after Luthraghon's Call
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Watcher], [Luthraghon''s Call III]'
+    notes: 'Preceding Skill: [Watcher], [Luthraghon''s Call III] All damage applies Luthraghon''s Call ''s fully charged damage
+      x2, max 4 hits Maximum 10 targets Recover 180 HP per hit Forward Guard during the skill Down Attack Down Smash'
+  flow_grand_bloom:
+    name: 'Flow: Grand Bloom'
+    input: 'Passive Locking Flow: Grand Bloom will activate Full Bloom.'
+    protection: none
+    cc:
+    - knockdown
+    - stun
+    - down_attack
+    description: 'Preceding Skill: [Full Bloom III]'
+    notes: 'Preceding Skill: [Full Bloom III] Applies the following to Full Bloom III after learning this skill: Melee attack
+      damage 1545% x1, max 2 hits Arrow attack damage 3813% x2, max 7 directions, max 2 hits Arrow Critical Hit Rate +100%
+      (Nullified during cooldown) Knockdown on arrow attack hits (PvE only) (Nullified during cooldown) Stun on first Grand
+      Bloom hits (PvE only) (Nullified during cooldown) Down Attack Damage reduced during cooldown 30.5% Grand Bloom attack
+      damage in PvP only 48.96% arrow attack damage in PvP only No arrow damage applied in Grand Bloom''s central area.'
+    keys:
+    - hotbar
+  flow_light_s_trail:
+    name: 'Flow: Light''s Trail'
+    input: 'LMB after Radiant Explosion RMB or LMB or F after Sylvia''s Spear, Uproot, Low Sweep, Zephyr Leap, Ultimate: Zephyr
+      Leap, Luthraghon''s Call, or Flow: Echoes of the Call'
+    keys:
+    - lmb
+    - rmb
+    - f
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] All damage applies Radiant Explosion ''s damage x2 Maximum 10 targets Recover 90 MP
+      per hit Forward Guard during the skill Stiffness on hits (PvE only) Down Attack Down Smash 26% damage in PvP only'
+  flow_shadow_hack:
+    name: 'Flow: Shadow Hack'
+    input: E after Gaping Darkness
+    keys:
+    - e
+    protection: none
+    cc:
+    - pull
+    - air_attack
+    cooldown_ms: 5000
+    description: Slash your enemy with a hidden blade.
+    notes: Slash your enemy with a hidden blade. Attack damage 2313% x2 Critical Hit Rate +50% Maximum 7 targets Pull in the
+      target on hits (PvE only) Air Attack 33.77% damage in PvP only
+  flow_verdure_clout:
+    name: 'Flow: Verdure Clout'
+    input: '↓ + RMB Hold E after using Flow: Shadow Hack Can be used with your greatbow'
+    keys:
+    - s
+    - rmb
+    - e
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: Toss your enemy into the air, and send them flying with your crossbow.
+    notes: Toss your enemy into the air, and send them flying with your crossbow. Attack 1 damage 1792% x2 Attack 2 damage
+      3583% x2 Maximum 7 targets Forward Guard during the skill Floating on attack 1 hits (PvE only) Air Attack Air Smash
+      on attack 2 hits 28.14% damage in PvP only
+  flow_volant_kick:
+    name: 'Flow: Volant Kick'
+    input: ↑ + F after Earth Kick
+    keys:
+    - w
+    - f
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 4000
+    description: Leap toward the enemy to execute a powerful kick.
+    notes: Leap toward the enemy to execute a powerful kick. Attack damage 746% x2 Purging Shot 's damage 1492% Critical Hit
+      Rate +60% Maximum 7 targets Recover 15 MP per hit Knockback on hits
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  full_bloom:
+    name: Full Bloom
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] Melee attack damage 6802% x2, max 2 hits Arrow attack damage 1545% x1, max 7 directions,
+      max 2 hits Melee Critical Hit Rate +100% (Nullified during cooldown) Maximum 10 targets Knockdown on arrow attack hits
+      (PvE only) (Nullified during cooldown) Down Attack Reduced melee attack damage during cooldown. 32.41% melee attack
+      damage in PvP only 30.5% arrow attack damage in PvP only No arrow damage applied in melee attack area. Melee attack
+      damage 9257% x2, max 1 hits Arrow attack damage 4844% x1, max 5 directions, max 1 hits Melee Critical Hit Rate +100%
+      Maximum 10 targets Increased attack area Knockdown on arrow attack hits (PvE only) Down Attack 33.31% melee attack damage
+      in PvP only 35.79% arrow attack damage in PvP only Dismount target on hits. Injures target with 10% of the damage of
+      a hit. Not activated during cooldown.'
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  gaping_darkness:
+    name: Gaping Darkness
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: SA
+    cooldown_ms: 5000
+    description: Deal a concussive blow with your right arm. The force of impact leaves opponents reeling in pain.
+    notes: Deal a concussive blow with your right arm. The force of impact leaves opponents reeling in pain. Attack damage
+      3669% x2 Critical Hit Rate +75% Maximum 7 targets Critical Hit Rate +26% for 10 sec when using the skill Recover 26
+      MP per hit Super Armor during the skill Push the target on hits (PvE only) 33.77% damage in PvP only
+  glide:
+    name: Glide
+    input: ↑ + ↑ → + → ← + ← SHIFT + ↑ SHIFT + → SHIFT + ← Can be used with your greatbow
+    keys:
+    - w
+    - d
+    - a
+    - shift
+    protection: iframe
+    cooldown_ms: 2000
+    description: Quickly slide forward or laterally.
+    notes: Quickly slide forward or laterally. Super Armor while moving Movement Speed +10% for 5 sec when using the skill
+      Invincible -> Super Armor during the skill No character collision while moving laterally
+  glissade:
+    name: Glissade
+    input: ↑ + RMB Can be used with your crossbow
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] Melee attack damage 4287% x2 Arrow attack damage 4287% x1, max 3 directions Critical
+      Hit Rate +30% Maximum 10 targets All AP +20 for 10 sec when using the skill Super Armor during the skill Knockdown on
+      hits Down Attack Air Attack 69.33% damage in PvP only'
+  grace_of_sylvia:
+    name: Grace of Sylvia
+    input: Passive
+    protection: none
+    description: Gain sharper sight to increase your accuracy.
+    notes: Gain sharper sight to increase your accuracy. All AP +1 All Accuracy +1
+  grace_of_sylvia_xi:
+    name: Grace of Sylvia XI
+    input: Passive
+    protection: none
+    description: Gain sharper sight and additional strength.
+    notes: Gain sharper sight and additional strength. All AP +1 All Accuracy +1
+  grace_of_sylvia_xii:
+    name: Grace of Sylvia XII
+    input: Passive
+    protection: none
+    description: Gain sharper sight to increase your accuracy.
+    notes: Gain sharper sight to increase your accuracy. All AP +1 All Accuracy +1
+  grace_of_sylvia_xiii:
+    name: Grace of Sylvia XIII
+    input: Passive
+    protection: none
+    description: Gain sharper sight and additional strength.
+    notes: Gain sharper sight and additional strength. All AP +1 All Accuracy +1
+  grace_of_sylvia_xiv:
+    name: Grace of Sylvia XIV
+    input: Passive
+    protection: none
+    description: Gain sharper sight to increase your accuracy.
+    notes: Gain sharper sight to increase your accuracy. All AP +1 All Accuracy +1
+  grace_of_sylvia_xix:
+    name: Grace of Sylvia XIX
+    input: Passive
+    protection: none
+    description: Gain sharper sight and additional strength.
+    notes: Gain sharper sight and additional strength. All AP +1 All Accuracy +1
+  grace_of_sylvia_xv:
+    name: Grace of Sylvia XV
+    input: Passive
+    protection: none
+    description: Gain sharper sight and additional strength.
+    notes: Gain sharper sight and additional strength. All AP +1 All Accuracy +1
+  grace_of_sylvia_xvi:
+    name: Grace of Sylvia XVI
+    input: Passive
+    protection: none
+    description: Gain sharper sight to increase your accuracy.
+    notes: Gain sharper sight to increase your accuracy. All AP +1 All Accuracy +1
+  grace_of_sylvia_xvii:
+    name: Grace of Sylvia XVII
+    input: Passive
+    protection: none
+    description: Gain sharper sight and additional strength.
+    notes: Gain sharper sight and additional strength. All AP +1 All Accuracy +1
+  grace_of_sylvia_xviii:
+    name: Grace of Sylvia XVIII
+    input: Passive
+    protection: none
+    description: Gain sharper sight and additional strength.
+    notes: Gain sharper sight and additional strength. All AP +1 All Accuracy +1
+  grace_of_sylvia_xx:
+    name: Grace of Sylvia XX
+    input: Passive
+    protection: none
+    description: Gain sharper sight and additional strength.
+    notes: Gain sharper sight and additional strength. All AP +1 All Accuracy +1
+  greatbow_of_light:
+    name: Greatbow of Light
+    input: C
+    keys:
+    - c
+    protection: none
+    cooldown_ms: 1000
+    description: The ascended Archer can deftly switch between his crossbow and greatbow.
+  greatbow_training:
+    name: Greatbow Training
+    input: LMB LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] Attack 1 damage 884% x1, max 1 hits Attack 2 damage 884% x1, max 2 hits Last attack
+      damage 1149% x1 Sprint attack damage 884% x2 Jump attack damage 1149% x1 Lateral attack damage 884% x1 Maximum 10 targets
+      All AP +20 for 10 sec when the skill is used 2 times Recover 100 MP per hit 90.04% damage in PvP only'
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+  light_s_path:
+    name: Light's Path
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    description: Fire an arrow with seemingly basic techniques that force targeted enemies to dodge the attack.
+    notes: 'Fire an arrow with seemingly basic techniques that force targeted enemies to dodge the attack. Required MP: 30
+      All damage applies Greatbow Training''s damage x1.8 Critical Hit Rate +20% Required MP: 45 All damage applies Greatbow
+      Training''s damage x2.25 Critical Hit Rate +50% Required MP: 60 All damage applies Greatbow Training''s damage x3 Critical
+      Hit Rate +100% Maximum 10 targets Push the target on hits (PvE only) Down Attack 73.16% damage in PvP only'
+  low_sweep:
+    name: Low Sweep
+    input: F F
+    keys:
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    - spin
+    cooldown_ms: 3000
+    description: Quickly spin from a crouching position, then deal a sweeping blow.
+    notes: Quickly spin from a crouching position, then deal a sweeping blow. All damage applies Uproot 's attack 2 damage
+      x2 Maximum 10 targets Bound on hits Push the target on hits (PvE only) Down Attack Down Smash
+  luthraghon_s_call:
+    name: Luthraghon's Call
+    input: SHIFT + RMB Hold RMB to charge You can glide laterally when fully charged, and moving will maintain the charged
+      state.
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: A marksmanship technique of the Luthraghon. The energies generated from the arrow is powerful enough to topple
+      mountains.
+    notes: A marksmanship technique of the Luthraghon. The energies generated from the arrow is powerful enough to topple
+      mountains. Attack damage 6053% x2, max 3 hits, before fully charged Attack damage 7438% x2, max 4 hits, when fully charged
+      Critical Hit Rate +100% Maximum 10 targets Recover 150 HP per hit Forward Guard before the attack hits Knockback on
+      hits Down Attack Increased attack range upon charging Increased attack area when charged Consumes 100 Stamina while
+      charging 40.51% damage in PvP only Attack damage 41286% x2, max 11 hits Critical Hit Rate +100% Maximum 10 targets All
+      AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for
+      60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor during the skill Knockback on hits
+      Push the target on hits (PvE only) Knockdown on last attack hits Down Attack Down Smash 9% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount
+      target on hits.
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  marked_bloom:
+    name: Marked Bloom
+    input: ↓ + Q Can be used with your crossbow
+    keys:
+    - s
+    - q
+    protection: none
+    cc:
+    - knockdown
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: Fire an explosive arrow at a single location to annihilate the enemy. The enemies hit by the arrow will have
+      their locations exposed.
+    notes: Fire an explosive arrow at a single location to annihilate the enemy. The enemies hit by the arrow will have their
+      locations exposed. Attack damage 9194% x2 Critical Hit Rate +100% Maximum 10 targets On hits, the target cannot hide
+      name for 3 sec On hits, the target cannot be concealed for 3 sec Knockdown on hits (PvE only) Stiffness on hits (PvP
+      only) Down Attack 25.32% damage in PvP only Damage -5% per each additional target hit from target 2 onward. (Max damage
+      -70% .) (PvP only)
+  meteor_dive:
+    name: Meteor Dive
+    input: SPACE in certain situations ↓ + SPACE to attack backward Can be used with your greatbow
+    keys:
+    - space
+    - s
+    protection: SA
+    cc:
+    - stiffness
+    - pull
+    - down_attack
+    cooldown_ms: 6000
+    description: Somersault and attack the enemy from above. A useful skill for back attacks.
+    notes: Somersault and attack the enemy from above. A useful skill for back attacks. Attack damage 1783% x1, max 4 hits
+      Critical Hit Rate +100% (Nullified during cooldown) Maximum 7 targets Increased Attack Speed Recover 70 HP per hit (Nullified
+      during cooldown) Super Armor during airborne moves (Nullified during cooldown) Stiffness on hits (Nullified during cooldown)
+      Pull in the target on hits (PvE only) Down Attack 56.28% damage in PvP only Damage reduced during cooldown
+  mountain_breeze:
+    name: Mountain Breeze
+    input: ↑ + F Can be used with your crossbow
+    keys:
+    - w
+    - f
+    protection: iframe
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Watcher], [Absolute: Piercing Cry]'
+    notes: 'Preceding Skill: [Watcher], [Absolute: Piercing Cry] Attack damage 4597% x2 Critical Hit Rate +50% Maximum 10
+      targets Recover 30 MP per hit Invincible -> Super Armor during the skill No collision while moving 42.22% damage in
+      PvP only'
+  nature_shattering_arrow:
+    name: Nature Shattering Arrow
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Earth Shatter V]'
+    notes: 'Preceding Skill: [Earth Shatter V] Attack 1 damage 3689% x1, max 2 hits Attack 2 damage 3597% x2 Critical Hit
+      Rate +100% Maximum 10 targets Recover 113 MP per hit Down Attack 67.53% damage in PvP only'
+    keys:
+    - hotbar
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  piercing_cry:
+    name: Piercing Cry
+    input: LMB after certain skills → or ← + LMB after certain skills
+    keys:
+    - lmb
+    - d
+    - a
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Spirit Arrow II]'
+    notes: 'Preceding Skill: [Spirit Arrow II] All damage applies Spirit''s Arrow ''s damage x2 Critical Hit Rate +50% Applies
+      Spirit Arrow ''s number of hit targets Recover 60 MP per hit Super Armor (Nullified during cooldown) Down Attack'
+  piercing_light:
+    name: Piercing Light
+    input: ↓ + E LMB to fire instantly
+    keys:
+    - s
+    - e
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 15000
+    description: With steady aim, gather the spirits' energies to deliver a powerful arrow strong enough to part light itself.
+    notes: With steady aim, gather the spirits' energies to deliver a powerful arrow strong enough to part light itself. Normal
+      attack damage 7972% x2 Attack damage 11304% x2 when fully charged Critical Hit Rate +50% Maximum 10 targets Super Armor
+      while charging Knockdown on charged attack hits Down Attack Increased attack area when charged Consumes 100 Stamina
+      while charging 45.02% damage in PvP only Damage -10% per each additional target hit from target 2 onward. (Max damage
+      -50% .) (PvP only)
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  purging_shot:
+    name: Purging Shot
+    input: 'F after Flow: Volant Kick, Earth Kick, or Vine Cutter'
+    keys:
+    - f
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 4000
+    description: Deliver a devastating, finishing blow.
+    notes: 'Deliver a devastating, finishing blow. All damage applies Flow: Volant Kick ''s level damage x2 Maximum 7 targets
+      Increased attack area Bound on hits Down Attack Down Smash'
+  radiant_ensnare:
+    name: Radiant Ensnare
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - spin
+    - pull
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Flow: Verdure Clout II]'
+    notes: 'Preceding Skill: [Flow: Verdure Clout II] Attack 1 damage 1352% x2 Attack 2 damage 2072% x2 Critical Hit Rate
+      +50% Maximum 10 targets Movement Speed - 20% every 10 sec on 1 hits Attack Speed - 20% every 10 sec on 1 hits Casting
+      Speed - 20% every 10 sec on 1 hits Spin the target on attack 1 hits (PvE only) Pull in the target on attack 1 hits (PvE
+      only) Super Armor during the skill 67.53% damage in PvP only'
+  radiant_explosion:
+    name: Radiant Explosion
+    input: SHIFT + LMB F again after Low Sweep Can be used with your crossbow
+    keys:
+    - shift
+    - lmb
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] Attack damage 9116% x2 Critical Hit Rate +100% Maximum 10 targets All Damage Reduction
+      -20 for 10 sec on hits Super Armor during the skill Bound on hits (PvE only) Down Attack 40.86% damage in PvP only Attack
+      damage 18992% x3 Extra attack damage 987% x4 Critical Hit Rate +100% (Nullified on extra attack) Maximum 10 targets
+      All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30%
+      for 60 sec when using the skill Super Armor during the skill Bound on hits Down Attack 16.32% damage in PvP only Injures
+      target with 50% of the damage of a hit. Dismount target on hits.'
+  radiant_storm:
+    name: Radiant Storm
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 14000
+    description: 'Preceding Skill: [Arrow Explosion VI]'
+    notes: 'Preceding Skill: [Arrow Explosion VI] Attack damage 4773% x1, max 3 hits Critical Hit Rate +50% Maximum 10 targets
+      Recover 80 MP per hit 30 bleeding damage every 3 sec for 27 sec on hits Movement Speed -5% for 5 sec on hits Stiffness
+      on attack 1 hits (PvE only) Knockdown on last attack hits (PvE only) Down Attack 67.53% damage in PvP only'
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  righteous_fire:
+    name: Righteous Fire
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] Add attack 1 damage when using your great bow Attack damage 743% x1 Accuracy +50 100
+      damage over time every 3 sec for 9 sec on hits (PvE only) Movement Speed -7% for 5 sec on hits (PvP only) Applies to:
+      Radiant Explosion, Spear of Sylvia, Luthraghon''s Call, Piercing Light, Tactical Strike, Ultimate: Zephyr Leap, Light''s
+      Path, Glissade, Flow: Light''s Trail, Uproot consecutive attacks, Winged Strike, Mountain Breeze, Shadebound Beam 56.28%
+      damage in PvP only'
+  righteous_smite:
+    name: Righteous Smite
+    input: 'RMB or LMB or F after Flow: Light''s Trail Can be used via a Quick Slot with your crossbow'
+    keys:
+    - rmb
+    - lmb
+    - f
+    protection: FG
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Flow: Light''s Trail]'
+    notes: 'Preceding Skill: [Flow: Light''s Trail] Attack damage 16024% x2 Critical Hit Rate +50% Maximum 10 targets Forward
+      Guard during the skill 39.14% damage in PvP only Damage -5% per each additional target hit from target 2 onward. (Max
+      damage -70% .) (PvP only) Attack 1 damage 7572% x2 Attack 2 damage 13253% x2 Critical Hit Rate +50% Maximum 10 targets
+      Increased attack area Super Armor during the skill 34.89% damage in PvP only Damage -5% per each additional target hit
+      from target 2 onward. (Max damage -70% .) (PvP only) Dismount target on hits. Injures target with 30% of the damage
+      of a hit.'
+  shadebound_beam:
+    name: Shadebound Beam
+    input: Can be added to a Quick Slot Direction to move LMB to fire
+    protection: none
+    cooldown_ms: 90000
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] Attack damage 2911% x2 Critical Hit Rate +50% Maximum 10 targets On hits, the target
+      cannot hide name for 10 sec On hits, the target cannot be concealed for 10 sec 56.28% damage in PvP only Concealed for
+      10 sec upon skill use. Increased attack range when fired while concealed. Cancels Concealment if other skills are used.'
+    keys:
+    - hotbar
+    - lmb
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+  spear_of_sylvia:
+    name: Spear of Sylvia
+    input: SHIFT + Q Q after Double Tap or Marked Bloom
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 6000
+    description: Your greatbow's arrow is also known as the "Spear of Sylvia." The moment it leaves your greatbow, the arrow
+      locks in on the enemy's position to release a decisive form of power.
+    notes: Your greatbow's arrow is also known as the "Spear of Sylvia." The moment it leaves your greatbow, the arrow locks
+      in on the enemy's position to release a decisive form of power. Attack damage 9171% x2 Critical Hit Rate +100% Maximum
+      10 targets All Evasion -12 for 10 sec on hits Stun on hits (PvE only) Down Attack 27.34% damage in PvP only Applies
+      explosive melee attack to nearby enemies.
+  spirit_arrow:
+    name: Spirit Arrow
+    input: LMB ↑ + LMB LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    description: Imbue the spirits' energies into your crossbow to fire arrows infused with light.
+    notes: Imbue the spirits' energies into your crossbow to fire arrows infused with light. Attack 1 damage 1223% x1 Attack
+      2 damage 1223% x2 Attack 3 damage 1223% x1 Forward attack 1 damage 1223% x1 Forward attack 2 damage 1223% x2 Lateral
+      attack 1 damage 1223% x1 Lateral attack 2 damage 1223% x1 Sprint attack 1 damage 1223% x1 Sprint attack 2 damage 1223%
+      x2 Jump attack damage 1223% x1 Maximum 7 targets Recover 54 MP per hit Stiffness on sprinting attack hits
+  steady_breath:
+    name: Steady Breath
+    input: → or ← + C Can be used with your greatbow
+    keys:
+    - d
+    - a
+    - c
+    protection: iframe
+    cc:
+    - stun
+    cooldown_ms: 5000
+    description: Slide laterally to quickly evade enemy attacks, then absorb the Breath of the Spirit's power.
+    notes: 'Slide laterally to quickly evade enemy attacks, then absorb the Breath of the Spirit''s power. Changes the effects
+      applied by Breath of the Spirit . Gain the following effects based on the Breath type. Shares the cooldown with Exhale
+      . Invincible -> Super Armor during the skill [Breath: Deceleration] Movement Speed + 10% for 10 sec when using the skill
+      [Breath: Stun] All AP +20 for 10 sec when using the skill [Breath: Recover] Recover +500 HP when using the skill'
+  storm_of_light:
+    name: Storm of Light
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your greatbow Q after other skills while notched
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 60000
+    description: Summon an arrow imbued with the spirits, then fire multiple shots.
+    notes: Summon an arrow imbued with the spirits, then fire multiple shots. Notch an arrow in your crossbow for 120 sec
+      upon first skill use. Apply the following effects by firing the arrow when casting the skill again. Super Armor upon
+      first skill cast Attack damage 2603% x2 Critical Hit Rate +30% Maximum 7 targets Recover 30 MP per hit Forward Guard
+      during the skill Down Attack 44.23% damage in PvP only
+    keys:
+    - hotbar
+    - q
+  sunfall:
+    name: Sunfall
+    input: Can be added to a Quick Slot Auto-activated when using Earth Shatter Can be used with your greatbow
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] Attack damage 2839% x1, max 6 hits Maximum 10 targets All Damage Reduction -15 for
+      10 sec on hits Forward Guard during the skill (Nullified in certain situations) Down Attack 45.73% damage in PvP only'
+    keys:
+    - hotbar
+  tactical_strike:
+    name: Tactical Strike
+    input: ← or → + RMB ← or → + RMB with your crossbow
+    keys:
+    - a
+    - d
+    - rmb
+    protection: iframe
+    cc:
+    - knockdown
+    cooldown_ms: 9000
+    description: Quickly evade and fire an arrow to strike the enemies' weak spot.
+    notes: Quickly evade and fire an arrow to strike the enemies' weak spot. Attack damage 2214% x2 Maximum 10 targets Invincible
+      at the start of the skill (Nullified during cooldown) Invincible before attack Knockdown on hits (Nullified during cooldown)
+      67.53% damage in PvP only
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  ultimate_verdure_clout:
+    name: 'Ultimate: Verdure Clout'
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Flow: Verdure Clout II]'
+    notes: 'Preceding Skill: [Flow: Verdure Clout II] Attack 1 damage 2689% x2 Attack 2 damage 4034% x2 Maximum 10 targets
+      Forward Guard during the skill Down Smash on attack 2 hits Down Attack 67.53% damage in PvP only'
+  ultimate_zephyr_leap:
+    name: 'Ultimate: Zephyr Leap'
+    input: SHIFT + ↓ Can be used with your crossbow
+    keys:
+    - shift
+    - s
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Zephyr Leap]'
+    notes: 'Preceding Skill: [Zephyr Leap] Attack damage 3591% x2 Maximum 10 targets Super Armor during the skill Movement
+      Speed -20% for 5 sec on hits Stiffness on hits Down Attack No character collision during the skill 60.22% damage in
+      PvP only Attack 1 damage 2693% x2 Attack 2 damage 3591% x2 Maximum 10 targets Invincible while concealed Super Armor
+      during the skill Movement Speed -20% for 5 sec on hits Stiffness on attack 1 hits No character collision during the
+      skill Increased attack area Down Attack 50.65% damage in PvP only Dismount target on hits. Injures target with 20% of
+      the damage of a hit. Not activated during cooldown.'
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+  uproot:
+    name: Uproot
+    input: ↓ + F Hold ↓ + F after Uproot to continue the skill Can be used with your crossbow
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Watcher]'
+    notes: 'Preceding Skill: [Watcher] Attack 1 damage 7134% x2 Attack 2 damage 4077% x2 Critical Hit Rate +25% Maximum 10
+      targets Knockdown on attack 1 hits Air Attack 47.27% damage in PvP only'
+  vine_cutter:
+    name: Vine Cutter
+    input: 'F after Flow: Ascending Spirit'
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 7000
+    description: Attack with your right arm after Ascending Spirit.
+    notes: Attack with your right arm after Ascending Spirit. Attack damage 847% x2 Critical Hit Rate +60% Maximum 7 targets
+      Down Attack Down Smash 67.53% damage in PvP only
+  watcher:
+    name: Watcher
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your crossbow
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 180000
+    description: A skill inherent to the Luthraghon, the Archer imbues his greatbow with the energy of light, gaining a powerful,
+      temporary boon.
+    notes: A skill inherent to the Luthraghon, the Archer imbues his greatbow with the energy of light, gaining a powerful,
+      temporary boon. All AP +20 for 30 sec when using the skill All Accuracy +48 for 30 sec when using the skill Down Attack
+      damage +15% for 30 sec when using the skill Air Attack damage +15% for 30 sec when using the skill Back Attack damage
+      +15% for 30 sec when using the skill Critical Hit Damage +15% for 30 sec when using the skill Critical Hit Rate +100%
+      for 30 sec when using the skill Super Armor during the skill Piercing Light and Luthraghon's Call activates instantly
+      and fully charged while the buff is in effect.
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+  wind_of_the_spirit:
+    name: Wind of the Spirit
+    input: Passive
+    protection: none
+    description: Permanently increases Movement Speed by 10%.
+    notes: Permanently increases Movement Speed by 10%. Movement Speed +10% granted by the spirits
+  winged_strike:
+    name: Winged Strike
+    input: Lateral Attack → + LMB or ← + LMB Q or C after attack 1 to switch between your crossbow and greatbow Forward Attack
+      ↑ + LMB Q or C after attack 1 to switch between your crossbow and greatbow Back Attack ↓ + Q + LMB with your crossbow
+      ↓ + LMB with your greatbow ↓ + LMB with your crossbow to switch to your greatbow ↓ + C + LMB after attack 1 to switch
+      between your crossbow and greatbow Can be used with your greatbow
+    keys:
+    - d
+    - lmb
+    - a
+    - q
+    - c
+    - w
+    - s
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Quickly move to fire explosive arrows imbued with the spirits' energies.
+    notes: Quickly move to fire explosive arrows imbued with the spirits' energies. Attack 1 damage 1956% x2 Attack 2 damage
+      1956% x2 (Backward effect unavailable for greatbow) Critical Hit Rate +75% (Nullified during cooldown) Maximum 7 targets
+      Recover 10 MP per hit (Nullified during cooldown) Knockdown on attack 1 hits (Nullified during cooldown) Knockdown on
+      attack 2 hits (PvE only) (Nullified during cooldown) Down Attack Damage -5% per each additional target hit from target
+      2 onward. (Max damage -70% .) (PvP only) 67.53% damage in PvP only Damage reduced during cooldown
+  wrath_of_nature:
+    name: Wrath of Nature
+    input: SHIFT + Q LMB after fully charged to perform attacks Glide available while charging
+    keys:
+    - shift
+    - q
+    - lmb
+    protection: SA
+    cooldown_ms: 8000
+    description: Imbue an arrow with earthen energies, then fire with your crossbow.
+    notes: Imbue an arrow with earthen energies, then fire with your crossbow. Attack damage 2197% x2 before fully charged
+      Attack damage 4392% x2 when fully charged Critical Hit Rate +50% Maximum 7 targets Super Armor while charging Increased
+      Attack Speed 67.53% damage in PvP only
+  zephyr_leap:
+    name: Zephyr Leap
+    input: SHIFT + ↓ Can be used with your greatbow
+    keys:
+    - shift
+    - s
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Glide]'
+    notes: 'Preceding Skill: [Glide] Attack damage 112% x2 Maximum 7 targets Stiffness on hits No character collision during
+      the skill Forward Guard during the skill Down Attack 90.04% damage in PvP only'
+_flags:
+- core_full_bloom: Passive — no in-combat keybind.
+- core_luthraghon_s_call: Passive — no in-combat keybind.
+- core_piercing_light: Passive — no in-combat keybind.
+- core_radiant_explosion: Passive — no in-combat keybind.
+- core_spear_of_sylvia: Passive — no in-combat keybind.
+- core_uproot: Passive — no in-combat keybind.
+- gaping_darkness: Notes describe Push only — not in standard CC vocab. No CC tags applied.
+- steady_breath: Notes do not mention Stun — CC tag was a heuristic guess from skill name. Removing CC.
+- storm_of_light: Notes mention both Super Armor (first cast) and Forward Guard (during skill). Tagged SA based on first-cast
+    wording.
+- wrath_of_nature: Notes do not list any CC tags (only Super Armor while charging).
+- cannon_attack: Description and notes empty in scrape.
+- guild_squad_special_attack: Description and notes minimal; no input recorded.
+- revive_target: Notes empty; no input recorded.
+- make_bonfire: Notes empty in scrape.
+- greatbow_of_light: Notes empty in scrape — weapon-swap utility.
+- flute_buff: Item-use skill — not a combat keybind.
+- core_full_bloom: Passive — no in-combat keybind.
+- core_luthraghon_s_call: Passive — no in-combat keybind.
+- core_piercing_light: Passive — no in-combat keybind.
+- core_radiant_explosion: Passive — no in-combat keybind.
+- core_spear_of_sylvia: Passive — no in-combat keybind.
+- core_uproot: Passive — no in-combat keybind.
+- gaping_darkness: Notes describe Push only — not in standard CC vocab. No CC tags applied.
+- steady_breath: Notes do not mention Stun — CC tag was a heuristic guess from skill name. Removing CC.
+- storm_of_light: Notes mention both Super Armor (first cast) and Forward Guard (during skill). Tagged SA based on first-cast
+    wording.
+- wrath_of_nature: Notes do not list any CC tags (only Super Armor while charging).
+- cannon_attack: Description and notes empty in scrape.
+- guild_squad_special_attack: Description and notes minimal; no input recorded.
+- revive_target: Notes empty; no input recorded.
+- make_bonfire: Notes empty in scrape.
+- greatbow_of_light: Notes empty in scrape — weapon-swap utility.
+- flute_buff: Item-use skill — not a combat keybind.

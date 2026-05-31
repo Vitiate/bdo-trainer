@@ -1,0 +1,32 @@
+combo_id: full_rotation_e_a
+class: Witch
+spec: Awakening
+bundle_id: default
+category: pve
+name: Full Rotation (E → A Loop)
+description: Recommended dual-cycle. 1,003,328 dmg / 14.77s / 67,930 %/s. Loops infinitely.
+steps:
+- skill: lightning_blast
+  note: '--- Cycle E (7.30s, 67,963 %/s) ---'
+- skill: voltaic_pulse
+  note: accel variant
+- skill: earths_calling
+  note: accel variant
+- skill: fissure_wave
+- skill: thunder_storm
+  note: accel variant
+- skill: barrage_of_lightning
+  note: 11s CD finisher
+- skill: equilibrium_break
+- skill: magical_evasion
+  note: reposition then restart
+- skill: lightning_blast
+  note: '--- Cycle A (7.47s, 67,898 %/s) ---'
+- skill: voltaic_pulse
+- skill: fissure_wave
+- skill: thunder_storm
+- skill: yoke_of_ordeal
+  note: 11s CD finisher
+- skill: equilibrium_break
+- skill: magical_evasion
+  note: reposition then loop to Cycle E

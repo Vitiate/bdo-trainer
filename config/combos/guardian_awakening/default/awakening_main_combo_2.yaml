@@ -1,0 +1,18 @@
+combo_id: awakening_main_combo_2
+class: Guardian
+spec: Awakening
+bundle_id: default
+category: pve
+name: Awakening Main Combo 2
+description: Fireborne Rupture opener into awakening rotation.
+difficulty: intermediate
+combo_window_ms: 300
+steps:
+- skill: fireborne_rupture
+- skill: cleansing_flame
+- skill: dragons_maw
+- skill: flow_howling_light
+- skill: god_incinerator
+- skill: searing_fang
+- skill: flow_suppress
+- skill: scornful_slash

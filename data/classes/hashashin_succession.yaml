@@ -1,0 +1,1819 @@
+# Hashashin — Succession
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Hashashin
+spec: Succession
+skills:
+  aal_s_breath:
+    name: Aal's Breath
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your dual glaives
+    protection: SA
+    cooldown_ms: 20000
+    description: Call forth a gust of sand in front that will chase after the target.
+    notes: Call forth a gust of sand in front that will chase after the target. Sand Twister attack damage 942% x1, max 24
+      hits Maximum 7 targets Maintains 3 Sand Twister(s) for 10 sec . The larger the twister, the greater the attack area,
+      damage, and duration. Super Armor during the skill 59.67% damage in PvP only
+    keys:
+    - hotbar
+  aal_s_command:
+    name: Aal's Command
+    input: ↓ + RMB ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 2750% x1, max 2 hits Attack 2 damage 2750%
+      x2 Last attack damage 6188% x2 Critical Hit Rate +50% Maximum 10 targets Recover 128 HP per hit Forward Guard during
+      the skill Knockback on last attack hits (PvE only) Air Attack Down Attack 38.19% damage in PvP only'
+  aal_s_dominion:
+    name: Aal's Dominion
+    input: SPACE after certain skills
+    keys:
+    - space
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: An indifferent side-slash attack that triggers a butterfly effect.
+    notes: An indifferent side-slash attack that triggers a butterfly effect. Attack damage 2130% x2 Critical Hit Rate +100%
+      Maximum 10 targets Increased attack area Floating on hits Air Attack 58.48% damage in PvP only
+  aal_s_grace:
+    name: Aal's Grace
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cooldown_ms: 180000
+    description: Receive the grace of Aal for a brief moment to make known your authority as the warrior of Aal.
+    notes: Receive the grace of Aal for a brief moment to make known your authority as the warrior of Aal. All AP +20 for
+      30 sec when using the skill Critical Hit Rate +30% for 30 sec when using the skill All Accuracy +60 for 30 sec when
+      using the skill Attack Speed +20% for 30 sec when using the skill Critical Hit Damage +15% for 30 sec when using the
+      skill Super Armor during the skill
+  aal_s_mirage:
+    name: Aal's Mirage
+    input: Passive LMB after blocks during Aal's Protection to perform Mirage
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    description: 'Preceding Skill: [Mirage]'
+    notes: 'Preceding Skill: [Mirage] Changes Mirage as follows after learning this skill: Attack damage 5427% x1 Critical
+      Hit Rate +20% Maximum 10 targets Forward Guard during the skill Super Armor on attacks Floating on hits Air Attack 66.83%
+      damage in PvP only'
+  aal_s_protection:
+    name: Aal's Protection
+    input: Q
+    keys:
+    - q
+    protection: FG
+    cooldown_ms: 1000
+    description: The sandstorm embraces you and you receive His protection.
+    notes: The sandstorm embraces you and you receive His protection. Forward Guard All AP +20 for 10 sec on blocks
+  absolute_aal_s_breath:
+    name: 'Absolute: Aal''s Breath'
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your dual glaives
+    protection: SA
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Aal''s Breath III]'
+    notes: 'Preceding Skill: [Aal''s Breath III] Sand Twister attack damage 1067% x1, max 24 hits Maximum 10 targets Maintains
+      5 Sand Twister(s) for 10 sec . The larger the twister, the greater the attack area, damage, and duration. Super Armor
+      during the skill 59.67% damage in PvP only'
+  absolute_aal_s_dominion:
+    name: 'Absolute: Aal''s Dominion'
+    input: SPACE after certain skills
+    keys:
+    - space
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Aal''s Dominion IV]'
+    notes: 'Preceding Skill: [Aal''s Dominion IV] Attack damage 2585% x2 Critical Hit Rate +100% Maximum 10 targets Increased
+      attack area Floating on hits Air Attack 58.48% damage in PvP only'
+  absolute_chosen_blade:
+    name: 'Absolute: Chosen Blade'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Chosen Blade V]'
+    notes: 'Preceding Skill: [Chosen Blade V] Attack damage 1757% x7 Critical Hit Rate +50% Maximum 10 targets Stiffness before
+      attack Knockdown on last attack hits Down Attack 71.6% damage in PvP only'
+  absolute_descent:
+    name: 'Absolute: Descent'
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your dual glaives
+    protection: SA
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Descent V]'
+    notes: 'Preceding Skill: [Descent V] Attack 1 damage 3090% x2 Attack 2 damage 3090% x2 Critical Hit Rate +100% Maximum
+      10 targets Super Armor during the skill Knockdown on hits (PvE only) Spin the target on hits (PvE only) Pull in the
+      target on hits (PvE only) Down Attack Air Attack 59.67% damage in PvP only Attack 1 damage 4807% x2 Attack 2 damage
+      4807% x4 Attack 3 damage 4807% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill
+      Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000
+      for 60 sec when using the skill All Damage Reduction -20 for 20 sec on hits All Evasion -60 for 20 sec on hits All Accuracy
+      -60 for 20 sec on hits Super Armor Knockdown on last attack hits Push the target on hits (PvE only) Down Attack Air
+      Attack 41.41% damage in PvP only Dismount target on hits. Injures target with 100% of the damage of a hit.'
+  absolute_haladie_assault:
+    name: 'Absolute: Haladie Assault'
+    input: ↑ + F Can combo into forward Sand Warp or Piercing Tornado during the skill in Succession
+    keys:
+    - w
+    - f
+    protection: iframe
+    cc:
+    - down_attack
+    - spin
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Haladie Assault IV]'
+    notes: 'Preceding Skill: [Haladie Assault IV] Spin attack damage 1828% x2 Slash attack damage 1828% x2 Critical Hit Rate
+      +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Super
+      Armor during the skill Invincible before attack No collision while moving Down Attack 59.67% damage in PvP only'
+  absolute_haladie_throw:
+    name: 'Absolute: Haladie Throw'
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Haladie Throw IV]'
+    notes: 'Preceding Skill: [Haladie Throw IV] Haladie attack damage 2220% x1 Arid Assault ''s damage 1233% Critical Hit
+      Rate +20% Maximum 10 targets All AP +20 for 10 sec on hits (Nullified during cooldown) Stiffness on haladie hits (Nullified
+      during cooldown) 59.67% damage in PvP only'
+  absolute_hourglass_of_death:
+    name: 'Absolute: Hourglass of Death'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: iframe
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Hourglass of Death V]'
+    notes: 'Preceding Skill: [Hourglass of Death V] Attack damage 5951% x2 Critical Hit Rate +100% Maximum 10 targets All
+      AP +20 for 10 sec when using the skill Super Armor -> Invincible -> Super Armor during the skill Bound on hits (PvE
+      only) Down Attack 49.98% damage in PvP only'
+  absolute_piercing_tornado:
+    name: 'Absolute: Piercing Tornado'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Piercing Tornado V]'
+    notes: 'Preceding Skill: [Piercing Tornado V] Attack damage 1694% x1, max 4 hits Critical Hit Rate +20% Maximum 10 targets
+      Recover 60 MP per hit Super Armor during the skill Floating on hits Air Attack 71.6% damage in PvP only'
+  absolute_purge:
+    name: 'Absolute: Purge'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - pull
+    - air_attack
+    - spin
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Purge VI]'
+    notes: 'Preceding Skill: [Purge VI] Attack damage 3192% x2 Critical Hit Rate +100% Maximum 10 targets Floating on hits
+      Pull in targets before attack (PvE only) Spin the target before attack (PvE only) Air Attack Air Smash 35.8% damage
+      in PvP only'
+  absolute_quicksand:
+    name: 'Absolute: Quicksand'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: FG
+    cc:
+    - knockdown
+    - bound
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Quicksand V]'
+    notes: 'Preceding Skill: [Quicksand V] Attack damage 1073% x11 Critical Hit Rate +50% Maximum 10 targets Forward Guard
+      during the skill Stun on hits (PvE only) Knockdown on last attack hits (PvE only) Down Attack 71.6% damage in PvP only
+      Attack 1 damage 3237% x2 Cyclone attack damage 3237% x9 Last attack damage 3237% x1 Critical Hit Rate +100% (PvE only)
+      Critical Hit Rate +50% (PvP only) Maximum 10 targets All AP +30 for 60 sec when using the skill Attack Speed +25% for
+      60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Attack Speed -10% for 5 sec on hits
+      Casting Speed -10% for 5 sec on hits Movement Speed -10% for 5 sec on hits Super Armor Bound on cyclone attack hits
+      Knockdown on last attack hits Pull in the target on hits Down Attack 27.21% damage in PvP only Dismount target on hits.
+      Injures target with 50% of the damage of a hit.'
+  absolute_ridge_reaver:
+    name: 'Absolute: Ridge Reaver'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Ridge Reaver IV]'
+    notes: 'Preceding Skill: [Ridge Reaver IV] Attack damage 3308% x2 Maximum 10 targets Increased attack area Super Armor
+      during the skill Knockdown on hits (PvE only) Down Attack Air Attack Down Smash 71.6% damage in PvP only'
+  absolute_rupture:
+    name: 'Absolute: Rupture'
+    input: RMB RMB after Shadow Splitter or Purge
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Rupture III]'
+    notes: 'Preceding Skill: [Rupture III] Attack damage 3360% x2 Explosion attack damage 3473% x2 Critical Hit Rate +50%
+      Maximum 10 targets Knockback on hits Floating on explosion attack hits (PvE only) Down Attack Air Attack Increased attack
+      area 50.34% normal attack damage in PvP only 65.37% explosion damage in PvP only'
+  absolute_sand_divider:
+    name: 'Absolute: Sand Divider'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Sand Divider V]'
+    notes: 'Preceding Skill: [Sand Divider V] Attack damage 2070% x2 Critical Hit Rate +100% (Nullified during cooldown) Maximum
+      10 targets Floating on hits (Nullified during cooldown) Air Attack 59.67% damage in PvP only'
+  absolute_sand_slicer:
+    name: 'Absolute: Sand Slicer'
+    input: LMB after certain skills Can be used with your dual glaives
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Sand Slicer III]'
+    notes: 'Preceding Skill: [Sand Slicer III] Attack damage 1740% x2 Critical Hit Rate +100% Maximum 10 targets Attack Speed
+      +10% for 10 sec when using the skill Stun on hits Down Attack Down Smash 71.6% damage in PvP only'
+  absolute_shadow_splitter:
+    name: 'Absolute: Shadow Splitter'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    description: 'Preceding Skill: [Shadow Splitter IV]'
+    notes: 'Preceding Skill: [Shadow Splitter IV] Attack damage 1500% x2 Maximum 10 targets Recover 30 HP per hit All Damage
+      Reduction -20 for 5 sec on hits 59.67% damage in PvP only'
+  absolute_shamshir_training:
+    name: 'Absolute: Shamshir Training'
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - spin
+    description: 'Preceding Skill: [Shamshir Training X]'
+    notes: 'Preceding Skill: [Shamshir Training X] Standing or forward attack 1 damage 2473% x1 Standing or forward attack
+      2 damage 2473% x1 Standing or forward attack 3 damage 2473% x1 Lateral attack damage 2473% x1, max 2 hits Sprint attack
+      damage 2473% x1 Jumping attack damage 2473% x1, max 2 hits Critical Hit Rate +20% Maximum 10 targets Recover 70 MP per
+      hit Floating on jump spin attack hits Down Attack 95.47% damage in PvP only'
+  absolute_tail_cutter:
+    name: 'Absolute: Tail Cutter'
+    input: RMB after certain skills
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Tail Cutter III]'
+    notes: 'Preceding Skill: [Tail Cutter III] Attack damage 2648% x2 Maximum 10 targets Recover 100 MP per hit (Nullified
+      during cooldown) Super Armor during the skill (Nullified during cooldown) Down Attack 71.6% damage in PvP only Damage
+      reduced during cooldown'
+  arid_assault:
+    name: Arid Assault
+    input: E while the AP increase buff is active RMB after hitting Haladie Throw E after certain skills to perform instantly
+      Can be used with your dual glaives
+    keys:
+    - e
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Haladie Throw II]'
+    notes: 'Preceding Skill: [Haladie Throw II] Attack damage applies Haladie Throw ''s level damage x3 Floating on hits Air
+      Attack Removes All AP Increase buffs when using skills. Attack damage applies Haladie Throw ''s level damage x3 Floating
+      on hits (Nullified during cooldown) Air Attack All AP Increase Buffs are removed when using the skills while on cooldown.'
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  chosen_blade:
+    name: Chosen Blade
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 15000
+    description: Activate the sand magic within your haladie to draw forth a biting wind that slashes nearby enemies.
+    notes: Activate the sand magic within your haladie to draw forth a biting wind that slashes nearby enemies. Attack damage
+      1428% x7 Critical Hit Rate +50% Maximum 10 targets Stiffness before attack Knockdown on last attack hits Down Attack
+      71.6% damage in PvP only
+  collapse:
+    name: Collapse
+    input: ↓ + RMB ↓ + RMB during Serpent's Coil to perform from attack 2
+    keys:
+    - s
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - pull
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 6000
+    description: Call upon the serpent to raise and drop sinners.
+    notes: Call upon the serpent to raise and drop sinners. Attack 1 damage 4498% x2 Attack 2 damage 7496% x2 Critical Hit
+      Rate +50% Maximum 10 targets Attack Speed +10% for 10 sec when using the skill Pull in targets before attack (PvE only)
+      Spin the target before attack (PvE only) Floating on first hit Down Attack Air Attack 33.42% damage in PvP only Attack
+      1 damage 5300% x2 Attack 2 damage 10136% x2 Critical Hit Rate +50% Maximum 10 targets Attack Speed +10% for 10 sec when
+      using the skill Increased attack area Super Armor Pull in targets before attack (PvE only) Spin the target before attack
+      (PvE only) Floating on first hit Down Attack Air Attack 27.45% damage in PvP only Dismount target on hits. Injures target
+      with 30% of the damage of a hit. Doesn't activate if performing a combo using Serpent's Coil.
+  constriction:
+    name: Constriction
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - bound
+    cooldown_ms: 18000
+    description: Constrict your foe in the inescapable serpent's embrace as fodder for the serpent.
+    notes: Constrict your foe in the inescapable serpent's embrace as fodder for the serpent. Attack damage 1023% x3 Last
+      attack damage 1023% x1 Maximum 10 targets Super Armor on Grapple/Grapple fails Bound on Grapple Applies only the attack
+      damage on Grapple fails. 71.6% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting
+      Speeds.
+  core_collapse:
+    name: 'Core: Collapse'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Collapse III after learning this skill: Forward Guard during
+      the skill Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_dune_slash:
+    name: 'Core: Dune Slash'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Dune Slash III after learning this skill: Super Armor during
+      the skill Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_ensnaring_sands:
+    name: 'Core: Ensnaring Sands'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Ensnaring Sands IV after learning this skill: Knockdown on last
+      attack hits'
+    keys:
+    - hotbar
+  core_inquisition:
+    name: 'Core: Inquisition'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Inquisition IV after learning this skill: Forward Guard during
+      the skill'
+    keys:
+    - hotbar
+  core_serpent_s_coil:
+    name: 'Core: Serpent''s Coil'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Serpent''s Coil III after learning this skill: Knockdown on attack
+      1 hits'
+    keys:
+    - hotbar
+  core_sin_splitter:
+    name: 'Core: Sin Splitter'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Sin Splitter IV after learning this skill: Bound on hits'
+    keys:
+    - hotbar
+  crown_kick:
+    name: Crown Kick
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Spin and use the momentum to deliver a strong kick to the foe's crown.
+    notes: Spin and use the momentum to deliver a strong kick to the foe's crown. Spin attack damage 4667% x2 Last attack
+      damage 4667% x2 Critical Hit Rate +50% Maximum 10 targets All AP +20 for 10 sec when using the skill Recover 70 MP per
+      hit Forward Guard during the skill Air Attack on spin attack hits Down Attack on last attack hits 31.86% damage in PvP
+      only Spin attack damage 2667% x2 Last attack damage 8001% x2 Critical Hit Rate +50% Maximum 10 targets Increased attack
+      area All AP +20 for 10 sec when using the skill Recover 70 MP per hit Forward Guard during the skill Air Attack on spin
+      attack hits Down Attack on last attack hits 31.86% damage in PvP only Dismount target on hits. Injures target with 10%
+      of the damage of a hit.
+  descent:
+    name: Descent
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your dual glaives
+    protection: SA
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 12000
+    description: Plant the shamshir imbued with the haladie's power into the ground to damage all surrounding foes.
+    notes: Plant the shamshir imbued with the haladie's power into the ground to damage all surrounding foes. Attack 1 damage
+      2745% x2 Attack 2 damage 2745% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Knockdown
+      on hits (PvE only) Spin the target on hits (PvE only) Pull in the target on hits (PvE only) Down Attack Air Attack 59.67%
+      damage in PvP only Attack 1 damage 4270% x2 Attack 2 damage 4270% x4 Attack 3 damage 4270% x3 Critical Hit Rate +100%
+      Maximum 10 targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical
+      Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill All Damage Reduction -20
+      for 20 sec on hits All Evasion -60 for 20 sec on hits All Accuracy -60 for 20 sec on hits Super Armor Knockdown on last
+      attack hits Push the target on hits (PvE only) Down Attack Air Attack 41.41% damage in PvP only Dismount target on hits.
+      Injures target with 100% of the damage of a hit.
+    keys:
+    - hotbar
+  dominion_slash:
+    name: Dominion Slash
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Rupture III]'
+    notes: 'Preceding Skill: [Rupture III] Attack damage 4957% x2 Explosion attack damage 5411% x2 Critical Hit Rate +50%
+      Maximum 10 targets Forward Guard during the skill Floating on hits (PvE only) Air Attack on attack 1 hits Down Attack
+      on attack 2 hits 47.74% damage in PvP only'
+  dual_glaives_training:
+    name: Dual Glaives Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB
+      while jumping to perform jump attacks LMB while sprinting to perform sprint attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    description: A basic attack when wielding your dual glaives.
+    notes: A basic attack when wielding your dual glaives. Standing attack damage 1428% x1, max 5 hits Forward attack damage
+      1428% x3, max 3 hits Lateral attack damage 1428% x1, max 2 hits Sprint attack damage 1428% x1 Jump attack damage 1428%
+      x3 Maximum 10 targets Recover 80 MP per hit Attack Speed +10% for 10 sec when using standing attacks 3 and 5, forward
+      attack 2, and lateral attack 2 71.6% damage in PvP only
+  dune_slash:
+    name: Dune Slash
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Sharply slash as if cutting through the sands.
+    notes: Sharply slash as if cutting through the sands. Attack damage 3938% x2 Last attack damage 3938% x2 Critical Hit
+      Rate +50% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Stiffness on hits Knockdown on last attack
+      hits Down Attack 35.8% damage in PvP only Attack damage 6582% x1 Last attack damage 6582% x2 Critical Hit Rate +50%
+      Maximum 10 targets Increased attack area All AP +10 for 20 sec when using the skill All AP -10 for 20 sec on hits All
+      Damage Reduction -20 for 10 sec on hits Stiffness on hits Knockdown on last attack hits Down Attack 33.42% damage in
+      PvP only Dismount target on hits. Injures target with 20% of the damage of a hit.
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_twisted_authority:
+    name: 'Elvia: Twisted Authority'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Wields your dual glaives to inflict damage on your foes, then instantly dash forward to with a mighty slash.
+    notes: Wields your dual glaives to inflict damage on your foes, then instantly dash forward to with a mighty slash. Attack
+      damage 11790% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE
+      only) All AP -20 for 10 sec on hits Recover 315 MP per hit Super Armor during the skill Down Attack 23.87% damage in
+      PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  ensnaring_sands:
+    name: Ensnaring Sands
+    input: 'SHIFT + LMB SHIFT + LMB after Flow: Voracity or Flow: Condemnation to perform attack 2'
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    cooldown_ms: 7000
+    description: Create ensnaring sands that trap all who fall in.
+    notes: Create ensnaring sands that trap all who fall in. Attack 1 damage 3406% x2 Attack 2 damage 3406% x6 Last attack
+      damage 5956% x2 Critical Hit Rate +65% Maximum 10 targets Attack Speed -15% for 5 sec on hits Casting Speed -15% for
+      5 sec on hits Movement Speed -15% for 5 sec on hits Super Armor during the skill Pull in the target on attack 1 hits
+      (PvE only) Knockdown on attack 3 hits (PvE only) Down Attack 45.35% damage in PvP only
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your dual glaives
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Roll to evade opponent's attacks.
+    notes: Roll to evade opponent's attacks. Invincible during the skill (PvE only)
+  flow_condemnation:
+    name: 'Flow: Condemnation'
+    input: 'LMB during Ensnaring Sands, Collapse LMB + RMB during Serpent''s Coil LMB after Dune Slash, Flow: Dune Strike,
+      Flow: Voracity'
+    keys:
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Ensnaring Sands II]'
+    notes: 'Preceding Skill: [Ensnaring Sands II] Attack damage 9405% x2 Critical Hit Rate +100% Maximum 10 targets Super
+      Armor during the skill Knockdown on hits (PvE only) Down Attack Down Smash 35.8% damage in PvP only'
+  flow_dune_strike:
+    name: 'Flow: Dune Strike'
+    input: Hold F after Dune Slash
+    keys:
+    - hold
+    - f
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    description: 'Preceding Skill: [Dune Slash II]'
+    notes: 'Preceding Skill: [Dune Slash II] Attack damage 8277% x2 Critical Hit Rate +50% Maximum 10 targets Forward Guard
+      during the skill Air Attack Down Attack 41.77% damage in PvP only'
+  flow_hourglass_of_recall:
+    name: 'Flow: Hourglass of Recall'
+    input: F F to move to the saved location if available Can be used with your shamshir
+    keys:
+    - f
+    protection: SA
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Hourglass of Defiance II]'
+    notes: 'Preceding Skill: [Hourglass of Defiance II] Can cast Hourglass of Defiance during skill use. Change to dual glaives
+      when used with shamshir. Super Armor on return'
+  flow_sand_prison:
+    name: 'Flow: Sand Prison'
+    input: Automatically activates when using Quicksand
+    protection: none
+    cc:
+    - pull
+    - spin
+    description: 'Preceding Skill: [Quicksand V]'
+    notes: 'Preceding Skill: [Quicksand V] Maximum 10 targets Applies the following effects when using Quicksand : Movement
+      Speed -20% for 5 sec on hits All Accuracy -48 for 5 sec on hits Pull in the target on hits (PvE only) Spin the target
+      on hits (PvE only)'
+    keys:
+    - hotbar
+  flow_sand_warp:
+    name: 'Flow: Sand Warp'
+    input: Direction + SHIFT Switch to dual glaives if holding shamshir
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Sand Warp]'
+    notes: 'Preceding Skill: [Sand Warp] All attack damage applies Dual Glaives Training''s damage x1 All Evasion +60 for
+      10 sec when using the skill Invincible -> Super Armor during the skill No collision while moving'
+  flow_voracity:
+    name: 'Flow: Voracity'
+    input: 'Changed the last attack of Serpent''s Coil to Flow: Voracity.'
+    protection: SA
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Serpent''s Coil III]'
+    notes: 'Preceding Skill: [Serpent''s Coil III] Attack damage 10185% x2 Critical Hit Rate +100% Maximum 10 targets Recover
+      600 HP per hit Super Armor during the skill Down Attack Down Smash 35.8% damage in PvP only'
+    keys:
+    - hotbar
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  haladie_assault:
+    name: Haladie Assault
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: iframe
+    cc:
+    - down_attack
+    - spin
+    cooldown_ms: 6000
+    description: Roll forward then swiftly slash the enemy.
+    notes: Roll forward then swiftly slash the enemy. Spin attack damage 1478% x2 Slash attack damage 1478% x2 Critical Hit
+      Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All Damage Reduction -15 for 10 sec on hits
+      Super Armor during the skill Invincible before attack No collision while moving Down Attack 59.67% damage in PvP only
+  haladie_throw:
+    name: Haladie Throw
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 4000
+    description: Anything hit by the spinning haladie is destroyed. Can be used continuously.
+    notes: Anything hit by the spinning haladie is destroyed. Can be used continuously. Haladie attack damage 1794% x1 Arid
+      Assault 's damage 997% Critical Hit Rate +20% Maximum 10 targets All AP +20 for 10 sec on hits (Nullified during cooldown)
+      Stiffness on haladie hits (Nullified during cooldown) 59.67% damage in PvP only
+  hourglass_of_death:
+    name: Hourglass of Death
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: iframe
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 10000
+    description: Use the haladie's power to soar above the target's head, then slam downwards.
+    notes: Use the haladie's power to soar above the target's head, then slam downwards. Attack damage 5412% x2 Critical Hit
+      Rate +100% Maximum 10 targets All AP +18 for 10 sec when using the skill Super Armor -> Invincible -> Super Armor during
+      the skill Bound on hits (PvE only) Down Attack 49.98% damage in PvP only
+  hourglass_of_defiance:
+    name: Hourglass of Defiance
+    input: F Move to the saved location if available Can be used with your dual glaives
+    keys:
+    - f
+    protection: SA
+    cooldown_ms: 25000
+    description: Save your current location within the sands and call forth a gust of sand. You can return to the saved location
+      as long as it is within a certain distance.
+    notes: Save your current location within the sands and call forth a gust of sand. You can return to the saved location
+      as long as it is within a certain distance. Saves your current location for 20 sec when using the skill. Returns to
+      the saved location upon using the skill once more. Saved location must be within a certain distance to return. Super
+      Armor while casting Saves your current location for 20 sec when using the skill. Returns to the saved location upon
+      using the skill once more. Saved location must be within a certain distance to return. Super Armor while casting Applies
+      the following effects on return. Attack damage 2431% x2 Maximum 10 targets Super Armor on return 90.58% damage in PvP
+      only
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  inquisition:
+    name: Inquisition
+    input: ↓ + LMB Hold LMB to continue the skill
+    keys:
+    - s
+    - lmb
+    - hold
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 4000
+    description: Attack mercilessly with the dual glaives to interrogate sinners.
+    notes: Attack mercilessly with the dual glaives to interrogate sinners. Attack damage 6204% x1, max 2 hits Critical Hit
+      Rate +25% Maximum 10 targets Recover 125 HP per hit Down Attack Down Smash on last attack hits 47.74% damage in PvP
+      only
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  mirage:
+    name: Mirage
+    input: ↓ + Q LMB on blocks during Retribution with your dual glaives
+    keys:
+    - s
+    - q
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Aal''s Protection]'
+    notes: 'Preceding Skill: [Aal''s Protection] Counter damage applies basic attack damage x1 Critical Hit Rate +20% All
+      AP +20 for 10 sec on blocks Forward Guard during the skill Super Armor on attacks Stun on counter attack hits Down Attack'
+  mirage_assault:
+    name: Mirage Assault
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Mirage]'
+    notes: 'Preceding Skill: [Mirage] Attack damage 7740% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard when
+      using the skill Super Armor on attacks Knockdown on hits (PvE only) Down Attack 35.8% damage in PvP only'
+  paradise_beckons:
+    name: Paradise Beckons
+    input: Passive
+    protection: none
+    cc:
+    - air_attack
+    description: Cast the Curse of Sand upon your foes with your haladie, siphoning their power to bless your weapon.
+    notes: 'Cast the Curse of Sand upon your foes with your haladie, siphoning their power to bless your weapon. Curse your
+      foes and bless your Hashashin weapon with sand magic. - All Recovery effects -10% for 1 sec on hits - Air Attack damage
+      +2.5% for 5 sec on hits Applied for the following skills: - Purge, Ridge Reaver, Aal''s Dominion, Prime: Dune Slash,
+      Dominion Slash, Collapse, Dune Slash, Flow: Dune Strike, Silent Breach, Piercing Fang (Effect nullified during cooldown)'
+    keys:
+    - hotbar
+  paradise_surge:
+    name: Paradise Surge
+    input: ↑ + F LMB to attack
+    keys:
+    - w
+    - f
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 18000
+    description: Close the distance with your foe in an instant to lead them to paradise.
+    notes: Close the distance with your foe in an instant to lead them to paradise. Attack damage 1816% x2 Maximum 10 targets
+      Recover 60 MP per hit Invincible -> Super Armor during the skill (Nullified during cooldown) Invincible before attack
+      Stiffness on hits (PvE only) (Nullified during cooldown) Down Attack 83.54% damage in PvP only Attack damage 4363% x1,
+      max 7 hits Last attack damage 6488% x3 Critical Hit Rate +100% (PvE only) Critical Hit Rate +100% on last attacks Maximum
+      10 targets All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit
+      Rate +30% for 60 sec when using the skill Super Armor Knockdown on last attack hits Down Attack 17.54% attack 1 damage
+      in PvP only 75.18% last attack damage in PvP only Dismount target on hits. Injures target with 50% of the damage of
+      a hit.
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  piercing_fang:
+    name: Piercing Fang
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: Swiftly pierce your foe like a serpent.
+    notes: Swiftly pierce your foe like a serpent. Attack damage 3125% x2 Critical Hit Rate +100% Maximum 10 targets 100 poison
+      damage inflicted every 3 sec for 18 sec on hits (Nullified during cooldown) Down Attack Damage reduced during cooldown
+      64.32% damage in PvP only
+  piercing_tornado:
+    name: Piercing Tornado
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: Wrap the body in a fierce, whirling tornado, then quickly spin forward to damage enemies.
+    notes: Wrap the body in a fierce, whirling tornado, then quickly spin forward to damage enemies. Attack damage 1472% x1,
+      max 4 hits Critical Hit Rate +20% Maximum 10 targets Recover 60 MP per hit Super Armor during the skill Floating on
+      hits Air Attack 71.6% damage in PvP only
+  pilgrim_of_the_sands:
+    name: Pilgrim of the Sands
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xi:
+    name: Pilgrim of the Sands XI
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xii:
+    name: Pilgrim of the Sands XII
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xiii:
+    name: Pilgrim of the Sands XIII
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xiv:
+    name: Pilgrim of the Sands XIV
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xix:
+    name: Pilgrim of the Sands XIX
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xv:
+    name: Pilgrim of the Sands XV
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xvi:
+    name: Pilgrim of the Sands XVI
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xvii:
+    name: Pilgrim of the Sands XVII
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xviii:
+    name: Pilgrim of the Sands XVIII
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pilgrim_of_the_sands_xx:
+    name: Pilgrim of the Sands XX
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body that makes one more light and agile.
+    notes: Spell imprinted on the body that makes one more light and agile. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_aal_s_breath:
+    name: 'Prime: Aal''s Breath'
+    input: Can be added to a Quick Slot
+    protection: iframe
+    cooldown_ms: 20000
+    description: 'Preceding Skills: [Succession: Dark Tornado], [Aal''s Breath III]'
+    notes: 'Preceding Skills: [Succession: Dark Tornado], [Aal''s Breath III] Sand Twister attack damage 1680% x1, max 24
+      hits Maximum 10 targets Movement Speed +5% for 7 sec when using the skill Maintains 5 Sand Twister(s) for 10 sec and
+      disguises self as a twister. Disguised as long as Movement Speed increase effect is maintained. The larger the twister,
+      the greater the attack area, damage and duration. Super Armor during the skill Invincible -> Super Armor while disguised
+      59.67% damage in PvP only'
+    keys:
+    - hotbar
+  prime_aal_s_dominion:
+    name: 'Prime: Aal''s Dominion'
+    input: SPACE after certain skills
+    keys:
+    - space
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skills: [Succession: Dark Tornado], [Aal''s Dominion IV]'
+    notes: 'Preceding Skills: [Succession: Dark Tornado], [Aal''s Dominion IV] Attack damage 6312% x2 Critical Hit Rate +100%
+      Maximum 10 targets Increased attack area Floating on hits Air Attack 28.64% damage in PvP only'
+  prime_binding_spirals:
+    name: 'Prime: Binding Spirals'
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Succession: Dark Tornado]'
+    notes: 'Preceding Skill: [Succession: Dark Tornado] Attack 1 damage 3069% x1 Attack 2 damage 3069% x1 Last attack damage
+      3263% x2 Critical Hit Rate +50% Maximum 10 targets Stiffness on attack 1 and 2 hits All Damage Reduction -20 for 10
+      sec on hits Down Attack 68.02% damage in PvP only'
+    keys:
+    - hotbar
+  prime_blade_s_pact:
+    name: 'Prime: Blade''s Pact'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill: [Succession: Dark Tornado]'
+    notes: 'Preceding Skill: [Succession: Dark Tornado] All AP +30 for 30 sec when using the skill All Accuracy +60 for 30
+      sec when using the skill All Evasion +60 for 30 sec when using the skill Attack Speed +15% for 30 sec when using the
+      skill Super Armor during the skill'
+    keys:
+    - hotbar
+  prime_chosen_blade:
+    name: 'Prime: Chosen Blade'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: FG
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Activate the sand magic within your haladie to draw forth a biting wind that slashes nearby enemies.
+    notes: Activate the sand magic within your haladie to draw forth a biting wind that slashes nearby enemies. Attack damage
+      4030% x7 Critical Hit Rate +50% Maximum 10 targets Recover 183 HP per hit Forward Guard during the skill Stiffness before
+      attack (PvE only) Knockdown on last attack hits (PvE only) Down Attack 49.23% damage in PvP only
+  prime_descent:
+    name: 'Prime: Descent'
+    input: SHIFT + C
+    keys:
+    - shift
+    - c
+    protection: SA
+    cc:
+    - knockdown
+    - pull
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 12000
+    description: Plant the shamshir imbued with the haladie's power into the ground to damage all surrounding foes.
+    notes: Plant the shamshir imbued with the haladie's power into the ground to damage all surrounding foes. Attack 1 damage
+      8750% x2 Attack 2 damage 8750% x2 Critical Hit Rate +100% Maximum 10 targets Increased attack area Recover 300 HP per
+      hit Super Armor during the skill Knockdown on hits (PvE only) Spin the target on hits (PvE only) Pull in the target
+      on hits (PvE only) Down Attack Air Attack 36.51% damage in PvP only Attack 1 damage 23054% x2 Attack 2 damage 23054%
+      x4 Attack 3 damage 23054% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Attack
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60
+      sec when using the skill All Damage Reduction -20 for 20 sec on hits All Evasion -60 for 20 sec on hits All Accuracy
+      -60 for 20 sec on hits Super Armor Knockdown on last attack hits Push the target on hits (PvE only) Down Attack Air
+      Attack 11.58% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Dismount
+      target on hits. Injures target with 100% of the damage of a hit.
+  prime_dune_slash:
+    name: 'Prime: Dune Slash'
+    input: C C after certain skills to instantly start from attack 2 or 3 Combo into Sand Warp before attack 1 to instantly
+      start from attack 3
+    keys:
+    - c
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Succession: Dark Tornado]'
+    notes: 'Preceding Skill: [Succession: Dark Tornado] Attack 1 damage 5089% x1 Attack 2 damage 5089% x1 Attack 3 damage
+      5320% x2 Critical Hit Rate +50% Maximum 10 targets Floating on attack 2 and 3 hits Air Attack 33.42% damage in PvP only'
+  prime_piercing_tornado:
+    name: 'Prime: Piercing Tornado'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skills: [Succession: Dark Tornado], [Piercing Tornado V]'
+    notes: 'Preceding Skills: [Succession: Dark Tornado], [Piercing Tornado V] Attack damage 3272% x1, max 4 hits Critical
+      Hit Rate +20% Maximum 10 targets Recover 60 MP per hit Super Armor during the skill Floating on hits Air Attack 40.34%
+      damage in PvP only'
+  prime_purge:
+    name: 'Prime: Purge'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - floating
+    - pull
+    - air_attack
+    - spin
+    cooldown_ms: 7000
+    description: Empower the shamshir with magic and unleash devastation on everything in front.
+    notes: Empower the shamshir with magic and unleash devastation on everything in front. Attack damage 7568% x2 Critical
+      Hit Rate +100% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Forward Guard during the skill Floating
+      on hits Pull in targets before attack (PvE only) Spin the target before attack (PvE only) Air Attack Air Smash 20.99%
+      damage in PvP only
+  prime_quicksand:
+    name: 'Prime: Quicksand'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: FG
+    cc:
+    - knockdown
+    - bound
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 12000
+    description: Draw forth the haladie's energy to create a giant sandstorm.
+    notes: Draw forth the haladie's energy to create a giant sandstorm. Attack damage 3196% x11 Critical Hit Rate +50% Maximum
+      10 targets Recover 29 MP per hit Forward Guard during the skill Stun on first hit Knockdown on last attack hits Down
+      Attack 40.81% damage in PvP only Attack 1 damage 4860% x2 Cyclone attack damage 4860% x9 Last attack damage 4860% x1
+      Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All AP +30 for 60 sec when using
+      the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Attack
+      Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Movement Speed -10% for 5 sec on hits Super Armor
+      Bound on cyclone attack hits Knockdown on last attack hits Pull in the target on hits Down Attack 27.21% damage in PvP
+      only Dismount target on hits. Injures target with 50% of the damage of a hit.
+  prime_ridge_reaver:
+    name: 'Prime: Ridge Reaver'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Empower the shamshir with desert magic and strongly slash your opponent.
+    notes: Empower the shamshir with desert magic and strongly slash your opponent. Attack damage 8547% x2 Critical Hit Rate
+      +50% Maximum 10 targets Critical Hit Rate +30% for 10 sec when using the skill Super Armor during the skill Knockdown
+      on hits (PvE only) Down Attack Air Attack Down Smash 34.44% damage in PvP only
+  prime_sand_slicer:
+    name: 'Prime: Sand Slicer'
+    input: LMB after certain skills
+    keys:
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 3000
+    description: Can be activated while performing another skill. Slash so fast that your back cannot be seen.
+    notes: Can be activated while performing another skill. Slash so fast that your back cannot be seen. Attack damage 5429%
+      x2 Critical Hit Rate +100% Maximum 10 targets Attack Speed +10% for 10 sec when using the skill Invincible -> Super
+      Armor during the skill Stiffness on hits (PvE only) Down Attack Down Smash 50.37% damage in PvP only
+  prime_sand_warp:
+    name: 'Prime: Sand Warp'
+    input: Direction + SHIFT after certain skills
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 3000
+    description: 'Preceding Skills: [Succession: Dark Tornado], [Sand Warp]'
+    notes: 'Preceding Skills: [Succession: Dark Tornado], [Sand Warp] All Evasion +36 for 10 sec when using the skill Invincible
+      at the start of the skill Super Armor Invincible during the skill (PvE only) No collision while moving'
+  prime_savior_of_the_sands:
+    name: 'Prime: Savior of the Sands'
+    input: Passive
+    protection: none
+    description: Spell imprinted on the body enhances agility, allowing faster combos and attacks.
+    notes: Spell imprinted on the body enhances agility, allowing faster combos and attacks. All Accuracy +4
+    keys:
+    - hotbar
+  prime_seer_of_the_sands:
+    name: 'Prime: Seer of the Sands'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill: [Succession: Dark Tornado]'
+    notes: 'Preceding Skill: [Succession: Dark Tornado] Max HP +100'
+    keys:
+    - hotbar
+  prophecy_blade:
+    name: Prophecy Blade
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: SA
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Rupture III]'
+    notes: 'Preceding Skill: [Rupture III] Attack damage 4181% x3 Explosion attack damage 5103% x2 Critical Hit Rate +50%
+      Maximum 10 targets Recover 114 MP per hit Super Armor during the skill 47.74% damage in PvP only'
+  purge:
+    name: Purge
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - pull
+    - air_attack
+    - spin
+    cooldown_ms: 8000
+    description: Empower the shamshir with magic and unleash devastation on everything in front.
+    notes: Empower the shamshir with magic and unleash devastation on everything in front. Attack damage 2631% x2 Critical
+      Hit Rate +100% Maximum 10 targets Floating on hits Pull in targets before attack (PvE only) Spin the target before attack
+      (PvE only) Air Attack Air Smash 35.8% damage in PvP only
+  quicksand:
+    name: Quicksand
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: FG
+    cc:
+    - knockdown
+    - bound
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 12000
+    description: Draw forth the haladie's energy to create a giant sandstorm.
+    notes: Draw forth the haladie's energy to create a giant sandstorm. Attack damage 951% x11 Critical Hit Rate +50% Maximum
+      10 targets Forward Guard during the skill Stun on hits (PvE only) Knockdown on last attack hits (PvE only) Down Attack
+      71.6% damage in PvP only Attack 1 damage 2790% x2 Cyclone attack damage 2790% x9 Last attack damage 2790% x1 Critical
+      Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All AP +30 for 60 sec when using the
+      skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Attack
+      Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Movement Speed -10% for 5 sec on hits Super Armor
+      Bound on cyclone attack hits Knockdown on last attack hits Pull in the target on hits Down Attack 27.21% damage in PvP
+      only Dismount target on hits. Injures target with 50% of the damage of a hit.
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  retribution:
+    name: Retribution
+    input: Q LMB after successful block before the last hit to perform Mirage
+    keys:
+    - q
+    - lmb
+    protection: FG
+    cc:
+    - knockback
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 5000
+    description: Observe and wait on the repenting sinner. Condemn all sinners who do not reform to the serpent.
+    notes: Observe and wait on the repenting sinner. Condemn all sinners who do not reform to the serpent. Attack damage 2762%
+      x5 Last attack damage 5606% x2 Critical Hit Rate +50% Maximum 10 targets Attack Speed +10% for 10 sec when using the
+      skill Recover 100 HP per hit Forward Guard during the skill Pull in the target on attack 1 hits (PvE only) Spin the
+      target on attack 1 hits (PvE only) Knockback on last attack hits (PvE only) Down Attack 42.96% damage in PvP only
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  ridge_reaver:
+    name: Ridge Reaver
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: Clash the haladie and shamshir and slay the enemy using their frictional force.
+    notes: Clash the haladie and shamshir and slay the enemy using their frictional force. Attack damage 2793% x2 Maximum
+      10 targets Increased attack area Super Armor during the skill Knockdown on hits (PvE only) Down Attack Air Attack Down
+      Smash 71.6% damage in PvP only
+  ruler_of_the_sands:
+    name: Ruler of the Sands
+    input: Passive
+    protection: none
+    description: The Hashashin learns how to survive in the desert by moving faster.
+    notes: The Hashashin learns how to survive in the desert by moving faster. Increased Movement Speed and 0 Stamina Sprinting
+      while out of combat in the desert. Increased resistance against desert illnesses.
+    keys:
+    - hotbar
+  rupture:
+    name: Rupture
+    input: RMB RMB after Shadow Splitter or Purge
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: A vertical slash attack that can even cut through shadows. One must always watch their feet even when they
+      think they're safe from the blade.
+    notes: A vertical slash attack that can even cut through shadows. One must always watch their feet even when they think
+      they're safe from the blade. Attack damage 2232% x2 Explosion attack damage 2310% x2 Critical Hit Rate +50% Maximum
+      10 targets Knockback on hits Floating on explosion attack hits (PvE only) Down Attack Air Attack Increased attack area
+      50.34% normal attack damage in PvP only 65.37% explosion damage in PvP only
+  sand_divider:
+    name: Sand Divider
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 3000
+    description: Instantly kick your enemy's chin.
+    notes: Instantly kick your enemy's chin. Attack damage 1803% x2 Critical Hit Rate +100% (Nullified during cooldown) Maximum
+      10 targets Floating on hits (Nullified during cooldown) Air Attack 59.67% damage in PvP only
+  sand_slicer:
+    name: Sand Slicer
+    input: LMB after certain skills Can be used with your dual glaives
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 3000
+    description: Can be activated while performing another skill. Slash so fast that the back cannot be seen.
+    notes: Can be activated while performing another skill. Slash so fast that the back cannot be seen. Attack damage 1402%
+      x2 Critical Hit Rate +70% Maximum 7 targets Attack Speed +10% for 10 sec when using the skill Stun on hits Down Attack
+      Down Smash 71.6% damage in PvP only
+  sand_tornado:
+    name: Sand Tornado
+    input: Can be added to a Quick Slot
+    protection: iframe
+    cc:
+    - stun
+    cooldown_ms: 16000
+    description: 'Preceding Skill: [Sand Slicer III]'
+    notes: 'Preceding Skill: [Sand Slicer III] Attack damage 2610% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor
+      -> Invincible -> Super Armor during the skill Stun on hits (PvE only) No collision while moving 71.6% damage in PvP
+      only'
+    keys:
+    - hotbar
+  sand_warp:
+    name: Sand Warp
+    input: Direction + SHIFT
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 5000
+    description: Create a warp and vanish into it.
+    notes: Create a warp and vanish into it. All Evasion +36 for 10 sec when using the skill Super Armor -> Invincible ->
+      Super Armor during the skill Invincible during the skill (PvE only) No collision while moving All Evasion +36 for 10
+      sec when using the skill Super Armor -> Invincible -> Super Armor during the skill Invincible during the skill (PvE
+      only) No collision while moving
+  seer_of_the_sands:
+    name: Seer of the Sands
+    input: Passive
+    protection: none
+    description: The arcane brand etched upon your flesh bestows the power to wield magic for longer durations.
+    notes: The arcane brand etched upon your flesh bestows the power to wield magic for longer durations. Max MP +150 Max
+      Stamina + 300
+    keys:
+    - hotbar
+  serpent_s_coil:
+    name: Serpent's Coil
+    input: SHIFT + RMB Hold RMB to continue the skill
+    keys:
+    - shift
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - knockdown
+    - stun
+    - down_attack
+    - spin
+    cooldown_ms: 10000
+    description: Spin the dual glaives at an incredible speed, denying foes to come any closer.
+    notes: Spin the dual glaives at an incredible speed, denying foes to come any closer. Attack damage 5575% x1, max 8 hits
+      Last attack damage 5575% x1 Critical Hit Rate +75% Maximum 10 targets All Evasion +60 for 5 sec when using the skill
+      Recover 100 HP per hit Super Armor during the skill Knockdown on attack 1 hits (PvE only) Down Attack 34.73% damage
+      in PvP only Attack 1 damage 11043% x5 Attack 2 damage 11043% x2 Last attack damage 25031% 1, max 6 hits Critical Hit
+      Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the
+      skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill All Accuracy
+      -60 for 10 sec on hits Super Armor Stun on attack 1 hits Knockdown on last attack hits Down Attack 10.98% attacks 1
+      and 2 damage in PvP only 11.93% last attack damage in PvP only Not affected by effects which increase/decrease Attack
+      and/or Casting Speeds. Dismount target on hits. Injures target with 100% of the damage of a hit.
+  shadow_slicer:
+    name: Shadow Slicer
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 16000
+    description: 'Preceding Skill: [Sand Slicer III]'
+    notes: 'Preceding Skill: [Sand Slicer III] Attack 1 damage 2704% x1 Attack 2 damage 2704% x1 Maximum 10 targets Super
+      Armor during the skill Down Attack No collision while moving 71.6% damage in PvP only'
+    keys:
+    - hotbar
+  shadow_splitter:
+    name: Shadow Splitter
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: none
+    description: Rapidly slash twice. Can repeat continuously.
+    notes: Rapidly slash twice. Can repeat continuously. Attack damage 1226% x2 Maximum 10 targets Recover 26 HP per hit All
+      Damage Reduction -15 for 5 sec on hits 59.67% damage in PvP only
+  shamshir_training:
+    name: Shamshir Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - spin
+    description: A basic slashing attack with your shamshir.
+    notes: A basic slashing attack with your shamshir. Standing or forward attack 1 damage 2324% x1 Standing or forward attack
+      2 damage 2324% x1 Standing or forward attack 3 damage 2324% x1 Lateral attack damage 2324% x1, max 2 hits Sprint attack
+      damage 2324% x1 Jumping attack damage 2324% x1, max 2 hits Critical Hit Rate +20% Maximum 10 targets Recover 65 MP per
+      hit Floating on jump spin attack hits Down Attack 95.47% damage in PvP only
+  silent_breach:
+    name: Silent Breach
+    input: SPACE
+    keys:
+    - space
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: Vanish for an instant, then strike your foe upwards with the dual glaives.
+    notes: Vanish for an instant, then strike your foe upwards with the dual glaives. Attack damage 5998% x2 Critical Hit
+      Rate +100% Maximum 10 targets Super Armor while moving Floating on hits Air Attack Down Attack 37% damage in PvP only
+  sin_splitter:
+    name: Sin Splitter
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: With sharp blades which suffer no evil, destroy all sin.
+    notes: With sharp blades which suffer no evil, destroy all sin. Attack damage 5111% x1, max 3 hits Critical Hit Rate +30%
+      Maximum 10 targets Recover 70 MP per hit Super Armor during the skill Bound on hits (PvE only) Down Attack Air Attack
+      No collision while moving 38.19% damage in PvP only
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  succession_arid_assault:
+    name: 'Succession: Arid Assault'
+    input: E RMB after Haladie Throw hits E while the AP Increase buff is active during cooldown E after certain skills to
+      perform instantly
+    keys:
+    - e
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skills: [Succession: Dark Tornado], [Haladie Throw II]'
+    notes: 'Preceding Skills: [Succession: Dark Tornado], [Haladie Throw II] Attack damage applies Haladie Throw ''s level
+      damage x3 Floating on hits (Nullified during cooldown) Air Attack All AP Increase Buffs are removed when using the skills
+      while on cooldown.'
+  succession_dark_tornado:
+    name: 'Succession: Dark Tornado'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill: [Traces of the Dark Prophet]'
+    notes: 'Preceding Skill: [Traces of the Dark Prophet] Become one with the Dark Tornado to confuse the enemy''s vision
+      and ambush them. The following skills will be empowered in Succession. - Sand Warp, Absolute: Haladie Assault, Arid
+      Assault The following skills will be performed faster in Succession. - Sand Warp, Arid Assault - You must first reset
+      your skills in order to learn Succession: Dark Tornado. - You cannot learn or use awakening skills if you have learned
+      Succession: Dark Tornado. - You cannot learn Succession skills if you have learned Absolute skills. - You cannot learn
+      Absolute skills if you have learned Succession skills.'
+    keys:
+    - hotbar
+  succession_haladie_assault:
+    name: 'Succession: Haladie Assault'
+    input: ↑ + F Can combo into forward Sand Warp during the skill
+    keys:
+    - w
+    - f
+    protection: iframe
+    cc:
+    - down_attack
+    - spin
+    cooldown_ms: 6000
+    description: 'Preceding Skills: [Succession: Dark Tornado], [Haladie Assault IV]'
+    notes: 'Preceding Skills: [Succession: Dark Tornado], [Haladie Assault IV] Spin attack damage 1828% x2 Slash attack damage
+      1828% x2 Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All Damage Reduction
+      -20 for 10 sec on hits Super Armor during the skill Invincible before attack No collision while moving Down Attack 59.67%
+      damage in PvP only'
+  succession_hourglass_of_death:
+    name: 'Succession: Hourglass of Death'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: iframe
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skills: [Dark Tornado], [Absolute: Hourglass of Death]'
+    notes: 'Preceding Skills: [Dark Tornado], [Absolute: Hourglass of Death] Attack damage 100% x2 Maximum 10 targets All
+      AP +20 for 10 sec when using the skill Forward Guard during the skill Invincible on airborne moves Bound on hits Down
+      Attack 77.57% damage in PvP only'
+  succession_hourglass_of_defiance:
+    name: 'Succession: Hourglass of Defiance'
+    input: 'F Move to the saved location if available Create a whirlwind of sand where you used Succession: Arid Assault'
+    keys:
+    - f
+    protection: SA
+    cooldown_ms: 25000
+    description: 'Preceding Skills: [Dark Tornado], [Hourglass of Defiance III]'
+    notes: 'Preceding Skills: [Dark Tornado], [Hourglass of Defiance III] Saves your current location for 20 sec when using
+      the skill. Returns to the saved location upon using the skill once more. Saved location must be within a certain distance
+      to return. Super Armor while casting Applies the following effects on return. Attack damage 2431% x2 Maximum 10 targets
+      Super Armor on return 90.58% damage in PvP only'
+  succession_sand_warp:
+    name: 'Succession: Sand Warp'
+    input: Direction + SHIFT Can be performed as a combo
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Succession: Dark Tornado]'
+    notes: 'Preceding Skill: [Succession: Dark Tornado] All Evasion +36 for 10 sec when using the skill Super Armor -> Invincible
+      -> Super Armor during the skill Invincible during the skill (PvE only) No collision while moving'
+  tail_cutter:
+    name: Tail Cutter
+    input: RMB after certain skills
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 5000
+    description: Showing one's back to Hashashin means certain death.
+    notes: Showing one's back to Hashashin means certain death. Attack damage 2064% x2 Maximum 7 targets Recover 80 MP per
+      hit (Nullified during cooldown) Super Armor during the skill (Nullified during cooldown) Down Attack 71.6% damage in
+      PvP only Damage reduced during cooldown
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  traces_of_the_dark_prophet:
+    name: Traces of the Dark Prophet
+    input: Passive
+    protection: none
+    description: Hashashin Succession
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  ultimate_sand_warp:
+    name: 'Ultimate: Sand Warp'
+    input: Direction + SHIFT during other skills
+    keys:
+    - shift
+    protection: iframe
+    description: 'Preceding Skill: [Sand Warp]'
+    notes: 'Preceding Skill: [Sand Warp] Invincible at the start of the skill Super Armor Invincible during the skill (PvE
+      only) Collision check while moving forward during certain skills No character collision while moving backward or laterally'
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  way_of_aal:
+    name: Way of Aal
+    input: Passive
+    protection: iframe
+    description: 'Preceding Skill: [Paradise Surge]'
+    notes: 'Preceding Skill: [Paradise Surge] Grants the Way of Aal buff for 8 sec upon using Paradise Surge. Applies the
+      following effects upon consuming the Way of Aal buff and using Paradise Surge during cooldown : - Nullifies distance
+      reduction effects - Applies Super Armor - Invincible before attack (PvE only) - Consumes 300 Stamina per attack'
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar

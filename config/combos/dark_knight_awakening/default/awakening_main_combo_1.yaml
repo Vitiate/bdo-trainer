@@ -1,0 +1,33 @@
+combo_id: awakening_main_combo_1
+class: Dark Knight
+spec: Awakening
+bundle_id: default
+category: pve
+name: Awakening Main Combo 1
+description: Standard Awakening pack-clear combo from the guide.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: unveiled_dagger
+  note: Start the combo and flow into movement.
+- skill: air_strike
+  note: Engage and continue forward.
+- skill: furia_di_vedir
+  note: Hold to continue movement into the pack.
+- skill: spirit_legacy
+  note: Use Legacy; if it is on cooldown, substitute Trap of Vedir.
+- skill: trap_of_vedir
+  note: Alternative to Spirit Legacy when Legacy is on cooldown.
+- skill: shattering_darkness
+  note: Main damage follow-w.
+- skill: flow_bombardment
+  hold_ms: 1500
+  note: Flow from Shattering Darkness.
+- skill: flow_root_of_catastrophe
+  hold_ms: 1500
+  note: Second held flow.
+- skill: seed_of_catastrophe
+  note: Heavy AoE finisher.
+- skill: root_of_catastrophe
+  hold_ms: 1500
+  note: Finish the combo with the held Root follow-w.

@@ -1,0 +1,23 @@
+combo_id: awakening_pack_to_pack_movement
+class: Dark Knight
+spec: Awakening
+bundle_id: default
+category: movement
+name: Awakening Pack to Pack Movement
+description: 'Pack-to-pack movement route from the Awakening quick PvE guide. Chain pre-awakening dashes and engage with Air
+  Strike into Furia di Vedir.
+
+  '
+difficulty: beginner
+combo_window_ms: 250
+steps:
+- skill: shadow_bullet
+  note: Initial dash toward the next pack.
+- skill: smoky_haze
+  note: Follow-w dash to keep speed and protection.
+- skill: unveiled_dagger
+  note: Bridge into the engage; can be skipped if already close.
+- skill: air_strike
+  note: Main engage; ties directly into your main Awakening combo.
+- skill: furia_di_vedir
+  note: Continue forward into the center of the pack after Air Strike.

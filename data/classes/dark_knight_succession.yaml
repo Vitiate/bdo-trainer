@@ -1,0 +1,568 @@
+# Dark Knight — Succession
+# Class definition (skills only). Ships with BDO Trainer.
+# User-edited combos and loadouts live in config/combos/dark_knight_succession/.
+
+class: Dark Knight
+spec: Succession
+skills:
+  succession_wrath_of_vedir:
+    name: 'Succession: Wrath of Vedir'
+    input: Passive
+    keys: []
+    protection: null
+    cc: []
+    damage: none
+    cooldown_ms: 0
+    description: Passive skill that enables Succession. Allows the Dark Knight to fully absorb the power of the Vedir and
+      use the kriegsmesser more agilely. Grants access to all Prime skills. Dusk can be used at any time while using Succession
+      skills.
+    notes: Requires resetting all skills first. Incompatible with Awakening and Absolute skills. Requires Thorn of Black Rose
+      to unlock.
+  prime_spirit_absorption:
+    name: 'Prime: Spirit Absorption'
+    input: Hotbar Only (Quick Slot)
+    keys:
+    - hotbar
+    protection: SA
+    cc: []
+    damage: none
+    cooldown_ms: 180000
+    description: Succession version of Overlord. Imbue your kriegsmesser with the power of combusted spirits. Grants Attack
+      Speed +30%, Movement Speed +30%, Critical Hit Rate +24%, All Accuracy +80 for 30 seconds. Super Armor during the skill.
+    flows_into: []
+    notes: '3 minute cooldown. Preceding Skill: Succession: Wrath of Vedir. Pure buff — use before engaging.'
+  prime_ravage_rake:
+    name: 'Prime: Ravage Rake'
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - spin
+    cc_notes: Spin the target on attack 2 hits (PvE only). Down Attack.
+    damage: high
+    cooldown_ms: 5000
+    description: Deliver a wide slash with your kriegsmesser to all enemies in front. Forward Guard during the skill. Can
+      be performed instantly after certain skills via LMB + RMB.
+    flows_into: []
+    notes: 'Max rank: Prime: Ravage Rake IV. Recovers 128 HP per hit. Strong filler in Succession rotation.'
+  prime_enforcement:
+    name: 'Prime: Enforcement'
+    input: ↓ + RMB
+    keys:
+    - down
+    - rmb
+    protection: null
+    cc:
+    - stiffness
+    cc_notes: Stiffness on hits. Down Attack.
+    damage: high
+    cooldown_ms: 5000
+    description: Powerfully slash enemies in front horizontally to inflict heavy damage. Stiffness on hits.
+    flows_into: []
+    notes: 'Max rank: Prime: Enforcement III. No protection listed on base skill.'
+  prime_wheel_of_fortune:
+    name: 'Prime: Wheel of Fortune'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - floating
+    cc_notes: Floating on hits. Air Attack.
+    damage: very_high
+    cooldown_ms: 6000
+    description: Draw from the energy of nature around to attack with a powerful blade strike. Super Armor during the skill.
+      All Evasion +36 for 10s when using.
+    flows_into: []
+    notes: 'Max rank: Prime: Wheel of Fortune IV. Can be added to Quick Slot. Core damage skill for Succession DK.'
+  prime_kamasylvia_slash:
+    name: 'Prime: Kamasylvia Slash'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    cc_notes: Knockdown on hits. Spin the target (PvE only). Down Attack. Charged version has increased area.
+    damage: very_high
+    cooldown_ms: 8000
+    description: 'Gather the energy of nature, then unleash it before you. Damage varies on the amount of energy gathered.
+      Hold LMB to charge (Dusk available while charging). RMB during Prime: Twilight Dash for basic attack. RMB after fully
+      charged to perform charged attack moving backward. Forward Guard during the skill.'
+    flows_into: []
+    notes: 'Max rank: Prime: Kamasylvia Slash III. Recovers 75 MP per hit / 250 MP per charged hit. Charged attack deals ~double
+      damage.'
+  prime_obsidian_ashes:
+    name: 'Prime: Obsidian Ashes'
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - bound
+    cc_notes: Bound on hits (PvE only).
+    damage: high
+    cooldown_ms: 13000
+    description: Unleash meteors of dark nature magic upon your foes. Super Armor during the skill. Bound on hits (PvE only).
+      Can use Smoky Haze during the skill.
+    flows_into: []
+    notes: 'Max rank: Prime: Obsidian Ashes IV. 13s cooldown. One of the key ranged damage skills in Succession.'
+  prime_lunacy_of_vedir:
+    name: 'Prime: Lunacy of Vedir'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    cc_notes: Bound on hits (PvE only). Down Attack.
+    damage: very_high
+    cooldown_ms: 8000
+    description: Harness the energy of nature into your kriegsmesser, then slam downwards to knock opponents down. Super Armor
+      during the skill. Recovers 400 HP per hit.
+    flows_into:
+    - prime_nocturne
+    notes: 'Max rank: Prime: Lunacy of Vedir III. Massive HP recovery. Strong burst skill. Can be followed by RMB into Prime:
+      Nocturne.'
+  prime_slanted_balance:
+    name: 'Prime: Slanted Balance'
+    input: ↓ + LMB
+    keys:
+    - down
+    - lmb
+    protection: FG
+    cc:
+    - floating
+    cc_notes: Floating on hits. Spin target (PvE only). Down Attack. Air Attack.
+    damage: high
+    cooldown_ms: 5000
+    description: Part the earth with the Energy of All Creations, obliterating everything in sight. Forward Guard during the
+      skill. Floating on hits.
+    flows_into: []
+    notes: 'Preceding Skill: Succession: Wrath of Vedir + Slanted Balance III. Learning this skill prevents learning Absolute:
+      Slanted Balance.'
+  prime_pervasive_darkness:
+    name: 'Prime: Pervasive Darkness'
+    input: SPACE (in certain situations)
+    keys:
+    - space
+    protection: FG
+    cc:
+    - stiffness
+    cc_notes: Forward Guard on attack 1 hits (nullified during cooldown). Stiffness on attack 1 hits (PvE only, nullified
+      during cooldown). Spin target (PvE only).
+    damage: high
+    cooldown_ms: 5000
+    description: Quickly slash enemies in the front to inflict heavy damage and weaken them. SPACE in certain situations;
+      Hold SPACE to perform attack 2. All AP +10 for 10s when using (nullified during cooldown). Recovers 160 MP per hit (nullified
+      during cooldown).
+    flows_into: []
+    notes: 'Context-sensitive activation (SPACE). Down Attack. Damage reduced during cooldown. Costs Stamina (100). Learning
+      this prevents learning Absolute: Pervasive Darkness.'
+  prime_twilight_dash:
+    name: 'Prime: Twilight Dash'
+    input: C
+    keys:
+    - c
+    protection: SA
+    cc:
+    - air_attack
+    cc_notes: Air Attack (nullified on extra attack).
+    damage: medium
+    cooldown_ms: 9000
+    description: Dash forward and leave destruction in your path. Super Armor during the skill. Hold C to perform once more.
+      Movement Speed +10% for 10s when using. No collision while moving.
+    flows_into:
+    - prime_kamasylvia_slash
+    notes: 'Succession-only keybind: C (replaces Awakening''s F). Costs Stamina (200). RMB during this dash activates Prime:
+      Kamasylvia Slash basic attack.'
+  prime_nocturne:
+    name: 'Prime: Nocturne'
+    input: 'Hotbar Only / RMB after Prime: Lunacy of Vedir or Flow: Vedir Strike'
+    keys:
+    - hotbar
+    - rmb
+    protection: SA/iframe
+    cc: []
+    cc_notes: No CC. Debuffs enemy Movement/Attack/Casting Speed -5% for 5s on hits.
+    damage: medium
+    cooldown_ms: 10000
+    description: Instantly hide yourself in the dark. SA at start of skill, Invincible when concealed, SA when moving forward,
+      FG when moving backward. W to move behind enemy, ↓ to move backward and guard. Increased attack range.
+    flows_into: []
+    notes: 'Can also be activated via RMB after Prime: Lunacy of Vedir or Flow: Vedir Strike. Preceding Skills: Succession:
+      Wrath of Vedir + Nocturne. Learning this prevents learning Absolute: Nocturne.'
+  prime_air_strike:
+    name: 'Prime: Air Strike'
+    input: W + F
+    keys:
+    - up
+    - f
+    protection: iframe/SA
+    cc:
+    - floating
+    - bound
+    cc_notes: Invincible while moving (iframe). Super Armor on attacks. Floating on hits. Bound on extra attack hits (nullified
+      on Floating hits). Down Attack. Air Attack.
+    damage: high
+    cooldown_ms: 7000
+    description: Powerful upward slash then downward blow on ground to inflict heavy damage. Invincible while moving, Super
+      Armor on attacks.
+    flows_into: []
+    notes: 'Costs Stamina (150). Learning this prevents learning Absolute: Air Strike.'
+  prime_spirit_legacy:
+    name: 'Prime: Spirit Legacy'
+    input: Hotbar Only (Quick Slot)
+    keys:
+    - hotbar
+    protection: FG
+    cc:
+    - stun
+    cc_notes: Stun on hits (PvE only, nullified during cooldown). Down Attack. Down Smash (nullified during cooldown).
+    damage: very_high
+    cooldown_ms: 8000
+    description: Inflict explosive damage to the enemy in front by charging dark magic into the phantom blades. Forward Guard
+      during the skill (nullified during cooldown). Recovers 80 MP per hit. All Damage Reduction -20 for 10s on hits (nullified
+      during cooldown). Damage reduced during cooldown.
+    flows_into: []
+    notes: 'No direct key — must be placed on Hotbar / Quick Slot. Preceding Skill: Succession: Wrath of Vedir only.'
+  succession_absolute_shadow_bullet:
+    name: 'Succession: Absolute: Shadow Bullet'
+    input: ← OR → + RMB
+    keys:
+    - left+rmb
+    - right+rmb
+    protection: null
+    cc:
+    - stiffness
+    cc_notes: Stiffness on hits. Movement Speed -5% for 5s on hits.
+    damage: low
+    cooldown_ms: 4000
+    description: 'Intercepts a distant enemy with nature''s energy. Can be used with your vediant. Preceding Skills: Wrath
+      of Vedir + Absolute: Shadow Bullet.'
+    flows_into: []
+    notes: Short cooldown ranged poke/stiffness tool unique to Succession path.
+  succession_phantasmal_snare:
+    name: 'Succession: Phantasmal Snare'
+    input: '← or ↓ or → + F (to continue Chain: Dusk)'
+    keys:
+    - left+f
+    - down+f
+    - right+f
+    protection: iframe
+    cc:
+    - stun
+    cc_notes: 'Stun on hits. Invincible at start (nullified during Chain: Dusk''s cooldown). Invincible while concealed. Invincible
+      while moving in phantasmal form. Invincible during skill (PvE only).'
+    damage: low
+    cooldown_ms: 12000
+    description: 'Temporarily take on a phantasmal visage to confuse foes, then summon a rose-shaped trap. Enhanced Succession
+      version with additional iframes: also Invincible while concealed and in phantasmal form. Direction key during skill
+      performs phantasmal movements.'
+    flows_into: []
+    notes: 'Preceding Skills: Wrath of Vedir + Chain: Dusk. Extended iframe window vs. base Phantasmal Snare. Performed while
+      standing when used via Quick Slot.'
+  flow_vedir_strike:
+    name: 'Flow: Vedir Strike'
+    input: LMB (after Unveiled Dagger)
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - knockback
+    damage: medium
+    cooldown_ms: 0
+    description: Follow-up slash after Unveiled Dagger. Super Armor.
+    flows_into:
+    - spirit_legacy
+    - air_strike
+    notes: Chain after Unveiled Dagger for extra damage.
+  flow_cultivation:
+    name: 'Flow: Cultivation'
+    input: LMB (after Wheel of Fortune)
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    damage: medium
+    cooldown_ms: 0
+    description: Follow-up strike after Wheel of Fortune. Super Armor.
+    flows_into:
+    - spirit_legacy
+    - unveiled_dagger
+    notes: Chain after Wheel of Fortune for extra damage.
+  air_strike:
+    name: Air Strike
+    input: W + F
+    keys:
+    - w
+    - f
+    protection: iframe/SA
+    cc:
+    - floating
+    - bound
+    damage: high
+    cooldown_ms: 7000
+    description: Upward slash then downward blow. Iframe while moving, SA on attacks.
+    notes: Main engage skill.
+  furia_di_vedir:
+    name: Furia di Vedir
+    input: W + F (after engage)
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    damage: medium
+    cooldown_ms: 5000
+    description: Forward charge slash. Super Armor.
+    notes: Forward engage tool.
+  unveiled_dagger:
+    name: Unveiled Dagger
+    input: F
+    keys:
+    - f
+    protection: FG
+    cc:
+    - stiffness
+    damage: medium
+    cooldown_ms: 4000
+    description: Gap closer slash. Forward Guard.
+    notes: Bridge skill into main damage chain.
+  wheel_of_fortune:
+    name: Wheel of Fortune
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - floating
+    damage: very_high
+    cooldown_ms: 6000
+    description: Wide blade strike. Super Armor. Floating on hits.
+    notes: Core burst skill.
+  lunacy_of_vedir:
+    name: Lunacy of Vedir
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    damage: very_high
+    cooldown_ms: 8000
+    description: Downward slam. Super Armor. Bound on hits.
+    notes: Strong burst follow-up.
+  kamasylvia_slash:
+    name: Kamasylvia Slash
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    damage: very_high
+    cooldown_ms: 8000
+    description: Charged blade strike. Forward Guard. Knockdown on hits.
+    notes: Hold LMB to charge for more damage.
+  slanted_balance:
+    name: Slanted Balance
+    input: ↓ + LMB
+    keys:
+    - down
+    - lmb
+    protection: FG
+    cc:
+    - floating
+    damage: high
+    cooldown_ms: 5000
+    description: Earth-parting strike. Forward Guard. Floating on hits.
+    notes: 'Pack grouping tool. Same as Prime: Slanted Balance pre-skill.'
+  spirit_legacy:
+    name: Spirit Legacy
+    input: Hotbar Only
+    keys:
+    - hotbar
+    protection: FG
+    cc:
+    - stun
+    damage: very_high
+    cooldown_ms: 8000
+    description: Explosive frontal damage. Forward Guard.
+    notes: Major burst skill from hotbar.
+  pervasive_darkness:
+    name: Pervasive Darkness
+    input: SPACE
+    keys:
+    - space
+    protection: FG
+    cc:
+    - stiffness
+    damage: high
+    cooldown_ms: 5000
+    description: Quick forward slash. Forward Guard. Stiffness.
+    notes: Cleanup damage skill.
+  enforcement:
+    name: Enforcement
+    input: ↓ + RMB
+    keys:
+    - down
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    damage: high
+    cooldown_ms: 5000
+    description: Horizontal power slash. Stiffness on hits.
+    notes: Finisher chain skill.
+  ravage_rake:
+    name: Ravage Rake
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - spin
+    damage: high
+    cooldown_ms: 5000
+    description: Wide slash. Forward Guard.
+    notes: Main cleanup hit.
+  nocturne:
+    name: Nocturne
+    input: Hotbar Only
+    keys:
+    - hotbar
+    protection: SA/iframe
+    cc: []
+    damage: medium
+    cooldown_ms: 10000
+    description: Stealth reposition. SA at start, iframe when concealed.
+    notes: Use RMB from Nocturne for reposition.
+  wrath_of_vedir:
+    name: Wrath of Vedir
+    input: Hotbar Only
+    keys:
+    - hotbar
+    protection: none
+    cc: []
+    damage: low
+    cooldown_ms: 0
+    description: Pull/utility skill for experienced players.
+    notes: Better pull option for experienced DK players.
+  termination:
+    name: Termination
+    input: Combo chain
+    keys:
+    - hotbar
+    protection: none
+    cc: []
+    damage: medium
+    cooldown_ms: 0
+    description: Follow-up after Enforcement.
+    notes: Chain from Enforcement.
+  rake_flow:
+    name: Rake Flow
+    input: Combo chain
+    keys:
+    - lmb
+    - rmb
+    protection: FG
+    cc: []
+    damage: medium
+    cooldown_ms: 0
+    description: Flow continuation from Ravage Rake.
+    notes: Finish survivors.
+  movement_followup:
+    name: Movement Follow-up
+    input: A or W
+    keys:
+    - a
+    protection: none
+    cc: []
+    damage: none
+    cooldown_ms: 0
+    description: Micro-adjust positioning before the next skill.
+    notes: Quick directional adjustment.
+  corrupt_ground:
+    name: Corrupt Ground
+    input: Hotbar Only
+    keys:
+    - hotbar
+    protection: none
+    cc: []
+    damage: none
+    cooldown_ms: 24000
+    description: Self-buff. Increases AP and attack speed.
+    notes: Use before engaging.
+  smoky_haze:
+    name: Smoky Haze
+    input: Hotbar Only
+    keys:
+    - hotbar
+    protection: SA
+    cc: []
+    damage: none
+    cooldown_ms: 3000
+    description: Forward dash with Super Armor.
+    notes: Movement chain tool.
+  twilight_dash:
+    name: Twilight Dash
+    input: SHIFT + W
+    keys:
+    - shift
+    - w
+    protection: SA
+    cc: []
+    damage: none
+    cooldown_ms: 4000
+    description: Forward dash. Super Armor.
+    notes: Extra movement.
+  dusk:
+    name: Dusk
+    input: SHIFT + → / SHIFT + ←
+    keys:
+    - shift
+    - d
+    protection: iframe
+    cc: []
+    damage: none
+    cooldown_ms: 2000
+    description: Lateral iframe dodge.
+    notes: Primary iframe. 2s cooldown.
+  shadow_strike:
+    name: Shadow Strike
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: SA
+    cc:
+    - knockdown
+    damage: medium
+    cooldown_ms: 9000
+    description: Ranged DPS Rabam skill. Cancellable.
+    notes: Level 56 Rabam.
+  balanced_strike:
+    name: Balanced Strike
+    input: Hotbar Only
+    keys:
+    - hotbar
+    protection: SA
+    cc:
+    - float
+    damage: medium
+    cooldown_ms: 15000
+    description: Extra Air Strike variant.
+    notes: Level 58 Rabam.

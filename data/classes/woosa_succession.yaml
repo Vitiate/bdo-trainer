@@ -1,0 +1,1948 @@
+# Woosa — Succession
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Woosa
+spec: Succession
+skills:
+  absolute_bamboo_zled:
+    name: 'Absolute: Bamboo-zled'
+    input: 'Hold E after Sagoonja: Bamboo'
+    keys:
+    - e
+    protection: none
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Bamboo-zled II]'
+    notes: 'Preceding Skill: [Bamboo-zled II] All damage applies Sagoonja: Bamboo ''s level damage x3 Down Attack'
+  absolute_butterfly_step:
+    name: 'Absolute: Butterfly Step'
+    input: SHIFT + SPACE
+    keys:
+    - shift
+    - space
+    protection: iframe
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Butterfly Step II]'
+    notes: 'Preceding Skill: [Butterfly Step II] Super Armor during the skill Invincible when character disappears Immune
+      to fall damage for 2 sec when using the skill No collision while moving (Movement Speed Increase effects nullified while
+      moving)'
+  absolute_cloud_flower:
+    name: 'Absolute: Cloud Flower'
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Cloud Flower III]'
+    notes: 'Preceding Skill: [Cloud Flower III] Attack damage 2980% x1 Maximum 10 targets Stiffness on hits 69.3% damage in
+      PvP only'
+  absolute_cloudcarve:
+    name: 'Absolute: Cloudcarve'
+    input: '↓ + F Hold F after Fan Kick or Chain: Fan Kick'
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Cloudcarve IV]'
+    notes: 'Preceding Skill: [Cloudcarve IV] Attack 1 damage 2280% x2 Attack 2 damage 2850% x2 Critical Hit Rate +50% Maximum
+      10 targets Forward Guard during the skill All Damage Reduction -20 for 10 sec on hits Floating on attack 1 hits (PvE
+      only) Air Attack 72.77% damage in PvP only'
+  absolute_cloudrise:
+    name: 'Absolute: Cloudrise'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Cloudrise V]'
+    notes: 'Preceding Skill: [Cloudrise V] Attack 1 damage 2453% x5 Attack 2 damage 4089% x2 Critical Hit Rate +100% Maximum
+      10 targets Super Armor during the skill Stiffness before attack (PvE only) Down Attack 46.2% damage in PvP only'
+  absolute_fan_kick:
+    name: 'Absolute: Fan Kick'
+    input: F Hold F to perform attack 2
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Fan Kick III]'
+    notes: 'Preceding Skill: [Fan Kick III] Attack 1 damage 1464% x2 Attack 2 damage 1952% x2 Critical Hit Rate +50% Maximum
+      10 targets All AP +20 for 10 sec when using the skill Knockdown on attack 2 hits (PvE only) Air Attack 48.51% damage
+      in PvP only'
+  absolute_fan_training:
+    name: 'Absolute: Fan Training'
+    input: LMB ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB while sprinting to perform sprint
+      attacks LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    description: 'Preceding Skill: [Fan Training X]'
+    notes: 'Preceding Skill: [Fan Training X] Standing attack damage 2056% x1, max 4 hits Forward attack damage 2056% x1,
+      max 4 hits Lateral attack damage 2056% x1, max 3 hits Sprint attack damage 2056% x1 Maximum 10 targets Recover 80 MP
+      per hit Pushes target on forward attack 1 and 2 hits (PvE only) Pushes target on lateral attack 1 hits (PvE only) 69.3%
+      damage in PvP only'
+  absolute_fandown:
+    name: 'Absolute: Fandown'
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Fandown III]'
+    notes: 'Preceding Skill: [Fandown III] Attack 1 damage 1436% x2 Attack 2 damage 2871% x2 Critical Hit Rate +50% (Nullified
+      during cooldown) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (Nullified during cooldown) Push the
+      target on attack 1 hits (PvE only) Stiffness on attack 1 hits (Nullified during cooldown) Down Attack 66.99% damage
+      in PvP only'
+  absolute_flutter_kick:
+    name: 'Absolute: Flutter Kick'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Flutter Kick III]'
+    notes: 'Preceding Skill: [Flutter Kick III] Attack 1 damage 1966% x2 Attack 2 damage 1966% x2 Critical Hit Rate +30% Maximum
+      10 targets Forward Guard during attack 1 Floating on attack 2 hits Air Attack Air Smash 53.13% damage in PvP only'
+  absolute_kaleidoscope_swirl:
+    name: 'Absolute: Kaleidoscope Swirl'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    - spin
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Kaleidoscope Swirl III]'
+    notes: 'Preceding Skill: [Kaleidoscope Swirl III] Attack 1 damage 2698% x1, max 2 hits Spin attack damage 4497% x3 Critical
+      Hit Rate +50% Maximum 10 targets Super Armor during the skill Recover 84 MP per hit Push the target on attack 1 hits
+      (PvE only) Stun on hits (PvE only) Down Attack 53.13% damage in PvP only'
+  absolute_pummel:
+    name: 'Absolute: Pummel'
+    input: RMB
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - stun
+    - air_attack
+    cooldown_ms: 3000
+    description: 'Preceding Skill: [Pummel III]'
+    notes: 'Preceding Skill: [Pummel III] Attack 1 damage 2192% x2 Attack 2 damage 2192% x2 Critical Hit Rate +30% (Nullified
+      during cooldown) Maximum 10 targets Forward Guard during the skill (Nullified during cooldown) Recover 100 MP per hit
+      (Nullified during cooldown) Push the target on hits (PvE only) Stun on attack 2 hits (PvE only) (Nullified during cooldown)
+      Air Attack 61.22% damage in PvP only'
+  absolute_sagoonja_bamboo:
+    name: 'Absolute: Sagoonja: Bamboo'
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Sagoonja: Bamboo III]'
+    notes: 'Preceding Skill: [Sagoonja: Bamboo III] Attack damage 2374% x3 Bamboo-zled ''s damage 2374% Critical Hit Rate
+      +30% Maximum 10 targets Knockdown on hits Down Attack 75.08% damage in PvP only'
+  absolute_sagoonja_chrysanth:
+    name: 'Absolute: Sagoonja: Chrysanth'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Sagoonja: Chrysanth III]'
+    notes: 'Preceding Skill: [Sagoonja: Chrysanth III] Attack damage 7994% x1, max 3 hits Maximum 10 targets Forward Guard
+      during the skill Knockback on hits (PvE only) Movement Speed +30% for 10 sec (Applied to self and allies) Movement Speed
+      -15% for 5 sec on hits Down Attack 40.43% damage in PvP only'
+  absolute_sagoonja_orchid:
+    name: 'Absolute: Sagoonja: Orchid'
+    input: SHIFT + E Hold E after Bamboo-zled
+    keys:
+    - shift
+    - e
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Sagoonja: Orchid III]'
+    notes: 'Preceding Skill: [Sagoonja: Orchid III] Attack damage 4383% x2 Critical Hit Rate +50% Maximum 10 targets Forward
+      Guard during the skill Knockback on hits (PvE only) Down Attack Down Smash 63.53% damage in PvP only'
+  absolute_sagoonja_plum:
+    name: 'Absolute: Sagoonja: Plum'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Sagoonja: Plum IV]'
+    notes: 'Preceding Skill: [Sagoonja: Plum IV] Attack damage 2795% x2 Critical Hit Rate +50% Maximum 10 targets Forward
+      Guard during the skill Recover 250 HP per hit Knockdown on hits (PvE only) Down Attack 69.3% damage in PvP only'
+  absolute_silent_strike:
+    name: 'Absolute: Silent Strike'
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Silent Strike II]'
+    notes: 'Preceding Skill: [Silent Strike II] Attack damage 2440% x2 Maximum 10 targets Super Armor while moving Push the
+      target on hits (PvE only) Stiffness on hits Air Attack 92.4% damage in PvP only'
+  absolute_stave_strike:
+    name: 'Absolute: Stave Strike'
+    input: E Hold E to continue the skill
+    keys:
+    - e
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Stave Strike III]'
+    notes: 'Preceding Skill: [Stave Strike III] Attack 1 damage 1413% x2 Attack 2 damage 2826% x2 Critical Hit Rate +30% Maximum
+      10 targets Push the target on hits (PvE only) Knockdown on attack 1 hits (Nullified during cooldown) Air Attack Down
+      Attack 57.75% damage in PvP only'
+  absolute_stormfall:
+    name: 'Absolute: Stormfall'
+    input: SHIFT + Q SHIFT + Q after certain skills to perform attack 2
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - knockback
+    - stun
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Stormfall IV]'
+    notes: 'Preceding Skill: [Stormfall IV] Attack 1 damage 3267% x1 Attack 2 damage 3183% x1, max 13 hits Critical Hit Rate
+      +100% Maximum 10 targets Super Armor during the skill Stun on first hit (PvE only) Knockback on last attack hits (PvE
+      only) Down Attack 38.12% damage in PvP only Attack 1 damage 3557% x1, max 5 hits Attack 2 damage 3420% x2 Attack 3 damage
+      2443% x1, max 14 hits Attack 4 damage 2736% x3 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when
+      using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the
+      skill Max HP +2000 for 60 sec when using the skill Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec
+      on hits Super Armor Stun on hits Down Attack 43.89% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. Dismount target on hits. Injures target with 100% of the damage of a hit.'
+  absolute_thunderstroke:
+    name: 'Absolute: Thunderstroke'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Thunderstroke III]'
+    notes: 'Preceding Skill: [Thunderstroke III] Attack damage 2910% x2 Critical Hit Rate +30% Maximum 10 targets Bound on
+      hits Down Attack 75.08% damage in PvP only'
+  absolute_wingbeat:
+    name: 'Absolute: Wingbeat'
+    input: SPACE after other skills
+    keys:
+    - space
+    protection: FG
+    cc:
+    - knockback
+    - knockdown
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Wingbeat II]'
+    notes: 'Preceding Skill: [Wingbeat II] Attack damage 3824% x2 Critical Hit Rate +50% (Nullified during cooldown) Maximum
+      10 targets Recover 200 MP per hit (Nullified during cooldown) Forward Guard during the skill (Nullified during cooldown)
+      Push the target on hits (PvE only) Knockback on hits (PvE only) (Nullified during cooldown) Air Attack Down Attack 57.75%
+      damage in PvP only Attack 1 damage 3713% x5 Attack 2 damage 6188% x3 Critical Hit Rate +100% Maximum 10 targets All
+      AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for
+      60 sec when using the skill Super Armor Stun on attack 1 hits Knockdown on attack 2 hits Down Attack 40.43% damage in
+      PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.'
+  bamboo_zled:
+    name: Bamboo-zled
+    input: 'Hold E after Sagoonja: Bamboo'
+    keys:
+    - hold
+    - e
+    protection: none
+    cc:
+    - down_attack
+    description: Demonstrate how to properly slice open a stalk of bamboo.
+    notes: 'Demonstrate how to properly slice open a stalk of bamboo. All damage applies Sagoonja: Bamboo ''s level damage
+      x2 Down Attack'
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  bloodsari_flower:
+    name: Bloodsari Flower
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your swallowtail fan
+    protection: none
+    cooldown_ms: 60000
+    description: Summon Bloodsari Flowers and increase the health and resource recovery of your allies.
+    notes: Summon Bloodsari Flowers and increase the health and resource recovery of your allies. HP Recovery +200 for 30
+      sec to self and allies when using the skill MP/WP/SP Recovery +100 for 30 sec to self and allies when using the skill
+    keys:
+    - hotbar
+  bloom_deluge:
+    name: Bloom Deluge
+    input: '↑ + RMB Hold RMB after Flow: Seocheon Field'
+    keys:
+    - w
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Sari Flowers bloom around Woosa and commands an attack over one area.
+    notes: Sari Flowers bloom around Woosa and commands an attack over one area. Attack damage 4477% x2 Maximum 10 targets
+      Down Attack 21.11% damage in PvP only Sari Flower 's explosion damage 1827% x1, max 6 hits Critical Hit Rate +40% Maximum
+      10 targets Knockdown on hits Down Attack 51.94% damage in PvP only
+  bloomburst:
+    name: Bloomburst
+    input: ↓ + RMB Hold RMB after Bloom Deluge
+    keys:
+    - s
+    - rmb
+    - hold
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 7000
+    description: Open the soul tome and chant a spell that makes Sari Flowers bloom.
+    notes: Open the soul tome and chant a spell that makes Sari Flowers bloom. Attack damage 4359% x1 Maximum 10 targets Down
+      Attack 62.95% damage in PvP only Sari Flower 's explosion damage 1537% x7 Critical Hit Rate +40% Maximum 10 targets
+      Stun on hits 47.36% damage in PvP only
+  blooming_death:
+    name: Blooming Death
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: FG
+    cc:
+    - stiffness
+    - floating
+    - pull
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: Open the doors to the netherworld and unleash the power absorbed by the Sari Flower upon your foes.
+    notes: 'Open the doors to the netherworld and unleash the power absorbed by the Sari Flower upon your foes. Attack 1 damage
+      4785% x1, max 3 hits Attack 2 damage 4785% x1, max 4 hits Attack 3 damage 4785% x2 Flow: River''s End ''s damage 7178%
+      Critical Hit Rate +100% Maximum 10 targets Recover 120 HP per attack 1 and 2 hits Forward Guard during the skill All
+      AP -20 for 10 sec on hits Stiffness before attack Floating on attack 1 hits Pull in the target on attack 1 and 2 hits
+      (PvE only) Down Attack Air Attack 21.02% damage in PvP only'
+  butterfly_step:
+    name: Butterfly Step
+    input: SHIFT + SPACE
+    keys:
+    - shift
+    - space
+    protection: iframe
+    cooldown_ms: 10000
+    description: Channel your energy into your legs and sprint forward. Let all obstacles fade away and run freely, as if
+      to surpass even the clouds.
+    notes: Channel your energy into your legs and sprint forward. Let all obstacles fade away and run freely, as if to surpass
+      even the clouds. Super Armor during the skill Invincible when character disappears Immune to fall damage for 2 sec when
+      using the skill No collision while moving (Movement Speed Increase effects nullified while moving)
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  chain_fan_kick:
+    name: 'Chain: Fan Kick'
+    input: F on Fan Kick attack 2 hits
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    - air_attack
+    description: Use the momentum from kicking your enemy to smack their lower sections with your fan.
+    notes: Use the momentum from kicking your enemy to smack their lower sections with your fan. All damage applies Fan Kick
+      's attack 2 damage x3 Air Attack Down Attack Down Smash
+  chain_flitting_step:
+    name: 'Chain: Flitting Step'
+    input: Directional Key + SHIFT Directional Key + SHIFT when Yangban Step or Flitting Step are on cooldown to perform instead
+      Can be used with your soul tome
+    keys:
+    - shift
+    protection: iframe
+    cooldown_ms: 3000
+    description: Avoid your opponent's blows with exaggerated movements.
+    notes: Avoid your opponent's blows with exaggerated movements. Invincible -> Super Armor during the skill Character collision
+      occurs while moving forward No character collision while moving backward or laterally
+  chrysanth_swirl:
+    name: Chrysanth Swirl
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Kaleidoscope Swirl III]'
+    notes: 'Preceding Skill: [Kaleidoscope Swirl III] Attack damage 3096% x1, max 4 hits Critical Hit Rate +100% Maximum 10
+      targets Forward Guard at the start of the skill Movement Speed -15% for 5 sec on hits Push the target on hits (PvE only)
+      Knockback on hits Down Attack 72.77% damage in PvP only'
+  cloud_flower:
+    name: Cloud Flower
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 7000
+    description: Throw your folded fan at your enemies.
+    notes: Throw your folded fan at your enemies. Attack damage 2152% x1 Maximum 7 targets Stiffness on hits 69.3% damage
+      in PvP only
+  cloudburst:
+    name: Cloudburst
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Cloudrise V]'
+    notes: 'Preceding Skill: [Cloudrise V] Attack damage 2960% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard
+      at the start of the skill Stiffness on hits 63.53% damage in PvP only'
+  cloudcarve:
+    name: Cloudcarve
+    input: '↓ + F Hold F after Fan Kick or Chain: Fan Kick'
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 9000
+    description: Send enemies skyward with the aid of your butterflies, then slam them back down to the ground.
+    notes: Send enemies skyward with the aid of your butterflies, then slam them back down to the ground. Attack 1 damage
+      1628% x2 Attack 2 damage 2035% x2 Critical Hit Rate +40% Maximum 7 targets Forward Guard during the skill All Damage
+      Reduction -15 for 10 sec on hits Floating on attack 1 hits (PvE only) Air Attack 72.77% damage in PvP only
+  cloudrise:
+    name: Cloudrise
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 13000
+    description: Conjure up storm clouds with your Do arts to call down rain and lightning.
+    notes: Conjure up storm clouds with your Do arts to call down rain and lightning. Attack 1 damage 1742% x5 Attack 2 damage
+      2904% x2 Critical Hit Rate +100% Maximum 7 targets Super Armor during the skill Stiffness before attack (PvE only) Down
+      Attack 46.2% damage in PvP only
+  core_mark_of_the_moon:
+    name: 'Core: Mark of the Moon'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Mark of the Moon III after learning this skill: Stun on attack
+      1 hits'
+    keys:
+    - hotbar
+  core_nether_blast:
+    name: 'Core: Nether Blast'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Nether Blast IV after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_netherstrike:
+    name: 'Core: Netherstrike'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Netherstrike IV after learning this skill: Knockdown on attack
+      1 hits'
+    keys:
+    - hotbar
+  core_sahee_s_descent:
+    name: 'Core: Sahee''s Descent'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Sahee''s Descent IV after learning this skill: Bound on attack
+      3 hits'
+    keys:
+    - hotbar
+  core_soul_shower:
+    name: 'Core: Soul Shower'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Soul Shower IV after learning this skill: Stun on attack 1 hits
+      Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_purging_flame:
+    name: 'Elvia: Purging Flame'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Incinerate the corrupt wandering souls of the netherworld by throwing a calligraphy brush while chanting
+      a spell.
+    notes: Incinerate the corrupt wandering souls of the netherworld by throwing a calligraphy brush while chanting a spell.
+      Attack 1 damage 5376% x1, max 2 hits Attack 2 damage 5376% x2 Critical Hit Rate +100% (PvE only) Maximum 10 targets
+      All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10 sec on hits Super Armor during the skill Down
+      Attack 23.1% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your soul tome
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  fan_kick:
+    name: Fan Kick
+    input: F Hold F to perform attack 2
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 5000
+    description: Slap your foe's cheeks with your fan, then kick them in the face.
+    notes: Slap your foe's cheeks with your fan, then kick them in the face. Attack 1 damage 665% x2 Attack 2 damage 886%
+      x2 Critical Hit Rate +50% Maximum 7 targets All AP +10 for 10 sec when using the skill Knockdown on attack 2 hits (PvE
+      only) Air Attack 48.51% damage in PvP only
+  fan_training:
+    name: Fan Training
+    input: LMB ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB while sprinting to perform sprint
+      attacks LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    description: Basic martial arts of the Woodo School utilizing your swallowtail fan.
+    notes: Basic martial arts of the Woodo School utilizing your swallowtail fan. Standing attack damage 1904% x1, max 4 hits
+      Forward attack damage 1904% x1, max 4 hits Lateral attack damage 1904% x1, max 3 hits Sprint attack damage 1904% x1
+      Maximum 7 targets Recover 70 MP per hit Pushes target on forward attack 1 and 2 hits (PvE only) Pushes target on lateral
+      attack 1 hits (PvE only) 69.3% damage in PvP only
+  fan_wall:
+    name: Fan Wall
+    input: Q
+    keys:
+    - q
+    protection: FG
+    description: Spread your fan to momentarily block enemy attacks.
+    notes: Spread your fan to momentarily block enemy attacks. Forward Guard Recover 15% of Max MP on blocks
+  fandown:
+    name: Fandown
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 5000
+    description: Pierce your enemy's mid-section with your fan, then continue with a lower blow.
+    notes: Pierce your enemy's mid-section with your fan, then continue with a lower blow. Attack 1 damage 786% x2 Attack
+      2 damage 1572% x2 Critical Hit Rate +50% (Nullified during cooldown) Maximum 7 targets All Damage Reduction -15 for
+      10 sec on hits (Nullified during cooldown) Push the target on attack 1 hits (PvE only) Stiffness on attack 1 hits (Nullified
+      during cooldown) Down Attack 66.99% damage in PvP only
+  flitting_step:
+    name: Flitting Step
+    input: ← + SHIFT → + SHIFT ↓ + SHIFT Can be used with your soul tome
+    keys:
+    - a
+    - shift
+    - d
+    - s
+    protection: iframe
+    cooldown_ms: 3000
+    description: Glance your opponent's blows with ease.
+    notes: Glance your opponent's blows with ease. Invincible -> Super Armor during the skill (Nullified during cooldown)
+      Invincible during the skill (PvE only) No collision while moving
+  flourish:
+    name: Flourish
+    input: LMB during Fan Wall
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Block attacks, then return the absorbed damage back to your enemies.
+    notes: Block attacks, then return the absorbed damage back to your enemies. Attack damage 1661% x2 Critical Hit Rate +100%
+      Maximum 10 targets Forward Guard during the skill Knockback on hits (PvE only) Air Attack Down Attack
+  flow_bloom:
+    name: 'Flow: Bloom'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill: [Bloomburst]'
+    notes: 'Preceding Skill: [Bloomburst] The following attacks will activate Sari Flower effects (nullified during cooldown).
+      - Netherstrike attack 2 - Perilous Waltz - Nether Blast attack 2 - Mark of the Moon Sari Flower ''s explosion damage
+      1537% x4 Critical Hit Rate +40% Maximum 10 targets 47.36% damage in PvP only'
+    keys:
+    - hotbar
+  flow_death_s_proclamation:
+    name: 'Flow: Death''s Proclamation'
+    input: Hold E after Mark of the Moon LMB during Mark of the Moon
+    keys:
+    - hold
+    - e
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    - down_attack
+    description: 'Preceding Skill: [Mark of the Moon II]'
+    notes: 'Preceding Skill: [Mark of the Moon II] All damage applies Mark of the Moon ''s level damage x2 Forward Guard during
+      the skill Stun on hits (PvE only) Down Attack'
+  flow_river_s_end:
+    name: 'Flow: River''s End'
+    input: 'Hold E after Blooming Death LMB during Blooming Death E after Life Lure, Flow: Death''s Proclamation, Netherstrike,
+      Soul Cleanse, Perilous Waltz, or Flow: Seocheon Field'
+    keys:
+    - hold
+    - e
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Blooming Death IV]'
+    notes: 'Preceding Skill: [Blooming Death IV] All damage applies Blooming Death ''s level damage x1, max 3 hits Forward
+      Guard before the attack hits Knockdown on hits Down Attack Attack damage 7178% x3 Critical Hit Rate +100% Maximum 10
+      targets Casting Speed +10% for 20 sec when using the skill Forward Guard before the attack hits Knockdown on hits Down
+      Attack Air Attack 21.02% damage in PvP only Dismount target on hits. Injures target with 20% of the damage of a hit.'
+  flow_seocheon_field:
+    name: 'Flow: Seocheon Field'
+    input: Hold RMB during Life Lure
+    keys:
+    - hold
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Life Lure]'
+    notes: 'Preceding Skill: [Life Lure] Attack 1 damage 1681% x2 Attack 2 damage 1681% x2 Maximum 10 targets Down Attack
+      42.5% damage in PvP only Sari Flower ''s explosion damage 1537% x4 Critical Hit Rate +40% Maximum 10 targets Bound on
+      hits 47.36% damage in PvP only Applies as many Sari Flower effects as there are flowers summoned.'
+  flow_soul_shock:
+    name: 'Flow: Soul Shock'
+    input: Hold E after Soul Shower LMB during Soul Shower E after Moonlit Blast, Sahee's Descent, Nether Blast attack 2,
+      Bloomburst, Bloom Deluge
+    keys:
+    - hold
+    - e
+    - lmb
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Soul Shower III]'
+    notes: 'Preceding Skill: [Soul Shower III] All damage applies Soul Shower ''s level damage x2 Super Armor during the skill
+      Air Attack Down Attack Down Smash'
+  flow_stormbolt:
+    name: 'Flow: Stormbolt'
+    input: 'Hold RMB after Cloudrise SHIFT + RMB after comboing from Prime: Cloudrise into Flitting Step or Yangban Step'
+    keys:
+    - hold
+    - rmb
+    - shift
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: Send lightning crashing down to finish off your enemies already drenched by the storm clouds.
+    notes: 'Send lightning crashing down to finish off your enemies already drenched by the storm clouds. All damage applies
+      Cloudrise ''s level damage x2 Super Armor during the skill Knockdown on hits Down Attack Storm cloud ''s attack damage
+      1120% x1, max 10 hits All Damage Reduction -20 for 10 sec on hits All AP -20 for 10 sec on hits 57.52% damage in PvP
+      only Requires a storm cloud created by Prime: Quiet Waters .'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  flutter_kick:
+    name: Flutter Kick
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Conjure the winds with your fan to push back enemies and send them flying up into the air with a sideways
+      kick.
+    notes: Conjure the winds with your fan to push back enemies and send them flying up into the air with a sideways kick.
+      Attack 1 damage 1032% x2 Attack 2 damage 1032% x2 Critical Hit Rate +30% Maximum 7 targets Forward Guard during attack
+      1 Floating on attack 2 hits Air Attack Air Smash 53.13% damage in PvP only
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  inkstroke:
+    name: Inkstroke
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Cloudrise V]'
+    notes: 'Preceding Skill: [Cloudrise V] Attack damage 3168% x1, max 3 hits Critical Hit Rate +50% Maximum 10 targets Knockdown
+      on hits Air Attack 63.53% damage in PvP only'
+  kaleidoscope_flower:
+    name: Kaleidoscope Flower
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    - spin
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Kaleidoscope Swirl III]'
+    notes: 'Preceding Skill: [Kaleidoscope Swirl III] Attack 1 damage 2164% x1, max 2 hits Spin attack damage 2705% x4 Critical
+      Hit Rate +100% Maximum 10 targets Super Armor during the skill Push the target on attack 1 hits (PvE only) Floating
+      on spin attack hits (PvE only) Air Attack 54.29% damage in PvP only'
+  kaleidoscope_swirl:
+    name: Kaleidoscope Swirl
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    - spin
+    cooldown_ms: 9000
+    description: Conjure butterflies and throw your fan like a boomerang to deal damage to enemies.
+    notes: Conjure butterflies and throw your fan like a boomerang to deal damage to enemies. Attack 1 damage 1516% x1, max
+      2 hits Spin attack damage 2527% x3 Critical Hit Rate +50% Maximum 7 targets Super Armor during the skill Recover 70
+      MP per hit Push the target on attack 1 hits (PvE only) Stun on hits (PvE only) Down Attack 53.13% damage in PvP only
+  life_lure:
+    name: Life Lure
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Gather energy around your vicinity, then plant a large Sari Flower into the ground. After a certain period
+      of time. the flowers bloom to inflict powerful damage.
+    notes: Gather energy around your vicinity, then plant a large Sari Flower into the ground. After a certain period of time.
+      the flowers bloom to inflict powerful damage. Attack damage 2762% x2 Maximum 10 targets Forward Guard during the skill
+      Down Attack No character collision while moving backwards 16.35% damage in PvP only Sari Flower 's explosion damage
+      3005% x6 Critical Hit Rate +40% Maximum 10 targets Knockdown on hits Down Attack Air Attack 65.41% damage in PvP only
+  lunar_serenade:
+    name: Lunar Serenade
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: Rapidly read through the soul tome and instantly amplify your Do power.
+    notes: Rapidly read through the soul tome and instantly amplify your Do power. All AP +25 for 30 sec when using the skill
+      Critical Hit Rate +50% for 30 sec when using the skill All Damage Reduction +20 for 30 sec when using the skill Max
+      HP +500 for 30 sec when using the skill Super Armor during the skill
+    keys:
+    - hotbar
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  mark_of_the_moon:
+    name: Mark of the Moon
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: FG
+    cc:
+    - stiffness
+    - floating
+    - stun
+    - down_attack
+    cooldown_ms: 10000
+    description: Inscribe the song of the moon, absorb it into your soul tome, then unleash it as an attack.
+    notes: 'Inscribe the song of the moon, absorb it into your soul tome, then unleash it as an attack. Attack 1 damage 4949%
+      x1, max 2 hits Attack 2 damage 3713% x1, max 6 hits Attack 3 damage 4949% x1, max 2 hits Flow: Death''s Proclamation
+      ''s damage 8662% Critical Hit Rate +100% Maximum 10 targets Recover 500 HP per attack 3 hit Forward Guard during the
+      skill Stun on attack 1 hits (PvE only) Down Attack 19.88% damage in PvP only Attack 1 damage 6510% x1, max 3 hits Attack
+      2 damage 5580% x1, max 3 hits Attack 3 damage 5580% x2, max 2 hits Critical Hit Rate +100% Maximum 10 targets All AP
+      +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60
+      sec when using the skill Super Armor Stiffness on attack 1 hits Stun on attack 2 hits Floating on attack 3 hits Down
+      Attack 36.96% damage in PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.'
+  meditation:
+    name: Meditation
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. Max HP +15
+    keys:
+    - hotbar
+  meditation_xi:
+    name: Meditation XI
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. All AP +1
+    keys:
+    - hotbar
+  meditation_xii:
+    name: Meditation XII
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. Max HP +15
+    keys:
+    - hotbar
+  meditation_xiii:
+    name: Meditation XIII
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. All AP +1
+    keys:
+    - hotbar
+  meditation_xiv:
+    name: Meditation XIV
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. Max HP +15
+    keys:
+    - hotbar
+  meditation_xix:
+    name: Meditation XIX
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. All AP +1
+    keys:
+    - hotbar
+  meditation_xv:
+    name: Meditation XV
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. All AP +1
+    keys:
+    - hotbar
+  meditation_xvi:
+    name: Meditation XVI
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. Max HP +15
+    keys:
+    - hotbar
+  meditation_xvii:
+    name: Meditation XVII
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. All AP +1
+    keys:
+    - hotbar
+  meditation_xviii:
+    name: Meditation XVIII
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. Max HP +15 All AP +1
+    keys:
+    - hotbar
+  meditation_xx:
+    name: Meditation XX
+    input: Passive
+    protection: none
+    description: Reflect upon yourself through meditation and take another step forward towards growth.
+    notes: Reflect upon yourself through meditation and take another step forward towards growth. Max HP +15 All AP +1
+    keys:
+    - hotbar
+  moonlit_blast:
+    name: Moonlit Blast
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 9000
+    description: Make a moon as bright as the sun to rise, summoning Sari Flowers around your vicinity, which then explode
+      to inflict damage.
+    notes: Make a moon as bright as the sun to rise, summoning Sari Flowers around your vicinity, which then explode to inflict
+      damage. Attack 1 damage 4049% x1, max 2 hits Attack 2 damage 4049% x1, max 3 hits Attack 3 damage 5062% x2 Critical
+      Hit Rate +100% Maximum 10 targets Super Armor during the skill Attack Speed -20% for 5 sec on hits Casting Speed -20%
+      for 5 sec on hits Stun on attack 1 hits (PvE only) Down Smash on attack 3 hits Down Attack 32.86% damage in PvP only
+      Attack 1 damage 4049% x1, max 2 hits Attack 2 damage 4049% x1, max 3 hits Attack 3 damage 5903% x2 Critical Hit Rate
+      +100% Maximum 10 targets Super Armor during the skill Attack Speed -20% for 5 sec on hits Casting Speed -20% for 5 sec
+      on hits Stun on attack 1 hits (PvE only) Down Smash on attack 3 hits Down Attack 28.49% damage in PvP only Dismount
+      target on hits. Injures target with 10% of the damage of a hit.
+  mystery_of_mysteries:
+    name: Mystery of Mysteries
+    input: Passive
+    protection: none
+    description: Having reached a zenith of Do arts, Woosa utilizes the rain to control body temperature.
+    notes: Having reached a zenith of Do arts, Woosa utilizes the rain to control body temperature. Cures self and allies
+      of Heatstroke and Burn effects when drenched by rain skills.
+    keys:
+    - hotbar
+  nether_blast:
+    name: Nether Blast
+    input: ↓ + LMB Hold LMB to perform attack 2 ↓ + LMB after a lateral Soul Cleanse attack to perform attack 2
+    keys:
+    - s
+    - lmb
+    - hold
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Throw the calligraphy brush as you unfold the soul tome to draw forth its power and create a powerful frontal
+      explosion.
+    notes: Throw the calligraphy brush as you unfold the soul tome to draw forth its power and create a powerful frontal explosion.
+      Attack 1 damage 2826% x2 Attack 2 damage 4710% x2 Critical Hit Rate +65% (Nullified during cooldown) Maximum 10 targets
+      All Evasion -24 for 10 sec on hits (Nullified during cooldown) Stiffness on attack 1 hits (Nullified during cooldown)
+      Knockdown on attack 2 hits (Nullified during cooldown) Down Attack 40.43% damage in PvP only Damage reduced during cooldown.
+      (PvE only)
+  netherstrike:
+    name: Netherstrike
+    input: F Hold F to perform attack 2 Can be performed instead of Fan Kick with your swallowtail fan
+    keys:
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Quickly move forward and perform a side kick, then throw a calligraphy brush to cause an explosion.
+    notes: Quickly move forward and perform a side kick, then throw a calligraphy brush to cause an explosion. Attack 1 damage
+      2346% x2 Attack 2 damage 3909% x2 Critical Hit Rate +50% Maximum 10 targets All AP +20 for 10 sec when using the skill
+      Recover 100 MP per hit Super Armor during the skill Knockdown on attack 1 hits (PvE only) Down Attack Air Attack 65.14%
+      damage in PvP only
+  peace_of_mind:
+    name: Peace of Mind
+    input: Passive
+    protection: none
+    description: Steady breathing aids your body in the practice of actions that are familiar to your body.
+    notes: Steady breathing aids your body in the practice of actions that are familiar to your body. Max Stamina +300
+    keys:
+    - hotbar
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  perilous_waltz:
+    name: Perilous Waltz
+    input: ↓ + F ↓ + F with Perilous Waltz effects activated SPACE during other skills SPACE during other skills with Perilous
+      Waltz effects activated
+    keys:
+    - s
+    - f
+    - space
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 10000
+    description: Cause an explosion where Woosa stands, dealing damage as she elegantly moves backwards.
+    notes: 'Cause an explosion where Woosa stands, dealing damage as she elegantly moves backwards. Attack 1 damage 2768%
+      x1, max 3 hits Attack 2 damage 3114% x2 Critical Hit Rate +50% (Nullified during cooldown) Maximum 10 targets All Damage
+      Reduction +30 for 10 sec when using the skill (Nullified during cooldown) Recover 140 MP per hit (Nullified during cooldown)
+      Super Armor during the skill (Nullified during cooldown) Movement Speed -20% for 5 sec on hits (Nullified during cooldown)
+      Stiffness on hits (PvE only) (Nullified during cooldown) Down Attack No collision while moving 80.85% damage in PvP
+      only Available once more within 10 sec after the initial cast. Instantly detonate Sari Flowers of Life Lure , Flow:
+      Seocheon Field , or Bloomburst . (Only applies within a certain range.)'
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_butterfly_dream:
+    name: 'Prime: Butterfly Dream'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: All AP +32 for 30 sec when using the skill Critical Hit Rate +30% for 30 sec when using the skill
+      All Damage Reduction +20 for 30 sec when using the skill Recover 100 MP every 4 sec for 30 sec when using the skill
+      Max HP +1000 for 30 sec when using the skill Super Armor during the skill'
+    keys:
+    - hotbar
+  prime_cloudcarve:
+    name: 'Prime: Cloudcarve'
+    input: '↓ + F Hold F after Fan Kick or Chain: Fan Kick'
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 3672% x2 Attack 2 damage 4590% x2 Critical Hit Rate +50% Maximum 10 targets Forward
+      Guard during the skill All Damage Reduction -20 for 10 sec on hits Floating on attack 1 hits (PvE only) Air Attack 47.93%
+      damage in PvP only'
+  prime_cloudrise:
+    name: 'Prime: Cloudrise'
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 10000
+    description: Conjure up storm clouds with your Do arts to call down rain and lightning. Rain will fall even without Woosa
+      wielding her Do arts as it was called forth by her will.
+    notes: 'Conjure up storm clouds with your Do arts to call down rain and lightning. Rain will fall even without Woosa wielding
+      her Do arts as it was called forth by her will. Attack 1 damage 3546% x5 Attack 2 damage 5910% x2 Flow: Stormbolt ''s
+      damage 7586% Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Stun before attack Down Attack
+      40.6% damage in PvP only Combo into Flitting Step or Yangban Step during the skill before certain attacks are applied
+      to create a lingering storm cloud that continues to attack. However, Skill Add-ons aren''t applied.'
+  prime_fan_kick:
+    name: 'Prime: Fan Kick'
+    input: F Hold F to perform attack 2
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 5000
+    description: Slap your foe's cheeks with your fan, then kick them in the face.
+    notes: Slap your foe's cheeks with your fan, then kick them in the face. Attack 1 damage 3756% x2 Attack 2 damage 3756%
+      x2 Critical Hit Rate +50% Maximum 10 targets All AP +24 for 10 sec when using the skill Knockdown on attack 2 hits (PvE
+      only) Air Attack 33.15% damage in PvP only
+  prime_flurry:
+    name: 'Prime: Flurry'
+    input: ↑ + C
+    keys:
+    - w
+    - c
+    protection: none
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 2860% x2 Attack 2 damage 2860% x2 Attack 3 damage 4290% x2 Critical Hit Rate
+      +50% Maximum 10 targets Recover 75 HP per hit Knockback on attack 1 and 2 hits Down Attack 37.88% damage in PvP only'
+  prime_flutter_kick:
+    name: 'Prime: Flutter Kick'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Conjure the winds with your fan to push back enemies and send them flying up into the air with a sideways
+      kick.
+    notes: Conjure the winds with your fan to push back enemies and send them flying up into the air with a sideways kick.
+      Attack 1 damage 4125% x2 Attack 2 damage 4125% x2 Critical Hit Rate +50% Maximum 10 targets Forward Guard during the
+      skill Floating on attack 1 and 2 hits Air Attack Air Smash 40.43% damage in PvP only
+  prime_inkwrath:
+    name: 'Prime: Inkwrath'
+    input: C C to attack instantly after other skills
+    keys:
+    - c
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 3432% x3 Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill
+      Knockdown on hits (PvE only) Down Attack 61.79% damage in PvP only'
+  prime_kaleidoscope_swirl:
+    name: 'Prime: Kaleidoscope Swirl'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    - spin
+    cooldown_ms: 9000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 4085% x1, max 2 hits Spin attack damage 4085% x3 Critical Hit Rate +100% Maximum
+      10 targets Super Armor during the skill Recover 84 MP per hit Push the target on attack 1 hits (PvE only) Stun on hits
+      (PvE only) Down Attack 38.46% damage in PvP only'
+  prime_quiet_waters:
+    name: 'Prime: Quiet Waters'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: After learning this skill, a storm cloud will appear on the spot when using the following skills.
+      The storm cloud will linger for 15 sec . - Prime: Thunderstroke - Prime: Cloudcarve - Cloud Flower Up to 2 storm clouds
+      can be summoned at a time. Storm clouds will not appear over the same spot. Storm clouds react to Woosa''s Do arts when
+      she uses the following skills: - Prime: Sagoonja: Plum, Prime: Sagoonja: Orchid, Prime: Sagoonja: Chrysanth, Prime:
+      Sagoonja: Bamboo, Prime: Stormfall, Flow: Stormbolt Additionally, a powerful lighting will strike from the storm cloud
+      if Woosa is struck by a CC.'
+    keys:
+    - hotbar
+  prime_rain_s_thirst:
+    name: 'Prime: Rain''s Thirst'
+    input: ↓ + Q
+    keys:
+    - s
+    - q
+    protection: SA
+    cooldown_ms: 12000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Super Armor during the skill Damage Reduction +50% during Super Armor. Absorbs 33% of the damage
+      taken as Do energy during the skill. - Absorbed Do energy can be retained for 8 sec . - Do energy can be retained up
+      to your max HP. - The absorbed Do energy will be lost if you are hit by a CC. Absorbed Do energy can be released through
+      skills other than Fan Training. - Released Do energy will bypass enemy defenses. However, the released Do energy cannot
+      be greater than your max HP. Not affected by effects which increase/decrease Attack and/or Movement Speeds.'
+  prime_sagoonja_bamboo:
+    name: 'Prime: Sagoonja: Bamboo'
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 3840% x3 Bamboo-zled ''s damage 3292% Critical Hit Rate +50% Maximum 10 targets
+      Forward Guard during the skill All Evasion -12 for 10 sec on hits Knockdown on hits (PvE only) Down Attack 50.01% damage
+      in PvP only Storm cloud ''s attack damage 1120% x1, max 10 hits All Damage Reduction -20 for 10 sec on hits All AP -20
+      for 10 sec on hits 57.52% damage in PvP only Requires a storm cloud created by Prime: Quiet Waters .'
+  prime_sagoonja_chrysanth:
+    name: 'Prime: Sagoonja: Chrysanth'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 10633% x1, max 3 hits Critical Hit Rate +50% Maximum 10 targets Forward Guard during
+      the skill Knockback on hits (PvE only) Movement Speed +30% for 10 sec (Applied to self and allies) Movement Speed -15%
+      for 5 sec on hits Down Attack 25.18% damage in PvP only Storm cloud ''s attack damage 1120% x1, max 10 hits All Damage
+      Reduction -20 for 10 sec on hits All AP -20 for 10 sec on hits 57.52% damage in PvP only Requires a storm cloud created
+      by Prime: Quiet Waters .'
+  prime_sagoonja_orchid:
+    name: 'Prime: Sagoonja: Orchid'
+    input: SHIFT + E Hold E after Bamboo-zled
+    keys:
+    - shift
+    - e
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 9000
+    description: Use your Do arts to bring the orchid of the Sagoonja to life.
+    notes: 'Use your Do arts to bring the orchid of the Sagoonja to life. Attack damage 5143% x3 Critical Hit Rate +100% Maximum
+      10 targets Forward Guard during the skill Knockback on hits (PvE only) Down Attack Down Smash 34.42% damage in PvP only
+      Storm cloud ''s attack damage 1120% x1, max 10 hits All Damage Reduction -20 for 10 sec on hits All AP -20 for 10 sec
+      on hits 57.52% damage in PvP only Requires a storm cloud created by Prime: Quiet Waters .'
+  prime_sagoonja_plum:
+    name: 'Prime: Sagoonja: Plum'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Use your Do arts to bring the plum blossom of the Sagoonja to life.
+    notes: 'Use your Do arts to bring the plum blossom of the Sagoonja to life. Attack damage 5037% x3 Critical Hit Rate +100%
+      Maximum 10 targets Forward Guard during the skill Recover 400 HP per hit Knockdown on hits (PvE only) Down Attack 37.54%
+      damage in PvP only Storm cloud ''s attack damage 1120% x1, max 10 hits All Damage Reduction -20 for 10 sec on hits All
+      AP -20 for 10 sec on hits 57.52% damage in PvP only Requires a storm cloud created by Prime: Quiet Waters .'
+  prime_stormfall:
+    name: 'Prime: Stormfall'
+    input: SHIFT + Q SHIFT + Q after certain skills to perform attack 2
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - knockback
+    - stun
+    - down_attack
+    cooldown_ms: 13000
+    description: Wield your Do arts to call forth the winds and bring down a sudden storm.
+    notes: 'Wield your Do arts to call forth the winds and bring down a sudden storm. Attack 1 damage 4566% x1 Attack 2 damage
+      4566% x1, max 11 hits Last attack damage 5041% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor during the
+      skill Stun on first hit Knockback on last attack hits Down Attack 30.15% damage in PvP only Storm cloud ''s attack damage
+      1120% x1, max 10 hits All Damage Reduction -20 for 10 sec on hits All AP -20 for 10 sec on hits 57.52% damage in PvP
+      only Requires a storm cloud created by Prime: Quiet Waters . Attack 1 damage 7047% x1, max 5 hits Attack 2 damage 8438%
+      x2 Attack 3 damage 11700% x1, max 14 hits Attack 4 damage 8064% x3 Critical Hit Rate +100% Maximum 10 targets All AP
+      +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60
+      sec when using the skill Max HP +2000 for 60 sec when using the skill Attack Speed -10% for 5 sec on hits Casting Speed
+      -10% for 5 sec on hits Super Armor Stun on hits Down Attack 11.2% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. Dismount target on hits. Injures target with 100% of the damage of a hit.'
+  prime_thunderstroke:
+    name: 'Prime: Thunderstroke'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 5757% x2 Critical Hit Rate +30% Maximum 10 targets All AP +24 for 10 sec when using
+      the skill Bound on hits Down Attack 49.55% damage in PvP only'
+  prime_tranquil_mind:
+    name: 'Prime: Tranquil Mind'
+    input: Passive
+    protection: none
+    description: Ascend to higher levels of body and mind after being enlightened to the natural state of doing nothing.
+    notes: Ascend to higher levels of body and mind after being enlightened to the natural state of doing nothing. HP Recovery
+      +30 All Damage Reduction +1
+    keys:
+    - hotbar
+  prime_wingbeat:
+    name: 'Prime: Wingbeat'
+    input: SPACE after other skills Hold SPACE to attack an extra time
+    keys:
+    - space
+    - hold
+    protection: FG
+    cc:
+    - knockback
+    - knockdown
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 5018% x2 Attack 2 damage 10035% x2 Critical Hit Rate +50% (Nullified during cooldown)
+      Maximum 10 targets Recover 200 MP per attack 1 hit (Nullified during cooldown) Forward Guard during the skill (Nullified
+      during cooldown) Push the target on hits (PvE only) Knockback on attack 1 hits (PvE only) (Nullified during cooldown)
+      Knockdown on attack 2 hits (PvE only) (Nullified during cooldown) Air Attack Down Attack Down Smash on attack 2 hits
+      (Nullified during cooldown) 30% attack 1 damage in PvP only 42% attack 2 damage in PvP only Attack 1 damage 4998% x5
+      Attack 2 damage 8330% x3 Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Casting
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on
+      attack 1 hits Knockdown on attack 2 hits Down Attack 40.43% damage in PvP only Dismount target on hits. Injures target
+      with 50% of the damage of a hit.'
+  pummel:
+    name: Pummel
+    input: RMB
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - stun
+    - air_attack
+    cooldown_ms: 4000
+    description: Smack your enemy on the head multiple times with your folded fan.
+    notes: Smack your enemy on the head multiple times with your folded fan. Attack 1 damage 1006% x2 Attack 2 damage 1006%
+      x2 Critical Hit Rate +30% (Nullified during cooldown) Maximum 7 targets Forward Guard during the skill (Nullified during
+      cooldown) Recover 80 MP per hit (Nullified during cooldown) Push the target on hits (PvE only) Stun on attack 2 hits
+      (PvE only) (Nullified during cooldown) Air Attack 61.22% damage in PvP only
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  reinvigorate:
+    name: Reinvigorate
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 50000
+    description: 'Preceding Skill: [Sagoonja: Plum IV]'
+    notes: 'Preceding Skill: [Sagoonja: Plum IV] Recovers 4200 HP when using the skill Consume 250 MP for 5 sec each time,
+      max 4 times Consumes 80% of MP when using the skill Super Armor during the skill'
+    keys:
+    - hotbar
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  sagoonja_bamboo:
+    name: 'Sagoonja: Bamboo'
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Use your Do arts to bring the bamboo of the Sagoonja to life.
+    notes: Use your Do arts to bring the bamboo of the Sagoonja to life. Attack damage 1658% x3 Bamboo-zled 's damage 1658%
+      Critical Hit Rate +30% Maximum 7 targets Knockdown on hits Down Attack 75.08% damage in PvP only
+  sagoonja_chrysanth:
+    name: 'Sagoonja: Chrysanth'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 11000
+    description: Use your Do arts to bring the chrysanthemum of the Sagoonja to life. Push back your foes and cast a movement
+      speed-increasing boon on your allies.
+    notes: Use your Do arts to bring the chrysanthemum of the Sagoonja to life. Push back your foes and cast a movement speed-increasing
+      boon on your allies. Attack damage 6230% x1, max 3 hits Maximum 7 targets Forward Guard during the skill Knockback on
+      hits (PvE only) Movement Speed +15% for 10 sec (Applied to self and allies) Movement Speed -15% for 5 sec on hits Down
+      Attack 40.43% damage in PvP only
+  sagoonja_orchid:
+    name: 'Sagoonja: Orchid'
+    input: SHIFT + E Hold E after Bamboo-zled
+    keys:
+    - shift
+    - e
+    protection: FG
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 10000
+    description: Use your Do arts to bring the orchid of the Sagoonja to life.
+    notes: Use your Do arts to bring the orchid of the Sagoonja to life. Attack damage 3126% x2 Critical Hit Rate +40% Maximum
+      7 targets Forward Guard during the skill Knockback on hits (PvE only) Down Attack Down Smash 63.53% damage in PvP only
+  sagoonja_plum:
+    name: 'Sagoonja: Plum'
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Use your Do arts to bring the plum blossom of the Sagoonja to life.
+    notes: Use your Do arts to bring the plum blossom of the Sagoonja to life. Attack damage 2338% x2 Critical Hit Rate +50%
+      Maximum 7 targets Forward Guard during the skill Recover 200 HP per hit Knockdown on hits (PvE only) Down Attack 69.3%
+      damage in PvP only
+  sahee_s_descent:
+    name: Sahee's Descent
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - bound
+    - stun
+    - down_attack
+    cooldown_ms: 9000
+    description: Form patterns of Sahee, causing powerful explosions.
+    notes: Form patterns of Sahee, causing powerful explosions. Attack 1 damage 5972% x1, max 1 hits Attack 2 damage 5972%
+      x1, max 3 hits Attack 3 damage 6868% x2 Critical Hit Rate +100% Maximum 10 targets All Damage Reduction -20 for 10 sec
+      on hits Forward Guard during the skill Bound on attack 3 hits (PvE only) Down Attack 26.89% damage in PvP only Attack
+      1 damage 8246% x1, max 2 hits Attack 2 damage 12060% x1, max 7 hits Attack 3 damage 11220% x1, max 8 hits Attack 4 damage
+      15774% x1, max 4 hits Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Casting
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60
+      sec when using the skill Super Armor Stun on attack 1 and 2 hits Knockdown on attack 4 hits Down Attack 11.55% damage
+      in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Dismount target on hits. Injures
+      target with 100% of the damage of a hit.
+  silent_strike:
+    name: Silent Strike
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - air_attack
+    cooldown_ms: 6000
+    description: Quickly move forward and attack your enemies' throat with your fan.
+    notes: Quickly move forward and attack your enemies' throat with your fan. Attack damage 1660% x2 Maximum 7 targets Super
+      Armor while moving Push the target on hits (PvE only) Stiffness on hits Air Attack 92.4% damage in PvP only
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  soul_cleanse:
+    name: Soul Cleanse
+    input: RMB Hold RMB to continue the skill ← or → + RMB to perform lateral attacks ← or → + RMB with your Swallowtail Fan
+    keys:
+    - rmb
+    - a
+    - d
+    - hold
+    protection: iframe
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 5000
+    description: Cast a spell to cleanse tainted souls with the aid of your Sari Flowers.
+    notes: Cast a spell to cleanse tainted souls with the aid of your Sari Flowers. Attack 1 damage 1587% x1, max 2 hits Attack
+      2 damage 1587% x1 Attack 3 damage 1587% x2 Lateral attack damage 2381% x2 Critical Hit Rate +50% (Nullified during cooldown)
+      Maximum 10 targets All AP +20 for 10 sec when using the skill (Nullified during cooldown) MP Recovery +250 lateral attacks
+      (Nullified during cooldown) Invincible while moving (Nullified during cooldown) Invincible while moving (PvE only) Knockback
+      on first hit (Nullified during cooldown) No character collision while moving laterally 34.6% damage in PvP only Damage
+      reduced during cooldown. (PvE only) Consumes 150 Stamina during lateral attacks. Consumes 70 MP when performed while
+      standing during cooldown Sari Flower 's explosion damage 1827% x1, max 3 hits Critical Hit Rate +40% Maximum 10 targets
+      Down Attack 51.94% damage in PvP only Applies as many Sari Flower effects as there are flowers summoned.
+  soul_shower:
+    name: Soul Shower
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: SA
+    cc:
+    - floating
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: Unfold the soul tome forward to unleash a flurry of charged power upon the enemy.
+    notes: 'Unfold the soul tome forward to unleash a flurry of charged power upon the enemy. Attack 1 damage 5218% x1, max
+      3 hits Attack 2 damage 5218% x1, max 3 hits Attack 3 damage 5218% x2 Flow: Soul Shock ''s damage 9131% Critical Hit
+      Rate +100% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Super Armor during the skill Stun on attack
+      1 hits (PvE only) Push the target on attack 1 and 2 hits (PvE only) Down Attack 24.26% damage in PvP only Attack damage
+      10897% x3 Critical Hit Rate +100% Maximum 10 targets Increased attack area All Damage Reduction -20 for 10 sec on hits
+      Super Armor during the skill Floating on hits Down Attack Air Attack 24.26% damage in PvP only Dismount target on hits.
+      Injures target with 30% of the damage of a hit.'
+  souldance:
+    name: Souldance
+    input: LMB ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks LMB while sprinting to perform sprint
+      attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - bound
+    description: Learn how to harness condensed power with your soul tome, the book of bound charms.
+    notes: Learn how to harness condensed power with your soul tome, the book of bound charms. Standing attack hit damage
+      1454% x1, max 3 hits Standing attack last hit damage 1454% x2 Lateral attack damage 1454% x1, max 2 hits Lateral attack
+      last hit damage 1454% x2 Forward attack hit damage 1454% x1, max 4 hits Dash attack hit damage 1454% x3 Maximum 10 targets
+      Recover 40 MP per hit 69.3% damage in PvP only
+  spring_blossom:
+    name: Spring Blossom
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 50000
+    description: 'Preceding Skill: [Sagoonja: Plum IV]'
+    notes: 'Preceding Skill: [Sagoonja: Plum IV] HP Recovery +300 for 40 sec when using the skill Super Armor during the skill'
+    keys:
+    - hotbar
+  stave_strike:
+    name: Stave Strike
+    input: E Hold E to continue the skill
+    keys:
+    - e
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: Push your enemies back with your do stave.
+    notes: Push your enemies back with your do stave. Attack 1 damage 978% x2 Attack 2 damage 1956% x2 Critical Hit Rate +30%
+      Maximum 7 targets Push the target on hits (PvE only) Knockdown on attack 1 hits (Nullified during cooldown) Air Attack
+      Down Attack 57.75% damage in PvP only
+  stormfall:
+    name: Stormfall
+    input: SHIFT + Q SHIFT + Q after certain skills to perform attack 2
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - knockback
+    - stun
+    - down_attack
+    cooldown_ms: 16000
+    description: Wield your Do arts to call forth the winds and bring down a sudden storm.
+    notes: Wield your Do arts to call forth the winds and bring down a sudden storm. Attack 1 damage 2232% x1 Attack 2 damage
+      2175% x1, max 13 hits Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Stun on first hit (PvE
+      only) Knockback on last attack hits (PvE only) Down Attack 38.12% damage in PvP only Attack 1 damage 2829% x1, max 5
+      hits Attack 2 damage 2720% x2 Attack 3 damage 1943% x1, max 14 hits Attack 4 damage 2176% x3 Critical Hit Rate +100%
+      Maximum 10 targets All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical
+      Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Attack Speed -10% for 5 sec
+      on hits Casting Speed -10% for 5 sec on hits Super Armor Stun on hits Down Attack 43.89% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds. Dismount target on hits. Injures target with 100% of
+      the damage of a hit.
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  theophany_of_sahee:
+    name: Theophany of Sahee
+    input: Passive
+    protection: none
+    description: Awakening Skills
+    keys:
+    - hotbar
+  thundercall:
+    name: Thundercall
+    input: ↓ + RMB LMB during Forward Guard to attack
+    keys:
+    - s
+    - rmb
+    - lmb
+    protection: FG
+    cc:
+    - stun
+    cooldown_ms: 10000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 3807% x1, max 6 hits Critical Hit Rate +100%
+      Maximum 6 targets Super Armor -> Forward Guard before the attack hits Stun on hits Prioritizes and targets max 6 targets
+      in front by proximity Requires enemies in front when attacking to be applied. Thundercall attacks do not apply Prime:
+      Rain''s Thirst released Do effects.'
+  thunderstroke:
+    name: Thunderstroke
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Throw your do stave and slam it down on the enemy's head.
+    notes: Throw your do stave and slam it down on the enemy's head. Attack damage 1955% x2 Critical Hit Rate +30% Maximum
+      7 targets Bound on hits Down Attack 75.08% damage in PvP only
+  tigerfly:
+    name: Tigerfly
+    input: 'LMB while jumping in a direction LMB during Butterfly Step LMB after Silent Strike LMB after Yangban Step, Flitting
+      Step, or Chain: Flitting Step LMB during Prime: Rain''s Thirst LMB after Netherstrike with your soul tome LMB after
+      lateral Soul Cleanse attack with your soul tome LMB after Perilous Waltz with your soul tome'
+    keys:
+    - lmb
+    - a
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Instantly approach your enemy during Butterfly Step to smack them with your fan.
+    notes: Instantly approach your enemy during Butterfly Step to smack them with your fan. Attack damage 1184% x2 Maximum
+      10 targets Super Armor during the skill (Nullified during cooldown) Knockdown on hits (PvE only) (Nullified during cooldown)
+      Down Attack Cannot move to enemies during cooldown.
+  transcendence:
+    name: Transcendence
+    input: Passive
+    protection: none
+    description: Reach greater heights with the Do energies of the Hwadam, Leader of the Woodo School.
+    notes: 'Reach greater heights with the Do energies of the Hwadam, Leader of the Woodo School. After receiving her master
+      Hwadam''s Do energies, Woosa reaches a new zenith of Do. She is now able to absorb enemy attacks and return them back
+      to them. Also, she can now wield her Do Arts with greater ease, now able to control the heavens to call upon storm clouds
+      at whim. - You must first reset your skills in order to learn Succession: Transcendence. - You cannot learn or use awakening
+      skills if you have learned Succession: Transcendence. - You cannot learn Succession skills if you have learned Absolute
+      skills. - You cannot learn Absolute skills if you have learned Succession skills.'
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  wingbeat:
+    name: Wingbeat
+    input: SPACE after other skills
+    keys:
+    - space
+    protection: FG
+    cc:
+    - knockback
+    - knockdown
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Conjure up a strong wind with your fan to sweep everything away.
+    notes: Conjure up a strong wind with your fan to sweep everything away. Attack damage 2328% x2 Critical Hit Rate +50%
+      (Nullified during cooldown) Maximum 7 targets Recover 160 MP per hit (Nullified during cooldown) Forward Guard during
+      the skill (Nullified during cooldown) Push the target on hits (PvE only) Knockback on hits (PvE only) (Nullified during
+      cooldown) Air Attack Down Attack 57.75% damage in PvP only Attack 1 damage 2097% x5 Attack 2 damage 3495% x3 Critical
+      Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when using
+      the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on attack 1 hits Knockdown on attack
+      2 hits Down Attack 40.43% damage in PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.
+  yangban_step:
+    name: Yangban Step
+    input: ↑ + SHIFT Can be used with your soul tome
+    keys:
+    - w
+    - shift
+    protection: iframe
+    cooldown_ms: 3000
+    description: Leisurely stroll forward.
+    notes: Leisurely stroll forward. Invincible during the skill (Nullified during cooldown) Invincible during the skill (PvE
+      only)
+_flags:
+- black_spirit_illusion: Black Spirit skill — skipped per Succession spec.
+- cannon_attack: No notes — cannot infer.
+- flute_buff: Item-use skill — no keybind.
+- guild_squad_special_attack: No usable notes — cannot infer keys.
+- infinite_mastery: Passive — no keybind.
+- make_bonfire: Item-use skill — no keybind.
+- meditation: Passive — no keybind.
+- meditation_xi: Passive — no keybind.
+- meditation_xii: Passive — no keybind.
+- meditation_xiii: Passive — no keybind.
+- meditation_xiv: Passive — no keybind.
+- meditation_xix: Passive — no keybind.
+- meditation_xv: Passive — no keybind.
+- meditation_xvi: Passive — no keybind.
+- meditation_xvii: Passive — no keybind.
+- meditation_xviii: Passive — no keybind.
+- meditation_xx: Passive — no keybind.
+- mystery_of_mysteries: Passive — no keybind.
+- peace_of_mind: Passive — no keybind.
+- prime_quiet_waters: Passive — no keybind.
+- prime_tranquil_mind: Passive — no keybind.
+- rage_transfer: Black Spirit utility — skipped per Succession spec.
+- revive_target: No notes — cannot infer.
+- skilled_hunter: Passive — no keybind.
+- theophany_of_sahee: Passive — no keybind.
+- transcendence: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

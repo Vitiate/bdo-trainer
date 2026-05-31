@@ -1,0 +1,871 @@
+# Shai — Talent
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Shai
+spec: Talent
+skills:
+  alchemy_whiz:
+    name: Alchemy Whiz
+    input: Passive
+    protection: none
+    description: This unique way of alchemy you learned at Florin helps make you a better alchemist faster.
+    notes: This unique way of alchemy you learned at Florin helps make you a better alchemist faster. Alchemy EXP +1%
+    keys:
+    - hotbar
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+    keys:
+    - hotbar
+  careful:
+    name: Careful!
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Sprinkle-Sparkle IV]'
+    notes: 'Preceding Skill: [Sprinkle-Sparkle IV] Maximum 10 targets Recover 1000 HP on ally and self hits Super Armor during
+      the skill'
+    keys:
+    - hotbar
+  cheer_up:
+    name: Cheer Up!
+    input: E
+    keys:
+    - e
+    protection: none
+    cooldown_ms: 60000
+    description: Heals self and allies every few sec for a period of time.
+    notes: Heals self and allies every few sec for a period of time. Recover 300 HP every 5 sec for 60 sec (Applied to self
+      and allies) Applies effect to max 10 allies
+  come_out_come_out:
+    name: Come Out, Come Out
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cooldown_ms: 120000
+    description: Reveals all camouflaged enemies nearby. Monsters dislike this effect and are drawn to it in anger.
+    notes: Reveals all camouflaged enemies nearby. Monsters dislike this effect and are drawn to it in anger. Reveals the
+      names of hidden adventurers within range for 10 sec Maximum 10 targets Super Armor during the skill All Damage Reduction
+      +10 for 10 sec when using the skill All Damage Reduction -10 for 30 sec on hits (PvP only) Removes Stealth on hits Obtain
+      additional Florin's Leaf pieces x1 on hits. Taunt surrounding foes. (PvE only)
+  delusive_light:
+    name: Delusive Light
+    input: SHIFT + Q LMB or RMB to stop performance
+    keys:
+    - shift
+    - q
+    - hold
+    protection: SA
+    cooldown_ms: 30000
+    description: Play a tune with low-pitched, calm sounds to let the listeners' guards down.
+    notes: Play a tune with low-pitched, calm sounds to let the listeners' guards down. Maximum 10 targets Critical Hit Rate
+      - 50% for 20 sec to nearby enemies Movement Speed - 10% for 20 sec to nearby enemies All AP -26 for 20 sec to nearby
+      enemies All Accuracy -48 for 20 sec to nearby enemies Super Armor during the skill Applies Critical Hit Rate reduction
+      only to Critical Hit Rate Increase effects from buffs. Increased performance effects by enhancing your sol. Movement
+      available during performance.
+  do_it_better:
+    name: Do it Better!
+    input: E
+    keys:
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: Play an energetic tune which empowers the listeners.
+    notes: Play an energetic tune which empowers the listeners. Applies effect to max 10 allies All AP +40 for 30 sec (Applied
+      to self and allies) All Special Attack damage +2% for 30 sec (Applied to self and allies) Super Armor during the skill
+      Movement unavailable during performance.
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  earth_s_tremble:
+    name: Earth's Tremble
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    cooldown_ms: 15000
+    description: Play a beat like the trembling earth which will overwhelm all those who listen.
+    notes: Play a beat like the trembling earth which will overwhelm all those who listen. Forward attack damage 10114% x2
+      during performance Critical Hit Rate +100% Maximum 10 targets Knockdown on hits Super Armor Increased performance effects
+      by enhancing your sol. Movement unavailable during performance. 40% damage in PvP only
+  eat_this:
+    name: Eat This!
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - knockback
+    - stun
+    cooldown_ms: 5000
+    description: Recklessly throw your florang in the direction you wish. It is the longest-ranged florang skill.
+    notes: Recklessly throw your florang in the direction you wish. It is the longest-ranged florang skill. Attack damage
+      7550% x2 Critical Hit Rate +100% Maximum 10 targets Knockback on hits (PvE only) Stun on hits (PvP only) 40% damage
+      in PvP only
+  elvia_rascal:
+    name: 'Elvia: Rascal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Performs a fast-paced, lively song to deal massive damage to enemies in the vicinity.
+    notes: Performs a fast-paced, lively song to deal massive damage to enemies in the vicinity. Attack damage 5484% x5 Critical
+      Hit Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10
+      sec on hits Recover 35 MP per hit Super Armor during the skill Down Attack 20% damage in PvP only
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your sol
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  forest_s_echo:
+    name: Forest's Echo
+    input: SHIFT + F Hold F to continue playing the instrument
+    keys:
+    - shift
+    - f
+    - hold
+    protection: SA
+    cc:
+    - stiffness
+    cooldown_ms: 6000
+    description: Play a tune with the force of nature which stops enemies from moving.
+    notes: Play a tune with the force of nature which stops enemies from moving. Area attack damage 2624% x8 during performance
+      Maximum 10 targets Stiffness on hits Super Armor Consumes Stamina during performance. Increased performance effects
+      by enhancing your sol. Cancel performance by moving. 70% damage in PvP only
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  gather_around:
+    name: Gather Around!
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your sol
+    protection: none
+    cc:
+    - pull
+    cooldown_ms: 15000
+    description: Spins round and round using the mysterious power learned in Florin to gather those around her.
+    notes: Spins round and round using the mysterious power learned in Florin to gather those around her. Maximum 10 targets
+      Pull in the target on hits (PvE only)
+    keys:
+    - hotbar
+  gathering_whiz:
+    name: Gathering Whiz
+    input: Passive
+    protection: none
+    description: This unique way of gathering you learned at Florin helps make you a better gatherer faster.
+    notes: This unique way of gathering you learned at Florin helps make you a better gatherer faster. Gathering EXP +1%
+    keys:
+    - hotbar
+  get_well:
+    name: Get Well
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 90000
+    description: Churn up a magical breeze to heal self and allies. Targeted monsters will be pushed away.
+    notes: Churn up a magical breeze to heal self and allies. Targeted monsters will be pushed away. Recovers 700 HP per 1
+      ticks for 3 ticks (Applied to self and allies) Applies effect to max 10 allies Super Armor during the skill Push the
+      target on hits (PvE only) Recovers 1000 HP per 1 ticks for 10 ticks (Applied to self and allies) Critical Hit Rate +100%
+      for 60 sec to self Critical Hit Rate +100% for 30 sec to allies Applies effect to max 10 allies All Damage Reduction
+      +300 for 20 sec when using the skill Super Armor during the skill
+  go_away:
+    name: Go Away
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - floating
+    cooldown_ms: 6000
+    description: Kick forward at enemies, launching them up into the air.
+    notes: Kick forward at enemies, launching them up into the air. Attack damage 2659% x2 Maximum 7 targets Recover 75 MP
+      per hit Floating on hits (Nullified during cooldown) 44% damage in PvP only
+  go:
+    name: Go!
+    input: Q or E during One-Two-Three's attack 1 motion
+    keys:
+    - q
+    - e
+    protection: none
+    description: 'Preceding Skill: [One-Two-Three V]'
+    notes: 'Preceding Skill: [One-Two-Three V] All damage applies One-Two-Three ''s attack 3 damage, max 9 hits , and effects'
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+    keys:
+    - hotbar
+  hop:
+    name: Hop
+    input: ↑ + SHIFT or ← + SHIFT or → + SHIFT or ↓ + SHIFT Can be used with your sol Can only Hop forward while performing
+      with your sol
+    keys:
+    - w
+    - shift
+    - a
+    - d
+    - s
+    protection: iframe
+    cooldown_ms: 3000
+    description: Lightly hops in the desired direction.
+    notes: Lightly hops in the desired direction. No collision while moving Invincible while moving (Nullified during cooldown)
+      Invincible during the skill (PvE only) Increased movement distance Movement Speed +10% for 10 sec when using the skill
+      (Nullified during cooldown) Reduced movement distance during cooldown.
+  hop_three:
+    name: Hop-Three
+    input: ↓ + LMB
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - down_attack
+    - spin
+    cooldown_ms: 3000
+    description: Hops and spins the florang while blocking attacks from the front.
+    notes: Hops and spins the florang while blocking attacks from the front. Attack damage 3637% x1, max 10 hits Maximum 10
+      targets Forward Guard during the skill Push the target on hits (PvE only) All Damage Reduction -20 for 10 sec on hits
+      Down Attack 77% damage in PvP only
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  joy_of_alchemy:
+    name: Joy of Alchemy
+    input: Passive
+    protection: none
+    description: The experience you earn from practicing alchemy turns out to come in handy on the battlefield.
+    notes: The experience you earn from practicing alchemy turns out to come in handy on the battlefield. Gain Combat EXP
+      +300% when performing Alchemy.
+    keys:
+    - hotbar
+  joy_of_gathering:
+    name: Joy of Gathering
+    input: Passive
+    protection: none
+    description: The experience you earn from gathering rare items turns out to come in handy on the battlefield.
+    notes: The experience you earn from gathering rare items turns out to come in handy on the battlefield. Gain Combat EXP
+      +300% when performing Gathering.
+    keys:
+    - hotbar
+  kwik_two:
+    name: Kwik-Two
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 4000
+    description: Quickly evade backward and throw the florang. Especially handy in dangerous situations.
+    notes: Quickly evade backward and throw the florang. Especially handy in dangerous situations. Attack damage 3822% x1,
+      max 9 hits Maximum 10 targets All Evasion +48 for 10 sec when using the skill Movement Speed -5% for 5 sec on hits All
+      Damage Reduction -20 for 10 sec on hits Forward Guard during the skill Push the target on airborne attack hits (PvE
+      only) Pull in the target on returning weapon hits (PvE only) Down Attack 65% damage in PvP only
+  light_bag:
+    name: Light Bag
+    input: Passive
+    protection: none
+    description: Helps you organize items in a neat and tidy manner, which somehow makes your inventory feel lighter.
+    notes: Helps you organize items in a neat and tidy manner, which somehow makes your inventory feel lighter. Increases
+      the amount of weight limit you gain when you level up.
+    keys:
+    - hotbar
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+    keys:
+    - hotbar
+  misty_haze:
+    name: Misty Haze
+    input: Q LMB or RMB to stop performance
+    keys:
+    - q
+    - hold
+    protection: SA
+    cooldown_ms: 60000
+    description: Play a dreamy tune which brings the listeners to a state of daze.
+    notes: Play a dreamy tune which brings the listeners to a state of daze. Maximum 10 targets All Evasion - 40 for 60 sec
+      to nearby enemies All Damage Reduction -20 for 60 sec to nearby enemies Super Armor during the skill Increased performance
+      effects by enhancing your sol. Movement available during performance.
+  now:
+    name: Now!
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Sprinkle-Sparkle IV]'
+    notes: 'Preceding Skill: [Sprinkle-Sparkle IV] Attack damage 1601% x1 Maximum 10 targets Show the enemy''s name for 10
+      sec on hits All Damage Reduction -20 for 10 sec on hits Obtain Florin''s Leaf pieces x3 when using the skill. Super
+      Armor during the skill'
+    keys:
+    - hotbar
+  one_two_three:
+    name: One-Two-Three
+    input: RMB Hold RMB to throw a maximum of 3 times RMB after Go! to perform from attack 2
+    keys:
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - stiffness
+    - stun
+    - pull
+    cooldown_ms: 5000
+    description: A basic attack using your florang, which can be thrown up to 3 times.
+    notes: A basic attack using your florang, which can be thrown up to 3 times. Attack 1 damage 3082% x1, max 7 hits Attack
+      2 damage 2232% x1, max 9 hits Attack 3 damage 6595% x1, max 4 hits Critical Hit Rate +50% for attack 3 hits (PvE only)
+      Maximum 10 targets Stiffness on hits (Nullified during cooldown) Push the target on airborne attack 1 and 2 hits (PvE
+      only) Pull in the target on returning attack 1 and 2 hits (PvE only) 86.9% attacks 1 and 2 damage in PvP only 84.8%
+      last attack damage in PvP only Attack damage 7089% x9 Critical Hit Rate +100% (PvE only) Maximum 10 targets Critical
+      Hit Rate +50% for 60 sec to self Critical Hit Rate +50% for 30 sec to allies Super Armor during the skill Stun on hits
+      Injures target with 50% of the damage of a hit. Dismount target on hits. 45% damage in PvP only
+  outta_my_way:
+    name: Outta My Way!
+    input: SPACE to consume Florin's Leaves and perform skill Can be used with your sol
+    keys:
+    - space
+    protection: SA
+    description: Wham! Instantly pushes back nearby enemies. Shai gains strength and her AP is increased.
+    notes: Wham! Instantly pushes back nearby enemies. Shai gains strength and her AP is increased. Applies effect to max
+      10 allies Consume Florin's Leaf x 1 to get All AP +10 for 60 sec to self Consume Florin's Leaf x 1 to get All AP +10
+      for 30 sec (Applied to allies) Consume Florin's Leaf x 2 to get All AP +20 for 60 sec to self Consume Florin's Leaf
+      x 2 to get All AP +20 for 30 sec (Applied to allies) Consume Florin's Leaf x 3 to get All AP +32 for 60 sec to self
+      Consume Florin's Leaf x 3 to get All AP +32 for 30 sec (Applied to allies) Push the target on hits (PvE only) Super
+      Armor during the skill
+  over_here:
+    name: Over Here!
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cooldown_ms: 120000
+    description: Create a ginormous protective area for self and allies.
+    notes: Create a ginormous protective area for self and allies. Super Armor during the skill All Evasion +200 for 1 sec
+      to allies All Accuracy -200 for 1 sec to nearby enemies
+  over_there:
+    name: Over There!
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Get Well]'
+    notes: 'Preceding Skill: [Get Well] Attack damage 3852% x1 every 3 sec to nearby enemies Maximum 10 targets All AP -20
+      for 5 sec on hits All Accuracy -48 for 5 sec on hits Summons light from your vitclari that lasts for 30 sec. The light
+      summoned from your vitclari chases nearby enemies. The light from your vitclari can be struck by enemies.'
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  play_dead:
+    name: Play Dead
+    input: Can be added to a Quick Slot Can be used via a Quick Slot with your sol Move any direction to cancel the skill
+    protection: iframe
+    cooldown_ms: 180000
+    description: A trick to deceive allies and enemies by pretending to be dead. However, it does not work on monsters.
+    notes: A trick to deceive allies and enemies by pretending to be dead. However, it does not work on monsters. Invincible
+      for 4 sec Recover 15 HP during the skill
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Applies effect to max
+      10 allies Black Spirit's Rage -100% Critical Hit Rate +50% for 60 sec to self Critical Hit Rate +50% for 30 sec to allies
+      Black Spirit's Rage -200% Critical Hit Rate +100% for 60 sec to self Critical Hit Rate +100% for 30 sec to allies
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+    keys:
+    - hotbar
+  sharing_is_caring:
+    name: Sharing is Caring
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Get Well]'
+    notes: 'Preceding Skill: [Get Well] Recover allies'' HP by 350 every 7 sec Applies effect to max 10 allies Summons light
+      from your vitclari that lasts for 30 sec. The light summoned from your vitclari will follow the closest ally. The light
+      from your vitclari can be struck by enemies.'
+  shout_to_the_sky:
+    name: Shout to the Sky
+    input: ↓ + F LMB to stop performance
+    keys:
+    - s
+    - f
+    - hold
+    protection: none
+    cooldown_ms: 10000
+    description: Play a tune that is inspired by the beauty of life to increase the HP of your allies.
+    notes: Play a tune that is inspired by the beauty of life to increase the HP of your allies. Applies effect to max 10
+      allies Max HP +1500 for 60 sec (Applied to self and allies) Recover +500 HP (Applied to self and allies) Recover 150
+      HP every 2 sec for 10 sec (Applied to self and allies) Increased area of effect while continuing performance. Movement
+      available during performance.
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  sprinkle_sparkle:
+    name: Sprinkle-Sparkle
+    input: ← + RMB or → + RMB Can be used with your sol
+    keys:
+    - a
+    - rmb
+    - d
+    protection: none
+    description: Sprinkle magic to either restore allies' HP or deal damage to enemies.
+    notes: Sprinkle magic to either restore allies' HP or deal damage to enemies. Attack damage 4220% x1 Critical Hit Rate
+      +50% Maximum 10 targets Recover 300 HP on ally hits Obtain additional Florin's Leaf pieces x1 on hits.
+  stick_to_me:
+    name: Stick to Me!
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cooldown_ms: 20000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack damage 3503% x1, max 6 hits Critical Hit Rate +100%
+      (PvE only) Maximum 10 targets Recovers +375 HP per tick, max 6 ticks (Applied to self and allies) All Damage Reduction
+      +50 for 1 sec (Applied to self and allies) Super Armor during the skill 75% damage in PvP only'
+  summer_rain:
+    name: Summer Rain
+    input: ↓ + RMB → + F while playing the tute LMB to stop performance
+    keys:
+    - s
+    - rmb
+    - d
+    - f
+    - hold
+    protection: none
+    cooldown_ms: 10000
+    description: Play a mystical tune for allies to take courage for a while to fight against any formidable foes.
+    notes: Play a mystical tune for allies to take courage for a while to fight against any formidable foes. Applies effect
+      to max 10 allies All CC Resistance +40% for 60 sec (Applied to self and allies) Increased area of effect while continuing
+      performance. Movement available during performance.
+  sun_s_fury:
+    name: Sun's Fury
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cooldown_ms: 8000
+    description: Play a beat that is reminiscent of the bright shiny sun to make listeners feel the scorching wrath of the
+      sun.
+    notes: Play a beat that is reminiscent of the bright shiny sun to make listeners feel the scorching wrath of the sun.
+      Attack damage 12628% x2 during performance Critical Hit Rate +100% Maximum 10 targets Attack Speed -10% for 5 sec on
+      hits Casting Speed -10% for 5 sec on hits Super Armor Increased performance effects by enhancing your sol. Movement
+      unavailable during performance. 37% damage in PvP only
+  sun_moon_stars:
+    name: Sun, Moon, Stars
+    input: F LMB to stop performance
+    keys:
+    - f
+    - hold
+    protection: none
+    cooldown_ms: 10000
+    description: Play a tune with a dynamic rhythm to provide agility to your allies.
+    notes: Play a tune with a dynamic rhythm to provide agility to your allies. Applies effect to max 10 allies Attack/Casting
+      Speed +10% for 60 sec (Applied to self and allies) Movement Speed +10% for 60 sec (Applied to self and allies) Increased
+      area of effect while continuing performance. Increased performance effects by enhancing your sol. Movement available
+      during performance.
+  swing_swing:
+    name: Swing Swing
+    input: LMB ↑ + LMB LMB while jumping
+    keys:
+    - lmb
+    - w
+    protection: none
+    description: Swing your florang forward at enemies.
+    notes: Swing your florang forward at enemies. Attack damage 3326% x1, max 4 hits Maximum 10 targets Recover 50 MP per
+      hit 80% damage in PvP only
+  talent_melody_of_light:
+    name: 'Talent: Melody of Light'
+    input: C
+    keys:
+    - c
+    protection: none
+    cooldown_ms: 1000
+    description: You can use instruments to play beautiful music in battle.
+    notes: You can use instruments to play beautiful music in battle. A skill for Shai to show off her talents. A medley of
+      musical instruments are at your disposal. The Tamtam 's upbeat rhythms create fun vibes for close friends. The Tring
+      's sentimental sounds mellow out the more mischievous among you. The Tute 's beautiful melodies soothe anyone incensed.
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  time_to_shine:
+    name: Time to Shine!
+    input: RMB ← + F while playing the tute LMB to stop performance
+    keys:
+    - rmb
+    - a
+    - f
+    - hold
+    protection: none
+    cooldown_ms: 10000
+    description: Play a tune with all your soul and might for your allies to realize their potentials. Black Spirit's Rage
+      will recover faster.
+    notes: Play a tune with all your soul and might for your allies to realize their potentials. Black Spirit's Rage will
+      recover faster. Applies effect to max 10 allies Black Spirit's Rage Recovery +4.5% every 10 sec for 60 sec (Applied
+      to self and allies) Increased area of effect while continuing performance. Movement available during performance.
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+  try_this:
+    name: Try This!
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - floating
+    cooldown_ms: 7000
+    description: Spin your florang to create a whirlwind that will hit enemies in front of you.
+    notes: Spin your florang to create a whirlwind that will hit enemies in front of you. Attack damage 7070% x3 Critical
+      Hit Rate +100% (PvE only) Maximum 10 targets Forward Guard during the skill Floating on hits (PvE only) 67% damage in
+      PvP only
+  tuck_and_roll:
+    name: Tuck-and-Roll
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: iframe
+    cooldown_ms: 3000
+    description: Tuck and roll to escape from danger. Available while performing other actions, and increased Attack Speed
+      for several seconds after rolling.
+    notes: Tuck and roll to escape from danger. Available while performing other actions, and increased Attack Speed for several
+      seconds after rolling. Attack Speed +20% for 10 sec when using the skill Super Armor while moving Invincible during
+      the skill (PvE only) No collision while moving
+  tumble_wumble:
+    name: Tumble Wumble!
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - bound
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Kwik-Two V]'
+    notes: 'Preceding Skill: [Kwik-Two V] Attack damage 3405% x2 Maximum 10 targets All Evasion +48 for 10 sec when using
+      the skill Obtain Florin''s Leaf pieces x3 when using the skill. Forward Guard during the skill Bound on hits (PvE only)
+      70% damage in PvP only'
+  tuning:
+    name: Tuning
+    input: LMB LMB while playing an instrument Activates automatically when in prolonged combat stance
+    keys:
+    - lmb
+    - hold
+    protection: none
+    description: Play a calm tune which will heal exhausted allies who listen to it.
+    notes: Play a calm tune which will heal exhausted allies who listen to it. Applies effect to max 10 allies Recovers 150
+      HP per 3 sec during Tuning (Applied to self and allies) Recovers 5% of MP/SP/WP every 3 sec during Tuning (Applied to
+      self and allies) Halts recovery effects upon moving during Tuning.
+  twirl:
+    name: Twirl
+    input: ← + LMB or → + LMB Can be used with your sol
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    description: Hurls the florang while moving sideways. Most effective when used while avoiding damage.
+    notes: Hurls the florang while moving sideways. Most effective when used while avoiding damage. Attack 1 damage 1989%
+      x1, max 8 hits Attack 2 damage 2678% x1, max 8 hits Maximum 10 targets Recover 84 MP per hit 66.7% damage in PvP only
+  twirl_boom:
+    name: Twirl-Boom!
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Kwik-Two V]'
+    notes: 'Preceding Skill: [Kwik-Two V] Attack damage 7720% x2 Critical Hit Rate +50% Maximum 10 targets Knockback on hits
+      Obtain Florin''s Leaf pieces x3 when using the skill. 45.4% damage in PvP only'
+  twirl_three:
+    name: Twirl-Three
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - pull
+    cooldown_ms: 3000
+    description: Spin and throw your florang forward at enemies while being immune to crowd control.
+    notes: Spin and throw your florang forward at enemies while being immune to crowd control. Spinning area attack damage
+      2672% x3 Attack damage 4453% x1, max 9 hits Maximum 10 targets Super Armor during the skill All Damage Reduction -20
+      for 10 sec on hits Push the target on airborne attack hits (PvE only) Pull in the target on returning weapon hits (PvE
+      only) 65.5% damage in PvP only
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  we_re_gonna_win:
+    name: We're Gonna Win!
+    input: Can be added to a Quick Slot
+    protection: SA
+    description: Play a rewritten variation of all the songs you've played thus far.
+    notes: 'Play a rewritten variation of all the songs you''ve played thus far. Play a variation of existing songs for 10
+      minutes. The following effects will apply for 10 minutes when you use the following skills: Do it Better!, Summer Rain,
+      Time to Shine!, Shout to the Sky, Sun, Moon, Stars - Changes performance area of effect to front Misty Haze, Delusive
+      Light - Increases area of effect - Changes performance to be applied at aiming point - Does not apply Super Armor Forest''s
+      Echo, Earth''s Tremble, Sun''s Fury - Movement available during performance Returns to original song if skill is recast
+      during a variation performance.'
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  yippee:
+    name: Yippee!
+    input: ↑ + RMB SPACE to jump F to boost ↓ or LMB to stop Can be used in Talent
+    keys:
+    - w
+    - rmb
+    - space
+    - f
+    - s
+    - lmb
+    protection: SA
+    cooldown_ms: 15000
+    description: Ride your florang to move about for a certain period of time! Let's go!
+    notes: Ride your florang to move about for a certain period of time! Let's go! Consumes Stamina during the skill. Super
+      Armor during the skill
+_flags:
+- alchemy_whiz: Passive — no keybind.
+- cannon_attack: Passive — no keybind.
+- gathering_whiz: Passive — no keybind.
+- guild_squad_special_attack: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- joy_of_alchemy: Passive — no keybind.
+- joy_of_gathering: Passive — no keybind.
+- light_bag: Passive — no keybind.
+- revive_target: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

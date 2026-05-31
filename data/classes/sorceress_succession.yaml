@@ -1,0 +1,2157 @@
+# Sorceress — Succession
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Sorceress
+spec: Succession
+skills:
+  not_in_use_black_spirit_grim_reaper_s_judgment:
+    name: '(Not in Use) Black Spirit: Grim Reaper''s Judgment'
+    input: SHIFT while holding LMB + RMB Black Spirit's Rage -50%
+    keys:
+    - shift
+    - lmb
+    - rmb
+    protection: none
+    description: Black Spirit's Rage
+  not_in_use_black_spirit_turn_back_slash:
+    name: '(Not in Use) Black Spirit: Turn-back Slash'
+    input: LMB while holding ↓ + RMB Black Spirit's Rage -10%
+    keys:
+    - lmb
+    - s
+    - rmb
+    protection: none
+    description: Black Spirit's Rage
+  not_in_use_black_spirit_violation:
+    name: '(Not in Use) Black Spirit: Violation'
+    input: LMB while holding ↑ + RMB LMB during attack to perform downward slashes Hold ↑ + LMB + RMB to consume Black Spirit's
+      Rage and 1 Shard of Darkness to use the skill a second time. Hold ↓ + LMB + RMB to consume Black Spirit's Rage and 1
+      Shard of Darkness to use the skill a second time backward. Black Spirit's Rage -25%
+    keys:
+    - lmb
+    - w
+    - rmb
+    - a
+    - s
+    protection: none
+    description: Black Spirit's Rage
+  absolute_darkness:
+    name: Absolute Darkness
+    input: Hold RMB after performing Sinister Energy 3 times in a row RMB after Night Crow
+    keys:
+    - rmb
+    - a
+    protection: none
+    description: Create a condensed ball of dark energy and fire it towards enemies.
+    notes: Create a condensed ball of dark energy and fire it towards enemies. Attack damage 1854% x1 Maximum 10 targets Increased
+      attack area Push the target on hits (PvE only) Create Fragment of Darkness x2 per hit 58.48% damage in PvP only
+  absolute_absolute_darkness:
+    name: 'Absolute: Absolute Darkness'
+    input: Hold RMB after performing Sinister Energy 3 times in a row RMB after Night Crow
+    keys:
+    - rmb
+    - a
+    protection: none
+    description: 'Preceding Skill: [Absolute Darkness III]'
+    notes: 'Preceding Skill: [Absolute Darkness III] Attack damage 2046% x1 Critical Hit Rate +50% Maximum 10 targets Increased
+      attack area Push the target on hits (PvE only) Create Fragment of Darkness x8 per hit 58.48% damage in PvP only'
+  absolute_abyssal_flame:
+    name: 'Absolute: Abyssal Flame'
+    input: LMB + RMB to cast Release LMB or RMB to fire Can move or evade during casting
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Abyssal Flame III]'
+    notes: 'Preceding Skill: [Abyssal Flame III] Attack damage 842% x1 Charged attack damage 1263% x2 Maximum 10 targets Increased
+      attack area on charged attack hits Recover 75 HP per charged attack hit (Effect reduced during cooldown) Knockdown on
+      charged attack hits (PvE only) (Nullified during cooldown) Down Attack Create Fragment of Darkness x1 per hit Create
+      Fragment of Darkness x2 on charged attack hits'
+  absolute_beak_kick:
+    name: 'Absolute: Beak Kick'
+    input: F or RMB during Crow Flare
+    keys:
+    - f
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - air_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Beak Kick II]'
+    notes: 'Preceding Skill: [Beak Kick II] Attack damage 680% x2 Critical Hit Rate +100% Maximum 10 targets All Evasion -12
+      for 10 sec on hits Bound on hits (PvE only) Air Attack Air Smash Create Fragment of Darkness x2 per hit (Nullified during
+      cooldown) 52.63% damage in PvP only Attack damage 1360% x2 Critical Hit Rate +100% Maximum 10 targets All Evasion -12
+      for 10 sec on hits Bound on hits (PvE only) Air Attack Air Smash Create Fragment of Darkness x2 per hit (Nullified during
+      cooldown) Increased attack area and damage upon consuming Shards of Darkness x1 . 52.63% damage in PvP only'
+  absolute_black_wave:
+    name: 'Absolute: Black Wave'
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Black Wave IV]'
+    notes: 'Preceding Skill: [Black Wave IV] Attack damage 2475% 2, max 5 hits Critical Hit Rate +50% Maximum 10 targets Increased
+      Casting Speed Floating on attack 1 hits Down Attack Create Fragment of Darkness x3 per hit 78.71% damage in PvP only'
+  absolute_bloody_calamity:
+    name: 'Absolute: Bloody Calamity'
+    input: Can be added to a Quick Slot SPACE to use instantly during lateral Night Crow Can be used with your scythe
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Bloody Calamity]'
+    notes: 'Preceding Skill: [Bloody Calamity] Attack damage 4188% x2 Attack damage 3490% x2 after Night Crow Critical Hit
+      Rate +100% Maximum 10 targets Recover 276 HP per hit 15 bleeding damage every 3 sec for 9 sec on hits All Accuracy -24
+      for 5 sec on hits Down Attack Black Spirit''s Rage unavailable if used instantly. Create Fragment of Darkness x3 per
+      hit 52.16% damage in PvP only Attack 1 damage 2864% x3 Attack 2 damage 3222% x4 Critical Hit Rate +100% Maximum 10 targets
+      All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50%
+      for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Recover 129 HP per hit 15 bleeding damage
+      every 3 sec for 9 sec on hits All Accuracy -48 for 5 sec on hits Super Armor Stun on hits Down Attack 45.84% damage
+      in PvP only Injures target with 100% of the damage of a hit. Dismount target on hits.'
+  absolute_claws_of_darkness:
+    name: 'Absolute: Claws of Darkness'
+    input: ↑ + LMB Hold LMB to continue the skill Rapidly tap Quick Slot to continue the skill
+    keys:
+    - w
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Claws of Darkness IV]'
+    notes: 'Preceding Skill: [Claws of Darkness IV] Attack damage 1260% 2, max 3 hits Maximum 10 targets Increased attack
+      area Casting Speed +5% for 10 sec when using the skill Down Attack Create Fragment of Darkness x2 per hit 59.06% damage
+      in PvP only'
+  absolute_crow_flare:
+    name: 'Absolute: Crow Flare'
+    input: E
+    keys:
+    - e
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Crow Flare III]'
+    notes: 'Preceding Skill: [Crow Flare III] Attack damage 1705% x2 Maximum 10 targets Increased Casting Speed Increased
+      attack area Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Floating on hits (Nullified during
+      cooldown) Air Attack Counter Attack Create Fragment of Darkness x3 per hit (Nullified during cooldown) 65.14% damage
+      in PvP only'
+  absolute_dark_flame:
+    name: 'Absolute: Dark Flame'
+    input: ↓ + LMB ↓ + LMB during Claws of Darkness Hold LMB to perform extra attacks
+    keys:
+    - s
+    - lmb
+    protection: FG
+    cc:
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Dark Flame II]'
+    notes: 'Preceding Skill: [Dark Flame II] Attack damage 1571% x3 Extra attack damage 1571% x2 Critical Hit Rate +100% (Nullified
+      for PvE during cooldown) Maximum 10 targets Increased attack area Forward Guard (Nullified during cooldown) Speed Attack
+      Air Attack Create Fragment of Darkness x2 per hit (Nullified during cooldown) 44.79% damage in PvP only'
+  absolute_dark_split:
+    name: 'Absolute: Dark Split'
+    input: LMB
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - floating
+    description: 'Preceding Skill: [Dark Split X]'
+    notes: 'Preceding Skill: [Dark Split X] Attacks 1 and 2 damage 1298% x1 Attack 3 damage 2596% x1 Last attack damage 3894%
+      x1 Sprint attack damage 3894% x1 Maximum 10 targets Recover 51 MP per hit Floating on sprinting attack hits Create Fragment
+      of Darkness x2 per hit 53.8% damage in PvP only'
+  absolute_darkness_released:
+    name: 'Absolute: Darkness Released'
+    input: ↑ + F to perform forward attacks ↓ + F to perform backstep attacks
+    keys:
+    - w
+    - f
+    - s
+    protection: none
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Darkness Released IV]'
+    notes: 'Preceding Skill: [Darkness Released IV] Attack damage 813% x2 Critical Hit Rate +50% Maximum 10 targets Knockback
+      on backstep attacks (Nullified during cooldown) Knockdown on forward attack hits (Nullified during cooldown) Air Attack
+      Down Attack Down Smash during backstep attack Create Fragment of Darkness x2 per hit 52.63% damage in PvP only'
+  absolute_dream_of_doom:
+    name: 'Absolute: Dream of Doom'
+    input: SHIFT + E Can move while casting LMB or RMB to fire after casting Auto-activated when using Night Crow after casting
+    keys:
+    - shift
+    - e
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - stun
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Dream of Doom III]'
+    notes: 'Preceding Skill: [Dream of Doom III] Attack damage 2766% x2 Maximum 10 targets Increased Casting Speed Knockdown
+      on hits Create Fragment of Darkness x10 per hit 94.96% damage in PvP only Consumes 100 Stamina every 1 sec while casting
+      Attack damage 8717% x1, max 5 hits Last attack damage 3790% x3 Critical Hit Rate +100% (PvE only) Maximum 10 targets
+      All AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +30%
+      for 60 sec when using the skill Super Armor Stun on hits Knockdown on last attack hits 51.46% damage in PvP only 69.35%
+      last attack damage in PvP only Injures target with 50% of the damage of a hit. Dismount target on hits.'
+  absolute_mark_of_the_shadow:
+    name: 'Absolute: Mark of the Shadow'
+    input: SHIFT + RMB Hold RMB or LMB to perform the skill again
+    keys:
+    - shift
+    - rmb
+    - lmb
+    protection: FG
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Mark of the Shadow V]'
+    notes: 'Preceding Skill: [Mark of the Shadow V] Attack damage 730% x1 Maximum 10 targets Increased Casting Speed Forward
+      Guard during the skill (Nullified during cooldown) Recover 80 HP per hit (Nullified during cooldown) Movement Speed
+      -20% for 5 sec on hits (Nullified during cooldown) Create Fragment of Darkness x2 per hit (Nullified during cooldown)
+      64.32% damage in PvP only'
+  absolute_midnight_stinger:
+    name: 'Absolute: Midnight Stinger'
+    input: SHIFT + LMB Can be used with your scythe
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 2000
+    description: 'Preceding Skill: [Midnight Stinger II]'
+    notes: 'Preceding Skill: [Midnight Stinger II] Attack damage 761% x2 Maximum 10 targets Critical Hit Rate +40% for 10
+      sec when using the skill Stiffness on hits Speed Attack Create Fragment of Darkness x2 per hit'
+  absolute_rushing_crow:
+    name: 'Absolute: Rushing Crow'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Rushing Crow II]'
+    notes: 'Preceding Skill: [Rushing Crow II] Attack damage 1310% x2 Maximum 10 targets Magic Damage Reduction -15 for 10
+      sec on hits Bound on hits Speed Attack Down Attack Create Fragment of Darkness x2 per hit'
+  absolute_shadow_eruption:
+    name: 'Absolute: Shadow Eruption'
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Shadow Eruption IV]'
+    notes: 'Preceding Skill: [Shadow Eruption IV] Attack damage 2124% x2 Maximum 10 targets Increased attack area Increased
+      Casting Speed Forward Guard Floating on hits Air Attack Create Fragment of Darkness x4 per hit 68.3% damage in PvP only'
+  absolute_shadow_kick:
+    name: 'Absolute: Shadow Kick'
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 2000
+    description: 'Preceding Skill: [Shadow Kick]'
+    notes: 'Preceding Skill: [Shadow Kick] Attack damage 1216% x2 Maximum 10 targets Floating on hits (Nullified during cooldown)
+      Down Attack Air Attack Down Smash (Nullified during cooldown) Create Fragment of Darkness x2 per hit (Nullified during
+      cooldown) 90% damage in PvP only'
+  absolute_signs_of_agony:
+    name: 'Absolute: Signs of Agony'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Signs of Agony IV]'
+    notes: 'Preceding Skill: [Signs of Agony IV] Attack damage 697% x1 40 pain damage inflicted every 3 sec for 27 sec on
+      hits Maximum 10 targets Increased attack area Increased Casting Speed Stun on hits (Nullified during cooldown) Create
+      Fragment of Darkness x2 when using the skill (Nullified during cooldown) Attack damage 697% x1 40 pain damage inflicted
+      every 3 sec for 27 sec on hits Maximum 10 targets Movement Speed -7% for 5 sec on hits (Nullified during cooldown) Increased
+      attack area Increased Casting Speed Increased attack range Stun on hits (Nullified during cooldown) Create Fragment
+      of Darkness x2 when using the skill (Nullified during cooldown)'
+  absolute_sinister_energy:
+    name: 'Absolute: Sinister Energy'
+    input: RMB ← + RMB or → + RMB LMB or RMB to perform mounted attacks
+    keys:
+    - rmb
+    - a
+    - d
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Sinister Energy V]'
+    notes: 'Preceding Skill: [Sinister Energy V] Attack damage 644% x1 Maximum 10 targets Increased Casting Speed Increased
+      attack area Recover 6 MP on hits Down Attack 64.32% damage in PvP only Create Fragment of Darkness x2 per hit'
+  abyssal_blow:
+    name: Abyssal Blow
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Crow Flare III]'
+    notes: 'Preceding Skill: [Crow Flare III] Attack damage 4753% x2 Critical Hit Rate +100% Maximum 10 targets Recover 138
+      HP per hit Forward Guard at the start of the skill Knockdown on hits Down Attack Create Fragment of Darkness x3 per
+      hit 36.72% damage in PvP only'
+  abyssal_flame:
+    name: Abyssal Flame
+    input: LMB + RMB to cast Release LMB or RMB to fire Can move or evade during casting
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Charge an Abyssal Flame to fire forth to inflict damage on enemies.
+    notes: Charge an Abyssal Flame to fire forth to inflict damage on enemies. Attack damage 704% x1 Charged attack damage
+      1056% x2 Maximum 8 targets Increased attack area on charged attack hits Recover 75 HP per charged attack hit (Effect
+      reduced during cooldown) Knockdown on charged attack hits (PvE only) (Nullified during cooldown) Down Attack Create
+      Fragment of Darkness x1 per hit Create Fragment of Darkness x2 on charged attack hits
+  beak_kick:
+    name: Beak Kick
+    input: F or RMB during Crow Flare
+    keys:
+    - f
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - air_attack
+    cooldown_ms: 4000
+    description: Performs flaming kick during Crow Flare.
+    notes: Performs flaming kick during Crow Flare. Attack damage 585% x2 Maximum 10 targets All Evasion -12 for 10 sec on
+      hits Bound on hits (PvE only) Air Attack Air Smash Create Fragment of Darkness x1 per hit (Nullified during cooldown)
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+    keys:
+    - hotbar
+  black_wave:
+    name: Black Wave
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    cooldown_ms: 10000
+    description: Attack enemies on the ground with the power of darkness.
+    notes: Attack enemies on the ground with the power of darkness. Attack damage 2145% 2, max 5 hits Maximum 7 targets Increased
+      Casting Speed Floating on attack 1 hits Down Attack Create Fragment of Darkness x3 per hit 64.32% damage in PvP only
+  blade_of_darkness:
+    name: Blade of Darkness
+    input: SHIFT + RMB
+    keys:
+    - shift
+    - rmb
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 8000
+    description: Summon blades with your dark power and inflict damage upon your enemies.
+    notes: Summon blades with your dark power and inflict damage upon your enemies. Attack damage 5187% x2 Critical Hit Rate
+      +25% Maximum 10 targets Forward Guard during the skill Knockback on hits 45.42% blade attack damage in PvP only Attack
+      damage 928% x1, max 12 hits per Blade of Darkness Maximum 10 targets 45.42% blade attack damage in PvP only Summons
+      Blade of Darkness x3.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  bloody_calamity:
+    name: Bloody Calamity
+    input: Can be added to a Quick Slot SPACE to use instantly during lateral Night Crow Can be used with your scythe
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 30000
+    description: Bring on calamity with flying red energy around you.
+    notes: Bring on calamity with flying red energy around you. Attack damage 2518% x2 Attack damage 2014% x2 after Night
+      Crow Critical Hit Rate +100% Maximum 7 targets Recover 276 HP per hit 15 bleeding damage every 3 sec for 9 sec on hits
+      All Accuracy -24 for 5 sec on hits Down Attack Black Spirit's Rage unavailable if used instantly. Create Fragment of
+      Darkness x3 per hit 52.16% damage in PvP only Attack 1 damage 1685% x3 Attack 2 damage 1896% x4 Critical Hit Rate +100%
+      Maximum 10 targets All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical
+      Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Recover 129 HP per hit 15
+      bleeding damage every 3 sec for 9 sec on hits All Accuracy -24 for 5 sec on hits Super Armor Stun on hits Down Attack
+      45.84% damage in PvP only Injures target with 100% of the damage of a hit. Dismount target on hits.
+    keys:
+    - space
+  bloody_contract:
+    name: Bloody Contract
+    input: Hold SPACE + SHIFT
+    keys:
+    - space
+    - shift
+    - hold
+    protection: none
+    description: Use dark energy to consume MP to recover HP. The skill has become more effective.
+    notes: Use dark energy to consume MP to recover HP. The skill has become more effective. Consumes 30 + level x2 MP to
+      recover 35 + level x1 HP MP Recovery +11 for 60 sec if MP and HP exchanged 2 times in a row Increased Casting Speed
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+    keys:
+    - hotbar
+  cartian_s_nightmare:
+    name: Cartian's Nightmare
+    input: SHIFT + E Hold E to perform extra attacks ↓ during the skill to cancel
+    keys:
+    - shift
+    - e
+    - s
+    - hold
+    protection: SA
+    cc:
+    - stiffness
+    - knockdown
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 15000
+    description: Those who dreamt of the Cartian's nightmare always saw ruin on the following day. It is said that a sorceress
+      who wields the Cartian's Scythe can bring forth such ruin.
+    notes: Those who dreamt of the Cartian's nightmare always saw ruin on the following day. It is said that a sorceress who
+      wields the Cartian's Scythe can bring forth such ruin. Attack damage 5074% x7 Extra attack damage 5074% x7, max 2 hits
+      Critical Hit Rate +100% (PvE only) Maximum 10 targets 40 pain damage inflicted every 3 sec for 9 sec on hits Super Armor
+      Push the target on hits (PvE only) Stiffness on attack 1 hits (PvE only) Down Attack Create max 9 Fragments of Darkness
+      when using the skill 44.98% damage in PvP only Attack 1 damage 6883% x2 Attack 2 damage 15031% x1, max 7 hits Attack
+      3 damage 6883% x2 Attack 4 damage 15031% x1, max 7 hits Last attack damage 6883% x2 Critical Hit Rate +100% Maximum
+      10 targets All AP +55 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit
+      Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor Stun on attack 1
+      and 3 hits Knockdown on last attack hits Pull in the target on hits (PvE only) 11.7% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds. Injures target with 100% of the damage of a hit. Dismount
+      target on hits.
+  cartian_s_protection:
+    name: Cartian's Protection
+    input: RMB ↓ + C with your amulet
+    keys:
+    - rmb
+    - s
+    - c
+    protection: FG
+    cc:
+    - knockdown
+    - floating
+    - pull
+    - down_attack
+    cooldown_ms: 6000
+    description: Auto-learn Protect yourself with your scythe while damaging nearby enemies at the same time.
+    notes: Auto-learn Protect yourself with your scythe while damaging nearby enemies at the same time. Attack damage 2006%
+      x2 Critical Hit Rate +100% Maximum 10 targets Floating on hits (PvE only) (Nullified during cooldown) Forward Guard
+      Down Attack Cannot move forward/backward while on Guard. 76.02% damage in PvP only Smash attack damage 3078% x2 Orb
+      attack damage 5456% x1, max 11 hits Orb blast attack damage 3078% x2 Critical Hit Rate +100% (PvE only) Orb blast Critical
+      Hit rate +100% (PvP only) Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec
+      when using the skill Critical Hit Rate +30% for 60 sec when using the skill Floating on smash attack hits Knockdown
+      on orb blast attack hits Pull in the target on orb blast attack hits Movement and Attack/Casting Speeds -50% for 1 sec
+      on pull attack hits Super Armor during the skill Forward Guard after smash attacks 35.09% damage in PvP only Injures
+      target with 50% of the damage of a hit. Dismount target on hits.
+  claws_of_darkness:
+    name: Claws of Darkness
+    input: ↑ + LMB Hold LMB to continue the skill Rapidly tap Quick Slot to continue the skill
+    keys:
+    - w
+    - lmb
+    - hold
+    protection: none
+    cc:
+    - down_attack
+    description: Perform combo attacks with the power of darkness gathered in both hands.
+    notes: Perform combo attacks with the power of darkness gathered in both hands. Attack damage 1052% 2, max 3 hits Maximum
+      8 targets Increased attack area Casting Speed +5% for 10 sec when using the skill Down Attack Create Fragment of Darkness
+      x2 per hit 59.06% damage in PvP only
+  core_cartian_s_nightmare:
+    name: 'Core: Cartian''s Nightmare'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Cartian''s Nightmare IV after learning this skill: Stiffness
+      on attack 1 hits'
+    keys:
+    - hotbar
+  core_dead_hunt:
+    name: 'Core: Dead Hunt'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Dead Hunt IV after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_grim_reaper_s_judgment:
+    name: 'Core: Grim Reaper''s Judgment'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Grim Reaper''s Judgment IV after learning this skill: Knockdown
+      on hits Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_swirling_darkness:
+    name: 'Core: Swirling Darkness'
+    input: Passive
+    protection: none
+    cc:
+    - floating
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Swirling Darkness III after learning this skill: Floating on
+      attack 1 hits'
+    keys:
+    - hotbar
+  core_turn_back_slash:
+    name: 'Core: Turn-back Slash'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Turn-back Slash III after learning this skill: Super Armor during
+      the skill (Nullified during cooldown) Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_violation:
+    name: 'Core: Violation'
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Violation III after learning this skill: Forward Guard during
+      the skill (Nullified during cooldown) Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  crow_flare:
+    name: Crow Flare
+    input: E
+    keys:
+    - e
+    protection: none
+    cc:
+    - air_attack
+    description: Burn enemies around you with dark flame.
+    notes: Burn enemies around you with dark flame. Attack damage 952% x2 Maximum 7 targets Increased Casting Speed Increased
+      attack area Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on hits Air Attack Counter Attack Create
+      Fragment of Darkness x2 per hit
+  crow_food:
+    name: Crow Food
+    input: Passive Use Storming Crow
+    protection: SA
+    description: Consume Shards of Darkness to cast Night Crow when you do not have enough Stamina.
+    notes: Consume Shards of Darkness to cast Night Crow when you do not have enough Stamina. Super Armor Consumes Shards
+      of Darkness x1 to use Storming Crow if lacking Stamina.
+    keys:
+    - hotbar
+  crow_nightmare:
+    name: Crow Nightmare
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 14000
+    description: 'Preceding Skill: [Bloody Calamity]'
+    notes: 'Preceding Skill: [Bloody Calamity] Attack damage 6725% x2 Critical Hit Rate +25% Maximum 10 targets Recover 315
+      HP per hit All Accuracy -24 for 5 sec on hits 15 bleeding damage every 3 sec for 9 sec on hits Stiffness on hits Down
+      Attack Create Fragment of Darkness x3 per hit 39.65% damage in PvP only'
+  dark_backstep:
+    name: Dark Backstep
+    input: ↓ + RMB after Darkness Released
+    keys:
+    - s
+    - rmb
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 3000
+    description: Attack once more after Darkness Released to keep your distance.
+    notes: Attack once more after Darkness Released to keep your distance. Attack damage 435% x2 Maximum 5 targets Super Armor
+      during the skill Down Attack Create Fragment of Darkness x1 per hit Super Armor during the skill Increased movement
+      distance
+  dark_bound:
+    name: Dark Bound
+    input: Passive
+    protection: none
+    description: Permanently increase Magic Attack with the powerful unity of darkness.
+    notes: Permanently increase Magic Attack with the powerful unity of darkness. Magic AP +5
+    keys:
+    - hotbar
+  dark_contract_residue:
+    name: Dark Contract Residue
+    input: Passive
+    protection: none
+    description: 'Gives you the right to learn Succession: Abyssal Contract skill.'
+    keys:
+    - hotbar
+  dark_flame:
+    name: Dark Flame
+    input: ↓ + LMB ↓ + LMB during Claws of Darkness Hold LMB to perform extra attacks
+    keys:
+    - s
+    - lmb
+    - hold
+    protection: FG
+    cc:
+    - air_attack
+    cooldown_ms: 6000
+    description: Leap forward during Claws of Darkness to perform an exploding magic attack.
+    notes: Leap forward during Claws of Darkness to perform an exploding magic attack. Attack damage 1003% x3 Extra attack
+      damage 1003% x2 Critical Hit Rate +100% (Nullified for PvE during cooldown) Maximum 8 targets Increased attack area
+      Forward Guard (Nullified during cooldown) Speed Attack Air Attack Create Fragment of Darkness x2 per hit (Nullified
+      during cooldown) 44.79% attack 1 damage in PvP only
+  dark_maneuver:
+    name: Dark Maneuver
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +5
+    keys:
+    - hotbar
+  dark_maneuver_xi:
+    name: Dark Maneuver XI
+    input: Passive
+    protection: none
+    description: Manipulates Dark Power to reinforce DP.
+    notes: Manipulates Dark Power to reinforce DP. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xii:
+    name: Dark Maneuver XII
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xiii:
+    name: Dark Maneuver XIII
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xiv:
+    name: Dark Maneuver XIV
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xix:
+    name: Dark Maneuver XIX
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xv:
+    name: Dark Maneuver XV
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xvi:
+    name: Dark Maneuver XVI
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xvii:
+    name: Dark Maneuver XVII
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xviii:
+    name: Dark Maneuver XVIII
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xx:
+    name: Dark Maneuver XX
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. All Evasion +2 Max Stamina +10
+    keys:
+    - hotbar
+  dark_maneuver_xxx:
+    name: Dark Maneuver XXX
+    input: Passive
+    protection: none
+    description: Use the power of darkness to increase evasion and stamina.
+    notes: Use the power of darkness to increase evasion and stamina. Extract energies from a Black Stone and make the Black
+      Spirit convert it to a Crystal of Darkness. Convert Black Stone x 50 into Crystal of Darkness through the Black Spirit.
+    keys:
+    - hotbar
+  dark_split:
+    name: Dark Split
+    input: LMB
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - floating
+    description: Slice enemies in front of you with Dark Power.
+    notes: Slice enemies in front of you with Dark Power. Attacks 1 and 2 damage 1219% x1 Attack 3 damage 2438% x1 Last attack
+      damage 3657% x1 Sprint attack damage 3657% x1 Maximum 10 targets Recover 51 MP per hit Floating on sprinting attack
+      hits Create Fragment of Darkness x2 per hit 53.8% damage in PvP only
+  dark_tendrils:
+    name: Dark Tendrils
+    input: ↓ + E LMB during attack 1 to perform attack 2 instantly ↓ + E during Abyssal Flame or Black Wave to perform attack
+      2 instantly
+    keys:
+    - s
+    - e
+    - lmb
+    protection: FG
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 3621% x1, max 4 hits Attack 2 damage 5261%
+      x2 Critical Hit Rate +40% Maximum 10 targets Recover 150 HP per attack 1 hit Pull in the target on attack 2 hits (PvE
+      only) Forward Guard during the skill Down Attack on attack 2 hits Create Fragment of Darkness x3 per hit 45.26% damage
+      in PvP only'
+  dark_trade:
+    name: Dark Trade
+    input: Can be added to a Quick Slot Cannot be used if HP is below 30% Can be used with your scythe
+    protection: SA
+    cooldown_ms: 25000
+    description: 'Preceding Skill: [Shards of Darkness III]'
+    notes: 'Preceding Skill: [Shards of Darkness III] Consumes 10% of HP to create max Fragments of Darkness Consumes 10%
+      of MP to create max Fragments of Darkness Super Armor during the skill'
+    keys:
+    - hotbar
+  darkness_released:
+    name: Darkness Released
+    input: ↑ + F to perform forward attacks ↓ + F to perform backstep attacks
+    keys:
+    - w
+    - f
+    - s
+    protection: none
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Push enemies back with a burst of Dark Power.
+    notes: Push enemies back with a burst of Dark Power. Attack damage 327% x2 Critical Hit Rate +25% Maximum 6 targets Knockback
+      on backstep attacks (Nullified during cooldown) Knockdown on forward attack hits (Nullified during cooldown) Air Attack
+      Down Attack Down Smash during backstep attack Create Fragment of Darkness x1 per hit
+  dead_hunt:
+    name: Dead Hunt
+    input: ↓ + LMB Hold ↓ + LMB to continue the skill
+    keys:
+    - s
+    - lmb
+    - hold
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 6000
+    description: Brandish your scythe to inflict massive and successive damage, while stealing the enemy's life force.
+    notes: Brandish your scythe to inflict massive and successive damage, while stealing the enemy's life force. Attacks 1
+      and 2 damage 2561% x2 Spin attack 3 damage 2561% x2 Smash attack 3 damage 2561% x1 Attack 4 damage 2561% x2 Maximum
+      10 targets Recover 140 HP per hit (Nullified during cooldown) Knockdown on attack 3 or 4 hits (Nullified during cooldown)
+      Air Attack on attack 2 hits Down Attack on attack 1, 3, and 4 hits Create Fragment of Darkness x2 per hit (Nullified
+      during cooldown) Damage reduced during cooldown 69.94% damage in PvP only
+  dream_of_doom:
+    name: Dream of Doom
+    input: SHIFT + E Can move while casting LMB or RMB to fire after casting Auto-activated when using Night Crow after casting
+    keys:
+    - shift
+    - e
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - stun
+    cooldown_ms: 10000
+    description: High-class magic that can bring doom to reality. Strike a wide area with a devastating attack.
+    notes: High-class magic that can bring doom to reality. Strike a wide area with a devastating attack. Attack damage 2156%
+      x2 Maximum 10 targets Increased Casting Speed Knockdown on hits Create Fragment of Darkness x10 per hit 94.96% damage
+      in PvP only Consumes 100 Stamina every 1 sec while casting Attack damage 6978% x1, max 5 hits Last attack damage 3034%
+      x3 Critical Hit Rate +100% (PvE only) Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed +25%
+      for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on hits Knockdown
+      on last attack hits 51.46% damage in PvP only 69.35% last attack damage in PvP only Injures target with 50% of the damage
+      of a hit. Dismount target on hits.
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_belated_awareness:
+    name: 'Elvia: Belated Awareness'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Widely swing the scythe in the vicinity and deal massive damage to your foes.
+    notes: Widely swing the scythe in the vicinity and deal massive damage to your foes. Attack damage 7455% x3 Critical Hit
+      Rate +100% (PvE only) Maximum 10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10 sec
+      on hits Recover 35 MP per hit Super Armor during the skill Down Attack 23.39% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  engulfing_shadow:
+    name: Engulfing Shadow
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Crow Flare III]'
+    notes: 'Preceding Skill: [Crow Flare III] Attack damage 7419% x2 Maximum 10 targets Attack Speed -10% for 5 sec on hits
+      Casting Speed -10% for 5 sec on hits Super Armor Stun on hits (PvE only) Down Attack Create Fragment of Darkness x4
+      per hit 29.12% damage in PvP only'
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your scythe
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Perform a dodge roll to evade incoming attacks.
+    notes: Perform a dodge roll to evade incoming attacks. Invincible during the skill (PvE only)
+  flow_of_darkness:
+    name: Flow of Darkness
+    input: ← + LMB or → + LMB
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - air_attack
+    description: Attack twice with dark energy while evading laterally.
+    notes: Attack twice with dark energy while evading laterally. Attack damage 1796% x1 Maximum 10 targets All Evasion +12
+      for 10 sec when using the skill Recover 16 MP per hit Air Attack Create Fragment of Darkness x2 per hit
+  flow_cry_of_darkness:
+    name: 'Flow: Cry of Darkness'
+    input: SHIFT + SPACE Target an enemy and use the skill
+    keys:
+    - shift
+    - space
+    protection: none
+    cc:
+    - knockback
+    cooldown_ms: 2000
+    description: 'Preceding Skill: [Blade of Darkness]'
+    notes: 'Preceding Skill: [Blade of Darkness] Hurl the summoned Blade of Darkness at your chosen foe and unleash a mighty
+      explosion. Must have Blade of Darkness summoned to perform the skill. Explosion attack damage 1398% x2 per Blade of
+      Darkness Maximum 10 targets Knockback on hits 45.61% damage in PvP only'
+  flow_night_crow:
+    name: 'Flow: Night Crow'
+    input: Use Night Crow while holding the scythe
+    protection: none
+    cooldown_ms: 1000
+    description: 'Preceding Skill: [Night Crow I]'
+    notes: 'Preceding Skill: [Night Crow I] Can use Night Crow with your scythe. Crow Food with your amulet is unavailable
+      in Awakening with your scythe. Instantly attacks after Night Crow. Consumes Fragment of Darkness x1 per instant attack
+      hits.'
+    keys:
+    - hotbar
+  flow_requiem:
+    name: 'Flow: Requiem'
+    input: Attack under Nightmare, then F
+    keys:
+    - f
+    protection: none
+    cooldown_ms: 60000
+    description: When defeating enemies with the effects of Nightmare, the Sorceress always sung a dirge to console the dead.
+    notes: When defeating enemies with the effects of Nightmare, the Sorceress always sung a dirge to console the dead. Consumes
+      Shards of Darkness x1 when using the skill. Critical Hit Rate +100% for 5 sec once skill ends
+  flow_soul_reaper:
+    name: 'Flow: Soul Reaper'
+    input: 'LMB after Grim Reaper''s Judgment, Violation, Soul Harvest, Swirling Darkness, or Flow: Vile Plan RMB after Shadow
+      Eruption'
+    keys:
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Grim Reaper''s Judgment III]'
+    notes: 'Preceding Skill: [Grim Reaper''s Judgment III] Attack 1 damage 4702% x1, max 2 hits Last attack damage 6269% x2
+      Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Floating on attack 1 hits (PvE only) Air Attack
+      on attack 1 hits Down Attack on last attack hits Down Smash on last attack hits 39.13% damage in PvP only'
+  flow_vile_plan:
+    name: 'Flow: Vile Plan'
+    input: SPACE during Cartian's Protection SPACE after Grim Reaper's Judgment or Swirling Darkness SPACE after Soul Harvest
+      to perform attack 2
+    keys:
+    - space
+    protection: FG
+    cc:
+    - stiffness
+    - floating
+    - air_attack
+    cooldown_ms: 5000
+    description: Attack the enemy with a powerful kick using the scythe.
+    notes: Attack the enemy with a powerful kick using the scythe. Attack 1 damage 2432% x2 Attack 2 damage 4863% x2 Maximum
+      10 targets Forward Guard during the skill Push the target on hits (PvE only) Stiffness on attack 1 hits (PvE only) Floating
+      on attack 2 hits (PvE only) Air Attack Air Smash 62.8% damage in PvP only
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+    keys:
+    - hotbar
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  grim_reaper:
+    name: Grim Reaper
+    input: E
+    keys:
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: As the descendant of Cartian, take in the Grim Reaper's power to overtake the strongest of foes.
+    notes: As the descendant of Cartian, take in the Grim Reaper's power to overtake the strongest of foes. Create Fragment
+      of Darkness x30 when using the skill All AP +45 for 30 sec when using the skill All Accuracy +48 for 30 sec Critical
+      Hit Rate +100% for 30 sec All Evasion +60 for 30 sec Super Armor during the skill Absorb 1 Shard of Darkness per standing,
+      forward, or lateral Scythe Training attacks
+  grim_reaper_s_judgment:
+    name: Grim Reaper's Judgment
+    input: 'LMB + RMB Hold LMB + RMB to charge Release LMB + RMB to perform SPACE after charging to extra-charge using 1 Shard
+      of Darkness Use Flow: Night Crow while charging Grim Reaper''s Judgment to return to the charge stance. The attack will
+      be automatically released after a certain amount of time, and this time can be extended by using Flow: Night Crow.'
+    keys:
+    - lmb
+    - rmb
+    - space
+    - hold
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Inflict massive damage with Cartian's power.
+    notes: Inflict massive damage with Cartian's power. Attack damage 9020% x2 Attack damage 10607% x3 when consuming shards
+      or during extra charged Grim Reaper Critical Hit Rate +100% Maximum 10 targets Recover 117 HP per extra charged attack
+      hit Super Armor during the skill Movement Speed -20% for 5 sec on hits Knockdown on hits (PvE only) Down Attack Consume
+      Shards of Darkness x1 to apply its All AP Increase effect. (Increased effect while maintaining the buff per skill use.)
+      28.13% damage in PvP only Attack damage 12815% x3 Critical Hit Rate +100% Maximum 10 targets Increased attack area Super
+      Armor Movement Speed -20% for 5 sec on hits Knockdown on hits Down Attack 27.59% damage in PvP only Dismount target
+      on hits. Injures target with 30% of the damage of a hit.
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+    keys:
+    - hotbar
+  imminent_doom:
+    name: Imminent Doom
+    input: Passive LMB or RMB while casting Dream of Doom
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 18000
+    description: Decreases the time taken to cast Dream of Doom.
+    notes: Decreases the time taken to cast Dream of Doom. Instantly cast Dream of Doom Stiffness on hits Instantly cast Dream
+      of Doom Stiffness on hits
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+    keys:
+    - hotbar
+  mark_of_the_shadow:
+    name: Mark of the Shadow
+    input: SHIFT + RMB Hold RMB or LMB to perform the skill again
+    keys:
+    - shift
+    - rmb
+    - lmb
+    - hold
+    protection: FG
+    cooldown_ms: 6000
+    description: Send out a stream of dark energy that inflicts continuous damage on enemies. Steals HP from affected enemies.
+    notes: Send out a stream of dark energy that inflicts continuous damage on enemies. Steals HP from affected enemies. Attack
+      damage 444% x1 Maximum 7 targets Increased Casting Speed Forward Guard during the skill (Nullified during cooldown)
+      Recover 80 HP per hit (Nullified during cooldown) Create Fragment of Darkness x2 per hit (Nullified during cooldown)
+      Movement Speed -20% for 5 sec on hits (Nullified during cooldown)
+  midnight_stinger:
+    name: Midnight Stinger
+    input: SHIFT + LMB Can be used with your scythe
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 2000
+    description: Attack with a succession of quick attacks after instantly dashing forward. Can cancel several skills.
+    notes: Attack with a succession of quick attacks after instantly dashing forward. Can cancel several skills. Attack damage
+      644% x2 Maximum 10 targets Critical Hit Rate +30% for 10 sec when using the skill Stiffness on hits Speed Attack Create
+      Fragment of Darkness x2 per hit
+  night_crow:
+    name: Night Crow
+    input: Hold Direction + SHIFT ↑ + ↑ to perform forward Night Crow ↑ + SHIFT while jumping forward
+    keys:
+    - shift
+    - w
+    - hold
+    protection: iframe
+    description: Borrow the power of the Night Crow to teleport to a desired location.
+    notes: Borrow the power of the Night Crow to teleport to a desired location. Invincible Teleports to the direction of
+      choice Increased movement distance Movement Speed +15% for 10 sec while jumping
+  nightmare:
+    name: Nightmare
+    input: F ↓ + F to move backward After using the skill and when under the Nightmare effect, you can move using the direction
+      keys for a while. ↑ + LMB during Nightmare for forward moving attack ↓ + LMB or LMB during Nightmare for standing attack
+      RMB during Nightmare to attack from behind the enemy SPACE during Nightmare to cancel Nightmare
+    keys:
+    - f
+    - s
+    - a
+    - w
+    - lmb
+    - rmb
+    - space
+    protection: iframe
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 20000
+    description: Those who witnessed the sorceress slashing the enemies from behind in the blink of an eye say that it just
+      looked like a ghost from a nightmare.
+    notes: Those who witnessed the sorceress slashing the enemies from behind in the blink of an eye say that it just looked
+      like a ghost from a nightmare. Attack damage 553% x2 Maximum 10 targets Super Armor at the start of the skill Invincible
+      while concealed Stiffness upon appearing behind the enemy Stiffness on hits Down Attack Maintains Nightmare for 5 sec
+      when using the skill (Movement Speed Increase effects nullified while moving)
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_abyssal_flame:
+    name: 'Prime: Abyssal Flame'
+    input: LMB + RMB to cast Release LMB or RMB to fire Can move while casting LMB + RMB after certain skills
+    keys:
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - knockdown
+    cooldown_ms: 7000
+    description: Charge an Abyssal Flame to fire forth to inflict damage on enemies.
+    notes: Charge an Abyssal Flame to fire forth to inflict damage on enemies. Attack damage 5521% x2 Charged attack damage
+      9237% x2 Critical Hit Rate +50% Maximum 10 targets Recover 125 HP per hit Super Armor while moving at the start of the
+      skill Super Armor while charging Stiffness on hits Knockdown on charged attack hits Charged damage and Stiffness applied
+      on hits after certain skills Consumes 150 Stamina when moving while charging Create Fragment of Darkness x5 per hit
+      44.17% normal attack damage in PvP only 48.58% charged attack damage in PvP only
+  prime_abyssal_vanguard:
+    name: 'Prime: Abyssal Vanguard'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Create Fragment of Darkness x30 when using the skill All AP +45 for 30 sec when using the skill
+      All Accuracy +48 for 30 sec Critical Hit Rate +100% for 30 sec Casting Speed +20% for 30 sec Super Armor during the
+      skill'
+    keys:
+    - hotbar
+  prime_agent_of_abyss:
+    name: 'Prime: Agent of Abyss'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Max MP +200 Max Stamina +100 Additional Fragment of Darkness Recovery +2. Shards of Darkness
+      doubles your MP recovery. Consume Shards of Darkness when using the following skills to apply its All AP Increase effect:
+      (Increased effect while maintaining the buff per skill use.) - Prime: Rushing Crow, Prime: Shadow Eruption, Succession:
+      Ultimate: Shadow Eruption, Succession: Beak Kick, Succession: Ultimate: Dark Flame'
+    keys:
+    - hotbar
+  prime_black_wave:
+    name: 'Prime: Black Wave'
+    input: '↓ + RMB ↓ + RMB after Ultimate: Dark Flame F during the skill to perform last attacks instantly'
+    keys:
+    - s
+    - rmb
+    - f
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Attack enemies on the ground with the power of darkness.
+    notes: Attack enemies on the ground with the power of darkness. Attack damage 5208% x2, max 3 hits Last attack damage
+      2976% x3 Critical Hit Rate +25% (PvE only) Maximum 10 targets Recover 45 MP per hit Forward Guard during the skill Attack
+      Speed -20% for 5 sec on hits Casting Speed -20% for 5 sec on hits Floating on attack 1 hits (PvE only) Down Attack Air
+      Attack Down Smash on last attack hits Create Fragment of Darkness x3 per hit 32% damage in PvP only
+  prime_bloody_calamity:
+    name: 'Prime: Bloody Calamity'
+    input: Can be added to a Quick Slot Can move during casting LMB to fire after casting SPACE during certain skills to cast
+      instantly Hold SPACE immediately to continue the skill
+    protection: iframe
+    cc:
+    - knockdown
+    - stun
+    - down_attack
+    cooldown_ms: 16000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack 1 damage 9768% x2 Attack 1 damage 9768% x1, max 2 hits, when used instantly Attack 2 damage
+      9768% x2 Critical Hit Rate +100% Maximum 10 targets Recover 450 HP per hit Super Armor Stun on attack 1 hits Knockdown
+      on attack 2 hits Down Attack Black Spirit''s Rage unavailable if used instantly. Create Fragment of Darkness x3 per
+      hit 26.85% damage in PvP only Consumes 150 Stamina every 1 sec while casting Attack 1 damage 15134% x3 Attack 2 damage
+      15134% x1, max 9 hits Attack 3 damage 21821% x2 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when
+      using the skill Casting Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the
+      skill Max HP +2000 for 60 sec when using the skill Recover 250 HP per hit Super Armor -> Invincible -> Super Armor Stun
+      on attack 1 and 3 hits Down Attack 8.65% damage in PvP only Not affected by effects which increase/decrease Attack and/or
+      Casting Speeds. Injures target with 100% of the damage of a hit. Dismount target on hits.'
+    keys:
+    - lmb
+    - space
+    - hold
+  prime_claws_of_darkness:
+    name: 'Prime: Claws of Darkness'
+    input: ↑ + LMB Hold LMB to continue the skill Use after certain skills to perform attack 3 Rapidly tap Quick Slot to continue
+      the skill
+    keys:
+    - w
+    - lmb
+    - hold
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: Perform combo attacks with the power of darkness gathered in both hands.
+    notes: Perform combo attacks with the power of darkness gathered in both hands. Attack damage 4501% x2, max 3 hits Maximum
+      10 targets Casting Speed +15% for 10 sec when using the skill (Nullified during cooldown) Forward Guard during the skill
+      (Nullified during cooldown) Floating on attack 1 hits (PvE only) (Nullified during cooldown) Air Attack Down Attack
+      Down Smash on attack 3 hits (Nullified during cooldown) Create Fragment of Darkness x2 per hit (Nullified during cooldown)
+      Damage reduced during cooldown 34.85% damage in PvP only
+  prime_crow_flare:
+    name: 'Prime: Crow Flare'
+    input: E
+    keys:
+    - e
+    protection: SA
+    cc:
+    - air_attack
+    cooldown_ms: 2000
+    description: Burns enemies around you with dark flame.
+    notes: Burns enemies around you with dark flame. Attack damage 3510% x2 Maximum 10 targets Super Armor All Accuracy -36
+      for 10 sec on hits Air Attack Counter Attack 38.71% damage in PvP only
+  prime_dark_flame:
+    name: 'Prime: Dark Flame'
+    input: '↓ + LMB ↓ + LMB during Claws of Darkness Hold LMB to perform extra attacks Hold LMB to perform extra attacks after
+      Prime: Violation'
+    keys:
+    - s
+    - lmb
+    - hold
+    protection: FG
+    cc:
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 2826% x2 Extra attack damage 3768% x2 Critical Hit Rate +100% (Nullified during
+      cooldown) Maximum 10 targets Forward Guard (Nullified during cooldown) Air Attack on attack 1 hits Down Attack Create
+      Fragment of Darkness x4 per hit (Nullified during cooldown) Damage reduced during cooldown 33.92% damage in PvP only'
+  prime_dark_manipulation:
+    name: 'Prime: Dark Manipulation'
+    input: Passive
+    protection: none
+    description: Enhances your powers by calling upon the dark energy of the abyss.
+    notes: Enhances your powers by calling upon the dark energy of the abyss. Magic AP +1
+    keys:
+    - hotbar
+  prime_darkness_released:
+    name: 'Prime: Darkness Released'
+    input: ↑ + F to perform forward attacks ↓ + F to perform backstep attacks
+    keys:
+    - w
+    - f
+    - s
+    protection: FG
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 7349% x2 Critical Hit Rate +25% Maximum 10 targets Forward Guard on backstep attacks
+      Knockback on backstep attacks (PvE only) Knockdown on forward attack hits Air Attack Down Attack Down Smash during backstep
+      attack Create Fragment of Darkness x4 per hit No character collision while moving backwards 36.25% damage in PvP only'
+  prime_dream_of_doom:
+    name: 'Prime: Dream of Doom'
+    input: SHIFT + E Can move while casting LMB or RMB to fire after casting Auto-activated when using Night Crow after casting
+    keys:
+    - shift
+    - e
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - stun
+    - pull
+    cooldown_ms: 9000
+    description: High-class magic that ushers in utter doom to reality. Strikes a wide area with a devastating attack.
+    notes: High-class magic that ushers in utter doom to reality. Strikes a wide area with a devastating attack. Attack damage
+      6323% x2 before fully charged Attack damage 10115% x2 when fully charged Critical Hit Rate +50% Maximum 10 targets Super
+      Armor while casting Knockdown on hits Create Fragment of Darkness x13 per hit Create Fragment of Darkness x20 on charged
+      attack hits 48.25% attack damage before fully charged in PvP only 51.06% attack damage when fully charged in PvP only
+      Consumes 150 Stamina every 1 sec while casting Attack damage 3253% x7 Last attack damage 9108% x3 Critical Hit Rate
+      +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Casting Speed +25% for 60 sec when using the skill
+      Critical Hit Rate +30% for 60 sec when using the skill Super Armor Pull in the target on hits (PvE only) Stun on hits
+      Knockdown on last attack hits 29.82% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target
+      on hits.
+  prime_midnight_stinger:
+    name: 'Prime: Midnight Stinger'
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 2000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 3279% x2 Maximum 10 targets Critical Hit Rate +40% for 10 sec when using the skill
+      Stiffness on hits Speed Attack Create Fragment of Darkness x4 per hit 29.59% damage in PvP only'
+  prime_rushing_crow:
+    name: 'Prime: Rushing Crow'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 1600% x2 Maximum 10 targets Movement Speed +15% for 10 sec when using the skill
+      Super Armor during the skill Magic Damage Reduction -20 for 10 sec on hits Bound on hits (PvE only) Speed Attack Down
+      Attack Create Fragment of Darkness x2 per hit Increased damage upon consuming Shards of Darkness x1 . 89.2% damage in
+      PvP only'
+  prime_shadow_eruption:
+    name: 'Prime: Shadow Eruption'
+    input: SHIFT + F F during Rushing Crow
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: Launches enemies into the air by creating a burst of dark energy.
+    notes: Launches enemies into the air by creating a burst of dark energy. Attack damage 5018% x2 Critical Hit Rate +25%
+      Maximum 10 targets Recover 50 MP per hit Forward Guard Floating on hits Air Attack Create Fragment of Darkness x5 per
+      hit Increased damage upon consuming Shards of Darkness x1 . 33.4% damage in PvP only
+  prime_turn_back_slash:
+    name: 'Prime: Turn-back Slash'
+    input: ↓ + C ↓ + C or C after certain skills to perform last attacks instantly
+    keys:
+    - s
+    - c
+    protection: none
+    cc:
+    - floating
+    - pull
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 1920% x2 Last attack damage 4510% x2 Critical Hit Rate +100% Maximum 10 targets
+      All Evasion -36 for 10 sec on last attack hits (Nullified during cooldown) Pull in the target on hits (PvE only) Floating
+      on last attack hits (Nullified during cooldown) Down Attack Damage reduced during cooldown 41.63% damage in PvP only
+      33.33% last attack damage in PvP only'
+  prime_violation:
+    name: 'Prime: Violation'
+    input: ↑ + C C after Shadow Eruption, Black Wave, Night Crow, or Rushing Crow
+    keys:
+    - w
+    - c
+    protection: SA
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 6000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Spin attack damage 4044% x2 Extra attack damage 5040% x2 Critical Hit Rate +25% Maximum 10 targets
+      Super Armor during the skill (Nullified during cooldown) Magic Damage Reduction -20 for 10 sec on hits (Nullified during
+      cooldown) 60 bleeding damage inflicted every 3 sec for 9 sec on spin attack hits (Nullified during cooldown) Floating
+      on spin attack hits (PvE only) (Nullified during cooldown) Counter Attack on spin attack hits Air Attack on spin attack
+      hits Down Attack on extra attack hits Down Smash on extra attack hits Damage reduced during cooldown 31.09% spin attack
+      damage in PvP only 35.09% extra attack damage in PvP only'
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  rebounding_darkness:
+    name: Rebounding Darkness
+    input: Passive Auto-activated during Darkness Released
+    protection: none
+    cc:
+    - knockback
+    description: Enhance Knockback effect of Darkness Released.
+    notes: Enhance Knockback effect of Darkness Released. Movement distance +200%
+    keys:
+    - hotbar
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+    keys:
+    - hotbar
+  rushing_crow:
+    name: Rushing Crow
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 4000
+    description: Instantly teleport forward to attack enemies.
+    notes: Instantly teleport forward to attack enemies. Attack damage 931% x2 Maximum 10 targets Magic Damage Reduction -15
+      for 10 sec on hits Bound on hits Speed Attack Down Attack Create Fragment of Darkness x1 per hit
+  scythe_training:
+    name: Scythe Training
+    input: LMB to perform standing attacks ↑ + LMB to perform forward attacks ← or → + LMB to perform lateral attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - floating
+    - bound
+    - down_attack
+    - air_attack
+    - spin
+    description: A basic attack to subdue your foes using your scythe.
+    notes: A basic attack to subdue your foes using your scythe. Attack 1 damage 947% x1 Attack 2 damage 947% x1 Attack 3
+      damage 1421% x1 Forward attack 1 damage 947% x1 Forward attack 2 damage 947% x1 Forward attack 3 damage 1421% x1 Lateral
+      moving spin attack damage 603% x2 Lateral moving final attack damage 947% x1 Critical Hit Rate +50% Maximum 10 targets
+      Floating on forward attack 2 and sprint hits Bound on standing attack 3 hits Air Attack on forward attacks 2 and 3,
+      and sprint hits Air Attack on lateral spin hits Down Attack on standing attacks 1 and 3, and forward attack 1 hits Down
+      Attack on lateral moving last attack hits Consumes 100 Stamina when using lateral moving attacks.
+  shadow_eruption:
+    name: Shadow Eruption
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: Launch enemies into the air by creating a burst of dark energy.
+    notes: Launch enemies into the air by creating a burst of dark energy. Attack damage 1434% x2 Maximum 10 targets Increased
+      attack area Increased Casting Speed Forward Guard Floating on hits Air Attack Create Fragment of Darkness x2 per hit
+  shadow_hellfire:
+    name: Shadow Hellfire
+    input: RMB after Dream of Doom, Midnight Stinger RMB after Crow Nightmare, Engulfing Shadow, or Abyssal Blow
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Shadow Eruption IV]'
+    notes: 'Preceding Skill: [Shadow Eruption IV] Attack damage 6440% x2 Maximum 10 targets Super Armor during the skill Knockdown
+      on hits (PvE only) Down Attack Create Fragment of Darkness x2 per hit 29.94% damage in PvP only'
+  shadow_ignition:
+    name: Shadow Ignition
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Bloody Calamity]'
+    notes: 'Preceding Skill: [Bloody Calamity] Attack 1 damage 4018% x2 Attack 2 damage 3194% x2 Maximum 10 targets Floating
+      on attack 1 hits Air Attack Air Smash on attack 2 hits Create Fragment of Darkness x4 per hit 37.19% damage in PvP only'
+  shadow_kick:
+    name: Shadow Kick
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 4000
+    description: Add dark energy from the shadows while kicking for a Magic Attack.
+    notes: Add dark energy from the shadows while kicking for a Magic Attack. Attack damage 857% x2 Maximum 8 targets Floating
+      on hits (Nullified during cooldown) Down Attack Air Attack Down Smash (Nullified during cooldown) Create Fragment of
+      Darkness x1 per hit (Nullified during cooldown) 90% damage in PvP only Damage reduced during cooldown
+  shadow_leap:
+    name: Shadow Leap
+    input: ↑ + F LMB during this skill to perform upward slash Performs an extra attack after moving when performed during
+      Cartian's Nightmare
+    keys:
+    - w
+    - f
+    - lmb
+    protection: iframe
+    cooldown_ms: 5000
+    description: Move through the enemies by riding the dark flow or instantly teleport to their front.
+    notes: Move through the enemies by riding the dark flow or instantly teleport to their front. Movement Speed +15% for
+      10 sec when using the skill All Evasion +24 for 10 sec when using the skill Invincible during the skill
+  shadow_wave:
+    name: Shadow Wave
+    input: RMB after Shadow Eruption RMB after Crow Nightmare, Engulfing Shadow, or Abyssal Blow
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Shadow Eruption IV]'
+    notes: 'Preceding Skill: [Shadow Eruption IV] Attack damage 3779% x2 Critical Hit Rate +100% Maximum 10 targets Floating
+      on hits Air Attack Create Fragment of Darkness x4 per hit 49.12% damage in PvP only'
+  shard_explosion:
+    name: Shard Explosion
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 30000
+    description: Consume all Shards of Darkness to cause explosion damage.
+    notes: Consume all Shards of Darkness to cause explosion damage. Attack damage 2805% x1 per Shards of Darkness x1 used
+      Attack damage 6270% x1 per Shards of Darkness x2 used Attack damage 10395% x1 per Shards of Darkness x3 used Attack
+      damage 15180% x1 per Shards of Darkness x4 used Critical Hit Rate +100% Maximum 10 targets Recover +150 MP per Shards
+      of Darkness x1 Super Armor during the skill 40.93% damage in PvP only
+    keys:
+    - hotbar
+  shards_of_darkness:
+    name: Shards of Darkness
+    input: Q Can be used with your scythe
+    keys:
+    - q
+    protection: none
+    cc:
+    - floating
+    description: Can have maximum 4 Shards of Darkness floating around you. Riding any mount will remove all Shards.
+    notes: Can have maximum 4 Shards of Darkness floating around you. Riding any mount will remove all Shards. Create max
+      Shards of Darkness x4 (Nullified in certain situations) All AP +10 for 20 sec upon consuming Shards of Darkness x1 (Effect
+      also applied to nearby allies) All AP +20 for 20 sec upon consuming Shards of Darkness x2 (Effect also applied to nearby
+      allies) All AP +30 for 20 sec upon consuming Shards of Darkness x3 (Effect also applied to nearby allies) Recover +150
+      MP per Shards of Darkness x1
+  signs_of_agony:
+    name: Signs of Agony
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 8000
+    description: Mark enemies with Signs of Agony to inflict pain upon them. Can stun enemies temporarily.
+    notes: Mark enemies with Signs of Agony to inflict pain upon them. Can stun enemies temporarily. Attack damage 655% x1
+      30 pain damage inflicted every 3 sec for 27 sec on hits Maximum 7 targets Increased attack area Increased Casting Speed
+      Stun on hits (Nullified during cooldown) Create Fragment of Darkness x2 when using the skill (Nullified during cooldown)
+  sinister_energy:
+    name: Sinister Energy
+    input: RMB ← + RMB or → + RMB LMB or RMB to perform mounted attacks
+    keys:
+    - rmb
+    - a
+    - d
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: Unleash condensed sinister energy to strike enemies.
+    notes: Unleash condensed sinister energy to strike enemies. Attack damage 388% x1 Maximum 6 targets Increased Casting
+      Speed Increased attack area Recover 6 MP on hits Down Attack Create Fragment of Darkness x2 per hit
+  sinister_omen:
+    name: Sinister Omen
+    input: Can be added to a Quick Slot Can be used with your scythe
+    protection: SA
+    cc:
+    - knockback
+    cooldown_ms: 20000
+    description: Herald a Sinister Omen by spreading the power of darkness upon the surface. As time passes, the omen becomes
+      clearer, and once fully realized, it brings downfall to a vast expanse.
+    notes: Herald a Sinister Omen by spreading the power of darkness upon the surface. As time passes, the omen becomes clearer,
+      and once fully realized, it brings downfall to a vast expanse. Super Armor during the skill Using Dream of Doom, Bloody
+      Calamity, or Cartian's Nightmare within the area will hasten the omen's manifestation. Attack damage 328% x1, max 25
+      hits Last attack damage 7661% x1 Maximum 5 targets Recover +800 HP for the summoning Sorceress within the omen's manifested
+      area. Movement Speed -20% for 5 sec on hits Knockback on last attack hits 70.17% damage in PvP only
+    keys:
+    - hotbar
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  soul_harvest:
+    name: Soul Harvest
+    input: SHIFT + Q Hold SHIFT + Q after certain skills to pull Use after Night Crow to pull Can be used with your amulet
+    keys:
+    - shift
+    - q
+    - hold
+    protection: none
+    cc:
+    - floating
+    - pull
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 5000
+    description: Auto-learn Immediately cancel other skills and confuse the enemy by quickly pulling them in.
+    notes: Auto-learn Immediately cancel other skills and confuse the enemy by quickly pulling them in. Attack damage 3602%
+      x2 Extra attack damage 4829% x2 Maximum 10 targets Casting Speed +10% for 10 sec when using the skill Recover 225 HP
+      per hit Spin the target on extra attack hits (PvE only) Floating on extra attack hits Air Attack Down Attack Down Smash
+      on attack 1 hits Create Fragment of Darkness x5 per hit 26.12% attack 1 damage in PvP only 46.55% extra attack damage
+      in PvP only
+  spirit_absorption:
+    name: Spirit Absorption
+    input: Passive
+    protection: none
+    description: Improves the absorption rate for creating Fragments of Darkness.
+    notes: Improves the absorption rate for creating Fragments of Darkness. Create extra Fragment of Darkness x3 per hit.
+    keys:
+    - hotbar
+  storming_crow:
+    name: Storming Crow
+    input: Hold Direction + SHIFT after Night Crow
+    keys:
+    - shift
+    - hold
+    protection: SA
+    cc:
+    - bound
+    description: Performs an instant attack right after Night Crow.
+    notes: Performs an instant attack right after Night Crow. Attack damage 1969% x1 Maximum 10 targets Movement Speed -20%
+      for 5 sec on hits Super Armor Bound on hits (PvE only) Attack once more when changing directions after Night Crow. Create
+      Fragment of Darkness x2 per hit
+  succession_abyssal_contract:
+    name: 'Succession: Abyssal Contract'
+    input: Passive
+    protection: none
+    description: Call upon the abyss to form a pact. The summoned agent of the abyss instills terror and fear into the enemy,
+      wrecking abyssal calamity wherever it goes.
+    notes: 'Call upon the abyss to form a pact. The summoned agent of the abyss instills terror and fear into the enemy, wrecking
+      abyssal calamity wherever it goes. The Sorceress can call forth powerful servants using the Abyssal Contract. The following
+      skills will be strengthened after Succession. - Beak Kick, Ultimate: Shadow Eruption, Signs of Agony, Imminent Doom,
+      Ultimate: Dark Flame, Dark Backstep, Dark Trade - You must first reset your skills in order to learn Succession: Abyssal
+      Contract. - You cannot learn or use Awakening skills if you have learned Succession: Abyssal Contract. - You cannot
+      learn Succession skills if you have learned Absolute skills. - You cannot learn Absolute skills if you have learned
+      Succession skills.'
+    keys:
+    - hotbar
+  succession_beak_kick:
+    name: 'Succession: Beak Kick'
+    input: F or RMB during Crow Flare
+    keys:
+    - f
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - air_attack
+    description: 'Prime:'
+    notes: 'Prime: Attack damage 1360% x2 Critical Hit Rate +100% Maximum 10 targets All Evasion -12 for 10 sec on hits Bound
+      on hits (PvE only) Air Attack Air Smash Create Fragment of Darkness x2 per hit (Nullified during cooldown) Increased
+      attack area and damage upon consuming Shards of Darkness x1 . 52.63% damage in PvP only'
+  succession_dark_backstep:
+    name: 'Succession: Dark Backstep'
+    input: ↓ + RMB after Darkness Released or Beak Kick ↓ + RMB during Dark Flame
+    keys:
+    - s
+    - rmb
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Super Armor during the skill Increased movement distance'
+  succession_dark_trade:
+    name: 'Succession: Dark Trade'
+    input: Automatically activates after using Dark Trade III Consumes HP to activate if MP is below 20%
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Consumes 10% of MP to create max Fragments of Darkness Super Armor during the skill'
+    keys:
+    - hotbar
+  succession_imminent_doom:
+    name: 'Succession: Imminent Doom'
+    input: LMB or RMB while casting Dream of Doom SHIFT + E after Dark Backstep, backward Storming Crow, or Abyssal Flame
+    keys:
+    - lmb
+    - rmb
+    - shift
+    - e
+    protection: none
+    cc:
+    - stiffness
+    cooldown_ms: 14000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Instantly cast Dream of Doom Stiffness on hits'
+  succession_signs_of_agony:
+    name: 'Succession: Signs of Agony'
+    input: 'After Succession, Auto-activated when using Absolute: Signs of Agony'
+    protection: none
+    cc:
+    - stun
+    cooldown_ms: 8000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 697% x1 40 pain damage inflicted every 3 sec for 27 sec on hits Maximum 10 targets
+      Movement Speed -7% for 5 sec on hits (Nullified during cooldown) Increased attack area Increased Casting Speed Increased
+      attack range Stun on hits (Nullified during cooldown) Create Fragment of Darkness x2 when using the skill (Nullified
+      during cooldown)'
+    keys:
+    - hotbar
+  succession_ultimate_dark_flame:
+    name: 'Succession: Ultimate: Dark Flame'
+    input: 'LMB after Prime: Dark Flame''s extra attacks'
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage applies Dark Flame''s damage x2 Extra attack damage applies Dark Flame''s damage
+      x3 Maximum 10 targets Knockdown on extra attack hits (PvE only) Forward Guard (Nullified during cooldown) Down Attack
+      Increased attack area and damage upon consuming Shards of Darkness x1 . Damage reduced during cooldown 33.92% damage
+      in PvP only'
+  succession_ultimate_shadow_eruption:
+    name: 'Succession: Ultimate: Shadow Eruption'
+    input: 'LMB after Shadow Eruption LMB after Crow Flare LMB after Prime: Claws of Darkness attack 3 LMB after Succession:
+      Ultimate: Dark Flame ↑ + LMB during Black Wave'
+    keys:
+    - lmb
+    - w
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: All damage applies Prime: Shadow Eruption ''s damage x2 Knockdown on hits Air Attack Increased
+      number of hits and damage upon consuming Shards of Darkness x1 .'
+  swirling_darkness:
+    name: Swirling Darkness
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: SA
+    cc:
+    - floating
+    - pull
+    - down_attack
+    cooldown_ms: 8000
+    description: Strike the enemy with the power of darkness.
+    notes: Strike the enemy with the power of darkness. Attack 1 damage 6614% x2 Attack 2 damage 7143% x2 Critical Hit Rate
+      +25% Maximum 10 targets Pull in the target on attack 1 hits (PvE only) Super Armor during the skill Floating on attack
+      1 hits (PvE only) Down Smash on attack 2 hits Down Attack 39.35% damage in PvP only
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  turn_back_slash:
+    name: Turn-back Slash
+    input: ↓ + RMB
+    keys:
+    - s
+    - rmb
+    protection: none
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 5000
+    description: While moving backward, inflict powerful damage to the enemy and trip it.
+    notes: While moving backward, inflict powerful damage to the enemy and trip it. Attack damage 2032% x2 Last attack damage
+      5082% x2 Critical Hit Rate +50% (PvE only) (Nullified during cooldown) Critical Hit Rate +37% (PvP only) Maximum 10
+      targets Recover 53 MP per hit (Nullified during cooldown) Movement Speed -20% for 5 sec on hits (Nullified during cooldown)
+      All Evasion -12 for 10 sec on last attack hits (Nullified during cooldown) Pull in the target on hits (PvE only) Bound
+      on last attack hits (Nullified during cooldown) Down Attack Damage reduced during cooldown 45.42% damage in PvP only
+      22.71% last attack damage in PvP only Attack damage 2032% x2 Last attack damage 7114% x2 Critical Hit Rate +50% (PvE
+      only) Critical Hit Rate +37% (PvP only) Maximum 10 targets Increased attack area Recover 68 MP per hit Movement Speed
+      -20% for 5 sec on hits All Evasion -36 for 10 sec on last attack hits Pull in the target on hits (PvE only) Bound on
+      last attack hits Down Attack 45.42% damage in PvP only 22.71% last attack damage in PvP only Dismount target on hits.
+      Injures target with 10% of the damage of a hit. Not activated during cooldown.
+  ultimate_crow_flare:
+    name: 'Ultimate: Crow Flare'
+    input: E in certain situations
+    keys:
+    - e
+    protection: none
+    description: Every motion can be instantly canceled by Crow Flare.
+  ultimate_dark_flame:
+    name: 'Ultimate: Dark Flame'
+    input: 'LMB after Dark Flame II or Absolute: Dark Flame extra attacks'
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 20000
+    description: Master Dark Flame to use it consecutively to perform a burning attack on enemies around you.
+    notes: Master Dark Flame to use it consecutively to perform a burning attack on enemies around you. Attack damage applies
+      Dark Flame's damage x1 Extra attack damage applies Dark Flame's damage x2 15 burn damage every 3 sec for 36 sec on last
+      attack hits Critical Hit Rate +100% Maximum 10 targets Forward Guard Knockdown on last attack hits (PvE only) Speed
+      Attack Air Attack Attack damage applies Dark Flame's damage x2 Extra attack damage applies Dark Flame's damage x3 Maximum
+      10 targets Knockdown on extra attack hits (PvE only) Forward Guard (Nullified during cooldown) Down Attack Increased
+      attack area and damage upon consuming Shards of Darkness x1 . Damage reduced during cooldown 33.92% damage in PvP only
+  ultimate_midnight_stinger:
+    name: 'Ultimate: Midnight Stinger'
+    input: SHIFT + LMB in certain situations
+    keys:
+    - shift
+    - lmb
+    protection: none
+    description: Can immediately use Midnight Stinger during other actions.
+  ultimate_shadow_eruption:
+    name: 'Ultimate: Shadow Eruption'
+    input: LMB after Shadow Eruption
+    keys:
+    - lmb
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 9000
+    description: Use Shadow Eruption twice in a row.
+    notes: 'Use Shadow Eruption twice in a row. Attack damage 1242% x2 Critical Hit Rate +100% Maximum 10 targets Knockdown
+      on hits Air Attack All damage applies Prime: Shadow Eruption ''s damage x2 Knockdown on hits Air Attack Increased number
+      of hits and damage upon consuming Shards of Darkness x1 .'
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  violation:
+    name: Violation
+    input: ↑ + RMB LMB during spin attack to perform downward slashes Hold ↑ + RMB and consume 1 Shard of Darkness to perform
+      the skill an extra time forward ↓ + RMB and consume 1 Shard of Darkness to perform the skill an extra time backwards
+    keys:
+    - w
+    - rmb
+    - lmb
+    - s
+    - hold
+    protection: none
+    cc:
+    - knockdown
+    - floating
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 6000
+    description: Perform a powerful spin attack that can kill a dead man twice.
+    notes: Perform a powerful spin attack that can kill a dead man twice. Spin attack damage 3644% x4 Down slash attack damage
+      4555% x2 Critical Hit Rate +50% (Nullified during cooldown) Maximum 10 targets Magic Damage Reduction -20 for 10 sec
+      on hits (Nullified during cooldown) 60 bleeding damage inflicted every 3 sec for 9 sec on spin attack hits (Nullified
+      during cooldown) Floating on spin attack hits (Nullified during cooldown) Knockdown on down slash attack hits (Nullified
+      during cooldown) Air Attack on spin attack hits Counter Attack on spin attack hits Down Attack on down slash attack
+      hits Counter Attack on down slash attack hits Consume Shards of Darkness x1 to apply its All AP Increase effect. (Increased
+      effect while maintaining the buff per skill use.) Damage reduced during cooldown 29.71% damage in PvP only Spin attack
+      damage 4100% x4 Down slash attack damage 5466% x2 Critical Hit Rate +50% Maximum 10 targets Increased attack area All
+      AP +10 for 20 sec when using the skill All AP -10 for 20 sec on hits Magic Damage Reduction -20 for 10 sec on hits 60
+      bleeding damage inflicted every 3 sec for 9 sec on spin attack hits Floating on spin attack hits Knockdown on down slash
+      attack hits Air Attack on spin attack hits Counter Attack on spin attack hits Down Attack on down slash attack hits
+      Counter Attack on down slash attack hits Consume Shards of Darkness x1 to apply its All AP Increase effect. (Increased
+      effect while maintaining the buff per skill use.) 29.71% damage in PvP only Dismount target on hits. Injures target
+      with 20% of the damage of a hit. Not activated during cooldown.
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  wings_of_the_crow:
+    name: Wings of the Crow
+    input: ↑ + E with your scythe ↑ + RMB with your amulet
+    keys:
+    - w
+    - e
+    - rmb
+    protection: FG
+    cc:
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Rushing Crow I]'
+    notes: 'Preceding Skill: [Rushing Crow I] Attack damage 3767% x2 Critical Hit Rate +30% Maximum 10 targets Critical Hit
+      Rate +40% for 10 sec when using the skill Forward Guard during the skill Down Attack Changes the motion of Rushing Crow
+      to Wings of the Crow. 49.12% damage in PvP only'
+_flags:
+- black_spirit_illusion: Passive — no keybind.
+- blessing_of_asadal: Hotbar Only.
+- blessing_of_taebaek: Hotbar Only.
+- bloody_calamity: Hotbar Only or SPACE during Night Crow.
+- cannon_attack: Passive — no keybind.
+- core_cartian_s_nightmare: Passive — no keybind.
+- core_dead_hunt: Passive — no keybind.
+- core_grim_reaper_s_judgment: Passive — no keybind.
+- core_swirling_darkness: Passive — no keybind.
+- core_turn_back_slash: Passive — no keybind.
+- core_violation: Passive — no keybind.
+- crow_food: Passive — no keybind.
+- dark_bound: Passive — no keybind.
+- dark_contract_residue: Passive — no keybind.
+- dark_maneuver: Passive — no keybind.
+- dark_maneuver_xi: Passive — no keybind.
+- dark_maneuver_xii: Passive — no keybind.
+- dark_maneuver_xiii: Passive — no keybind.
+- dark_maneuver_xiv: Passive — no keybind.
+- dark_maneuver_xix: Passive — no keybind.
+- dark_maneuver_xv: Passive — no keybind.
+- dark_maneuver_xvi: Passive — no keybind.
+- dark_maneuver_xvii: Passive — no keybind.
+- dark_maneuver_xviii: Passive — no keybind.
+- dark_maneuver_xx: Passive — no keybind.
+- dark_maneuver_xxx: Passive — no keybind.
+- dark_trade: Hotbar Only.
+- duo_ii_blessing_of_taebaek: Hotbar Only.
+- duo_blessing_of_asadal: Hotbar Only.
+- duo_fury_of_asadal: Hotbar Only.
+- elvia_belated_awareness: Hotbar Only.
+- flow_night_crow: Passive — no keybind.
+- flute_buff: Passive — no keybind.
+- fury_of_asadal: Hotbar Only.
+- guild_squad_special_attack: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- make_bonfire: Hotbar Only.
+- pen_v_blessing_of_taebaek: Hotbar Only.
+- pen_blessing_of_asadal: Hotbar Only.
+- pen_fury_of_asadal: Hotbar Only.
+- pri_i_blessing_of_taebaek: Hotbar Only.
+- pri_blessing_of_asadal: Hotbar Only.
+- pri_fury_of_asadal: Hotbar Only.
+- prime_abyssal_vanguard: Hotbar Only.
+- prime_agent_of_abyss: Passive — no keybind.
+- prime_bloody_calamity: Hotbar Only or SPACE during certain skills.
+- prime_dark_manipulation: Passive — no keybind.
+- rebounding_darkness: Passive — no keybind.
+- revive_target: Passive — no keybind.
+- shard_explosion: Hotbar Only.
+- sinister_omen: Hotbar Only.
+- skilled_hunter: Passive — no keybind.
+- spirit_absorption: Passive — no keybind.
+- succession_abyssal_contract: Passive — no keybind.
+- succession_dark_trade: Passive — no keybind.
+- succession_signs_of_agony: Passive — no keybind.
+- tet_iv_blessing_of_taebaek: Hotbar Only.
+- tet_blessing_of_asadal: Hotbar Only.
+- tet_fury_of_asadal: Hotbar Only.
+- tri_iii_blessing_of_taebaek: Hotbar Only.
+- tri_blessing_of_asadal: Hotbar Only.
+- tri_fury_of_asadal: Hotbar Only.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

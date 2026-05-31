@@ -1,0 +1,18 @@
+combo_id: succession_pulling_skills
+class: Dark Knight
+spec: Succession
+bundle_id: default
+category: pve
+name: Succession Pulling Skills
+description: Skills listed for pulling mobs in Succession.
+difficulty: beginner
+combo_window_ms: 300
+steps:
+- skill: slanted_balance
+  note: Main pack grouping tool.
+- skill: prime_obsidian_ashes
+  note: Useful ranged pull.
+- skill: shadow_strike
+  note: Recommended level 56 Rabam for newcomers.
+- skill: wrath_of_vedir
+  note: Better pull option for experienced DK players.

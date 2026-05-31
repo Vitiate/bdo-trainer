@@ -1,0 +1,1478 @@
+# Scholar — Succession
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Scholar
+spec: Succession
+skills:
+  absolute_attraction:
+    name: 'Absolute: Attraction'
+    input: Q while your gravity core is installed Cannot perform the skill if Gravity Anchor is locked
+    keys:
+    - q
+    protection: iframe
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 2000
+    description: 'Preceding Skill: [Attraction III]'
+    notes: 'Preceding Skill: [Attraction III] Attack damage 5664% x2 Critical Hit Rate +100% Maximum 10 targets Invincible
+      at the start of the skill Knockback on hits Down Attack 41.4% damage in PvP only Activates at current location if your
+      gravity cores disappear or are too distant. Reduces Gravity Anchor''s cooldown by 8 sec when using the skill. Reboots
+      your gravity cores when using the skill, enabling Gravity Anchor after 2 sec .'
+  absolute_drop_kick:
+    name: 'Absolute: Drop Kick'
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Drop Kick III]'
+    notes: 'Preceding Skill: [Drop Kick III] Attack damage 5916% x2 Critical Hit Rate +50% Maximum 10 targets Knockdown on
+      hits (Nullified during cooldown) Air Attack 43.5% damage in PvP only Damage reduced during cooldown'
+  absolute_gravity_anchor:
+    name: 'Absolute: Gravity Anchor'
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Gravity Anchor II]'
+    notes: 'Preceding Skill: [Gravity Anchor II] Attack damage 2878% x1, max 2 hits Maximum 10 targets Attack Speed +15% for
+      15 sec when using the skill Super Armor during the skill 62.13% damage in PvP only Cannot install a new gravity core
+      until an installed one disappears.'
+  absolute_gravity_field:
+    name: 'Absolute: Gravity Field'
+    input: ↓ + RMB Hold ↓ + RMB to perform attack 2
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - bound
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Gravity Field IV]'
+    notes: 'Preceding Skill: [Gravity Field IV] Attack 1 damage 6625% x2 Attack 2 damage 6625% x2 Critical Hit Rate +50% Maximum
+      10 targets Forward Guard during the skill Pull in the target on attack 1 hits (PvE only) Bound on attack 2 hits (PvE
+      only) Down Attack on attack 2 hits 32.31% damage in PvP only Attack 1 damage 12460% x1, max 6 hits Attack 2 damage 12460%
+      x1, max 6 hits Attack 3 damage 41864% x2 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using
+      the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max
+      HP +2000 for 60 sec when using the skill Super Armor Stun on attack 1 hits Knockdown on attack 3 hits Down Attack 11.01%
+      damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds. Dismount target on
+      hits. Injures target with 100% of the damage of a hit.'
+  absolute_gravity_press:
+    name: 'Absolute: Gravity Press'
+    input: Can be added to a Quick Slot Direction after using the skill to move while concealed LMB to attack while concealed
+    protection: iframe
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 20000
+    description: 'Preceding Skill: [Gravity Press IV]'
+    notes: 'Preceding Skill: [Gravity Press IV] Attack damage 7160% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor
+      at the start of the skill Invincible while concealed Super Armor when character reappears Bound on hits (PvE only) Down
+      Attack 61.97% damage in PvP only Go airborne for 3 sec after using the skill before launching an attack. Consumes 300
+      Stamina while concealed.'
+  absolute_hammer_in_the_knee:
+    name: 'Absolute: Hammer in the Knee'
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Hammer in the Knee III]'
+    notes: 'Preceding Skill: [Hammer in the Knee III] Attack 1 damage 3189% x2 Attack 2 damage 5314% x2 Critical Hit Rate
+      +30% Maximum 10 targets Attack Speed +15% for 15 sec when using the skill Forward Guard during the skill Knockback on
+      attack 1 hits (PvE only) 32.79% damage in PvP only'
+  absolute_hammer_mastery:
+    name: 'Absolute: Hammer Mastery'
+    input: LMB ↑ + LMB to perform forward attacks ← / → + LMB to perform lateral attacks LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    description: 'Preceding Skill: [Hammer Mastery X]'
+    notes: 'Preceding Skill: [Hammer Mastery X] Standing attacks 1 and 2 damage 1763% x1 Standing last attack damage 1763%
+      x2 Lateral attack damage 1763% x1, max 2 hits Forward attack 1 damage 1763% x2 Forward attacks 2 and 3 damage 1763%
+      x1 Mounted attack damage 1763% x2, max 2 hits Critical Hit Rate +30% Maximum 10 targets Recover 60 MP per hit 67.43%
+      damage in PvP only'
+  absolute_hammer_punch:
+    name: 'Absolute: Hammer Punch'
+    input: E
+    keys:
+    - e
+    protection: none
+    cc:
+    - stiffness
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Hammer Punch III]'
+    notes: 'Preceding Skill: [Hammer Punch III] Attack damage 6449% x1, max 2 hits Critical Hit Rate +25% Maximum 10 targets
+      Melee AP +20 for 15 sec when using the skill Stiffness on hits (PvE only) Air Attack 39.37% damage in PvP only'
+  absolute_hammer_strike:
+    name: 'Absolute: Hammer Strike'
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - air_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Hammer Strike III]'
+    notes: 'Preceding Skill: [Hammer Strike III] Attack damage 5053% x1, max 2 hits Critical Hit Rate +30% Maximum 10 targets
+      Recover 120 MP per hit (Nullified during cooldown) Air Attack 51.03% damage in PvP only Damage reduced during cooldown'
+  absolute_hammer_throw:
+    name: 'Absolute: Hammer Throw'
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Hammer Throw V]'
+    notes: 'Preceding Skill: [Hammer Throw V] Attack damage 6608% x2 Critical Hit Rate +50% Maximum 10 targets Stiffness on
+      hits Taunt surrounding foes. Down Attack 46.19% damage in PvP only'
+  absolute_hammerdown:
+    name: 'Absolute: Hammerdown'
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Hammerdown II]'
+    notes: 'Preceding Skill: [Hammerdown II] Attack 1 damage 2020% x1 Attack 2 damage 4535% x2 Critical Hit Rate +40% Maximum
+      10 targets Super Armor during the skill Stiffness on attack 2 hits (PvE only) 49.48% damage in PvP only'
+  absolute_home_run:
+    name: 'Absolute: Home Run'
+    input: ↓ + LMB ↓ + LMB after Hammer Throw
+    keys:
+    - s
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Home Run IV]'
+    notes: 'Preceding Skill: [Home Run IV] Attack damage 14047% x2 Critical Hit Rate +50% Maximum 10 targets Super Armor during
+      the skill Knockdown on hits (PvE only) Air Attack Down Attack Down Smash 28.35% damage in PvP only Changes attack area
+      when comboed after Hammer Throw'
+  absolute_one_small_step:
+    name: 'Absolute: One Small Step'
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [One Small Step III]'
+    notes: 'Preceding Skill: [One Small Step III] Attack damage 5195% x2 Critical Hit Rate +50% Maximum 10 targets All Damage
+      Reduction +20 for 10 sec when using the skill Super Armor during the skill Bound on hits (PvE only) Down Attack 45.21%
+      damage in PvP only'
+  absolute_potential_energy:
+    name: 'Absolute: Potential Energy'
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: SA
+    cc:
+    - knockdown
+    - floating
+    - stun
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Potential Energy V]'
+    notes: 'Preceding Skill: [Potential Energy V] Attack 1 damage 7584% x2 Attack 2 damage 7584% x2 Critical Hit Rate +100%
+      Maximum 10 targets Super Armor during the skill Attack Speed -10% for 5 sec on hits Casting Speed -10% for 5 sec on
+      hits Floating on attack 1 hits (PvE only) Air Attack on attack 1 hits Down Attack on attack 2 hits 29.56% damage in
+      PvP only Attack 1 damage 3462% x1 Attack 2 damage 3462% x1, max 4 hits Attack 3 damage 3462% x1, max 5 hits Attack 4
+      damage 7788% x2 Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Attack Speed +25%
+      for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on attack 1
+      hits Floating on attack 3 hits Knockdown on attack 4 hits Air Attack on attack 3 hits Down Attack 33.71% damage in PvP
+      only Dismount target on hits. Injures target with 50% of the damage of a hit.'
+  action_reaction:
+    name: Action Reaction
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2 All Damage Reduction
+      +2
+    keys:
+    - hotbar
+  action_reaction_xi:
+    name: Action Reaction XI
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2
+    keys:
+    - hotbar
+  action_reaction_xii:
+    name: Action Reaction XII
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2 All Damage Reduction
+      +2
+    keys:
+    - hotbar
+  action_reaction_xiii:
+    name: Action Reaction XIII
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2
+    keys:
+    - hotbar
+  action_reaction_xiv:
+    name: Action Reaction XIV
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2 All Damage Reduction
+      +2
+    keys:
+    - hotbar
+  action_reaction_xix:
+    name: Action Reaction XIX
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2
+    keys:
+    - hotbar
+  action_reaction_xv:
+    name: Action Reaction XV
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2
+    keys:
+    - hotbar
+  action_reaction_xvi:
+    name: Action Reaction XVI
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2 All Damage Reduction
+      +2
+    keys:
+    - hotbar
+  action_reaction_xvii:
+    name: Action Reaction XVII
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2
+    keys:
+    - hotbar
+  action_reaction_xviii:
+    name: Action Reaction XVIII
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2 All Damage Reduction
+      +2
+    keys:
+    - hotbar
+  action_reaction_xx:
+    name: Action Reaction XX
+    input: Passive
+    protection: none
+    description: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction.
+      If an unintended reaction occurs, a robust body is required to absorb the excess force.
+    notes: Applying force always results in reaction. Applying accurate amount of force allows for intentional reaction. If
+      an unintended reaction occurs, a robust body is required to absorb the excess force. All Accuracy +2 All Damage Reduction
+      +2
+    keys:
+    - hotbar
+  anti_gravity:
+    name: Anti-gravity
+    input: Passive
+    protection: none
+    description: Reversing the gravitational pull of your gravity cores creates anti-gravity, which causes objects to be pushed
+      away from the surface. Throwing your hammers down in such a state will only add potential energy to bolster the damage
+      of each smashing blow. Such impacts can also disrupt the lay of the land, increasing your chances for finding resources
+      for transmutations.
+    notes: 'Reversing the gravitational pull of your gravity cores creates anti-gravity, which causes objects to be pushed
+      away from the surface. Throwing your hammers down in such a state will only add potential energy to bolster the damage
+      of each smashing blow. Such impacts can also disrupt the lay of the land, increasing your chances for finding resources
+      for transmutations. Your hammers'' gravity cores can disrupt gravity within the range of your hammer skills, giving
+      those affected a boost in Jump Height for 10 sec . Applicable skills: - One Small Step, Gravity Field, Gravity Press,
+      Potential Energy, Hammer Throw, Gravity Crush, Gravity Distortion Your sledgehammer skills create alchemic circles,
+      sacrificing the life force of any foes above them to empower your allies'' weapons. - Adds the following effects to
+      self, allies, and enemies in range of alchemic circles from sledgehammer skills. Self: Defense Nullifying Damage +30
+      for 10 sec on Critical Hits Allies: Defense Nullifying Damage +5 for 10 sec on Critical Hits Enemies: All Recovery effects
+      - 20% for 10 sec'
+    keys:
+    - hotbar
+  attraction:
+    name: Attraction
+    input: Q while your gravity core is installed Cannot perform the skill if Gravity Anchor is locked
+    keys:
+    - q
+    protection: iframe
+    cc:
+    - knockback
+    - down_attack
+    cooldown_ms: 3000
+    description: Instantly adjust your gravitational pull towards the direction of your installed gravity core. Take a brief
+      moment to retrieve the core, then reorient the generated kinetic energy and unleash it as a kinetic blast.
+    notes: Instantly adjust your gravitational pull towards the direction of your installed gravity core. Take a brief moment
+      to retrieve the core, then reorient the generated kinetic energy and unleash it as a kinetic blast. Attack damage 3643%
+      x2 Critical Hit Rate +50% Maximum 7 targets Invincible at the start of the skill Knockback on hits Down Attack 41.4%
+      damage in PvP only Activates at current location if your gravity cores disappear or are too distant. Reduces Gravity
+      Anchor's cooldown by 7 sec when using the skill. Reboots your gravity cores when using the skill, enabling Gravity Anchor
+      after 2 sec .
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+    keys:
+    - hotbar
+  core_activation:
+    name: Core Activation
+    input: Passive
+    protection: none
+    description: Your control over gravity with your gravity cores lets you ignore any fall damage.
+    notes: 'Your control over gravity with your gravity cores lets you ignore any fall damage. Manipulate your mass or falling
+      speed with your gravity cores. - You can move while falling. - Gravity Cores slow your descent before landing to prevent
+      fall damage. - You won''t take fall damage when landing from high spots using the following skills: One Small Step,
+      Gravity Press, Flow: Repulsion, Flow: Gravity Storm, One Giant Leap, Flow: Golden Thunder, Flow: Gold Continuum'
+    keys:
+    - hotbar
+  core_fusion:
+    name: Core Fusion
+    input: C during hammer skills to switch to your sledgehammer C during sledgehammer skills to switch to your hammers
+    keys:
+    - c
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 4000
+    description: 'Preceding Skill: [Particle Acceleration]'
+    notes: 'Preceding Skill: [Particle Acceleration] Attack damage 6004% x2 Critical Hit Rate +50% Maximum 10 targets All
+      Damage Reduction +20 for 10 sec when using the skill Super Armor during the skill Down Attack 36.28% damage in PvP only
+      Increased attack area when performed while switching to your sledgehammer'
+  core_reactivation:
+    name: Core Reactivation
+    input: Q
+    keys:
+    - q
+    protection: none
+    cooldown_ms: 2000
+    description: Your gravity cores require some time to cool down after retrieval to reinstall them.
+  core_hammer_smash:
+    name: 'Core: Hammer Smash'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hammer Smash IV after learning this skill: Knockdown on attack
+      1 hits Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_hammer_spin:
+    name: 'Core: Hammer Spin'
+    input: Passive
+    protection: none
+    cc:
+    - knockback
+    - spin
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hammer Spin IV after learning this skill: Knockback on attack
+      1 and 2 hits Not applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  core_hammerfall:
+    name: 'Core: Hammerfall'
+    input: Passive
+    protection: none
+    cc:
+    - knockdown
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Hammerfall III after learning this skill: Knockdown on attack
+      1 hits'
+    keys:
+    - hotbar
+  core_infinite_power:
+    name: 'Core: Infinite Power'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Infinite Power IV after learning this skill: Bound on hits'
+    keys:
+    - hotbar
+  core_one_giant_leap:
+    name: 'Core: One Giant Leap'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to One Giant Leap III after learning this skill: Bound on hits Not
+      applied to Black Spirit skills.'
+    keys:
+    - hotbar
+  drop_kick:
+    name: Drop Kick
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - air_attack
+    cooldown_ms: 6000
+    description: Jump up and kick your foe with both feet.
+    notes: Jump up and kick your foe with both feet. Attack damage 4022% x2 Critical Hit Rate +40% Maximum 7 targets Knockdown
+      on hits (Nullified during cooldown) Air Attack 43.5% damage in PvP only Damage reduced during cooldown
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  elvia_space_distortion:
+    name: 'Elvia: Space Distortion'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 12000
+    description: Widely swing your sledgehammer to distort space.
+    notes: Widely swing your sledgehammer to distort space. Attack damage 8781% x2 Critical Hit Rate +100% (PvE only) Maximum
+      10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10 sec on hits Super Armor during the
+      skill Down Attack 22.48% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + →
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  f_ma:
+    name: F = ma
+    input: Passive
+    protection: none
+    description: Force equals mass times acceleration. If you lack the power, swing faster or add more weight to your weapon.
+    notes: Force equals mass times acceleration. If you lack the power, swing faster or add more weight to your weapon. Melee
+      AP +15
+    keys:
+    - hotbar
+  flow_gold_continuum:
+    name: 'Flow: Gold Continuum'
+    input: Hold ↓ + LMB after Home Run LMB after Gravity Anchor to start from attack 2
+    keys:
+    - s
+    - lmb
+    protection: iframe
+    cc:
+    - stiffness
+    - knockdown
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 13000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 5336% x2 Attack 2 damage 5336% x2 Attack 3
+      damage 14372% x2 Critical Hit Rate +100% on last attacks Maximum 10 targets Super Armor during the skill Invincible
+      while concealed Push the target on attack 1 hits (PvE only) Stiffness on attack 1 hits (PvE only) Floating on attack
+      2 hits (PvE only) Knockdown on attack 3 hits (PvE only) Down Attack Air Attack on attack 2 hits 36.38% attacks 1 and
+      2 damage in PvP only 27.31% attack 3 damage in PvP only'
+  flow_golden_barrier:
+    name: 'Flow: Golden Barrier'
+    input: SHIFT + Z LMB or X after Gravity Crush or Gravity Rush
+    keys:
+    - shift
+    - z
+    - lmb
+    - x
+    protection: FG
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Gravity Field IV]'
+    notes: 'Preceding Skill: [Gravity Field IV] Attack damage 8536% x2 Critical Hit Rate +100% Maximum 10 targets Recover
+      150 MP per hit Forward Guard during the skill Floating on hits (PvE only) Air Attack 35.95% damage in PvP only'
+  flow_golden_blockade:
+    name: 'Flow: Golden Blockade'
+    input: Hold E after Hammer in the Knee
+    keys:
+    - hold
+    - e
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    description: Transmute a golden wall following the trajectory of your sledgehammer. The gold, while still malleable, is
+      sharp to touch.
+    notes: Transmute a golden wall following the trajectory of your sledgehammer. The gold, while still malleable, is sharp
+      to touch. Attack damage 9767% x2 Critical Hit Rate +100% Maximum 10 targets Recover 225 MP per hit Knockdown on hits
+      Down Attack 33.6% damage in PvP only
+  flow_golden_path:
+    name: 'Flow: Golden Path'
+    input: SHIFT + Z LMB or X after Gravity Crush or Gravity Rush
+    keys:
+    - shift
+    - z
+    - lmb
+    - x
+    protection: SA
+    cc:
+    - knockback
+    - bound
+    - down_attack
+    cooldown_ms: 12000
+    description: 'Preceding Skill: [Gravity Field IV]'
+    notes: 'Preceding Skill: [Gravity Field IV] Attack 1 damage 2013% x1, max 2 hits Attack 2 damage 8386% x2 Critical Hit
+      Rate +100% Maximum 10 targets Recover 200 HP per attack 2 hit Super Armor during the skill Push the target on attack
+      1 hits (PvE only) Knockback on attack 1 hits (PvE only) Bound on attack 2 hits (PvE only) Down Attack 32.82% damage
+      in PvP only'
+  flow_golden_pillar:
+    name: 'Flow: Golden Pillar'
+    input: Hold RMB after Hammer Strike
+    keys:
+    - hold
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 4000
+    description: Install transmutation formulas into both hammers to draw forth a golden pillar.
+    notes: Install transmutation formulas into both hammers to draw forth a golden pillar. Attack damage 8568% x2 Critical
+      Hit Rate +100% (Nullified during cooldown) Maximum 10 targets Recover 225 MP per hit (Nullified during cooldown) Floating
+      on hits (Nullified during cooldown) Air Attack 34.09% damage in PvP only Damage reduced during cooldown
+  flow_golden_skyfall:
+    name: 'Flow: Golden Skyfall'
+    input: Hold ↓ + F during Hammer Throw
+    keys:
+    - hold
+    - s
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Activate your fused core to increase the gravitational force around you, crushing the gold from the alchemic
+      circle to spill forth to the sides.
+    notes: Activate your fused core to increase the gravitational force around you, crushing the gold from the alchemic circle
+      to spill forth to the sides. Attack 1 damage 9840% x1 Attack 2 damage 9840% x1, max 3 hits Critical Hit Rate +100% Maximum
+      10 targets Super Armor during the skill Bound on attack 1 hits (PvE only) Down Attack 24.43% damage in PvP only
+  flow_golden_thorns:
+    name: 'Flow: Golden Thorns'
+    input: Hold RMB after Hammerdown
+    keys:
+    - hold
+    - rmb
+    protection: SA
+    cc:
+    - stun
+    description: Transmute gold along the trajectory of your sledgehammer that pierces your foes. Any contact with your sledgehammer
+      also creates alchemic circles which draw up golden thorns beneath your enemy's feet.
+    notes: Transmute gold along the trajectory of your sledgehammer that pierces your foes. Any contact with your sledgehammer
+      also creates alchemic circles which draw up golden thorns beneath your enemy's feet. Attack damage 9115% x2 Critical
+      Hit Rate +100% Maximum 10 targets Super Armor during the skill Stun on hits (PvE only) 34.14% damage in PvP only
+  flow_golden_thunder:
+    name: 'Flow: Golden Thunder'
+    input: SPACE after other skills Q after One Giant Leap while airborne
+    keys:
+    - space
+    - q
+    protection: iframe
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 6000
+    description: Leap to great heights by means of the anti-gravity generated from your empowered fused core, then come slamming
+      down, pushing away all debris collected above the alchemic circle.
+    notes: Leap to great heights by means of the anti-gravity generated from your empowered fused core, then come slamming
+      down, pushing away all debris collected above the alchemic circle. All damage applies One Giant Leap 's damage x2 Recover
+      125 HP per hit Invincible -> Super Armor during the skill Knockdown on hits Down Attack Increased total damage up to
+      60% based on height of fall. Increased attack area based on height of fall.
+  flow_golden_trajectory:
+    name: 'Flow: Golden Trajectory'
+    input: Hold E after Hammer Punch
+    keys:
+    - hold
+    - e
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    description: Complete the alchemic circle for the materials swept up following the trajectory of your sledgehammer. Via
+      equivalent exchange, all of the materials above the circle have been transmuted into gold.
+    notes: Complete the alchemic circle for the materials swept up following the trajectory of your sledgehammer. Via equivalent
+      exchange, all of the materials above the circle have been transmuted into gold. Attack damage 9970% x2 Critical Hit
+      Rate +100% Maximum 10 targets Forward Guard during the skill Recover 125 HP per hit Bound on hits (PvE only) Down Attack
+      Down Smash 32.73% damage in PvP only
+  flow_golden_vines:
+    name: 'Flow: Golden Vines'
+    input: Hold F after Drop Kick
+    keys:
+    - hold
+    - f
+    protection: none
+    cc:
+    - down_attack
+    cooldown_ms: 6000
+    description: Make the gold transmuted from the alchemic circle follow along the trajectory of your sledgehammer.
+    notes: Make the gold transmuted from the alchemic circle follow along the trajectory of your sledgehammer. Attack damage
+      9318% x2 Critical Hit Rate +100% (Nullified during cooldown) Maximum 10 targets All Damage Reduction -25 for 10 sec
+      on hits (Nullified during cooldown) Down Attack 28.66% damage in PvP only Damage reduced during cooldown
+  flow_golden_wave:
+    name: 'Flow: Golden Wave'
+    input: Hold ↓ + RMB after Gravity Field
+    keys:
+    - hold
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 8000
+    description: Activate your fused core to draw up an alchemic circle. Strike upwards while transmuting a golden wave with
+      debris dragged from the surface in your sledgehammer's wake.
+    notes: Activate your fused core to draw up an alchemic circle. Strike upwards while transmuting a golden wave with debris
+      dragged from the surface in your sledgehammer's wake. Attack 1 damage 7861% x2 Attack 2 damage 7861% x2 Critical Hit
+      Rate +100% Maximum 10 targets Recover 180 HP per hit Forward Guard during the skill Floating on attack 1 hits (PvE only)
+      Air Attack on attack 1 hits Down Attack on attack 2 hits Down Smash on attack 2 hits Air Smash on attack 2 hits 25.24%
+      damage in PvP only
+  flow_gravity_storm:
+    name: 'Flow: Gravity Storm'
+    input: Hold ↓ + SHIFT after Reversal Can be performed alone while Reversal is on cooldown
+    keys:
+    - hold
+    - s
+    - shift
+    protection: iframe
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 5000
+    description: Activate the gravity core in one hammer, toss it backwards, let its gravitational pull draw your body backwards,
+      reorient yourself and come smashing down where you please.
+    notes: Activate the gravity core in one hammer, toss it backwards, let its gravitational pull draw your body backwards,
+      reorient yourself and come smashing down where you please. All damage applies Attraction 's damage x2 Super Armor at
+      the start of the skill Invincible while concealed Super Armor when character reappears Bound on hits (PvE only) Down
+      Attack
+  flow_repulsion:
+    name: 'Flow: Repulsion'
+    input: LMB after Attraction LMB after Home Run, Hammerdown, or Hammer Rush LMB after One Small Step, Gravity Blink, or
+      Reversal
+    keys:
+    - lmb
+    protection: iframe
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 5000
+    description: Readjust the gravitational pull once more to move in the intended direction to attack.
+    notes: Readjust the gravitational pull once more to move in the intended direction to attack. All damage applies Attraction
+      's damage x2 Super Armor at the start of the skill Invincible while concealed Super Armor when character reappears Down
+      Attack
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+    keys:
+    - hotbar
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  golden_boon:
+    name: Golden Boon
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 90000
+    description: 'Preceding Skill: [Potential Energy V]'
+    notes: 'Preceding Skill: [Potential Energy V] Overwrites any applied Attack/Movement Speed reduction effects. Nullifies
+      Attack/Movement Speed reduction effects for 30 sec . Does not remove certain monsters'' Speed reduction effects. Super
+      Armor during the skill'
+    keys:
+    - hotbar
+  gravity_anchor:
+    name: Gravity Anchor
+    input: Q
+    keys:
+    - q
+    protection: SA
+    cooldown_ms: 10000
+    description: Toss your hammer forward, detach the gravity core within, then install it on the thrown location.
+    notes: Toss your hammer forward, detach the gravity core within, then install it on the thrown location. Attack damage
+      2067% x1, max 2 hits Maximum 7 targets Attack Speed +15% for 15 sec when using the skill Super Armor during the skill
+      62.13% damage in PvP only Cannot install a new gravity core until an installed one disappears.
+  gravity_blink:
+    name: Gravity Blink
+    input: ↑ + SHIFT ← + SHIFT → + SHIFT
+    keys:
+    - w
+    - shift
+    - a
+    - d
+    protection: iframe
+    cc:
+    - pull
+    cooldown_ms: 3000
+    description: Toss a hammer and let its gravitational pull move your body in that direction. Utilize this move to evade
+      enemy attacks.
+    notes: Toss a hammer and let its gravitational pull move your body in that direction. Utilize this move to evade enemy
+      attacks. Invincible -> Super Armor during the skill (Nullified during cooldown) Invincible during the skill (PvE only)
+      No collision while moving
+  gravity_crush:
+    name: Gravity Crush
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: FG
+    cc:
+    - floating
+    - stun
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Attraction III]'
+    notes: 'Preceding Skill: [Attraction III] Attack 1 damage 5478% x1, max 2 hits Attack 2 damage 5478% x2 Critical Hit Rate
+      +50% Maximum 10 targets Forward Guard during the skill Stun on attack 1 hits (PvE only) Floating on attack 2 hits (PvE
+      only) 33.92% damage in PvP only'
+  gravity_distortion:
+    name: Gravity Distortion
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Potential Energy V]'
+    notes: 'Preceding Skill: [Potential Energy V] Inner attack damage 9241% x2 Critical Hit Rate +50% Maximum 10 targets Super
+      Armor during the skill Movement and Attack/Casting Speeds -5% for 5 sec on inner attack hits Movement and Attack/Casting
+      Speeds -15% for 5 sec on outer attack hits Down Attack 28.68% damage in PvP only'
+  gravity_field:
+    name: Gravity Field
+    input: ↓ + RMB Hold ↓ + RMB to perform attack 2
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - bound
+    - stun
+    - pull
+    - down_attack
+    cooldown_ms: 9000
+    description: Activate your gravity cores to create a gravitational field that can alter terrain.
+    notes: Activate your gravity cores to create a gravitational field that can alter terrain. Attack 1 damage 3482% x2 Attack
+      2 damage 3482% x2 Critical Hit Rate +50% Maximum 7 targets Forward Guard during the skill Pull in the target on attack
+      1 hits (PvE only) Bound on attack 2 hits (PvE only) Down Attack on attack 2 hits 32.31% damage in PvP only Attack 1
+      damage 8721% x1, max 6 hits Attack 2 damage 8721% x1, max 6 hits Attack 3 damage 29305% x2 Critical Hit Rate +100% Maximum
+      10 targets All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit
+      Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor Stun on attack 1
+      hits Knockdown on attack 3 hits Down Attack 11.01% damage in PvP only Not affected by effects which increase/decrease
+      Attack and/or Casting Speeds. Dismount target on hits. Injures target with 100% of the damage of a hit.
+  gravity_press:
+    name: Gravity Press
+    input: Can be added to a Quick Slot Direction after using the skill to move while concealed LMB to attack while concealed
+    protection: iframe
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 22000
+    description: Use your gravity cores to suspend gravity for a brief moment while mid-air, then slam down where you please.
+    notes: Use your gravity cores to suspend gravity for a brief moment while mid-air, then slam down where you please. Attack
+      damage 5304% x2 Critical Hit Rate +100% Maximum 7 targets Super Armor at the start of the skill Invincible while concealed
+      Super Armor when character reappears Bound on hits (PvE only) Down Attack 61.97% damage in PvP only Go airborne for
+      3 sec after using the skill before launching an attack. Consumes 300 Stamina while concealed.
+    keys:
+    - hotbar
+    - lmb
+  gravity_rush:
+    name: Gravity Rush
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Attraction III]'
+    notes: 'Preceding Skill: [Attraction III] Attack damage 4507% x2 Critical Hit Rate +30% Maximum 10 targets Forward Guard
+      before the attack hits Stiffness on hits 45.49% damage in PvP only'
+  gravity_s_grip:
+    name: Gravity's Grip
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 15000
+    description: 'Preceding Skill: [Particle Acceleration]'
+    notes: 'Preceding Skill: [Particle Acceleration] Attack damage 1886% x2 on Grapple Critical Hit Rate +100% Maximum 10
+      targets Super Armor on Grapple/Grapple fails Knockdown on Grapple Down Attack 98.08% damage in PvP only Not affected
+      by effects which increase/decrease Attack and/or Casting Speeds.'
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+    keys:
+    - hotbar
+  hammer_in_the_knee:
+    name: Hammer in the Knee
+    input: ↑ + E
+    keys:
+    - w
+    - e
+    protection: FG
+    cc:
+    - knockback
+    cooldown_ms: 6000
+    description: Knock your foe upward with your knee, increase your weight with your gravity cores, and slam down, incurring
+      a shockwave with its impact.
+    notes: Knock your foe upward with your knee, increase your weight with your gravity cores, and slam down, incurring a
+      shockwave with its impact. Attack 1 damage 1962% x2 Attack 2 damage 3269% x2 Critical Hit Rate +25% Maximum 7 targets
+      Attack Speed +15% for 15 sec when using the skill Forward Guard during the skill Knockback on attack 1 hits (PvE only)
+      32.79% damage in PvP only
+  hammer_mastery:
+    name: Hammer Mastery
+    input: LMB ↑ + LMB to perform forward attacks ← / → + LMB to perform lateral attacks LMB or RMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    - rmb
+    protection: none
+    description: As you battled for survival, you learned to wield the very tools in your hands as a means of defense.
+    notes: As you battled for survival, you learned to wield the very tools in your hands as a means of defense. Standing
+      attacks 1 and 2 damage 1587% x1 Standing last attack damage 1587% x2 Lateral attack damage 1587% x1, max 2 hits Forward
+      attack 1 damage 1587% x2 Forward attacks 2 and 3 damage 1587% x1 Mounted attack damage 1587% x2, max 2 hits Critical
+      Hit Rate +30% Maximum 7 targets Recover 55 MP per hit 67.43% damage in PvP only
+  hammer_punch:
+    name: Hammer Punch
+    input: E
+    keys:
+    - e
+    protection: none
+    cc:
+    - stiffness
+    - air_attack
+    cooldown_ms: 5000
+    description: Swat away your enemy's attack with one hammer, then attack with the other.
+    notes: Swat away your enemy's attack with one hammer, then attack with the other. Attack damage 4517% x1, max 2 hits Critical
+      Hit Rate +20% Maximum 7 targets Melee AP +16 for 15 sec when using the skill Stiffness on hits (PvE only) Air Attack
+      39.37% damage in PvP only
+  hammer_rush:
+    name: Hammer Rush
+    input: ↑ + C
+    keys:
+    - w
+    - c
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Particle Acceleration]'
+    notes: 'Preceding Skill: [Particle Acceleration] Attack damage 3611% x2 Critical Hit Rate +100% Maximum 10 targets Super
+      Armor during the skill Floating on hits (PvE only) Air Attack 74.56% damage in PvP only'
+  hammer_smash:
+    name: Hammer Smash
+    input: SHIFT + LMB
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 9000
+    description: Smash foes with your sledgehammer, activate its fused core to increase its weigh to the max, then heavily
+      smash down.
+    notes: Smash foes with your sledgehammer, activate its fused core to increase its weigh to the max, then heavily smash
+      down. Attack 1 damage 7140% x2 Attack 2 damage 12594% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard during
+      the skill All Damage Reduction -25 for 10 sec on hits Knockdown on attack 1 hits (PvE only) Down Attack 27.9% attack
+      1 damage in PvP only 20.82% attack 2 damage in PvP only Attack 1 damage 7140% x2 Attack 2 damage 17636% x2 Critical
+      Hit Rate +100% Maximum 10 targets Super Armor during the skill All Damage Reduction -25 for 10 sec on hits Knockdown
+      on attack 1 hits Down Attack 27.89% attack 1 damage in PvP only 24.36% attack 2 damage in PvP only Dismount target on
+      hits. Injures target with 30% of the damage of a hit.
+  hammer_spin:
+    name: Hammer Spin
+    input: SHIFT + C
+    keys:
+    - shift
+    - c
+    protection: SA
+    cc:
+    - knockback
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: Forge a path of sweeping destruction with your sledgehammer.
+    notes: Forge a path of sweeping destruction with your sledgehammer. Attack 1 damage 6193% x2 Attack 2 damage 6193% x2
+      Attack 3 damage 8663% x2 Critical Hit Rate +100% Maximum 10 targets Recover 211 HP per hit Super Armor during the skill
+      Knockback on attack 1 and 2 hits (PvE only) Knockdown on attack 3 hits (PvE only) Down Attack 25.94% damage in PvP only
+      Attack 1 damage 6193% x2 Attack 2 damage 6193% x2 Attack 3 damage 6193% x2 Attack 4 damage 8663% x2 Critical Hit Rate
+      +100% Maximum 10 targets Recover 211 HP per hit Super Armor during the skill Knockback on attack 1, 2, and 3 hits (PvE
+      only) Knockdown on attack 4 hits (PvE only) Down Attack Increased attack area 24.45% damage in PvP only Dismount target
+      on hits. Injures target with 10% of the damage of a hit.
+  hammer_strike:
+    name: Hammer Strike
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - air_attack
+    cooldown_ms: 4000
+    description: Throw down both hammers in rapid succession.
+    notes: Throw down both hammers in rapid succession. Attack damage 3582% x1, max 2 hits Critical Hit Rate +25% Maximum
+      7 targets Recover 120 MP per hit (Nullified during cooldown) Air Attack 51.03% damage in PvP only Damage reduced during
+      cooldown
+  hammer_throw:
+    name: Hammer Throw
+    input: ↓ + F
+    keys:
+    - s
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 9000
+    description: Activate the gravity cores in your hammers before you throw them. The brief point where both hammers collide
+      generate a twist in elastic force.
+    notes: Activate the gravity cores in your hammers before you throw them. The brief point where both hammers collide generate
+      a twist in elastic force. Attack damage 3821% x2 Critical Hit Rate +50% Maximum 7 targets Stiffness on hits Taunt surrounding
+      foes. Down Attack 46.19% damage in PvP only
+  hammerdown:
+    name: Hammerdown
+    input: ↑ + RMB
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - spin
+    cooldown_ms: 6000
+    description: Spin your body forward as you throw your hammers down.
+    notes: Spin your body forward as you throw your hammers down. Attack 1 damage 1199% x1 Attack 2 damage 3538% x2 Critical
+      Hit Rate +30% Maximum 7 targets Super Armor during the skill Stiffness on attack 2 hits (PvE only) 49.48% damage in
+      PvP only
+  hammerfall:
+    name: Hammerfall
+    input: SHIFT + F
+    keys:
+    - shift
+    - f
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 11000
+    description: Smash down with your sledgehammer, and draw up an alchemic circle with the debris. Transmute upon that circle
+      with your sledgehammer once more, drawing up all objects in the vicinity to complete the transmutation.
+    notes: Smash down with your sledgehammer, and draw up an alchemic circle with the debris. Transmute upon that circle with
+      your sledgehammer once more, drawing up all objects in the vicinity to complete the transmutation. Attack 1 damage 5922%
+      x2 Attack 2 damage 5922% x2 Attack 3 damage 9333% x2 Critical Hit Rate +100% Maximum 10 targets Forward Guard during
+      the skill Recover 188 HP per hit All Evasion -24 for 10 sec on hits Knockdown on attack 1 hits (PvE only) Down Attack
+      Down Smash on attack 3 hits 29.13% damage in PvP only
+  home_run:
+    name: Home Run
+    input: ↓ + LMB ↓ + LMB after Hammer Throw
+    keys:
+    - s
+    - lmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 14000
+    description: Toss up one hammer, then send it flying with the other.
+    notes: Toss up one hammer, then send it flying with the other. Attack damage 6671% x2 Critical Hit Rate +50% Maximum 7
+      targets Super Armor during the skill Knockdown on hits (PvE only) Air Attack Down Attack Down Smash 28.35% damage in
+      PvP only Changes attack area when comboed after Hammer Throw
+  i_have_returned:
+    name: I have Returned
+    input: Passive
+    protection: none
+    description: A scholar set out on a quest for survival and, after many moons of research, returned alive.
+    keys:
+    - hotbar
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  infinite_power:
+    name: Infinite Power
+    input: 'SHIFT + RMB Hold RMB to charge SHIFT + RMB after Flow: Golden Blockade, Flow: Golden Pillar, Flow: Golden Wave,
+      or Flow: Golden Vines to attack instantly'
+    keys:
+    - shift
+    - rmb
+    - hold
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: The fused core can alter the gravity of all materials in the vicinity, and you've installed a transmutation
+      formula onto the sledgehammer as well. Any debris swept up by your sledgehammer above alchemic circles will be transmuted
+      into gold.
+    notes: The fused core can alter the gravity of all materials in the vicinity, and you've installed a transmutation formula
+      onto the sledgehammer as well. Any debris swept up by your sledgehammer above alchemic circles will be transmuted into
+      gold. Attack damage 10925% x2 before fully charged Attack damage 15362% x2 when fully charged Attack damage 3495% x1,
+      max 12 hits, while charging Critical Hit Rate +100% Maximum 10 targets Super Armor during the skill Bound on hits (PvE
+      only) Down Attack 32.12% damage in PvP only Consumes 100 Stamina per charge Charging unavailable if lacking Stamina.
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+    keys:
+    - hotbar
+  one_giant_leap:
+    name: One Giant Leap
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: iframe
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Particle Acceleration]'
+    notes: 'Preceding Skill: [Particle Acceleration] Attack damage 8102% x2 Critical Hit Rate +100% Maximum 10 targets Super
+      Armor during the skill Invincible on airborne moves Bound on hits (PvE only) Down Attack 33.73% damage in PvP only Increased
+      total damage up to 60% based on height of fall. Increased attack area based on height of fall. Attack damage 8102% x2
+      Critical Hit Rate +100% Maximum 10 targets Jump Height Increase Increased movement distance All AP +10 for 20 sec when
+      using the skill All Damage Reduction +10 for 20 sec when using the skill Super Armor during the skill Invincible on
+      airborne moves Bound on hits (PvE only) Down Attack 33.73% damage in PvP only Increased total damage up to 100% based
+      on height of fall. Increased attack area based on height of fall. Dismount target on hits. Injures target with 20% of
+      the damage of a hit.'
+  one_small_step:
+    name: One Small Step
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 8000
+    description: Activate your gravity cores to alter your weight, then leap forward and smash down.
+    notes: Activate your gravity cores to alter your weight, then leap forward and smash down. Attack damage 3408% x2 Critical
+      Hit Rate +50% Maximum 7 targets All Damage Reduction +15 for 10 sec when using the skill Super Armor during the skill
+      Bound on hits (PvE only) Down Attack 45.21% damage in PvP only
+  particle_acceleration:
+    name: Particle Acceleration
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 180000
+    description: Activate your gravity cores to accelerate all particles in the vicinity, making them highly explosive and
+      sensitive to any changes you make in the environment nearby.
+    notes: Activate your gravity cores to accelerate all particles in the vicinity, making them highly explosive and sensitive
+      to any changes you make in the environment nearby. All AP +30 for 30 sec when using the skill All Accuracy +80 for 30
+      sec when using the skill All Damage Reduction +40 for 30 sec when using the skill Super Armor during the skill
+    keys:
+    - hotbar
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  potential_energy:
+    name: Potential Energy
+    input: ↓ + E
+    keys:
+    - s
+    - e
+    protection: SA
+    cc:
+    - knockdown
+    - floating
+    - stun
+    - pull
+    - down_attack
+    - air_attack
+    cooldown_ms: 12000
+    description: Activate the gravity core in one hammer, then toss it up into the air. All objects drawn by the reversed
+      gravitational pull come crashing down with the generated potential energy.
+    notes: Activate the gravity core in one hammer, then toss it up into the air. All objects drawn by the reversed gravitational
+      pull come crashing down with the generated potential energy. Attack 1 damage 4330% x2 Attack 2 damage 4330% x2 Critical
+      Hit Rate +100% Maximum 7 targets Super Armor during the skill Attack Speed -10% for 5 sec on hits Casting Speed -10%
+      for 5 sec on hits Floating on attack 1 hits (PvE only) Air Attack on attack 1 hits Down Attack on attack 2 hits 34.67%
+      damage in PvP only Attack 1 damage 2770% x1 Attack 2 damage 2770% x1, max 4 hits Attack 3 damage 2770% x1, max 5 hits
+      Attack 4 damage 6232% x2 Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the skill Attack
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Super Armor Stun on
+      attack 1 hits Floating on attack 3 hits Knockdown on attack 4 hits Air Attack on attack 3 hits Down Attack 33.71% damage
+      in PvP only Dismount target on hits. Injures target with 50% of the damage of a hit.
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  reversal:
+    name: Reversal
+    input: ↓ + SHIFT
+    keys:
+    - s
+    - shift
+    protection: iframe
+    cooldown_ms: 5000
+    description: Quickly retreat backwards.
+    notes: Quickly retreat backwards. Invincible during the skill No collision while moving
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+    keys:
+    - hotbar
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+_flags:
+- absolute_drop_kick: Absolute skill — skip per spec.
+- absolute_gravity_anchor: Absolute skill — skip per spec.
+- absolute_gravity_field: Absolute skill — skip per spec.
+- absolute_gravity_press: Absolute skill — skip per spec.
+- absolute_hammer_in_the_knee: Absolute skill — skip per spec.
+- absolute_hammer_mastery: Absolute skill — skip per spec.
+- absolute_hammer_punch: Absolute skill — skip per spec.
+- absolute_hammer_strike: Absolute skill — skip per spec.
+- absolute_hammer_throw: Absolute skill — skip per spec.
+- absolute_hammerdown: Absolute skill — skip per spec.
+- absolute_home_run: Absolute skill — skip per spec.
+- absolute_one_small_step: Absolute skill — skip per spec.
+- absolute_potential_energy: Absolute skill — skip per spec.
+- absolute_attraction: Absolute skill — skip per spec.
+- action_reaction: Passive — no keybind.
+- action_reaction_xi: Passive — no keybind.
+- action_reaction_xii: Passive — no keybind.
+- action_reaction_xiii: Passive — no keybind.
+- action_reaction_xiv: Passive — no keybind.
+- action_reaction_xix: Passive — no keybind.
+- action_reaction_xv: Passive — no keybind.
+- action_reaction_xvi: Passive — no keybind.
+- action_reaction_xvii: Passive — no keybind.
+- action_reaction_xviii: Passive — no keybind.
+- action_reaction_xx: Passive — no keybind.
+- anti_gravity: Passive — no keybind. No CC tags in notes.
+- black_spirit_illusion: Black Spirit skill — skip per spec.
+- core_activation: Passive — no keybind.
+- core_hammer_smash: Passive — no keybind.
+- core_hammer_spin: Passive — no keybind.
+- core_hammerfall: Passive — no keybind.
+- core_infinite_power: Passive — no keybind.
+- core_one_giant_leap: Passive — no keybind.
+- f_ma: Passive — no keybind.
+- i_have_returned: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.

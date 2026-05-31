@@ -1,0 +1,59 @@
+combo_id: full_pve_chain
+class: Dark Knight
+spec: Awakening
+bundle_id: default
+category: pve
+name: Full PVE Chain From Discord
+difficulty: intermediate
+combo_window_ms: 300
+description: ''
+steps:
+- skill: spirit_hunt
+- skill: unveiled_fate
+- skill: blooming_black_rose
+- skill: spirit_legacy
+- skill: soul_snatch
+- skill: grip_of_grudge
+- skill: dark_nebula
+- skill: spirit_hunt
+- skill: twilight_dash
+- skill: cluster_of_despair
+- skill: shattering_darkness
+- skill: flow_bombardment
+  hold_ms: 1500
+- skill: flow_darkness_outpouring
+  hold_ms: 1500
+- skill: seed_of_catastrophe
+- skill: root_of_catastrophe
+  hold_ms: 1500
+- skill: spirit_legacy
+- skill: soul_snatch
+- skill: grip_of_grudge
+- skill: shadow_strike
+- skill: blooming_black_rose
+- skill: unveiled_dagger
+- skill: corrupt_ground
+- skill: spirit_hunt
+- skill: dark_nebula
+- skill: shattering_darkness
+- skill: flow_bombardment
+  hold_ms: 1500
+- skill: flow_darkness_outpouring
+  hold_ms: 1500
+- skill: cluster_of_despair
+- skill: spirit_legacy
+- skill: soul_snatch
+- skill: grip_of_grudge
+- skill: seed_of_catastrophe
+- skill: root_of_catastrophe
+  hold_ms: 1500
+- skill: dark_nebula
+- skill: spirit_hunt
+- skill: shattering_darkness
+- skill: flow_bombardment
+  hold_ms: 1500
+- skill: flow_darkness_outpouring
+  hold_ms: 1500
+- skill: soul_snatch
+- skill: grip_of_grudge
+- skill: spirit_legacy

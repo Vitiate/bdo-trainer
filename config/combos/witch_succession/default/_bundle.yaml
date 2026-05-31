@@ -1,0 +1,21 @@
+# Witch — Succession — bundle: default
+# Loadout + metadata for this combo bundle.
+
+class: Witch
+spec: Succession
+bundle_id: default
+name: Default
+description: Auto-created default bundle (migrated from legacy class config).
+locked_skills:
+- name: Healing Aura
+  reason: Superseded by Healing Lighthouse in succession. Wastes input on S+Q which conflicts.
+- name: Lightning Storm
+  reason: Awakening skill, not usable in succession spec.
+- name: Yoke of Ordeal
+  reason: Awakening skill, not usable in succession spec.
+- name: Thunder Storm
+  reason: Awakening skill, not usable in succession spec.
+hotbar_skills:
+- name: Speed Spell
+  reason: Buff only, no combat input. Must maintain at all times.
+  hotbar_key: '1'

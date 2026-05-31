@@ -1,0 +1,2064 @@
+# Lahn — Succession
+# Auto-generated from BDOCodex (scripts/build_class_yaml.py)
+# Enriched by scripts/apply_skill_patches.py.
+
+class: Lahn
+spec: Succession
+skills:
+  absolute_berated_ghost:
+    name: 'Absolute: Berated Ghost'
+    input: SHIFT + LMB Hold LMB to continue the skill
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Berated Ghost IV]'
+    notes: 'Preceding Skill: [Berated Ghost IV] Attack damage 811% x2 Critical Hit Rate +25% Maximum 10 targets Max 6 times
+      Down Attack 64.68% damage in PvP only'
+  absolute_blade_dance:
+    name: 'Absolute: Blade Dance'
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    description: 'Preceding Skill: [Blade Dance V]'
+    notes: 'Preceding Skill: [Blade Dance V] Attack 1 damage 2163% x1 Attack 2 damage 2163% x1 Attack 3 damage 2163% x1 Maximum
+      10 targets 88.91% damage in PvP only'
+  absolute_blooming_nether_flower:
+    name: 'Absolute: Blooming Nether Flower'
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Blooming Nether Flower VI]'
+    notes: 'Preceding Skill: [Blooming Nether Flower VI] Attack damage 2801% x1, max 5 hits Maximum 10 targets Knockdown on
+      hits Down Attack 63.5% damage in PvP only'
+  absolute_catasetum:
+    name: 'Absolute: Catasetum'
+    input: SHIFT + RMB RMB while sprinting
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Catasetum III]'
+    notes: 'Preceding Skill: [Catasetum III] Attacks 1 and 2 damage 1161% x2 Critical Hit Rate +50% Maximum 10 targets Floating
+      on attack 1 hits Air Attack 44.69% damage in PvP only'
+  absolute_coax:
+    name: 'Absolute: Coax'
+    input: F during Cymbidium
+    keys:
+    - f
+    protection: SA
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Coax]'
+    notes: 'Preceding Skill: [Coax] Attack damage 2055% x2 Maximum 10 targets Pull in the target on hits (PvE only) Super
+      Armor during the skill Down Attack 82.32% damage in PvP only'
+  absolute_crescent_barrage:
+    name: 'Absolute: Crescent Barrage'
+    input: ↓ + LMB Hold LMB to continue the skill LMB after the last attack of Berated Ghost to attack twice
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Crescent Barrage V]'
+    notes: 'Preceding Skill: [Crescent Barrage V] Attack 1 damage 2079% x2 Attack 2 damage 2079% x1 Attack 3 damage 2079%
+      x1 Maximum 10 targets Recover 56 HP per hit (Nullified during cooldown) Floating on attack 2 hits (Nullified during
+      cooldown) Down Attack Air Attack Damage reduced during cooldown 54.57% damage in PvP only'
+  absolute_cymbidium:
+    name: 'Absolute: Cymbidium'
+    input: '↓ + F F during Flow: Pendulum Kick Can be used with your crimson glaives'
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Cymbidium III]'
+    notes: 'Preceding Skill: [Cymbidium III] Attack damage 1064% x2 Extra attack damage 1064% x2 Critical Hit Rate +50% Maximum
+      10 targets Bound on hits (Nullified during cooldown) Down Smash on extra attack hits (Nullified during cooldown) Forward
+      Guard during attack 1 (Nullified on extra attack) (Nullified during cooldown) Down Attack Damage reduced during cooldown
+      63.5% damage in PvP only Attack 1 damage 2468% x1, max 4 hits Last attack damage 4113% x6 Critical Hit Rate +100% (PvE
+      only) Critical Hit Rate +50% (PvP only) Maximum 10 targets All AP +55 for 60 sec when using the skill Attack Speed +25%
+      for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60 sec when
+      using the skill Spin the target on hits (PvE Only) Pull in the target on hits (PvE Only) Bound on hits Down Attack on
+      attack 1 hits Super Armor 45.86% damage in PvP only Injures target with 100% of the damage of a hit. Dismount target
+      on hits.'
+  absolute_deadly_restraint:
+    name: 'Absolute: Deadly Restraint'
+    input: RMB during Cymbidium
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 9000
+    description: 'Preceding Skill: [Deadly Restraint III]'
+    notes: 'Preceding Skill: [Deadly Restraint III] Attack damage 854% x2 Extra attack damage 1281% x2 Maximum 10 targets
+      Floating on attack 1 hits Down Smash on attack 2 hits Air Smash on attack 2 hits Forward Guard during the skill Down
+      Attack Air Attack 47.04% damage in PvP only'
+  absolute_dismemberment:
+    name: 'Absolute: Dismemberment'
+    input: ← + RMB or → + RMB
+    keys:
+    - a
+    - rmb
+    - d
+    protection: none
+    cc:
+    - pull
+    - spin
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Dismemberment IV]'
+    notes: 'Preceding Skill: [Dismemberment IV] Attack damage 2010% x2 Maximum 10 targets All AP +12 for 10 sec when using
+      the skill Spin the target on hits (PvE only) Pull in the target on hits (PvE only) Damage reduced during cooldown 47.04%
+      damage in PvP only'
+  absolute_ethereal_dance:
+    name: 'Absolute: Ethereal Dance'
+    input: 'F during Nimbus Stride F during Flow: Nimbus Stride F during Prime: Spring Breeze III ''s gliding motion Can be
+      used with your crimson glaives F during Primrose Sprint with your crimson glaives'
+    keys:
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Ethereal Dance]'
+    notes: 'Preceding Skill: [Ethereal Dance] Attack damage 1433% x2 Critical Hit Rate +100% Maximum 10 targets Stiffness
+      on first hit Knockdown on extra attack hits Super Armor during the skill Down Attack 70.56% damage in PvP only'
+  absolute_eye_of_the_phoenix:
+    name: 'Absolute: Eye of the Phoenix'
+    input: SPACE
+    keys:
+    - space
+    protection: none
+    cc:
+    - stun
+    - spin
+    cooldown_ms: 2000
+    description: 'Preceding Skill: [Eye of the Phoenix III]'
+    notes: 'Preceding Skill: [Eye of the Phoenix III] Attack damage 1764% x2 Maximum 10 targets Recover 50 HP per hit Spin
+      the target on hits (PvE only) Stun on hits 82.32% damage in PvP only'
+  absolute_fragrant_stigma:
+    name: 'Absolute: Fragrant Stigma'
+    input: 'LMB during Nimbus Stride LMB during Flow: Nimbus Stride LMB during Crescent Barrage attack 3 LMB during Prime:
+      Spring Breeze III ''s gliding motion Can be used with your crimson glaives LMB during Primrose Sprint with your crimson
+      glaives'
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Fragrant Stigma IV]'
+    notes: 'Preceding Skill: [Fragrant Stigma IV] Attack damage 1464% x2 Maximum 10 targets Movement Speed -5% for 5 sec on
+      hits Bound on hits Super Armor when using the skill Down Attack 70.56% damage in PvP only'
+  absolute_furious_chase:
+    name: 'Absolute: Furious Chase'
+    input: ↑ + RMB LMB while sprinting
+    keys:
+    - w
+    - rmb
+    - lmb
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Furious Chase III]'
+    notes: 'Preceding Skill: [Furious Chase III] Attack damage 911% x2 Maximum 10 targets Recover 25 WP per hit Stiffness
+      on hits (PvE only) (Nullified during cooldown) Forward Guard during the skill (Nullified during cooldown) 88.91% damage
+      in PvP only Increased movement distance Down Attack Reduced movement distance during cooldown.'
+  absolute_moon_slash:
+    name: 'Absolute: Moon Slash'
+    input: Auto-activated during Moondance in certain situations
+    protection: none
+    cc:
+    - pull
+    - spin
+    description: 'Preceding Skill: [Moon Slash IV]'
+    notes: 'Preceding Skill: [Moon Slash IV] Standing attack 1 damage 2857% x2 Standing attack 2 damage 2857% x2 Standing
+      attack 3 damage 2857% x3 Forward attack 1 damage 3188% x1 Forward attack 2 damage 3188% x1 Forward attack 3 damage 3188%
+      x2 Maximum 10 targets Recover 114 WP per hit Pull in the target on standing attack hits (PvE only) Spin the target on
+      standing attack hits (PvE only) 60% damage in PvP only'
+  absolute_moondance:
+    name: 'Absolute: Moondance'
+    input: LMB ↑ + LMB LMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    protection: none
+    description: 'Preceding Skill: [Moondance X]'
+    notes: 'Preceding Skill: [Moondance X] Standing attack 1 damage 1291% x2 Standing attack 2 damage 1291% x2 Standing attack
+      3 damage 1291% x3 Forward attack 1 damage 1291% x1 Forward attack 2 damage 1291% x1 Forward attack 3 damage 1291% x1,
+      max 2 hits Jump attack damage 1291% x1 Maximum 10 targets Recover 103 WP per hit 94.08% damage in PvP only'
+  absolute_pendulum_cleaver:
+    name: 'Absolute: Pendulum Cleaver'
+    input: ← + LMB or → + LMB Hold to attack twice
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - pull
+    - spin
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Pendulum Cleaver V]'
+    notes: 'Preceding Skill: [Pendulum Cleaver V] Attack 1 damage 1296% x1, max 2 hits Attack 2 damage 1296% x1, max 3 hits
+      Maximum 10 targets Recover 42 WP per hit Spin the target on hits (PvE only) (Nullified during cooldown) Pull in the
+      target on hits (PvE only) (Nullified during cooldown) Damage reduced during cooldown 88.91% damage in PvP only'
+  absolute_pendulum_kick:
+    name: 'Absolute: Pendulum Kick'
+    input: F during Pendulum Kick
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    description: 'Preceding Skill: [Flow: Pendulum Kick II]'
+    notes: 'Preceding Skill: [Flow: Pendulum Kick II] Attack damage 1848% x2 Maximum 10 targets Recover 100 WP per hit Down
+      Smash Down Attack 58.8% damage in PvP only Attack damage 1848% x3 Maximum 10 targets Recover 100 WP per hit Down Smash
+      Down Attack 58.8% damage in PvP only'
+  absolute_sacred_dance:
+    name: 'Absolute: Sacred Dance'
+    input: ↓ + LMB + RMB
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - spin
+    cooldown_ms: 8000
+    description: 'Preceding Skill: [Flow: Sacred Dance III]'
+    notes: 'Preceding Skill: [Flow: Sacred Dance III] Upward strike attack damage 1750% x1 Spin attack damage 700% x2 Upward
+      slash attack damage 1750% x3 Critical Hit Rate +100% Maximum 10 targets Knockdown on upward strike and slash attack
+      hits (PvE only) Down Smash on upward slash hits Forward Guard during the skill Super Armor on attacks Down Attack 58.8%
+      upward strike or upward slash attack damage in PvP only Consumes Stamina while charging. Decreased number of hits if
+      used while charging.'
+  absolute_salp_uri_purge:
+    name: 'Absolute: Salp''uri Purge'
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    - spin
+    cooldown_ms: 23000
+    description: 'Preceding Skill: [Salp''uri Purge]'
+    notes: 'Preceding Skill: [Salp''uri Purge] Attack damage 2875% x2 Critical Hit Rate +100% Maximum 10 targets All Damage
+      Reduction -20 for 10 sec on hits Spin the target on hits (PvE only) Floating on hits Super Armor during the skill Air
+      Attack 49.63% damage in PvP only'
+  absolute_soul_ascent:
+    name: 'Absolute: Soul Ascent'
+    input: SHIFT + F Hold F to continue the skill
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - pull
+    - spin
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Soul Ascent IV]'
+    notes: 'Preceding Skill: [Soul Ascent IV] Attack 1 damage 993% x1, max 5 hits Attack 2 damage 1986% x2 Maximum 10 targets
+      Pull in the target on attack 1 hits (PvE only) Spin the target on attack 2 hits (PvE only) Stiffness on attack 1 hits
+      70.56% damage in PvP only'
+  absolute_spring_breeze:
+    name: 'Absolute: Spring Breeze'
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Spring Breeze III]'
+    notes: 'Preceding Skill: [Spring Breeze III] Standing slash attack damage 1335% x2 Kick attack damage 1335% x1, max 3
+      hits Striding slash attack damage 1335% x2 Critical Hit Rate +50% Maximum 10 targets Stiffness on hits (Nullified during
+      cooldown) Forward Guard at the start of the skill and while moving (Nullified during cooldown) Down Attack 88.91% damage
+      in PvP only Reduced movement distance during cooldown.'
+  absolute_three_point_stipple:
+    name: 'Absolute: Three Point Stipple'
+    input: LMB during Cymbidium F during Soul Ascent
+    keys:
+    - lmb
+    - f
+    protection: FG
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 6000
+    description: 'Preceding Skill: [Three Point Stipple II]'
+    notes: 'Preceding Skill: [Three Point Stipple II] Attack damage 803% x2 Extra attack damage 1605% x2 Critical Hit Rate
+      +50% Maximum 10 targets Pull in the target on hits (PvE only) (Nullified on extra attack) Bound on extra attack hits
+      Forward Guard during the skill Down Attack 58.8% damage in PvP only'
+  absolute_wind_orchid:
+    name: 'Absolute: Wind Orchid'
+    input: ↓ + RMB RMB or ↓ + RMB after certain skills to perform attack 2 Can be used via a Quick Slot with your crimson
+      glaives
+    keys:
+    - s
+    - rmb
+    - a
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Wind Orchid IV]'
+    notes: 'Preceding Skill: [Wind Orchid IV] Attack 1 damage 1052% x1 Attack 2 damage 2104% x1 Critical Hit Rate +100% Maximum
+      10 targets Knockdown on first hit Forward Guard during attack 1 Forward Guard during attack 2 after certain skills Down
+      Attack 70.56% damage in PvP only'
+  annihilator:
+    name: Annihilator
+    input: SHIFT + E
+    keys:
+    - shift
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: Become overcome with a tenacious desire for destruction.
+    notes: Become overcome with a tenacious desire for destruction. All AP +25 for 30 sec when using the skill All Evasion
+      +80 for 30 sec when using the skill Attack Speed +25% for 30 sec when using the skill Movement Speed +30% for 30 sec
+      when using the skill Super Armor during the skill Consumes no Stamina when using Nimbus Stride, Primrose Sprint, Bloody
+      Stride, or Phantom Dance during Annihilator.
+  berated_ghost:
+    name: Berated Ghost
+    input: SHIFT + LMB Hold LMB to continue the skill
+    keys:
+    - shift
+    - lmb
+    protection: none
+    cc:
+    - down_attack
+    description: Continuously strike your crescent pendulum down like a whip to inflict damage to the opponent.
+    notes: Continuously strike your crescent pendulum down like a whip to inflict damage to the opponent. Attack damage 543%
+      x2 Critical Hit Rate +25% Maximum 7 targets Max 6 times Down Attack 64.68% damage in PvP only
+  binding_chains:
+    name: Binding Chains
+    input: SHIFT + Q Hold Q to perform attack 2 SHIFT + Q after certain skills to perform attack 2
+    keys:
+    - shift
+    - q
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Move backward to attack with the crimson glaives, then use the recoil to smash down on all enemies in front.
+    notes: Move backward to attack with the crimson glaives, then use the recoil to smash down on all enemies in front. Attack
+      1 damage 3108% x1, max 3 hits Attack 2 damage 4022% x2 Critical Hit Rate +100% Maximum 10 targets Recover 100 HP per
+      hit Forward Guard during the skill Bound on attack 1 hits (PvE only) Down Attack Down Smash on attack 2 hits No character
+      collision while moving backwards 24.93% attack 1 damage in PvP only 66.4% attack 2 damage in PvP only
+  black_spirit_illusion:
+    name: Black Spirit Illusion
+    input: Can be added to a Quick Slot
+    protection: none
+    cooldown_ms: 60000
+    description: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only
+      party leaders can create the Illusion.
+    notes: Imbue the power of the Black Spirit into certain monsters and turn them into a Black Spirit Illusion. Only party
+      leaders can create the Illusion. Imbue the power of the Black Spirit into certain monsters and turn them into a Black
+      Spirit Illusion. Only party leaders can create the Illusion.
+  blade_dance:
+    name: Blade Dance
+    input: RMB
+    keys:
+    - rmb
+    protection: none
+    description: Deliver three swift blows with your noble sword.
+    notes: Deliver three swift blows with your noble sword. Attack 1 damage 1525% x1 Attack 2 damage 1525% x1 Attack 3 damage
+      1525% x1 Maximum 7 targets 82.32% damage in PvP only
+  blade_of_blood:
+    name: Blade of Blood
+    input: RMB after Blade Dance
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    cooldown_ms: 10000
+    description: Deliver a barrage of blows to the opponent's chest.
+    notes: Deliver a barrage of blows to the opponent's chest. Attack damage 891% x2 Maximum 10 targets Stiffness on hits
+      (PvE only) Super Armor during the skill 82.32% damage in PvP only
+  blade_of_souls:
+    name: Blade of Souls
+    input: Can be added to a Quick Slot
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    - air_attack
+    cooldown_ms: 17000
+    description: 'Preceding Skill: [Soul Ascent IV]'
+    notes: 'Preceding Skill: [Soul Ascent IV] Attack 1 damage 1744% x1, max 3 hits Attack 2 damage 3108% x2 Critical Hit Rate
+      +100% for attack 2 hits Maximum 10 targets Stiffness on attack 1 hits Knockdown on attack 2 hits Down Attack Air Attack
+      58.8% damage in PvP only'
+    keys:
+    - hotbar
+  bleeding_hearts:
+    name: Bleeding Hearts
+    input: LMB + RMB LMB + RMB during Bridled Despair
+    keys:
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockback
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 7000
+    description: Throw your crimson glaives forward with all your might, then pull them back in to deliver a double blow.
+    notes: Throw your crimson glaives forward with all your might, then pull them back in to deliver a double blow. Throw
+      attack damage 4515% x3 Pull attack damage 4233% x2 Critical Hit Rate +25% Maximum 10 targets All Damage Reduction -25
+      for 10 sec on hits Pull in the target on pull attack hits (PvE only) Knockback on throw attack hits (PvE only) Bound
+      on pull attack hits (PvE only) Super Armor Down Attack 27.99% damage in PvP only Throw attack damage 5643% x3 Pull attack
+      damage 5079% x2 Critical Hit Rate +25% Maximum 10 targets Increased attack area All Evasion +40 for 20 sec when using
+      the skill All AP -10 for 20 sec on hits All Damage Reduction -25 for 10 sec on hits Pull in the target on pull attack
+      hits (PvE only) Knockback on throw attack hits (PvE only) Bound on pull attack hits (PvE only) Super Armor Down Attack
+      27.99% damage in PvP only Dismount target on hits. Injures target with 20% of the damage of a hit.
+  blessing_of_asadal:
+    name: Blessing of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 10% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  blessing_of_taebaek:
+    name: Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +5 for 60 sec when using the skill All Damage Reduction
+      +10 for 60 sec when using the skill Super Armor
+    keys:
+    - hotbar
+  blood_moon_twist:
+    name: Blood Moon Twist
+    input: F
+    keys:
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Thrust your crimson glaives forward for a powerful energy blast.
+    notes: Thrust your crimson glaives forward for a powerful energy blast. Attack damage 7518% x2 Critical Hit Rate +50%
+      Maximum 10 targets Knockdown on hits Down Attack 39.28% damage in PvP only
+  bloody_stride:
+    name: Bloody Stride
+    input: ↑ + SHIFT Hold ↑ + SHIFT to use twice Can be used with your crescent pendulum
+    keys:
+    - w
+    - shift
+    protection: SA
+    cooldown_ms: 4000
+    description: Stay close to the ground while charging forward quickly.
+    notes: Stay close to the ground while charging forward quickly. All Evasion +48 for 10 sec when using the skill Recovers
+      250 HP when using the skill Super Armor during the skill
+  blooming_affinity:
+    name: Blooming Affinity
+    input: Passive
+    protection: none
+    description: Absorb the surrounding energy from nature to increase HP.
+    notes: Absorb the surrounding energy from nature to increase HP. Max HP +150
+    keys:
+    - hotbar
+  blooming_nether_flower:
+    name: Blooming Nether Flower
+    input: LMB + RMB
+    keys:
+    - lmb
+    - rmb
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Spin towards the opponent and use the centrifugal force of your crescent pendulum to knock them down.
+    notes: Spin towards the opponent and use the centrifugal force of your crescent pendulum to knock them down. Attack damage
+      1747% x1, max 5 hits Maximum 7 targets Knockdown on hits Down Attack 70.56% damage in PvP only
+  bridled_despair:
+    name: Bridled Despair
+    input: ↓ + RMB Hold RMB to continue the skill ↓ + RMB with your crescent pendulum
+    keys:
+    - s
+    - rmb
+    protection: FG
+    cc:
+    - stun
+    cooldown_ms: 7000
+    description: The crimson glaives in both hands are thrown to make a ruthless spinning attack that cuts through the opponent's
+      flesh.
+    notes: The crimson glaives in both hands are thrown to make a ruthless spinning attack that cuts through the opponent's
+      flesh. Attack damage 4587% x3 Extra attack damage 4587% 1 when held, max 5 hits Critical Hit Rate +50% Maximum 10 targets
+      50 bleeding damage every 1 sec for 18 sec on hits Stun on hits (PvE only) Forward Guard during the skill 29.87% damage
+      in PvP only Attack damage 4905% x10 Critical Hit Rate +100% Maximum 10 targets All AP +30 for 60 sec when using the
+      skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30% for 60 sec when using the skill Stun
+      on attack 1 hits Super Armor 34.1% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target
+      on hits.
+  cannon_attack:
+    name: Cannon Attack
+    protection: none
+  catasetum:
+    name: Catasetum
+    input: SHIFT + RMB RMB while sprinting
+    keys:
+    - shift
+    - rmb
+    protection: none
+    cc:
+    - floating
+    - air_attack
+    cooldown_ms: 7000
+    description: Quickly advance toward the opponent and attack to send them airborne.
+    notes: Quickly advance toward the opponent and attack to send them airborne. Attacks 1 and 2 damage 561% x2 Critical Hit
+      Rate +50% Maximum 7 targets Floating on attack 1 hits Air Attack 76.44% damage in PvP only
+  coax:
+    name: Coax
+    input: F during Cymbidium
+    keys:
+    - f
+    protection: SA
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Cymbidium I]'
+    notes: 'Preceding Skill: [Cymbidium I] Attack damage 918% x2 Maximum 5 targets Pull in the target on hits (PvE only) Super
+      Armor during the skill Down Attack 82.32% damage in PvP only'
+  core_bridled_despair:
+    name: 'Core: Bridled Despair'
+    input: Passive
+    protection: none
+    cc:
+    - stun
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Bridled Despair IV after learning this skill: Stun on hits'
+    keys:
+    - hotbar
+  core_deadly_dance:
+    name: 'Core: Deadly Dance'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Deadly Dance III after learning this skill: Super Armor during
+      the skill'
+    keys:
+    - hotbar
+  core_eradication:
+    name: 'Core: Eradication'
+    input: Passive
+    protection: SA
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Eradication III after learning this skill: Super Armor during
+      the skill'
+    keys:
+    - hotbar
+  core_furor:
+    name: 'Core: Furor'
+    input: Passive
+    protection: none
+    cc:
+    - bound
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Furor IV after learning this skill: Bound on attack 1 hits (Nullified
+      during cooldown)'
+    keys:
+    - hotbar
+  core_tailspin:
+    name: 'Core: Tailspin'
+    input: Passive
+    protection: none
+    cc:
+    - floating
+    - spin
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Tailspin III after learning this skill: Floating on attack 2
+      hits (Nullified during cooldown)'
+    keys:
+    - hotbar
+  core_taunting_death:
+    name: 'Core: Taunting Death'
+    input: Passive
+    protection: none
+    cc:
+    - stiffness
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Adds the following effect(s) to Taunting Death IV after learning this skill: Stiffness on hits'
+    keys:
+    - hotbar
+  crescent_barrage:
+    name: Crescent Barrage
+    input: ↓ + LMB Hold LMB to continue the skill LMB after the last attack of Berated Ghost to attack twice
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Use the centrifugal force of your crescent pendulum to attack and send the opponent midair, and then attack
+      them again while they are airborne.
+    notes: Use the centrifugal force of your crescent pendulum to attack and send the opponent midair, and then attack them
+      again while they are airborne. Attack 1 damage 1620% x2 Attack 2 damage 1620% x1 Attack 3 damage 1620% x1 Maximum 7
+      targets Recover 45 HP per hit (Nullified during cooldown) Floating on attack 2 hits (Nullified during cooldown) Down
+      Attack Air Attack Damage reduced during cooldown 58.8% damage in PvP only
+  crimson_glaives_training:
+    name: Crimson Glaives Training
+    input: LMB ↑ + LMB ← + LMB or → + LMB
+    keys:
+    - lmb
+    - w
+    - a
+    - d
+    protection: none
+    cc:
+    - pull
+    - spin
+    description: Control the energy of the crimson glaives to become more powerful.
+    notes: Control the energy of the crimson glaives to become more powerful. Attack damage 1831% Standing attack 4 times,
+      4 hits Forward attack 4 times, 4 hits Lateral attack 3 times, 3 hits Jump attack 1 time, 1 hit Maximum 10 targets Recover
+      135 WP per hit Spin the target on lateral attack hits (PvE only) Pull in targets on lateral attacks (PvE only)
+  cymbidium:
+    name: Cymbidium
+    input: '↓ + F F during Flow: Pendulum Kick Can be used with your crimson glaives'
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 5000
+    description: Send the crescent pendulum hurtling towards where the opponent stands.
+    notes: Send the crescent pendulum hurtling towards where the opponent stands. Attack damage 683% x2 Extra attack damage
+      683% x2 Critical Hit Rate +50% Maximum 7 targets Bound on hits (Nullified during cooldown) Down Smash on extra attack
+      hits (Nullified during cooldown) Forward Guard during attack 1 (Nullified on extra attack) (Nullified during cooldown)
+      Down Attack Damage reduced during cooldown 82.32% damage in PvP only Attack 1 damage 1290% x1, max 4 hits Last attack
+      damage 2150% x6 Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 7 targets All AP +55 for
+      60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when
+      using the skill Max HP +2000 for 60 sec when using the skill Spin the target on hits (PvE Only) Pull in the target on
+      hits (PvE Only) Bound on hits Down Attack on attack 1 hits Super Armor 45.86% damage in PvP only Injures target with
+      100% of the damage of a hit. Dismount target on hits.
+  cymbidium_trail:
+    name: Cymbidium Trail
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: SA
+    cc:
+    - bound
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Cymbidium III]'
+    notes: 'Preceding Skill: [Cymbidium III] Attack 1 damage 1133% x2 Attack 2 damage 1133% x2 Attack 3 damage 1133% x2 Critical
+      Hit Rate +50% Maximum 10 targets Recover 60 HP per attack 3 hit Super Armor during the skill Spin the target on hits
+      (PvE only) Pull in the target on hits (PvE only) Bound on attack 2 hits (PvE only) Down Smash on attack 1 hits Down
+      Attack 88.2% damage in PvP only'
+  deadly_dance:
+    name: Deadly Dance
+    input: ↑ + F ↑ + F with your crescent pendulum
+    keys:
+    - w
+    - f
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 8000
+    description: Perform a deadly dance to cut down all those within range of the crimson glaives.
+    notes: Perform a deadly dance to cut down all those within range of the crimson glaives. Attack damage 4074% x1, max 4
+      hits Critical Hit Rate +50% Maximum 10 targets All AP +20 for 10 sec when using the skill Recover 160 HP per hit Recover
+      90 WP per hit 50 bleeding damage every 1 sec for 18 sec on hits Knockdown on hits Down Attack 34% damage in PvP only
+  deadly_restraint:
+    name: Deadly Restraint
+    input: RMB during Cymbidium
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: Use the recoil from the crescent pendulum to float the enemies and inflict further damage.
+    notes: Use the recoil from the crescent pendulum to float the enemies and inflict further damage. Attack damage 583% x2
+      Extra attack damage 875% x2 Maximum 7 targets Floating on attack 1 hits Down Smash on attack 2 hits Air Smash on attack
+      2 hits Forward Guard during the skill Down Attack Air Attack 58.8% damage in PvP only
+  dismemberment:
+    name: Dismemberment
+    input: ← + RMB or → + RMB
+    keys:
+    - a
+    - rmb
+    - d
+    protection: none
+    cc:
+    - pull
+    - spin
+    cooldown_ms: 5000
+    description: Using the noble sword, deliver a spinning lateral slash.
+    notes: Using the noble sword, deliver a spinning lateral slash. Attack damage 906% x2 Maximum 7 targets All AP +6 for
+      10 sec when using the skill Spin the target on hits (PvE only) Pull in the target on hits (PvE only) Damage reduced
+      during cooldown 82.32% damage in PvP only
+  duo_ii_blessing_of_taebaek:
+    name: DUO (II) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +15 for 60 sec when using the skill All Damage
+      Reduction +20 for 60 sec when using the skill All Accuracy +8 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  duo_blessing_of_asadal:
+    name: 'DUO: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 40% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  duo_fury_of_asadal:
+    name: 'DUO: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 40% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  earthly_pain:
+    name: Earthly Pain
+    input: ↓ + LMB Hold LMB to continue the skill ↓ + LMB after Flailing Blades, Deadly Dance to perform attack 2
+    keys:
+    - s
+    - lmb
+    protection: none
+    cc:
+    - floating
+    - down_attack
+    - air_attack
+    cooldown_ms: 7000
+    description: Attack the opponent in the front to leave them scarred from the incredible pain.
+    notes: Attack the opponent in the front to leave them scarred from the incredible pain. Attack 1 damage 3070% x2 Attacks
+      2 and 3 damage 4092% x2 Critical Hit Rate +40% (Nullified during cooldown) Maximum 10 targets All Damage Reduction -25
+      for 10 sec on hits (Nullified during cooldown) Recover 147 HP per hit (Nullified during cooldown) Floating on attack
+      2 hits (Nullified during cooldown) Air Attack on attack 2 and 3 hits Down Attack Damage reduced during cooldown 32.46%
+      damage in PvP only
+  elvia_hastened_expiration:
+    name: 'Elvia: Hastened Expiration'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cc:
+    - down_attack
+    cooldown_ms: 15000
+    description: Laterally swing your crimson glaives to inflict damage on enemies in the vicinity, then pierce enemies in
+      front.
+    notes: Laterally swing your crimson glaives to inflict damage on enemies in the vicinity, then pierce enemies in front.
+      Attack 1 damage 3020% x2, max 2 hits Attack 2 damage 3020% x2, max 2 hits Critical Hit Rate +100% (PvE only) Maximum
+      10 targets All Damage Reduction -20 for 10 sec on hits (PvE only) All AP -20 for 10 sec on hits Recover 40 WP per hit
+      Super Armor during the skill Down Attack 23.52% damage in PvP only
+    keys:
+    - hotbar
+  emergency_escape:
+    name: Emergency Escape
+    input: V
+    protection: iframe
+    cooldown_ms: 299000
+    description: Temporarily conceal yourself to evade dangerous situations.
+    notes: Temporarily conceal yourself to evade dangerous situations. Invincible during the skill No collision while moving
+    keys:
+    - v
+  eradication:
+    name: Eradication
+    input: SHIFT + F LMB during the skill to perform extra attacks Can be used with your crescent pendulum
+    keys:
+    - shift
+    - f
+    - lmb
+    protection: none
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Quickly move forward then cut enemies down to deal critical damage.
+    notes: Quickly move forward then cut enemies down to deal critical damage. Attack damage 4797% x2 Extra attack damage
+      6016% x2 Critical Hit Rate +50% Maximum 10 targets All AP +20 for 10 sec when using the skill Recover +30 WP on extra
+      attack hits Stiffness on hits Knockdown on extra attack hits Down Attack 47.75% damage in PvP only Attack damage 10164%
+      x2 Critical Hit Rate +50% Maximum 10 targets Increased attack area All AP +20 for 10 sec when using the skill Recover
+      +30 WP on hits Knockdown on hits Down Attack 37.63% damage in PvP only Dismount target on hits. Injures target with
+      10% of the damage of a hit.
+  ethereal_dance:
+    name: Ethereal Dance
+    input: 'F during Nimbus Stride F during Flow: Nimbus Stride F during Prime: Spring Breeze III ''s gliding motion Can be
+      used with your crimson glaives F during Primrose Sprint with your crimson glaives'
+    keys:
+    - f
+    protection: SA
+    cc:
+    - stiffness
+    - knockdown
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Nimbus Stride I]'
+    notes: 'Preceding Skill: [Nimbus Stride I] Attack damage 626% x2 Critical Hit Rate +100% Maximum 5 targets Stiffness on
+      first hit Knockdown on extra attack hits Super Armor during the skill Down Attack 82.32% damage in PvP only'
+  evasion:
+    name: Evasion
+    input: ↑ + ↑ SHIFT + ← SHIFT + ↓ SHIFT + → Can be used with your crimson glaives
+    keys:
+    - w
+    - shift
+    - a
+    - s
+    - d
+    protection: iframe
+    description: Can evade in any direction.
+    notes: Can evade in any direction. Invincible during the skill (PvE only)
+  eye_of_the_phoenix:
+    name: Eye of the Phoenix
+    input: SPACE
+    keys:
+    - space
+    protection: none
+    cc:
+    - stun
+    - spin
+    cooldown_ms: 2000
+    description: In the midst of another attack, slash away at your foe, dealing damage and stunning them.
+    notes: In the midst of another attack, slash away at your foe, dealing damage and stunning them. Attack damage 1108% x2
+      Maximum 7 targets Recover 30 HP per hit Spin the target on hits (PvE only) Stun on hits 82.32% damage in PvP only
+  eyes_of_blood:
+    name: Eyes of Blood
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - knockdown
+    - down_attack
+    - spin
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Eye of the Phoenix III]'
+    notes: 'Preceding Skill: [Eye of the Phoenix III] Attack 1 damage 2748% x2 Attack 2 damage 2748% x2 Critical Hit Rate
+      +50% Maximum 10 targets Recover 60 HP per hit Spin the target on hits (PvE only) Knockdown on first hit Down Attack
+      Counter Attack 50.57% damage in PvP only'
+  fatal_attraction:
+    name: Fatal Attraction
+    input: SHIFT + LMB LMB after Binding Chains
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - pull
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Prerequisite: Use the [Secret Book] Abyssal Legacy'
+    notes: 'Prerequisite: Use the [Secret Book] Abyssal Legacy Attack 1 damage 2756% x1, max 2 hits Attack 2 damage 4479%
+      x1, max 4 hits Critical Hit Rate +50% Maximum 10 targets Forward Guard during the skill Pull in the target on pull attack
+      hits (PvE only) Down Attack 41.16% damage in PvP only'
+  flailing_blades:
+    name: Flailing Blades
+    input: RMB RMB after Phantom Dance RMB during Bloody Stride RMB during Primrose Sprint with your crimson glaives RMB while
+      sprinting
+    keys:
+    - rmb
+    protection: FG
+    cc:
+    - stiffness
+    cooldown_ms: 5000
+    description: Hurl your crimson glaives forward with relentless force, piercing defenses or whirling to carve into enemy
+      wounds with ruthless precision.
+    notes: Hurl your crimson glaives forward with relentless force, piercing defenses or whirling to carve into enemy wounds
+      with ruthless precision. Attack damage 4132% 1, max 2 hits Critical Hit Rate +50% Maximum 10 targets Attack Speed +18%
+      for 15 sec when using the skill (Nullified during cooldown) Stiffness on hits (Nullified during cooldown) Forward Guard
+      during the skill (Nullified during cooldown) Damage reduced during cooldown 55.34% damage in PvP only
+  flow_dancing_with_death:
+    name: 'Flow: Dancing with Death'
+    input: LMB during Furor attack 3
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Furor I]'
+    notes: 'Preceding Skill: [Furor I] All damage applies Furor ''s damage x4 Maximum 10 targets Recover 250 HP per hit Recover
+      60 WP per hit Forward Guard during the skill Knockdown on hits (PvE only) Down Attack Down Smash'
+  flow_four_point_splatter:
+    name: 'Flow: Four Point Splatter'
+    input: Hold LMB during Three Point Stipple
+    keys:
+    - lmb
+    protection: FG
+    cc:
+    - pull
+    - down_attack
+    - spin
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Triple Point Stipple I]'
+    notes: 'Preceding Skill: [Triple Point Stipple I] All damage applies Three Point Stipple ''s damage x3 Applies Three Point
+      Stipple ''s number of hit targets Movement Speed -5% for 5 sec on hits Spin the target on hits (PvE only) Pull in the
+      target on hits (PvE only) Forward Guard during the skill Down Attack'
+  flow_mangler:
+    name: 'Flow: Mangler'
+    input: LMB or hold RMB during Taunting Death RMB after Bridled Despair LMB + RMB after Bleeding Hearts F after Blood Moon
+      Twist
+    keys:
+    - lmb
+    - rmb
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill: [Taunting Death I]'
+    notes: 'Preceding Skill: [Taunting Death I] Attack damage 3358% x6 Critical Hit Rate +50% Maximum 10 targets Recover 133
+      HP per hit Movement Speed -10% for 5 sec on hits 50 bleeding damage every 1 sec for 18 sec on hits Super Armor during
+      the skill Knockdown on hits Down Attack 40.5% damage in PvP only Attack damage 2565% x11 Critical Hit Rate +50% Maximum
+      10 targets Increased attack area Recover 102 HP per hit Movement Speed -10% for 5 sec on hits 50 bleeding damage every
+      1 sec for 18 sec on hits Super Armor during the skill Knockdown on hits Down Attack 44.69% damage in PvP only Dismount
+      target on hits. Injures target with 30% of the damage of a hit.'
+  flow_nimbus_stride:
+    name: 'Flow: Nimbus Stride'
+    input: Hold SHIFT Hold SHIFT during Nimbus Dismount with your crimson glaives Can be used with your crimson glaives
+    keys:
+    - shift
+    protection: SA
+    cooldown_ms: 30000
+    description: 'Preceding Skill: [Nimbus Stride I]'
+    notes: 'Preceding Skill: [Nimbus Stride I] Super Armor during airborne moves Immune to fall damage for 10 sec when using
+      the skill Super Armor during airborne moves Immune to fall damage for 10 sec when using the skill'
+  flow_pendulum_kick:
+    name: 'Flow: Pendulum Kick'
+    input: F during Pendulum Kick
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    description: Jump up and deliver another powerful kick to the opponent.
+    notes: Jump up and deliver another powerful kick to the opponent. Attack damage 1310% x2 Maximum 7 targets Recover 100
+      WP per hit Down Smash Down Attack 58.8% damage in PvP only
+  flow_sacred_dance:
+    name: 'Flow: Sacred Dance'
+    input: ↓ + LMB + RMB
+    keys:
+    - s
+    - lmb
+    - rmb
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    - spin
+    cooldown_ms: 8000
+    description: Absorb the surrounding energy from nature and delivers powerful attacks.
+    notes: Absorb the surrounding energy from nature and delivers powerful attacks. Upward strike attack damage 975% x1 Spin
+      attack damage 488% x2 Upward slash attack damage 975% x3 Critical Hit Rate +100% Maximum 10 targets Knockdown on upward
+      strike and slash attack hits (PvE only) Down Smash on upward slash hits Forward Guard during the skill Super Armor on
+      attacks Down Attack 82.32% upward strike or upward slash attack damage in PvP only Consumes Stamina while charging.
+      Decreased number of hits if used while charging.
+  flow_vice:
+    name: 'Flow: Vice'
+    input: RMB during Tailspin's attack 2
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - down_attack
+    - air_attack
+    - spin
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Tailspin I]'
+    notes: 'Preceding Skill: [Tailspin I] Attack damage 7748% x2 Critical Hit Rate +100% Maximum 10 targets Super Armor during
+      the skill Down Smash Air Attack Down Attack 35.28% damage in PvP only'
+  flute_buff:
+    name: Flute Buff
+    input: Use Flute
+    protection: none
+    description: Distracts enemies with the sound of a flute.
+    notes: Distracts enemies with the sound of a flute. Distracts enemies with a Flute.
+  fragrant_stigma:
+    name: Fragrant Stigma
+    input: 'LMB during Nimbus Stride LMB during Flow: Nimbus Stride LMB during Crescent Barrage attack 3 Can be used with
+      your crimson glaives LMB during Primrose Sprint with your crimson glaives'
+    keys:
+    - lmb
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Come hurtling down toward the ground from midair.
+    notes: Come hurtling down toward the ground from midair. Attack damage 728% x2 Maximum 7 targets Movement Speed -5% for
+      5 sec on hits Bound on hits Super Armor when using the skill Down Attack 82.32% damage in PvP only
+  furious_chase:
+    name: Furious Chase
+    input: ↑ + RMB LMB while sprinting
+    keys:
+    - w
+    - rmb
+    - lmb
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 7000
+    description: Quickly chase the enemies and cut them down.
+    notes: Quickly chase the enemies and cut them down. Attack damage 758% x2 Maximum 5 targets Recover 20 WP per hit Stiffness
+      on hits (PvE only) (Nullified during cooldown) Forward Guard during the skill (Nullified during cooldown) 82.32% damage
+      in PvP only Increased movement distance Down Attack Reduced movement distance during cooldown.
+  furor:
+    name: Furor
+    input: 'SHIFT + LMB Hold LMB to continue the skill LMB after Flow: Mangler'
+    keys:
+    - shift
+    - lmb
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: Deliver furious attacks to the opponent in front with the power of darkness.
+    notes: Deliver furious attacks to the opponent in front with the power of darkness. Attack damage 3763% x2, max 3 hits
+      Critical Hit Rate +75% (Nullified during cooldown) Maximum 10 targets Recover 150 HP per hit (Nullified during cooldown)
+      Recover 30 WP per hit Forward Guard during the skill (Nullified during cooldown) Bound on attack 1 hits (PvE only) (Nullified
+      during cooldown) Down Smash on attack 2 hits (Nullified during cooldown) Down Attack Damage reduced during cooldown
+      32.93% damage in PvP only
+  fury_of_asadal:
+    name: Fury of Asadal
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 10% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  guild_squad_special_attack:
+    name: Guild Squad Special Attack
+    protection: none
+    description: Special Guild Squad Skill
+  heavenly_mercy:
+    name: Heavenly Mercy
+    input: Passive
+    protection: FG
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Switch to your crimson glaives. Attacking continued while switching if used during offensive
+      skills. Can switch to your crimson glaives from your crescent pendulum during Nimbus Stride. Forward Guard applied while
+      switching.'
+    keys:
+    - hotbar
+  infinite_mastery:
+    name: Infinite Mastery
+    input: Passive
+    protection: none
+    description: You've tested your limits to the brink and attained a stronger body.
+    notes: You've tested your limits to the brink and attained a stronger body. Max HP +200 All Accuracy +18
+    keys:
+    - hotbar
+  make_bonfire:
+    name: Make Bonfire
+    input: Only usable if you have Flint
+    protection: none
+    cooldown_ms: 600000
+    description: Can only learn when you have Bonfire. Bonfire increases AP and DP while burning and restores HP while you
+      are nearby.
+  moon_slash:
+    name: Moon Slash
+    input: Auto-activated during Moondance in certain situations
+    protection: none
+    cc:
+    - pull
+    - spin
+    description: Use the centrifugal force of your crescent pendulum to deliver a powerful attack from a distance.
+    notes: Use the centrifugal force of your crescent pendulum to deliver a powerful attack from a distance. Standing attack
+      1 damage 1438% x2 Standing attack 2 damage 1438% x2 Standing attack 3 damage 1438% x3 Forward attack 1 damage 1605%
+      x1 Forward attack 2 damage 1605% x1 Forward attack 3 damage 1605% x2 Maximum 10 targets Recover 100 WP per hit Pull
+      in the target on standing attack hits (PvE only) Spin the target on standing attack hits (PvE only)
+  moondance:
+    name: Moondance
+    input: LMB ↑ + LMB LMB to perform mounted attacks
+    keys:
+    - lmb
+    - w
+    protection: none
+    description: Use the centrifugal force of your crescent pendulum to deliver a powerful basic attack.
+    notes: Use the centrifugal force of your crescent pendulum to deliver a powerful basic attack. Standing attack 1 damage
+      1214% x2 Standing attack 2 damage 1214% x2 Standing attack 3 damage 1214% x3 Forward attack 1 damage 1214% x1 Forward
+      attack 2 damage 1214% x1 Forward attack 3 damage 1214% x1, max 2 hits Jump attack damage 1214% x1 Maximum 10 targets
+      Recover 90 WP per hit 94.08% damage in PvP only
+  morning_dew:
+    name: Morning Dew
+    input: 'RMB during Nimbus Stride RMB during Flow: Nimbus Stride RMB during Prime: Spring Breeze III ''s gliding motion
+      Can be used with your crimson glaives'
+    keys:
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 7000
+    description: Send the crescent pendulum hurtling down towards the opponent while airborne. On a hit, charge toward the
+      opponent. Otherwise, land gently on the ground.
+    notes: Send the crescent pendulum hurtling down towards the opponent while airborne. On a hit, charge toward the opponent.
+      Otherwise, land gently on the ground. Attack damage 1379% x2 Maximum 7 targets Push the target on hits (PvE only) Stiffness
+      on hits Super Armor during airborne moves Down Attack 82.32% damage in PvP only
+  nimbus_dismount:
+    name: Nimbus Dismount
+    input: 'SHIFT + ← or SHIFT + → during Nimbus Stride SHIFT + ← or SHIFT + → during Prime: Spring Breeze III ''s gliding
+      motion Can be used with your crimson glaives'
+    keys:
+    - shift
+    - a
+    - d
+    protection: iframe
+    cooldown_ms: 5000
+    description: 'Preceding Skill: [Nimbus Stride I]'
+    notes: 'Preceding Skill: [Nimbus Stride I] All Evasion +12 for 10 sec when using the skill Invincible on airborne moves'
+  nimbus_stride:
+    name: Nimbus Stride
+    input: SHIFT + SPACE Can be used with your crimson glaives
+    keys:
+    - shift
+    - space
+    protection: SA
+    cooldown_ms: 15000
+    description: Concentrate energy to the feet to jump into the air and travel a great distance quickly.
+    notes: 'Concentrate energy to the feet to jump into the air and travel a great distance quickly. Movement Speed +15% for
+      10 sec when using the skill Super Armor during the skill Increased movement distance Immune to fall damage for 10 sec
+      when using the skill (Movement Speed Increase effects nullified at the start of the skill) Movement Speed +15% for 10
+      sec when using the skill Super Armor during the skill Immune to fall damage for 10 sec when using the skill (Movement
+      Speed Increase effects nullified at the start of the skill) Using Prime: Spring Breeze skill and combos do not consume
+      stamina.'
+  pen_v_blessing_of_taebaek:
+    name: PEN (V) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +30 for 60 sec when using the skill All Damage
+      Reduction +50 for 60 sec when using the skill All Accuracy +20 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pen_blessing_of_asadal:
+    name: 'PEN: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 100% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pen_fury_of_asadal:
+    name: 'PEN: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 100% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  pendulum_cleaver:
+    name: Pendulum Cleaver
+    input: ← + LMB or → + LMB Hold to attack twice
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - pull
+    - spin
+    cooldown_ms: 5000
+    description: Use your crescent pendulum to deliver a spinning lateral slash attack.
+    notes: Use your crescent pendulum to deliver a spinning lateral slash attack. Attack 1 damage 1096% x1, max 2 hits Attack
+      2 damage 1096% x1, max 3 hits Maximum 7 targets Recover 42 WP per hit Spin the target on hits (PvE only) (Nullified
+      during cooldown) Pull in the target on hits (PvE only) (Nullified during cooldown) Damage reduced during cooldown 82.32%
+      damage in PvP only
+  pendulum_kick:
+    name: Pendulum Kick
+    input: F
+    keys:
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 4000
+    description: Kick the crescent pendulum towards the opponent to inflict damage.
+    notes: Kick the crescent pendulum towards the opponent to inflict damage. Attack damage 962% x2 Maximum 7 targets Recover
+      30 WP per hit (Nullified during cooldown) Knockdown on hits (Nullified during cooldown) Down Attack Damage reduced during
+      cooldown 76.44% damage in PvP only Attack 1 damage 2900% x1, max 6 hits Last attack damage 2900% x3 Critical Hit Rate
+      +100% (PvE only) Maximum 7 targets All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using
+      the skill Critical Hit Rate +30% for 60 sec when using the skill Knockdown on hits Super Armor during the skill Down
+      Attack 50.1% damage in PvP only Injures target with 50% of the damage of a hit. Dismount target on hits.
+  phantom_dance:
+    name: Phantom Dance
+    input: ← + SHIFT or → + SHIFT Can be used with your crescent pendulum
+    keys:
+    - a
+    - shift
+    - d
+    protection: iframe
+    cooldown_ms: 1000
+    description: As if a ghost, evade the opponent's attack by swiftly moving laterally.
+    notes: As if a ghost, evade the opponent's attack by swiftly moving laterally. Invincible while moving (Nullified during
+      cooldown) Invincible during the skill (PvE only) Super Armor during cooldown No collision while moving
+  phoenix_chase:
+    name: Phoenix Chase
+    input: SHIFT + X
+    keys:
+    - shift
+    - x
+    protection: none
+    cc:
+    - stun
+    - down_attack
+    cooldown_ms: 10000
+    description: 'Preceding Skill: [Eye of the Phoenix III]'
+    notes: 'Preceding Skill: [Eye of the Phoenix III] Attack 1 damage 2859% x2 Attack 2 damage 2859% x2 Maximum 10 targets
+      Recover 90 WP per hit Stun on first hit Down Attack 58.8% damage in PvP only'
+  pri_i_blessing_of_taebaek:
+    name: PRI (I) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +10 for 60 sec when using the skill All Damage
+      Reduction +15 for 60 sec when using the skill All Accuracy +4 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  pri_blessing_of_asadal:
+    name: 'PRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 20% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  pri_fury_of_asadal:
+    name: 'PRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 20% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  prime_blade_dance:
+    name: 'Prime: Blade Dance'
+    input: RMB Hold RMB to continue the skill
+    keys:
+    - rmb
+    protection: none
+    cc:
+    - stiffness
+    - pull
+    - down_attack
+    cooldown_ms: 5000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: SUCCESSION_LYAN_DAM_ATT_MAX_1 SUCCESSION_LYAN_DAM_ATT_MAX_2 Critical Hit Rate +50% Maximum 10
+      targets SUCCESSION_LYAN_DEFENCE_1 SUCCESSION_LYAN_SUPERARMOR_3 All Evasion -12 for 10 sec on hits Stiffness on first
+      hit SUCCESSION_LYAN_ATT_PULL (PvE only) SUCCESSION_LYAN_ATT_TURN (PvE only) Down Attack 40.22% damage in PvP only Blade
+      of Blood combo unavailable after learning this skill.'
+  prime_bleeding_hearts:
+    name: 'Prime: Bleeding Hearts'
+    input: C
+    keys:
+    - c
+    protection: SA
+    cc:
+    - knockback
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Throw attack damage 3664% x1, max 3 hits Pull attack damage 2290% x1, max 3 hits Critical Hit
+      Rate +25% Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Pull in the target on pull attack hits (PvE
+      only) Knockback on throw attack hits (PvE only) Bound on pull attack hits (PvE only) Super Armor during the skill Down
+      Attack 43.63% damage in PvP only'
+  prime_blooming_aroma:
+    name: 'Prime: Blooming Aroma'
+    input: Passive
+    protection: none
+    description: The aroma of flowers difficult to bloom intoxicate those who take in the fumes. Danger awaits enemies lost
+      in the dizzying scent and dance of Lahn's crescent pendulum.
+    notes: The aroma of flowers difficult to bloom intoxicate those who take in the fumes. Danger awaits enemies lost in the
+      dizzying scent and dance of Lahn's crescent pendulum. All AP +2 Max HP +40
+    keys:
+    - hotbar
+  prime_blooming_nether_flower:
+    name: 'Prime: Blooming Nether Flower'
+    input: LMB + RMB LMB at the start of the skill to fly up and attack
+    keys:
+    - lmb
+    - rmb
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 7000
+    description: Spin towards the opponent and use the centrifugal force of your crescent pendulum to inflict greater damage
+      to nearby enemies.
+    notes: Spin towards the opponent and use the centrifugal force of your crescent pendulum to inflict greater damage to
+      nearby enemies. Attack damage 4419% x1, max 8 hits Airborne spin attack damage 5535% x1, max 9 hits Critical Hit Rate
+      +50% (PvE only) Critical Hit Rate +25% (PvP only) Maximum 10 targets Knockdown on hits (PvE only) Super Armor during
+      the skill Down Attack 26.7% damage in PvP only
+  prime_crescent_barrage:
+    name: 'Prime: Crescent Barrage'
+    input: ↓ + LMB Hold ↓ + LMB to continue the skill LMB after the last attack of Berated Ghost to attack twice
+    keys:
+    - s
+    - lmb
+    protection: SA
+    cc:
+    - floating
+    - bound
+    - down_attack
+    - air_attack
+    cooldown_ms: 6000
+    description: Use the centrifugal force of your crescent pendulum to attack and send the opponent midair, and then attack
+      them again while they are airborne.
+    notes: Use the centrifugal force of your crescent pendulum to attack and send the opponent midair, and then attack them
+      again while they are airborne. Attacks 1, 2, and 3 damage 4370% x2 Last attack damage 5098% x3 Critical Hit Rate +50%
+      Maximum 10 targets Recover 211 HP per hit Floating on attack 2 hits (PvE only) Bound on attack 4 hits (PvE only) SUCCESSION_LYAN_DEFENCE_2
+      Super Armor during attacks 2, 3, and 4 Down Attack Air Attack 32.58% damage in PvP only
+  prime_crescent_charm:
+    name: 'Prime: Crescent Charm'
+    input: E
+    keys:
+    - e
+    protection: SA
+    cooldown_ms: 180000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: All AP +20 for 30 sec when using the skill Attack Speed +25% for 30 sec when using the skill
+      Critical Hit Rate +20% for 30 sec when using the skill Movement Speed +30% for 30 sec when using the skill Super Armor
+      during the skill Nimbus Stride, Primrose Sprint, Prime: Primrose Sprint, and Prime: Phantom Dance consume no Stamina
+      while this buff is in effect.'
+  prime_cymbidium:
+    name: 'Prime: Cymbidium'
+    input: '↓ + F Hold ↓ + F to continue the skill F during Flow: Pendulum Kick'
+    keys:
+    - s
+    - f
+    protection: FG
+    cc:
+    - knockback
+    - knockdown
+    - floating
+    - bound
+    - down_attack
+    cooldown_ms: 5000
+    description: Send the crescent pendulum hurtling towards where the opponent stands, dash forward, and slash the enemy.
+    notes: Send the crescent pendulum hurtling towards where the opponent stands, dash forward, and slash the enemy. Throw
+      attack damage 4578% x2 Pull attack damage 4578% x2, max 2 hits Attacks 4 and 5 damage 6409% x2 Critical Hit Rate +50%
+      Maximum 10 targets Bound on throw attack hits Forward Guard while throwing or pulling Super Armor during striding/standing
+      slash attacks Down Attack 37.16% damage in PvP only Attack 1 damage 17710% x1 Attack 2 damage 17710% x1, max 7 hits
+      Last attack damage 23010% x4 Critical Hit Rate +100% Maximum 10 targets All AP +55 for 60 sec when using the skill Attack
+      Speed +25% for 60 sec when using the skill Critical Hit Rate +50% for 60 sec when using the skill Max HP +2000 for 60
+      sec when using the skill Super Armor Floating on attack 1 hits Knockback on attack 2 hits Knockdown on last attack hits
+      Down Attack 11.52% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds.
+      Injures target with 100% of the damage of a hit. Dismount target on hits.
+  prime_furious_chase:
+    name: 'Prime: Furious Chase'
+    input: ↑ + RMB Hold ↑ + RMB to perform extra attacks LMB while sprinting
+    keys:
+    - w
+    - rmb
+    - lmb
+    protection: SA
+    cc:
+    - stiffness
+    - bound
+    - down_attack
+    cooldown_ms: 7000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Striding slash attack 1 damage 1002% x2 Striding slash attack 2 damage 2505% x2 Maximum 10 targets
+      Recover 44 WP per hit Stiffness on striding slash attack 1 hits (Nullified during cooldown) Bound on striding slash
+      attack 2 hits (Nullified during cooldown) Super Armor during the skill (Nullified during cooldown) Down Attack 84.79%
+      damage in PvP only'
+  prime_pendulum_cleaver:
+    name: 'Prime: Pendulum Cleaver'
+    input: ← + LMB or → + LMB Hold to attack twice
+    keys:
+    - a
+    - lmb
+    - d
+    protection: none
+    cc:
+    - pull
+    - spin
+    cooldown_ms: 5000
+    description: Use your crescent pendulum to deliver a spinning lateral slash attack.
+    notes: Use your crescent pendulum to deliver a spinning lateral slash attack. Attack 1 damage 2044% x1, max 2 hits Attack
+      2 damage 2044% x1, max 3 hits Last attack damage 2044% x1 Maximum 10 targets Recover 60 WP per hit Spin the target on
+      hits (PvE only) (Nullified during cooldown) Pull in the target on hits (PvE only) (Nullified during cooldown) Damage
+      reduced during cooldown 78.79% damage in PvP only
+  prime_pendulum_kick:
+    name: 'Prime: Pendulum Kick'
+    input: F Hold F to continue the skill
+    keys:
+    - f
+    protection: SA
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 4000
+    description: Kick the crescent pendulum towards the opponent to inflict damage, then throw it once more to inflict a final
+      blow.
+    notes: Kick the crescent pendulum towards the opponent to inflict damage, then throw it once more to inflict a final blow.
+      Attack 1 damage 4006% x2 Attack 2 damage 4006% x2 Attack 3 damage 4006% x3 Critical Hit Rate +50% Maximum 10 targets
+      Recover 102 HP per hit Recover 37 WP per hit Attack Speed +18% for 15 sec when using the skill Super Armor during attacks
+      2 and 3 Knockdown on attack 1 hits Down Attack 49.86% damage in PvP only Attack 1 damage 6692% x3 Attack 2 damage 6692%
+      x4 Last attack damage 3346% x1 Critical Hit Rate +100% (PvE only) Critical Hit Rate +50% (PvP only) Maximum 10 targets
+      All AP +30 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +30%
+      for 60 sec when using the skill Knockdown on attack 1 hits Super Armor Down Attack 29.4% damage in PvP only Injures
+      target with 50% of the damage of a hit. Dismount target on hits.
+  prime_phantom_dance:
+    name: 'Prime: Phantom Dance'
+    input: ← + SHIFT or → + SHIFT
+    keys:
+    - a
+    - shift
+    - d
+    protection: iframe
+    cooldown_ms: 1000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Invincible while moving (Nullified during cooldown) Invincible during the skill (PvE only) Super
+      Armor during cooldown No collision while moving'
+  prime_primrose_sprint:
+    name: 'Prime: Primrose Sprint'
+    input: SHIFT + ↓
+    keys:
+    - shift
+    - s
+    protection: iframe
+    cooldown_ms: 4000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: All Evasion +12 for 10 sec when using the skill No character collision during the skill Invincible
+      during the skill'
+  prime_salp_uri_purge:
+    name: 'Prime: Salp''uri Purge'
+    input: 'SHIFT + Q ↓ + Q to perform standing attacks after Prime: Primrose Sprint SHIFT + Q to perform forward attacks
+      during Prime: Furious Chase or Prime: Primrose Sprint Q to perform forward attacks during Succession: Nimbus Stride
+      or Prime: Spring Breeze'
+    keys:
+    - shift
+    - q
+    - s
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    - spin
+    cooldown_ms: 16000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 4158% x3 Critical Hit Rate +100% Maximum 10 targets All Damage Reduction -20 for
+      10 sec on hits Spin the target on hits (PvE only) Floating on hits Super Armor during the skill Air Attack 30.58% damage
+      in PvP only'
+  prime_silk_flower:
+    name: 'Prime: Silk Flower'
+    input: Passive
+    protection: none
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: All Evasion +20'
+    keys:
+    - hotbar
+  prime_spring_breeze:
+    name: 'Prime: Spring Breeze'
+    input: '↑ + F Hold ↑ + F to glide Hold ↑ + F on the ground to perform standing slash attacks Combo with F on the ground
+      to perform kicks Can combo into Succession: Nimbus Stride during the skill Can glide with Prime: Primrose Sprint, Succession:
+      Nimbus Stride, or Succession: Flow: Nimbus Stride'
+    keys:
+    - w
+    - f
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: Dash toward the opponent with the possibility to also inflict damage or fly up.
+    notes: Dash toward the opponent with the possibility to also inflict damage or fly up. Standing slash attack damage 2818%
+      x2 Kick attack damage 2818% x1, max 2 hits Striding slash attack damage 2818% x2 Critical Hit Rate +50% Maximum 10 targets
+      Jump Height Increase Stiffness on hits (Nullified during cooldown) (PvE only) Forward Guard at the start of the skill
+      and while moving (Nullified during cooldown) Super Armor while gliding No collision while moving (Nullified during cooldown)
+      Down Attack 78.79% damage in PvP only Reduced movement distance during cooldown.
+  primrose_sprint:
+    name: Primrose Sprint
+    input: SHIFT + ↓ Can be used with your crimson glaives
+    keys:
+    - shift
+    - s
+    protection: iframe
+    cooldown_ms: 5000
+    description: Quickly dodge backward to evade the opponent's attacks.
+    notes: Quickly dodge backward to evade the opponent's attacks. All Evasion +12 for 10 sec when using the skill No character
+      collision during the skill Invincible during the skill
+  rage_absorption:
+    name: Rage Absorption
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff for a certain period of time.
+    notes: Absorb the power of the Black Spirit to get a special buff for a certain period of time. Super Armor during the
+      skill Black Spirit's Rage -100% All AP +30 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +30% for
+      60 sec Black Spirit's Rage -200% All AP +55 for 60 sec Attack/Casting Speed +25% for 60 sec Critical Hit Rate +50% for
+      60 sec Max HP +2000 for 60 sec
+  rage_absorption_innate:
+    name: Rage Absorption (Innate)
+    input: Z
+    keys:
+    - z
+    protection: SA
+    description: Absorb the power of the Black Spirit to get a special buff.
+    notes: Absorb the power of the Black Spirit to get a special buff. Super Armor during the skill Absorb the power of the
+      Black Spirit to gain special ability. If you lock this skill, Rage Absorption (Common) will be activated. Black Spirit's
+      Rage -100% All Damage Reduction +30 for 60 sec Black Spirit's Rage -200% All Damage Reduction +60 for 60 sec Critical
+      Hit Rate +35% for 60 sec
+  rage_transfer:
+    name: Rage Transfer
+    input: X
+    keys:
+    - x
+    protection: none
+    description: Transfer the power of the Black Spirit into another player.
+    notes: Transfer the power of the Black Spirit into another player. Transfer the power of the Black Spirit into another
+      player. However, only 50% of Black Spirit's Rage will be transferred.
+  revive_target:
+    name: Revive Target
+    protection: none
+    description: Revives the target.
+  sacred_dance_of_souls:
+    name: Sacred Dance of Souls
+    input: Can be added to a Quick Slot LMB during Eyes of Blood or Phoenix Chase
+    protection: SA
+    cc:
+    - pull
+    cooldown_ms: 17000
+    description: 'Preceding Skill: [Soul Ascent IV]'
+    notes: 'Preceding Skill: [Soul Ascent IV] Attack 1 damage 1842% x2 Attack 2 damage 3108% x2 Critical Hit Rate +100% for
+      attack 2 hits Maximum 10 targets All Damage Reduction -20 for 10 sec on hits Pull in the target on hits (PvE only) Super
+      Armor during the skill 58.8% damage in PvP only'
+    keys:
+    - hotbar
+  salp_uri_purge:
+    name: Salp'uri Purge
+    input: SHIFT + Q
+    keys:
+    - shift
+    - q
+    protection: SA
+    cc:
+    - floating
+    - air_attack
+    - spin
+    cooldown_ms: 25000
+    description: Perform a powerful spin attack by unleashing a harnessed energy, sending the opponent into the air.
+    notes: Perform a powerful spin attack by unleashing a harnessed energy, sending the opponent into the air. Attack damage
+      1728% x2 Critical Hit Rate +100% Maximum 7 targets All Damage Reduction -15 for 10 sec on hits Spin the target on hits
+      (PvE only) Floating on hits Super Armor during the skill Air Attack 70.56% damage in PvP only
+  skilled_hunter:
+    name: Skilled Hunter
+    input: Passive
+    protection: none
+    description: You can inflict greater damage thanks to insights gained from your experience in the field.
+    notes: You can inflict greater damage thanks to insights gained from your experience in the field. Extra AP Against Monsters
+      +3
+    keys:
+    - hotbar
+  soul_ascent:
+    name: Soul Ascent
+    input: SHIFT + F Hold F to continue the skill
+    keys:
+    - shift
+    - f
+    protection: none
+    cc:
+    - stiffness
+    - pull
+    - spin
+    cooldown_ms: 5000
+    description: Throw your crescent pendulum forward with all your soul, dealing damage, then pull in the opponent.
+    notes: Throw your crescent pendulum forward with all your soul, dealing damage, then pull in the opponent. Attack 1 damage
+      601% x1, max 5 hits Attack 2 damage 1202% x2 Maximum 7 targets Pull in the target on attack 1 hits (PvE only) Spin the
+      target on attack 2 hits (PvE only) Stiffness on attack 1 hits 82.32% damage in PvP only
+  soul_raid:
+    name: Soul Raid
+    input: E Can be used with your crescent pendulum
+    keys:
+    - e
+    protection: SA
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 15000
+    description: Quickly trip up the opponent with your weapon, making them fear for their soul.
+    notes: Quickly trip up the opponent with your weapon, making them fear for their soul. Attack damage 2129% x2 Maximum
+      10 targets Super Armor on Grapple/Grapple fails Bound on Grapple Down Attack 86.5% damage in PvP only Move backwards
+      on Grapple fails. Not affected by effects which increase/decrease Attack and/or Casting Speeds.
+  spring_breeze:
+    name: Spring Breeze
+    input: ↑ + F Hold ↑ + F to perform standing slash attacks F to perform kicks LMB to perform striding slash attacks Can
+      be used via a Quick Slot with your crimson glaives
+    keys:
+    - w
+    - f
+    - lmb
+    - a
+    protection: FG
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 6000
+    description: Charge toward the opponent rapidly, with the possibility to also attack.
+    notes: Charge toward the opponent rapidly, with the possibility to also attack. Standing slash attack damage 634% x2 Kick
+      attack damage 634% x1, max 3 hits Striding slash attack damage 634% x2 Critical Hit Rate +50% Maximum 5 targets Stiffness
+      on hits (Nullified during cooldown) Forward Guard at the start of the skill and while moving (Nullified during cooldown)
+      Down Attack 94.08% damage in PvP only Reduced movement distance during cooldown.
+  stately_dignity:
+    name: Stately Dignity
+    input: Q Can be used with your crimson glaives
+    keys:
+    - q
+    protection: SA
+    cooldown_ms: 15000
+    description: Release a strong aura to restore fighting spirit and attract the attention of nearby opponents.
+    notes: Release a strong aura to restore fighting spirit and attract the attention of nearby opponents. Recovers 250 HP
+      when using the skill (Nullified during cooldown) Maximum 10 targets Attack Speed +18% for 15 sec when using the skill
+      (Nullified during cooldown) Movement Speed +5% for 15 sec when using the skill (Nullified during cooldown) Super Armor
+      when using the skill (Nullified during cooldown) Sprint available and consumes no Stamina for 15 sec after moving forward.
+      (Nullified during cooldown) Taunt surrounding foes.
+  succession_flow_nimbus_stride:
+    name: 'Succession: Flow: Nimbus Stride'
+    input: Hold SHIFT Hold SHIFT after using Nimbus Dismount
+    keys:
+    - shift
+    protection: SA
+    cooldown_ms: 30000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Super Armor during airborne moves Immune to fall damage for 10 sec when using the skill'
+  succession_flow_pendulum_kick:
+    name: 'Succession: Flow: Pendulum Kick'
+    input: 'Hold F during Prime: Pendulum Kick'
+    keys:
+    - f
+    protection: none
+    cc:
+    - down_attack
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Attack damage 1848% x3 Maximum 10 targets Recover 100 WP per hit Down Smash Down Attack 58.8%
+      damage in PvP only'
+  succession_heavenly_waltz:
+    name: 'Succession: Heavenly Waltz'
+    input: Passive
+    protection: none
+    description: Dances beautifully with the crescent pendulum and noble sword like a heavenly sibyl.
+    notes: 'Dances beautifully with the crescent pendulum and noble sword like a heavenly sibyl. As the heavenly sibyl, use
+      the crescent pendulum and noble sword together in one dance. The following skills will be empowered upon Succession.
+      - Nimbus Stride, Flow: Nimbus Stride, Flow: Pendulum Kick - You must first reset your skills in order to learn Succession:
+      Heavenly Waltz. - You cannot learn or use awakening skills if you have learned Succession: Heavenly Waltz. - You cannot
+      learn Succession skills if you have learned Absolute skills. - You cannot learn Absolute skills if you have learned
+      Succession skills.'
+    keys:
+    - hotbar
+  succession_nimbus_stride:
+    name: 'Succession: Nimbus Stride'
+    input: 'SHIFT + SPACE during Prime: Spring Breeze ( ↑ + F )'
+    keys:
+    - shift
+    - space
+    - w
+    - f
+    protection: SA
+    cooldown_ms: 15000
+    description: 'Preceding Skill:'
+    notes: 'Preceding Skill: Movement Speed +15% for 10 sec when using the skill Super Armor during the skill Jump Height
+      Increase Increased movement distance Using Prime: Spring Breeze skill and combos do not consume stamina. (Movement Speed
+      Increase effects nullified at the start of the skill) Immune to fall damage for 10 sec when using the skill'
+  tailspin:
+    name: Tailspin
+    input: SHIFT + RMB RMB after Flailing Blades
+    keys:
+    - shift
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - floating
+    - bound
+    - down_attack
+    - air_attack
+    cooldown_ms: 10000
+    description: Strike upwards with the crimson glaives. Afterwards, strike down the opponent with the gathered energy.
+    notes: Strike upwards with the crimson glaives. Afterwards, strike down the opponent with the gathered energy. Attack
+      1 damage 6265% x1 Attack 2 damage 6265% x3 Critical Hit Rate +100% Maximum 10 targets All Evasion -24 for 10 sec on
+      hits (Nullified during cooldown) Super Armor during the skill (Nullified during cooldown) Floating on attack 2 hits
+      (PvE only) (Nullified during cooldown) Down Attack Damage reduced during cooldown 35.3% damage in PvP only Attack 1
+      damage 15704% x4 Attacks 2 and 3 damage 15704% x2 Last attack damage 25407% x4 Critical Hit Rate +100% Maximum 10 targets
+      All AP +55 for 60 sec when using the skill Attack Speed +25% for 60 sec when using the skill Critical Hit Rate +50%
+      for 60 sec when using the skill Max HP +2000 for 60 sec when using the skill Super Armor Stiffness on attack 1 hits
+      Floating on attack 2 and 3 hits Bound on last attack hits Down Attack Air Attack on attack 3 hits Down Smash on last
+      attack hits 11.17% damage in PvP only Not affected by effects which increase/decrease Attack and/or Casting Speeds.
+      Injures target with 100% of the damage of a hit. Dismount target on hits.
+  taunting_death:
+    name: Taunting Death
+    input: ↑ + RMB Hold RMB to use twice
+    keys:
+    - w
+    - rmb
+    protection: SA
+    cc:
+    - stiffness
+    - down_attack
+    cooldown_ms: 7000
+    description: Use the centrifugal force of your crimson glaives to cut down the opponent. Temporarily increases AP.
+    notes: Use the centrifugal force of your crimson glaives to cut down the opponent. Temporarily increases AP. Attack damage
+      3016% x6, max 2 hits Critical Hit Rate +50% Maximum 10 targets Recover 60 HP per hit Attack Speed -10% for 5 sec on
+      hits Casting Speed -10% for 5 sec on hits Super Armor during the skill Stiffness on hits (PvE only) Down Attack 32.58%
+      damage in PvP only
+  tet_iv_blessing_of_taebaek:
+    name: TET (IV) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +25 for 60 sec when using the skill All Damage
+      Reduction +35 for 60 sec when using the skill All Accuracy +16 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tet_blessing_of_asadal:
+    name: 'TET: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 80% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tet_fury_of_asadal:
+    name: 'TET: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 80% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  three_point_stipple:
+    name: Three Point Stipple
+    input: LMB during Cymbidium F during Soul Ascent
+    keys:
+    - lmb
+    - f
+    protection: FG
+    cc:
+    - bound
+    - pull
+    - down_attack
+    cooldown_ms: 6000
+    description: Throw your crescent pendulum to the ground, then pull it to close the gap with your foes, inflicting great
+      damage.
+    notes: Throw your crescent pendulum to the ground, then pull it to close the gap with your foes, inflicting great damage.
+      Attack damage 543% x2 Extra attack damage 1086% x2 Critical Hit Rate +50% Maximum 7 targets Pull in the target on hits
+      (PvE only) (Nullified on extra attack) Bound on extra attack hits Forward Guard during the skill Down Attack 70.56%
+      damage in PvP only
+  tri_iii_blessing_of_taebaek:
+    name: TRI (III) Blessing of Taebaek
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The energy of Taebaek surrounds and protects the wearer.
+    notes: The energy of Taebaek surrounds and protects the wearer. All AP +20 for 60 sec when using the skill All Damage
+      Reduction +25 for 60 sec when using the skill All Accuracy +12 for 60 sec (Applied to self and allies) Super Armor
+    keys:
+    - hotbar
+  tri_blessing_of_asadal:
+    name: 'TRI: Blessing of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal bolsters the life force of its bearer.
+    notes: The power of Asadal bolsters the life force of its bearer. Recovers 60% of HP when using the skill Unavailable
+      if immobilized Super Armor
+    keys:
+    - hotbar
+  tri_fury_of_asadal:
+    name: 'TRI: Fury of Asadal'
+    input: Can be added to a Quick Slot
+    protection: SA
+    cooldown_ms: 600000
+    description: The power of Asadal flows through the Black Spirit into its bearer.
+    notes: The power of Asadal flows through the Black Spirit into its bearer. Recovers 60% of Black Spirit's Rage when using
+      the skill Recovers up to max Black Spirit's Rage obtainable by yourself. Super Armor
+    keys:
+    - hotbar
+  ultimate_primrose_sprint:
+    name: 'Ultimate: Primrose Sprint'
+    input: SHIFT + ↓ in certain situations Can be used with your crimson glaives Available during White Heron or Cymbidium
+      Trail while airborne
+    keys:
+    - shift
+    - s
+    protection: none
+    description: 'Preceding Skill: [Primrose Sprint I]'
+  ultimate_spring_breeze:
+    name: 'Ultimate: Spring Breeze'
+    input: ↑ + F
+    keys:
+    - w
+    - f
+    protection: none
+    description: 'Preceding Skill: [Spring Breeze I]'
+  unyielding_might:
+    name: Unyielding Might
+    input: Passive
+    protection: none
+    description: Your unyielding might lets you inflict greater damage with special attacks.
+    notes: Your unyielding might lets you inflict greater damage with special attacks. All Special Attack damage +1%
+    keys:
+    - hotbar
+  weight_training:
+    name: Weight Training
+    protection: none
+    description: You've continued training your body and can now carry even more weight.
+    notes: You've continued training your body and can now carry even more weight. Weight Limit +30
+    keys:
+    - hotbar
+  white_heron:
+    name: White Heron
+    input: SHIFT + Z
+    keys:
+    - shift
+    - z
+    protection: FG
+    cc:
+    - bound
+    - down_attack
+    cooldown_ms: 13000
+    description: 'Preceding Skill: [Cymbidium III]'
+    notes: 'Preceding Skill: [Cymbidium III] Attack 1 damage 1535% x2 Attack 2 damage 1535% x2 Attack 3 damage 1535% x2 Maximum
+      10 targets Recover 23 WP per attack 2 hit All Damage Reduction -15 for 10 sec on attack 1 hits Forward Guard during
+      the skill Bound on attack 1 hits (PvE only) Down Attack Down Smash on attack 3 hits 58.8% damage in PvP only'
+  wind_orchid:
+    name: Wind Orchid
+    input: ↓ + RMB RMB or ↓ + RMB after certain skills to perform attack 2 Can be used via a Quick Slot with your crimson
+      glaives
+    keys:
+    - s
+    - rmb
+    - a
+    protection: FG
+    cc:
+    - knockdown
+    - down_attack
+    cooldown_ms: 5000
+    description: Swing the crescent pendulum upwards to knockdown the opponent and deliver a powerful blow.
+    notes: Swing the crescent pendulum upwards to knockdown the opponent and deliver a powerful blow. Attack 1 damage 678%
+      x1 Attack 2 damage 1356% x1 Critical Hit Rate +75% Maximum 7 targets Knockdown on first hit Forward Guard during attack
+      1 Forward Guard during attack 2 after certain skills Down Attack 82.32% damage in PvP only
+  zephyr:
+    name: Zephyr
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xi:
+    name: Zephyr XI
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xii:
+    name: Zephyr XII
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xiii:
+    name: Zephyr XIII
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xiv:
+    name: Zephyr XIV
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xix:
+    name: Zephyr XIX
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xv:
+    name: Zephyr XV
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xvi:
+    name: Zephyr XVI
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xvii:
+    name: Zephyr XVII
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xviii:
+    name: Zephyr XVIII
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+  zephyr_xx:
+    name: Zephyr XX
+    input: Passive
+    protection: none
+    description: You feel lighter and can perform more accurate attacks.
+    notes: You feel lighter and can perform more accurate attacks. All AP +1 Attack Speed +0.5%
+    keys:
+    - hotbar
+_flags:
+- blessing_of_asadal: Hotbar Only.
+- blessing_of_taebaek: Hotbar Only.
+- blooming_affinity: Passive — no keybind.
+- core_bridled_despair: Passive — no keybind.
+- core_deadly_dance: Passive — no keybind.
+- core_eradication: Passive — no keybind.
+- core_furor: Passive — no keybind.
+- core_tailspin: Passive — no keybind.
+- core_taunting_death: Passive — no keybind.
+- duo_ii_blessing_of_taebaek: Hotbar Only.
+- duo_blessing_of_asadal: Hotbar Only.
+- duo_fury_of_asadal: Hotbar Only.
+- fury_of_asadal: Hotbar Only.
+- heavenly_mercy: Passive — no keybind.
+- infinite_mastery: Passive — no keybind.
+- pen_v_blessing_of_taebaek: Hotbar Only.
+- pen_blessing_of_asadal: Hotbar Only.
+- pen_fury_of_asadal: Hotbar Only.
+- pri_i_blessing_of_taebaek: Hotbar Only.
+- pri_blessing_of_asadal: Hotbar Only.
+- pri_fury_of_asadal: Hotbar Only.
+- prime_blooming_aroma: Passive — no keybind.
+- prime_silk_flower: Passive — no keybind.
+- skilled_hunter: Passive — no keybind.
+- succession_heavenly_waltz: Passive — no keybind.
+- tet_iv_blessing_of_taebaek: Hotbar Only.
+- tet_blessing_of_asadal: Hotbar Only.
+- tet_fury_of_asadal: Hotbar Only.
+- tri_iii_blessing_of_taebaek: Hotbar Only.
+- tri_blessing_of_asadal: Hotbar Only.
+- tri_fury_of_asadal: Hotbar Only.
+- unyielding_might: Passive — no keybind.
+- weight_training: Passive — no keybind.
+- zephyr: Passive — no keybind.
+- zephyr_xi: Passive — no keybind.
+- zephyr_xii: Passive — no keybind.
+- zephyr_xiii: Passive — no keybind.
+- zephyr_xiv: Passive — no keybind.
+- zephyr_xix: Passive — no keybind.
+- zephyr_xv: Passive — no keybind.
+- zephyr_xvi: Passive — no keybind.
+- zephyr_xvii: Passive — no keybind.
+- zephyr_xviii: Passive — no keybind.
+- zephyr_xx: Passive — no keybind.

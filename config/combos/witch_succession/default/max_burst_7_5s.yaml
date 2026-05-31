@@ -1,0 +1,31 @@
+combo_id: max_burst_7_5s
+class: Witch
+spec: Succession
+bundle_id: default
+category: pve
+name: 7.5s Max Burst
+description: Maximum damage in 7.5s window. 92,769 DPS. No loop - freestyle after.
+steps:
+- skill: prime_voltaic_pulse
+  note: opener
+- skill: prime_mma_elemental
+- skill: prime_equilibrium_break
+  note: bound for follow-up
+- skill: prime_fireball_explosion
+  note: Shift+LMB
+- skill: prime_voltaic_discharge_diffuse
+  note: Shift+RMB big burst
+- skill: prime_frigid_fog_control
+- skill: prime_mma_elemental
+- skill: lightning_chain
+  note: 1st hit cancel
+- skill: residual_lightning
+- skill: residual_lightning
+- skill: prime_earth_arrow
+- skill: prime_fireball
+- skill: prime_meteor_shower_focus
+  note: S+LMB+RMB big finisher
+- skill: prime_mma_elemental
+  note: filler
+- skill: prime_voltaic_pulse
+  note: second W+C then freestyle

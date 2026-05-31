@@ -1,0 +1,17 @@
+# Witch — Awakening — bundle: default
+# Loadout + metadata for this combo bundle.
+
+class: Witch
+spec: Awakening
+bundle_id: default
+name: Default
+description: Auto-created default bundle (migrated from legacy class config).
+locked_skills:
+- name: Detonative Flow
+  reason: Only 37,821 %/s. Creates zero-DPS gaps. Avoid in optimized rotation.
+- name: Toxic Flood
+  reason: Long animation, not part of infinite rotation. Only for passive DoT between packs.
+hotbar_skills:
+- name: Speed Spell
+  reason: Buff only, no combat input. Must maintain at all times.
+  hotbar_key: '1'
