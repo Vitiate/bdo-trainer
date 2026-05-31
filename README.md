@@ -34,6 +34,7 @@ All **27 BDO classes × 2 specs (54 total)** ship with skill data, populated fro
   - [Combo Editor](#combo-editor)
   - [Class Editor](#class-editor)
 - [Bundle Files — `.bdt` and `.bdc`](#bundle-files--bdt-and-bdc)
+- [Sharing a Combo on bdodojo.com](#sharing-a-combo-on-bdodojocom)
 - [Adding a New Class or Bundle](#adding-a-new-class-or-bundle)
 - [Architecture](#architecture)
 - [macOS Support](#macos-support)
@@ -550,6 +551,92 @@ Used to share full class skill libraries. The Class Editor's **Export Class** bu
 ### Inspector
 
 Both editors have an **Inspect** button that opens any `.bdt` or `.bdc` file in a read-only viewer with Combos / Skills / Loadout tabs and missing-skill warnings — no import side effects.
+
+---
+
+## Sharing a Combo on bdodojo.com
+
+A short walkthrough for taking a combo you've built in BDO Trainer and publishing it to **https://bdodojo.com** so other players can use it.
+
+### 1. Export the combo from BDO Trainer
+
+1. Open BDO Trainer and right-click the tray icon → **Combo Editor**.
+2. In the sidebar, click the bundle that contains your combo (e.g., **Dark Knight → Awakening → default**).
+3. Click the combo you want to share so it shows up in the right pane.
+4. In the sidebar, click **Export Combo**.
+5. Choose where to save the file. It will be saved with a `.bdt` extension — for example `dark_knight_awakening_full_pve_chain.bdt`.
+
+That `.bdt` file is everything the site needs. It carries the combo itself plus your bundle's loadout (hotbar / locked skills / core skill / add-ons) so anyone who imports it later sees the same setup you were using.
+
+> **Want to share a whole bundle instead of one combo?** Click **Export Combos** in the same sidebar — that produces a single `.bdt` containing every combo in the selected bundle.
+
+### 2. Sign in to bdodojo.com
+
+1. Go to **https://bdodojo.com**.
+2. Click **Sign in** in the top-right corner.
+3. Pick your preferred sign-in method: Google, Discord, or email.
+
+You only need to be signed in to upload — other players can browse and download without an account.
+
+### 3. Upload the `.bdt`
+
+1. From the top navigation, click **Upload**.
+2. Drag your `.bdt` file onto the upload area, or click to browse for it.
+3. The site will read the bundle and show you a preview with:
+   - The class and spec it's for
+   - The combo name and description from the file
+   - The loadout that will travel with it
+   - A list of the combos inside
+
+Take a moment to verify it parsed correctly. If anything looks off, cancel and re-export from the trainer.
+
+> Bundles are limited to 1 MB and you can publish up to 10 bundles a day per account.
+
+### 4. Add details before publishing
+
+The upload page lets you polish the listing before it goes public:
+
+- **Title** — what other players see in the feed (defaults to the combo name from your file).
+- **Description** — explain what it's for: grinding spot, PVP scenario, gear assumption, anything that helps someone decide if it's right for them.
+- **Tags** — pick from the suggested tags (e.g., `pve`, `grind`, `pvp`, `large-scale`) so your combo turns up in filters.
+- **YouTube link** *(optional)* — add a video showing the combo in action. The site embeds it on the listing page.
+
+### 5. Publish
+
+Click **Publish**.
+
+Your combo goes **live immediately** — no review queue. You'll be sent to its public page, which has a shareable URL like `https://bdodojo.com/config/abc123`.
+
+The combo also shows up:
+
+- In the **main feed** on the homepage
+- Under **your class's browse page** (e.g., "Dark Knight → Awakening")
+- Under your profile so people can find your other contributions
+
+### How players use what you published
+
+Anyone visiting your combo's page can click **Download `.bdt`** to grab the file, then in their own BDO Trainer:
+
+1. **Combo Editor → Import Combos**
+2. Pick the `.bdt` they downloaded
+3. Choose which bundle to import it into (or create a new one)
+4. Optionally also pull in your loadout
+
+Within seconds your combo is in their tray menu, ready to run over BDO.
+
+### Tips for a good listing
+
+- **One combo per upload, scoped tightly.** "PVE grind — Sycraia upper" is more useful than "all my Witch combos."
+- **Mention requirements.** GS or AP/DP thresholds, gear-tier assumptions, whether it relies on specific skill add-ons.
+- **Note the loadout you exported with.** Other players see your hotbar / locked skills / core, but they won't know *why* without your description.
+- **Add a video if you can.** Even a 30-second clip of the rotation in action makes the listing far more useful.
+
+### If something goes wrong
+
+- **"Couldn't read this bundle"** — the file is probably from an older version of BDO Trainer. Re-export from a 0.5.x or newer build.
+- **"Daily limit reached"** — wait until tomorrow; the cap resets at UTC midnight.
+- **"This file is too large"** — combos shouldn't normally come close to 1 MB. If yours does, you've probably exported a bundle full of combos rather than a single one. Use **Export Combo** for one, or trim the bundle down.
+- **Need to take something down?** Delete it from your profile page, or use the **Report** button on someone else's listing if it violates the site's content rules.
 
 ---
 
