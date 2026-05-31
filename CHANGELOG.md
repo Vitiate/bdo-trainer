@@ -4,6 +4,22 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.6] — 2026-05-31
+
+### Changed
+- **Priority combos absorb out-of-turn presses.** Previously the
+  priority player only listened for the currently-displayed skill, so
+  an accidental press of a lower-tier skill went unrecorded and the
+  trainer would re-display that same skill instantly. The player now
+  arms a tap for every skill in the combo at start, so any cast —
+  intended or not — stamps that skill's cooldown and the resolver
+  hides it until the cooldown elapses.
+  - Skills sharing an identical key combo are folded into a single
+    tap whose cast is attributed to the highest-priority owner, so
+    we don't double-burn cooldowns when keys overlap.
+  - Re-arms automatically when the user changes their key remap
+    while a priority combo is running.
+
 ## [0.5.5] — 2026-05-31
 
 ### Fixed
@@ -373,6 +389,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.6]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.6
 [0.5.5]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.5
 [0.5.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.4
 [0.5.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.3
