@@ -37,8 +37,13 @@ logger = logging.getLogger("bdo_trainer")
 
 GITHUB_REPO = "Vitiate/bdo-trainer"
 RELEASES_LATEST_URL = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
+RELEASES_LIST_URL = (
+    f"https://api.github.com/repos/{GITHUB_REPO}/releases?per_page=30"
+)
 USER_AGENT = "BDO-Trainer-Updater"
 HTTP_TIMEOUT = 15  # seconds
+
+VALID_CHANNELS = ("stable", "beta")
 
 # Paths skipped when extracting the new release over the project tree.
 # Preserves user data + the running Python environment + version control.
@@ -114,10 +119,15 @@ class UpdateInfo:
     body: str
     zipball_url: str
     html_url: str
+    prerelease: bool = False
 
     @property
     def display_version(self) -> str:
         return self.tag.lstrip("vV")
+
+    @property
+    def channel_label(self) -> str:
+        return "Beta" if self.prerelease else "Stable"
 
 
 # ---------------------------------------------------------------------------
@@ -151,25 +161,7 @@ def is_newer(remote: str, local: str) -> bool:
 # ---------------------------------------------------------------------------
 # GitHub API
 # ---------------------------------------------------------------------------
-def fetch_latest_release(timeout: int = HTTP_TIMEOUT) -> Optional[UpdateInfo]:
-    """Return the latest published release, or ``None`` on any failure."""
-    req = urllib.request.Request(
-        RELEASES_LATEST_URL,
-        headers={"User-Agent": USER_AGENT, "Accept": "application/vnd.github+json"},
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            payload = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        logger.warning(f"Update check: HTTP {exc.code} from GitHub")
-        return None
-    except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        logger.warning(f"Update check: network error — {exc}")
-        return None
-    except (ValueError, json.JSONDecodeError) as exc:
-        logger.warning(f"Update check: malformed JSON — {exc}")
-        return None
-
+def _release_from_payload(payload: dict) -> Optional[UpdateInfo]:
     tag = payload.get("tag_name") or ""
     if not tag:
         return None
@@ -179,7 +171,77 @@ def fetch_latest_release(timeout: int = HTTP_TIMEOUT) -> Optional[UpdateInfo]:
         body=payload.get("body") or "",
         zipball_url=payload.get("zipball_url") or "",
         html_url=payload.get("html_url") or "",
+        prerelease=bool(payload.get("prerelease")),
     )
+
+
+def _http_get_json(url: str, timeout: int):
+    """Tiny helper: GET *url* and decode as JSON, returning ``None`` on
+    any failure (network, HTTP, malformed JSON)."""
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "application/vnd.github+json",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        logger.warning(f"Update check: HTTP {exc.code} from GitHub")
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        logger.warning(f"Update check: network error — {exc}")
+    except (ValueError, json.JSONDecodeError) as exc:
+        logger.warning(f"Update check: malformed JSON — {exc}")
+    return None
+
+
+def fetch_latest_release(
+    channel: str = "stable",
+    timeout: int = HTTP_TIMEOUT,
+) -> Optional[UpdateInfo]:
+    """Return the latest release for *channel*.
+
+    - ``"stable"`` — latest non-prerelease (uses ``/releases/latest``,
+      which excludes prereleases server-side and never 404s on draft).
+    - ``"beta"``   — newest release overall, prerelease or not. We pull
+      ``/releases?per_page=30`` and pick the highest version tag.
+
+    Returns ``None`` on any network/parse failure or if no qualifying
+    release exists.
+    """
+    ch = channel if channel in VALID_CHANNELS else "stable"
+
+    if ch == "stable":
+        payload = _http_get_json(RELEASES_LATEST_URL, timeout)
+        if not isinstance(payload, dict):
+            return None
+        return _release_from_payload(payload)
+
+    # Beta channel — prereleases are eligible too.
+    payload = _http_get_json(RELEASES_LIST_URL, timeout)
+    if not isinstance(payload, list):
+        return None
+    candidates: list[UpdateInfo] = []
+    for entry in payload:
+        if not isinstance(entry, dict):
+            continue
+        if entry.get("draft"):
+            continue
+        info = _release_from_payload(entry)
+        if info is not None:
+            candidates.append(info)
+    if not candidates:
+        return None
+    # Newest by version key, ties broken by stable winning over beta so a
+    # 0.5.4 stable beats a 0.5.4 prerelease (shouldn't happen in practice
+    # but keeps the order deterministic).
+    candidates.sort(
+        key=lambda r: (_normalize(r.tag), 0 if r.prerelease else 1),
+        reverse=True,
+    )
+    return candidates[0]
 
 
 # ---------------------------------------------------------------------------
@@ -317,9 +379,15 @@ class _UpdateDialog:
         # --- Header --------------------------------------------------------
         header = ttk.Frame(self.win, padding=(16, 14, 16, 8))
         header.pack(fill="x")
+        title = (
+            f"A new {info.channel_label} build is available: "
+            f"{info.display_version}"
+            if info.prerelease
+            else f"A new version is available: {info.display_version}"
+        )
         ttk.Label(
             header,
-            text=f"A new version is available: {info.display_version}",
+            text=title,
             font=("Segoe UI", 13, "bold"),
         ).pack(anchor="w")
         ttk.Label(
@@ -327,6 +395,17 @@ class _UpdateDialog:
             text=f"You are running {APP_VERSION}.",
             foreground="#666",
         ).pack(anchor="w", pady=(2, 0))
+        if info.prerelease:
+            ttk.Label(
+                header,
+                text=(
+                    "This is a Beta release. Disable the Beta channel in "
+                    "Settings → Updates to receive only Stable releases."
+                ),
+                foreground="#a55",
+                wraplength=580,
+                justify="left",
+            ).pack(anchor="w", pady=(4, 0))
 
         # --- Changelog -----------------------------------------------------
         body = ttk.LabelFrame(self.win, text="Release notes", padding=8)
@@ -508,10 +587,30 @@ def show_update_dialog(parent: tk.Misc, info: UpdateInfo) -> None:
     _UpdateDialog(parent, info)
 
 
-def show_no_update(parent: tk.Misc) -> None:
+def show_no_update(parent: tk.Misc, channel: str = "stable") -> None:
+    label = "Beta" if channel == "beta" else "Stable"
     messagebox.showinfo(
         "BDO Trainer",
-        f"You're up to date (version {APP_VERSION}).",
+        f"You're up to date (version {APP_VERSION}).\n\n"
+        f"Update channel: {label}",
+        parent=parent,
+    )
+
+
+def show_ahead_of_channel(
+    parent: tk.Misc, info: UpdateInfo, channel: str
+) -> None:
+    """Notify the user that they're running a build newer than the
+    channel they just selected (typical case: switched from beta to
+    stable while running a beta build)."""
+    label = "Beta" if channel == "beta" else "Stable"
+    messagebox.showinfo(
+        "BDO Trainer",
+        f"You're running version {APP_VERSION}, which is newer than the "
+        f"latest {label} release ({info.display_version}).\n\n"
+        "No update will be installed. Switch back to the Beta channel "
+        "in Settings → Updates if you want to keep receiving prereleases, "
+        "or wait for the next Stable release.",
         parent=parent,
     )
 
@@ -530,6 +629,7 @@ def check_and_prompt(
     *,
     show_no_update_dialog: bool = False,
     show_failure_dialog: bool = False,
+    channel: str = "stable",
 ) -> None:
     """Run a release check on a background thread and, if a newer version
     is available, hop back onto the Tk thread to show the dialog.
@@ -543,23 +643,44 @@ def check_and_prompt(
             date. Used by the manual "Check for Updates…" tray entry.
         show_failure_dialog: If True, surface network/parse errors via
             a dialog. Otherwise failures are silent (just logged).
+        channel: ``"stable"`` (default) or ``"beta"``. Beta also accepts
+            prereleases as upgrade candidates.
     """
+    ch = channel if channel in VALID_CHANNELS else "stable"
 
     def worker() -> None:
-        info = fetch_latest_release()
+        info = fetch_latest_release(channel=ch)
         if info is None:
-            logger.info("Update check: no release info returned")
+            logger.info(f"Update check ({ch}): no release info returned")
             if show_failure_dialog:
                 schedule(lambda: show_check_failed(parent_supplier()))
             return
         if not is_newer(info.tag, APP_VERSION):
+            # Either equal (up to date) or local is ahead of the channel.
+            local_v = _normalize(APP_VERSION)
+            remote_v = _normalize(info.tag)
+            if local_v > remote_v and ch == "stable" and show_no_update_dialog:
+                # Beta user manually switched to Stable while running a
+                # newer beta — surface that explicitly so they don't
+                # think the updater is broken.
+                logger.info(
+                    f"Update check (stable): local {APP_VERSION} is ahead of "
+                    f"latest stable {info.tag}; not downgrading."
+                )
+                schedule(
+                    lambda: show_ahead_of_channel(parent_supplier(), info, ch)
+                )
+                return
             logger.info(
-                f"Update check: latest is {info.tag}, local is {APP_VERSION} — up to date"
+                f"Update check ({ch}): latest is {info.tag}, "
+                f"local is {APP_VERSION} — up to date"
             )
             if show_no_update_dialog:
-                schedule(lambda: show_no_update(parent_supplier()))
+                schedule(lambda: show_no_update(parent_supplier(), ch))
             return
-        logger.info(f"Update check: {info.tag} available (local {APP_VERSION})")
+        logger.info(
+            f"Update check ({ch}): {info.tag} available (local {APP_VERSION})"
+        )
         schedule(lambda: show_update_dialog(parent_supplier(), info))
 
     threading.Thread(target=worker, daemon=True, name="updater-check").start()

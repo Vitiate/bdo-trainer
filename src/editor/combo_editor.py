@@ -99,6 +99,22 @@ class ComboEditor(tk.Frame):
         self._save_btn: Optional[tk.Button] = None
         self._delete_btn: Optional[tk.Button] = None
         self._add_step_btn: Optional[tk.Button] = None
+        # Mode toggle (sequence | priority)
+        self._mode_var: Optional[tk.StringVar] = None
+        self._mode_menu: Optional[tk.OptionMenu] = None
+        # Sequence-mode container (steps UI). Tracked separately so we
+        # can hide/show as the mode changes.
+        self._sequence_block: Optional[tk.Frame] = None
+        self._sequence_header: Optional[tk.Frame] = None
+        # Priority-mode container + editor.
+        self._priority_block: Optional[tk.Frame] = None
+        self._priority_header: Optional[tk.Frame] = None
+        self._priority_editor: Optional[Any] = None
+        # Cached mode for the currently-loaded combo so reads / saves
+        # know which block to honour even if the dropdown var was
+        # cleared by ``_clear_form``.
+        self._current_mode: str = "sequence"
+        self._window_label: Optional[tk.Label] = None
 
         self._build_ui()
 
@@ -454,15 +470,56 @@ class ComboEditor(tk.Frame):
         self._difficulty_menu.pack(side="left")
         row += 1
 
-        # ---- Combo Window (ms) ----
+        # ---- Mode (sequence | priority) ----
         tk.Label(
+            ff,
+            text="Mode:",
+            font=FONT,
+            fg=FG_TEXT,
+            bg=BG_DARK,
+            anchor="w",
+        ).grid(row=row, column=0, sticky="w", padx=(8, 4), pady=2)
+
+        mode_frame = tk.Frame(ff, bg=BG_DARK)
+        mode_frame.grid(row=row, column=1, sticky="w", padx=4, pady=2)
+        self._mode_var = tk.StringVar(value="sequence")
+        self._mode_menu = tk.OptionMenu(
+            mode_frame,
+            self._mode_var,
+            "sequence",
+            "priority",
+            command=self._on_mode_changed,
+        )
+        self._mode_menu.configure(
+            bg=BG_INPUT,
+            fg=FG_TEXT,
+            font=FONT,
+            highlightthickness=0,
+            activebackground=ACCENT,
+            activeforeground="#FFF",
+            relief="flat",
+        )
+        self._mode_menu["menu"].configure(bg=BG_INPUT, fg=FG_TEXT, font=FONT)
+        self._mode_menu.pack(side="left")
+        tk.Label(
+            mode_frame,
+            text="  (priority = highest off-cooldown skill wins)",
+            font=FONT_SMALL,
+            fg=FG_DIM,
+            bg=BG_DARK,
+        ).pack(side="left", padx=(8, 0))
+        row += 1
+
+        # ---- Combo Window (ms) — sequence-mode only ----
+        self._window_label = tk.Label(
             ff,
             text="Step Window (ms):",
             font=FONT,
             fg=FG_TEXT,
             bg=BG_DARK,
             anchor="w",
-        ).grid(row=row, column=0, sticky="w", padx=(8, 4), pady=2)
+        )
+        self._window_label.grid(row=row, column=0, sticky="w", padx=(8, 4), pady=2)
 
         self._window_entry = tk.Entry(
             ff,
@@ -475,6 +532,7 @@ class ComboEditor(tk.Frame):
             bd=2,
         )
         self._window_entry.grid(row=row, column=1, sticky="w", padx=4, pady=2)
+        self._window_row = row
         row += 1
 
         # ---- Description ----
@@ -502,15 +560,15 @@ class ComboEditor(tk.Frame):
         self._desc_text.grid(row=row, column=1, sticky="ew", padx=4, pady=2)
         row += 1
 
-        # ---- Steps section header ----
-        steps_header = tk.Frame(ff, bg=BG_DARK)
-        steps_header.grid(
+        # ---- Sequence-mode block (steps header + container + add btn) ----
+        self._sequence_header = tk.Frame(ff, bg=BG_DARK)
+        self._sequence_header.grid(
             row=row, column=0, columnspan=2, sticky="ew", padx=8, pady=(12, 2)
         )
-        steps_header.columnconfigure(0, weight=1)
+        self._sequence_header.columnconfigure(0, weight=1)
 
         tk.Label(
-            steps_header,
+            self._sequence_header,
             text="Steps",
             font=FONT_BOLD,
             fg=GOLD,
@@ -518,15 +576,17 @@ class ComboEditor(tk.Frame):
             anchor="w",
         ).grid(row=0, column=0, sticky="w")
 
-        tk.Frame(steps_header, bg=GOLD, height=1).grid(
+        tk.Frame(self._sequence_header, bg=GOLD, height=1).grid(
             row=1,
             column=0,
             sticky="ew",
             pady=(2, 0),
         )
+        self._sequence_header_row = row
         row += 1
 
-        # ---- Steps container ----
+        # Steps container — bare frame so existing _create_step_row code
+        # is unchanged.
         self._steps_container = tk.Frame(ff, bg=BG_DARK)
         self._steps_container.grid(
             row=row,
@@ -536,9 +596,9 @@ class ComboEditor(tk.Frame):
             padx=8,
             pady=2,
         )
+        self._steps_container_row = row
         row += 1
 
-        # ---- Add Step button ----
         self._add_step_btn = tk.Button(
             ff,
             text="+ Add Step",
@@ -562,7 +622,64 @@ class ComboEditor(tk.Frame):
             padx=8,
             pady=(4, 8),
         )
+        self._add_step_btn_row = row
         row += 1
+
+        # ---- Priority-mode block (header + editor) ----
+        # Hidden by default; shown when mode == "priority".
+        self._priority_header = tk.Frame(ff, bg=BG_DARK)
+        self._priority_header.grid(
+            row=row, column=0, columnspan=2, sticky="ew", padx=8, pady=(12, 2)
+        )
+        self._priority_header.columnconfigure(0, weight=1)
+        tk.Label(
+            self._priority_header,
+            text="Priority Tiers",
+            font=FONT_BOLD,
+            fg=GOLD,
+            bg=BG_DARK,
+            anchor="w",
+        ).grid(row=0, column=0, sticky="w")
+        tk.Label(
+            self._priority_header,
+            text=(
+                "Highest tier first. Skills inside each tier are checked "
+                "in order. boost_after promotes a skill one tier up while "
+                "the named skill is still recently cast."
+            ),
+            font=FONT_SMALL,
+            fg=FG_DIM,
+            bg=BG_DARK,
+            anchor="w",
+            justify="left",
+            wraplength=560,
+        ).grid(row=1, column=0, sticky="w", pady=(2, 0))
+        tk.Frame(self._priority_header, bg=GOLD, height=1).grid(
+            row=2, column=0, sticky="ew", pady=(2, 0),
+        )
+        self._priority_header_row = row
+        row += 1
+
+        # Imported lazily so the editor still loads if priority_editor.py
+        # isn't shipped in some downstream environment.
+        from src.editor.priority_editor import PriorityEditor
+
+        self._priority_block = tk.Frame(ff, bg=BG_DARK)
+        self._priority_block.grid(
+            row=row, column=0, columnspan=2, sticky="ew", padx=4, pady=2,
+        )
+        self._priority_editor = PriorityEditor(
+            self._priority_block,
+            get_skills=self._get_skills,
+            on_change=self._on_change,
+        )
+        self._priority_editor.pack(fill="x", expand=True)
+        self._priority_block_row = row
+        row += 1
+
+        # Default to sequence mode — hide the priority block until the
+        # user picks priority mode.
+        self._set_mode_visibility("sequence")
 
         # ---- Button row: Save + Delete ----
         btn_row = tk.Frame(ff, bg=BG_DARK)
@@ -604,6 +721,88 @@ class ComboEditor(tk.Frame):
 
         # Keep track of the max form row for toggling visibility
         self._form_widgets_row_count = row + 1
+
+    # ------------------------------------------------------------------
+    # Mode visibility
+    # ------------------------------------------------------------------
+    def _set_mode_visibility(self, mode: str) -> None:
+        """Show only the widgets relevant to *mode* ("sequence" | "priority")."""
+        is_priority = mode == "priority"
+        # Sequence widgets
+        for w, row_attr in (
+            (self._sequence_header, "_sequence_header_row"),
+            (self._steps_container, "_steps_container_row"),
+            (self._add_step_btn, "_add_step_btn_row"),
+        ):
+            if w is None:
+                continue
+            try:
+                if is_priority:
+                    w.grid_remove()
+                else:
+                    w.grid()
+            except Exception:
+                pass
+        # Step-window field is sequence-only too.
+        if self._window_label is not None and self._window_entry is not None:
+            try:
+                if is_priority:
+                    self._window_label.grid_remove()
+                    self._window_entry.grid_remove()
+                else:
+                    self._window_label.grid()
+                    self._window_entry.grid()
+            except Exception:
+                pass
+        # Priority widgets
+        for w in (self._priority_header, self._priority_block):
+            if w is None:
+                continue
+            try:
+                if is_priority:
+                    w.grid()
+                else:
+                    w.grid_remove()
+            except Exception:
+                pass
+
+    def _on_mode_changed(self, _value: str = "") -> None:
+        """User picked a different combo mode. Persist whatever's in the
+        UI right now under the *previous* mode so a flip-flop preserves
+        edits, then swap visibility."""
+        new_mode = self._mode_var.get() if self._mode_var else "sequence"
+        if new_mode == self._current_mode:
+            return
+        # Capture in-progress edits in the previous mode's data structure
+        # before tearing the widgets down.
+        self._save_current_to_memory()
+        self._current_mode = new_mode
+        self._set_mode_visibility(new_mode)
+        # Rehydrate the now-visible block from the in-memory combo so
+        # any data we already had for that mode shows up.
+        if self._current_combo_id and self._current_category:
+            combo = self._combos.get(self._current_category, {}).get(
+                self._current_combo_id, {}
+            )
+            if new_mode == "priority":
+                if self._priority_editor is not None:
+                    self._priority_editor.load(combo.get("priority"))
+            else:
+                self._steps_data = []
+                for step in combo.get("steps", []) or []:
+                    if isinstance(step, dict):
+                        self._steps_data.append({
+                            "skill": step.get("skill", ""),
+                            "note": step.get("note", ""),
+                            "hold_ms": str(step.get("hold_ms", ""))
+                            if step.get("hold_ms") else "",
+                        })
+                self._rebuild_steps()
+        if self._on_change:
+            try:
+                self._on_change()
+            except Exception:
+                logger.exception("on_change callback failed (mode change)")
 
     # ------------------------------------------------------------------
     # Listbox management
@@ -723,9 +922,20 @@ class ComboEditor(tk.Frame):
         self._desc_text.delete("1.0", "end")
         self._desc_text.insert("1.0", combo.get("description", ""))
 
-        # Steps
+        # Mode — sequence (default) or priority.
+        mode = combo.get("mode", "sequence")
+        if mode not in ("sequence", "priority"):
+            mode = "sequence"
+        self._current_mode = mode
+        if self._mode_var is not None:
+            self._mode_var.set(mode)
+        self._set_mode_visibility(mode)
+
+        # Sequence-mode steps
         self._steps_data = []
-        for step in combo.get("steps", []):
+        for step in combo.get("steps", []) or []:
+            if not isinstance(step, dict):
+                continue
             self._steps_data.append(
                 {
                     "skill": step.get("skill", ""),
@@ -737,6 +947,10 @@ class ComboEditor(tk.Frame):
             )
         self._rebuild_steps()
 
+        # Priority-mode tiers
+        if self._priority_editor is not None:
+            self._priority_editor.load(combo.get("priority"))
+
     def _clear_form(self):
         """Reset all form widgets to empty / default and hide the form."""
         if self._id_entry:
@@ -747,6 +961,10 @@ class ComboEditor(tk.Frame):
             self._category_var.set("PVE")
         if self._difficulty_var:
             self._difficulty_var.set("beginner")
+        if self._mode_var:
+            self._mode_var.set("sequence")
+        self._current_mode = "sequence"
+        self._set_mode_visibility("sequence")
         if self._window_entry:
             self._window_entry.delete(0, "end")
         if self._desc_text:
@@ -754,6 +972,8 @@ class ComboEditor(tk.Frame):
 
         self._steps_data = []
         self._rebuild_steps()
+        if self._priority_editor is not None:
+            self._priority_editor.clear()
         self._show_form(False)
 
     def _show_form(self, visible: bool):
@@ -810,6 +1030,11 @@ class ComboEditor(tk.Frame):
         try:
             if self._difficulty_menu:
                 self._difficulty_menu.configure(state=btn_state)
+        except Exception:
+            pass
+        try:
+            if self._mode_menu:
+                self._mode_menu.configure(state=btn_state)
         except Exception:
             pass
 
@@ -1152,33 +1377,51 @@ class ComboEditor(tk.Frame):
         if self._desc_text:
             description = self._desc_text.get("1.0", "end-1c").strip()
 
-        # Steps — build clean step list
-        raw_steps = self._collect_steps_data()
-        steps: List[dict] = []
-        for s in raw_steps:
-            clean: dict = {}
-            skill = s.get("skill", "")
-            if skill:
-                clean["skill"] = skill
-            note = s.get("note", "")
-            if note:
-                clean["note"] = note
-            hold = s.get("hold_ms", "")
-            if hold:
-                try:
-                    clean["hold_ms"] = int(hold)
-                except ValueError:
-                    pass
-            if clean:
-                steps.append(clean)
+        mode = self._current_mode if self._current_mode in ("sequence", "priority") else "sequence"
+        if self._mode_var is not None:
+            mv = self._mode_var.get()
+            if mv in ("sequence", "priority"):
+                mode = mv
 
-        combo_dict: dict = {
-            "name": name,
-            "difficulty": difficulty,
-            "combo_window_ms": combo_window_ms,
-            "description": description,
-            "steps": steps,
-        }
+        if mode == "priority":
+            priority_block: List[dict] = []
+            if self._priority_editor is not None:
+                priority_block = self._priority_editor.collect()
+            combo_dict: dict = {
+                "name": name,
+                "difficulty": difficulty,
+                "description": description,
+                "mode": "priority",
+                "priority": priority_block,
+            }
+        else:
+            # Sequence mode (default).
+            raw_steps = self._collect_steps_data()
+            steps: List[dict] = []
+            for s in raw_steps:
+                clean: dict = {}
+                skill = s.get("skill", "")
+                if skill:
+                    clean["skill"] = skill
+                note = s.get("note", "")
+                if note:
+                    clean["note"] = note
+                hold = s.get("hold_ms", "")
+                if hold:
+                    try:
+                        clean["hold_ms"] = int(hold)
+                    except ValueError:
+                        pass
+                if clean:
+                    steps.append(clean)
+
+            combo_dict = {
+                "name": name,
+                "difficulty": difficulty,
+                "combo_window_ms": combo_window_ms,
+                "description": description,
+                "steps": steps,
+            }
 
         # Handle category change
         if new_cat != old_cat:
