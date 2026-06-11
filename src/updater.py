@@ -29,7 +29,7 @@ import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 from tkinter import messagebox, ttk
-from typing import Callable, Optional
+from typing import Callable, List, Optional, Tuple
 
 from src import __version__ as APP_VERSION
 
@@ -257,7 +257,14 @@ def download_zipball(
 ) -> Path:
     """Download the release zipball to ``<project>/_update/<tag>.zip`` and
     return the path. *progress_cb(received, total)* is invoked from the
-    download thread (total may be ``-1`` if the server omits Content-Length)."""
+    download thread (total may be ``-1`` if the server omits Content-Length).
+
+    The progress callback is throttled — fired at most every 256 KB *and*
+    every 100 ms — so it can't backlog the Tk event queue when a fast
+    connection delivers many chunks per second.
+    """
+    import time as _time
+
     staging = _project_root() / "_update"
     staging.mkdir(exist_ok=True)
     out_path = staging / f"{info.tag}.zip"
@@ -267,6 +274,10 @@ def download_zipball(
         total = int(resp.headers.get("Content-Length") or -1)
         received = 0
         chunk_size = 64 * 1024
+        last_progress_bytes = 0
+        last_progress_at = 0.0
+        progress_interval_ms = 100
+        progress_bytes = 256 * 1024
         with open(out_path, "wb") as fh:
             while True:
                 chunk = resp.read(chunk_size)
@@ -275,7 +286,18 @@ def download_zipball(
                 fh.write(chunk)
                 received += len(chunk)
                 if progress_cb:
-                    progress_cb(received, total)
+                    now = _time.monotonic()
+                    bytes_since = received - last_progress_bytes
+                    ms_since = (now - last_progress_at) * 1000.0
+                    if (
+                        bytes_since >= progress_bytes
+                        or ms_since >= progress_interval_ms
+                    ):
+                        progress_cb(received, total)
+                        last_progress_bytes = received
+                        last_progress_at = now
+        if progress_cb:
+            progress_cb(received, total)
     logger.info(f"Update: downloaded {out_path.name} ({received} bytes)")
     return out_path
 
@@ -333,7 +355,10 @@ def install_zipball(zip_path: Path, replace_config: bool = False) -> Optional[Pa
         # Drop config/ from the skip list so the release's config/ installs.
         skip_top.discard("config")
 
+    import time as _time
+
     copied = 0
+    failed: List[Tuple[Path, str]] = []
     for src in src_root.rglob("*"):
         rel = src.relative_to(src_root)
         # Skip preserved top-level directories.
@@ -341,12 +366,40 @@ def install_zipball(zip_path: Path, replace_config: bool = False) -> Optional[Pa
             continue
         dest = project / rel
         if src.is_dir():
-            dest.mkdir(parents=True, exist_ok=True)
-        else:
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(src, dest)
-            copied += 1
-    logger.info(f"Update: installed {copied} files into {project}")
+            try:
+                dest.mkdir(parents=True, exist_ok=True)
+            except OSError as exc:
+                failed.append((rel, f"mkdir: {exc}"))
+            continue
+        # Try the copy up to three times — Windows often holds an exclusive
+        # lock on a .pyc / .pyd while the trainer is still running, and the
+        # AV scanner can briefly hold a write lock too. A short backoff
+        # usually clears it.
+        last_exc: Optional[BaseException] = None
+        for attempt in range(3):
+            try:
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, dest)
+                copied += 1
+                last_exc = None
+                break
+            except (OSError, PermissionError) as exc:
+                last_exc = exc
+                _time.sleep(0.2 * (attempt + 1))
+        if last_exc is not None:
+            failed.append((rel, str(last_exc)))
+            logger.warning(f"Update: could not write {rel}: {last_exc}")
+    if failed:
+        logger.warning(
+            f"Update: installed {copied} files; {len(failed)} skipped "
+            f"(first 5: {[str(p) for p, _ in failed[:5]]})"
+        )
+    else:
+        logger.info(f"Update: installed {copied} files into {project}")
+    # Stash the failure list on a module-level attribute so the dialog
+    # can surface it without changing the function signature (callers /
+    # tests that ignore this keep working).
+    install_zipball.last_failed = failed  # type: ignore[attr-defined]
     return backup_dir
 
 
@@ -509,15 +562,46 @@ class _UpdateDialog:
 
     # ---- worker thread --------------------------------------------------
     def _run_install(self) -> None:
+        # Watchdog — if the install hasn't completed within 5 minutes,
+        # surface a failure dialog so the user isn't stuck staring at
+        # "Installing…" forever. Any genuine progress (download chunk,
+        # install phase swap) cancels the watchdog naturally because
+        # we replace it with the real result.
+        self._install_done = False
+
+        def _watchdog() -> None:
+            if self._install_done:
+                return
+            self._post(
+                lambda: self._on_install_failed(
+                    TimeoutError(
+                        "Update timed out after 5 minutes. Check "
+                        "logs/bdo_trainer.log for details, or download "
+                        "the release manually from GitHub."
+                    )
+                )
+            )
+            self._install_done = True
+
+        watchdog_timer = threading.Timer(300.0, _watchdog)
+        watchdog_timer.daemon = True
+        watchdog_timer.start()
+
         try:
+            logger.info(f"Update: starting download of {self.info.tag}")
             zip_path = download_zipball(self.info, progress_cb=self._on_progress)
+            logger.info("Update: download complete, beginning extract + install")
             self._post(lambda: self._progress_label_var.set("Installing…"))
             backup_dir = install_zipball(
                 zip_path, replace_config=self._replace_config,
             )
             self._backup_dir = backup_dir
+            self._install_done = True
+            watchdog_timer.cancel()
             self._post(self._on_install_done)
         except Exception as exc:
+            self._install_done = True
+            watchdog_timer.cancel()
             logger.exception("Update install failed")
             self._post(lambda: self._on_install_failed(exc))
 
@@ -555,6 +639,20 @@ class _UpdateDialog:
         elif self._replace_config:
             msg += (
                 "\n\nNo existing config/ was found, so no backup was made."
+            )
+
+        # If install_zipball couldn't write some files (locked .pyd / .pyc
+        # while we're still running, AV interference, etc.), tell the user
+        # so they can re-run the update after restart.
+        failed = getattr(install_zipball, "last_failed", None) or []
+        if failed:
+            preview = ", ".join(str(p) for p, _ in failed[:5])
+            more = f" (+{len(failed) - 5} more)" if len(failed) > 5 else ""
+            msg += (
+                f"\n\n{len(failed)} file(s) couldn't be written and were "
+                f"skipped — usually because the trainer was still running. "
+                f"After you restart, run 'Check for Updates…' once more "
+                f"to finish the upgrade.\n\nSkipped: {preview}{more}"
             )
 
         self._show_messagebox("showinfo", "BDO Trainer", msg, parent=self.win)
