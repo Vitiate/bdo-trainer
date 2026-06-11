@@ -336,8 +336,12 @@ def install_zipball(zip_path: Path, replace_config: bool = False) -> Optional[Pa
         )
     src_root = top_dirs[0]
 
-    # If the user opted in to replacing configs, move the current config/
-    # aside to a timestamped backup so the new files install cleanly.
+    # If the user opted in to replacing configs, copy each existing
+    # config file into a timestamped backup *without* moving the live
+    # directory. shutil.move on a directory the running trainer still
+    # has open handles into (combos.yaml, overlay_position.json, the
+    # editor's bundle paths) reliably fails with PermissionError on
+    # Windows — that was the symptom of the hang on "Installing…".
     backup_dir: Optional[Path] = None
     skip_top = set(_SKIP_TOP_LEVEL)
     if replace_config:
@@ -345,14 +349,38 @@ def install_zipball(zip_path: Path, replace_config: bool = False) -> Optional[Pa
         if live_config.exists():
             stamp = _dt.datetime.now().strftime("%Y%m%d-%H%M%S")
             backup_dir = project / f"config_backup_{stamp}"
-            # Avoid clobbering a backup folder that somehow already exists.
             n = 1
             while backup_dir.exists():
                 backup_dir = project / f"config_backup_{stamp}_{n}"
                 n += 1
-            shutil.move(str(live_config), str(backup_dir))
-            logger.info(f"Update: backed up config/ to {backup_dir.name}/")
-        # Drop config/ from the skip list so the release's config/ installs.
+            backup_dir.mkdir(parents=True, exist_ok=True)
+            backup_failures: List[Tuple[Path, str]] = []
+            for src in live_config.rglob("*"):
+                rel = src.relative_to(live_config)
+                dest = backup_dir / rel
+                try:
+                    if src.is_dir():
+                        dest.mkdir(parents=True, exist_ok=True)
+                    else:
+                        dest.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(src, dest)
+                except (OSError, PermissionError) as exc:
+                    backup_failures.append((rel, str(exc)))
+                    logger.warning(
+                        f"Update: backup skipped {rel}: {exc}"
+                    )
+            if backup_failures:
+                logger.warning(
+                    f"Update: backed up config/ → {backup_dir.name}/ "
+                    f"with {len(backup_failures)} skipped file(s)"
+                )
+            else:
+                logger.info(
+                    f"Update: backed up config/ → {backup_dir.name}/"
+                )
+        # Drop config/ from the skip list so the release's config/ files
+        # are written into the live tree (with retry/skip on locked
+        # files, same as every other file).
         skip_top.discard("config")
 
     import time as _time
@@ -537,17 +565,20 @@ class _UpdateDialog:
 
     def _on_install(self) -> None:
         # Ask the user whether to keep their existing configs or take the
-        # ones from the new release. Default is "keep" (No) — replacing is
-        # destructive and only useful if the release ships updated combos
-        # the user wants verbatim.
+        # ones from the new release. Default is "keep" (No) — replacing
+        # is destructive and only useful if the release ships updated
+        # combos the user wants verbatim.
         replace = self._show_messagebox(
             "askyesno",
-            "Replace configs?",
-            "Replace your existing configs with the ones from the new release?\n\n"
-            "• No  — keep your current config/ (recommended).\n"
-            "• Yes — back up your current config/ to "
-            "config_backup_<timestamp>/ and install the release's configs "
-            "in its place.",
+            "Reset configs to release defaults?",
+            "Most users should answer NO.\n\n"
+            "• NO  (recommended) — keep your current config/ untouched. "
+            "Your settings, combos, and bundle edits stay exactly as they "
+            "are. Code files update normally.\n\n"
+            "• Yes — copy your current config/ files into a "
+            "config_backup_<timestamp>/ folder and let the release's "
+            "default config files overwrite the live ones. Use this "
+            "only if you want a clean slate.",
             default="no",
             parent=self.win,
         )
