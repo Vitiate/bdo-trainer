@@ -4,6 +4,31 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.8] — 2026-06-11
+
+### Fixed
+- **Updater no longer hangs on "Installing…".** Defensive patches to
+  the auto-update flow:
+  - **Per-file resilience.** `install_zipball` no longer aborts the
+    whole update if one file can't be written (Windows holds locks on
+    `.pyc` / `.pyd` files while the trainer is still running, AV
+    scanners briefly hold write locks too). Each copy is retried up
+    to 3 times with a short backoff; permanently-failed files are
+    logged and surfaced in the success dialog with a "restart and
+    re-run update to finish" hint.
+  - **Watchdog timeout.** If the install hasn't completed within 5
+    minutes the dialog now shows a TimeoutError instead of staring at
+    "Installing…" forever. Pointer to `logs/bdo_trainer.log` for the
+    diagnosis.
+  - **Throttled progress callback.** The download loop fired one
+    Tk-thread `after(0, …)` per 64 KB chunk, which on a fast
+    connection drowned the Tk event queue and could make the UI
+    appear frozen. Now throttled to at most once per 256 KB *or*
+    100 ms (whichever comes first), with a final flush at EOF.
+  - **Better logging** — explicit log lines mark the start of
+    download, the start of install, and any per-file failures so
+    future hangs are diagnosable from `logs/bdo_trainer.log`.
+
 ## [0.5.7] — 2026-06-11
 
 ### Fixed
@@ -434,6 +459,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.8]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.8
 [0.5.7]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.7
 [0.5.6]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.6
 [0.5.5]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.5
