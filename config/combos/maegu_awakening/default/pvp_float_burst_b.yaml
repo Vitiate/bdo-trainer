@@ -1,0 +1,46 @@
+combo_id: pvp_float_burst_b
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Float Burst (B) — Foxflare Ambush opener'
+description: |
+  Float-burst variation that opens with Foxflare Ambush (F catch),
+  bridges through Twirling Foxflare → Flow: Foxflare Encore, then
+  picks up Foxflare Fleche / Emberclaw Slash / Fan Kick into the
+  closer.
+
+  Inputs — Pre-awk SPACE (prebuff Charmed) → W+RMB → F catch →
+  SHIFT+F → RMB → SHIFT+LMB first hit → S+LMB → A/D+RMB → S+F →
+  SHIFT+Q.
+
+  Courtesy of fafi.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: charmed
+  note: Pre-awakening prebuff. SPACE.
+- skill: hazy_path
+  note: Spiritforge engage. W+RMB.
+- skill: foxflare_ambush
+  note: F (catch).
+- skill: twirling_foxflare
+  note: SHIFT+F.
+- skill: flow_foxflare_encore
+  note: Hold F after Twirling Foxflare.
+- skill: foxflare_fleche
+  note: RMB.
+- skill: emberclaw_slash
+  note: First hit — -20 DR shred. SHIFT+LMB.
+- skill: fan_kick
+  note: S+LMB.
+- skill: twirling_rhapsody
+  note: A/D+RMB.
+- skill: twirling_retreat
+  note: S+F.
+- skill: emberclaw_finale
+  note: SHIFT+Q.
+- skill: spirit_parade
+  note: SHIFT+X.
+- skill: flower_shroud
+  note: Disengage. S+E.

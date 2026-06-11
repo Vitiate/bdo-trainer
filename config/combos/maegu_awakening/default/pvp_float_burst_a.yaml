@@ -1,0 +1,46 @@
+combo_id: pvp_float_burst_a
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Float Burst (A) — Fan Kick re-float'
+description: |
+  Float-burst variation prioritising air-attack damage. Fan Kick is the
+  go-to re-float for air-attack procs. Foxflare Cleave (Q) can swap in
+  for damage / evasion shred but has a longer windup so you'll be
+  unprotected for longer.
+
+  Inputs — Pre-awk SPACE (prebuff Charmed) → W+RMB → F → A/D+RMB catch
+  → S+F → A/W+SHIFT dash → RMB (standup KB) → S+LMB first hit →
+  SHIFT+LMB first hit → SHIFT+F (hold) → SHIFT+X → S+E.
+
+  Courtesy of fafi.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: charmed
+  note: Pre-awakening prebuff. SPACE.
+- skill: hazy_path
+  note: Spiritforge engage. W+RMB.
+- skill: foxflare_ambush
+  note: F.
+- skill: twirling_rhapsody
+  note: Catch. A/D+RMB.
+- skill: twirling_retreat
+  note: S+F.
+- skill: spirit_step
+  note: Dash. A/W + SHIFT.
+- skill: foxflare_fleche
+  note: Standup knockback. RMB.
+- skill: fan_kick
+  note: First hit — Spiritforged +10% Air Attack. S+LMB.
+- skill: emberclaw_slash
+  note: First hit — -20 DR shred. SHIFT+LMB.
+- skill: twirling_foxflare
+  note: SHIFT+F (hold).
+- skill: flow_foxflare_encore
+  note: Hold F after Twirling Foxflare.
+- skill: spirit_parade
+  note: SHIFT+X.
+- skill: flower_shroud
+  note: Disengage. S+E.

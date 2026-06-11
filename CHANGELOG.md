@@ -4,6 +4,51 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.7] — 2026-06-11
+
+### Fixed
+- **Settings window saves now persist.** `SettingsWindow._save_to_yaml`
+  read `self.loader.settings_path`, but `AppLoader` didn't expose that
+  attribute — the call raised `AttributeError` and saves were silently
+  dropped. This affected every Settings tab (key bindings, hotkeys,
+  display, timing, and the new Updates channel selector). Added a
+  `settings_path` property on `AppLoader` that forwards to the
+  underlying `SettingsLoader`. As a side effect: the Stable / Beta
+  update channel selector now actually persists across launches.
+
+### Added
+- **Maegu Awakening PvP combo set** (courtesy of fafi, guide last
+  updated 2026-06-05). Nine combos under
+  `config/combos/maegu_awakening/default/`:
+  - Two **default protected chains** that form the squishy-killer
+    foundation (Hazy Path Spiritforge → Twirling Rhapsody catch
+    → Emberclaw Finale → Foxflare Fleche → Foxflare Ambush →
+    Twirling Foxflare → Flow: Foxflare Encore → Spirit Parade →
+    Flower Shroud disengage; one variant repositions with
+    Twirling Retreat early, the other late).
+  - **Standard DR combo** — Spiritforged Fan Kick (+10% Air Attack)
+    into Emberclaw Slash (-20 DR shred).
+  - **Standard Evasion combo** — Foxflare Cleave (-12 Evasion) into
+    Emberclaw Slash.
+  - **Float Burst variants** — Fan Kick re-float, and a Foxflare
+    Ambush opener.
+  - **Long 1v1 combos** — two long DR/evasion-shred chains plus a
+    knockdown / down-attack variant for downsmash playstyles.
+  - Bundle metadata captures the buff/debuff cheatsheet (Charmed +20
+    AP, Foxflare Fleche +30% Crit, Emberclaw Slash -20 DR, Foxflare
+    Cleave -12 Evasion, Fan Kick +5/+10% Air, Foxflare Stroke +18
+    AP, Emberclaw Finale -15% MS), catch lists per spec, and add-on
+    suggestions (Twirling Rhapsody = DR, Foxflare Ambush = Crit,
+    Charmed = Attack Speed).
+- **Maegu Succession PvP priority combo** —
+  `config/combos/maegu_succession/default/pvp_dps_priority.yaml`.
+  Five tiers: Spiritforge Entry (Hazy Path / Emberclaw Slash /
+  backups), Top Priority (Emberclaw Slash for -DP, Foxflare Cleave,
+  Twirling Rhapsody, Foxflare Fleche, Flow: Emberclaw Sweep), Core
+  DPS (Twirling Foxflare → Flow Foxflare Encore + the rest of the
+  awakening kit), Filler (Fan Kick + on-CD repeats), and AoE / Pre-
+  Awakening (Constricting Charm / Spirit Sparks / Foxspirit Tag).
+
 ## [0.5.6] — 2026-05-31
 
 ### Changed
@@ -389,6 +434,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.7]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.7
 [0.5.6]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.6
 [0.5.5]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.5
 [0.5.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.4

@@ -1,0 +1,46 @@
+combo_id: pvp_standard_evasion_combo
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Standard Evasion Combo (1v1)'
+description: |
+  Standard evasion-shred combo — uses Foxflare Cleave (Q) over Fan Kick
+  for the -12 Evasion debuff. Knockdown combos against evasion targets
+  are also viable but may yield less damage depending on air-attack
+  procs vs. down-attack procs / downsmash success.
+
+  Inputs — Pre-awk SPACE (prebuff Charmed) → W+RMB Spiritforge / Hazy
+  Path → A/D+RMB catch → S+F → SHIFT+Q → RMB (Crit Rate / standup KB)
+  → Q → SHIFT+LMB first hit → SHIFT+F (hold) → F → SHIFT+X → S+E.
+
+  Courtesy of fafi.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: charmed
+  note: Pre-awakening prebuff. SPACE.
+- skill: hazy_path
+  note: Spiritforge engage. W+RMB.
+- skill: twirling_rhapsody
+  note: Catch. A/D+RMB.
+- skill: twirling_retreat
+  note: Reposition. S+F.
+- skill: emberclaw_finale
+  note: SHIFT+Q.
+- skill: foxflare_fleche
+  note: Crit Rate / standup KB. RMB.
+- skill: foxflare_cleave
+  note: -12 Evasion debuff (cancellable into Emberclaw Slash). Q.
+- skill: emberclaw_slash
+  note: First hit only — -20 DR shred. SHIFT+LMB.
+- skill: twirling_foxflare
+  note: SHIFT+F (hold).
+- skill: flow_foxflare_encore
+  note: Hold F after Twirling Foxflare.
+- skill: foxflare_ambush
+  note: F.
+- skill: spirit_parade
+  note: SHIFT+X.
+- skill: flower_shroud
+  note: Disengage. S+E.

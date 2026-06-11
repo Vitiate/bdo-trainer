@@ -1,0 +1,52 @@
+combo_id: pvp_long_1v1_combo_1
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Long 1v1 Combo #1'
+description: |
+  Long 1v1 combo built around Emberclaw Torrent (2 hits) and
+  Foxflare Cleave for evasion shred, with Twirling Rhapsody re-cast
+  before the closer.
+
+  Inputs — Pre-awk SPACE (prebuff Charmed) → W+RMB → A/D+RMB catch →
+  S+F → SHIFT+Q → RMB (standup KB) → SHIFT+RMB (2 hits) → S+LMB
+  first hit → Q → SHIFT+LMB first hit → SHIFT+F (hold) → A/D+RMB →
+  F → SHIFT+X → S+E.
+
+  Courtesy of fafi.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: charmed
+  note: Pre-awakening prebuff. SPACE.
+- skill: hazy_path
+  note: Spiritforge engage. W+RMB.
+- skill: twirling_rhapsody
+  note: Catch. A/D+RMB.
+- skill: twirling_retreat
+  note: S+F.
+- skill: emberclaw_finale
+  note: SHIFT+Q.
+- skill: foxflare_fleche
+  note: Standup KB. RMB.
+- skill: emberclaw_torrent
+  note: 2 hits. SHIFT+RMB.
+- skill: fan_kick
+  note: First hit. S+LMB.
+- skill: foxflare_cleave
+  note: -12 Evasion. Q.
+- skill: emberclaw_slash
+  note: First hit — -20 DR. SHIFT+LMB.
+- skill: twirling_foxflare
+  note: SHIFT+F (hold).
+- skill: flow_foxflare_encore
+  note: Hold F after Twirling Foxflare.
+- skill: twirling_rhapsody
+  note: A/D+RMB.
+- skill: foxflare_ambush
+  note: F.
+- skill: spirit_parade
+  note: SHIFT+X.
+- skill: flower_shroud
+  note: Disengage. S+E.

@@ -678,6 +678,13 @@ class AppLoader:
         self.bundles = BundleLoader(combos_dir)
         self.settings_loader = SettingsLoader(settings_path)
 
+    # The SettingsWindow saves directly to ``loader.settings_path``;
+    # forward to the underlying SettingsLoader so the write lands on the
+    # right file.
+    @property
+    def settings_path(self) -> Path:
+        return self.settings_loader.settings_path
+
     # ------------------------------------------------------------------
     # Settings passthroughs
     # ------------------------------------------------------------------

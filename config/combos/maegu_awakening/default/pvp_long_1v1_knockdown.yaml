@@ -1,0 +1,57 @@
+combo_id: pvp_long_1v1_knockdown
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Long 1v1 Combo #3 (Knockdown / Down-attack)'
+description: |
+  Knockdown combo example — least popular Awaegu option since it
+  relies on downsmash procs to reset the CC timer. If Fan Kick or
+  Emberclaw Crush downsmash lands, you reset the CC; if not, the
+  target may stand up sooner than you'd prefer.
+
+  Inputs — Pre-awk SPACE (Charmed catch) → W+RMB → S+LMB first hit →
+  RMB → A/D+RMB → RMB → E → SHIFT+Q → Q → SHIFT+LMB first hit →
+  SHIFT+F (hold) IF DOWNSMASH → S+F → RMB → A/D+RMB → F → SHIFT+X
+  → S+E.
+
+  Courtesy of fafi.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: charmed
+  note: Pre-awakening catch. SPACE.
+- skill: hazy_path
+  note: Spiritforge engage. W+RMB.
+- skill: fan_kick
+  note: First hit. S+LMB.
+- skill: foxflare_fleche
+  note: RMB.
+- skill: twirling_rhapsody
+  note: A/D+RMB.
+- skill: foxflare_fleche
+  note: RMB.
+- skill: emberclaw_crush
+  note: E.
+- skill: emberclaw_finale
+  note: SHIFT+Q.
+- skill: foxflare_cleave
+  note: -12 Evasion. Q.
+- skill: emberclaw_slash
+  note: First hit — -20 DR. SHIFT+LMB.
+- skill: twirling_foxflare
+  note: SHIFT+F (hold) — only if downsmash landed.
+- skill: flow_foxflare_encore
+  note: Hold F after Twirling Foxflare.
+- skill: twirling_retreat
+  note: S+F.
+- skill: foxflare_fleche
+  note: RMB.
+- skill: twirling_rhapsody
+  note: A/D+RMB.
+- skill: foxflare_ambush
+  note: F.
+- skill: spirit_parade
+  note: SHIFT+X.
+- skill: flower_shroud
+  note: Disengage. S+E.
