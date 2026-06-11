@@ -4,6 +4,28 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.9] — 2026-06-11
+
+### Fixed
+- **"Reset configs to release defaults" no longer hangs.** When the
+  user picked Yes on the "replace configs" prompt, `install_zipball`
+  used `shutil.move(config, config_backup_<ts>)` to clear the live
+  config dir before installing the release's defaults. On Windows
+  that move reliably failed with `PermissionError` because the
+  running trainer still held open handles into `config/`
+  (`combos.yaml`, `overlay_position.json`, the editor's bundle
+  paths). The failed move + the watchdog from v0.5.8 was the
+  "Installing…" hang.
+  - The backup phase is now a per-file copy that retries / skips
+    locked files instead of moving the directory.
+  - `config/` is no longer cleared before the new files are written;
+    the release's defaults overwrite the live ones in place, with
+    the same retry/skip policy as every other file in the install.
+- **Replace-configs prompt rewritten** so users understand it's the
+  destructive option and that NO is the right answer for almost
+  everyone. Most "Installing…" hangs in v0.5.7 / v0.5.8 came from
+  users picking Yes thinking it was a benign reset.
+
 ## [0.5.8] — 2026-06-11
 
 ### Fixed
@@ -459,6 +481,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.5.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.9
 [0.5.8]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.8
 [0.5.7]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.7
 [0.5.6]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.6
