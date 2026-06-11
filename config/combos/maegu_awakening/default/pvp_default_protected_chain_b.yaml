@@ -1,0 +1,39 @@
+combo_id: pvp_default_protected_chain_b
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Default Protected Chain (B)'
+description: |
+  Variant of the default protected chain with the Twirling Retreat
+  reposition deferred until after Flow: Foxflare Encore.
+
+  Inputs — Pre-awk SPACE (prebuff Charmed) → W+RMB Spiritforge / Hazy
+  Path → A/D+RMB catch (Twirling Rhapsody) → SHIFT+Q → RMB (standup
+  knockback) → F (re-float) → HOLD F (SHIFT+F) → S+F → SHIFT+X →
+  S+E.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: charmed
+  note: Pre-awakening prebuff. SPACE.
+- skill: hazy_path
+  note: Spiritforge engage. W+RMB.
+- skill: twirling_rhapsody
+  note: Catch. A/D+RMB.
+- skill: emberclaw_finale
+  note: SHIFT+Q.
+- skill: foxflare_fleche
+  note: Standup knockback (+30% Crit Rate buff). RMB.
+- skill: foxflare_ambush
+  note: Re-float. F.
+- skill: twirling_foxflare
+  note: Hold F (SHIFT+F).
+- skill: flow_foxflare_encore
+  note: Hold F after Twirling Foxflare.
+- skill: twirling_retreat
+  note: Reposition. S+F.
+- skill: spirit_parade
+  note: SHIFT+X.
+- skill: flower_shroud
+  note: Disengage. S+E.

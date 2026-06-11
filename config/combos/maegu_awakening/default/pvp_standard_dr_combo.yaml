@@ -1,0 +1,47 @@
+combo_id: pvp_standard_dr_combo
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Standard DR Combo (1v1)'
+description: |
+  No-frills DR-shred combo — uses the Spiritforged 10% air-attack buff
+  from Fan Kick into the -20 DR shred from Emberclaw Slash for optimal
+  burst. Mind the downed-animation timing on SA skills after airsmashing
+  with Twirling Foxflare; airsmashed targets get up quickly.
+
+  Inputs — Pre-awk SPACE (prebuff Charmed) → W+RMB Spiritforge / Hazy
+  Path → A/D+RMB catch → S+F → SHIFT+Q → RMB (standup knockback) →
+  S+LMB first hit → SHIFT+LMB first hit → SHIFT+F (hold) → F →
+  SHIFT+X → S+E.
+
+  Courtesy of fafi.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: charmed
+  note: Pre-awakening prebuff. SPACE.
+- skill: hazy_path
+  note: Spiritforge engage. W+RMB.
+- skill: twirling_rhapsody
+  note: Catch. A/D+RMB.
+- skill: twirling_retreat
+  note: Reposition. S+F.
+- skill: emberclaw_finale
+  note: SHIFT+Q.
+- skill: foxflare_fleche
+  note: Standup knockback. RMB.
+- skill: fan_kick
+  note: First hit only — Spiritforged +10% Air Attack buff. S+LMB.
+- skill: emberclaw_slash
+  note: First hit only — -20 DR shred. SHIFT+LMB.
+- skill: twirling_foxflare
+  note: Airsmash. SHIFT+F (hold).
+- skill: flow_foxflare_encore
+  note: Hold F after Twirling Foxflare.
+- skill: foxflare_ambush
+  note: F.
+- skill: spirit_parade
+  note: SHIFT+X.
+- skill: flower_shroud
+  note: Disengage. S+E.

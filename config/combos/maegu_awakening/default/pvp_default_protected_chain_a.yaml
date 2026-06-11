@@ -1,0 +1,39 @@
+combo_id: pvp_default_protected_chain_a
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+name: 'PvP — Default Protected Chain (A)'
+description: |
+  Default awakening protected chain to kill squishy classes — Twirling
+  Retreat reposition between Emberclaw Finale and Foxflare Fleche.
+
+  Inputs — Pre-awk SPACE (prebuff Charmed) → W+RMB Spiritforge / Hazy
+  Path → A/D+RMB catch (Twirling Rhapsody) → S+F → SHIFT+Q → RMB
+  (standup knockback) → F (re-float) → HOLD F (SHIFT+F) → SHIFT+X →
+  S+E.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: charmed
+  note: Pre-awakening prebuff. SPACE.
+- skill: hazy_path
+  note: Spiritforge engage. W+RMB.
+- skill: twirling_rhapsody
+  note: Catch. A/D+RMB.
+- skill: twirling_retreat
+  note: Reposition. S+F.
+- skill: emberclaw_finale
+  note: SHIFT+Q.
+- skill: foxflare_fleche
+  note: Standup knockback (+30% Crit Rate buff). RMB.
+- skill: foxflare_ambush
+  note: Re-float. F.
+- skill: twirling_foxflare
+  note: Hold F (SHIFT+F).
+- skill: flow_foxflare_encore
+  note: Hold F after Twirling Foxflare.
+- skill: spirit_parade
+  note: SHIFT+X.
+- skill: flower_shroud
+  note: Disengage. S+E.
