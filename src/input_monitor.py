@@ -12,6 +12,7 @@ Key names use the same strings as combo YAML files:
 """
 
 import logging
+import threading
 from typing import Callable, Dict, List, Optional, Set
 
 logger = logging.getLogger("bdo_trainer")
@@ -67,6 +68,12 @@ class InputMonitor:
             _pynput_kb.Key.caps_lock: "capslock",
         }
 
+    # How long to wait after a key state change before deciding which
+    # tap (if any) to fire. Long enough to absorb the timing skew
+    # between a modifier and a mouse button, short enough to feel
+    # instant. 30 ms is well below the 60 fps frame budget.
+    _TAP_COALESCE_S = 0.03
+
     def __init__(self) -> None:
         self._pressed: Set[str] = set()
         self._required_sets: List[Set[str]] = []
@@ -75,10 +82,12 @@ class InputMonitor:
         self._kb_listener = None
         self._mouse_listener = None
         # Secondary watchers — fire alongside the main target. Used by
-        # the CC panel to track skill activations without disturbing the
-        # combo player's exclusive ``set_target`` channel.
+        # the CC panel + priority player to track skill activations
+        # without disturbing the combo player's exclusive
+        # ``set_target`` channel.
         # name → {"sets": [Set[str]], "on_match": Callable, "matched": bool}
         self._taps: Dict[str, Dict[str, object]] = {}
+        self._tap_dispatch_pending: bool = False
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -245,7 +254,13 @@ class InputMonitor:
     # Match check
     # ------------------------------------------------------------------
     def _check(self) -> None:
-        """Fire callbacks for any matching primary target or tap."""
+        """Fire callbacks for matching primary target + taps.
+
+        Tap firing is deferred via a short coalesce window (see
+        ``_request_tap_dispatch``) so that a chord like ``Q + RMB``
+        always picks the most-specific matching tap, even if the user
+        presses RMB first and Q a moment later.
+        """
         # Primary target — single edge-triggered channel
         if not self._matched and self._required_sets:
             for req in self._required_sets:
@@ -254,18 +269,43 @@ class InputMonitor:
                     if self._on_match:
                         self._on_match()
                     break
-        # Secondary taps — independent of the primary target.
-        # Snapshot the dict so a tap's callback can add/remove taps
-        # (e.g. PriorityPlayer re-arms a different tap on every press)
-        # without "dictionary changed size during iteration".
+
+        # Secondary taps — schedule a deferred dispatch so we can pick
+        # the most-specific match after the user has finished pressing
+        # the chord.
+        if self._taps:
+            self._request_tap_dispatch()
+
+    # ------------------------------------------------------------------
+    # Tap dispatch — coalesce match decisions across a short window so
+    # that pressing RMB-then-Q for a Q+RMB skill doesn't fire a less-
+    # specific tap on the lone RMB before the modifier lands.
+    # ------------------------------------------------------------------
+    def _request_tap_dispatch(self) -> None:
+        if self._tap_dispatch_pending:
+            return
+        self._tap_dispatch_pending = True
+        threading.Timer(
+            self._TAP_COALESCE_S, self._dispatch_taps,
+        ).start()
+
+    def _dispatch_taps(self) -> None:
+        self._tap_dispatch_pending = False
+        # Pick the most-specific tap that's currently fully held.
+        best: Optional[tuple] = None  # (size, tap_dict)
         for tap in list(self._taps.values()):
             if tap["matched"]:
                 continue
             req_sets: List[Set[str]] = tap["sets"]  # type: ignore[assignment]
             for req in req_sets:
                 if req.issubset(self._pressed):
-                    tap["matched"] = True
-                    cb = tap["on_match"]
-                    if callable(cb):
-                        cb()
+                    size = len(req)
+                    if best is None or size > best[0]:
+                        best = (size, tap)
                     break
+        if best is not None:
+            _, tap = best
+            tap["matched"] = True
+            cb = tap["on_match"]
+            if callable(cb):
+                cb()
