@@ -136,18 +136,67 @@ class UpdateInfo:
 _NUM_PREFIX = re.compile(r"^(\d+)")
 
 
-def _normalize(version: str) -> tuple[int, ...]:
-    """Split ``"v1.2.3-rc1"`` → ``(1, 2, 3)``. Stops at the first non-numeric
-    component so we ignore pre-release suffixes for the >/< comparison."""
+def _normalize(version: str) -> tuple:
+    """Split a version string into a sortable tuple following SemVer
+    prerelease ordering.
+
+    The base ``MAJOR.MINOR.PATCH`` is parsed as integers. A prerelease
+    suffix (``-alpha.1`` / ``-beta.2`` / ``-rc.1``) sorts BELOW the
+    plain release of the same base, and lexically among themselves
+    (alpha < beta < rc < anything-else).
+
+    Examples (compared as tuples)::
+
+        v0.6.2-beta.1  <  v0.6.2-beta.2  <  v0.6.2-rc.1  <  v0.6.2
+        v0.5.9         <  v0.6.0
+    """
     cleaned = version.strip().lstrip("vV")
-    parts = re.split(r"[.\-+_]", cleaned)
-    out: list[int] = []
-    for p in parts:
+    # Peel off the prerelease ('-suffix') and build metadata ('+suffix').
+    # We ignore build metadata for ordering per SemVer 2.0.
+    if "+" in cleaned:
+        cleaned = cleaned.split("+", 1)[0]
+    if "-" in cleaned:
+        base, suffix = cleaned.split("-", 1)
+    else:
+        base, suffix = cleaned, ""
+
+    base_parts: list[int] = []
+    for p in re.split(r"[._]", base):
         m = _NUM_PREFIX.match(p)
         if not m:
             break
-        out.append(int(m.group(1)))
-    return tuple(out)
+        base_parts.append(int(m.group(1)))
+    base_tuple = tuple(base_parts)
+
+    # SemVer trick: a release without a prerelease label sorts ABOVE
+    # any prerelease of the same base. Encode that as a leading
+    # "stage" int — 1 for plain release, 0 for prerelease — appended
+    # AFTER the base parts so the base still dominates.
+    if not suffix:
+        # Plain release. Use stage = 1, then enough zero-padding so
+        # any prerelease tuple of the same base sorts strictly below.
+        return base_tuple + (1, 0, 0)
+
+    # Prerelease — split the suffix into label + number(s). Common
+    # shapes: 'beta.1', 'beta1', 'rc.2', 'alpha'. Convert each piece
+    # to (str, int) so lex-then-num comparison works.
+    pre_parts: list = [0]  # stage = 0 (prerelease)
+    for piece in re.split(r"[.\-_]", suffix):
+        if not piece:
+            continue
+        # Pieces like "beta1" → split into ("beta", 1)
+        m = re.match(r"^([A-Za-z]*)(\d*)$", piece)
+        if m:
+            label = m.group(1).lower()
+            num = int(m.group(2)) if m.group(2) else 0
+            if label:
+                pre_parts.append(label)
+            if num or not label:
+                pre_parts.append(num)
+        else:
+            pre_parts.append(piece.lower())
+
+    return base_tuple + tuple(pre_parts)
 
 
 def is_newer(remote: str, local: str) -> bool:
@@ -155,7 +204,24 @@ def is_newer(remote: str, local: str) -> bool:
     r, l = _normalize(remote), _normalize(local)
     if not r:
         return False
-    return r > l
+    # Tuples may mix int and str; coerce piecewise so Python doesn't
+    # blow up on a mixed compare.
+    return _cmp_versions(r, l) > 0
+
+
+def _cmp_versions(a: tuple, b: tuple) -> int:
+    for x, y in zip(a, b):
+        if type(x) is type(y):
+            if x == y:
+                continue
+            return 1 if x > y else -1
+        # Mixed types — ints sort below strings, matching SemVer
+        # which says numeric identifiers have lower precedence than
+        # alphanumeric ones in the prerelease section.
+        return -1 if isinstance(x, int) else 1
+    if len(a) == len(b):
+        return 0
+    return 1 if len(a) > len(b) else -1
 
 
 # ---------------------------------------------------------------------------

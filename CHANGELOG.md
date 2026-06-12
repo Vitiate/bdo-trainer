@@ -4,6 +4,21 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.2-beta.3] — 2026-06-12
+
+### Fixed
+- **Updater "no update available" between betas of the same base
+  version.** The version comparator stripped the prerelease suffix
+  entirely, so `v0.6.2-beta.1` and `v0.6.2-beta.2` compared equal
+  and the updater told the user they were up to date. Replaced
+  with a SemVer-aware comparator:
+  - Plain release sorts above any prerelease of the same base
+    (`v0.6.2 > v0.6.2-rc.1 > v0.6.2-beta.2 > v0.6.2-beta.1`).
+  - Prerelease pieces split into label + number so `beta.10`
+    sorts above `beta.2` numerically rather than lexically.
+  - Mixed-type identifiers fall back to int-below-string ordering
+    (matches SemVer 2.0 §11.4.3).
+
 ## [0.6.2-beta.2] — 2026-06-12
 
 ### Fixed
@@ -611,6 +626,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.2-beta.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.3
 [0.6.2-beta.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.2
 [0.6.2-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.1
 [0.6.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.1
