@@ -226,13 +226,29 @@ class ComboPlayer:
         return []
 
     def _resolve_input(self, step: Dict[str, Any], skill_id: str) -> str:
+        # 1. Step-level override (combo-author intent always wins).
         text = step.get("input", "")
         if text:
             return text
+        # 2. The canonical chord rendered from the skill's `keys` list —
+        # short and unambiguous (e.g. "Shift + LMB" or "E"). The
+        # skill's free-text `input:` field is sometimes the BDOCodex
+        # tooltip verbatim ("E E after other skills…") which double-
+        # prints the key when shown under a skill name.
         if skill_id and self.get_skill_info:
-            info = self.get_skill_info(skill_id)
-            if info:
-                return info.get("input", "")
+            info = self.get_skill_info(skill_id) or {}
+            keys = info.get("keys") or []
+            if keys and "hold" not in {str(k).lower() for k in keys}:
+                from src.utils.keys import format_key_display
+                parts = [
+                    format_key_display(str(k))
+                    for k in keys
+                    if str(k).lower() != "hotbar"
+                ]
+                if parts:
+                    return " + ".join(parts)
+            # 3. Last resort — the raw text field.
+            return info.get("input", "")
         return ""
 
     # -----------------------------------------------------------------

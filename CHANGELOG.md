@@ -4,6 +4,33 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.2-beta.2] — 2026-06-12
+
+### Fixed
+- **Skill input no longer double-prints the keypress.** The overlay
+  was rendering each skill's free-text `input:` field verbatim under
+  the skill name. Many of those fields are the BDOCodex tooltip
+  ("E E after other skills to perform attack 2"), which under a
+  bold "Emberclaw Crush" header reads "E E after other skills to
+  perform attack 2" — confusing. Both overlay players now render
+  the canonical chord (`E`, `Shift + LMB`, etc.) computed from the
+  skill's `keys` list, with the user's remap applied. The free-text
+  `input:` field stays around for the editor / inspector view.
+- **Emberclaw Slash cooldown back to 7s.** Previous beta dropped it
+  to 4s based on community feel, but the in-game cooldown is 7s.
+  The priority resolver should match the actual cooldown — letting
+  the resolver display Emberclaw Slash 4 s after a press would
+  cause a phantom press (the skill is still on real cooldown).
+- **Trimmed Emberclaw Slash input** from "SHIFT + LMB LMB after
+  other skills" to just "SHIFT + LMB", same fix as Emberclaw
+  Torrent in beta.1.
+
+### Changed
+- **Maegu DPS Priority combo notes pruned.** Removed leading
+  keypress restatements ("SHIFT + Q. Backup entry." → "Backup
+  entry."). The chord renders below the skill name; repeating it
+  in the note column was redundant.
+
 ## [0.6.2-beta.1] — 2026-06-12
 
 ### Changed
@@ -584,6 +611,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.2-beta.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.2
 [0.6.2-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.1
 [0.6.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.1
 [0.6.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.0

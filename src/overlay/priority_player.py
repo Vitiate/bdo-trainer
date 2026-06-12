@@ -443,8 +443,15 @@ class PriorityPlayer:
                 ctx.note_font, badge_color,
             )
 
-        # Input keys — apply remap so the user sees their physical keys.
-        input_text = row["input"] or self._format_keys(row["keys"])
+        # Input keys — render the canonical key chord (with the user's
+        # remap applied) rather than the skill's free-text `input:`
+        # field. Many skill `input:` strings encode the BDOCodex tooltip
+        # verbatim ("E E after other skills…") which double-prints the
+        # key when shown under a skill name. The chord is always shorter
+        # and unambiguous.
+        input_text = self._format_keys(row["keys"])
+        if not input_text:
+            input_text = row["input"] or ""
         if row["keys_alt"]:
             alt_text = self._format_keys(row["keys_alt"])
             if alt_text and alt_text != input_text:
