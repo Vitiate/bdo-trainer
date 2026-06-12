@@ -4,6 +4,25 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.2-beta.1] — 2026-06-12
+
+### Changed
+- **Maegu Awakening DPS Priority combo retagged PvE-only and trimmed.**
+  - Renamed `pvp_dps_priority` → `pve_dps_priority`. Category is now
+    `pve`. The original guide is a PvE rotation; tagging it PvP was
+    misleading.
+  - Dropped the AoE / Pre-Awakening tier (Constricting Charm /
+    Spirit Sparks / Foxspirit Tag). Those are pre-awakening swap
+    skills and the priority resolver was happy to display them
+    while you were standing in awakening — confusing if you weren't
+    actually swapping out. Anyone who wants the swap loop can
+    add a separate combo for it.
+- **Emberclaw Torrent input trimmed.** The `input:` field carried
+  the full mechanic description (`SHIFT + RMB Hold RMB to perform
+  attack 3 SHIFT + RMB after forward Spirit Step…`) which bloated
+  the overlay. Now just `SHIFT + RMB`. The full mechanic stays in
+  the skill `notes:` for the editor / inspector view.
+
 ## [0.6.1] — 2026-06-12
 
 ### Fixed
@@ -565,6 +584,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.2-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.1
 [0.6.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.1
 [0.6.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.0
 [0.5.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.9

@@ -311,8 +311,7 @@ skills:
       spiritforges into the foxfire of the foxtail fans.
   emberclaw_torrent:
     name: Emberclaw Torrent
-    input: 'SHIFT + RMB Hold RMB to perform attack 3 SHIFT + RMB after forward Spirit Step, forward Chain: Spirit Step, Foxflare
-      Ambush, or Twirling Retreat to perform attack 3'
+    input: SHIFT + RMB
     keys:
     - shift
     - rmb

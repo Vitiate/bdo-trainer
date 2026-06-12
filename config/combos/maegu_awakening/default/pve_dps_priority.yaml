@@ -1,12 +1,12 @@
-combo_id: pvp_dps_priority
+combo_id: pve_dps_priority
 class: Maegu
 spec: Awakening
 bundle_id: default
-category: pvp
+category: pve
 mode: priority
-name: 'PvP / PvE — DPS Priority'
+name: 'PvE — DPS Priority'
 description: |
-  Cooldown-driven Awakening Maegu rotation. Apply -DP at the start.
+  Cooldown-driven Awakening Maegu PvE rotation. Apply -DP at the start.
 
   Tier 0 (Spiritforge entry) — Hazy Path (movement) or fast-cast
   Emberclaw Slash. Backups: Emberclaw Finale / Crush / Torrent.
@@ -24,18 +24,12 @@ description: |
   Tier 3 (Filler) — Fan Kick, plus Foxflare Ambush / Foxflare
   Fleche / Twirling Rhapsody when nothing higher is up.
 
-  Tier 4 (AoE / Pre-awakening filler) — Constricting Charm,
-  Spirit Sparks, Foxspirit Tag (-DP). Swap back to Awakening as
-  soon as AoE is sufficient.
-
   Notable Cancels (encoded as prefers_after) — these chains skip
   the linger / windup of the preceding skill:
     Foxflare Ambush → Foxflare Fleche
     Foxflare Ambush → Twirling Rhapsody
     Twirling Retreat → Twirling Foxflare
     Twirling Retreat → Emberclaw Torrent
-    Almost anything → Emberclaw Slash (windup skip)
-    Almost anything → Emberclaw Torrent (windup skip)
 
   Hard chains (encoded as requires_prev):
     Flow: Emberclaw Sweep — only cast right after Emberclaw Slash
@@ -112,15 +106,3 @@ priority:
         note: Filler when off cooldown above.
       - skill: twirling_rhapsody
         note: Filler when off cooldown above.
-
-  - tier: AoE / Pre-Awakening
-    description: AoE filler while gathering (e.g. DSR smallies). Swap back to Awakening as soon as AoE is sufficient.
-    skills:
-      - skill: constricting_charm
-        note: SHIFT + Z.
-      - skill: spirit_sparks
-        note: LMB after Constricting Charm.
-        requires_prev: constricting_charm
-        requires_window_ms: 1500
-      - skill: foxspirit_tag
-        note: RMB. -DP debuff.
