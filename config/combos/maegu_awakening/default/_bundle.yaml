@@ -6,9 +6,54 @@ spec: Awakening
 bundle_id: default
 name: Default
 description: |
-  Awakening Maegu PvP bundle (guide last updated 2026-06-05, courtesy of fafi).
+  Awakening Maegu — PvE-focused bundle (guide courtesy of Netherax).
+  PvP combos in this bundle are courtesy of fafi (last updated
+  2026-06-05).
 
-  Buffs / debuffs to weave into combos:
+  ── Buffs ────────────────────────────────────────────────
+    +20 AP   — Foxflare Stroke (S+RMB), Charmed (Space, pre-awak)
+    +12 Magic AP — Twirling Crane passive (from Spiritforging)
+    +25 AP   — Foxspirit Conduit (Slot, 3 min CD; overwrites the
+               +20 above so effectively +5 AP)
+
+  ── Debuffs (excluding CC and DoT) ───────────────────────
+    -20 DP   — Emberclaw Slash (Shift+LMB), Foxspirit Tag (RMB)
+
+  ── Movement ─────────────────────────────────────────────
+    Spirit Step / Chain: Spirit Step (Shift+Direction) — PvE iframes
+    Soul Tear (Slot)        — Fastest, most efficient movement
+    Foxflare Charge (W+F)   — Decent long distance, Soul Tear costs
+                              less stamina for the same speed
+    Hazy Path (W+RMB)       — Engage that starts Spiritforging.
+                              Usually used as the last dash before
+                              Foxflare Ambush (F) so the engage lands
+                              with Spiritforging active.
+    Foxflare Ambush (F)     — Targeted dash behind target
+
+    Soul Tear or Foxflare Charge are best for medium distance.
+    Hazy Path → Foxflare Ambush is the standard short-medium engage.
+
+    Long-range example chain:
+      Chain: Spirit Step → Spirit Step → Soul Tear → Foxflare Charge
+      → Chain: Spirit Step → Spirit Step → Prime: Soul Tear
+    Add Ghost Bomb (after Soul Tear) and Flower Shroud (before Soul
+    Tear) for extra distance.
+
+  ── Repositioning ────────────────────────────────────────
+    Foxflare Ambush (F)         — High-DPS reposition / engage,
+                                  usually followed by Foxflare Fleche
+                                  (RMB) to close distance and speed
+                                  up Foxflare Ambush.
+    Twirling Rhapsody (A/D+RMB) — Fast and high-DPS
+    Twirling Retreat (S+F)      — Decent backwards dash with damage
+    Foxflare Fleche (RMB)       — Small dash
+
+  ── Core skill ───────────────────────────────────────────
+    Both options are fine — most players take Emberclaw Slash.
+      Emberclaw Slash (Shift+LMB) — Frontal Guard
+      Emberclaw Crush (E)         — Super Armor
+
+  ── PvP buff/debuff cheatsheet ───────────────────────────
     Pre-awakening
       Charmed              — +20 AP self-buff
       Flow: Nether River   — +20 AP self-buff
@@ -17,23 +62,36 @@ description: |
       Foxflare Fleche      — +30% Crit Rate self-buff
       Emberclaw Slash      — -20 DR debuff (primary awakening DR shred)
       Foxflare Cleave      — -12 Evasion debuff (cancellable into Emberclaw Slash)
-      Fan Kick             — +5% Air Attack (+10% when Spiritforged); cancellable into Emberclaw Slash
+      Fan Kick             — +5% Air Attack (+10% Spiritforged); cancellable into Emberclaw Slash
       Foxflare Stroke      — +18 AP self-buff
       Emberclaw Finale     — -15% movement-speed debuff
 
-  Catches:
+  ── PvP catches ──────────────────────────────────────────
     Awakening — Twirling Rhapsody, Foxflare Ambush, Foxflare Fleche
-    Pre-awak  — Charmed (primary); Petal Play, Foxflare, Foxflare Fling
-                are unprotected ranged options (long windup, use with care).
+    Pre-awak  — Charmed (primary); Petal Play, Foxflare, Foxflare
+                Fling are unprotected ranged options (long windup,
+                use with care).
 
-  Add-on suggestions (subject to playstyle):
+  ── PvP add-on suggestions ───────────────────────────────
     Twirling Rhapsody — DR
     Foxflare Ambush   — Crit Rate / Evasion
-    Charmed           — Attack Speed (range stiffen + +20 AP self-buff)
-    Twirling Retreat / Emberclaw Finale — Evasion alternatives.
-    Group PvP — avoid keeping Foxflare Stroke / Foxflare Cleave as default
-    add-on hosts since they're unprotected and easy to peel.
-locked_skills: []
+    Charmed           — Attack Speed (range stiffen + +20 AP)
+    Twirling Retreat / Emberclaw Finale — Evasion alternatives
+    In group PvP, avoid Foxflare Stroke / Foxflare Cleave as
+    default add-on hosts — they're unprotected and easy to peel.
+
+  ── Skill Enhancements (Rabams) & Magnus ─────────────────
+    Rabam choices are the same as Succession — see succession PvE guide.
+    Magnus skill (Foxflare Fling) is useless in PvE.
+locked_skills:
+- name: Evasion
+  reason: Pre-awakening — not used in optimised play.
+- name: Soulsnare
+  reason: Pre-awakening — lock so Foxflare Ambush (F) works as the swap-back to awakening.
+- name: Heavenward Dance
+  reason: Pre-awakening — lock so Hazy Path (W+RMB) works as the swap to awakening.
+- name: Twirling Crane
+  reason: Preference — locked so a misclick doesn't trigger it. Use from quickslot instead (see hotbar).
 hotbar_skills:
 - name: Forged with Foxspirit
   reason: Spiritforge swap — primary awakening engage path.
@@ -41,7 +99,20 @@ hotbar_skills:
   reason: Combo finisher / disengage.
 - name: Flower Shroud
   reason: Protected pre-awakening alternative for add-ons / disengage.
-core_skill: {}
+- name: Twirling Crane
+  reason: Preference — quickslot use because the skill itself is locked.
+- name: Foxspirit Conduit
+  reason: 3-minute self-buff (+25 AP).
+- name: Soul Tear
+  reason: Often used for movement; easy return to awakening with S+C or C swap (W+C is a slower animation).
+- name: Heavenward Dance
+  reason: Quickslot it if you actually use it AND have the keybind locked for the awakening swap.
+core_skill:
+  primary: Emberclaw Slash
+  notes: |
+    Both options are fine — most players take Emberclaw Slash.
+      Emberclaw Slash (Shift+LMB) — Frontal Guard
+      Emberclaw Crush  (E)        — Super Armor
 skill_addons:
   pve: []
   pvp:

@@ -4,6 +4,33 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.1] — 2026-06-12
+
+### Changed
+- **Maegu Awakening bundle metadata expanded** with the full PvE
+  loadout guide (courtesy of Netherax). The bundle's
+  `_bundle.yaml` now documents:
+  - **Locked skills** — Evasion, Soulsnare (so Foxflare Ambush
+    works as the awakening swap), Heavenward Dance (so Hazy Path
+    works as the awakening swap), Twirling Crane (preference,
+    quickslot it instead).
+  - **Hotbar / quickslot additions** — Twirling Crane,
+    Foxspirit Conduit (3-min +25 AP buff), Soul Tear (movement
+    + S+C / C return-to-awakening), Heavenward Dance (if you
+    use it AND have it locked).
+  - **Buffs / debuffs / movement / repositioning / core skill**
+    sections covering Spirit Step iframes, Soul Tear, Foxflare
+    Charge, Hazy Path → Foxflare Ambush engages, Twirling
+    Rhapsody / Retreat / Foxflare Fleche reposition options,
+    and the Emberclaw Slash vs. Emberclaw Crush core choice.
+  - **Rabams / Magnus** — Rabam choices match Succession (see
+    succession PvE guide); Magnus skill (Foxflare Fling) is
+    useless in PvE.
+
+  PvP-specific cheatsheet (catches, add-on suggestions) is still
+  there at the bottom — this bundle still hosts both the
+  PvE Priority combo and the PvP combos.
+
 ## [0.6.3] — 2026-06-12
 
 Rolls up everything from the v0.6.2 beta cycle into a single stable
@@ -623,6 +650,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.1
 [0.6.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.3
 [0.6.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.1
 [0.6.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.0
