@@ -4,6 +4,26 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.1] — 2026-06-12
+
+### Fixed
+- **Multi-key skills lost to single-key skills with overlapping keys.**
+  When two priority-combo skills share keys — e.g. Maegu's
+  Foxflare Fleche on `RMB` vs. Twirling Rhapsody on `← / → + RMB`
+  — pressing the chord (RMB first, then the modifier) could fire
+  the lone-RMB tap *before* the modifier landed. The user reported
+  Twirling Rhapsody never working on the QE/AD-swapped keyboard
+  layout because of this. Two fixes in `InputMonitor`:
+  - **Tap firing is coalesced** across a 30 ms window. Lots of key
+    chords land via "modifier slightly before / after the trigger
+    key" — the coalesce window absorbs that timing skew before
+    deciding which tap to fire.
+  - **Most-specific tap wins.** When several taps' required key
+    sets all match what's currently held, the one with the
+    largest required set fires (and the smaller ones don't get a
+    phantom cooldown stamp). Net effect: pressing RMB-then-Q on a
+    QE-swap layout fires Twirling Rhapsody, not Foxflare Fleche.
+
 ## [0.6.0] — 2026-06-12
 
 ### Added
@@ -545,6 +565,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.1
 [0.6.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.0
 [0.5.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.9
 [0.5.8]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.8
