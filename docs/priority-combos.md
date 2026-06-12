@@ -115,12 +115,12 @@ a dict with these fields:
 |---|---|---|---|
 | `skill` | string | yes | Skill id from the class library |
 | `note` | string | no | One-line note rendered under the skill name |
-| `boost_after` | string | no | Skill id whose cast (within `boost_window_ms`) promotes this skill one or more tiers up — soft preference, evaluated against `last_cast` for the named skill |
+| `boost_after` | string \| list[string] | no | Skill id (or list of ids) whose cast within `boost_window_ms` promotes this skill — list form is "any-of" semantics, useful for state buffs cast by several skills (e.g. Maegu's Spiritforging set: Hazy Path, Foxflare Charge, Emberclaw Slash, Sweep, Finale, Crush, Torrent) |
 | `boost_window_ms` | int | no | How long the boost persists after `boost_after` is cast (default `5000`) |
 | `boost_to_tier` | int | no | Target tier index when boosted; default = current tier minus 1, clamped to 0 |
-| `requires_prev` | string | no | **Hard gate** — the skill is only eligible when the named skill was the *most-recent* cast and we're still inside `requires_window_ms`. Use for follow-up skills like `Flow: Emberclaw Sweep` (only after Emberclaw Slash) or `Spirit Sparks` (only after Constricting Charm) |
+| `requires_prev` | string \| list[string] | no | **Hard gate** — the skill is only eligible when the named skill (or any of the named skills, list form) was the *most-recent* cast and we're still inside `requires_window_ms` |
 | `requires_window_ms` | int | no | Max ms after `requires_prev` was cast for this skill to remain eligible (default `5000`) |
-| `prefers_after` | string | no | **Soft preference** — boosts priority while the named skill was the *most-recent* cast (within `prefers_window_ms`). Use for "notable cancels" — e.g. Foxflare Fleche skips the linger animation when chained right after Foxflare Ambush |
+| `prefers_after` | string \| list[string] | no | **Soft preference** — boosts priority while the named skill (or any of, list form) was the *most-recent* cast within `prefers_window_ms`. Use for "notable cancels" — e.g. Foxflare Fleche skips the linger animation when chained right after Foxflare Ambush |
 | `prefers_window_ms` | int | no | Max ms after `prefers_after` was cast for the boost to remain (default `5000`) |
 | `prefers_to_tier` | int | no | Tier this skill promotes to while preferred (default = current tier minus 1, clamped to 0) |
 

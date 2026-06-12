@@ -122,9 +122,20 @@ class PriorityEditor(tk.Frame):
                 note = (entry.get("note") or "").strip()
                 if note:
                     clean["note"] = note
-                booster = (entry.get("boost_after") or "").strip()
-                if booster:
-                    clean["boost_after"] = booster
+                # boost_after can be a string (single skill) or a list
+                # (any-of). The GUI dropdown only edits the single
+                # form; if the YAML has a list we preserve it
+                # verbatim and skip the dropdown logic.
+                raw_booster = entry.get("boost_after")
+                if isinstance(raw_booster, list):
+                    boosters = [b for b in raw_booster if isinstance(b, str) and b]
+                    if boosters:
+                        clean["boost_after"] = boosters
+                else:
+                    booster = (raw_booster or "").strip() if isinstance(raw_booster, str) else ""
+                    if booster:
+                        clean["boost_after"] = booster
+                if "boost_after" in clean:
                     bw = entry.get("boost_window_ms")
                     try:
                         bw_int = int(bw) if bw not in (None, "") else None
@@ -466,13 +477,25 @@ class PriorityEditor(tk.Frame):
         )
         note_entry.pack(side="left", padx=2)
 
-        # Boost-after dropdown
-        booster_id = entry.get("boost_after", "")
+        # Boost-after dropdown. boost_after may be a list (any-of) —
+        # the dropdown can only show one entry, so display the first
+        # element and label it as multi.
+        raw_booster = entry.get("boost_after", "")
+        if isinstance(raw_booster, list):
+            booster_id = raw_booster[0] if raw_booster else ""
+            multi_suffix = (
+                f"  (+{len(raw_booster) - 1} more)"
+                if len(raw_booster) > 1 else ""
+            )
+        else:
+            booster_id = raw_booster if isinstance(raw_booster, str) else ""
+            multi_suffix = ""
         if booster_id:
-            boost_initial = next(
+            base = next(
                 (lbl for lbl, sid in label_to_id.items() if sid == booster_id),
                 booster_id,
             )
+            boost_initial = base + multi_suffix
         else:
             boost_initial = ""
         boost_var = tk.StringVar(value=boost_initial)
@@ -544,6 +567,12 @@ class PriorityEditor(tk.Frame):
             )
             if entry.get(k) not in (None, "")
         }
+        # If boost_after is a list (any-of form), the dropdown can't
+        # represent it. Hide it in `advanced` so _sync_from_widgets
+        # restores it verbatim instead of overwriting it from the
+        # dropdown's first-element-only string.
+        if isinstance(entry.get("boost_after"), list):
+            advanced["boost_after"] = entry["boost_after"]
         return {
             "skill_var": skill_var,
             "note_var": note_var,

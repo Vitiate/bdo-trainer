@@ -337,6 +337,10 @@ def collect_skill_ids_used_by_combo(combo: Dict[str, Any]) -> set:
                     ref = entry.get(k)
                     if isinstance(ref, str) and ref:
                         out.add(ref)
+                    elif isinstance(ref, list):
+                        for r in ref:
+                            if isinstance(r, str) and r:
+                                out.add(r)
     return out
 
 

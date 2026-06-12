@@ -8,94 +8,209 @@ name: 'PvE — DPS Priority'
 description: |
   Cooldown-driven Awakening Maegu PvE rotation. Apply -DP at the start.
 
-  Tier 0 (Spiritforge entry) — Hazy Path (movement) or fast-cast
-  Emberclaw Slash. Backups: Emberclaw Finale / Crush / Torrent.
+  ── Spiritforging ────────────────────────────────────────
+  Several skills enter Spiritforged state ("Revered Fox Spirit
+  spiritforges into the foxfire of the foxtail fans"). The
+  spiritforging skills are:
+
+      Hazy Path · Foxflare Charge · Emberclaw Torrent
+      Emberclaw Slash · Flow: Emberclaw Sweep
+      Emberclaw Finale · Emberclaw Crush
+
+  Spiritforging persists between casts as long as you keep
+  comboing awakening skills (it drops on dash, idle, or pre-awak
+  swap). The "empowered" skills — those whose tooltips list extra
+  Spiritforged effects — are:
+
+      Twirling Foxflare · Flow: Foxflare Encore · Twirling Rhapsody
+      Foxflare Stroke · Foxflare Cleave · Foxflare Fleche
+      Twirling Retreat · Fan Kick · Foxflare Ambush
+
+  This combo encodes that as a `boost_after` list on every
+  empowered skill — the resolver promotes them while any
+  spiritforging cast is recent. Tiers below stay tuned for the
+  community DPS priority.
+
+  ── Tier breakdown ───────────────────────────────────────
+  Tier 0 (Spiritforge entry) — Hazy Path / Foxflare Charge
+    (movement) or fast-cast Emberclaw Slash. Backups:
+    Emberclaw Finale / Crush / Torrent.
 
   Tier 1 (Top Priority) — Foxflare Cleave, Twirling Rhapsody,
-  Foxflare Fleche, Emberclaw Slash → Flow: Emberclaw Sweep.
-  Emberclaw Slash promotes to highest priority while -DP needs
-  reapplying.
+    Foxflare Fleche, Emberclaw Slash → Flow: Emberclaw Sweep.
+    Emberclaw Slash promotes to highest priority while -DP needs
+    reapplying.
 
   Tier 2 (Core DPS) — Twirling Foxflare → Flow: Foxflare Encore,
-  Emberclaw Finale, Foxflare Ambush, Foxflare Stroke (AP buff is
-  only relevant below AP caps), Emberclaw Crush, Twirling Retreat
-  (into Twirling Foxflare or Emberclaw Torrent), Emberclaw Torrent.
+    Emberclaw Finale, Foxflare Ambush, Foxflare Stroke (AP buff
+    is only relevant below AP caps), Emberclaw Crush, Twirling
+    Retreat (into Twirling Foxflare or Emberclaw Torrent),
+    Emberclaw Torrent.
 
   Tier 3 (Filler) — Fan Kick, plus Foxflare Ambush / Foxflare
-  Fleche / Twirling Rhapsody when nothing higher is up.
+    Fleche / Twirling Rhapsody when nothing higher is up.
 
-  Notable Cancels (encoded as prefers_after) — these chains skip
-  the linger / windup of the preceding skill:
+  ── Notable Cancels (encoded as prefers_after) ───────────
     Foxflare Ambush → Foxflare Fleche
     Foxflare Ambush → Twirling Rhapsody
     Twirling Retreat → Twirling Foxflare
     Twirling Retreat → Emberclaw Torrent
 
-  Hard chains (encoded as requires_prev):
-    Flow: Emberclaw Sweep — only cast right after Emberclaw Slash
-    Flow: Foxflare Encore — only cast right after Twirling Foxflare
+  ── Hard chains (encoded as requires_prev) ───────────────
+    Flow: Emberclaw Sweep — only after Emberclaw Slash
+    Flow: Foxflare Encore — only after Twirling Foxflare
 priority:
   - tier: Spiritforge Entry
     description: |
-      Open every engagement Spiritforging — Hazy Path for movement,
-      or fast-cast Emberclaw Slash. Backups when those are unavailable.
+      Open every engagement with a Spiritforging skill — Hazy Path
+      or Foxflare Charge for movement, fast-cast Emberclaw Slash
+      otherwise. Backups when those are unavailable. Spiritforging
+      persists into the empowered skills below as long as you keep
+      comboing awakening abilities.
     skills:
       - skill: hazy_path
-        note: Movement engage.
+        note: Movement engage. Spiritforges.
+      - skill: foxflare_charge
+        note: Long-distance engage. Spiritforges.
       - skill: emberclaw_slash
         note: Fast-cast Spiritforge entry.
       - skill: emberclaw_finale
-        note: Backup entry.
+        note: Backup entry. Spiritforges.
       - skill: emberclaw_crush
-        note: Backup entry.
+        note: Backup entry. Spiritforges.
       - skill: emberclaw_torrent
-        note: Backup entry.
+        note: Backup entry. Spiritforges.
 
   - tier: Top Priority
     description: Once Spiritforged, cycle these by cooldown. Emberclaw Slash promotes when -DP needs reapplying.
     skills:
       - skill: emberclaw_slash
-        note: -20 DR shred. Top priority while -DP needs reapplying.
+        note: -20 DR shred. Top priority while -DP needs reapplying. Spiritforges.
       - skill: foxflare_cleave
-        note: -12 Evasion debuff.
+        note: -12 Evasion debuff. Empowered when Spiritforged.
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
       - skill: twirling_rhapsody
-        note: Protected catch.
+        note: Protected catch. Empowered when Spiritforged.
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
       - skill: foxflare_fleche
-        note: +30% Crit Rate self-buff. Cancels after Foxflare Ambush.
+        note: +30% Crit Rate self-buff. Empowered when Spiritforged. Cancels after Foxflare Ambush.
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
         prefers_after: foxflare_ambush
         prefers_window_ms: 1500
       - skill: flow_emberclaw_sweep
-        note: Follow-up after Emberclaw Slash.
+        note: Hold LMB after Emberclaw Slash. Spiritforges.
         requires_prev: emberclaw_slash
         requires_window_ms: 1500
 
   - tier: Core DPS
-    description: Cycle by cooldown. Foxflare Stroke +18 AP only matters below AP caps.
+    description: Cycle by cooldown. Foxflare Stroke +18 AP only matters below AP caps. All non-Spiritforging skills here are empowered when Spiritforged.
     skills:
       - skill: twirling_foxflare
-        note: Cancels after Twirling Retreat.
+        note: Empowered when Spiritforged. Cancels after Twirling Retreat.
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
         prefers_after: twirling_retreat
         prefers_window_ms: 1500
       - skill: flow_foxflare_encore
-        note: Follow-up after Twirling Foxflare.
+        note: Hold F after Twirling Foxflare. Empowered when Spiritforged.
         requires_prev: twirling_foxflare
         requires_window_ms: 1500
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
       - skill: emberclaw_finale
+        note: Spiritforges.
       - skill: foxflare_ambush
+        note: Empowered when Spiritforged.
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
       - skill: foxflare_stroke
-        note: +18 AP (skip when at AP cap).
+        note: +18 AP (skip when at AP cap). Empowered when Spiritforged.
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
       - skill: emberclaw_crush
+        note: Spiritforges.
       - skill: twirling_retreat
-        note: Reposition into Twirling Foxflare or Emberclaw Torrent.
+        note: Reposition into Twirling Foxflare or Emberclaw Torrent. Empowered when Spiritforged.
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
       - skill: emberclaw_torrent
-        note: Cancels after Twirling Retreat.
+        note: Spiritforges. Cancels after Twirling Retreat.
         prefers_after: twirling_retreat
         prefers_window_ms: 1500
 
   - tier: Filler
-    description: Use when nothing higher is off cooldown.
+    description: Use when nothing higher is off cooldown. All empowered when Spiritforged.
     skills:
       - skill: fan_kick
+        note: Empowered when Spiritforged.
+        boost_after:
+          - hazy_path
+          - foxflare_charge
+          - emberclaw_torrent
+          - emberclaw_slash
+          - flow_emberclaw_sweep
+          - emberclaw_finale
+          - emberclaw_crush
+        boost_window_ms: 4000
       - skill: foxflare_ambush
       - skill: foxflare_fleche
       - skill: twirling_rhapsody

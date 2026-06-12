@@ -241,25 +241,48 @@ class PriorityPlayer:
     # ------------------------------------------------------------------
     # Resolution
     # ------------------------------------------------------------------
+    @staticmethod
+    def _as_id_list(value: Any) -> tuple:
+        """Normalise a `boost_after` / `prefers_after` / `requires_prev`
+        value into a tuple of skill ids. Accepts:
+          - ``None`` / empty → ``()``
+          - a single string → ``(string,)``
+          - a list of strings → ``(*list,)``
+        Lists give "any-of" semantics — the gate / boost fires when ANY
+        of the named skills was cast. Used to express groups like
+        Maegu's spiritforging set (Hazy Path, Foxflare Charge,
+        Emberclaw Slash, …) without naming them on every empowered
+        row individually.
+        """
+        if value is None:
+            return ()
+        if isinstance(value, str):
+            return (value,) if value else ()
+        if isinstance(value, (list, tuple)):
+            return tuple(v for v in value if isinstance(v, str) and v)
+        return ()
+
     def _effective_tier(self, row: Dict[str, Any], now: float) -> int:
         """Return the tier this row should be considered at right now,
         applying any active ``boost_after`` / ``prefers_after`` rule."""
         tier = row["tier"]
 
-        booster = row.get("boost_after")
-        if booster:
-            last = self._last_cast.get(booster, 0.0)
-            if last > 0 and (now - last) * 1000.0 < row["boost_window_ms"]:
-                tier = min(tier, int(row["boost_to_tier"]))
+        boosters = self._as_id_list(row.get("boost_after"))
+        if boosters:
+            window_ms = row["boost_window_ms"]
+            for booster in boosters:
+                last = self._last_cast.get(booster, 0.0)
+                if last > 0 and (now - last) * 1000.0 < window_ms:
+                    tier = min(tier, int(row["boost_to_tier"]))
+                    break
 
         # prefers_after only fires while the *most-recent* cast was the
-        # named skill. Foxflare Ambush → Foxflare Fleche only "skips the
-        # linger" if Foxflare Ambush was the last thing pressed; if the
-        # user pressed something else in between the boost evaporates.
-        prefer = row.get("prefers_after")
+        # named skill (or one of them, if a list). Pressing anything
+        # else cancels the boost.
+        prefers = self._as_id_list(row.get("prefers_after"))
         if (
-            prefer
-            and self._last_cast_id == prefer
+            prefers
+            and self._last_cast_id in prefers
             and (now - self._last_cast_at) * 1000.0 < row["prefers_window_ms"]
         ):
             tier = min(tier, int(row["prefers_to_tier"]))
@@ -267,12 +290,12 @@ class PriorityPlayer:
 
     def _meets_requires(self, row: Dict[str, Any], now: float) -> bool:
         """Hard gate — if requires_prev is set, the row is only eligible
-        when the named skill was the *most-recent* cast and we're still
-        inside requires_window_ms."""
-        req = row.get("requires_prev")
-        if not req:
+        when the named skill (or one of the named skills) was the
+        *most-recent* cast and we're still inside requires_window_ms."""
+        reqs = self._as_id_list(row.get("requires_prev"))
+        if not reqs:
             return True
-        if self._last_cast_id != req:
+        if self._last_cast_id not in reqs:
             return False
         return (now - self._last_cast_at) * 1000.0 < row["requires_window_ms"]
 

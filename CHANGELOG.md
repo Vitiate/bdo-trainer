@@ -4,6 +4,36 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.2] — 2026-06-12
+
+### Added
+- **`boost_after` / `requires_prev` / `prefers_after` accept lists.**
+  Each of those priority-combo fields now takes a single skill id
+  (existing behaviour) OR a list of skill ids with any-of semantics.
+  Lets you encode state-style buffs cast by several entry skills —
+  Maegu's Spiritforging is the motivating case: any of Hazy Path,
+  Foxflare Charge, Emberclaw Slash, Flow: Emberclaw Sweep,
+  Emberclaw Finale, Emberclaw Crush, or Emberclaw Torrent enters
+  Spiritforged state, and a downstream empowered skill should be
+  promoted regardless of which one. List form sidesteps the old
+  "name one skill per row" limit.
+- **Maegu PvE Priority encodes Spiritforging.** Every empowered
+  skill (Twirling Foxflare, Flow: Foxflare Encore, Twirling
+  Rhapsody, Foxflare Stroke, Foxflare Cleave, Foxflare Fleche,
+  Twirling Retreat, Fan Kick, Foxflare Ambush) now carries
+  `boost_after: [<spiritforging set>]` with a 4 s window — so they
+  promote a tier while Spiritforging is fresh and fall back to
+  base priority once it lapses.
+- **Foxflare Charge added** as a Tier 0 Spiritforge entry option
+  alongside Hazy Path.
+- **Combo description** rewritten with a Spiritforging primer
+  drawn from the community guide / video.
+
+### Changed
+- Combo Editor preserves list-form `boost_after` on save (the
+  dropdown can't represent the list, so it's stashed in the
+  preserved-fields path along with the other advanced fields).
+
 ## [0.6.4-beta.1] — 2026-06-12
 
 ### Changed
@@ -650,6 +680,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.2
 [0.6.4-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.1
 [0.6.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.3
 [0.6.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.1
