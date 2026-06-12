@@ -33,7 +33,8 @@ POSITION_FILE = (
     Path(__file__).resolve().parent.parent.parent / "config" / "cc_panel_position.json"
 )
 
-_TICK_MS = 50  # cooldown wipe refresh rate (~20 fps)
+_TICK_MS = 80    # cooldown wipe refresh rate while a skill is on cooldown
+_IDLE_TICK_MS = 500  # tick rate while every CC skill is ready
 _DIM_COLOR = "#3A3A3A"  # row colour while on cooldown
 _TAG = "cc_panel"
 
@@ -458,11 +459,20 @@ class CCPanel:
         if not self._active:
             return
         self._triggered_at[skill_id] = time.monotonic()
+        # Force an immediate redraw — clear last_cut so _apply_progress
+        # doesn't short-circuit if the same skill was just on cooldown.
+        state = self._row_state.get(skill_id)
+        if state:
+            for frag in state["fragments"]:
+                frag.pop("last_cut", None)
         self._apply_progress(skill_id, 0.0)
 
     def _apply_progress(self, skill_id: str, progress: float) -> None:
         """Update the row's wipe state. *progress* is 0.0 (just triggered,
-        all dim) → 1.0 (fully recovered, all bright)."""
+        all dim) → 1.0 (fully recovered, all bright). Skips the
+        itemconfigure call when the visible cut for a fragment hasn't
+        changed since the previous tick — keeps the tick handler cheap
+        when the cooldown bar isn't visibly moving."""
         state = self._row_state.get(skill_id)
         if not state:
             return
@@ -472,7 +482,8 @@ class CCPanel:
             full_text = frag["text"]
             n = len(full_text)
             if progress >= 1.0:
-                # Idle: hide the dim layer, restore the bright text.
+                if frag.get("last_cut") == n:
+                    continue
                 try:
                     canvas.itemconfigure(frag["dim_id"], state="hidden")
                     canvas.itemconfigure(
@@ -480,10 +491,11 @@ class CCPanel:
                     )
                 except Exception:
                     pass
+                frag["last_cut"] = n
                 continue
-            # Cooldown: dim the whole string underneath, show a leading
-            # substring of the bright text on top.
             cut = int(round(n * progress))
+            if frag.get("last_cut") == cut:
+                continue
             try:
                 canvas.itemconfigure(frag["dim_id"], state="normal")
                 if cut <= 0:
@@ -496,6 +508,7 @@ class CCPanel:
                     )
             except Exception:
                 pass
+            frag["last_cut"] = cut
 
     def _start_tick(self) -> None:
         if self._tick_after_id is not None:
@@ -529,7 +542,12 @@ class CCPanel:
         for sid in finished:
             self._apply_progress(sid, 1.0)
             self._triggered_at.pop(sid, None)
-        self._tick_after_id = self.ctx.root.after(_TICK_MS, self._tick)
+        # Adaptive tick rate — the only reason we re-render is to step
+        # the cooldown wipe, so when nothing's on cooldown we can drop
+        # to a lazy idle interval and still respond to a press fast
+        # (a press calls _trigger which immediately resets the cut).
+        next_ms = _TICK_MS if self._triggered_at else _IDLE_TICK_MS
+        self._tick_after_id = self.ctx.root.after(next_ms, self._tick)
 
     # ------------------------------------------------------------------
     # Reposition (drag) — driven by RepositionHandler when active

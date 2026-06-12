@@ -110,8 +110,10 @@ skills:
       hits Forward last attack damage 1935% x1 Maximum 7 targets Recover 42 MP per hit
   charmed:
     name: Charmed
-    input: ↓ + SPACE SPACE during other skills
+    input: SPACE (or ↓ + SPACE during other skills)
     keys:
+    - space
+    keys_alt:
     - s
     - space
     protection: none
@@ -300,7 +302,7 @@ skills:
     cc:
     - floating
     - air_attack
-    cooldown_ms: 7000
+    cooldown_ms: 4000
     description: Call upon the revered fox spirit through the fox's eye and bind it to the foxfire of your foxtail fans The
       spiritforged foxfire becomes sharp claws that slash through enemies.
     notes: Call upon the revered fox spirit through the fox's eye and bind it to the foxfire of your foxtail fans The spiritforged
@@ -321,7 +323,7 @@ skills:
     - knockdown
     - down_attack
     - air_attack
-    cooldown_ms: 7000
+    cooldown_ms: 8000
     description: Draw power from the revered fox spirit through the fox's eye and your foxtail fans become Spiritforged. Sweep
       the front with the spiritforged foxfire of your foxtail fans.
     notes: Draw power from the revered fox spirit through the fox's eye and your foxtail fans become Spiritforged. Sweep the
@@ -472,18 +474,17 @@ skills:
       target hit from target 2 onward. (Max damage -20% .) (PvP only)
   foxflare_ambush:
     name: Foxflare Ambush
-    input: 'Perform Forward Attacks: F Perform Side Attacks: ← or → + F LMB while jumping to perform forward attacks Can be
-      performed instead of Soulsnare with your foxspirit charm'
+    input: F (or ← / → + F for side attacks)
     keys:
     - f
+    keys_alt:
     - a
-    - d
-    - lmb
+    - f
     protection: SA
     cc:
     - floating
     - air_attack
-    cooldown_ms: 6000
+    cooldown_ms: 8000
     description: Quickly surround yourself with Foxfire and leap into the air to aim for the enemy's rear.
     notes: Quickly surround yourself with Foxfire and leap into the air to aim for the enemy's rear. Attack damage 3623% x1,
       max 3 hits Critical Hit Rate +30% (Nullified during cooldown) Maximum 10 targets Recover 50 MP per hit (Nullified during
@@ -514,7 +515,7 @@ skills:
     cc:
     - floating
     - air_attack
-    cooldown_ms: 5000
+    cooldown_ms: 7000
     description: Slash the enemy with your foxtail fans.
     notes: Slash the enemy with your foxtail fans. Attack damage 4262% x2 Critical Hit Rate +20% Maximum 10 targets All Evasion
       -12 for 10 sec on hits Floating on hits Air Attack 41.84% damage in PvP only Applies the following when comboing while
@@ -529,7 +530,7 @@ skills:
     - knockback
     - air_attack
     - down_attack
-    cooldown_ms: 5000
+    cooldown_ms: 6000
     description: Spot the enemy's opening and swiftly dash in for a strike.
     notes: Spot the enemy's opening and swiftly dash in for a strike. Attack damage 3044% x2 Maximum 10 targets Critical Hit
       Rate +30% for 10 sec when using the skill (Nullified during cooldown) Recover 75 MP per hit (Nullified during cooldown)
@@ -558,7 +559,7 @@ skills:
     cc:
     - bound
     - down_attack
-    cooldown_ms: 5000
+    cooldown_ms: 9000
     description: Strike down the enemy with your foxtail fans and hit them again.
     notes: Strike down the enemy with your foxtail fans and hit them again. Attack 1 damage 3339% x2 Attack 2 damage 3339%
       x2 Critical Hit Rate +30% Maximum 10 targets All AP +18 for 10 sec when using the skill Bound on attack 1 hits (PvE
@@ -740,14 +741,14 @@ skills:
     description: Special Guild Squad Skill
   hazy_path:
     name: Hazy Path
-    input: ↑ + RMB Can be performed instead of Heavenward Dance with your foxspirit charm
+    input: ↑ + RMB
     keys:
     - w
     - rmb
     protection: iframe
     cc:
     - stun
-    cooldown_ms: 4000
+    cooldown_ms: 6000
     description: Deceive the enemy with your Fox Eye and appear in front of them to attack.
     notes: Deceive the enemy with your Fox Eye and appear in front of them to attack. Attack damage 3781% x2 Maximum 10 targets
       Recover 100 MP per hit Invincible -> Super Armor during the skill Stun on hits (PvE only) Push the target on hits (PvE
@@ -1198,15 +1199,17 @@ skills:
       Using Foxflare Ambush'
   twirling_foxflare:
     name: Twirling Foxflare
-    input: SHIFT + F F after Foxflare Ambush
+    input: SHIFT + F (or F after Foxflare Ambush)
     keys:
     - shift
+    - f
+    keys_alt:
     - f
     protection: FG
     cc:
     - air_attack
     - down_attack
-    cooldown_ms: 6000
+    cooldown_ms: 9000
     description: Strike down the enemy multiple times with your foxtail fans. If you are Spiritforged, Foxfire sharpens the
       edge of your fan, leaving a more deadly wound on the enemy.
     notes: 'Strike down the enemy multiple times with your foxtail fans. If you are Spiritforged, Foxfire sharpens the edge
@@ -1225,7 +1228,7 @@ skills:
     - bound
     - pull
     - down_attack
-    cooldown_ms: 6000
+    cooldown_ms: 8000
     description: Elegantly move away from the enemy.
     notes: Elegantly move away from the enemy. Attack damage 3714% x1, max 3 hits Last attack damage 3342% x2 Critical Hit
       Rate +60% Maximum 10 targets Super Armor during the skill Bound on last attack hits (PvE only) Pull in the target on
@@ -1237,16 +1240,18 @@ skills:
       of a hit. The revered fox spirit spiritforges into the foxfire of the foxtail fans.
   twirling_rhapsody:
     name: Twirling Rhapsody
-    input: ← or → + RMB Can be performed instead of Ghost Bomb with your foxspirit charm
+    input: ← or → + RMB
     keys:
     - a
+    - rmb
+    keys_alt:
     - d
     - rmb
     protection: SA
     cc:
     - floating
     - air_attack
-    cooldown_ms: 5000
+    cooldown_ms: 7000
     description: Rotate like a dance and charge into the enemy's side, striking them.
     notes: Rotate like a dance and charge into the enemy's side, striking them. Attack damage 3483% x1, max 3 hits Critical
       Hit Rate +30% (Nullified during cooldown) Maximum 10 targets Super Armor during the skill (Nullified during cooldown)
