@@ -333,9 +333,10 @@ def collect_skill_ids_used_by_combo(combo: Dict[str, Any]) -> set:
                 sid = entry.get("skill")
                 if isinstance(sid, str) and sid:
                     out.add(sid)
-                booster = entry.get("boost_after")
-                if isinstance(booster, str) and booster:
-                    out.add(booster)
+                for k in ("boost_after", "requires_prev", "prefers_after"):
+                    ref = entry.get(k)
+                    if isinstance(ref, str) and ref:
+                        out.add(ref)
     return out
 
 

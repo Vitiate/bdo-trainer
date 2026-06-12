@@ -139,6 +139,15 @@ class PriorityEditor(tk.Frame):
                         bt_int = None
                     if bt_int is not None:
                         clean["boost_to_tier"] = bt_int
+                # Preserve advanced fields (requires_prev / prefers_after
+                # families) the GUI doesn't surface, so editing a combo
+                # in the UI doesn't strip them out.
+                for adv in (
+                    "requires_prev", "requires_window_ms",
+                    "prefers_after", "prefers_window_ms", "prefers_to_tier",
+                ):
+                    if entry.get(adv) not in (None, ""):
+                        clean[adv] = entry[adv]
                 skills_clean.append(clean)
             tier_clean: Dict[str, Any] = {
                 "tier": label or f"Tier {len(out) + 1}",
@@ -243,6 +252,10 @@ class PriorityEditor(tk.Frame):
                     bw = sw["boost_window_var"].get().strip()
                     if bw:
                         entry["boost_window_ms"] = bw
+                # Carry over advanced fields the GUI didn't expose.
+                for k, v in (sw.get("advanced") or {}).items():
+                    if v not in (None, ""):
+                        entry[k] = v
                 new_skills.append(entry)
             tier["skills"] = new_skills
 
@@ -520,12 +533,24 @@ class PriorityEditor(tk.Frame):
                 command=cmd,
             ).pack(side="left", padx=1)
 
+        # Stash advanced fields the GUI doesn't surface so a later
+        # _sync_from_widgets() can preserve them.
+        advanced = {
+            k: entry.get(k)
+            for k in (
+                "requires_prev", "requires_window_ms",
+                "prefers_after", "prefers_window_ms", "prefers_to_tier",
+                "boost_to_tier",
+            )
+            if entry.get(k) not in (None, "")
+        }
         return {
             "skill_var": skill_var,
             "note_var": note_var,
             "boost_var": boost_var,
             "boost_window_var": boost_window_var,
             "skill_label_to_id": label_to_id,
+            "advanced": advanced,
         }
 
     # ------------------------------------------------------------------

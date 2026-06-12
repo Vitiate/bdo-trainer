@@ -4,6 +4,70 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.0] — 2026-06-12
+
+### Added
+- **Priority schema gains chain-aware fields.** Two new optional
+  per-skill fields cover the missing "this skill follows that one"
+  case the existing `boost_after` couldn't express:
+  - **`requires_prev` / `requires_window_ms`** — *hard gate*. The
+    skill is only eligible while the named skill is the
+    most-recent cast (within the window). Use for follow-up skills
+    like Maegu's `Flow: Emberclaw Sweep` (only after Emberclaw
+    Slash) or `Spirit Sparks` (only after Constricting Charm). The
+    resolver will skip the row entirely when the gate isn't met,
+    instead of displaying an uncastable skill.
+  - **`prefers_after` / `prefers_window_ms` / `prefers_to_tier`** —
+    *soft preference*. Boosts the row's effective tier while the
+    named skill is the most-recent cast (within the window).
+    Pressing anything else in between cancels the boost. Use for
+    Notable Cancels — e.g. Foxflare Fleche skips its windup when
+    chained right after Foxflare Ambush.
+  - Schema reference at `docs/priority-combos.md` updated.
+  - Combo Editor preserves these advanced fields on save even
+    though the GUI doesn't yet surface form widgets for them — set
+    them in YAML directly.
+- **Maegu Awakening priority combo** —
+  `pvp_dps_priority.yaml`. Five tiers (Spiritforge Entry → Top
+  Priority → Core DPS → Filler → AoE / Pre-Awakening). Encodes
+  Flow: Emberclaw Sweep / Flow: Foxflare Encore as `requires_prev`
+  gates, the Notable Cancel chains as `prefers_after` boosts.
+
+### Fixed
+- **Charmed broken on press.** `data/classes/maegu_awakening.yaml`
+  declared `keys: [s, space]` (both held simultaneously) — the
+  trainer never matched a SPACE press. Fixed to `keys: [space]`
+  with `keys_alt: [s, space]` for the side-attack form.
+- **Foxflare Ambush / Twirling Rhapsody key sets** were a flat list
+  of every keystroke option (`[f, a, d, lmb]` and `[a, d, rmb]`),
+  which required holding *all* of them. Fixed to a primary key set
+  plus an alt key set for the side-attack form, matching the actual
+  in-game inputs.
+- **Maegu Awakening skill cooldowns retuned.** The seeded values
+  from BDOCodex were wrong for several skills:
+  - Emberclaw Slash 7 s → 4 s
+  - Emberclaw Torrent 7 s → 8 s
+  - Foxflare Ambush 6 s → 8 s
+  - Twirling Rhapsody 5 s → 7 s
+  - Foxflare Fleche 5 s → 6 s
+  - Foxflare Cleave 5 s → 7 s
+  - Foxflare Stroke 5 s → 9 s
+  - Twirling Foxflare 6 s → 9 s
+  - Twirling Retreat 6 s → 8 s
+  - Hazy Path 4 s → 6 s
+
+### Changed
+- **CPU optimisation pass.** Several render-loop hot paths were
+  doing more work than necessary:
+  - `PriorityPlayer._tick` 100 ms → 250 ms, plus a "no-op redraw
+    skip" — only re-renders when the displayed skill OR effective
+    tier changes (was re-rendering every tick when any row had a
+    `boost_after` set).
+  - `CCPanel._tick` 50 ms → 80 ms while a skill is on cooldown,
+    500 ms idle (was running 50 ms forever). Each fragment caches
+    its last-rendered character cut and skips `itemconfigure` calls
+    that wouldn't visibly change anything.
+
 ## [0.5.9] — 2026-06-11
 
 ### Fixed
@@ -481,6 +545,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.0
 [0.5.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.9
 [0.5.8]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.8
 [0.5.7]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.7

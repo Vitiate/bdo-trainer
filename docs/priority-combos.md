@@ -115,12 +115,22 @@ a dict with these fields:
 |---|---|---|---|
 | `skill` | string | yes | Skill id from the class library |
 | `note` | string | no | One-line note rendered under the skill name |
-| `boost_after` | string | no | Skill id whose cast promotes this skill one or more tiers up |
+| `boost_after` | string | no | Skill id whose cast (within `boost_window_ms`) promotes this skill one or more tiers up — soft preference, evaluated against `last_cast` for the named skill |
 | `boost_window_ms` | int | no | How long the boost persists after `boost_after` is cast (default `5000`) |
 | `boost_to_tier` | int | no | Target tier index when boosted; default = current tier minus 1, clamped to 0 |
+| `requires_prev` | string | no | **Hard gate** — the skill is only eligible when the named skill was the *most-recent* cast and we're still inside `requires_window_ms`. Use for follow-up skills like `Flow: Emberclaw Sweep` (only after Emberclaw Slash) or `Spirit Sparks` (only after Constricting Charm) |
+| `requires_window_ms` | int | no | Max ms after `requires_prev` was cast for this skill to remain eligible (default `5000`) |
+| `prefers_after` | string | no | **Soft preference** — boosts priority while the named skill was the *most-recent* cast (within `prefers_window_ms`). Use for "notable cancels" — e.g. Foxflare Fleche skips the linger animation when chained right after Foxflare Ambush |
+| `prefers_window_ms` | int | no | Max ms after `prefers_after` was cast for the boost to remain (default `5000`) |
+| `prefers_to_tier` | int | no | Tier this skill promotes to while preferred (default = current tier minus 1, clamped to 0) |
 
-The two equivalent forms are interchangeable — the parser accepts a
-plain string and treats it as `{skill: <string>}`.
+The two equivalent forms (bare string vs. dict) are interchangeable —
+the parser accepts a plain string and treats it as `{skill: <string>}`.
+
+`boost_after` checks any cast within the window; `prefers_after`
+checks the *most-recent* cast specifically. If you press something
+else between the trigger skill and the dependent skill,
+`boost_after` still fires but `prefers_after` does not.
 
 ## How priority resolution works at runtime
 
@@ -132,14 +142,20 @@ top-to-bottom and returns the first skill matching all of:
    `cooldown_ms`, taken from `data/classes/<slug>.yaml`).
 2. The skill has at least one usable key combination (any combo —
    not `hotbar`-only).
-3. If a `boost_after` rule is in effect for this skill *and* the
-   referenced skill was cast within `boost_window_ms`, the skill is
-   promoted to `boost_to_tier` for resolution purposes; otherwise the
-   skill is considered at its native tier.
+3. If `requires_prev` is set, the named skill must have been the
+   most-recent cast and within `requires_window_ms`. Otherwise the
+   row is skipped entirely.
+4. The row's effective tier is computed:
+   - If `boost_after` is set and the named skill was cast within
+     `boost_window_ms`, tier promotes to `boost_to_tier`.
+   - If `prefers_after` is set and the named skill is the
+     most-recent cast and within `prefers_window_ms`, tier promotes
+     to `prefers_to_tier`.
+   - Otherwise the row's native tier applies.
 
 When the user presses the displayed skill's keys, the player stamps
-`last_cast_at[<skill_id>] = now` and immediately re-resolves to pick
-the next skill.
+`last_cast[<skill_id>] = now`, also updates the most-recent cast
+pointer, and immediately re-resolves to pick the next skill.
 
 ### Cooldown timing notes
 

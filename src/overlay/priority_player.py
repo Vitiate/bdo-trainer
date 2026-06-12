@@ -24,7 +24,9 @@ from src.utils.keys import format_key_display
 
 logger = logging.getLogger("bdo_trainer")
 
-_TICK_MS = 100  # cooldown re-check rate
+_TICK_MS = 250  # cooldown re-check rate (ms). 250ms is more than smooth
+                # enough for a cooldown-driven display and ~2.5× cheaper
+                # than the original 100ms tick.
 _DEFAULT_BOOST_WINDOW_MS = 5000
 
 
@@ -63,7 +65,12 @@ class PriorityPlayer:
         self._key_remap: Dict[str, str] = {}
         # skill_id → monotonic timestamp of last cast (cooldown start)
         self._last_cast: Dict[str, float] = {}
+        # Most-recent cast in time, to enforce requires_prev/prefers_after.
+        self._last_cast_id: Optional[str] = None
+        self._last_cast_at: float = 0.0
         self._displayed_skill: Optional[str] = None
+        # Cached state of the displayed row, used to skip no-op re-renders.
+        self._displayed_eff_tier: Optional[int] = None
         self._tick_after_id: Optional[str] = None
 
         # External hooks (parity with ComboPlayer so the dispatcher can
@@ -105,6 +112,8 @@ class PriorityPlayer:
             return
         self._is_running = True
         self._last_cast.clear()
+        self._last_cast_id = None
+        self._last_cast_at = 0.0
         self._displayed_skill = None
         logger.info(
             f"Starting priority combo: {self._combo_name} "
@@ -210,6 +219,23 @@ class PriorityPlayer:
                 entry.get("boost_window_ms", _DEFAULT_BOOST_WINDOW_MS)
             ),
             "boost_to_tier": int(boost_to),
+            # Hard gate: this skill is only eligible for the next 'requires_window_ms'
+            # after the named skill is cast (e.g. Flow: Emberclaw Sweep needs
+            # Emberclaw Slash as the most-recent cast). Skipped when missing.
+            "requires_prev": entry.get("requires_prev"),
+            "requires_window_ms": int(
+                entry.get("requires_window_ms", _DEFAULT_BOOST_WINDOW_MS)
+            ),
+            # Soft preference: priority is boosted while the named skill was
+            # recently cast (e.g. Foxflare Fleche right after Foxflare Ambush
+            # skips the linger animation). Falls back to native tier.
+            "prefers_after": entry.get("prefers_after"),
+            "prefers_window_ms": int(
+                entry.get("prefers_window_ms", _DEFAULT_BOOST_WINDOW_MS)
+            ),
+            "prefers_to_tier": int(
+                entry.get("prefers_to_tier", max(0, tier_idx - 1))
+            ),
         }
 
     # ------------------------------------------------------------------
@@ -217,27 +243,45 @@ class PriorityPlayer:
     # ------------------------------------------------------------------
     def _effective_tier(self, row: Dict[str, Any], now: float) -> int:
         """Return the tier this row should be considered at right now,
-        applying any active ``boost_after`` rule."""
+        applying any active ``boost_after`` / ``prefers_after`` rule."""
+        tier = row["tier"]
+
         booster = row.get("boost_after")
-        if not booster:
-            return row["tier"]
-        last = self._last_cast.get(booster, 0.0)
-        if last <= 0:
-            return row["tier"]
-        elapsed_ms = (now - last) * 1000.0
-        if elapsed_ms >= row["boost_window_ms"]:
-            return row["tier"]
-        return min(row["tier"], int(row["boost_to_tier"]))
+        if booster:
+            last = self._last_cast.get(booster, 0.0)
+            if last > 0 and (now - last) * 1000.0 < row["boost_window_ms"]:
+                tier = min(tier, int(row["boost_to_tier"]))
+
+        # prefers_after only fires while the *most-recent* cast was the
+        # named skill. Foxflare Ambush → Foxflare Fleche only "skips the
+        # linger" if Foxflare Ambush was the last thing pressed; if the
+        # user pressed something else in between the boost evaporates.
+        prefer = row.get("prefers_after")
+        if (
+            prefer
+            and self._last_cast_id == prefer
+            and (now - self._last_cast_at) * 1000.0 < row["prefers_window_ms"]
+        ):
+            tier = min(tier, int(row["prefers_to_tier"]))
+        return tier
+
+    def _meets_requires(self, row: Dict[str, Any], now: float) -> bool:
+        """Hard gate — if requires_prev is set, the row is only eligible
+        when the named skill was the *most-recent* cast and we're still
+        inside requires_window_ms."""
+        req = row.get("requires_prev")
+        if not req:
+            return True
+        if self._last_cast_id != req:
+            return False
+        return (now - self._last_cast_at) * 1000.0 < row["requires_window_ms"]
 
     def _resolve_next(self) -> Optional[Dict[str, Any]]:
-        """Pick the highest-priority off-cooldown skill, applying any
-        active boost rules."""
+        """Pick the highest-priority off-cooldown skill, honouring
+        requires_prev gates and boost / prefers_after promotions."""
         if not self._rows:
             return None
         now = time.monotonic()
-        # Build a (effective_tier, native_tier_index) sort key so boosted
-        # rows promote correctly while ties fall back to their declared
-        # order in the YAML.
         candidates: List[tuple] = []
         for idx, row in enumerate(self._rows):
             cd = row["cooldown_ms"]
@@ -248,6 +292,8 @@ class PriorityPlayer:
                 and (now - last) * 1000.0 < cd
             )
             if on_cd:
+                continue
+            if not self._meets_requires(row, now):
                 continue
             eff = self._effective_tier(row, now)
             candidates.append((eff, idx, row))
@@ -329,7 +375,10 @@ class PriorityPlayer:
     def _on_pressed(self, skill_id: str) -> None:
         if not self._is_running:
             return
-        self._last_cast[skill_id] = time.monotonic()
+        now = time.monotonic()
+        self._last_cast[skill_id] = now
+        self._last_cast_id = skill_id
+        self._last_cast_at = now
         self._resolve_and_render()
 
     # ------------------------------------------------------------------
@@ -340,6 +389,9 @@ class PriorityPlayer:
             return
         row = self._resolve_next()
         self._displayed_skill = row["id"] if row else None
+        self._displayed_eff_tier = (
+            self._effective_tier(row, time.monotonic()) if row else None
+        )
         self._render(row)
 
     def _render(self, row: Optional[Dict[str, Any]]) -> None:
@@ -441,12 +493,13 @@ class PriorityPlayer:
             return
         new_row = self._resolve_next()
         new_id = new_row["id"] if new_row else None
-        if new_id != self._displayed_skill:
+        new_eff = (
+            self._effective_tier(new_row, time.monotonic())
+            if new_row is not None
+            else None
+        )
+        if new_id != self._displayed_skill or new_eff != self._displayed_eff_tier:
             self._displayed_skill = new_id
+            self._displayed_eff_tier = new_eff
             self._render(new_row)
-        else:
-            # Same skill, but the boost label might have flipped — cheap
-            # to re-render so the badge state stays accurate.
-            if new_row is not None and new_row.get("boost_after"):
-                self._render(new_row)
         self._tick_after_id = self.ctx.root.after(_TICK_MS, self._tick)
