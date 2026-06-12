@@ -1,12 +1,12 @@
-combo_id: pvp_dps_priority
+combo_id: pve_dps_priority
 class: Maegu
 spec: Awakening
 bundle_id: default
-category: pvp
+category: pve
 mode: priority
-name: 'PvP / PvE — DPS Priority'
+name: 'PvE — DPS Priority'
 description: |
-  Cooldown-driven Awakening Maegu rotation. Apply -DP at the start.
+  Cooldown-driven Awakening Maegu PvE rotation. Apply -DP at the start.
 
   Tier 0 (Spiritforge entry) — Hazy Path (movement) or fast-cast
   Emberclaw Slash. Backups: Emberclaw Finale / Crush / Torrent.
@@ -24,18 +24,12 @@ description: |
   Tier 3 (Filler) — Fan Kick, plus Foxflare Ambush / Foxflare
   Fleche / Twirling Rhapsody when nothing higher is up.
 
-  Tier 4 (AoE / Pre-awakening filler) — Constricting Charm,
-  Spirit Sparks, Foxspirit Tag (-DP). Swap back to Awakening as
-  soon as AoE is sufficient.
-
   Notable Cancels (encoded as prefers_after) — these chains skip
   the linger / windup of the preceding skill:
     Foxflare Ambush → Foxflare Fleche
     Foxflare Ambush → Twirling Rhapsody
     Twirling Retreat → Twirling Foxflare
     Twirling Retreat → Emberclaw Torrent
-    Almost anything → Emberclaw Slash (windup skip)
-    Almost anything → Emberclaw Torrent (windup skip)
 
   Hard chains (encoded as requires_prev):
     Flow: Emberclaw Sweep — only cast right after Emberclaw Slash
@@ -47,31 +41,31 @@ priority:
       or fast-cast Emberclaw Slash. Backups when those are unavailable.
     skills:
       - skill: hazy_path
-        note: ↑ + RMB. Movement engage.
+        note: Movement engage.
       - skill: emberclaw_slash
-        note: SHIFT + LMB. Fast-cast Spiritforge entry.
+        note: Fast-cast Spiritforge entry.
       - skill: emberclaw_finale
-        note: SHIFT + Q. Backup entry.
+        note: Backup entry.
       - skill: emberclaw_crush
-        note: E. Backup entry.
+        note: Backup entry.
       - skill: emberclaw_torrent
-        note: SHIFT + RMB. Backup entry.
+        note: Backup entry.
 
   - tier: Top Priority
     description: Once Spiritforged, cycle these by cooldown. Emberclaw Slash promotes when -DP needs reapplying.
     skills:
       - skill: emberclaw_slash
-        note: -20 DR shred. Top priority while -DP debuff needs reapplying.
+        note: -20 DR shred. Top priority while -DP needs reapplying.
       - skill: foxflare_cleave
-        note: Q. -12 Evasion debuff.
+        note: -12 Evasion debuff.
       - skill: twirling_rhapsody
-        note: ← / → + RMB. Protected catch.
+        note: Protected catch.
       - skill: foxflare_fleche
-        note: RMB. +30% Crit Rate self-buff. Notable cancel after Foxflare Ambush.
+        note: +30% Crit Rate self-buff. Cancels after Foxflare Ambush.
         prefers_after: foxflare_ambush
         prefers_window_ms: 1500
       - skill: flow_emberclaw_sweep
-        note: Hold LMB after Emberclaw Slash.
+        note: Follow-up after Emberclaw Slash.
         requires_prev: emberclaw_slash
         requires_window_ms: 1500
 
@@ -79,25 +73,22 @@ priority:
     description: Cycle by cooldown. Foxflare Stroke +18 AP only matters below AP caps.
     skills:
       - skill: twirling_foxflare
-        note: SHIFT + F. Notable cancel after Twirling Retreat.
+        note: Cancels after Twirling Retreat.
         prefers_after: twirling_retreat
         prefers_window_ms: 1500
       - skill: flow_foxflare_encore
-        note: Hold F after Twirling Foxflare.
+        note: Follow-up after Twirling Foxflare.
         requires_prev: twirling_foxflare
         requires_window_ms: 1500
       - skill: emberclaw_finale
-        note: SHIFT + Q.
       - skill: foxflare_ambush
-        note: F.
       - skill: foxflare_stroke
-        note: ↓ + RMB. +18 AP buff (skip when at AP cap).
+        note: +18 AP (skip when at AP cap).
       - skill: emberclaw_crush
-        note: E.
       - skill: twirling_retreat
-        note: ↓ + F. Reposition into Twirling Foxflare or Emberclaw Torrent.
+        note: Reposition into Twirling Foxflare or Emberclaw Torrent.
       - skill: emberclaw_torrent
-        note: SHIFT + RMB. Notable cancel after Twirling Retreat.
+        note: Cancels after Twirling Retreat.
         prefers_after: twirling_retreat
         prefers_window_ms: 1500
 
@@ -105,22 +96,6 @@ priority:
     description: Use when nothing higher is off cooldown.
     skills:
       - skill: fan_kick
-        note: ↓ + LMB.
       - skill: foxflare_ambush
-        note: Filler when off cooldown above.
       - skill: foxflare_fleche
-        note: Filler when off cooldown above.
       - skill: twirling_rhapsody
-        note: Filler when off cooldown above.
-
-  - tier: AoE / Pre-Awakening
-    description: AoE filler while gathering (e.g. DSR smallies). Swap back to Awakening as soon as AoE is sufficient.
-    skills:
-      - skill: constricting_charm
-        note: SHIFT + Z.
-      - skill: spirit_sparks
-        note: LMB after Constricting Charm.
-        requires_prev: constricting_charm
-        requires_window_ms: 1500
-      - skill: foxspirit_tag
-        note: RMB. -DP debuff.

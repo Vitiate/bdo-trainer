@@ -294,7 +294,7 @@ skills:
       with 50% of the damage of a hit.
   emberclaw_slash:
     name: Emberclaw Slash
-    input: SHIFT + LMB LMB after other skills
+    input: SHIFT + LMB
     keys:
     - shift
     - lmb
@@ -302,7 +302,7 @@ skills:
     cc:
     - floating
     - air_attack
-    cooldown_ms: 4000
+    cooldown_ms: 7000
     description: Call upon the revered fox spirit through the fox's eye and bind it to the foxfire of your foxtail fans The
       spiritforged foxfire becomes sharp claws that slash through enemies.
     notes: Call upon the revered fox spirit through the fox's eye and bind it to the foxfire of your foxtail fans The spiritforged
@@ -311,8 +311,7 @@ skills:
       spiritforges into the foxfire of the foxtail fans.
   emberclaw_torrent:
     name: Emberclaw Torrent
-    input: 'SHIFT + RMB Hold RMB to perform attack 3 SHIFT + RMB after forward Spirit Step, forward Chain: Spirit Step, Foxflare
-      Ambush, or Twirling Retreat to perform attack 3'
+    input: SHIFT + RMB
     keys:
     - shift
     - rmb
