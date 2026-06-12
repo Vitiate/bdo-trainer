@@ -1,13 +1,127 @@
 # Maegu — Succession — bundle: default
-# Auto-created by seed_class_shells.
+# Loadout + metadata for this combo bundle.
 
 class: Maegu
 spec: Succession
 bundle_id: default
 name: Default
-description: ''
-locked_skills: []
-hotbar_skills: []
+description: |
+  Succession Maegu — PvE-focused bundle (guide courtesy of Netherax).
+
+  ── Buffs ────────────────────────────────────────────────
+    +20 AP   — Charmed (Space), Prime: Nukduri Dance (Shift+C),
+               Flow: Nether River (LMB flow)
+               (these don't stack with each other)
+    +25 AP   — Prime: Foxspirit Form (Slot, 3 min CD; overwrites
+               above so effectively +5 AP)
+
+  ── Debuffs (excluding CC and DoT) ───────────────────────
+    -20 DP   — Prime: Foxspirit Tag (RMB)
+
+  ── Movement ─────────────────────────────────────────────
+    Spirit Step / Chain: Spirit Step (Shift+Direction) — PvE
+                                              iframes (slow animation)
+    Prime: Soul Tear      (W+Q)   — Fastest, most efficient movement
+    Path of Petals        (W+F)   — Long distance; falls down ledges
+                                    without the fall animation
+    Prime: Lurking Claws  (S+F)   — Targeted teleport behind target
+    Prime: Ghost Bomb     (A/D+RMB) — Short side dash with iframe
+    Flow: Hanpuri         (E/F flow) — Targeted teleport towards target
+
+    Prime: Soul Tear is the best medium-distance choice.
+    Prime: Lurking Claws and Flow: Hanpuri are very fast targeted
+    teleports from short-medium range.
+
+    Long-range example:
+      Chain: Spirit Step → Spirit Step → Prime: Soul Tear
+      → Path of Petals
+      → Chain: Spirit Step → Spirit Step → Prime: Soul Tear
+    Add Prime: Ghost Bomb and Prime: Flower Shroud for extra distance.
+
+  ── Repositioning ────────────────────────────────────────
+    Prime: Heavenward Dance (W+RMB)   — Short forward dash, no
+                                        collision, great DPS
+    Prime: Lurking Claws    (S+F)     — Targeted teleport behind,
+                                        good DPS, very fast
+    Prime: Flower Shroud    (W/S+E)   — Short forward / backward dash,
+                                        decent DPS
+    Prime: Bared Claws      (A/D+LMB) — Short side dash, low DPS
+    Prime: Foxspirit Deceiver (Q clone swap) — Powerful repositioning
+        with planning; usable while in most other animations.
+
+  ── Skill Enhancements (Rabams) ──────────────────────────
+    Lv. 56
+      Heavenly Return — best PvE choice. Fast, decent damage. Used in
+        Hanpuri (E flow) combos or alone for a quick backstep. Fast
+        enough that lack of protection is rarely an issue.
+      Spirit Parade — slower / lower DPS but protected option.
+    Lv. 57
+      Petal Snare — long animation, low DPS.
+      Constricting Charm — decent filler with very high attack speed.
+        Flows into Spirit Sparks.
+    Lv. 58
+      Spirit Sparks — weak alone but follow-up to Constricting Charm.
+        Filler when nothing else is up.
+      Soul Charm — not useful in PvE. Out-of-combat HP recovery only,
+        costs stamina for very little healing.
+
+  ── Magnus Skill — Foxflare Fling ────────────────────────
+    TL;DR: Magnus is bad in PvE — leave it unlearned to keep
+    Soulflame available.
+
+    Two components:
+      Long frontal-guard windup (skippable from several skills:
+        Prime: Foxflare, Prime: Foxspirit Tag, Prime: Petal Play,
+        Prime: Flower Shroud, etc.)
+      Long-range line attack (max 3 segmented hits — almost never
+        gets all 3; 1 hit is exceptionally bad, 2 hits still bad,
+        3 is decent but inconsistent).
+
+  ── Notable Cancels ──────────────────────────────────────
+    Prime: Petal Play     (Shift+LMB) — Faster after Prime: Spirited
+        Away (S+LMB) / Prime: Bared Claws (D+LMB attack 1, A+LMB
+        attack 2 — asymmetric).
+    Prime: Foxspirit Tag  (RMB) — Faster after Prime: Flower Shroud
+        (W/S+E attack 1) / Prime: Bared Claws (D+LMB attack 1, A+LMB
+        attack 2 — asymmetric).
+    Heavenly Return       (Shift+X) — Faster into Prime: Heavenward
+        Dance (W+RMB); cancels a small linger.
+    Soulsnare             (F) — Fast into Prime: Bared Claws or
+        Flow: Hanpuri.
+    Prime: Flower Shroud  (W/S+E) — Attack 2 cancellable by many
+        spells; often used to reposition or accelerate Prime:
+        Foxspirit Tag.
+    Prime: Spirit Swirl   (Shift+F) — Cancellable midway by Prime:
+        Heavenward Dance, but usually inadvisable (high-DPS skill).
+    Prime: Bared Claws    (A/D+LMB) — Cancels most things; common
+        for accelerating Prime: Bristling Sparks (Shift+RMB).
+    Prime: Soul Tear      (W+Q) — Cancels most things (notably any
+        point of Path of Petals).
+    Prime: Ghost Bomb     (A/D+RMB) — Cancels most things (notably
+        any point of Path of Petals).
+    Path of Petals        (W+F) — Cancels most things.
+
+  ── Slow casts (avoid these) ─────────────────────────────
+    Prime: Spirit Swirl (Shift+F) is slow when cast from idle —
+    use anything before it.
+
+  ── Input traps ──────────────────────────────────────────
+    Charmed (Space)        — Pressing Space without a spell before
+                             it makes you jump.
+    Prime: Lurking Claws (S+F) — Holding the input until the
+                                 teleport behind attack 2 is
+                                 required; releasing early prevents
+                                 the teleport.
+locked_skills:
+- name: Evasion
+  reason: Slow, not used in optimised play.
+- name: Petalblast
+  reason: Preference — rarely used; lock so accidental presses don't trigger it.
+hotbar_skills:
+- name: 'Prime: Foxspirit Form'
+  reason: 3 minute self-buff (+25 AP). Quickslot it.
+- name: Soul Charm
+  reason: Quickslot if you took it (out-of-combat HP recovery only).
 core_skill: {}
 skill_addons:
   pve: []

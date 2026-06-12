@@ -1,0 +1,102 @@
+combo_id: pve_dps_priority
+class: Maegu
+spec: Succession
+bundle_id: default
+category: pve
+mode: priority
+name: 'PvE — DPS Priority'
+description: |
+  Cooldown-driven Succession Maegu PvE rotation (guide courtesy of
+  Netherax). Apply -DP at the start.
+
+  Tier 0 (Top Priority) — Prime: Heavenward Dance, Prime: Spirited
+    Away → Prime: Petal Play, Prime: Spirit Swirl.
+
+  Tier 1 (Core DPS) — Prime: Foxflare, Prime: Nukduri Dance,
+    Prime: Lurking Claws, Prime: Bristling Sparks, Prime: Flower
+    Shroud or Prime: Bared Claws → Prime: Foxspirit Tag (top
+    priority while -DP needs reapplying), and Prime: Flower Shroud
+    on its own.
+
+  Tier 2 (Filler) — Heavenly Return, Constricting Charm + Spirit
+    Sparks chain, Soulflame → Flow: Hanpuri, Soulsnare → Flow:
+    Hanpuri.
+
+  Notes:
+    - Prime: Nukduri Dance and Charmed (backup) are your AP buffs.
+      Only relevant below AP cap.
+    - Foxspirit Tag promotes to highest priority while the -DP
+      debuff needs reapplying.
+    - Notable cancels are encoded as `prefers_after` boosts so the
+      cancel-chain skill is preferred while its trigger is recent.
+
+  Notable Cancels (prefers_after):
+    Prime: Petal Play     ← after Prime: Spirited Away / Prime: Bared Claws
+    Prime: Foxspirit Tag  ← after Prime: Flower Shroud / Prime: Bared Claws
+    Heavenly Return       ← into Prime: Heavenward Dance (boosts the Dance)
+    Flow: Hanpuri         ← after Soulsnare / Soulflame
+
+  Hard chains (requires_prev):
+    Spirit Sparks         — only after Constricting Charm
+    Flow: Hanpuri         — only after Soulsnare or Soulflame
+priority:
+  - tier: Top Priority
+    description: Highest-DPS skills. Cycle these by cooldown.
+    skills:
+      - skill: prime_heavenward_dance
+        note: Faster after Heavenly Return — cancels its linger.
+        prefers_after: heavenly_return
+        prefers_window_ms: 1500
+      - skill: prime_spirited_away
+        note: Sets up the Petal Play cancel.
+      - skill: prime_petal_play
+        note: Faster after Prime Spirited Away or Prime Bared Claws.
+        prefers_after:
+          - prime_spirited_away
+          - prime_bared_claws
+        prefers_window_ms: 1500
+      - skill: prime_spirit_swirl
+        note: Slow when cast from idle — use any skill before it.
+
+  - tier: Core DPS
+    description: |
+      Cycle by cooldown. Foxspirit Tag promotes to top priority
+      while the -DP debuff needs reapplying.
+    skills:
+      - skill: prime_foxspirit_tag
+        note: -20 DP debuff. Top priority while -DP needs reapplying. Cancels after Flower Shroud / Bared Claws.
+        prefers_after:
+          - prime_flower_shroud
+          - prime_bared_claws
+        prefers_window_ms: 1500
+      - skill: prime_foxflare
+      - skill: prime_nukduri_dance
+        note: +20 AP self-buff (only relevant below AP cap).
+      - skill: prime_lurking_claws
+        note: Hold input until the teleport-behind happens; releasing early aborts.
+      - skill: prime_bristling_sparks
+        note: Cancellable into via Prime Bared Claws to skip windup.
+        prefers_after: prime_bared_claws
+        prefers_window_ms: 1500
+      - skill: prime_flower_shroud
+      - skill: prime_bared_claws
+
+  - tier: Filler
+    description: Use when nothing higher is off cooldown.
+    skills:
+      - skill: heavenly_return
+      - skill: constricting_charm
+        note: Decent filler with very high attack speed. Flows into Spirit Sparks.
+      - skill: spirit_sparks
+        note: Follow-up to Constricting Charm.
+        requires_prev: constricting_charm
+        requires_window_ms: 1500
+      - skill: soulflame
+      - skill: soulsnare
+        note: Fast into Prime Bared Claws or Flow Hanpuri.
+      - skill: flow_hanpuri
+        note: Targeted teleport towards target.
+        requires_prev:
+          - soulsnare
+          - soulflame
+        requires_window_ms: 1500

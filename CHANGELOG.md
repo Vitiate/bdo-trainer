@@ -4,6 +4,46 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.3] — 2026-06-12
+
+### Added
+- **Multi-select boost-after picker.** The Combo Editor's
+  boost-after dropdown is now a button that opens a checkbox
+  picker — tick any number of skills, click OK. The picker
+  scrolls (handy for bundles with 50+ skills), supports a
+  Clear All button, and shows the user's full label set
+  ("Skill Name  (skill_id)"). The button itself shows
+  "(none)", a single skill name, or "Skill Name +N" so you
+  can see the multi-select state at a glance.
+- **Maegu Succession — PvE bundle metadata** filled in with
+  the full Netherax PvE guide:
+  - Locked skills (Evasion, Petalblast).
+  - Hotbar / quickslot (Prime: Foxspirit Form 3-min +25 AP
+    buff, optional Soul Charm).
+  - Buffs / debuffs / movement / repositioning sections.
+  - Rabams (Lv 56 Heavenly Return primary; Lv 57 Constricting
+    Charm > Petal Snare; Lv 58 Spirit Sparks).
+  - Magnus skill verdict (leave unlearned — keeps Soulflame
+    available).
+  - Notable cancels, slow casts to avoid, input traps.
+- **Maegu Succession PvE Priority combo** —
+  `pve_dps_priority.yaml`. Three tiers:
+  - Top Priority (Heavenward Dance, Spirited Away, Petal Play,
+    Spirit Swirl).
+  - Core DPS (Foxflare, Nukduri Dance, Lurking Claws, Bristling
+    Sparks, Flower Shroud / Bared Claws → Foxspirit Tag for
+    -DP).
+  - Filler (Heavenly Return, Constricting Charm > Spirit Sparks
+    chain, Soulflame / Soulsnare → Flow: Hanpuri).
+  - Notable cancels encoded as `prefers_after`; the
+    Constricting Charm → Spirit Sparks and
+    Soulsnare/Soulflame → Flow: Hanpuri chains as
+    `requires_prev` gates.
+
+### Removed
+- Old miscategorised `pvp_dps_priority.yaml` — the actual
+  guide content was always PvE.
+
 ## [0.6.4-beta.2] — 2026-06-12
 
 ### Added
@@ -680,6 +720,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.3
 [0.6.4-beta.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.2
 [0.6.4-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.1
 [0.6.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.3

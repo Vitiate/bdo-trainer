@@ -256,10 +256,13 @@ class PriorityEditor(tk.Frame):
                 note = sw["note_var"].get().strip()
                 if note:
                     entry["note"] = note
-                booster_label = sw["boost_var"].get().strip()
-                booster = lbl_map.get(booster_label, booster_label)
-                if booster:
-                    entry["boost_after"] = booster
+                # boost_after — read directly from the picker's state.
+                boost_state = sw.get("boost_state") or {}
+                boost_ids = list(boost_state.get("ids") or [])
+                if boost_ids:
+                    entry["boost_after"] = (
+                        boost_ids if len(boost_ids) > 1 else boost_ids[0]
+                    )
                     bw = sw["boost_window_var"].get().strip()
                     if bw:
                         entry["boost_window_ms"] = bw
@@ -477,40 +480,57 @@ class PriorityEditor(tk.Frame):
         )
         note_entry.pack(side="left", padx=2)
 
-        # Boost-after dropdown. boost_after may be a list (any-of) —
-        # the dropdown can only show one entry, so display the first
-        # element and label it as multi.
+        # Boost-after editor. Stores a list of skill ids; the button's
+        # label summarises the current selection ("(none)", a single
+        # name, or "Foo + N more"). Click opens a checkbox dialog.
         raw_booster = entry.get("boost_after", "")
         if isinstance(raw_booster, list):
-            booster_id = raw_booster[0] if raw_booster else ""
-            multi_suffix = (
-                f"  (+{len(raw_booster) - 1} more)"
-                if len(raw_booster) > 1 else ""
-            )
+            boost_ids: List[str] = [
+                b for b in raw_booster if isinstance(b, str) and b
+            ]
+        elif isinstance(raw_booster, str) and raw_booster:
+            boost_ids = [raw_booster]
         else:
-            booster_id = raw_booster if isinstance(raw_booster, str) else ""
-            multi_suffix = ""
-        if booster_id:
-            base = next(
-                (lbl for lbl, sid in label_to_id.items() if sid == booster_id),
-                booster_id,
+            boost_ids = []
+        boost_state: Dict[str, Any] = {"ids": boost_ids}
+
+        def _label_for_state() -> str:
+            ids = boost_state["ids"]
+            if not ids:
+                return "(none)"
+            id_to_label = {sid: lbl for lbl, sid in label_to_id.items()}
+            first = id_to_label.get(ids[0], ids[0])
+            # Strip the "  (id)" suffix from the menu label for compactness.
+            short = first.split("  (")[0]
+            if len(ids) == 1:
+                return short
+            return f"{short}  +{len(ids) - 1}"
+
+        boost_label_var = tk.StringVar(value=_label_for_state())
+
+        def _open_picker() -> None:
+            self._open_boost_picker(
+                row,
+                boost_state,
+                label_to_id,
+                boost_label_var,
+                _label_for_state,
             )
-            boost_initial = base + multi_suffix
-        else:
-            boost_initial = ""
-        boost_var = tk.StringVar(value=boost_initial)
-        boost_menu = tk.OptionMenu(row, boost_var, *labels)
-        boost_menu.configure(
+
+        boost_menu = tk.Button(
+            row,
+            textvariable=boost_label_var,
+            command=_open_picker,
+            font=FONT_SMALL,
             bg=BG_INPUT,
             fg=FG_TEXT,
-            font=FONT_SMALL,
-            highlightthickness=0,
-            width=18,
-            relief="flat",
             activebackground=ACCENT,
             activeforeground="#FFF",
+            relief="flat",
+            anchor="w",
+            width=20,
+            cursor="hand2",
         )
-        boost_menu["menu"].configure(bg=BG_INPUT, fg=FG_TEXT, font=FONT_SMALL)
         boost_menu.pack(side="left", padx=(8, 2))
 
         boost_window_var = tk.StringVar(
@@ -567,16 +587,10 @@ class PriorityEditor(tk.Frame):
             )
             if entry.get(k) not in (None, "")
         }
-        # If boost_after is a list (any-of form), the dropdown can't
-        # represent it. Hide it in `advanced` so _sync_from_widgets
-        # restores it verbatim instead of overwriting it from the
-        # dropdown's first-element-only string.
-        if isinstance(entry.get("boost_after"), list):
-            advanced["boost_after"] = entry["boost_after"]
         return {
             "skill_var": skill_var,
             "note_var": note_var,
-            "boost_var": boost_var,
+            "boost_state": boost_state,  # {"ids": [skill_id, ...]}
             "boost_window_var": boost_window_var,
             "skill_label_to_id": label_to_id,
             "advanced": advanced,
@@ -591,3 +605,171 @@ class PriorityEditor(tk.Frame):
                 self._on_change()
             except Exception:
                 logger.exception("PriorityEditor on_change callback failed")
+
+    # ------------------------------------------------------------------
+    # Boost-after multi-select picker
+    # ------------------------------------------------------------------
+    def _open_boost_picker(
+        self,
+        anchor_widget: tk.Widget,
+        boost_state: Dict[str, Any],
+        label_to_id: Dict[str, str],
+        label_var: tk.StringVar,
+        relabel: Callable[[], str],
+    ) -> None:
+        """Pop a small Toplevel with one checkbox per skill — the user
+        ticks any number; on close the selection is written back to
+        ``boost_state['ids']`` and the chip label refreshed."""
+        win = tk.Toplevel(self.winfo_toplevel())
+        win.title("Boost After — pick skills")
+        win.transient(self.winfo_toplevel())
+        try:
+            win.grab_set()
+        except tk.TclError:
+            pass
+        # Position near the button that opened us.
+        try:
+            x = anchor_widget.winfo_rootx()
+            y = anchor_widget.winfo_rooty() + anchor_widget.winfo_height()
+            win.geometry(f"+{x}+{y}")
+        except tk.TclError:
+            pass
+        win.configure(bg=BG_DARK)
+
+        tk.Label(
+            win,
+            text="Pick the skills whose cast should boost this row.",
+            font=FONT_SMALL,
+            fg=FG_DIM,
+            bg=BG_DARK,
+            anchor="w",
+            wraplength=320,
+        ).pack(fill="x", padx=10, pady=(8, 4))
+
+        # Scrolling area — a frame inside a Canvas, with a vertical
+        # scrollbar. Keeps the dialog compact when the bundle has 50+
+        # skills.
+        outer = tk.Frame(win, bg=BG_DARK)
+        outer.pack(fill="both", expand=True, padx=10, pady=4)
+        canvas = tk.Canvas(
+            outer,
+            bg=BG_DARK,
+            highlightthickness=0,
+            width=340,
+            height=320,
+        )
+        canvas.pack(side="left", fill="both", expand=True)
+        sb = tk.Scrollbar(outer, orient="vertical", command=canvas.yview)
+        sb.pack(side="right", fill="y")
+        canvas.configure(yscrollcommand=sb.set)
+        inner = tk.Frame(canvas, bg=BG_DARK)
+        canvas.create_window((0, 0), window=inner, anchor="nw")
+
+        def _on_inner_resize(_event: tk.Event) -> None:
+            canvas.configure(scrollregion=canvas.bbox("all"))
+
+        inner.bind("<Configure>", _on_inner_resize)
+        # Mouse-wheel scroll within the picker.
+        def _on_wheel(event: tk.Event) -> None:
+            try:
+                canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+            except tk.TclError:
+                pass
+        win.bind_all("<MouseWheel>", _on_wheel)
+
+        sorted_labels = [lbl for lbl in label_to_id.keys() if lbl]
+        sorted_labels.sort(key=str.lower)
+
+        # Live state: skill_id → BooleanVar
+        vars_by_id: Dict[str, tk.BooleanVar] = {}
+        current = set(boost_state.get("ids") or [])
+        for lbl in sorted_labels:
+            sid = label_to_id[lbl]
+            v = tk.BooleanVar(value=(sid in current))
+            vars_by_id[sid] = v
+            tk.Checkbutton(
+                inner,
+                text=lbl,
+                variable=v,
+                font=FONT_SMALL,
+                fg=FG_TEXT,
+                bg=BG_DARK,
+                selectcolor=BG_INPUT,
+                activebackground=BG_DARK,
+                activeforeground=FG_TEXT,
+                anchor="w",
+                highlightthickness=0,
+            ).pack(anchor="w", fill="x", padx=2, pady=0)
+
+        # Buttons
+        btn_row = tk.Frame(win, bg=BG_DARK)
+        btn_row.pack(fill="x", padx=10, pady=(4, 10))
+
+        def _clear_all() -> None:
+            for v in vars_by_id.values():
+                v.set(False)
+
+        def _commit() -> None:
+            boost_state["ids"] = [
+                sid for sid, v in vars_by_id.items() if v.get()
+            ]
+            label_var.set(relabel())
+            try:
+                win.grab_release()
+            except tk.TclError:
+                pass
+            win.unbind_all("<MouseWheel>")
+            win.destroy()
+            self._fire_change()
+
+        def _cancel() -> None:
+            try:
+                win.grab_release()
+            except tk.TclError:
+                pass
+            win.unbind_all("<MouseWheel>")
+            win.destroy()
+
+        tk.Button(
+            btn_row,
+            text="Clear all",
+            command=_clear_all,
+            font=FONT_SMALL,
+            bg=BG_INPUT,
+            fg=FG_TEXT,
+            activebackground=ACCENT,
+            activeforeground="#FFF",
+            relief="flat",
+            padx=10,
+            pady=2,
+            cursor="hand2",
+        ).pack(side="left")
+        tk.Button(
+            btn_row,
+            text="Cancel",
+            command=_cancel,
+            font=FONT_SMALL,
+            bg=BG_INPUT,
+            fg=FG_TEXT,
+            activebackground=ACCENT,
+            activeforeground="#FFF",
+            relief="flat",
+            padx=10,
+            pady=2,
+            cursor="hand2",
+        ).pack(side="right", padx=(4, 0))
+        tk.Button(
+            btn_row,
+            text="OK",
+            command=_commit,
+            font=FONT_BOLD,
+            bg=GREEN,
+            fg="white",
+            activebackground="#9CA600",
+            activeforeground="white",
+            relief="flat",
+            padx=14,
+            pady=2,
+            cursor="hand2",
+        ).pack(side="right")
+        win.protocol("WM_DELETE_WINDOW", _cancel)
