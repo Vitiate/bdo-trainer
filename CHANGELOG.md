@@ -4,6 +4,30 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.2-beta.4] — 2026-06-12
+
+### Added
+- **Auto-restart after update.** The post-install prompt now reads
+  "Restart BDO Trainer now?" with Yes (default) / No buttons. On
+  Yes the updater:
+  1. Spawns a small detached helper process that polls the parent
+     PID and waits for it to exit (so all file handles release).
+  2. Shuts the trainer down through the normal `_shutdown` path
+     — combos stopped, input listeners closed, tray icon removed.
+  3. Force-exits as a safety net.
+  4. The helper, after seeing the parent gone, launches a fresh
+     copy with the same `sys.executable` + `sys.argv` from the
+     project root, in a detached process group on Windows.
+- The "No" path keeps the previous behaviour — the user can
+  restart whenever they like; the new code is already on disk.
+
+### Changed
+- `check_and_prompt` gains an `on_restart` keyword arg; `main.py`
+  passes a callback that runs `BDOTrainerApp._shutdown()`.
+- The "ahead of channel" check now uses the new `_cmp_versions`
+  helper instead of raw tuple `>` (which would break with the
+  mixed-type tuples introduced in beta.3).
+
 ## [0.6.2-beta.3] — 2026-06-12
 
 ### Fixed
@@ -626,6 +650,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.2-beta.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.4
 [0.6.2-beta.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.3
 [0.6.2-beta.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.2
 [0.6.2-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.1

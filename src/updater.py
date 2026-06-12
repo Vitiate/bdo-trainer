@@ -19,8 +19,11 @@ from __future__ import annotations
 import datetime as _dt
 import json
 import logging
+import os
 import re
 import shutil
+import subprocess
+import sys
 import threading
 import tkinter as tk
 import urllib.error
@@ -317,6 +320,68 @@ def _project_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
+def schedule_restart(delay_ms: int = 1500) -> None:
+    """Spawn a detached helper that waits for this process to die,
+    then relaunches the app with the same Python interpreter and
+    argv. Caller is expected to exit cleanly within ``delay_ms``.
+
+    The helper is a tiny one-liner Python invocation: poll the
+    parent PID, sleep, then exec the original command. It runs
+    detached so killing the parent doesn't kill it.
+    """
+    project = _project_root()
+    parent_pid = os.getpid()
+    # Reconstruct the exact launch command. Use sys.executable for
+    # the interpreter and the original argv (the launcher script
+    # path + its args). This handles the editor-only / overlay /
+    # no-overlay flags correctly.
+    cmd = [sys.executable, *sys.argv]
+    # Helper script: wait for parent_pid to disappear, then start
+    # the new process. On Windows, `tasklist` would be more robust
+    # than os.kill(pid, 0), but the latter works on all platforms
+    # for "is this PID still alive?" checks.
+    seconds = max(1, delay_ms // 1000)
+    helper_src = (
+        "import os, sys, time, subprocess\n"
+        f"parent = {parent_pid}\n"
+        f"deadline = time.time() + 30\n"
+        "while time.time() < deadline:\n"
+        "    try:\n"
+        "        os.kill(parent, 0)\n"
+        "    except OSError:\n"
+        "        break\n"
+        "    time.sleep(0.25)\n"
+        f"time.sleep({seconds})\n"
+        f"subprocess.Popen({cmd!r}, cwd={str(project)!r}, close_fds=True)\n"
+    )
+    creationflags = 0
+    if sys.platform == "win32":
+        # Detach the helper so closing the parent console doesn't
+        # kill it. CREATE_NEW_PROCESS_GROUP is enough; we don't
+        # need a hidden window.
+        creationflags = (
+            subprocess.CREATE_NEW_PROCESS_GROUP  # type: ignore[attr-defined]
+            | getattr(subprocess, "DETACHED_PROCESS", 0)
+        )
+    try:
+        subprocess.Popen(
+            [sys.executable, "-c", helper_src],
+            cwd=str(project),
+            close_fds=True,
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            creationflags=creationflags,
+            start_new_session=(sys.platform != "win32"),
+        )
+        logger.info(
+            f"Update: restart helper spawned (will wait for PID {parent_pid})"
+        )
+    except Exception as exc:
+        logger.exception(f"Update: could not spawn restart helper: {exc}")
+        raise
+
+
 def download_zipball(
     info: UpdateInfo,
     progress_cb: Optional[Callable[[int, int], None]] = None,
@@ -504,9 +569,19 @@ class _UpdateDialog:
     """Modal-ish dialog that shows the changelog and walks the user through
     download → install → restart-required."""
 
-    def __init__(self, parent: tk.Misc, info: UpdateInfo) -> None:
+    def __init__(
+        self,
+        parent: tk.Misc,
+        info: UpdateInfo,
+        on_restart: Optional[Callable[[], None]] = None,
+    ) -> None:
         self.info = info
         self.parent = parent
+        # Optional callback invoked when the user confirms an
+        # auto-restart. Should shut the trainer down cleanly — the
+        # restart helper will spawn a fresh process once it sees the
+        # parent PID is gone.
+        self._on_restart_request = on_restart
 
         # Filled in by the install handler before the worker thread runs.
         self._replace_config: bool = False
@@ -722,38 +797,89 @@ class _UpdateDialog:
         self._progress_var.set(100)
         self._progress_label_var.set("Update installed.")
 
-        msg = (
-            f"Version {self.info.display_version} has been installed.\n\n"
-            "Please EXIT BDO Trainer fully and relaunch it. The currently "
-            "running process is still on the old code, and continuing to "
-            "use it before restart can crash the app."
-        )
-        if self._backup_dir is not None:
-            msg += (
-                f"\n\nYour previous configs were backed up to:\n"
-                f"{self._backup_dir.name}/"
-            )
-        elif self._replace_config:
-            msg += (
-                "\n\nNo existing config/ was found, so no backup was made."
-            )
-
         # If install_zipball couldn't write some files (locked .pyd / .pyc
         # while we're still running, AV interference, etc.), tell the user
         # so they can re-run the update after restart.
         failed = getattr(install_zipball, "last_failed", None) or []
+
+        msg_lines = [
+            f"Version {self.info.display_version} has been installed.",
+            "",
+            "BDO Trainer must restart for the new version to take effect — "
+            "the currently running process is still on the old code.",
+        ]
+        if self._backup_dir is not None:
+            msg_lines.append("")
+            msg_lines.append(
+                f"Your previous configs were backed up to {self._backup_dir.name}/"
+            )
+        elif self._replace_config:
+            msg_lines.append("")
+            msg_lines.append("No existing config/ was found, so no backup was made.")
         if failed:
             preview = ", ".join(str(p) for p, _ in failed[:5])
             more = f" (+{len(failed) - 5} more)" if len(failed) > 5 else ""
-            msg += (
-                f"\n\n{len(failed)} file(s) couldn't be written and were "
-                f"skipped — usually because the trainer was still running. "
-                f"After you restart, run 'Check for Updates…' once more "
-                f"to finish the upgrade.\n\nSkipped: {preview}{more}"
+            msg_lines.append("")
+            msg_lines.append(
+                f"{len(failed)} file(s) couldn't be written and were "
+                f"skipped (usually because the trainer was running). "
+                f"After restart, run 'Check for Updates…' again to finish."
             )
+            msg_lines.append(f"Skipped: {preview}{more}")
+        msg_lines.append("")
+        msg_lines.append(
+            "Restart BDO Trainer now? "
+            "(No = restart it yourself when convenient.)"
+        )
 
-        self._show_messagebox("showinfo", "BDO Trainer", msg, parent=self.win)
-        self._on_later()
+        do_restart = self._show_messagebox(
+            "askyesno",
+            "Restart BDO Trainer?",
+            "\n".join(msg_lines),
+            default="yes",
+            parent=self.win,
+        )
+
+        if do_restart:
+            self._trigger_restart()
+        else:
+            self._on_later()
+
+    def _trigger_restart(self) -> None:
+        """Spawn the restart helper, then ask the host to shut the
+        trainer down. The helper waits for our PID to disappear before
+        launching the new process, so file locks release first."""
+        try:
+            schedule_restart(delay_ms=1500)
+        except Exception as exc:
+            self._show_messagebox(
+                "showerror",
+                "BDO Trainer",
+                f"Could not schedule the restart helper: {exc}\n\n"
+                "Please exit BDO Trainer manually and relaunch it.",
+                parent=self.win,
+            )
+            self._on_later()
+            return
+        # Close the dialog first so the user sees the trainer wind down.
+        try:
+            self.win.grab_release()
+        except tk.TclError:
+            pass
+        try:
+            self.win.destroy()
+        except tk.TclError:
+            pass
+        # Hand off to the host's shutdown path if available; otherwise
+        # fall back to a forced exit on a short timer.
+        if self._on_restart_request is not None:
+            try:
+                self._on_restart_request()
+                return
+            except Exception:
+                logger.exception("Update: restart callback failed")
+        # Hard fallback. The helper will still spawn the new process.
+        threading.Timer(1.0, lambda: os._exit(0)).start()
 
     def _on_install_failed(self, exc: Exception) -> None:
         self._progress_label_var.set("")
@@ -777,9 +903,13 @@ class _UpdateDialog:
 # ---------------------------------------------------------------------------
 # Entry points
 # ---------------------------------------------------------------------------
-def show_update_dialog(parent: tk.Misc, info: UpdateInfo) -> None:
+def show_update_dialog(
+    parent: tk.Misc,
+    info: UpdateInfo,
+    on_restart: Optional[Callable[[], None]] = None,
+) -> None:
     """Open the changelog dialog. Must be called on the Tk thread."""
-    _UpdateDialog(parent, info)
+    _UpdateDialog(parent, info, on_restart=on_restart)
 
 
 def show_no_update(parent: tk.Misc, channel: str = "stable") -> None:
@@ -825,6 +955,7 @@ def check_and_prompt(
     show_no_update_dialog: bool = False,
     show_failure_dialog: bool = False,
     channel: str = "stable",
+    on_restart: Optional[Callable[[], None]] = None,
 ) -> None:
     """Run a release check on a background thread and, if a newer version
     is available, hop back onto the Tk thread to show the dialog.
@@ -840,6 +971,10 @@ def check_and_prompt(
             a dialog. Otherwise failures are silent (just logged).
         channel: ``"stable"`` (default) or ``"beta"``. Beta also accepts
             prereleases as upgrade candidates.
+        on_restart: Optional callback invoked when the user picks
+            "Restart now" on the install-done prompt. Should shut the
+            trainer down cleanly; the helper that ``schedule_restart``
+            spawns will start the new process once the parent exits.
     """
     ch = channel if channel in VALID_CHANNELS else "stable"
 
@@ -854,10 +989,11 @@ def check_and_prompt(
             # Either equal (up to date) or local is ahead of the channel.
             local_v = _normalize(APP_VERSION)
             remote_v = _normalize(info.tag)
-            if local_v > remote_v and ch == "stable" and show_no_update_dialog:
-                # Beta user manually switched to Stable while running a
-                # newer beta — surface that explicitly so they don't
-                # think the updater is broken.
+            if (
+                _cmp_versions(local_v, remote_v) > 0
+                and ch == "stable"
+                and show_no_update_dialog
+            ):
                 logger.info(
                     f"Update check (stable): local {APP_VERSION} is ahead of "
                     f"latest stable {info.tag}; not downgrading."
@@ -876,6 +1012,10 @@ def check_and_prompt(
         logger.info(
             f"Update check ({ch}): {info.tag} available (local {APP_VERSION})"
         )
-        schedule(lambda: show_update_dialog(parent_supplier(), info))
+        schedule(
+            lambda: show_update_dialog(
+                parent_supplier(), info, on_restart=on_restart,
+            )
+        )
 
     threading.Thread(target=worker, daemon=True, name="updater-check").start()

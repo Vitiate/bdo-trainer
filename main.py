@@ -325,6 +325,7 @@ class BDOTrainerApp:
             show_no_update_dialog=True,
             show_failure_dialog=True,
             channel=self.loader.get_update_channel(),
+            on_restart=self._on_update_restart,
         )
 
     def _check_for_updates_on_startup(self):
@@ -335,7 +336,27 @@ class BDOTrainerApp:
             show_no_update_dialog=False,
             show_failure_dialog=False,
             channel=self.loader.get_update_channel(),
+            on_restart=self._on_update_restart,
         )
+
+    def _on_update_restart(self):
+        """User picked 'Restart now' on the post-install prompt.
+
+        ``schedule_restart`` has already spawned a watcher process that
+        is polling our PID and will launch the new trainer once we
+        exit. Shut down through the normal _shutdown path so combos /
+        input listeners / tray are torn down cleanly, then exit.
+        """
+        logger.info("Update: shutting down for auto-restart")
+        try:
+            self._shutdown()
+        except Exception:
+            logger.exception("Update: shutdown during restart failed")
+        # Belt-and-braces — overlay.shutdown should already have
+        # quit the mainloop, but fall back to os._exit so the
+        # process terminates even if a stray thread is hanging on.
+        import os
+        os._exit(0)
 
     def _on_combo_editor(self):
         """Called when user clicks 'Combo Editor' in the tray."""
