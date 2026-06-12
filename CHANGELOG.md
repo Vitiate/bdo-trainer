@@ -4,90 +4,63 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.6.2-beta.4] — 2026-06-12
+## [0.6.3] — 2026-06-12
+
+Rolls up everything from the v0.6.2 beta cycle into a single stable
+release. Skipping straight to **0.6.3** because pre-0.6.3 builds had
+a version-comparator bug that prevented in-app updates between
+prereleases of the same base version — bumping the patch number
+guarantees the updater offers this build to anyone stuck on a
+v0.6.2-beta.x.
 
 ### Added
 - **Auto-restart after update.** The post-install prompt now reads
   "Restart BDO Trainer now?" with Yes (default) / No buttons. On
-  Yes the updater:
-  1. Spawns a small detached helper process that polls the parent
-     PID and waits for it to exit (so all file handles release).
-  2. Shuts the trainer down through the normal `_shutdown` path
-     — combos stopped, input listeners closed, tray icon removed.
-  3. Force-exits as a safety net.
-  4. The helper, after seeing the parent gone, launches a fresh
-     copy with the same `sys.executable` + `sys.argv` from the
-     project root, in a detached process group on Windows.
-- The "No" path keeps the previous behaviour — the user can
-  restart whenever they like; the new code is already on disk.
-
-### Changed
-- `check_and_prompt` gains an `on_restart` keyword arg; `main.py`
-  passes a callback that runs `BDOTrainerApp._shutdown()`.
-- The "ahead of channel" check now uses the new `_cmp_versions`
-  helper instead of raw tuple `>` (which would break with the
-  mixed-type tuples introduced in beta.3).
-
-## [0.6.2-beta.3] — 2026-06-12
+  Yes the updater spawns a small detached helper process that polls
+  the parent PID, waits for it to exit (so all file handles release),
+  then launches a fresh copy with the same `sys.executable` +
+  `sys.argv`. The trainer goes through its normal `_shutdown` path
+  first (combos stopped, input listeners closed, tray torn down),
+  with a force-exit safety net. The "No" path keeps the previous
+  behaviour — restart whenever you like, the new code is already
+  on disk.
 
 ### Fixed
-- **Updater "no update available" between betas of the same base
-  version.** The version comparator stripped the prerelease suffix
-  entirely, so `v0.6.2-beta.1` and `v0.6.2-beta.2` compared equal
-  and the updater told the user they were up to date. Replaced
-  with a SemVer-aware comparator:
-  - Plain release sorts above any prerelease of the same base
-    (`v0.6.2 > v0.6.2-rc.1 > v0.6.2-beta.2 > v0.6.2-beta.1`).
-  - Prerelease pieces split into label + number so `beta.10`
-    sorts above `beta.2` numerically rather than lexically.
-  - Mixed-type identifiers fall back to int-below-string ordering
-    (matches SemVer 2.0 §11.4.3).
-
-## [0.6.2-beta.2] — 2026-06-12
-
-### Fixed
+- **Updater no longer reports "no update available" between
+  prereleases.** The version comparator was stripping the prerelease
+  suffix entirely, so `v0.6.2-beta.1` and `v0.6.2-beta.2` compared
+  equal. Replaced with a SemVer-aware comparator: plain release
+  beats any prerelease of the same base (`v0.6.2 > v0.6.2-rc.1 >
+  v0.6.2-beta.2 > v0.6.2-beta.1`); prerelease pieces split into
+  `(label, number)` so `beta.10 > beta.2` numerically; mixed-type
+  identifiers fall back to int-below-string per SemVer 2.0 §11.4.3.
 - **Skill input no longer double-prints the keypress.** The overlay
-  was rendering each skill's free-text `input:` field verbatim under
-  the skill name. Many of those fields are the BDOCodex tooltip
-  ("E E after other skills to perform attack 2"), which under a
-  bold "Emberclaw Crush" header reads "E E after other skills to
-  perform attack 2" — confusing. Both overlay players now render
-  the canonical chord (`E`, `Shift + LMB`, etc.) computed from the
-  skill's `keys` list, with the user's remap applied. The free-text
-  `input:` field stays around for the editor / inspector view.
-- **Emberclaw Slash cooldown back to 7s.** Previous beta dropped it
-  to 4s based on community feel, but the in-game cooldown is 7s.
-  The priority resolver should match the actual cooldown — letting
-  the resolver display Emberclaw Slash 4 s after a press would
-  cause a phantom press (the skill is still on real cooldown).
-- **Trimmed Emberclaw Slash input** from "SHIFT + LMB LMB after
-  other skills" to just "SHIFT + LMB", same fix as Emberclaw
-  Torrent in beta.1.
+  was rendering each skill's free-text `input:` field verbatim
+  under the skill name. Many of those fields are the BDOCodex
+  tooltip ("E E after other skills to perform attack 2"), which
+  read awkwardly under a bold "Emberclaw Crush" header. Both
+  overlay players now render the canonical chord (`E`, `Shift + LMB`,
+  etc.) computed from the skill's `keys` list with the user's
+  remap applied. The free-text `input:` field stays around for the
+  editor / inspector view.
+- **Emberclaw Slash cooldown corrected to 7 s** (was briefly dropped
+  to 4 s based on community feel; the in-game cooldown is 7 s).
+- **Emberclaw Torrent / Emberclaw Slash inputs trimmed.** The
+  `input:` field used to carry the full mechanic dump
+  (`SHIFT + RMB Hold RMB to perform attack 3 SHIFT + RMB after
+  forward Spirit Step…`), which bloated the overlay. Now just
+  `SHIFT + RMB` / `SHIFT + LMB`. Full mechanic stays in `notes:`.
 
 ### Changed
-- **Maegu DPS Priority combo notes pruned.** Removed leading
+- **Maegu DPS Priority combo retagged PvE-only and trimmed.**
+  Renamed `pvp_dps_priority` → `pve_dps_priority` (category `pve`).
+  The original guide is a PvE rotation; tagging it PvP was
+  misleading. Dropped the AoE / Pre-Awakening tier (Constricting
+  Charm / Spirit Sparks / Foxspirit Tag) — those are pre-awakening
+  swap skills and the priority resolver was happy to display them
+  mid-awakening. Per-skill notes also pruned to remove leading
   keypress restatements ("SHIFT + Q. Backup entry." → "Backup
-  entry."). The chord renders below the skill name; repeating it
-  in the note column was redundant.
-
-## [0.6.2-beta.1] — 2026-06-12
-
-### Changed
-- **Maegu Awakening DPS Priority combo retagged PvE-only and trimmed.**
-  - Renamed `pvp_dps_priority` → `pve_dps_priority`. Category is now
-    `pve`. The original guide is a PvE rotation; tagging it PvP was
-    misleading.
-  - Dropped the AoE / Pre-Awakening tier (Constricting Charm /
-    Spirit Sparks / Foxspirit Tag). Those are pre-awakening swap
-    skills and the priority resolver was happy to display them
-    while you were standing in awakening — confusing if you weren't
-    actually swapping out. Anyone who wants the swap loop can
-    add a separate combo for it.
-- **Emberclaw Torrent input trimmed.** The `input:` field carried
-  the full mechanic description (`SHIFT + RMB Hold RMB to perform
-  attack 3 SHIFT + RMB after forward Spirit Step…`) which bloated
-  the overlay. Now just `SHIFT + RMB`. The full mechanic stays in
-  the skill `notes:` for the editor / inspector view.
+  entry.") now that the chord renders separately.
 
 ## [0.6.1] — 2026-06-12
 
@@ -650,10 +623,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
-[0.6.2-beta.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.4
-[0.6.2-beta.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.3
-[0.6.2-beta.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.2
-[0.6.2-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.2-beta.1
+[0.6.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.3
 [0.6.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.1
 [0.6.0]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.0
 [0.5.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.5.9
