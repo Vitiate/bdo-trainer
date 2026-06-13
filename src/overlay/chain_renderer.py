@@ -51,12 +51,12 @@ _DEFAULT_NODE_VGAP = 18
 # that lerp-eased motion looks continuous to the eye.
 _TICK_MS = 33
 
-# Per-frame easing fractions tuned for the 30 fps tick. Total
-# convergence time is roughly the same as the old 6.7 fps × 0.30
-# values (~0.9 s), but with 5–6× more interpolation steps so the
-# motion reads as smooth instead of stepped.
-_SLIDE_LERP = 0.10
-_PAN_LERP = 0.08
+# Per-frame easing fractions tuned for the 30 fps tick. Doubled
+# from the original calibration so the next-best skill snaps into
+# focus in ~0.4 s instead of ~0.9 s. Still smooth (~12 frames at
+# 30 fps) but quick enough to keep up with mid-fight casts.
+_SLIDE_LERP = 0.22
+_PAN_LERP = 0.18
 _SNAP_PX = 0.5
 
 # Highlight box: fixed screen position. The chart pans so the
