@@ -1,0 +1,34 @@
+combo_id: pvp_bristling_lurking
+class: Maegu
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Bristling (Lurking finisher)'
+description: |
+  Bristling Sparks engage with Lurking Claws as the finisher
+  setup. Substitute Foxflare Fling (E) for Charmed (SPACE)
+  when terrain allows.
+
+  SHIFT+RMB > D+LMB > RMB > SPACE/E > SHIFT+Q > S+F >
+  SHIFT+C > W+RMB
+
+  Courtesy of Bantalope.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: prime_bristling_sparks
+  note: SHIFT+RMB.
+- skill: prime_bared_claws
+  note: D+LMB.
+- skill: prime_foxspirit_tag
+  note: RMB.
+- skill: charmed
+  note: S+SPACE (or E for Foxflare Fling). Re-CC.
+- skill: prime_foxflare
+  note: SHIFT+Q.
+- skill: prime_lurking_claws
+  note: S+F.
+- skill: prime_nukduri_dance
+  note: SHIFT+C.
+- skill: prime_heavenward_dance
+  note: W+RMB.

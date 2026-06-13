@@ -657,10 +657,11 @@ skills:
       . Damage Increase Increased execution speed Increased attack area Down Attack'
   flow_hanpuri:
     name: 'Flow: Hanpuri'
-    input: E during Soulflame F during Soulsnare E during Ghost Bomb
+    input: F (hold) during Soulsnare; E during Soulflame / Ghost Bomb
     keys:
-    - e
     - f
+    keys_alt:
+    - e
     protection: SA
     cc:
     - stiffness
@@ -680,11 +681,13 @@ skills:
       skill Forward Guard during the skill No collision while moving 86.49% damage in PvP only'
   flower_shroud:
     name: Flower Shroud
-    input: ↑ + E to perform forward attacks ↓ + E to perform backward attacks Can be used with your foxtail fans
+    input: W + E (forward) or S + E (backward); cast with foxtail fans
     keys:
     - w
     - e
+    keys_alt:
     - s
+    - e
     protection: FG
     cc:
     - stun
@@ -1200,9 +1203,11 @@ skills:
     - hotbar
   prime_bared_claws:
     name: 'Prime: Bared Claws'
-    input: → or ← + LMB Perform from attack 1 when using this skill backward after attack 1
+    input: D + LMB (right) or A + LMB (left); chain from attack 1
     keys:
     - d
+    - lmb
+    keys_alt:
     - a
     - lmb
     protection: FG
@@ -1248,11 +1253,13 @@ skills:
       -15% for 5 sec on hits Stiffness on center hits (PvE only) Down Attack 79.89% damage in PvP only'
   prime_flower_shroud:
     name: 'Prime: Flower Shroud'
-    input: ↑ + E to perform forward attacks ↓ + E to perform backward attacks
+    input: W + E (forward) or S + E (backward)
     keys:
     - w
     - e
+    keys_alt:
     - s
+    - e
     protection: FG
     cc:
     - stun
@@ -1545,12 +1552,12 @@ skills:
       damage 1396% x2 Maximum 7 targets 58.38% damage in PvP only
   spirit_parade:
     name: Spirit Parade
-    input: 'SHIFT + X E or F during Flow: Hanpuri'
+    input: 'SHIFT + X (or E / F during Flow: Hanpuri)'
     keys:
     - shift
     - x
+    keys_alt:
     - e
-    - f
     protection: SA
     cc:
     - down_attack

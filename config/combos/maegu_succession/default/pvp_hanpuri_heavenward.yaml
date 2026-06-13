@@ -1,0 +1,35 @@
+combo_id: pvp_hanpuri_heavenward
+class: Maegu
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Hanpuri (Heavenward finisher)'
+description: |
+  Shorter Hanpuri variant ending on Heavenward Dance for
+  consistent DPS while a teammate handles re-CC. Same Charmed
+  requirement as the Lurking variant.
+
+  W/S+E > F(Hold) > SPACE > SHIFT+Q > W+RMB > SHIFT+C > SHIFT+F
+
+  Courtesy of Bantalope.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: prime_flower_shroud
+  note: 'W+E (forward) or S+E (backward).'
+- skill: soulsnare
+  note: F.
+- skill: flow_hanpuri
+  note: F (hold).
+- skill: spirit_parade
+  note: SHIFT+X (or via Hanpuri).
+- skill: charmed
+  note: S+SPACE. Required.
+- skill: prime_foxflare
+  note: SHIFT+Q.
+- skill: prime_heavenward_dance
+  note: W+RMB.
+- skill: prime_nukduri_dance
+  note: SHIFT+C.
+- skill: prime_spirit_swirl
+  note: SHIFT+F.

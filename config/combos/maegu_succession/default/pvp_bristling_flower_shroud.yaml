@@ -1,0 +1,31 @@
+combo_id: pvp_bristling_flower_shroud
+class: Maegu
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Bristling → Flower Shroud disengage'
+description: |
+  Bristling Sparks engage with Flower Shroud finisher to peel
+  out of the fight. Charmed only — Fling's shorter window
+  doesn't fit the Flower Shroud disengage rhythm.
+
+  SHIFT+RMB > D+LMB > RMB > SPACE > S+E > S+LMB > SHIFT+LMB
+
+  Courtesy of Bantalope.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: prime_bristling_sparks
+  note: SHIFT+RMB.
+- skill: prime_bared_claws
+  note: D+LMB.
+- skill: prime_foxspirit_tag
+  note: RMB.
+- skill: charmed
+  note: S+SPACE. Stiffen.
+- skill: prime_flower_shroud
+  note: S+E (backward) — disengage.
+- skill: prime_spirited_away
+  note: S+LMB.
+- skill: prime_petal_play
+  note: SHIFT+LMB.

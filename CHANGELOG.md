@@ -4,6 +4,36 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.27] — 2026-06-13
+
+### Added
+- **Nine Succession Maegu PvP combos** (Bantalope's combo set):
+  - Flower Shroud × 3 (Foxflare Fling / Charmed / Spirited Away)
+  - Bristling × 3 (Foxflare / Lurking / Flower Shroud disengage)
+  - Hanpuri × 2 (Lurking / Heavenward)
+  - Stiff/Foxflare × 3 (Lurking / Hanpuri / Petal Play)
+- **`pvp_chain_kill.yaml` priority combo for Succession Maegu**,
+  extrapolated from the nine sequence combos. Five tiers
+  (Engage / Re-CC / Burst / Smash / Closer) with the same
+  CC-budget gating and `prefers_after` boosts as the awakening
+  chain combo.
+
+### Fixed
+- **Succession `flow_hanpuri` keys were flattened** from
+  "E during Soulflame, F during Soulsnare, E during Ghost Bomb"
+  into `[e, f]`. Primary is now `[f]` (the Soulsnare path the
+  combos use), `[e]` moved to alt.
+- **Succession `flower_shroud` and `prime_flower_shroud`** had
+  the same `[w, e, s]` flatten fixed in awakening earlier —
+  same pattern (`↑+E` forward / `↓+E` backward). Primary `[w, e]`
+  with `[s, e]` as alt.
+- **Succession `spirit_parade`** had `SHIFT+X E or F during
+  Flow: Hanpuri` flattened into `[shift, x, e, f]`. Now `[shift, x]`
+  primary with `[e]` alt.
+- **Succession `prime_bared_claws`** had `→ or ← + LMB`
+  flattened into `[d, a, lmb]`. Now `[d, lmb]` primary with
+  `[a, lmb]` alt.
+
 ## [0.6.4-beta.26] — 2026-06-13
 
 ### Added
@@ -1165,6 +1195,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.27]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.27
 [0.6.4-beta.26]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.26
 [0.6.4-beta.25]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.25
 [0.6.4-beta.24]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.24

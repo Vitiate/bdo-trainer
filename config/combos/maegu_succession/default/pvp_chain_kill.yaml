@@ -1,0 +1,116 @@
+combo_id: pvp_chain_kill
+class: Maegu
+spec: Succession
+bundle_id: default
+category: pvp
+mode: priority
+name: 'PvP — Chain Kill (Catch & Burst)'
+description: |
+  Priority/chain-mode combo extrapolated from Bantalope's
+  Succession PvP combo set (Flower Shroud / Bristling /
+  Hanpuri / Stiff variants). Plays out the strongest available
+  catch → re-CC → burst → smash → closer chain based on what
+  is off cooldown.
+
+  CC budget — BDO caps you around 4 hard-CCs per ~6s window
+  before iframes; the trainer tracks this and stops showing
+  further hard-CC skills as legal once spent. Spirit Parade
+  ends the chain cleanly without an off-chain flash.
+
+  Notes:
+    - Charmed is the universal re-CC. Foxflare Fling is the
+      higher-damage swap on flat ground. Petal Play is the
+      only reliable re-CC after Prime: Foxflare's knockdown.
+    - Prime: Bared Claws prefers Prime: Foxspirit Tag right
+      after — encoded as a prefers_after boost.
+    - Flow: Hanpuri requires Soulsnare cast first (gated via
+      requires_prev).
+
+  Courtesy of Bantalope (source combos), trainer extrapolation.
+chain:
+  max_hard_cc: 4
+  window_ms: 6000
+  idle_reset_ms: 3000
+  finishers:
+    - spirit_parade
+    - prime_flower_shroud
+    - flower_shroud
+priority:
+  - tier: Engage
+    description: |
+      Openers that start the chain. Flower Shroud or Bristling
+      Sparks for stuns; Soul Tear clone bait or Soulsnare →
+      Hanpuri for ranged engages.
+    skills:
+      - skill: prime_flower_shroud
+        note: W+E (forward) or S+E (backward). Stun + DA + AA.
+      - skill: prime_bristling_sparks
+        note: SHIFT+RMB. Stun + down-attack short/mid range.
+      - skill: prime_soul_tear
+        note: W+Q. Stiffness + DA from clone-bait range.
+      - skill: soulsnare
+        note: F. Drops the snare for Hanpuri.
+      - skill: flow_hanpuri
+        note: F (hold). Stiffen — gated to follow Soulsnare.
+        requires_prev: soulsnare
+        requires_window_ms: 2000
+      - skill: flower_shroud
+        note: W+E. Non-prime engage for the Spirited Away variant.
+
+  - tier: Re-CC
+    description: |
+      Stiffen / float re-CC after the catch. Charmed is
+      universal; Foxflare Fling swaps in for higher damage on
+      flat ground; Petal Play is the float re-CC after a
+      Foxflare knockdown.
+    skills:
+      - skill: charmed
+        note: S+SPACE. Universal re-CC.
+      - skill: foxflare_fling
+        note: E. Higher-damage stiffen on flat ground.
+      - skill: prime_petal_play
+        note: SHIFT+LMB. Float — required after Foxflare KD.
+        prefers_after: prime_foxflare
+        prefers_window_ms: 1500
+
+  - tier: Burst
+    description: |
+      Main damage skills. Foxflare lands the KD; Foxspirit Tag
+      reapplies -20 DR and is the preferred follow-up to
+      Bared Claws or Flower Shroud.
+    skills:
+      - skill: prime_foxflare
+        note: SHIFT+Q. Knockdown + down-attack.
+      - skill: prime_foxspirit_tag
+        note: RMB. -20 DR + float / down-attack.
+        prefers_after:
+          - prime_bared_claws
+          - prime_flower_shroud
+        prefers_window_ms: 1500
+      - skill: prime_bared_claws
+        note: D+LMB (right) or A+LMB (left). Cancel-flow stiffen.
+      - skill: prime_spirited_away
+        note: S+LMB. Down-attack continuation in SA.
+
+  - tier: Smash
+    description: |
+      Down-/back-attack smash damage during the knockdown
+      window. Spirit Parade can also reposition behind the
+      target for the back-attack on Heavenward Dance.
+    skills:
+      - skill: prime_heavenward_dance
+        note: W+RMB. KD + stun smash.
+      - skill: prime_lurking_claws
+        note: S+F. Down-attack + reposition.
+      - skill: spirit_parade
+        note: SHIFT+X (or chain via Hanpuri). Reposition for back-attack.
+
+  - tier: Closer
+    description: |
+      Damage / AP buff / disengage tail. Prime: Flower Shroud
+      doubles as a disengage finisher in the Bristling variant.
+    skills:
+      - skill: prime_nukduri_dance
+        note: SHIFT+C. +AP buff + damage.
+      - skill: prime_spirit_swirl
+        note: SHIFT+F. Disengage / closer.

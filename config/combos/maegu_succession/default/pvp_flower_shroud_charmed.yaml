@@ -1,0 +1,39 @@
+combo_id: pvp_flower_shroud_charmed
+class: Maegu
+spec: Succession
+bundle_id: default
+category: pvp
+name: 'PvP — Flower Shroud (Charmed)'
+description: |
+  Charmed variant of the Flower Shroud combo. Use this on
+  uneven terrain where Foxflare Fling's lack of verticality
+  makes it unreliable. Slightly lower damage than the Fling
+  variant but more consistent.
+
+  W/S+E > S+F > D+LMB > RMB > SPACE > SHIFT+Q > SHIFT+X >
+  W+RMB > SHIFT+C > SHIFT+F
+
+  Courtesy of Bantalope.
+difficulty: advanced
+combo_window_ms: 300
+steps:
+- skill: prime_flower_shroud
+  note: 'W+E (forward) or S+E (backward).'
+- skill: prime_lurking_claws
+  note: S+F.
+- skill: prime_bared_claws
+  note: D+LMB (right) — flow into Foxspirit Tag.
+- skill: prime_foxspirit_tag
+  note: RMB. -20 DR debuff.
+- skill: charmed
+  note: S+SPACE (or SPACE chained). Re-CC stiffen — terrain-safe.
+- skill: prime_foxflare
+  note: SHIFT+Q. Knockdown.
+- skill: spirit_parade
+  note: SHIFT+X. Reposition for back-attack.
+- skill: prime_heavenward_dance
+  note: W+RMB.
+- skill: prime_nukduri_dance
+  note: SHIFT+C.
+- skill: prime_spirit_swirl
+  note: SHIFT+F.
