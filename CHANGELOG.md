@@ -4,6 +4,25 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.12] — 2026-06-13
+
+### Changed
+- **`run.sh` now picks a known-good Python version** instead of
+  taking whatever `python3` resolves to. Preference order is
+  3.13 → 3.12 → 3.11 → fallback. macOS users on Python 3.14 get
+  a loud warning about the pyobjc lazy-import bug and a clear
+  next step (install 3.13, delete `.venv/`, re-run).
+- **Existing venv is recreated** automatically when its Python
+  doesn't match what the script would pick now (e.g. you
+  installed 3.13 after the .venv was built on 3.14).
+- **macOS pyobjc smoke test** runs after dependency install so
+  the user knows immediately if input monitoring will be
+  disabled at runtime.
+- **`run.bat` mirrors the same logic** on Windows via the
+  `py -X.Y` launcher: tries `py -3.13`, `py -3.12`, `py -3.11`,
+  then falls back to `python` on PATH. Recreates the venv when
+  the version drifts.
+
 ## [0.6.4-beta.11] — 2026-06-13
 
 ### Fixed
@@ -922,6 +941,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.12]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.12
 [0.6.4-beta.11]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.11
 [0.6.4-beta.10]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.10
 [0.6.4-beta.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.9
