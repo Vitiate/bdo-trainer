@@ -110,11 +110,11 @@ skills:
       hits Forward last attack damage 1935% x1 Maximum 7 targets Recover 42 MP per hit
   charmed:
     name: Charmed
-    input: SPACE (or ↓ + SPACE during other skills)
+    input: S + SPACE (or SPACE during other skills)
     keys:
+    - s
     - space
     keys_alt:
-    - s
     - space
     protection: none
     cc:

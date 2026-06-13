@@ -4,6 +4,26 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.16] — 2026-06-13
+
+### Changed
+- **Frontier sort scores by CC weight + PvP damage**, not just
+  role bucket. Within a bucket the strongest skill floats up:
+  CC weight (grab > stun/KD > knockback > float > bound >
+  stiffness) dominates, PvP damage % parsed from the bdocodex
+  notes acts as a tiebreaker, and smash tags get an additional
+  bonus while a smash window is open.
+- Charmed's primary key is now **S + SPACE** (the reliable
+  cast). Bare SPACE remains as the alt — it only resolves when
+  cast during another skill, which makes the bare-SPACE primary
+  misleading.
+
+### Added
+- `pvp_damage_pct` parsing in `priority_player._build_row()`.
+  Reads the per-skill "X% damage in PvP only" line from the
+  notes blob; can be overridden by adding `pvp_damage_pct:` to
+  either the skill data or the combo entry.
+
 ## [0.6.4-beta.15] — 2026-06-13
 
 ### Fixed
@@ -979,6 +999,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.16]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.16
 [0.6.4-beta.15]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.15
 [0.6.4-beta.14]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.14
 [0.6.4-beta.13]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.13

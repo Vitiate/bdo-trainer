@@ -11,6 +11,7 @@ Schema reference: ``docs/priority-combos.md``.
 from __future__ import annotations
 
 import logging
+import re
 import time
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
@@ -243,6 +244,18 @@ class PriorityPlayer:
         if boost_to is None:
             boost_to = max(0, tier_idx - 1)
 
+        # Parse PvP damage modifier from the freeform notes blob.
+        # BDO ships a per-skill "X% damage in PvP only" line — higher
+        # value means the skill keeps more of its tooltip damage in
+        # PvP, so it's a useful "is this worth pressing" tiebreaker.
+        # Allow YAML overrides: pvp_damage_pct on the skill or on the
+        # combo entry trumps the parsed value.
+        pvp_damage_pct = info.get("pvp_damage_pct")
+        if pvp_damage_pct is None:
+            pvp_damage_pct = entry.get("pvp_damage_pct")
+        if pvp_damage_pct is None:
+            pvp_damage_pct = self._parse_pvp_damage(info.get("notes"))
+
         return {
             "id": skill_id,
             "name": info.get(
@@ -278,7 +291,75 @@ class PriorityPlayer:
             "prefers_to_tier": int(
                 entry.get("prefers_to_tier", max(0, tier_idx - 1))
             ),
+            "pvp_damage_pct": (
+                float(pvp_damage_pct) if pvp_damage_pct is not None else None
+            ),
+            "cc_tags": tuple(info.get("cc") or ()),
+            "tags": tuple(info.get("tags") or ()),
         }
+
+    # PvP damage modifier — BDO ships a per-skill "X% damage in PvP
+    # only" line in the bdocodex notes. Picks the largest match (some
+    # skills list multiple hit groups; the headline figure is what
+    # builds use as the "PvP damage" rating).
+    _PVP_DMG_RE = re.compile(
+        r"([0-9]+(?:\.[0-9]+)?)\s*%\s*damage\s*in\s*PvP",
+        re.IGNORECASE,
+    )
+
+    # CC potency weight — higher = stronger lock.
+    # Grab > KD/stun (1.5 s) > knockback (1.5 s) > float (1.0 s) >
+    # bound (0.8 s) > stiffness (0.5 s) > down_smash bonus stays in
+    # the smash weight, not here. Tags that aren't CCs (down_attack
+    # etc.) score 0 — they're handled by the smash window weight.
+    _CC_WEIGHTS: Dict[str, float] = {
+        "grab": 1.5,
+        "stun": 1.0,
+        "knockdown": 1.0,
+        "knockback": 0.85,
+        "floating": 0.7,
+        "bound": 0.55,
+        "stiffness": 0.4,
+    }
+    # Down-/air-smash tag weights — only fire during a smash window
+    # but when they fire they boost the score significantly so the
+    # right "smash this" skill rises above plain CC reapplications.
+    _SMASH_WEIGHTS: Dict[str, float] = {
+        "down_smash": 1.0,
+        "air_smash": 0.8,
+        "down_attack": 0.55,
+        "air_attack": 0.45,
+    }
+
+    @classmethod
+    def _cc_weight(cls, cc_tags: Tuple[str, ...]) -> float:
+        if not cc_tags:
+            return 0.0
+        return max(
+            (cls._CC_WEIGHTS.get(str(t).lower(), 0.0) for t in cc_tags),
+            default=0.0,
+        )
+
+    @classmethod
+    def _smash_weight(cls, cc_tags: Tuple[str, ...]) -> float:
+        if not cc_tags:
+            return 0.0
+        return max(
+            (cls._SMASH_WEIGHTS.get(str(t).lower(), 0.0) for t in cc_tags),
+            default=0.0,
+        )
+
+    @classmethod
+    def _parse_pvp_damage(cls, notes: Any) -> Optional[float]:
+        if not isinstance(notes, str) or not notes:
+            return None
+        matches = cls._PVP_DMG_RE.findall(notes)
+        if not matches:
+            return None
+        try:
+            return max(float(m) for m in matches)
+        except (TypeError, ValueError):
+            return None
 
     # ------------------------------------------------------------------
     # Resolution
@@ -834,45 +915,51 @@ class PriorityPlayer:
                 lock_seconds[row["id"]] = secs
             roles[row["id"]] = self.classify_role(row)
 
-        # Reorder frontier:
-        # 1. burst skills with smash tags float to the top when the
-        #    most recent CC was a knockdown / floating / bound (the
-        #    smash-window). Among burst, prefer down_smash > air_smash
-        #    > down_attack > air_attack just by tag count match.
-        # 2. catch skills sort by tier (priority), then declaration
-        #    order — i.e. the existing behaviour.
-        # 3. pre_buff skills always sort to the bottom of the
-        #    frontier so they don't compete with chain advances for
-        #    the "next best" highlight.
+        # Reorder frontier so the highest-impact eligible skill
+        # floats to the top. Order is:
+        #
+        #   bucket 0 — burst skills during a smash window
+        #              (knockdown / float / bound landed recently)
+        #   bucket 1 — catch / re-CC skills
+        #   bucket 2 — burst skills outside a smash window
+        #   bucket 3 — pre-buffs (always last)
+        #
+        # Within a bucket we sort by a *score* that combines:
+        #   • CC potency  (grab > stun/kd > float > stiffen > none)
+        #   • PvP damage modifier  (parsed from skill notes; 0 if N/A)
+        #   • smash-tag weight when in a smash window
+        # higher score → higher position. tier acts as a tie-break so
+        # the YAML's authored ordering still matters when two skills
+        # are otherwise equivalent.
         smash_window = self._last_history_was_knockdown(now)
-        smash_priority = {
-            "down_smash": 0,
-            "air_smash": 1,
-            "down_attack": 2,
-            "air_attack": 3,
-        }
+
+        def _bucket(role: str) -> int:
+            if role == "pre_buff":
+                return 3
+            if role == "burst":
+                return 0 if smash_window else 2
+            return 1  # catch / re-CC / filler / reposition
+
+        def _score(row: Dict[str, Any]) -> float:
+            cc_w = self._cc_weight(row.get("cc_tags") or ())
+            dmg = float(row.get("pvp_damage_pct") or 0.0)
+            smash = (
+                self._smash_weight(row.get("cc_tags") or ())
+                if smash_window else 0.0
+            )
+            # Tunable mix. CC weight dominates because hitting the
+            # right CC is what unlocks the chain at all; damage
+            # tiebreaks within a CC tier; smash bonus only fires
+            # during a smash window.
+            return cc_w * 100.0 + smash * 60.0 + dmg
 
         def _frontier_sort_key(row: Dict[str, Any]):
             sid = row["id"]
             role = roles.get(sid, "filler")
             tier = int(row.get("tier", 0))
-            if role == "pre_buff":
-                # Buffs always last (large bucket value).
-                return (3, 0, tier)
-            if role == "burst" and smash_window:
-                tags = self._row_smash_tags(row)
-                # Lowest priority value among the row's smash tags.
-                best_smash = min(
-                    (smash_priority.get(t, 99) for t in tags),
-                    default=99,
-                )
-                # Bucket 0 — burst-during-knockdown wins everything.
-                return (0, best_smash, tier)
-            if role == "burst":
-                # Burst when target isn't downed: middle bucket.
-                return (2, 0, tier)
-            # Catch / re-CC.
-            return (1, 0, tier)
+            # Negative score so higher score sorts first under
+            # ascending tuple sort.
+            return (_bucket(role), -_score(row), tier)
 
         frontier_sorted = sorted(frontier, key=_frontier_sort_key)
         return {
