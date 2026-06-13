@@ -234,14 +234,22 @@ class ComboOverlay:
     # =================================================================
     # CC Skills panel
     # =================================================================
-    def show_cc_panel(self, skills: Dict[str, Any]) -> None:
-        self._cc_panel.show(skills)
+    def show_cc_panel(
+        self,
+        skills: Dict[str, Any],
+        spec_skill_ids: Optional[set] = None,
+    ) -> None:
+        self._cc_panel.show(skills, spec_skill_ids)
 
     def hide_cc_panel(self) -> None:
         self._cc_panel.hide()
 
-    def update_cc_panel(self, skills: Dict[str, Any]) -> None:
-        self._cc_panel.update_class(skills)
+    def update_cc_panel(
+        self,
+        skills: Dict[str, Any],
+        spec_skill_ids: Optional[set] = None,
+    ) -> None:
+        self._cc_panel.update_class(skills, spec_skill_ids)
 
     @property
     def cc_panel_active(self) -> bool:

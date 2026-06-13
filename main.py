@@ -213,7 +213,10 @@ class BDOTrainerApp:
         self.loader.settings_loader.set_active_bundle(class_name, spec_name, bundle_id)
         if class_changed and self.overlay.cc_panel_active:
             skills = self.loader.classes.get_skills(class_name, spec_name)
-            self.overlay.schedule(lambda: self.overlay.update_cc_panel(skills))
+            spec_ids = self._spec_owned_skill_ids(class_name, spec_name)
+            self.overlay.schedule(
+                lambda: self.overlay.update_cc_panel(skills, spec_ids)
+            )
         self.overlay.schedule(
             lambda: self._start_combo(class_name, spec_name, bundle_id, combo_id)
         )
@@ -263,7 +266,79 @@ class BDOTrainerApp:
                 self.tray.set_cc_panel_mode(False)
             return
         skills = self.loader.classes.get_skills(cls, spec)
-        self.overlay.show_cc_panel(skills)
+        spec_ids = self._spec_owned_skill_ids(cls, spec)
+        self.overlay.show_cc_panel(skills, spec_ids)
+
+    def _spec_owned_skill_ids(self, cls: str, spec: str) -> set:
+        """Return the skill ids that the active spec's combos / bundle
+        loadout *actually use*.
+
+        This is the canonical "what skills belong to this spec" set —
+        whatever the bundles reference, plus a fallback to the class
+        file's full skill list when no bundles exist. Some class data
+        files (e.g. Maegu Succession) carry the other spec's kit too
+        because of how BDOCodex seeded them; relying on combo / bundle
+        references avoids that leakage without per-class hardcoding.
+        """
+        ids: set = set()
+        # Skills referenced by any combo in the active spec's bundles.
+        for cls_n, spec_n, bid, cid, data in self.loader.bundles.iter_all_combos():
+            if cls_n != cls or spec_n != spec:
+                continue
+            # Sequence-mode steps
+            for step in data.get("steps") or []:
+                if isinstance(step, dict):
+                    for k in ("skill", "alt_skill"):
+                        sid = step.get(k)
+                        if isinstance(sid, str) and sid:
+                            ids.add(sid)
+            # Priority-mode tiers
+            for tier in data.get("priority") or []:
+                if not isinstance(tier, dict):
+                    continue
+                for entry in tier.get("skills") or []:
+                    if isinstance(entry, str) and entry:
+                        ids.add(entry)
+                    elif isinstance(entry, dict):
+                        sid = entry.get("skill")
+                        if isinstance(sid, str) and sid:
+                            ids.add(sid)
+                        for k in ("boost_after", "requires_prev", "prefers_after"):
+                            ref = entry.get(k)
+                            if isinstance(ref, str) and ref:
+                                ids.add(ref)
+                            elif isinstance(ref, list):
+                                for r in ref:
+                                    if isinstance(r, str) and r:
+                                        ids.add(r)
+
+        # Skills referenced by the bundle loadout (locked, hotbar, etc.).
+        for cls_n, spec_n, bid, meta in self.loader.bundles.iter_all_bundles():
+            if cls_n != cls or spec_n != spec:
+                continue
+            for section in ("locked_skills", "hotbar_skills"):
+                for entry in meta.get(section) or []:
+                    if isinstance(entry, dict):
+                        name = entry.get("name")
+                    elif isinstance(entry, str):
+                        name = entry
+                    else:
+                        continue
+                    if not name:
+                        continue
+                    # The loadout uses display names (e.g. "Foxspirit Conduit");
+                    # match them back to skill ids by name.
+                    for sid, info in (
+                        self.loader.classes.get_skills(cls, spec) or {}
+                    ).items():
+                        if (info.get("name") or "").strip() == name:
+                            ids.add(sid)
+                            break
+        # Fallback — if a spec ships no bundles (yet), show the
+        # whole file rather than nothing.
+        if not ids:
+            ids = set(self.loader.classes.get_skills(cls, spec).keys())
+        return ids
 
     def _show_setup_guide(self):
         """Fetch guide data for the current class/spec/bundle and display it."""

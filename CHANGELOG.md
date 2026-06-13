@@ -4,6 +4,27 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.4] — 2026-06-12
+
+### Changed
+- **CC Skills panel scoped to the active spec.** The class data
+  files were seeded by BDOCodex with both the awakening and
+  succession kits in some cases (notably Maegu Succession's file
+  carries the awakening skills too), so the panel was showing
+  cross-spec skills for the wrong rotation. The panel now takes a
+  per-spec allowlist computed in `main.py` from the active spec's
+  bundles — every skill referenced by any combo step / priority
+  tier / `boost_after` / `requires_prev` / `prefers_after` /
+  hotbar / locked entry. Falls back to the full spec file when no
+  bundles exist.
+- **CC Skills panel filters to PvP-binding effects only.** Drops
+  damage modifiers (down attack / down smash / air attack / air
+  smash) and secondary tags (push / pull / freeze) that don't pin
+  a target for a follow-up cast. Only stun, stiffness, knockdown,
+  knockback, floating, bound, and grab are now eligible. Skills
+  that have *only* damage-modifier tags don't appear at all;
+  skills with mixed tags only render their binding tags.
+
 ## [0.6.4-beta.3] — 2026-06-12
 
 ### Added
@@ -720,6 +741,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.4
 [0.6.4-beta.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.3
 [0.6.4-beta.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.2
 [0.6.4-beta.1]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.1

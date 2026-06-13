@@ -121,6 +121,22 @@ def _classify_cc_modes(cc_tags: List[str], notes: str) -> Dict[str, str]:
         last_qualifier_end = m.end()
     return out
 
+# Only show CC effects that bind / lock the target — knockdowns,
+# knockbacks, stuns, stiffens, floats, grabs. Drop damage-only
+# modifiers (down attack / down smash / air attack / air smash) and
+# secondary tags (push, pull, freeze) — those don't pin a target for
+# a follow-up cast and clutter the panel in PvP context.
+_PVP_CC_TAGS = frozenset({
+    "stun",
+    "stiffness",
+    "knockdown",
+    "knockback",
+    "floating",
+    "bound",
+    "grab",
+})
+
+
 _CC_LABEL = {
     "stun": "Stun",
     "stiffness": "Stiff",
@@ -225,9 +241,19 @@ class CCPanel:
         if self._active:
             self.refresh()
 
-    def show(self, skills: Dict[str, Dict[str, Any]]) -> None:
-        """Display the panel for the given class's skill dict."""
-        self._collect_cc_skills(skills)
+    def show(
+        self,
+        skills: Dict[str, Dict[str, Any]],
+        spec_skill_ids: Optional[set] = None,
+    ) -> None:
+        """Display the panel for the given class's skill dict.
+
+        ``spec_skill_ids`` is an optional allowlist of skill ids the
+        active spec actually owns — when provided, only those skills
+        are shown. Lets us drop the awakening / succession leakage
+        that arises when a class's data file carries both kits.
+        """
+        self._collect_cc_skills(skills, spec_skill_ids)
         self._active = True
         self.load_position()
         self._render()
@@ -253,9 +279,13 @@ class CCPanel:
         self._render()
         self._arm_taps()
 
-    def update_class(self, skills: Dict[str, Dict[str, Any]]) -> None:
+    def update_class(
+        self,
+        skills: Dict[str, Dict[str, Any]],
+        spec_skill_ids: Optional[set] = None,
+    ) -> None:
         """Swap the displayed class without changing visibility."""
-        self._collect_cc_skills(skills)
+        self._collect_cc_skills(skills, spec_skill_ids)
         self._triggered_at.clear()
         if self._active:
             self._render()
@@ -264,19 +294,35 @@ class CCPanel:
     # ------------------------------------------------------------------
     # Data
     # ------------------------------------------------------------------
-    def _collect_cc_skills(self, skills: Dict[str, Dict[str, Any]]) -> None:
+    def _collect_cc_skills(
+        self,
+        skills: Dict[str, Dict[str, Any]],
+        spec_skill_ids: Optional[set] = None,
+    ) -> None:
         rows: List[Dict[str, Any]] = []
         for skill_id, info in (skills or {}).items():
             if not isinstance(info, dict):
                 continue
+            # Spec-scope filter — drop skills the active spec doesn't
+            # own (Maegu Succession's data file carries the awakening
+            # kit too because BDOCodex seeded both).
+            if spec_skill_ids is not None and skill_id not in spec_skill_ids:
+                continue
             cc = info.get("cc") or []
             if not cc:
+                continue
+            # PvP / "binds" filter — only show skills with at least one
+            # actual binding CC effect. Drop pure damage modifiers
+            # (down attack / down smash / air attack / air smash) and
+            # secondary tags (push / pull / freeze) that don't lock
+            # a target in place.
+            cc_tags = [str(c) for c in cc]
+            if not any(t in _PVP_CC_TAGS for t in cc_tags):
                 continue
             keys = info.get("keys") or []
             keys_alt = info.get("keys_alt") or []
             cooldown_ms = int(info.get("cooldown_ms") or 0)
             raw_name = info.get("name", skill_id.replace("_", " ").title())
-            cc_tags = [str(c) for c in cc]
             cc_modes = _classify_cc_modes(cc_tags, info.get("notes", ""))
             rows.append({
                 "id": skill_id,
@@ -328,6 +374,12 @@ class CCPanel:
             cc_modes: Dict[str, str] = row.get("cc_modes", {})
             tag_strs: List[str] = []
             for c in row["cc"]:
+                # Skip non-binding tags in the rendered text — we
+                # already filtered the row in by *some* PvP tag
+                # being present, but the row may also carry damage
+                # modifiers we don't want to clutter the display.
+                if c not in _PVP_CC_TAGS:
+                    continue
                 base = _CC_LABEL.get(c, c.title())
                 mode = cc_modes.get(c, "both")
                 if mode == "pve":
