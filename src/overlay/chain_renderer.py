@@ -220,6 +220,15 @@ class ChainRenderer:
         # so the global #1's column-top sits inside the fixed
         # highlight box.
         self._anim_pan_x: Optional[float] = None
+        # Two-frame ring buffer of icon PhotoImage refs. The
+        # previous frame's images need to outlive the current
+        # frame's `canvas.delete(...)` clear — under macOS Tk on
+        # Python 3.14, deleting a create_image item whose
+        # PhotoImage is being GC'd in the same tick can hit a
+        # SIGTRAP / Trace/BPT trap. Keeping the prior list alive
+        # until the new one is fully populated avoids that race.
+        self._icon_refs_prev: List[object] = []
+        self._icon_refs_cur: List[object] = []
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -239,9 +248,11 @@ class ChainRenderer:
         self._is_active = False
         self._stop_flash_tick()
         self.renderer.clear(_TAG)
-        canvas = self.ctx.canvas
-        if hasattr(canvas, "_chain_icon_refs"):
-            canvas._chain_icon_refs = []  # type: ignore[attr-defined]
+        # Drop *both* ref slots only after the canvas clear has
+        # finished, so we never garbage-collect a PhotoImage while
+        # its create_image item is still live.
+        self._icon_refs_cur = []
+        self._icon_refs_prev = []
         if was_active:
             logger.debug("Chain renderer hidden")
 
@@ -266,9 +277,21 @@ class ChainRenderer:
     # Render
     # ------------------------------------------------------------------
     def _render(self, state: Optional[Dict[str, Any]]) -> None:
+        # Order matters here:
+        #   1. Move current refs → prev (they back the items we're
+        #      about to delete).
+        #   2. Clear the canvas (deletes the create_image items
+        #      that referenced the prev refs).
+        #   3. Start a new empty refs list for the items we're
+        #      about to draw.
+        # The prev refs are NOT released until the *next* render
+        # tick — that gives Tk a full frame to finish processing
+        # the deletions before Python frees the underlying
+        # PhotoImage / NSImage memory.
+        self._icon_refs_prev = self._icon_refs_cur
+        self._icon_refs_cur = []
         self.renderer.clear(_TAG)
         canvas = self.ctx.canvas
-        canvas._chain_icon_refs = []  # type: ignore[attr-defined]
 
         if not self._is_active or not state or not state.get("active"):
             return
@@ -569,7 +592,12 @@ class ChainRenderer:
             class_slug, row["name"], dim_factor=dim_factor,
         )
         if photo is not None:
-            canvas._chain_icon_refs.append(photo)  # type: ignore[attr-defined]
+            # Append to the renderer's two-frame ring buffer (see
+            # _icon_refs_cur in __init__) instead of stashing on
+            # the canvas — the ring buffer is what keeps the
+            # PhotoImage alive long enough to avoid the macOS Tk
+            # SIGTRAP on item deletion.
+            self._icon_refs_cur.append(photo)
             canvas.create_image(cx, cy, image=photo, tags=(_TAG,))
         else:
             short = row["name"]
@@ -733,12 +761,12 @@ class ChainRenderer:
         color: str,
         width: int,
     ) -> None:
-        """Draw the rounded outline as a single closed polygon.
+        """Draw the rounded outline as a single closed polyline.
 
-        Uses one ``create_polygon`` call instead of N ``create_line``
-        calls — much cheaper (one canvas item per outline rather
-        than ~80) and the visual is identical. ``fill=""`` keeps
-        the centre transparent so the icon shows through.
+        Uses one ``create_line`` call walking through every sample
+        and back to the start — one canvas item, no ``fill=""``
+        polygon (which has a known macOS Tk 8.6 redraw assertion
+        that hits SIGTRAP under heavy 30 fps churn).
         """
         if not perim:
             return
@@ -746,10 +774,12 @@ class ChainRenderer:
         for x, y in perim:
             flat.append(x)
             flat.append(y)
-        self.ctx.canvas.create_polygon(
+        # Close the loop by repeating the first point.
+        flat.append(perim[0][0])
+        flat.append(perim[0][1])
+        self.ctx.canvas.create_line(
             *flat,
-            fill="",
-            outline=color,
+            fill=color,
             width=width,
             tags=(_TAG,),
         )

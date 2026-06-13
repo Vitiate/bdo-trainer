@@ -4,6 +4,25 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.24] — 2026-06-13
+
+### Fixed
+- **Mid-fight `Trace/BPT trap: 5` (SIGTRAP) on macOS.** Two
+  likely macOS Tk 8.6 footguns hit at 30 fps:
+  1. **`create_polygon(fill="", outline=…)`** with 80 points
+     can hit a Cocoa drawing-path assertion under heavy
+     redraw. Switched the static rounded outline back to
+     `create_line` walking the perimeter (one canvas item, no
+     polygon-with-empty-fill). Performance unchanged — still
+     one canvas item per outline.
+  2. **PhotoImage GC race.** When `canvas.delete(...)` runs
+     while the prior frame's `PhotoImage` is being collected
+     in the same Tk tick, macOS Tk can SIGTRAP. Added a
+     two-frame ring buffer of icon refs so the previous
+     frame's images survive until *after* the next render's
+     clear has finished. Memory cost: a few extra
+     PhotoImage objects held for one extra frame.
+
 ## [0.6.4-beta.23] — 2026-06-13
 
 ### Changed
@@ -1116,6 +1135,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.24]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.24
 [0.6.4-beta.23]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.23
 [0.6.4-beta.22]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.22
 [0.6.4-beta.21]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.21
