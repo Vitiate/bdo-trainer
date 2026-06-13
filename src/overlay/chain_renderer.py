@@ -51,6 +51,15 @@ _DEFAULT_NODE_VGAP = 18
 _SLIDE_LERP = 0.30
 _SNAP_PX = 0.5
 
+# Highlight box: fixed screen position. The chart pans so the
+# column containing the global #1 skill aligns its top-row card
+# inside this box. The box itself never moves.
+_HIGHLIGHT_PAD = 6
+# Pan easing — slightly slower than the per-card ease so the chart
+# itself moves more deliberately than individual cards re-sorting
+# inside their column.
+_PAN_LERP = 0.25
+
 # Dim factors for icon alpha by node priority.
 _DIM_TOP = 1.0       # rank 0 in column AND rank 0 overall
 _DIM_FRONTIER = 0.85
@@ -203,6 +212,10 @@ class ChainRenderer:
         # Per-skill animated position. Eased toward target each
         # render tick so a rank change slides the card in.
         self._anim_pos: Dict[str, Tuple[float, float]] = {}
+        # Animated chart-pan offset (in chart-space pixels). Eases
+        # so the global #1's column-top sits inside the fixed
+        # highlight box.
+        self._anim_pan_x: Optional[float] = None
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -213,6 +226,7 @@ class ChainRenderer:
         # Reset animation state so cards drop in at target instead
         # of sweeping in from a stale prior position.
         self._anim_pos.clear()
+        self._anim_pan_x = None
         self._render(self._state)
         self._start_flash_tick()
 
@@ -296,30 +310,57 @@ class ChainRenderer:
                 key=lambda r: rank_map.get(r["id"], not_frontier_rank)
             )
 
-        # ---- Chart geometry: centre on overlay ---------------------------
+        # ---- Chart geometry ----------------------------------------------
+        # The highlight box is the fixed reference point: its centre
+        # sits at (ctx.cx, ctx.cy + 30 + node_size/2). Each column's
+        # *top* card is laid out at the same y as the box, with all
+        # subsequent cards stacked below. Columns are then panned in
+        # x so the global #1's column lands at ctx.cx.
         n_tiers = len(tiers)
-        chart_w = (n_tiers * col_w) - column_gap
         tallest = max((len(t) for t in tiers), default=1)
         chart_h = (
             tallest * card_step - _DEFAULT_NODE_VGAP
         )
-        chart_left = ctx.cx - chart_w // 2
-        chart_top = ctx.cy - chart_h // 2 + 30
+        # Highlight box icon centre — this is also the y of every
+        # column's top-row card.
+        highlight_cx = ctx.cx
+        highlight_cy = ctx.cy + 30 + node_size // 2
+
+        # Pan: which tier's #1 should sit in the highlight box?
+        # Pick the tier whose top-row id has the lowest frontier
+        # rank (i.e. contains the global #1). Falls back to tier 0
+        # when no frontier exists.
+        spotlight_tier_idx = self._spotlight_tier_idx(tiers, rank_map)
+        target_pan = float(spotlight_tier_idx * col_w)
+        if self._anim_pan_x is None:
+            self._anim_pan_x = target_pan
+        else:
+            d = target_pan - self._anim_pan_x
+            self._anim_pan_x = (
+                target_pan if abs(d) <= _SNAP_PX
+                else self._anim_pan_x + d * _PAN_LERP
+            )
+        pan_px = int(round(self._anim_pan_x))
 
         # ---- Compute target (x, y) per skill -----------------------------
-        # x = column centre based on its tier; y = row centre within
-        # the column. Both are the *icon* centres; text labels are
-        # drawn at fixed offsets below.
+        # x = highlight_cx + (tier_idx − spotlight_tier) × col_w,
+        #     accounting for the eased pan.
+        # y = highlight_cy + row_idx × card_step (top row aligns
+        #     with the highlight box; lower-priority rows below).
         target_pos: Dict[str, Tuple[float, float]] = {}
         for t_idx, tier_rows in enumerate(tiers):
-            col_x = chart_left + col_w * t_idx + node_size // 2
-            tier_h = (
-                len(tier_rows) * card_step - _DEFAULT_NODE_VGAP
+            col_x = (
+                highlight_cx
+                + (col_w * t_idx)
+                - pan_px
             )
-            tier_y0 = chart_top + (chart_h - tier_h) // 2
             for r_idx, row in enumerate(tier_rows):
-                y = tier_y0 + card_step * r_idx + node_size // 2
+                y = highlight_cy + card_step * r_idx
                 target_pos[row["id"]] = (float(col_x), float(y))
+
+        # chart_top / chart_left used by header / tier labels below.
+        chart_left = highlight_cx - pan_px
+        chart_top = highlight_cy - node_size // 2
 
         # ---- Ease animated positions toward target -----------------------
         for sid, (tx, ty) in target_pos.items():
@@ -361,7 +402,7 @@ class ChainRenderer:
         # ---- Tier labels (above each column) ----------------------------
         for t_idx, label in enumerate(tier_labels):
             col_centre = (
-                chart_left + col_w * t_idx + node_size // 2
+                highlight_cx + col_w * t_idx - pan_px
             )
             self.renderer.draw_outlined_text(
                 col_centre, chart_top - 14,
@@ -394,6 +435,43 @@ class ChainRenderer:
             if tier_rows:
                 col_top_ids.add(tier_rows[0]["id"])
 
+        # ---- Highlight box (static, drawn before cards) ------------------
+        # The highlight box always sits at (highlight_cx, highlight_cy).
+        # Drain ring uses the cursor's lock — i.e. the most-recent on-
+        # chain cast, not the skill that's currently displayed in the
+        # box. That way the timer shows when CC will come off the
+        # *target*, regardless of what the next skill is.
+        box_role = roles.get(top_id or "", "filler")
+        box_color = (
+            _FRAME_HIGHLIGHT_BUFF
+            if box_role == "pre_buff" else _FRAME_HIGHLIGHT
+        )
+        # Box geometry — just slightly larger than a card frame so
+        # the global-top icon sits cleanly inside it.
+        box_half = (node_size // 2) + _HIGHLIGHT_PAD
+        box_radius = max(6, int(node_size * _CORNER_RADIUS_FRAC))
+        box_perim = _rounded_rect_perimeter(
+            highlight_cx, highlight_cy, box_half, box_radius,
+        )
+        # Drain on the cursor's lock — duration of the player's most
+        # recent on-chain cast. Cards never carry the drain themselves.
+        cursor_lock_remaining = 0.0
+        if cursor_id and cursor_id in lock_seconds:
+            cursor_cast = history_ts.get(cursor_id)
+            if cursor_cast is not None:
+                lock_total = lock_seconds[cursor_id]
+                if lock_total > 0:
+                    elapsed = max(0.0, now - cursor_cast)
+                    cursor_lock_remaining = max(
+                        0.0, min(1.0, 1.0 - (elapsed / lock_total)),
+                    )
+        if cursor_lock_remaining > 0:
+            self._draw_drain_perim(
+                box_perim, cursor_lock_remaining, box_color, 4,
+            )
+        else:
+            self._draw_static_perim(box_perim, box_color, 3)
+
         for sid, (ax, ay) in self._anim_pos.items():
             row = rows_by_id.get(sid)
             if row is None:
@@ -419,10 +497,10 @@ class ChainRenderer:
                 is_history=is_history,
                 role=roles.get(sid, "filler"),
                 cc_tags=tuple(row.get("cc_tags") or ()),
-                lock_total_s=(
-                    lock_seconds.get(sid, 0.0) if is_top else 0.0
-                ),
-                cast_ts=(history_ts.get(sid) if is_top else None),
+                # lock/drain rendering moved to the static highlight
+                # box; cards no longer carry their own drain ring.
+                lock_total_s=0.0,
+                cast_ts=None,
                 now=now,
                 flash=flash_phase,
             )
@@ -468,29 +546,13 @@ class ChainRenderer:
         radius = max(4, int(node_size * _CORNER_RADIUS_FRAC))
         perim = _rounded_rect_perimeter(cx, cy, half, radius)
 
-        # Frame: gold + drain when this is the global top, otherwise
-        # white when on the frontier, dim grey otherwise.
+        # Frame: the global top is framed by the static highlight
+        # box drawn in the parent — skip the per-card frame so we
+        # don't double-draw on the same pixels. Other cards: white
+        # frame on the frontier, dim history frame for past casts,
+        # dim grey for everything else.
         if is_top:
-            frame_color = (
-                _FRAME_HIGHLIGHT_BUFF
-                if role == "pre_buff" else _FRAME_HIGHLIGHT
-            )
-            if (
-                cast_ts is not None
-                and lock_total_s > 0.0
-            ):
-                elapsed = max(0.0, now - cast_ts)
-                remaining = max(
-                    0.0, min(1.0, 1.0 - (elapsed / lock_total_s)),
-                )
-                if remaining > 0:
-                    self._draw_drain_perim(
-                        perim, remaining, frame_color, 4,
-                    )
-                else:
-                    self._draw_static_perim(perim, frame_color, 3)
-            else:
-                self._draw_static_perim(perim, frame_color, 3)
+            pass  # static highlight box owns this card's frame
         elif is_frontier:
             self._draw_static_perim(perim, _FRAME_FRONTIER, 2)
         elif is_history:
@@ -607,6 +669,35 @@ class ChainRenderer:
             self.ctx.counter_font, fg,
             anchor="center", tag=_TAG,
         )
+
+    # ------------------------------------------------------------------
+    # Spotlight tier — which column should land in the highlight box
+    # ------------------------------------------------------------------
+    @staticmethod
+    def _spotlight_tier_idx(
+        tiers: List[List[Dict[str, Any]]],
+        rank_map: Dict[str, int],
+    ) -> int:
+        """Pick the tier index whose top-row card should sit in the
+        highlight box. The "spotlight tier" is the column whose
+        top-row id has the lowest frontier rank (closest to the
+        global #1). When no frontier row exists in any column, fall
+        back to tier 0.
+        """
+        if not tiers:
+            return 0
+        best_idx = 0
+        best_rank: Optional[int] = None
+        big = 10 ** 9
+        for idx, tier_rows in enumerate(tiers):
+            if not tier_rows:
+                continue
+            top_id = tier_rows[0]["id"]
+            rank = rank_map.get(top_id, big)
+            if best_rank is None or rank < best_rank:
+                best_rank = rank
+                best_idx = idx
+        return best_idx
 
     # ------------------------------------------------------------------
     # Dim factor selection

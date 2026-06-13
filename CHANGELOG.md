@@ -4,6 +4,25 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.20] — 2026-06-13
+
+### Changed
+- **Highlight box is now fixed in screen space; the chart pans
+  underneath it.** The box sits at a static position centred on
+  the overlay. Whichever tier column contains the global #1
+  skill is panned so its top-row card lands inside the box. As
+  cards go on cooldown, priorities recompute and:
+  1. each column re-sorts vertically (next-best slides up to its
+     column's top row);
+  2. the chart pans horizontally if the global-#1 column changed.
+  Together: the next correct skill always pops into the same
+  spot on screen.
+- **CC drain ring is now on the highlight box itself**, not on
+  the displayed card. The drain tracks the *cursor's* lock
+  (most-recent on-chain cast), so it shows when CC will come off
+  the player regardless of which skill is currently shown in
+  the box.
+
 ## [0.6.4-beta.19] — 2026-06-13
 
 ### Changed
@@ -1064,6 +1083,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.20]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.20
 [0.6.4-beta.19]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.19
 [0.6.4-beta.18]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.18
 [0.6.4-beta.17]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.17
