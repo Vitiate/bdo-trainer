@@ -625,6 +625,18 @@ class SettingsLoader:
         self.settings["update_channel"] = ch
         self._persist_top_level("update_channel")
 
+    # ------------------------------------------------------------------
+    # Chain renderer icon size (px). Read-only via the GUI for now —
+    # set in config/combos.yaml under settings.chain_icon_size_px to
+    # tweak. Bounded so a typo can't render a 4000-px icon and OOM Tk.
+    # ------------------------------------------------------------------
+    def get_chain_icon_size(self) -> int:
+        try:
+            v = int(self.settings.get("chain_icon_size_px", 48))
+        except (TypeError, ValueError):
+            v = 48
+        return max(24, min(128, v))
+
     def _persist_top_level(self, *keys: str) -> None:
         """Write the named top-level settings keys back to combos.yaml.
 
@@ -701,6 +713,7 @@ class AppLoader:
     def get_timing_settings(self):         return self.settings_loader.get_timing_settings()
     def get_show_cc_panel(self) -> bool:   return self.settings_loader.get_show_cc_panel()
     def get_update_channel(self) -> str:   return self.settings_loader.get_update_channel()
+    def get_chain_icon_size(self) -> int:  return self.settings_loader.get_chain_icon_size()
 
     def set_show_cc_panel(self, enabled: bool) -> None:
         self.settings_loader.set_show_cc_panel(enabled)

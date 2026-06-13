@@ -39,11 +39,17 @@ class ComboOverlay:
         show_protection: bool = True,
         show_notes: bool = True,
         show_window: bool = True,
+        chain_icon_size_provider: Optional[Callable[[], int]] = None,
     ) -> None:
         if not font_family:
             font_family = default_font_family()
 
         self._show_window = show_window
+        # Stored so the ChainRenderer can pull the latest size at
+        # each show() — wired by main.py from the SettingsLoader.
+        self._chain_icon_size_provider = (
+            chain_icon_size_provider or (lambda: 48)
+        )
 
         # --- Tk root -------------------------------------------------------
         self.root = tk.Tk()
@@ -124,7 +130,11 @@ class ComboOverlay:
         )
         # Chain renderer for chain-mode priority combos. The priority
         # player publishes state changes to it via on_chain_changed.
-        self._chain_renderer = ChainRenderer(self._ctx, self._renderer)
+        self._chain_renderer = ChainRenderer(
+            self._ctx,
+            self._renderer,
+            icon_size_provider=self._chain_icon_size_provider,
+        )
         self._priority.on_chain_changed = self._chain_renderer.on_chain_changed
         # Tracks which player is currently active so stop / pause /
         # resume / external hooks route to the right one.

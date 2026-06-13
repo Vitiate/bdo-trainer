@@ -114,6 +114,7 @@ class BDOTrainerApp:
             show_protection=display.get("show_protection_type", True),
             show_notes=True,
             show_window=show_overlay,
+            chain_icon_size_provider=self.loader.get_chain_icon_size,
         )
         if not show_overlay:
             logger.info(

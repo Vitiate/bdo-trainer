@@ -641,8 +641,20 @@ class PriorityPlayer:
             if not self._is_chain_legal(row, now):
                 continue
             frontier.append(row)
+        # Class / spec / tier labels travel with the state so the
+        # renderer can resolve icon paths and label tier columns
+        # without poking back into the player.
+        cls = ""
+        spec = ""
+        if isinstance(self._combo_data, dict):
+            cls = str(self._combo_data.get("class") or "")
+            spec = str(self._combo_data.get("spec") or "")
         return {
             "active": True,
+            "class": cls,
+            "spec": spec,
+            "class_slug": cls.lower().replace(" ", "_"),
+            "tier_labels": list(self._tier_labels),
             "cursor": self._chain_cursor,
             "history": list(self._chain_history),
             "frontier_ids": [r["id"] for r in frontier],

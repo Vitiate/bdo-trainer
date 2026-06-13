@@ -4,6 +4,33 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.7] — 2026-06-13
+
+### Changed
+- **ChainRenderer is now a horizontal flowchart with skill icons.**
+  - Tier columns laid out left → right (Opener → Burst → Reposition
+    → Finisher for the Maegu chain combo).
+  - Each node = skill icon + name caption + key chord beneath.
+  - Eligibility edges drawn faintly between every (node in tier T)
+    and every (node in tier T+1).
+  - Cursor → frontier edges drawn solid in gold.
+  - History trail drawn as a dim-gold polyline through previous
+    casts.
+  - Per-node states: idle (faint frame), frontier (white frame),
+    cursor (gold frame, thick), history (dim gold).
+- **Skill icons** loaded from `~/bdo-skill-icons` (community-
+  maintained). The icon loader (`src/overlay/icons.py`) reads
+  `metadata.json`, samples the four corners of each icon for a
+  uniform background colour, and alpha-keys it out before
+  rendering — so the dark BDOCodex border vanishes against the
+  trainer's transparent overlay. Falls back to text-only nodes
+  when the icon repo isn't installed.
+- **Configurable icon size.** Default 48 px; set
+  `settings.chain_icon_size_px` in `config/combos.yaml` to
+  override (clamped 24–128). Picked up at the next
+  `start_combo()` so a settings change takes effect on the next
+  combo selection without restart.
+
 ## [0.6.4-beta.6] — 2026-06-13
 
 ### Added
@@ -800,6 +827,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.7]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.7
 [0.6.4-beta.6]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.6
 [0.6.4-beta.5]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.5
 [0.6.4-beta.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.4
