@@ -4,6 +4,38 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.29] — 2026-06-13
+
+### Changed
+- **Succession `pvp_chain_kill` rebuilt around protection.** The
+  old chain mixed unprotected re-CCs (Charmed, Foxflare Fling,
+  Petal Play) and an unprotected KD opener (Foxflare) into the
+  priority. Those are still legal to cast manually, but they're
+  no longer highlighted as "next best" in the chain. The
+  rebuilt chain has 9 skills (down from 18) across 3 tiers:
+  - **Catch** — Bristling Sparks, Soul Tear, Flower Shroud
+    (all SA / FG with real PvP CC).
+  - **Burst** — Bared Claws (FG, 77% PvP dmg), Foxspirit Tag
+    (SA, -20 DR, cancel from Bared Claws / Flower Shroud).
+  - **Smash/Out** — Heavenward Dance, Lurking Claws, Spirit
+    Parade, Spirit Swirl (all SA / iframe).
+
+### Added
+- **`cc_pvp` override** on combo entries and skill data. Many
+  Maegu skills list a CC in the bdocodex tooltip that only
+  applies in PvE (e.g. Prime: Bared Claws stiffness, Prime:
+  Foxspirit Tag float). The trainer's chain budget and priority
+  scoring previously treated these as real CC links — wrong in
+  PvP. Three layers of resolution:
+  1. `cc_pvp:` on the combo entry (per-combo override).
+  2. `cc_pvp:` on the skill data in the class yaml.
+  3. Fallback: parse the notes for "(PvE only)" qualifiers
+     within ~80 chars after each CC tag and strip the affected
+     tags automatically.
+- The new `pvp_chain_kill` uses option (1) to nail down PvP
+  reality for Bared Claws (no PvP CC) and Foxspirit Tag (no
+  PvP float — only DA/AA smash flags).
+
 ## [0.6.4-beta.28] — 2026-06-13
 
 ### Fixed
@@ -1209,6 +1241,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.29]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.29
 [0.6.4-beta.28]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.28
 [0.6.4-beta.27]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.27
 [0.6.4-beta.26]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.26

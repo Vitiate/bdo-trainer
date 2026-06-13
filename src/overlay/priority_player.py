@@ -294,7 +294,15 @@ class PriorityPlayer:
             "pvp_damage_pct": (
                 float(pvp_damage_pct) if pvp_damage_pct is not None else None
             ),
-            "cc_tags": tuple(info.get("cc") or ()),
+            # PvP-effective CC tags. Many BDO skills list a CC that
+            # only applies in PvE (bdocodex notes flag these as
+            # "(PvE only)"). Two override hooks:
+            #   1. cc_pvp on the skill data (preferred — survives
+            #      across combos, lives in the class yaml)
+            #   2. cc_pvp on the combo entry (per-combo override)
+            # If neither is set we parse the notes for inline
+            # "(PvE only)" qualifiers and strip the affected tags.
+            "cc_tags": tuple(self._resolve_pvp_cc_tags(info, entry)),
             "tags": tuple(info.get("tags") or ()),
         }
 
@@ -348,6 +356,58 @@ class PriorityPlayer:
             (cls._SMASH_WEIGHTS.get(str(t).lower(), 0.0) for t in cc_tags),
             default=0.0,
         )
+
+    @classmethod
+    def _resolve_pvp_cc_tags(
+        cls, info: Dict[str, Any], entry: Dict[str, Any],
+    ) -> List[str]:
+        """Return the CC tags that *actually fire in PvP*.
+
+        Many BDO skills list a CC in the notes that only applies in
+        PvE — e.g. Prime: Bared Claws lists "Stiffness on attack 2
+        hits (PvE only)" so its real PvP CC is none. The trainer's
+        priority sort and chain budget would otherwise treat the
+        skill as a re-CC link that doesn't actually re-CC.
+
+        Resolution order:
+          1. ``cc_pvp`` on the combo entry (highest priority).
+          2. ``cc_pvp`` on the skill data.
+          3. ``cc`` minus tags inline-flagged "(PvE only)" in notes.
+          4. ``cc`` as-is (nothing in notes).
+        """
+        # Explicit override on combo entry.
+        entry_override = entry.get("cc_pvp")
+        if entry_override is not None:
+            return [str(t).lower() for t in (entry_override or [])]
+        # Explicit override on skill data.
+        skill_override = info.get("cc_pvp")
+        if skill_override is not None:
+            return [str(t).lower() for t in (skill_override or [])]
+        # Note-parse fallback.
+        cc_tags = list(info.get("cc") or [])
+        if not cc_tags:
+            return []
+        notes = info.get("notes")
+        if not isinstance(notes, str) or not notes:
+            return cc_tags
+        kept: List[str] = []
+        for tag in cc_tags:
+            # Look for "<tag>... (PvE only)" within ~80 chars after
+            # any occurrence of the tag in the notes. Case-insensitive.
+            tag_str = str(tag).lower()
+            pve_only = False
+            for m in re.finditer(
+                rf"\b{re.escape(tag_str)}\b", notes, re.IGNORECASE,
+            ):
+                window = notes[m.end():m.end() + 80]
+                if re.search(
+                    r"\(\s*PvE\s+only\s*\)", window, re.IGNORECASE,
+                ):
+                    pve_only = True
+                    break
+            if not pve_only:
+                kept.append(tag_str)
+        return kept
 
     @classmethod
     def _parse_pvp_damage(cls, notes: Any) -> Optional[float]:
