@@ -263,15 +263,32 @@ class ChainRenderer:
             return
 
         # ---- Group rows by tier --------------------------------------------
+        # Within each tier we want the highest-priority skill at the
+        # top of the column, matching the player's score-based
+        # frontier ordering (CC weight + PvP damage + smash bonus).
+        # Skills not currently in the frontier (on cooldown / blocked
+        # by a gate) sort below frontier skills in declaration order.
         tier_labels: List[str] = state.get("tier_labels") or []
         tiers: List[List[Dict[str, Any]]] = (
             [[] for _ in tier_labels] or [[]]
         )
+        frontier_ids_ordered: List[str] = list(state.get("frontier_ids") or [])
+        # Lower number = higher priority. Skills not on the frontier
+        # share the same fallback rank so their declaration order is
+        # preserved by the stable sort.
+        rank: Dict[str, int] = {
+            sid: i for i, sid in enumerate(frontier_ids_ordered)
+        }
+        not_frontier_rank = len(frontier_ids_ordered)
         for row in rows:
             t = int(row.get("tier", 0))
             while t >= len(tiers):
                 tiers.append([])
             tiers[t].append(row)
+        for tier_rows in tiers:
+            tier_rows.sort(
+                key=lambda r: rank.get(r["id"], not_frontier_rank)
+            )
 
         # ---- Layout sizes --------------------------------------------------
         # Pull layout knobs fresh every render so settings sliders are

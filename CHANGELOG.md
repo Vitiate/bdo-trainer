@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.17] — 2026-06-13
+
+### Fixed
+- **Chain renderer was ignoring the priority sort.** The
+  player's score-based frontier ordering from beta.16 was
+  computed correctly, but the renderer painted nodes by YAML
+  declaration order within each tier column, so the visual
+  order never changed. Now each tier column re-sorts by the
+  frontier rank — highest-priority skill at the top of the
+  column.
+
 ## [0.6.4-beta.16] — 2026-06-13
 
 ### Changed
@@ -999,6 +1010,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.17]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.17
 [0.6.4-beta.16]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.16
 [0.6.4-beta.15]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.15
 [0.6.4-beta.14]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.14
