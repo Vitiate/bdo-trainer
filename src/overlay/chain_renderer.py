@@ -41,10 +41,6 @@ _KEY_GAP = 4
 _DEFAULT_COLUMN_GAP = 120
 _DEFAULT_NODE_VGAP = 18
 
-# Spotlight: the "best next" skill always sits in this column,
-# counted from the LEFT of the chart. Past tiers drift further
-# left and are dimmed; future tiers stay visible to the right.
-_SPOTLIGHT_COL = 1
 # Per-frame easing fraction for the pan animation (1.0 = snap,
 # lower = smoother). 0.35 lands in ~5–6 frames at the 150 ms tick
 # rate, which feels like an easing curve without lag.
@@ -307,12 +303,14 @@ class ChainRenderer:
         # idle frames without an active frontier.
         spotlight_tier = self._spotlight_tier(state, rows)
 
-        # Pan target: shift the chart so the spotlight tier sits at
-        # column index _SPOTLIGHT_COL. Positive pan moves the chart
-        # left (older tiers drift off the left edge).
-        target_pan = max(0, spotlight_tier - _SPOTLIGHT_COL) * col_w
+        # Pan target: shift the chart so the spotlight tier's column
+        # sits at the overlay centre (ctx.cx). Positive pan moves
+        # the chart left — older tiers drift off the left edge,
+        # future tiers stay visible to the right.
+        target_pan = spotlight_tier * col_w
         if self._last_spotlight_tier is None:
-            # First frame — snap so we don't ease in from 0.
+            # First frame — snap so the chart appears in the right
+            # place rather than easing in from tier 0.
             self._pan_current = float(target_pan)
         self._last_spotlight_tier = spotlight_tier
         self._pan_target = float(target_pan)
@@ -321,18 +319,13 @@ class ChainRenderer:
         self._pan_current += (
             self._pan_target - self._pan_current
         ) * _PAN_LERP
-        # Snap to integer pixel to avoid sub-pixel jitter on Tk.
         pan_px = int(round(self._pan_current))
 
-        # Anchor: spotlight column sits one column left of overlay
-        # centre. So column 0 of the chart starts at:
-        #   ctx.cx - (_SPOTLIGHT_COL × col_w) - pan offset
-        chart_left = (
-            ctx.cx
-            - (_SPOTLIGHT_COL * col_w)
-            - (node_size // 2)
-            - pan_px
-        )
+        # Spotlight column centre = ctx.cx, so its left edge is at
+        # ctx.cx - node_size/2. Walk back by spotlight_tier columns
+        # in chart space (which is what pan_px encodes) to find the
+        # chart's left edge.
+        chart_left = ctx.cx - (node_size // 2) - pan_px
         chart_top = ctx.cy - (chart_h // 2) + 30
 
         # ---- Header (budget) ----------------------------------------------
@@ -606,23 +599,33 @@ class ChainRenderer:
     ) -> int:
         """Return the tier index the spotlight column should target.
 
-        Priority:
-        1. The best (first) frontier id's tier — "what should I press
-           next" should always be in the spotlight.
-        2. Falls back to one tier ahead of the cursor so the chart
-           drifts forward even if the player's gating temporarily
-           empties the frontier.
-        3. Finally falls back to tier 0.
+        Anchored to chain *progress*, not the role-priority sort:
+
+        1. If we have a cursor (on-chain cast), spotlight = cursor
+           tier + 1. The chart pans forward as the chain advances.
+        2. If we have a cursor at the last tier, stay there.
+        3. With no cursor yet, find the lowest-tier frontier id —
+           the opener belongs in the spotlight before the first cast.
+        4. Default to tier 0.
+
+        Rationale: ``frontier_ids[0]`` is sorted by role priority
+        (catch / burst / pre-buff) which doesn't strictly follow
+        tier order — using it as the spotlight anchor would let the
+        spotlight stay on tier 0 catches even after the chain has
+        advanced into Burst.
         """
         row_tier: Dict[str, int] = {r["id"]: int(r.get("tier", 0)) for r in rows}
-        frontier_ids = state.get("frontier_ids") or []
-        if frontier_ids:
-            best = frontier_ids[0]
-            if best in row_tier:
-                return row_tier[best]
+        if not row_tier:
+            return 0
+        max_tier = max(row_tier.values())
         cursor_id = state.get("cursor")
         if cursor_id and cursor_id in row_tier:
-            return min(row_tier[cursor_id] + 1, max(row_tier.values()))
+            return min(row_tier[cursor_id] + 1, max_tier)
+        frontier_ids = state.get("frontier_ids") or []
+        if frontier_ids:
+            return min(
+                row_tier[fid] for fid in frontier_ids if fid in row_tier
+            )
         return 0
 
     @staticmethod

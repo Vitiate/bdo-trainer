@@ -4,6 +4,19 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.15] — 2026-06-13
+
+### Fixed
+- **Chain chart wasn't actually moving.** beta.14 had two bugs.
+  (1) the spotlight anchor was clamped at column 1, so a tier-0
+  → tier-1 advance produced zero pan delta. (2) the spotlight
+  *target* was `frontier_ids[0]`, but that list is sorted by role
+  priority — after casting an opener, lower-tier catches still
+  rank ahead of burst skills, so the anchor never moved off tier
+  0. The spotlight is now anchored to chain progress (`cursor
+  tier + 1`) and the chart's spotlight column is centred on the
+  overlay so every tier advance produces a visible slide.
+
 ## [0.6.4-beta.14] — 2026-06-13
 
 ### Changed
@@ -966,6 +979,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.15]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.15
 [0.6.4-beta.14]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.14
 [0.6.4-beta.13]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.13
 [0.6.4-beta.12]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.12
