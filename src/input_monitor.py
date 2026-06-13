@@ -12,6 +12,7 @@ Key names use the same strings as combo YAML files:
 """
 
 import logging
+import sys
 import threading
 from typing import Callable, Dict, List, Optional, Set
 
@@ -34,6 +35,38 @@ except ImportError:
         "pynput not installed — combo steps will auto-advance on a timer. "
         "Install with: pip install pynput"
     )
+
+# pyobjc lazy-import probe — pynput's macOS keyboard listener calls
+# HIServices.AXIsProcessTrusted() in its background thread on first
+# event. Under Python 3.14 a pyobjc bug raises
+# ``KeyError: 'AXIsProcessTrusted'`` from inside the lazy importer
+# and crashes the listener thread. The trainer's main loop survives,
+# but every key press surfaces a traceback in the log.
+#
+# Probe the symbol from the main thread BEFORE we start the
+# listener. If the lookup fails we disable input monitoring with a
+# clear log message instead of letting the listener crash on every
+# event. Fix on the user side is to recreate the venv on Python
+# 3.12 / 3.13, or upgrade the pyobjc-framework-ApplicationServices
+# wheel.
+if INPUT_AVAILABLE and sys.platform == "darwin":
+    try:
+        import HIServices  # type: ignore  # noqa: F401
+        # Touch the symbol so the lazy importer either resolves or
+        # raises now, in our main thread, where we can catch it.
+        HIServices.AXIsProcessTrusted  # noqa: B018
+    except Exception as _exc:
+        logger.warning(
+            "Disabling pynput on macOS — pyobjc lazy-import bug: "
+            f"{_exc!r}. Recreate the venv on Python 3.12 / 3.13, or "
+            "upgrade pyobjc-framework-ApplicationServices. The "
+            "trainer will continue without input monitoring (combo "
+            "advancement and chain frontier won't react to key "
+            "presses)."
+        )
+        INPUT_AVAILABLE = False
+        _pynput_kb = None
+        _pynput_mouse = None
 
 
 class InputMonitor:

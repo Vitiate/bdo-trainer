@@ -4,6 +4,25 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.11] — 2026-06-13
+
+### Fixed
+- **Detect the macOS pynput lazy-import bug at startup** instead
+  of letting the listener thread crash on every key press. Under
+  Python 3.14 with current pyobjc, pynput's macOS keyboard
+  listener calls ``HIServices.AXIsProcessTrusted()`` on its
+  first event and the lazy-importer raises
+  ``KeyError: 'AXIsProcessTrusted'`` — the listener thread dies
+  silently, the trainer's main loop survives, and every press
+  spams a traceback in the log.
+  The trainer now probes the symbol from the main thread at
+  module-import time. If it can't resolve, ``INPUT_AVAILABLE``
+  is forced to ``False`` and a one-line warning explains the
+  fix (recreate the venv on Python 3.12 / 3.13, or upgrade
+  ``pyobjc-framework-ApplicationServices``). The trainer
+  continues running without input monitoring instead of
+  spamming tracebacks.
+
 ## [0.6.4-beta.10] — 2026-06-13
 
 ### Added
@@ -903,6 +922,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.11]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.11
 [0.6.4-beta.10]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.10
 [0.6.4-beta.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.9
 [0.6.4-beta.8]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.8
