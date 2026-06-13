@@ -4,6 +4,22 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.25] — 2026-06-13
+
+### Fixed
+- **Capslock crashes the trainer.** macOS pynput can raise
+  unexpected exceptions (UnicodeDecodeError / OSError /
+  TypeError) on edge-case key events like a capslock toggle.
+  The previous `_normalize_key` only caught `AttributeError`;
+  other exception types escaped into the listener thread and
+  on Python 3.14 + pyobjc tripped the AXIsProcessTrusted lazy-
+  import bug, SIGTRAPing the process.
+  - `_normalize_key` now catches everything.
+  - `_on_key_press` / `_on_key_release` / `_on_click` wrap
+    their work in try/except and log instead of bubbling up.
+  - Net effect: a single weird key event can no longer tear
+    down the input monitor thread.
+
 ## [0.6.4-beta.24] — 2026-06-13
 
 ### Fixed
@@ -1135,6 +1151,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.25]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.25
 [0.6.4-beta.24]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.24
 [0.6.4-beta.23]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.23
 [0.6.4-beta.22]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.22

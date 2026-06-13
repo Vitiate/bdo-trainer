@@ -221,20 +221,31 @@ class InputMonitor:
     # Key normalization
     # ------------------------------------------------------------------
     def _normalize_key(self, key) -> Optional[str]:
-        """Convert a pynput key object to our canonical string."""
+        """Convert a pynput key object to our canonical string.
+
+        Catches *any* exception, not just AttributeError. macOS
+        pynput can raise UnicodeDecodeError / OSError / TypeError
+        on certain edge cases (capslock toggling, dead keys, IME
+        glyphs); on Python 3.14 + pyobjc those raises propagate
+        into the listener thread and trip the AXIsProcessTrusted
+        lazy-import bug, which SIGTRAPs the whole process.
+        """
         if not INPUT_AVAILABLE:
             return None
 
         # Special keys (shift, space, ctrl, …)
-        if key in self._SPECIAL_KEY_MAP:
-            return self._SPECIAL_KEY_MAP[key]
+        try:
+            if key in self._SPECIAL_KEY_MAP:
+                return self._SPECIAL_KEY_MAP[key]
+        except Exception:
+            return None
 
         # Character keys
         try:
             char = key.char
             if char:
                 return char.lower()
-        except AttributeError:
+        except Exception:
             pass
 
         # Virtual key code fallback (e.g. numpad, media keys)
@@ -245,7 +256,7 @@ class InputMonitor:
                     return chr(vk).lower()
                 if 48 <= vk <= 57:
                     return chr(vk)
-        except AttributeError:
+        except Exception:
             pass
 
         return None
@@ -254,34 +265,46 @@ class InputMonitor:
     # pynput callbacks
     # ------------------------------------------------------------------
     def _on_key_press(self, key) -> None:
-        name = self._normalize_key(key)
-        if name:
-            self._pressed.add(name)
-            self._check()
+        # Swallow any exception so a single weird key event (e.g.
+        # capslock under macOS pynput) can't tear down the
+        # listener thread and SIGTRAP the process.
+        try:
+            name = self._normalize_key(key)
+            if name:
+                self._pressed.add(name)
+                self._check()
+        except Exception:
+            logger.exception("Input monitor: key-press handler failed")
 
     def _on_key_release(self, key) -> None:
-        name = self._normalize_key(key)
-        if name:
-            self._pressed.discard(name)
-            self._reset_edge_trigger()
+        try:
+            name = self._normalize_key(key)
+            if name:
+                self._pressed.discard(name)
+                self._reset_edge_trigger()
+        except Exception:
+            logger.exception("Input monitor: key-release handler failed")
 
     def _on_click(self, x, y, button, pressed) -> None:
         if not INPUT_AVAILABLE:
             return
-        btn_map: Dict[str, str] = {
-            _pynput_mouse.Button.left.name: "lmb",
-            _pynput_mouse.Button.right.name: "rmb",
-            _pynput_mouse.Button.middle.name: "mmb",
-        }
-        name = btn_map.get(button.name)
-        if not name:
-            return
-        if pressed:
-            self._pressed.add(name)
-            self._check()
-        else:
-            self._pressed.discard(name)
-            self._reset_edge_trigger()
+        try:
+            btn_map: Dict[str, str] = {
+                _pynput_mouse.Button.left.name: "lmb",
+                _pynput_mouse.Button.right.name: "rmb",
+                _pynput_mouse.Button.middle.name: "mmb",
+            }
+            name = btn_map.get(button.name)
+            if not name:
+                return
+            if pressed:
+                self._pressed.add(name)
+                self._check()
+            else:
+                self._pressed.discard(name)
+                self._reset_edge_trigger()
+        except Exception:
+            logger.exception("Input monitor: mouse-click handler failed")
 
     # ------------------------------------------------------------------
     # Match check
