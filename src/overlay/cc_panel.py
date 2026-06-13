@@ -324,6 +324,15 @@ class CCPanel:
             cooldown_ms = int(info.get("cooldown_ms") or 0)
             raw_name = info.get("name", skill_id.replace("_", " ").title())
             cc_modes = _classify_cc_modes(cc_tags, info.get("notes", ""))
+            # Skip the row if every binding tag is PvE-only — there's
+            # nothing that lands in PvP, so the panel entry would be
+            # misleading.
+            pvp_eligible = [
+                t for t in cc_tags
+                if t in _PVP_CC_TAGS and cc_modes.get(t, "both") != "pve"
+            ]
+            if not pvp_eligible:
+                continue
             rows.append({
                 "id": skill_id,
                 "name": _strip_grade(raw_name),
@@ -380,11 +389,14 @@ class CCPanel:
                 # modifiers we don't want to clutter the display.
                 if c not in _PVP_CC_TAGS:
                     continue
-                base = _CC_LABEL.get(c, c.title())
+                # Skip PvE-only effects entirely — the panel is aimed
+                # at PvP usefulness, where a "Floating (PvE only)" tag
+                # is misleading.
                 mode = cc_modes.get(c, "both")
                 if mode == "pve":
-                    tag_strs.append(f"{base} (PvE)")
-                elif mode == "pvp":
+                    continue
+                base = _CC_LABEL.get(c, c.title())
+                if mode == "pvp":
                     tag_strs.append(f"{base} (PvP)")
                 else:
                     tag_strs.append(base)

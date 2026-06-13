@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.5] — 2026-06-12
+
+### Changed
+- **CC panel drops PvE-only effects entirely.** Previously skills
+  with PvE-only binding tags (e.g. Floating PvE only) still
+  rendered with a "(PvE)" suffix. Those tags are now removed from
+  the rendered list, and rows whose binding effects are *all*
+  PvE-only no longer appear at all. PvP-only and "both" tags are
+  unchanged.
+- **Diagnostic logging** added when the CC panel opens or
+  refreshes — `logs/bdo_trainer.log` now records which class /
+  spec the panel is showing and how many bundle-referenced skills
+  are eligible. Helps diagnose "wrong spec showing" reports.
+
 ## [0.6.4-beta.4] — 2026-06-12
 
 ### Changed
@@ -741,6 +755,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.5]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.5
 [0.6.4-beta.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.4
 [0.6.4-beta.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.3
 [0.6.4-beta.2]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.2

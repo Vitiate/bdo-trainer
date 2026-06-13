@@ -214,6 +214,10 @@ class BDOTrainerApp:
         if class_changed and self.overlay.cc_panel_active:
             skills = self.loader.classes.get_skills(class_name, spec_name)
             spec_ids = self._spec_owned_skill_ids(class_name, spec_name)
+            logger.info(
+                f"CC panel: combo selected, refreshing to {class_name}/{spec_name} "
+                f"({len(spec_ids)} bundle-referenced skills)"
+            )
             self.overlay.schedule(
                 lambda: self.overlay.update_cc_panel(skills, spec_ids)
             )
@@ -260,6 +264,9 @@ class BDOTrainerApp:
             keys = self.loader.classes.keys()
             if keys:
                 cls, spec = keys[0]
+            logger.info(
+                f"CC panel: no combo selected yet, falling back to {cls}/{spec}"
+            )
         if not cls or not spec:
             logger.warning("CC panel: no class data available")
             if self.tray:
@@ -267,6 +274,10 @@ class BDOTrainerApp:
             return
         skills = self.loader.classes.get_skills(cls, spec)
         spec_ids = self._spec_owned_skill_ids(cls, spec)
+        logger.info(
+            f"CC panel showing {cls}/{spec} — "
+            f"{len(spec_ids)} bundle-referenced skills"
+        )
         self.overlay.show_cc_panel(skills, spec_ids)
 
     def _spec_owned_skill_ids(self, cls: str, spec: str) -> set:
