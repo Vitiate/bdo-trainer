@@ -1,27 +1,25 @@
-"""ChainRenderer — horizontal "priority reel" for chain-mode combos.
+"""ChainRenderer — vertical-column flowchart with animated priority.
 
-All skills in the combo are laid out in a single horizontal row.
-The leftmost slot is a fixed **highlight box** at the overlay
-centre — whichever skill currently ranks #1 by the player's
-frontier sort (CC weight + PvP damage + smash bonus) lives there.
-Everything else trails off to the right.
+Tier columns laid out left → right. Skills are stacked vertically
+within each column, sorted by the player's score-based frontier
+priority (CC weight + PvP damage + smash bonus during a smash
+window). The highest-priority skill in each column is at the top.
 
-When the priority order changes (a cast goes on cooldown, a smash
-window opens, a chain advances), each card eases toward its new
-slot. The cumulative motion looks like a wheel spinning — cards
-slide through intermediate slots over ~5 frames at the 150 ms
-tick rate.
+Each skill renders as:
+- An icon inside a rounded frame.
+- A small CC-type badge in the top-right of the frame (letter on
+  a coloured background — 'KD' / 'ST' / 'FL' / 'G' etc).
+- Skill name below the frame.
+- Key chord below the name.
 
-Visual layers, drawn back-to-front:
-- Reel cards (icon + name + key chord), each with its own animated x.
-- Highlight box (rounded outline at slot 0, always at ctx.cx).
-- Drain ring around the highlight box for the most-recently-cast
-  skill — visualises remaining CC lock time on the target.
-- Off-chain reset banner (briefly drawn after a wrong key).
+The single highest-priority skill across the entire combo gets a
+gold highlight frame and a clockwise drain ring showing remaining
+CC lock time on the target. All other skills get a thin dim frame.
 
-Icons come from :mod:`src.overlay.icons`; missing icons fall back
-to a text-only card so the renderer still works without the icon
-repo.
+When priority changes (cast goes on cooldown, smash window opens,
+chain advances) each card eases toward its new (x, y) target
+position over ~6 frames at the 150 ms tick rate, so cards visibly
+slide through intermediate slots like a wheel spinning.
 """
 
 from __future__ import annotations
@@ -42,39 +40,30 @@ _RESET_FLASH_MS = 350
 _FLASH_PERIOD_MS = 600
 
 # Layout — pixel constants (most scale implicitly with icon size).
-_NODE_PAD = 8         # px around the icon inside a card
+_NODE_PAD = 8        # px around the icon inside a card frame
 _LABEL_GAP = 4
 _KEY_GAP = 4
-# Default per-card spacing along the reel (renderer override
-# wired through the existing column_gap setting).
-_DEFAULT_SLOT_GAP = 28
-# Maximum number of cards drawn to the left/right of the
-# highlight slot. Cards past this fade out + clip; keeps the reel
-# from running off-screen on very long chains.
-_VISIBLE_RIGHT = 8
-_VISIBLE_LEFT = 4
+_DEFAULT_COLUMN_GAP = 120
+_DEFAULT_NODE_VGAP = 18
 
-# Highlight-box padding around a card — its rounded outline sits
-# this many extra pixels out from the card art on every side.
-_HIGHLIGHT_PAD = 6
-
-# Per-frame easing fraction for the slide animation. 0.30 lands in
-# ~6 frames at the 150 ms tick rate.
+# Per-frame easing fraction for card-position animation. 0.30
+# converges in ~6 frames at the 150 ms tick.
 _SLIDE_LERP = 0.30
-# Below this px-distance from target we snap, otherwise tiny
-# residuals never settle.
 _SNAP_PX = 0.5
 
-# Dim factors for icon alpha by reel position / state.
-_DIM_HIGHLIGHT = 1.0    # in the highlight box
-_DIM_NEAR = 0.85        # one or two slots away
-_DIM_MID = 0.55         # mid reel
-_DIM_FAR = 0.25         # far edges
-_DIM_HISTORY = 0.20     # off-cooldown but recently cast → drifts right
+# Dim factors for icon alpha by node priority.
+_DIM_TOP = 1.0       # rank 0 in column AND rank 0 overall
+_DIM_FRONTIER = 0.85
+_DIM_COL_TOP = 0.75  # top of a non-spotlighted column
+_DIM_HISTORY = 0.30
+_DIM_IDLE = 0.20
 
 # Colours
-_HIGHLIGHT_FRAME = "#FFD700"     # highlight box outline (gold)
-_HIGHLIGHT_FRAME_BUFF = "#66E0FF"  # cyan when the #1 is a buff
+_FRAME_DIM = "#3A3A3A"
+_FRAME_FRONTIER = "#FFFFFF"
+_FRAME_HIGHLIGHT = "#FFD700"
+_FRAME_HIGHLIGHT_BUFF = "#66E0FF"
+_FRAME_HISTORY = "#776A2A"
 _DRAIN_DIM = "#3A3A3A"
 _LABEL_DIM = "#777777"
 _LABEL_LIT = "#FFFFFF"
@@ -84,89 +73,114 @@ _KEY_FLASH = "#FFFFCC"
 _HEADER_COLOR = "#FFD700"
 _RESET_COLOR = "#CC2030"
 
-# Rounded-rect perimeter sampling for the highlight box.
+# CC badge palette. (label, fill, fg). Picked so the badges stand
+# out against a typical BDO icon — saturated CC colours, dark
+# letters where the bg is light and white letters where it's dark.
+_CC_BADGES: Dict[str, Tuple[str, str, str]] = {
+    "grab":         ("G",  "#9C27B0", "#FFFFFF"),
+    "knockdown":    ("KD", "#F44336", "#FFFFFF"),
+    "stun":         ("ST", "#FF9800", "#000000"),
+    "knockback":    ("KB", "#FF5722", "#FFFFFF"),
+    "floating":     ("FL", "#FFEB3B", "#000000"),
+    "bound":        ("BD", "#CDDC39", "#000000"),
+    "stiffness":    ("SF", "#FFF59D", "#000000"),
+    "down_smash":   ("DS", "#5D4037", "#FFFFFF"),
+    "air_smash":    ("AS", "#795548", "#FFFFFF"),
+    "down_attack":  ("DA", "#424242", "#FFFFFF"),
+    "air_attack":   ("AA", "#9E9E9E", "#000000"),
+}
+# Order used to pick a single badge when a skill has multiple CC
+# tags — pick the strongest "real" CC first; smash / hit-flag
+# tags only badge if the skill has nothing better.
+_CC_BADGE_ORDER = (
+    "grab", "knockdown", "stun", "knockback", "floating",
+    "bound", "stiffness", "down_smash", "air_smash",
+    "down_attack", "air_attack",
+)
+
+# Rounded-rect perimeter sampling for outline / drain rendering.
 _PERIMETER_SAMPLES = 80
 _CORNER_RADIUS_FRAC = 0.22
 
 
 def _rounded_rect_perimeter(
-    cx: int, cy: int, half_w: int, half_h: int, radius: int,
+    cx: int, cy: int, half: int, radius: int,
 ) -> List[Tuple[float, float]]:
-    """Return ``_PERIMETER_SAMPLES`` (x, y) points walking the
-    perimeter of a rounded rectangle clockwise, starting at 12
-    o'clock. Supports asymmetric width / height so the highlight
-    box can be wider than tall.
+    """Walk a rounded square's perimeter clockwise from 12 o'clock.
+    Returns ``_PERIMETER_SAMPLES`` evenly-spaced points usable for
+    both static outline rendering and partial drain rings.
     """
-    left = cx - half_w + radius
-    right = cx + half_w - radius
-    top = cy - half_h + radius
-    bottom = cy + half_h - radius
-
-    side_h = 2 * (half_w - radius)
-    side_v = 2 * (half_h - radius)
+    side_len = 2 * (half - radius)
     arc_len = (math.pi / 2) * radius
-    total_len = 2 * side_h + 2 * side_v + 4 * arc_len
+    total_len = 4 * side_len + 4 * arc_len
+
+    left_arc_x = cx - half + radius
+    right_arc_x = cx + half - radius
+    top_arc_y = cy - half + radius
+    bottom_arc_y = cy + half - radius
 
     out: List[Tuple[float, float]] = []
-    half_top = side_h / 2.0
+    half_top = side_len / 2.0
     for i in range(_PERIMETER_SAMPLES):
         s = (i / _PERIMETER_SAMPLES) * total_len
         if s < half_top:
             x = cx + s
-            y = cy - half_h
+            y = cy - half
         elif s < half_top + arc_len:
             a = (s - half_top) / radius
-            x = right + radius * math.sin(a)
-            y = top - radius * math.cos(a)
-        elif s < half_top + arc_len + side_v:
-            x = cx + half_w
-            y = top + (s - half_top - arc_len)
-        elif s < half_top + arc_len + side_v + arc_len:
-            a = (s - half_top - arc_len - side_v) / radius
-            x = right + radius * math.cos(a)
-            y = bottom + radius * math.sin(a)
-        elif s < half_top + arc_len + side_v + arc_len + side_h:
-            x = right - (
-                s - half_top - arc_len - side_v - arc_len
-            )
-            y = cy + half_h
+            x = right_arc_x + radius * math.sin(a)
+            y = top_arc_y - radius * math.cos(a)
+        elif s < half_top + arc_len + side_len:
+            x = cx + half
+            y = top_arc_y + (s - half_top - arc_len)
+        elif s < half_top + arc_len + side_len + arc_len:
+            a = (s - half_top - arc_len - side_len) / radius
+            x = right_arc_x + radius * math.cos(a)
+            y = bottom_arc_y + radius * math.sin(a)
         elif (s
-              < half_top + arc_len + side_v + arc_len + side_h
+              < half_top + arc_len + side_len + arc_len + side_len):
+            x = right_arc_x - (
+                s - half_top - arc_len - side_len - arc_len
+            )
+            y = cy + half
+        elif (s
+              < half_top + arc_len + side_len + arc_len + side_len
               + arc_len):
             a = (
-                s - half_top - arc_len - side_v - arc_len - side_h
+                s - half_top - arc_len - side_len - arc_len
+                - side_len
             ) / radius
-            x = left - radius * math.sin(a)
-            y = bottom + radius * math.cos(a)
+            x = left_arc_x - radius * math.sin(a)
+            y = bottom_arc_y + radius * math.cos(a)
         elif (s
-              < half_top + arc_len + side_v + arc_len + side_h
-              + arc_len + side_v):
-            x = cx - half_w
-            y = bottom - (
-                s - half_top - arc_len - side_v - arc_len
-                - side_h - arc_len
+              < half_top + arc_len + side_len + arc_len + side_len
+              + arc_len + side_len):
+            x = cx - half
+            y = bottom_arc_y - (
+                s - half_top - arc_len - side_len - arc_len
+                - side_len - arc_len
             )
         elif (s
-              < half_top + arc_len + side_v + arc_len + side_h
-              + arc_len + side_v + arc_len):
+              < half_top + arc_len + side_len + arc_len + side_len
+              + arc_len + side_len + arc_len):
             a = (
-                s - half_top - arc_len - side_v - arc_len
-                - side_h - arc_len - side_v
+                s - half_top - arc_len - side_len - arc_len
+                - side_len - arc_len - side_len
             ) / radius
-            x = left - radius * math.cos(a)
-            y = top - radius * math.sin(a)
+            x = left_arc_x - radius * math.cos(a)
+            y = top_arc_y - radius * math.sin(a)
         else:
             x = cx - (
-                s - half_top - arc_len - side_v - arc_len
-                - side_h - arc_len - side_v - arc_len
+                s - half_top - arc_len - side_len - arc_len
+                - side_len - arc_len - side_len - arc_len
             )
-            y = cy - half_h
+            y = cy - half
         out.append((x, y))
     return out
 
 
 class ChainRenderer:
-    """Horizontal priority reel for chain-mode combos."""
+    """Vertical-column flowchart with animated priority reordering."""
 
     def __init__(
         self,
@@ -178,20 +192,17 @@ class ChainRenderer:
         self.ctx = ctx
         self.renderer = renderer
         self._icon_size_provider = icon_size_provider or (lambda: 36)
-        # Reuse the existing "column gap" slider for slot spacing —
-        # users already have it wired and the semantics are similar
-        # enough (horizontal padding between cards).
         self._column_gap_provider = (
-            column_gap_provider or (lambda: _DEFAULT_SLOT_GAP)
+            column_gap_provider or (lambda: _DEFAULT_COLUMN_GAP)
         )
         self._icons = IconLoader(size_px=self._icon_size_provider())
         self._state: Optional[Dict[str, Any]] = None
         self._key_remap: Dict[str, str] = {}
         self._is_active: bool = False
         self._tick_after_id: Optional[str] = None
-        # Per-skill animated x position. Eases toward the target
-        # slot position each render tick.
-        self._anim_x: Dict[str, float] = {}
+        # Per-skill animated position. Eased toward target each
+        # render tick so a rank change slides the card in.
+        self._anim_pos: Dict[str, Tuple[float, float]] = {}
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -199,9 +210,9 @@ class ChainRenderer:
     def show(self) -> None:
         self._icons.set_size(self._icon_size_provider())
         self._is_active = True
-        # Reset animation state so cards don't ease in from
-        # wherever they happened to be last hide.
-        self._anim_x.clear()
+        # Reset animation state so cards drop in at target instead
+        # of sweeping in from a stale prior position.
+        self._anim_pos.clear()
         self._render(self._state)
         self._start_flash_tick()
 
@@ -247,65 +258,93 @@ class ChainRenderer:
         rows: List[Dict[str, Any]] = state.get("rows") or []
         if not rows:
             return
+        rows_by_id: Dict[str, Dict[str, Any]] = {r["id"]: r for r in rows}
 
-        # ---- Layout sizes --------------------------------------------------
+        # ---- Layout sizes -------------------------------------------------
         self._icons.set_size(self._icon_size_provider())
-        slot_gap = max(8, int(self._column_gap_provider()) // 4)
+        column_gap = max(20, int(self._column_gap_provider()))
         node_size = self._icons.size_px + _NODE_PAD * 2
-        slot_w = node_size + slot_gap
+        col_w = node_size + column_gap
         line_h = ctx.note_font.metrics("linespace")
+        # Each card = icon + name line + key line, with gaps.
         card_h = (
             node_size
-            + _LABEL_GAP + line_h         # name label
-            + _KEY_GAP + line_h           # key chord
+            + _LABEL_GAP + line_h         # name
+            + _KEY_GAP + line_h           # key
         )
+        card_step = card_h + _DEFAULT_NODE_VGAP
 
-        highlight_x = ctx.cx
-        highlight_y = ctx.cy + 30 + node_size // 2
-
-        # ---- Build the priority order list --------------------------------
-        # Ordered list: frontier_ids first (already score-sorted by
-        # the player), then everything else (cooldown / blocked) in
-        # declaration order so the eye has a stable reference point.
-        rows_by_id: Dict[str, Dict[str, Any]] = {r["id"]: r for r in rows}
-        frontier_ids: List[str] = list(state.get("frontier_ids") or [])
-        ordered_ids: List[str] = []
-        seen: set = set()
-        for sid in frontier_ids:
-            if sid in rows_by_id and sid not in seen:
-                ordered_ids.append(sid)
-                seen.add(sid)
+        # ---- Group rows by tier; sort each column by frontier rank --------
+        tier_labels: List[str] = state.get("tier_labels") or []
+        tiers: List[List[Dict[str, Any]]] = (
+            [[] for _ in tier_labels] or [[]]
+        )
         for row in rows:
-            if row["id"] not in seen:
-                ordered_ids.append(row["id"])
-                seen.add(row["id"])
+            t = int(row.get("tier", 0))
+            while t >= len(tiers):
+                tiers.append([])
+            tiers[t].append(row)
 
-        # ---- Compute target x per skill -----------------------------------
-        target_x: Dict[str, float] = {}
-        for slot_idx, sid in enumerate(ordered_ids):
-            target_x[sid] = float(highlight_x + slot_idx * slot_w)
+        frontier_ids: List[str] = list(state.get("frontier_ids") or [])
+        frontier_set = set(frontier_ids)
+        rank_map: Dict[str, int] = {
+            sid: i for i, sid in enumerate(frontier_ids)
+        }
+        not_frontier_rank = len(frontier_ids)
+        for tier_rows in tiers:
+            tier_rows.sort(
+                key=lambda r: rank_map.get(r["id"], not_frontier_rank)
+            )
 
-        # ---- Ease animated x toward target --------------------------------
-        for sid, tx in target_x.items():
-            cur = self._anim_x.get(sid)
+        # ---- Chart geometry: centre on overlay ---------------------------
+        n_tiers = len(tiers)
+        chart_w = (n_tiers * col_w) - column_gap
+        tallest = max((len(t) for t in tiers), default=1)
+        chart_h = (
+            tallest * card_step - _DEFAULT_NODE_VGAP
+        )
+        chart_left = ctx.cx - chart_w // 2
+        chart_top = ctx.cy - chart_h // 2 + 30
+
+        # ---- Compute target (x, y) per skill -----------------------------
+        # x = column centre based on its tier; y = row centre within
+        # the column. Both are the *icon* centres; text labels are
+        # drawn at fixed offsets below.
+        target_pos: Dict[str, Tuple[float, float]] = {}
+        for t_idx, tier_rows in enumerate(tiers):
+            col_x = chart_left + col_w * t_idx + node_size // 2
+            tier_h = (
+                len(tier_rows) * card_step - _DEFAULT_NODE_VGAP
+            )
+            tier_y0 = chart_top + (chart_h - tier_h) // 2
+            for r_idx, row in enumerate(tier_rows):
+                y = tier_y0 + card_step * r_idx + node_size // 2
+                target_pos[row["id"]] = (float(col_x), float(y))
+
+        # ---- Ease animated positions toward target -----------------------
+        for sid, (tx, ty) in target_pos.items():
+            cur = self._anim_pos.get(sid)
             if cur is None:
-                # First time we've seen this id — drop in at target
-                # so a fresh combo doesn't sweep all icons across
-                # the screen.
-                self._anim_x[sid] = tx
+                # First frame for this id — place at target instead
+                # of easing in from origin.
+                self._anim_pos[sid] = (tx, ty)
                 continue
-            delta = tx - cur
-            if abs(delta) <= _SNAP_PX:
-                self._anim_x[sid] = tx
+            cx_, cy_ = cur
+            dx = tx - cx_
+            dy = ty - cy_
+            if abs(dx) <= _SNAP_PX and abs(dy) <= _SNAP_PX:
+                self._anim_pos[sid] = (tx, ty)
             else:
-                self._anim_x[sid] = cur + delta * _SLIDE_LERP
-        # Drop anim entries for skills that aren't in the row set
-        # any more (combo swap).
-        for sid in list(self._anim_x.keys()):
-            if sid not in target_x:
-                del self._anim_x[sid]
+                self._anim_pos[sid] = (
+                    cx_ + dx * _SLIDE_LERP,
+                    cy_ + dy * _SLIDE_LERP,
+                )
+        # Drop entries for ids that aren't in this combo any more.
+        for sid in list(self._anim_pos.keys()):
+            if sid not in target_pos:
+                del self._anim_pos[sid]
 
-        # ---- Header (CC budget) -------------------------------------------
+        # ---- Header ------------------------------------------------------
         max_hard = state.get("max_hard_cc", 0)
         hard = state.get("hard_count", 0)
         budget_text = f"Hard-CC: {hard}/{max_hard}"
@@ -314,114 +353,95 @@ class ChainRenderer:
             else "#AAAAAA"
         )
         self.renderer.draw_outlined_text(
-            ctx.cx, highlight_y - node_size // 2 - line_h - 18,
+            ctx.cx, chart_top - 36,
             budget_text, ctx.note_font, budget_color,
             anchor="center", tag=_TAG,
         )
 
-        # ---- Highlight box -------------------------------------------------
-        # Drawn before the cards so it sits behind whichever card is
-        # currently in slot 0.
+        # ---- Tier labels (above each column) ----------------------------
+        for t_idx, label in enumerate(tier_labels):
+            col_centre = (
+                chart_left + col_w * t_idx + node_size // 2
+            )
+            self.renderer.draw_outlined_text(
+                col_centre, chart_top - 14,
+                label, ctx.counter_font, _HEADER_COLOR,
+                anchor="center", tag=_TAG,
+            )
+
+        # ---- Draw cards --------------------------------------------------
         cls_slug = state.get("class_slug") or ""
         roles: Dict[str, str] = state.get("roles") or {}
         history: List[Tuple[str, float]] = state.get("history") or []
         history_ids = {sid for sid, _ts in history}
         cursor_id = state.get("cursor")
         lock_seconds: Dict[str, float] = state.get("lock_seconds") or {}
-
-        top_id = ordered_ids[0] if ordered_ids else None
-        top_role = roles.get(top_id or "", "filler")
-
-        # Highlight box geometry: enough room around a card (icon
-        # plus the two text lines) so a fully-rendered card fits
-        # cleanly inside.
-        box_half_w = (node_size // 2) + _HIGHLIGHT_PAD
-        box_half_h = (card_h // 2) + _HIGHLIGHT_PAD
-        # Centre vertically on the card centre (which is offset from
-        # icon centre by half the text block).
-        text_block_h = (_LABEL_GAP + line_h) + (_KEY_GAP + line_h)
-        box_cy = highlight_y + text_block_h // 2
-
-        radius = max(6, int(node_size * _CORNER_RADIUS_FRAC))
-        perim = _rounded_rect_perimeter(
-            highlight_x, box_cy, box_half_w, box_half_h, radius,
-        )
-        frame_color = (
-            _HIGHLIGHT_FRAME_BUFF
-            if top_role == "pre_buff"
-            else _HIGHLIGHT_FRAME
-        )
-
-        # Drain ring on the highlight box if the cursor is currently
-        # locking the target. Visualises remaining CC duration
-        # clockwise from 12 o'clock; falls back to a static frame
-        # when no cast is active.
+        history_ts: Dict[str, float] = {}
+        for sid, ts in history:
+            history_ts[sid] = ts
         now = time.monotonic()
-        cursor_lock_remaining = 0.0
-        if cursor_id and cursor_id in lock_seconds:
-            cast_ts = next(
-                (ts for sid, ts in reversed(history) if sid == cursor_id),
-                None,
-            )
-            if cast_ts is not None:
-                lock_total = lock_seconds[cursor_id]
-                if lock_total > 0:
-                    elapsed = max(0.0, now - cast_ts)
-                    cursor_lock_remaining = max(
-                        0.0, min(1.0, 1.0 - (elapsed / lock_total)),
-                    )
-        if cursor_lock_remaining > 0:
-            self._draw_drain_perim(
-                perim, cursor_lock_remaining, frame_color, 4,
-            )
-        else:
-            self._draw_static_perim(perim, frame_color, 3)
-
-        # ---- Draw cards in z-order: far → near so the highlight
-        # ----  card sits on top if any visual overlap occurs. -------------
-        now_ms = int(time.monotonic() * 1000)
+        now_ms = int(now * 1000)
         flash_phase = (now_ms // _FLASH_PERIOD_MS) % 2 == 0
+        # The single highest-priority skill across the whole combo
+        # gets the gold highlight + drain ring.
+        top_id: Optional[str] = frontier_ids[0] if frontier_ids else None
 
-        # Reverse so slot 0 (highlight) draws last → on top.
-        for slot_idx in range(len(ordered_ids) - 1, -1, -1):
-            sid = ordered_ids[slot_idx]
-            row = rows_by_id[sid]
-            x = self._anim_x[sid]
-            # Off-screen / far-edge clipping — we still update anim
-            # but skip the draw past the visibility window.
-            if slot_idx > _VISIBLE_RIGHT:
+        # Track per-column rank-0 ids so columns whose top isn't the
+        # global top still get a slightly brighter card than a
+        # 4th-row idle skill.
+        col_top_ids: set = set()
+        for tier_rows in tiers:
+            if tier_rows:
+                col_top_ids.add(tier_rows[0]["id"])
+
+        for sid, (ax, ay) in self._anim_pos.items():
+            row = rows_by_id.get(sid)
+            if row is None:
                 continue
-            dim = self._dim_for_slot(
-                slot_idx,
-                is_history=(sid in history_ids and sid != cursor_id),
+            is_top = (sid == top_id)
+            is_frontier = (sid in frontier_set)
+            is_history = (sid in history_ids and sid != cursor_id)
+            is_col_top = (sid in col_top_ids)
+            dim = self._dim_for(
+                is_top=is_top,
+                is_frontier=is_frontier,
+                is_history=is_history,
+                is_col_top=is_col_top,
             )
-            is_top = (slot_idx == 0)
             self._draw_card(
                 cls_slug, row,
-                cx=int(round(x)),
-                cy=highlight_y,
+                cx=int(round(ax)),
+                cy=int(round(ay)),
                 node_size=node_size,
                 dim_factor=dim,
                 is_top=is_top,
-                flash=flash_phase,
+                is_frontier=is_frontier,
+                is_history=is_history,
                 role=roles.get(sid, "filler"),
+                cc_tags=tuple(row.get("cc_tags") or ()),
+                lock_total_s=(
+                    lock_seconds.get(sid, 0.0) if is_top else 0.0
+                ),
+                cast_ts=(history_ts.get(sid) if is_top else None),
+                now=now,
+                flash=flash_phase,
             )
 
-        # ---- Off-chain reset flash ----------------------------------------
+        # ---- Off-chain reset flash -------------------------------------
         reset_at = state.get("reset_flash_at") or 0.0
         if reset_at > 0:
             elapsed_ms = (time.monotonic() - reset_at) * 1000.0
             if elapsed_ms < _RESET_FLASH_MS:
                 self.renderer.draw_outlined_text(
                     ctx.cx,
-                    box_cy + box_half_h + 26,
+                    chart_top + chart_h + 26,
                     "OFF-CHAIN — RESET",
                     ctx.skill_font, _RESET_COLOR,
                     anchor="center", tag=_TAG,
                 )
 
     # ------------------------------------------------------------------
-    # Card draw
+    # Card draw (icon + frame + CC badge + labels below)
     # ------------------------------------------------------------------
     def _draw_card(
         self,
@@ -433,14 +453,52 @@ class ChainRenderer:
         node_size: int,
         dim_factor: float,
         is_top: bool,
-        flash: bool,
+        is_frontier: bool,
+        is_history: bool,
         role: str,
+        cc_tags: Tuple[str, ...],
+        lock_total_s: float,
+        cast_ts: Optional[float],
+        now: float,
+        flash: bool,
     ) -> None:
         canvas = self.ctx.canvas
         ctx = self.ctx
         half = node_size // 2
+        radius = max(4, int(node_size * _CORNER_RADIUS_FRAC))
+        perim = _rounded_rect_perimeter(cx, cy, half, radius)
 
-        # ---- Icon ---------------------------------------------------------
+        # Frame: gold + drain when this is the global top, otherwise
+        # white when on the frontier, dim grey otherwise.
+        if is_top:
+            frame_color = (
+                _FRAME_HIGHLIGHT_BUFF
+                if role == "pre_buff" else _FRAME_HIGHLIGHT
+            )
+            if (
+                cast_ts is not None
+                and lock_total_s > 0.0
+            ):
+                elapsed = max(0.0, now - cast_ts)
+                remaining = max(
+                    0.0, min(1.0, 1.0 - (elapsed / lock_total_s)),
+                )
+                if remaining > 0:
+                    self._draw_drain_perim(
+                        perim, remaining, frame_color, 4,
+                    )
+                else:
+                    self._draw_static_perim(perim, frame_color, 3)
+            else:
+                self._draw_static_perim(perim, frame_color, 3)
+        elif is_frontier:
+            self._draw_static_perim(perim, _FRAME_FRONTIER, 2)
+        elif is_history:
+            self._draw_static_perim(perim, _FRAME_HISTORY, 1)
+        else:
+            self._draw_static_perim(perim, _FRAME_DIM, 1)
+
+        # Icon (with alpha-dim).
         photo = self._icons.get(
             class_slug, row["name"], dim_factor=dim_factor,
         )
@@ -453,16 +511,19 @@ class ChainRenderer:
                 short = short[:8] + "…"
             self.renderer.draw_outlined_text(
                 cx, cy, short, ctx.note_font,
-                _LABEL_LIT if is_top else _LABEL_DIM,
+                _LABEL_LIT if (is_top or is_frontier) else _LABEL_DIM,
                 anchor="center", tag=_TAG,
             )
 
-        # ---- Name label ---------------------------------------------------
+        # CC badge in the top-right of the icon area.
+        self._draw_cc_badge(cx, cy, half, cc_tags)
+
+        # Name label + key chord, both below the frame.
         line_h = ctx.note_font.metrics("linespace")
         label_y = cy + half + _LABEL_GAP + line_h // 2
         if is_top:
             name_color = _LABEL_HIGHLIGHT
-        elif dim_factor >= _DIM_NEAR:
+        elif is_frontier:
             name_color = _LABEL_LIT
         else:
             name_color = _LABEL_DIM
@@ -470,24 +531,23 @@ class ChainRenderer:
         display_name = row["name"]
         if len(display_name) > max_chars:
             display_name = display_name[: max_chars - 1] + "…"
-        font = ctx.skill_font if is_top else ctx.note_font
+        # Top card is bigger so the active "press this" text reads
+        # at a glance mid-fight; everything else stays small.
+        name_font = ctx.input_font if is_top else ctx.note_font
         self.renderer.draw_outlined_text(
-            cx, label_y, display_name, font, name_color,
+            cx, label_y, display_name, name_font, name_color,
             anchor="center", tag=_TAG,
         )
 
-        # ---- Key chord ----------------------------------------------------
         key_text = self._format_keys(row["keys"])
         if not key_text:
             return
-        # When is_top we use the larger skill_font for the name;
-        # bump the key chord y so it doesn't overlap.
         key_y = label_y + _KEY_GAP + (
-            ctx.skill_font.metrics("linespace") if is_top else line_h
+            ctx.input_font.metrics("linespace") if is_top else line_h
         )
         if is_top and flash:
             key_color = _KEY_FLASH
-        elif is_top or dim_factor >= _DIM_NEAR:
+        elif is_top or is_frontier:
             key_color = _KEY_COLOR
         else:
             key_color = _LABEL_DIM
@@ -498,19 +558,76 @@ class ChainRenderer:
         )
 
     # ------------------------------------------------------------------
-    # Slot → dim factor
+    # CC badge
+    # ------------------------------------------------------------------
+    def _draw_cc_badge(
+        self,
+        cx: int,
+        cy: int,
+        half: int,
+        cc_tags: Tuple[str, ...],
+    ) -> None:
+        if not cc_tags:
+            return
+        # Pick the strongest "real" CC tag for the badge; smash /
+        # hit-flag tags only badge if there's no actual CC.
+        tag_set = {str(t).lower() for t in cc_tags}
+        chosen: Optional[str] = None
+        for cand in _CC_BADGE_ORDER:
+            if cand in tag_set:
+                chosen = cand
+                break
+        if chosen is None:
+            return
+        label, fill, fg = _CC_BADGES[chosen]
+        canvas = self.ctx.canvas
+
+        # Badge box: ~28% of node size, top-right inset by 2 px.
+        bw = max(14, int(half * 0.55))
+        bh = max(11, int(half * 0.42))
+        bx_right = cx + half - 3
+        by_top = cy - half + 3
+        bx_left = bx_right - bw
+        by_bottom = by_top + bh
+
+        # Filled rounded rect (Tk has no native rounded fill, so
+        # approximate with one big rect plus two side rects to
+        # round the corners visually). For a small badge a plain
+        # rectangle reads fine.
+        canvas.create_rectangle(
+            bx_left, by_top, bx_right, by_bottom,
+            fill=fill, outline="#000000", width=1,
+            tags=(_TAG,),
+        )
+        # Centre the label inside.
+        self.renderer.draw_outlined_text(
+            (bx_left + bx_right) // 2,
+            (by_top + by_bottom) // 2,
+            label,
+            self.ctx.counter_font, fg,
+            anchor="center", tag=_TAG,
+        )
+
+    # ------------------------------------------------------------------
+    # Dim factor selection
     # ------------------------------------------------------------------
     @staticmethod
-    def _dim_for_slot(slot_idx: int, *, is_history: bool) -> float:
+    def _dim_for(
+        *,
+        is_top: bool,
+        is_frontier: bool,
+        is_history: bool,
+        is_col_top: bool,
+    ) -> float:
+        if is_top:
+            return _DIM_TOP
+        if is_frontier:
+            return _DIM_FRONTIER
+        if is_col_top:
+            return _DIM_COL_TOP
         if is_history:
             return _DIM_HISTORY
-        if slot_idx == 0:
-            return _DIM_HIGHLIGHT
-        if slot_idx <= 1:
-            return _DIM_NEAR
-        if slot_idx <= 3:
-            return _DIM_MID
-        return _DIM_FAR
+        return _DIM_IDLE
 
     # ------------------------------------------------------------------
     # Outline / drain helpers

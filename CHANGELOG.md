@@ -4,6 +4,31 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.19] — 2026-06-13
+
+### Changed
+- **Tier columns are back, with animated reordering inside each
+  column.** Each tier renders as a vertical column; the
+  highest-priority skill (by CC weight + PvP damage + smash
+  bonus) sits at the top of its column. When a skill's rank
+  changes (cast goes on cooldown, smash window opens) the cards
+  ease toward their new (x, y) target — they slide between rows
+  like a wheel spinning.
+- **CC-type badge inside each card.** Top-right of the icon
+  area, letter-on-coloured-background:
+  - G grab (purple) · KD knockdown (red) · ST stun (orange)
+  - KB knockback · FL float · BD bound · SF stiffen
+  - DS down-smash · AS air-smash · DA down-attack · AA air-attack
+- **Name and key chord render below the card** instead of
+  layered with the icon — easier to read mid-fight.
+- **Single global #1 skill keeps the gold highlight + drain
+  ring.** The drain only applies to the global top now, not to
+  every column-top.
+- **Flower Shroud key chord fix.** The bdocodex tooltip lists
+  `↑ + E` (forward) or `↓ + E` (backward); the YAML had
+  flattened both into `[w, e, s]`, which rendered as `W + D + S`
+  on QE-swap. Now `[w, e]` is primary and `[s, e]` is the alt.
+
 ## [0.6.4-beta.18] — 2026-06-13
 
 ### Changed
@@ -1039,6 +1064,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.19]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.19
 [0.6.4-beta.18]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.18
 [0.6.4-beta.17]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.17
 [0.6.4-beta.16]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.16

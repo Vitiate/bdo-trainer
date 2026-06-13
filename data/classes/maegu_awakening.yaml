@@ -428,11 +428,13 @@ skills:
       skill Forward Guard during the skill No collision while moving 86.49% damage in PvP only'
   flower_shroud:
     name: Flower Shroud
-    input: ↑ + E to perform forward attacks ↓ + E to perform backward attacks Can be used with your foxtail fans
+    input: W + E (forward) or S + E (backward); cast with foxtail fans
     keys:
     - w
     - e
+    keys_alt:
     - s
+    - e
     protection: FG
     cc:
     - stun
