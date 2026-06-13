@@ -4,6 +4,23 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.21] — 2026-06-13
+
+### Changed
+- **Chain renderer flipped vertically.** Skills now stack
+  *upward* from the highlight box: the highest-priority skill
+  in each column sits in the box, the rest go above it. Tier
+  labels and the Hard-CC counter moved to below the chart.
+- **Animations are now smooth.** Render tick bumped from 150 ms
+  (~6 fps) to 33 ms (~30 fps). Lerp factors retuned so the
+  total convergence time is roughly the same (~0.9 s) but with
+  5× more interpolation steps so motion reads as continuous.
+- **Per-frame canvas-item count cut by ~80×.** Static rounded
+  outlines are now drawn as a single `create_polygon` instead
+  of 80 individual `create_line` calls; drain rings are two
+  polylines instead of 80 short segments. Net: ~500 canvas
+  items per frame instead of ~13 000.
+
 ## [0.6.4-beta.20] — 2026-06-13
 
 ### Changed
@@ -1083,6 +1100,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.21]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.21
 [0.6.4-beta.20]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.20
 [0.6.4-beta.19]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.19
 [0.6.4-beta.18]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.18

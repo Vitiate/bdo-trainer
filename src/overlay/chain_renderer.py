@@ -46,19 +46,23 @@ _KEY_GAP = 4
 _DEFAULT_COLUMN_GAP = 120
 _DEFAULT_NODE_VGAP = 18
 
-# Per-frame easing fraction for card-position animation. 0.30
-# converges in ~6 frames at the 150 ms tick.
-_SLIDE_LERP = 0.30
+# Render tick — 33 ms ≈ 30 fps. Lower than 60 fps to keep CPU
+# cost reasonable (each tick rebuilds canvas items), high enough
+# that lerp-eased motion looks continuous to the eye.
+_TICK_MS = 33
+
+# Per-frame easing fractions tuned for the 30 fps tick. Total
+# convergence time is roughly the same as the old 6.7 fps × 0.30
+# values (~0.9 s), but with 5–6× more interpolation steps so the
+# motion reads as smooth instead of stepped.
+_SLIDE_LERP = 0.10
+_PAN_LERP = 0.08
 _SNAP_PX = 0.5
 
 # Highlight box: fixed screen position. The chart pans so the
 # column containing the global #1 skill aligns its top-row card
 # inside this box. The box itself never moves.
 _HIGHLIGHT_PAD = 6
-# Pan easing — slightly slower than the per-card ease so the chart
-# itself moves more deliberately than individual cards re-sorting
-# inside their column.
-_PAN_LERP = 0.25
 
 # Dim factors for icon alpha by node priority.
 _DIM_TOP = 1.0       # rank 0 in column AND rank 0 overall
@@ -316,11 +320,6 @@ class ChainRenderer:
         # *top* card is laid out at the same y as the box, with all
         # subsequent cards stacked below. Columns are then panned in
         # x so the global #1's column lands at ctx.cx.
-        n_tiers = len(tiers)
-        tallest = max((len(t) for t in tiers), default=1)
-        chart_h = (
-            tallest * card_step - _DEFAULT_NODE_VGAP
-        )
         # Highlight box icon centre — this is also the y of every
         # column's top-row card.
         highlight_cx = ctx.cx
@@ -345,8 +344,9 @@ class ChainRenderer:
         # ---- Compute target (x, y) per skill -----------------------------
         # x = highlight_cx + (tier_idx − spotlight_tier) × col_w,
         #     accounting for the eased pan.
-        # y = highlight_cy + row_idx × card_step (top row aligns
-        #     with the highlight box; lower-priority rows below).
+        # y = highlight_cy − row_idx × card_step (top-priority row
+        #     sits in the highlight box; lower-priority rows stack
+        #     UPWARD above it).
         target_pos: Dict[str, Tuple[float, float]] = {}
         for t_idx, tier_rows in enumerate(tiers):
             col_x = (
@@ -355,12 +355,16 @@ class ChainRenderer:
                 - pan_px
             )
             for r_idx, row in enumerate(tier_rows):
-                y = highlight_cy + card_step * r_idx
+                y = highlight_cy - card_step * r_idx
                 target_pos[row["id"]] = (float(col_x), float(y))
 
-        # chart_top / chart_left used by header / tier labels below.
-        chart_left = highlight_cx - pan_px
-        chart_top = highlight_cy - node_size // 2
+        # Bottom of the chart sits below the highlight box (text
+        # labels of the row-0 cards extend down past the icon).
+        chart_bottom = (
+            highlight_cy + node_size // 2
+            + _LABEL_GAP + line_h
+            + _KEY_GAP + line_h
+        )
 
         # ---- Ease animated positions toward target -----------------------
         for sid, (tx, ty) in target_pos.items():
@@ -385,7 +389,7 @@ class ChainRenderer:
             if sid not in target_pos:
                 del self._anim_pos[sid]
 
-        # ---- Header ------------------------------------------------------
+        # ---- Header (CC budget, below the chart) -------------------------
         max_hard = state.get("max_hard_cc", 0)
         hard = state.get("hard_count", 0)
         budget_text = f"Hard-CC: {hard}/{max_hard}"
@@ -394,18 +398,18 @@ class ChainRenderer:
             else "#AAAAAA"
         )
         self.renderer.draw_outlined_text(
-            ctx.cx, chart_top - 36,
+            ctx.cx, chart_bottom + 18,
             budget_text, ctx.note_font, budget_color,
             anchor="center", tag=_TAG,
         )
 
-        # ---- Tier labels (above each column) ----------------------------
+        # ---- Tier labels (below each column) -----------------------------
         for t_idx, label in enumerate(tier_labels):
             col_centre = (
                 highlight_cx + col_w * t_idx - pan_px
             )
             self.renderer.draw_outlined_text(
-                col_centre, chart_top - 14,
+                col_centre, chart_bottom + 36,
                 label, ctx.counter_font, _HEADER_COLOR,
                 anchor="center", tag=_TAG,
             )
@@ -512,7 +516,7 @@ class ChainRenderer:
             if elapsed_ms < _RESET_FLASH_MS:
                 self.renderer.draw_outlined_text(
                     ctx.cx,
-                    chart_top + chart_h + 26,
+                    chart_bottom + 60,
                     "OFF-CHAIN — RESET",
                     ctx.skill_font, _RESET_COLOR,
                     anchor="center", tag=_TAG,
@@ -729,15 +733,26 @@ class ChainRenderer:
         color: str,
         width: int,
     ) -> None:
-        canvas = self.ctx.canvas
-        n = len(perim)
-        for i in range(n):
-            x0, y0 = perim[i]
-            x1, y1 = perim[(i + 1) % n]
-            canvas.create_line(
-                x0, y0, x1, y1,
-                fill=color, width=width, tags=(_TAG,),
-            )
+        """Draw the rounded outline as a single closed polygon.
+
+        Uses one ``create_polygon`` call instead of N ``create_line``
+        calls — much cheaper (one canvas item per outline rather
+        than ~80) and the visual is identical. ``fill=""`` keeps
+        the centre transparent so the icon shows through.
+        """
+        if not perim:
+            return
+        flat: List[float] = []
+        for x, y in perim:
+            flat.append(x)
+            flat.append(y)
+        self.ctx.canvas.create_polygon(
+            *flat,
+            fill="",
+            outline=color,
+            width=width,
+            tags=(_TAG,),
+        )
 
     def _draw_drain_perim(
         self,
@@ -746,19 +761,45 @@ class ChainRenderer:
         active_color: str,
         active_width: int,
     ) -> None:
+        """Drain ring as two polylines instead of N short lines.
+
+        Tk has no partial-arc primitive that respects custom widths
+        cleanly, but a long polyline through every sample is one
+        canvas item — vastly cheaper than the old per-segment
+        ``create_line`` loop.
+        """
+        if not perim:
+            return
         canvas = self.ctx.canvas
         n = len(perim)
         active_count = int(round(n * max(0.0, min(1.0, remaining_frac))))
-        for i in range(n):
-            x0, y0 = perim[i]
-            x1, y1 = perim[(i + 1) % n]
-            if i < active_count:
-                color, width = active_color, active_width
-            else:
-                color, width = _DRAIN_DIM, 1
+
+        # Active arc: samples 0..active_count, plus the boundary
+        # vertex so the colour change happens at the right point.
+        if active_count > 0:
+            pts: List[float] = []
+            for i in range(active_count + 1):
+                x, y = perim[i % n]
+                pts.append(x)
+                pts.append(y)
             canvas.create_line(
-                x0, y0, x1, y1,
-                fill=color, width=width, tags=(_TAG,),
+                *pts,
+                fill=active_color, width=active_width,
+                tags=(_TAG,),
+            )
+
+        # Dim arc: samples active_count..n, closing back to start.
+        if active_count < n:
+            pts = []
+            # Start from the boundary so we don't overdraw it.
+            for i in range(active_count, n + 1):
+                x, y = perim[i % n]
+                pts.append(x)
+                pts.append(y)
+            canvas.create_line(
+                *pts,
+                fill=_DRAIN_DIM, width=1,
+                tags=(_TAG,),
             )
 
     # ------------------------------------------------------------------
@@ -767,7 +808,7 @@ class ChainRenderer:
     def _start_flash_tick(self) -> None:
         if self._tick_after_id is not None:
             return
-        self._tick_after_id = self.ctx.root.after(150, self._flash_tick)
+        self._tick_after_id = self.ctx.root.after(_TICK_MS, self._flash_tick)
 
     def _stop_flash_tick(self) -> None:
         if self._tick_after_id is not None:
@@ -783,7 +824,7 @@ class ChainRenderer:
             return
         if self._state and self._state.get("active"):
             self._render(self._state)
-        self._tick_after_id = self.ctx.root.after(150, self._flash_tick)
+        self._tick_after_id = self.ctx.root.after(_TICK_MS, self._flash_tick)
 
     # ------------------------------------------------------------------
     # Key formatting
