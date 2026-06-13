@@ -4,6 +4,21 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.14] — 2026-06-13
+
+### Changed
+- **Chain flowchart now spotlights the next correct skill.** The
+  best frontier node always renders one column from the left of
+  the overlay; as you advance, the chart slides left so older
+  tiers drift off and future tiers stay visible to the right.
+  The pan eases over ~5 frames at the 150 ms tick rate so it
+  feels like a smooth scroll, not a snap.
+- **Icons fade by node state.** Best frontier = full brightness;
+  other frontier alternatives = 85 %; cursor = 65 %; history =
+  30 %; idle / off-tier = 20 %. Implemented via alpha-channel
+  scaling in `IconLoader`, cached per (size, slug, name, dim
+  bucket) so repeated renders don't re-process the image.
+
 ## [0.6.4-beta.13] — 2026-06-13
 
 ### Fixed
@@ -951,6 +966,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.14]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.14
 [0.6.4-beta.13]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.13
 [0.6.4-beta.12]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.12
 [0.6.4-beta.11]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.11

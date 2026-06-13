@@ -41,6 +41,22 @@ _KEY_GAP = 4
 _DEFAULT_COLUMN_GAP = 120
 _DEFAULT_NODE_VGAP = 18
 
+# Spotlight: the "best next" skill always sits in this column,
+# counted from the LEFT of the chart. Past tiers drift further
+# left and are dimmed; future tiers stay visible to the right.
+_SPOTLIGHT_COL = 1
+# Per-frame easing fraction for the pan animation (1.0 = snap,
+# lower = smoother). 0.35 lands in ~5–6 frames at the 150 ms tick
+# rate, which feels like an easing curve without lag.
+_PAN_LERP = 0.35
+
+# Dim factors for icon alpha by node state.
+_DIM_BEST = 1.0      # best frontier — full brightness
+_DIM_FRONTIER = 0.85
+_DIM_CURSOR = 0.65   # most-recent on-chain cast
+_DIM_HISTORY = 0.30  # older history
+_DIM_IDLE = 0.20     # off-cooldown / not yet reached
+
 # Colours
 _NODE_FRAME_DIM = "#3A3A3A"
 _NODE_FRAME_FRONTIER = "#FFFFFF"
@@ -184,6 +200,13 @@ class ChainRenderer:
         self._key_remap: Dict[str, str] = {}
         self._is_active: bool = False
         self._tick_after_id: Optional[str] = None
+        # Smooth pan — actual drawn pan in pixels eases toward
+        # _pan_target as the cursor advances.
+        self._pan_current: float = 0.0
+        self._pan_target: float = 0.0
+        # When the spotlight target tier changes we clamp the lerp so
+        # it doesn't snap mid-frame.
+        self._last_spotlight_tier: Optional[int] = None
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -274,7 +297,42 @@ class ChainRenderer:
             + max(0, tallest - 1) * _DEFAULT_NODE_VGAP
         )
 
-        chart_left = ctx.cx - (chart_w // 2)
+        # Best frontier is the first frontier id (already
+        # role-prioritised by the player's reorder logic).
+        best_id: Optional[str] = (
+            (state.get("frontier_ids") or [None])[0]
+        )
+        # Look up which tier the spotlight should target. Falls
+        # back to the cursor's tier so the chart still pans during
+        # idle frames without an active frontier.
+        spotlight_tier = self._spotlight_tier(state, rows)
+
+        # Pan target: shift the chart so the spotlight tier sits at
+        # column index _SPOTLIGHT_COL. Positive pan moves the chart
+        # left (older tiers drift off the left edge).
+        target_pan = max(0, spotlight_tier - _SPOTLIGHT_COL) * col_w
+        if self._last_spotlight_tier is None:
+            # First frame — snap so we don't ease in from 0.
+            self._pan_current = float(target_pan)
+        self._last_spotlight_tier = spotlight_tier
+        self._pan_target = float(target_pan)
+        # Ease toward target. The flash tick re-renders every
+        # 150 ms, so we converge in roughly 5–6 frames.
+        self._pan_current += (
+            self._pan_target - self._pan_current
+        ) * _PAN_LERP
+        # Snap to integer pixel to avoid sub-pixel jitter on Tk.
+        pan_px = int(round(self._pan_current))
+
+        # Anchor: spotlight column sits one column left of overlay
+        # centre. So column 0 of the chart starts at:
+        #   ctx.cx - (_SPOTLIGHT_COL × col_w) - pan offset
+        chart_left = (
+            ctx.cx
+            - (_SPOTLIGHT_COL * col_w)
+            - (node_size // 2)
+            - pan_px
+        )
         chart_top = ctx.cy - (chart_h // 2) + 30
 
         # ---- Header (budget) ----------------------------------------------
@@ -371,11 +429,7 @@ class ChainRenderer:
         cls_slug = state.get("class_slug") or ""
         now_ms = int(time.monotonic() * 1000)
         flash_phase = (now_ms // _FLASH_PERIOD_MS) % 2 == 0
-        # Best frontier is the first frontier id (already
-        # role-prioritised by the player's reorder logic).
-        best_id: Optional[str] = (
-            (state.get("frontier_ids") or [None])[0]
-        )
+        # best_id was computed up-front for pan targeting.
 
         now = time.monotonic()
         for row in rows:
@@ -383,16 +437,26 @@ class ChainRenderer:
             pos = node_centres.get(sid)
             if pos is None:
                 continue
+            is_cursor = (sid == cursor_id)
+            is_history = (sid in history_ids and sid != cursor_id)
+            is_frontier = (sid in frontier_ids)
+            is_best = (sid == best_id)
             self._draw_node(
                 cls_slug, row, pos[0], pos[1], node_size,
-                is_cursor=(sid == cursor_id),
-                is_history=(sid in history_ids and sid != cursor_id),
-                is_frontier=(sid in frontier_ids),
-                is_best=(sid == best_id and flash_phase),
+                is_cursor=is_cursor,
+                is_history=is_history,
+                is_frontier=is_frontier,
+                is_best=(is_best and flash_phase),
                 role=roles.get(sid, "filler"),
                 lock_total_s=lock_seconds.get(sid, 0.0),
                 cast_ts=history_ts.get(sid),
                 now=now,
+                dim_factor=self._dim_for(
+                    is_best=is_best,
+                    is_frontier=is_frontier,
+                    is_cursor=is_cursor,
+                    is_history=is_history,
+                ),
             )
 
         # ---- Off-chain reset flash overlay --------------------------------
@@ -426,6 +490,7 @@ class ChainRenderer:
         lock_total_s: float = 0.0,
         cast_ts: Optional[float] = None,
         now: float = 0.0,
+        dim_factor: float = 1.0,
     ) -> None:
         canvas = self.ctx.canvas
         ctx = self.ctx
@@ -477,7 +542,9 @@ class ChainRenderer:
             self._draw_static_outline(perim, color, width)
 
         # ---- Icon ----------------------------------------------------------
-        photo = self._icons.get(class_slug, row["name"])
+        photo = self._icons.get(
+            class_slug, row["name"], dim_factor=dim_factor,
+        )
         if photo is not None:
             # Pin a strong reference so Tk doesn't garbage-collect.
             canvas._chain_icon_refs.append(photo)  # type: ignore[attr-defined]
@@ -529,6 +596,59 @@ class ChainRenderer:
     # ------------------------------------------------------------------
     # Flash tick — drives the next-best key flash + reset fade
     # ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # Spotlight + dimming
+    # ------------------------------------------------------------------
+    def _spotlight_tier(
+        self,
+        state: Dict[str, Any],
+        rows: List[Dict[str, Any]],
+    ) -> int:
+        """Return the tier index the spotlight column should target.
+
+        Priority:
+        1. The best (first) frontier id's tier — "what should I press
+           next" should always be in the spotlight.
+        2. Falls back to one tier ahead of the cursor so the chart
+           drifts forward even if the player's gating temporarily
+           empties the frontier.
+        3. Finally falls back to tier 0.
+        """
+        row_tier: Dict[str, int] = {r["id"]: int(r.get("tier", 0)) for r in rows}
+        frontier_ids = state.get("frontier_ids") or []
+        if frontier_ids:
+            best = frontier_ids[0]
+            if best in row_tier:
+                return row_tier[best]
+        cursor_id = state.get("cursor")
+        if cursor_id and cursor_id in row_tier:
+            return min(row_tier[cursor_id] + 1, max(row_tier.values()))
+        return 0
+
+    @staticmethod
+    def _dim_for(
+        *,
+        is_best: bool,
+        is_frontier: bool,
+        is_cursor: bool,
+        is_history: bool,
+    ) -> float:
+        """Pick the icon alpha multiplier for a node's state.
+
+        Priority order matters: a node can be both 'frontier' and
+        'cursor' for example, but the spotlight ('best frontier')
+        always wins so the next correct skill stays brightest.
+        """
+        if is_best:
+            return _DIM_BEST
+        if is_frontier:
+            return _DIM_FRONTIER
+        if is_cursor:
+            return _DIM_CURSOR
+        if is_history:
+            return _DIM_HISTORY
+        return _DIM_IDLE
+
     # ------------------------------------------------------------------
     # Outline helpers
     # ------------------------------------------------------------------

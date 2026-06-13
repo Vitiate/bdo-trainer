@@ -75,13 +75,33 @@ class IconLoader:
     # ------------------------------------------------------------------
     # Public lookup
     # ------------------------------------------------------------------
-    def get(self, class_slug: str, skill_name: str):
+    def get(
+        self,
+        class_slug: str,
+        skill_name: str,
+        *,
+        dim_factor: float = 1.0,
+    ) -> object:
         """Return a Tk PhotoImage for the skill, or ``None`` if the
-        icon repo or the skill isn't available."""
+        icon repo or the skill isn't available.
+
+        ``dim_factor`` (0.0–1.0) multiplies the alpha channel so the
+        chain renderer can fade non-active nodes. The result is
+        cached separately per quantised dim level (10 % buckets) to
+        keep the cache bounded.
+        """
         if not skill_name:
             return None
+        # Quantise to 10 % buckets so we don't blow the cache out
+        # with floating-point noise across renders.
+        dim_q = max(0.05, min(1.0, round(dim_factor * 10) / 10.0))
         name_lower = skill_name.strip().lower()
-        key = (self._size_px, (class_slug or "").lower(), name_lower)
+        key = (
+            self._size_px,
+            (class_slug or "").lower(),
+            name_lower,
+            dim_q,
+        )
         if key in self._cache:
             return self._cache[key]
         if name_lower in self._missing:
@@ -91,7 +111,7 @@ class IconLoader:
             self._missing.add(name_lower)
             return None
         try:
-            photo = self._load_photo(path)
+            photo = self._load_photo(path, dim_factor=dim_q)
         except Exception as exc:
             logger.warning(f"Icon load failed for {skill_name}: {exc}")
             self._missing.add(name_lower)
@@ -148,7 +168,7 @@ class IconLoader:
     # ------------------------------------------------------------------
     # Image processing
     # ------------------------------------------------------------------
-    def _load_photo(self, path: Path):
+    def _load_photo(self, path: Path, dim_factor: float = 1.0):
         # Lazy import — keeps the trainer working when PIL is missing
         # (icons just don't render; the renderer falls back to text).
         try:
@@ -171,7 +191,20 @@ class IconLoader:
                 (self._size_px, self._size_px),
                 Image.LANCZOS,
             )
+        if dim_factor < 0.99:
+            img = self._dim_alpha(img, dim_factor)
         return ImageTk.PhotoImage(img)
+
+    @staticmethod
+    def _dim_alpha(img, dim_factor: float):
+        """Multiply the alpha channel by ``dim_factor`` to fade the
+        icon. Leaves the RGB intact so the icon's colour is unchanged
+        — only its opacity drops."""
+        from PIL import Image  # type: ignore
+
+        r, g, b, a = img.split()
+        a = a.point(lambda v: int(v * dim_factor))
+        return Image.merge("RGBA", (r, g, b, a))
 
     def _key_out_corner_bg(self, img):
         """Sample the 4 corners. If they agree within tolerance, treat

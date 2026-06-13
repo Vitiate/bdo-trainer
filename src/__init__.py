@@ -2,7 +2,7 @@
 BDO Trainer — Transparent overlay combo trainer for Black Desert Online.
 """
 
-__version__ = "0.6.4-beta.13"
+__version__ = "0.6.4-beta.14"
 __app_name__ = "BDO Trainer"
 
 from .combo_loader import ComboLoader
