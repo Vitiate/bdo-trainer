@@ -36,8 +36,10 @@ _FLASH_PERIOD_MS = 600
 _NODE_PAD = 8       # extra px around the icon for the node frame
 _LABEL_GAP = 4
 _KEY_GAP = 4
-_COLUMN_GAP = 60
-_NODE_VGAP = 18
+# Column gap and vertical gap have a sensible default but are
+# overridable via providers wired by the settings layer.
+_DEFAULT_COLUMN_GAP = 120
+_DEFAULT_NODE_VGAP = 18
 
 # Colours
 _NODE_FRAME_DIM = "#3A3A3A"
@@ -63,12 +65,16 @@ class ChainRenderer:
         ctx: OverlayContext,
         renderer: OverlayRenderer,
         icon_size_provider: Optional[Callable[[], int]] = None,
+        column_gap_provider: Optional[Callable[[], int]] = None,
     ) -> None:
         self.ctx = ctx
         self.renderer = renderer
-        # Icon size is a callable so a settings change can be picked
-        # up at the next show() without a hard reload.
-        self._icon_size_provider = icon_size_provider or (lambda: 48)
+        # All layout knobs are callables so a settings slider drag
+        # takes effect on the next render frame (~150 ms).
+        self._icon_size_provider = icon_size_provider or (lambda: 36)
+        self._column_gap_provider = (
+            column_gap_provider or (lambda: _DEFAULT_COLUMN_GAP)
+        )
         self._icons = IconLoader(size_px=self._icon_size_provider())
         self._state: Optional[Dict[str, Any]] = None
         self._key_remap: Dict[str, str] = {}
@@ -145,9 +151,13 @@ class ChainRenderer:
             tiers[t].append(row)
 
         # ---- Layout sizes --------------------------------------------------
+        # Pull layout knobs fresh every render so settings sliders are
+        # live (no need to restart the combo).
+        self._icons.set_size(self._icon_size_provider())
+        column_gap = max(20, int(self._column_gap_provider()))
         node_size = self._icons.size_px + _NODE_PAD * 2
-        col_w = node_size + _COLUMN_GAP
-        chart_w = (len(tiers) * col_w) - _COLUMN_GAP
+        col_w = node_size + column_gap
+        chart_w = (len(tiers) * col_w) - column_gap
         line_h = ctx.note_font.metrics("linespace")
         node_full_h = (
             node_size
@@ -157,7 +167,7 @@ class ChainRenderer:
         tallest = max((len(t) for t in tiers), default=1)
         chart_h = (
             tallest * node_full_h
-            + max(0, tallest - 1) * _NODE_VGAP
+            + max(0, tallest - 1) * _DEFAULT_NODE_VGAP
         )
 
         chart_left = ctx.cx - (chart_w // 2)
@@ -196,13 +206,13 @@ class ChainRenderer:
             )
             tier_h = (
                 len(tier_rows) * node_full_h
-                + max(0, len(tier_rows) - 1) * _NODE_VGAP
+                + max(0, len(tier_rows) - 1) * _DEFAULT_NODE_VGAP
             )
             tier_y_top = chart_top + (chart_h - tier_h) // 2
             for n_idx, row in enumerate(tier_rows):
                 y_centre = (
                     tier_y_top
-                    + (node_full_h + _NODE_VGAP) * n_idx
+                    + (node_full_h + _DEFAULT_NODE_VGAP) * n_idx
                     + (node_size // 2)
                 )
                 node_centres[row["id"]] = (col_x_centre, y_centre)

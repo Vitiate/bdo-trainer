@@ -115,6 +115,7 @@ class BDOTrainerApp:
             show_notes=True,
             show_window=show_overlay,
             chain_icon_size_provider=self.loader.get_chain_icon_size,
+            chain_column_gap_provider=self.loader.get_chain_column_gap,
         )
         if not show_overlay:
             logger.info(

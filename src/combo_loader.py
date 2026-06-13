@@ -626,16 +626,48 @@ class SettingsLoader:
         self._persist_top_level("update_channel")
 
     # ------------------------------------------------------------------
-    # Chain renderer icon size (px). Read-only via the GUI for now —
-    # set in config/combos.yaml under settings.chain_icon_size_px to
-    # tweak. Bounded so a typo can't render a 4000-px icon and OOM Tk.
+    # Chain renderer layout knobs. Surfaced via Settings → Display
+    # sliders; persisted under ``settings.chain_*`` keys. Each is
+    # bounded so a typo can't OOM Tk or paint outside the screen.
     # ------------------------------------------------------------------
     def get_chain_icon_size(self) -> int:
         try:
-            v = int(self.settings.get("chain_icon_size_px", 48))
+            v = int(self.settings.get("chain_icon_size_px", 36))
         except (TypeError, ValueError):
-            v = 48
-        return max(24, min(128, v))
+            v = 36
+        return max(24, min(96, v))
+
+    def get_chain_column_gap(self) -> int:
+        try:
+            v = int(self.settings.get("chain_column_gap_px", 120))
+        except (TypeError, ValueError):
+            v = 120
+        return max(40, min(300, v))
+
+    def set_chain_icon_size(self, px: int) -> None:
+        """Set + persist the chain icon size. Used by the Settings
+        slider for live preview — writes through to combos.yaml so a
+        relaunch keeps the change."""
+        try:
+            v = int(px)
+        except (TypeError, ValueError):
+            return
+        v = max(24, min(96, v))
+        if self.settings.get("chain_icon_size_px") == v:
+            return
+        self.settings["chain_icon_size_px"] = v
+        self._persist_top_level("chain_icon_size_px")
+
+    def set_chain_column_gap(self, px: int) -> None:
+        try:
+            v = int(px)
+        except (TypeError, ValueError):
+            return
+        v = max(40, min(300, v))
+        if self.settings.get("chain_column_gap_px") == v:
+            return
+        self.settings["chain_column_gap_px"] = v
+        self._persist_top_level("chain_column_gap_px")
 
     def _persist_top_level(self, *keys: str) -> None:
         """Write the named top-level settings keys back to combos.yaml.
@@ -714,6 +746,13 @@ class AppLoader:
     def get_show_cc_panel(self) -> bool:   return self.settings_loader.get_show_cc_panel()
     def get_update_channel(self) -> str:   return self.settings_loader.get_update_channel()
     def get_chain_icon_size(self) -> int:  return self.settings_loader.get_chain_icon_size()
+    def get_chain_column_gap(self) -> int: return self.settings_loader.get_chain_column_gap()
+
+    def set_chain_icon_size(self, px: int) -> None:
+        self.settings_loader.set_chain_icon_size(px)
+
+    def set_chain_column_gap(self, px: int) -> None:
+        self.settings_loader.set_chain_column_gap(px)
 
     def set_show_cc_panel(self, enabled: bool) -> None:
         self.settings_loader.set_show_cc_panel(enabled)

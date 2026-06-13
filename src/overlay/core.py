@@ -40,15 +40,19 @@ class ComboOverlay:
         show_notes: bool = True,
         show_window: bool = True,
         chain_icon_size_provider: Optional[Callable[[], int]] = None,
+        chain_column_gap_provider: Optional[Callable[[], int]] = None,
     ) -> None:
         if not font_family:
             font_family = default_font_family()
 
         self._show_window = show_window
-        # Stored so the ChainRenderer can pull the latest size at
-        # each show() — wired by main.py from the SettingsLoader.
+        # Stored so the ChainRenderer can pull the latest knobs each
+        # render frame — wired by main.py from the SettingsLoader.
         self._chain_icon_size_provider = (
-            chain_icon_size_provider or (lambda: 48)
+            chain_icon_size_provider or (lambda: 36)
+        )
+        self._chain_column_gap_provider = (
+            chain_column_gap_provider or (lambda: 120)
         )
 
         # --- Tk root -------------------------------------------------------
@@ -134,6 +138,7 @@ class ComboOverlay:
             self._ctx,
             self._renderer,
             icon_size_provider=self._chain_icon_size_provider,
+            column_gap_provider=self._chain_column_gap_provider,
         )
         self._priority.on_chain_changed = self._chain_renderer.on_chain_changed
         # Tracks which player is currently active so stop / pause /

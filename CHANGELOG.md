@@ -4,6 +4,24 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.8] — 2026-06-13
+
+### Added
+- **Live sliders for the chain flowchart layout** in
+  Settings → Display:
+  - **Icon size** (24–96 px). Default lowered from 48 to **36** so
+    the flowchart reads less cramped at 1080p.
+  - **Column spacing** (40–300 px). Default **120** — wider gap
+    between tier columns lets the eligibility edges breathe.
+  Both sliders write through to `combos.yaml` on every drag and
+  the ChainRenderer pulls the values fresh each render frame, so
+  changes are visible immediately without restarting the combo.
+
+### Changed
+- `ChainRenderer` constructor now takes a `column_gap_provider`
+  callable in addition to `icon_size_provider`. Both default to
+  the new defaults (36 / 120) when not wired.
+
 ## [0.6.4-beta.7] — 2026-06-13
 
 ### Changed
@@ -827,6 +845,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.8]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.8
 [0.6.4-beta.7]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.7
 [0.6.4-beta.6]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.6
 [0.6.4-beta.5]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.5

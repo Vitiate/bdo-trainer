@@ -111,6 +111,8 @@ _DEFAULT_SETTINGS: Dict[str, Any] = {
         "idle_reset_timeout_ms": 10000,
     },
     "update_channel": "stable",
+    "chain_icon_size_px": 36,
+    "chain_column_gap_px": 120,
 }
 
 
@@ -742,6 +744,88 @@ class SettingsWindow:
                 anchor="w", padx=(24, 0)
             )
 
+        # ---- Chain flowchart sliders -----------------------------------
+        # Live-update the on-disk settings as the user drags; the
+        # ChainRenderer pulls from the same providers each render
+        # frame (~150 ms tick) so the change is visible immediately.
+        _themed_heading(parent, "Chain Flowchart").pack(
+            anchor="w", padx=12, pady=(16, 2)
+        )
+        _themed_hint(
+            parent,
+            "Layout knobs for the PvP chain-mode flowchart overlay.",
+        ).pack(anchor="w", padx=12, pady=(0, 6))
+
+        self._chain_slider_vars: Dict[str, tk.IntVar] = {}
+
+        def _build_slider(key: str, label: str, lo: int, hi: int,
+                          default: int, hint: str,
+                          setter_name: str) -> None:
+            row_frame = tk.Frame(parent, bg=BG_DARK)
+            row_frame.pack(anchor="w", fill="x", padx=16, pady=4)
+
+            top = tk.Frame(row_frame, bg=BG_DARK)
+            top.pack(anchor="w", fill="x")
+
+            current = int(self._settings.get(key, default))
+            current = max(lo, min(hi, current))
+            ivar = tk.IntVar(value=current)
+            self._chain_slider_vars[key] = ivar
+
+            value_lbl = tk.Label(
+                top, text=f"{label}: {current} px",
+                font=("Segoe UI", 10),
+                fg=FG_TEXT, bg=BG_DARK, anchor="w",
+            )
+            value_lbl.pack(side="left")
+
+            def _on_change(new_val: str, k=key, lbl=value_lbl,
+                           name=setter_name, raw_label=label) -> None:
+                try:
+                    v = int(float(new_val))
+                except (TypeError, ValueError):
+                    return
+                lbl.configure(text=f"{raw_label}: {v} px")
+                # Live write-through so the renderer picks it up.
+                fn = getattr(self.loader, name, None)
+                if fn:
+                    fn(v)
+                self._settings[k] = v
+
+            scale = tk.Scale(
+                row_frame,
+                from_=lo, to=hi,
+                orient="horizontal",
+                variable=ivar,
+                resolution=1,
+                showvalue=False,
+                length=300,
+                bg=BG_DARK, fg=FG_TEXT,
+                troughcolor=BG_INPUT,
+                activebackground=ACCENT,
+                highlightthickness=0,
+                command=_on_change,
+                cursor="hand2",
+            )
+            scale.pack(anchor="w", pady=(2, 0))
+
+            _themed_hint(row_frame, hint, font=("Segoe UI", 8)).pack(
+                anchor="w", padx=(0, 0), pady=(2, 0)
+            )
+
+        _build_slider(
+            "chain_icon_size_px", "Icon size",
+            24, 96, 36,
+            "Size of each skill icon in the chain flowchart.",
+            "set_chain_icon_size",
+        )
+        _build_slider(
+            "chain_column_gap_px", "Column spacing",
+            40, 300, 120,
+            "Horizontal gap between tier columns in the flowchart.",
+            "set_chain_column_gap",
+        )
+
     # ==================================================================
     # TAB: Hotkeys
     # ==================================================================
@@ -1228,6 +1312,19 @@ class SettingsWindow:
 
         if hasattr(self, "_update_channel_var") and self._update_channel_var:
             self._update_channel_var.set(defaults.get("update_channel", "stable"))
+
+        # Chain flowchart sliders — write through to disk so the
+        # renderer picks up the reset on its next render frame, same
+        # path as a slider drag.
+        if hasattr(self, "_chain_slider_vars"):
+            for key, ivar in self._chain_slider_vars.items():
+                v = int(defaults.get(key, ivar.get()))
+                ivar.set(v)
+                self._settings[key] = v
+                if key == "chain_icon_size_px":
+                    self.loader.set_chain_icon_size(v)
+                elif key == "chain_column_gap_px":
+                    self.loader.set_chain_column_gap(v)
 
         logger.info("Settings reset to defaults (not yet saved)")
 
