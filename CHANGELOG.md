@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.13] — 2026-06-13
+
+### Fixed
+- **`maegu_awakening.yaml` was unparseable.** Two `input:` values
+  (Spirit Parade, Heavenly Return) contained the substring
+  `Flow: Hanpuri` unquoted — PyYAML treats the inner colon as a
+  mapping separator and bails on the whole file. Net effect: the
+  Maegu class loaded with zero skills and the new chain combo
+  warned `no resolvable skills`. Both lines are now single-quoted.
+
 ## [0.6.4-beta.12] — 2026-06-13
 
 ### Changed
@@ -941,6 +951,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.13]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.13
 [0.6.4-beta.12]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.12
 [0.6.4-beta.11]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.11
 [0.6.4-beta.10]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.10

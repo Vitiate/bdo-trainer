@@ -754,7 +754,7 @@ skills:
       only) 60.97% damage in PvP only The revered fox spirit spiritforges into the foxfire of the foxtail fans.
   heavenly_return:
     name: Heavenly Return
-    input: SHIFT + X (or E / F during Flow: Hanpuri)
+    input: 'SHIFT + X (or E / F during Flow: Hanpuri)'
     keys:
     - shift
     - x
@@ -1046,7 +1046,7 @@ skills:
       damage 1396% x2 Maximum 7 targets 58.38% damage in PvP only
   spirit_parade:
     name: Spirit Parade
-    input: SHIFT + X (or E / F during Flow: Hanpuri)
+    input: 'SHIFT + X (or E / F during Flow: Hanpuri)'
     keys:
     - shift
     - x
