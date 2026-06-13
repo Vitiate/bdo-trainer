@@ -4,6 +4,35 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.18] — 2026-06-13
+
+### Changed
+- **Chain renderer is now a horizontal "priority reel"** instead
+  of a tier-column flowchart. All chain skills lay out left to
+  right, ordered by the player's score-based frontier sort. A
+  fixed gold highlight box at the overlay centre shows the
+  current #1 — whichever skill currently scores highest by CC
+  weight + PvP damage (+ smash bonus during a smash window) —
+  and the rest of the reel trails to the right.
+- **Skills slide between slots.** Each card has its own animated
+  x position that eases toward its target slot, so when the
+  ranking changes (cast → cooldown, smash window opens, chain
+  advances) cards visibly slide through intermediate positions
+  like a wheel spinning. ~6 frames at the 150 ms tick rate.
+- **Highlight box doubles as the CC-lock drain ring.** While the
+  most-recent on-chain cast is still locking the target, the
+  box's gold outline drains clockwise from 12 o'clock to show
+  remaining lock duration; falls back to a static frame after
+  the lock expires.
+- **Top card uses the larger skill / input fonts** so the active
+  next-skill name and key chord are easier to read mid-fight.
+  All other text stays at the small note font.
+
+### Removed
+- Tier-column layout, eligibility / history edges, and the
+  separate spotlight pan animation. The reel collapses all of
+  that into one motion.
+
 ## [0.6.4-beta.17] — 2026-06-13
 
 ### Fixed
@@ -1010,6 +1039,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.18]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.18
 [0.6.4-beta.17]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.17
 [0.6.4-beta.16]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.16
 [0.6.4-beta.15]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.15
