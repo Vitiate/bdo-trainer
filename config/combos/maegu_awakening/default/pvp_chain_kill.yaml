@@ -1,0 +1,90 @@
+combo_id: pvp_chain_kill
+class: Maegu
+spec: Awakening
+bundle_id: default
+category: pvp
+mode: priority
+name: 'PvP — Chain Kill (Catch & Burst)'
+description: |
+  Chain-mode kill combo (courtesy of fafi). Renders as a live
+  flowchart — the trainer tracks your CC chain depth, shows you
+  which next skill is legal off-cooldown given the diminishing-
+  returns cap, and resets the cursor with a red flash if you
+  press something that would break the chain.
+
+  Open with Charmed (pre-awak catch) and Hazy Path (Spiritforge
+  engage). Twirling Rhapsody catches in awakening if you didn't
+  land Charmed. After the catch, advance through the burst:
+  Emberclaw Finale → Foxflare Fleche standup KB → Foxflare Ambush
+  re-float → Twirling Foxflare → Flow: Foxflare Encore →
+  Spirit Parade finisher → Flower Shroud disengage.
+
+  CC budget — BDO caps you at ~4 hard-CCs per 6-second window
+  before the target iframes; the trainer tracks this and stops
+  showing further hard-CC skills as legal once the budget is
+  spent. Spirit Parade is a finisher — casting it ends the chain
+  cleanly without an off-chain flash.
+chain:
+  max_hard_cc: 4
+  window_ms: 6000
+  idle_reset_ms: 3000
+  finishers:
+    - spirit_parade
+    - flower_shroud
+priority:
+  - tier: Opener
+    description: |
+      Catches that open the chain. Charmed in pre-awak;
+      Twirling Rhapsody / Foxflare Ambush in awakening if
+      already Spiritforged.
+    skills:
+      - skill: charmed
+        note: Pre-awak catch (stiffen).
+      - skill: hazy_path
+        note: Spiritforge engage. Stun.
+      - skill: twirling_rhapsody
+        note: Awakening catch (float).
+      - skill: foxflare_ambush
+        note: Awakening catch (float).
+
+  - tier: Burst
+    description: After the catch — main damage chain.
+    skills:
+      - skill: emberclaw_finale
+        note: -15% MS debuff. Knockdown.
+      - skill: foxflare_fleche
+        note: Standup KB. +30% Crit Rate self-buff.
+      - skill: twirling_foxflare
+        note: Air-attack burst.
+      - skill: flow_foxflare_encore
+        note: Hold F follow-up.
+        requires_prev: twirling_foxflare
+        requires_window_ms: 1500
+      - skill: emberclaw_slash
+        note: -20 DR shred.
+      - skill: flow_emberclaw_sweep
+        note: Hold LMB after Emberclaw Slash.
+        requires_prev: emberclaw_slash
+        requires_window_ms: 1500
+      - skill: foxflare_cleave
+        note: -12 Evasion debuff.
+      - skill: foxflare_stroke
+        note: +18 AP self-buff (skip when at AP cap).
+
+  - tier: Reposition
+    description: Maintain pressure / reposition between bursts.
+    skills:
+      - skill: twirling_retreat
+        note: Backwards reposition.
+      - skill: emberclaw_torrent
+        note: SA / FG continuation.
+      - skill: emberclaw_crush
+      - skill: fan_kick
+        note: Filler / re-float setup.
+
+  - tier: Finisher
+    description: Closes the chain cleanly (no reset flash).
+    skills:
+      - skill: spirit_parade
+      - skill: flower_shroud
+        note: Disengage.

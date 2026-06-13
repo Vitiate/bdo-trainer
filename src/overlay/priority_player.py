@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import logging
 import time
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from src.input_monitor import INPUT_AVAILABLE, InputMonitor
 from src.overlay.renderer import (
@@ -73,6 +73,30 @@ class PriorityPlayer:
         self._displayed_eff_tier: Optional[int] = None
         self._tick_after_id: Optional[str] = None
 
+        # ---- Chain-mode state -----------------------------------------
+        # Chain config (None when the combo doesn't opt into chain mode).
+        # Shape:
+        #   {
+        #     "max_hard_cc": int,
+        #     "window_ms": int,
+        #     "idle_reset_ms": int,
+        #     "finishers": set[str],
+        #     "tag_to_category": dict[str, str],   # cc tag → category name
+        #   }
+        self._chain_cfg: Optional[Dict[str, Any]] = None
+        # Cursor — most recent on-chain cast (skill id).
+        self._chain_cursor: Optional[str] = None
+        # History of (skill_id, monotonic_ts) for the current chain run.
+        self._chain_history: List[Tuple[str, float]] = []
+        # Last "off-chain reset" timestamp (used by the renderer to flash
+        # a red overlay for ~250 ms).
+        self._chain_reset_at: float = 0.0
+        # External callbacks the renderer subscribes to.
+        # Signature: fn(state_dict). Fires when the chain state changes
+        # (advance, reset, idle reset). See _chain_state() for the
+        # dict shape.
+        self.on_chain_changed: Optional[Callable] = None
+
         # External hooks (parity with ComboPlayer so the dispatcher can
         # forward the same setters).
         self.on_combo_finished: Optional[Callable] = None
@@ -93,6 +117,11 @@ class PriorityPlayer:
     def is_running(self) -> bool:
         return self._is_running
 
+    @property
+    def chain_active(self) -> bool:
+        """True when the current combo declared a `chain:` block."""
+        return self._chain_cfg is not None
+
     # ------------------------------------------------------------------
     # Lifecycle
     # ------------------------------------------------------------------
@@ -110,11 +139,24 @@ class PriorityPlayer:
                 f"Priority combo '{self._combo_name}' has no resolvable skills"
             )
             return
+        # Parse the optional chain block. None means "this is a plain
+        # priority combo — keep using the single-skill display".
+        self._chain_cfg = self._build_chain_cfg(combo_data.get("chain"))
+        if self._chain_cfg is not None:
+            logger.info(
+                f"Chain mode active for {self._combo_name}: "
+                f"max_hard={self._chain_cfg['max_hard_cc']}, "
+                f"window={self._chain_cfg['window_ms']}ms, "
+                f"idle_reset={self._chain_cfg['idle_reset_ms']}ms"
+            )
         self._is_running = True
         self._last_cast.clear()
         self._last_cast_id = None
         self._last_cast_at = 0.0
         self._displayed_skill = None
+        self._chain_cursor = None
+        self._chain_history = []
+        self._chain_reset_at = 0.0
         logger.info(
             f"Starting priority combo: {self._combo_name} "
             f"({len(self._rows)} skills, "
@@ -402,7 +444,222 @@ class PriorityPlayer:
         self._last_cast[skill_id] = now
         self._last_cast_id = skill_id
         self._last_cast_at = now
+        # Chain bookkeeping (no-op when chain mode is off).
+        self._chain_on_press(skill_id, now)
         self._resolve_and_render()
+
+    # ------------------------------------------------------------------
+    # Chain mode
+    # ------------------------------------------------------------------
+    # Default BDO CC categories. A combo's `chain.cc_categories` block,
+    # if present, replaces this verbatim.
+    _DEFAULT_CC_CATEGORIES: Dict[str, List[str]] = {
+        "grab": ["grab"],
+        "hard": ["stun", "knockdown", "knockback", "bound", "floating"],
+        "soft": ["stiffness"],
+        "smash": ["down_attack", "down_smash", "air_attack", "air_smash"],
+    }
+
+    def _build_chain_cfg(
+        self, raw: Optional[Dict[str, Any]]
+    ) -> Optional[Dict[str, Any]]:
+        """Parse a combo's `chain:` block, or return None if absent."""
+        if not isinstance(raw, dict):
+            return None
+        cats = raw.get("cc_categories")
+        if not isinstance(cats, dict) or not cats:
+            cats = self._DEFAULT_CC_CATEGORIES
+        # Build a flat reverse lookup: cc-tag → category name.
+        tag_to_cat: Dict[str, str] = {}
+        for cat_name, tags in cats.items():
+            if not isinstance(tags, list):
+                continue
+            for tag in tags:
+                tag_to_cat[str(tag).lower()] = str(cat_name).lower()
+        finishers = raw.get("finishers") or []
+        finisher_set: set = set()
+        if isinstance(finishers, list):
+            for f in finishers:
+                if isinstance(f, str) and f:
+                    finisher_set.add(f)
+        return {
+            "max_hard_cc": int(raw.get("max_hard_cc", 4)),
+            "window_ms": int(raw.get("window_ms", 6000)),
+            "idle_reset_ms": int(raw.get("idle_reset_ms", 3000)),
+            "finishers": finisher_set,
+            "tag_to_category": tag_to_cat,
+        }
+
+    def _row_for(self, skill_id: str) -> Optional[Dict[str, Any]]:
+        for r in self._rows:
+            if r["id"] == skill_id:
+                return r
+        return None
+
+    def _row_categories(self, row: Dict[str, Any]) -> List[str]:
+        """Return the chain categories triggered by this row's CC tags
+        (deduplicated, ordered)."""
+        if self._chain_cfg is None:
+            return []
+        info: Dict[str, Any] = {}
+        if self.get_skill_info:
+            info = self.get_skill_info(row["id"]) or {}
+        tags = info.get("cc") or []
+        seen: List[str] = []
+        for t in tags:
+            cat = self._chain_cfg["tag_to_category"].get(str(t).lower())
+            if cat and cat not in seen:
+                seen.append(cat)
+        return seen
+
+    def _chain_history_within_window(
+        self, now: float
+    ) -> List[Tuple[str, float]]:
+        """Slice of chain history that's still within the DR window."""
+        if self._chain_cfg is None:
+            return []
+        win = self._chain_cfg["window_ms"] / 1000.0
+        return [(sid, ts) for sid, ts in self._chain_history if now - ts < win]
+
+    def _hard_count_in_window(self, now: float) -> int:
+        if self._chain_cfg is None:
+            return 0
+        count = 0
+        for sid, _ts in self._chain_history_within_window(now):
+            row = self._row_for(sid)
+            if row is None:
+                continue
+            if "hard" in self._row_categories(row):
+                count += 1
+        return count
+
+    def _categories_used_in_window(self, now: float) -> set:
+        """Set of (skill_id, category) the chain has already spent in
+        the current window. Used to block re-applying the same CC by
+        the same skill (BDO ignores re-CCs by the same skill on a
+        target during DR)."""
+        used: set = set()
+        for sid, _ts in self._chain_history_within_window(now):
+            row = self._row_for(sid)
+            if row is None:
+                continue
+            for cat in self._row_categories(row):
+                used.add((sid, cat))
+        return used
+
+    def _is_chain_legal(self, row: Dict[str, Any], now: float) -> bool:
+        """Would casting *row* now be a legal chain advance?
+
+        Legal means:
+        - Skill is off cooldown (caller already checked, but cheap to
+          double-check).
+        - Casting wouldn't push the hard-CC count above
+          ``max_hard_cc`` within the rolling window.
+        - The same (skill, category) pair isn't already in the
+          window's history (DR — same skill can't re-CC the same way).
+        """
+        if self._chain_cfg is None:
+            return True
+        cats = self._row_categories(row)
+        # Skills with no CC tag still cast fine — they don't gate
+        # anything in chain rules either.
+        if not cats:
+            return True
+        used = self._categories_used_in_window(now)
+        for cat in cats:
+            if (row["id"], cat) in used:
+                return False
+        if "hard" in cats:
+            if self._hard_count_in_window(now) >= self._chain_cfg["max_hard_cc"]:
+                return False
+        return True
+
+    def _chain_idle_expired(self, now: float) -> bool:
+        if self._chain_cfg is None or not self._chain_history:
+            return False
+        last_ts = self._chain_history[-1][1]
+        return (now - last_ts) * 1000.0 > self._chain_cfg["idle_reset_ms"]
+
+    def _chain_reset(self, *, reason: str) -> None:
+        if self._chain_cursor is None and not self._chain_history:
+            return
+        self._chain_cursor = None
+        self._chain_history = []
+        if reason == "off_chain":
+            self._chain_reset_at = time.monotonic()
+        logger.debug(f"Chain reset ({reason})")
+        self._fire_chain_changed()
+
+    def _chain_on_press(self, skill_id: str, now: float) -> None:
+        if self._chain_cfg is None:
+            return
+        # Idle reset before processing the press.
+        if self._chain_idle_expired(now):
+            self._chain_reset(reason="idle")
+        # Non-priority skills don't participate.
+        row = self._row_for(skill_id)
+        if row is None:
+            return
+        # Finisher always closes the chain cleanly (no reset flash).
+        if skill_id in self._chain_cfg["finishers"]:
+            self._chain_cursor = skill_id
+            self._chain_history.append((skill_id, now))
+            logger.debug(f"Chain finisher: {skill_id}")
+            self._fire_chain_changed()
+            self._chain_reset(reason="finisher")
+            return
+        # Legal advance?
+        if self._is_chain_legal(row, now):
+            self._chain_cursor = skill_id
+            self._chain_history.append((skill_id, now))
+            logger.debug(f"Chain advance: {skill_id}")
+            self._fire_chain_changed()
+        else:
+            # Off-chain — flash + reset.
+            self._chain_reset(reason="off_chain")
+
+    def chain_state(self) -> Dict[str, Any]:
+        """Snapshot of the current chain state for the renderer."""
+        now = time.monotonic()
+        if self._chain_cfg is None:
+            return {"active": False}
+        # Compute frontier — every priority row that:
+        #   - is off cooldown,
+        #   - meets requires_prev / boost_after gates (existing logic),
+        #   - is chain-legal.
+        frontier: List[Dict[str, Any]] = []
+        for row in self._rows:
+            cd = row["cooldown_ms"]
+            last = self._last_cast.get(row["id"], 0.0)
+            on_cd = (
+                cd > 0 and last > 0 and (now - last) * 1000.0 < cd
+            )
+            if on_cd:
+                continue
+            if not self._meets_requires(row, now):
+                continue
+            if not self._is_chain_legal(row, now):
+                continue
+            frontier.append(row)
+        return {
+            "active": True,
+            "cursor": self._chain_cursor,
+            "history": list(self._chain_history),
+            "frontier_ids": [r["id"] for r in frontier],
+            "rows": list(self._rows),
+            "reset_flash_at": self._chain_reset_at,
+            "idle_reset_ms": self._chain_cfg["idle_reset_ms"],
+            "max_hard_cc": self._chain_cfg["max_hard_cc"],
+            "hard_count": self._hard_count_in_window(now),
+        }
+
+    def _fire_chain_changed(self) -> None:
+        if self.on_chain_changed is None:
+            return
+        try:
+            self.on_chain_changed(self.chain_state())
+        except Exception:
+            logger.exception("on_chain_changed callback failed")
 
     # ------------------------------------------------------------------
     # Rendering
@@ -421,6 +678,12 @@ class PriorityPlayer:
         renderer = self.renderer
         ctx = self.ctx
         renderer.clear_step()
+
+        # In chain mode the dedicated ChainRenderer drives the display
+        # via on_chain_changed — the single-skill view would overlap
+        # the flowchart, so we skip drawing here.
+        if self._chain_cfg is not None:
+            return
 
         if row is None:
             renderer.draw_outlined_text(
@@ -521,6 +784,16 @@ class PriorityPlayer:
         if not self._is_running:
             self._tick_after_id = None
             return
+        # Chain idle reset — fires even without a press, so the
+        # cursor goes idle once the user has been quiet long enough.
+        if self._chain_cfg is not None:
+            now = time.monotonic()
+            if self._chain_idle_expired(now):
+                self._chain_reset(reason="idle")
+            else:
+                # Still emit a state tick so the renderer can refresh
+                # cooldown rings and frontier composition.
+                self._fire_chain_changed()
         new_row = self._resolve_next()
         new_id = new_row["id"] if new_row else None
         new_eff = (

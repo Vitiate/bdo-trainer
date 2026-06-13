@@ -213,6 +213,110 @@ priority:
       - skill: equilibrium_break
 ```
 
+## Chain mode (PvP kill chains)
+
+A priority combo may opt into **chain mode** by adding an optional
+`chain:` block at the top level. This turns the priority combo from
+"highest off-cooldown skill" into a **dynamic CC-chain flowchart**:
+the trainer tracks which skill you've just cast, computes which
+subsequent priority skills are legal (off cooldown, CC category not
+saturated, hard-CC count under cap), and renders the live
+"frontier" so you know what to press next during a PvP catch.
+
+A chain combo is still a priority combo — the priority tiers and
+all the existing `boost_after` / `prefers_after` / `requires_prev`
+machinery applies. The `chain:` block only adds CC-rule gating on
+top of cooldown gating.
+
+```yaml
+mode: priority
+name: 'PvP — Catch & Burst'
+chain:
+  max_hard_cc: 4         # diminishing-returns cap (default 4)
+  window_ms: 6000        # rolling window for the DR cap (default 6000)
+  idle_reset_ms: 3000    # reset cursor after this much inactivity
+                         # (default 3000)
+  finishers:             # casting any of these ends the chain
+    - spirit_parade
+  cc_categories:         # optional — overrides the BDO defaults
+    grab: [grab]
+    hard: [stun, knockdown, knockback, bound, floating]
+    soft: [stiffness]
+    smash: [down_attack, down_smash, air_attack, air_smash]
+priority:
+  - tier: Opener
+    skills:
+      - skill: charmed
+      - skill: hazy_path
+  - tier: Catch
+    skills:
+      - skill: twirling_rhapsody
+      - skill: foxflare_ambush
+  ...
+```
+
+### How chain mode works
+
+- **Opener** — the first cast since the chain reset. Anything in
+  the priority list that's off cooldown can open. Once cast, the
+  cursor moves to that node and its CC categories are "spent".
+- **Frontier** — at any moment the resolver computes the legal
+  next steps: priority skills that are off cooldown AND would not
+  exceed `max_hard_cc` within `window_ms` AND whose `requires_prev`
+  / `boost_after` / `prefers_after` rules are satisfied.
+- **On-chain advance** — pressing a frontier skill moves the
+  cursor and adds the skill's CC categories to the chain history.
+- **Off-chain reset** — pressing a priority skill that is *not*
+  in the current frontier (off cooldown but DR-saturated, or
+  prevented by a chain rule) resets the cursor to the start. The
+  trainer flashes a brief red overlay so you see the reset.
+- **Idle reset** — `idle_reset_ms` of no on-chain press also
+  resets the cursor.
+- **Finisher** — casting a skill in the `finishers:` list ends
+  the chain cleanly (no red flash). Use for combo finishers
+  like `spirit_parade` or disengages.
+- **Non-priority skills are ignored** — pressing a movement /
+  utility skill that's not in the priority list does *not*
+  break the chain. Only priority skills participate.
+
+### CC categories
+
+The defaults follow the standard BDO grouping:
+
+| Category | Tags |
+|---|---|
+| `grab` | grab |
+| `hard` | stun, knockdown, knockback, bound, floating |
+| `soft` | stiffness |
+| `smash` | down_attack, down_smash, air_attack, air_smash |
+
+Only `hard` counts toward `max_hard_cc`. `smash` modifiers ride
+on top of a hard-CC and don't consume the budget. `grab` is its
+own slot — typically the chain opener. `soft` doesn't count
+toward DR but can't be repeated within `window_ms`.
+
+A combo can override these via `cc_categories:` if the in-game
+rules change or you want a per-combo flavour (e.g. excluding
+`floating` from hard for a knockdown-only combo).
+
+### Renderer
+
+When a `chain:` block is present, the priority overlay switches
+from the single-skill display to a **vertical flowchart**:
+
+- **Cursor column** (left) — the most recent on-chain cast plus
+  a compact history of previous nodes in the chain.
+- **Frontier column** (right) — legal-next priority skills,
+  each with its key chord and a cooldown ring (or "ready"
+  indicator for off-CD skills). The next-best skill flashes
+  its key chord.
+- **Off-chain reset** flashes a brief red overlay over the
+  frontier list.
+
+(A horizontal flowchart with edges between every node is the
+intended end state — see the overlay code for the current
+visualisation; the schema is forward-compatible.)
+
 ## Editor support
 
 The Combo Editor (tray → **Combo Editor**) ships a **Mode** toggle on

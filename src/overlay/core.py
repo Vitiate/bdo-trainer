@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, Optional
 
 from src.input_monitor import InputMonitor
 from src.overlay.cc_panel import CCPanel
+from src.overlay.chain_renderer import ChainRenderer
 from src.overlay.combo_player import ComboPlayer
 from src.overlay.hold_bar import HoldBar
 from src.overlay.priority_player import PriorityPlayer
@@ -121,6 +122,10 @@ class ComboOverlay:
         self._priority = PriorityPlayer(
             self._ctx, self._renderer, self.input_monitor,
         )
+        # Chain renderer for chain-mode priority combos. The priority
+        # player publishes state changes to it via on_chain_changed.
+        self._chain_renderer = ChainRenderer(self._ctx, self._renderer)
+        self._priority.on_chain_changed = self._chain_renderer.on_chain_changed
         # Tracks which player is currently active so stop / pause /
         # resume / external hooks route to the right one.
         self._active_player: Any = self._player
@@ -170,6 +175,7 @@ class ComboOverlay:
         self._player.set_key_remap(remap)
         self._priority.set_key_remap(remap)
         self._cc_panel.set_key_remap(remap)
+        self._chain_renderer.set_key_remap(remap)
 
     def set_idle_reset_ms(self, ms: int) -> None:
         self._player.set_idle_reset_ms(ms)
@@ -187,10 +193,17 @@ class ComboOverlay:
         # Stop whichever player is currently active before swapping.
         self._player.stop()
         self._priority.stop()
+        # Hide the chain renderer until / unless the new combo opts in.
+        self._chain_renderer.hide()
         mode = (combo_data or {}).get("mode", "sequence")
         if mode == "priority":
             self._active_player = self._priority
             self._priority.start(combo_data, combo_name)
+            # Chain mode is decided per-combo. If the combo has a
+            # `chain:` block the priority player exposes it via
+            # chain_active; show the chain renderer in that case.
+            if self._priority.chain_active:
+                self._chain_renderer.show()
         else:
             self._active_player = self._player
             self._player.start(combo_data, combo_name, step_delay_ms, loop)
@@ -198,6 +211,7 @@ class ComboOverlay:
     def stop_combo(self) -> None:
         self._player.stop()
         self._priority.stop()
+        self._chain_renderer.hide()
 
     def is_running(self) -> bool:
         return self._player.is_running or self._priority.is_running

@@ -4,6 +4,51 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.6] — 2026-06-13
+
+### Added
+- **Chain mode for priority combos.** Priority combos can now opt
+  into a `chain:` block at the top level. This turns the combo
+  into a live PvP CC-chain tracker:
+  - **Cursor + history** — the trainer tracks every on-chain
+    cast as you advance.
+  - **Frontier** — at any moment the resolver picks the priority
+    skills that are off-cooldown AND don't blow the
+    diminishing-returns cap (default 4 hard-CCs per 6s rolling
+    window, configurable per combo).
+  - **Off-chain reset** — pressing a priority skill that's not
+    in the current frontier resets the cursor with a brief red
+    "OFF-CHAIN — RESET" overlay. Non-priority skills are ignored
+    (movement / utility doesn't break the chain).
+  - **Idle reset** — `idle_reset_ms` (default 3 s) of no on-chain
+    press resets the cursor automatically.
+  - **Finishers** — listed skills end the chain cleanly without
+    a red flash.
+  - **CC categories** default to BDO standard (grab / hard / soft
+    / smash); overridable per combo via `cc_categories:`.
+- **ChainRenderer overlay component**
+  (`src/overlay/chain_renderer.py`). Vertical two-column display
+  — left column is cursor + history, right column is the live
+  frontier with key chords and a flashing "best next" pulse.
+  Hard-CC budget readout shows how many of `max_hard_cc` you've
+  spent in the rolling window.
+- **Maegu Awakening chain combo**
+  `config/combos/maegu_awakening/default/pvp_chain_kill.yaml`.
+  4 tiers (Opener / Burst / Reposition / Finisher), Spirit
+  Parade + Flower Shroud as finishers, max_hard_cc 4, 6 s
+  window, 3 s idle reset.
+- **Schema reference** for chain mode added to
+  `docs/priority-combos.md` (sits below the priority-combos
+  primer; backward-compatible).
+
+### Changed
+- Priority player suppresses its single-skill rendering when a
+  chain combo is active — the ChainRenderer drives the display.
+- `PriorityPlayer.on_chain_changed` callback hook added (called
+  on every chain state change so the renderer can re-draw).
+- New `chain_active` property on PriorityPlayer for the
+  ComboOverlay dispatcher.
+
 ## [0.6.4-beta.5] — 2026-06-12
 
 ### Changed
@@ -755,6 +800,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.6]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.6
 [0.6.4-beta.5]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.5
 [0.6.4-beta.4]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.4
 [0.6.4-beta.3]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.3
