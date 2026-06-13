@@ -459,6 +459,26 @@ class PriorityPlayer:
         "soft": ["stiffness"],
         "smash": ["down_attack", "down_smash", "air_attack", "air_smash"],
     }
+    # How long each CC tag locks the target (seconds). Used by the
+    # ChainRenderer to drain the per-node ring. A combo can override
+    # any of these via ``chain.cc_durations:`` — keys are cc tags
+    # (not category names).
+    _DEFAULT_CC_DURATIONS_S: Dict[str, float] = {
+        "grab": 2.0,
+        "stun": 1.5,
+        "knockdown": 1.5,
+        "knockback": 1.0,
+        "bound": 1.2,
+        "floating": 1.0,
+        "stiffness": 0.8,
+        # Smash modifiers don't lock the target — they're damage
+        # multipliers — but list them so a missing-key lookup
+        # doesn't fall through to the default.
+        "down_attack": 0.0,
+        "down_smash": 0.0,
+        "air_attack": 0.0,
+        "air_smash": 0.0,
+    }
 
     def _build_chain_cfg(
         self, raw: Optional[Dict[str, Any]]
@@ -482,12 +502,24 @@ class PriorityPlayer:
             for f in finishers:
                 if isinstance(f, str) and f:
                     finisher_set.add(f)
+        # CC tag durations — start with defaults, layer combo
+        # overrides on top. Keys are cc tags (e.g. "knockdown"); the
+        # value is duration in seconds.
+        durations: Dict[str, float] = dict(self._DEFAULT_CC_DURATIONS_S)
+        raw_durations = raw.get("cc_durations") or {}
+        if isinstance(raw_durations, dict):
+            for tag, secs in raw_durations.items():
+                try:
+                    durations[str(tag).lower()] = float(secs)
+                except (TypeError, ValueError):
+                    pass
         return {
             "max_hard_cc": int(raw.get("max_hard_cc", 4)),
             "window_ms": int(raw.get("window_ms", 6000)),
             "idle_reset_ms": int(raw.get("idle_reset_ms", 3000)),
             "finishers": finisher_set,
             "tag_to_category": tag_to_cat,
+            "cc_durations": durations,
         }
 
     def _row_for(self, skill_id: str) -> Optional[Dict[str, Any]]:
@@ -511,6 +543,25 @@ class PriorityPlayer:
             if cat and cat not in seen:
                 seen.append(cat)
         return seen
+
+    def _row_lock_duration_s(self, row: Dict[str, Any]) -> float:
+        """Longest CC lock this skill applies, in seconds. Used by
+        the renderer to size the per-node duration ring. Returns 0
+        for skills with no binding CC (chain renderer skips drawing
+        a ring in that case)."""
+        if self._chain_cfg is None:
+            return 0.0
+        info: Dict[str, Any] = {}
+        if self.get_skill_info:
+            info = self.get_skill_info(row["id"]) or {}
+        tags = info.get("cc") or []
+        durations = self._chain_cfg["cc_durations"]
+        longest = 0.0
+        for t in tags:
+            d = float(durations.get(str(t).lower(), 0.0))
+            if d > longest:
+                longest = d
+        return longest
 
     def _chain_history_within_window(
         self, now: float
@@ -649,6 +700,13 @@ class PriorityPlayer:
         if isinstance(self._combo_data, dict):
             cls = str(self._combo_data.get("class") or "")
             spec = str(self._combo_data.get("spec") or "")
+        # Build a lock-duration map per skill id so the renderer can
+        # draw the drain ring without re-walking get_skill_info.
+        lock_seconds: Dict[str, float] = {}
+        for row in self._rows:
+            secs = self._row_lock_duration_s(row)
+            if secs > 0:
+                lock_seconds[row["id"]] = secs
         return {
             "active": True,
             "class": cls,
@@ -657,6 +715,7 @@ class PriorityPlayer:
             "tier_labels": list(self._tier_labels),
             "cursor": self._chain_cursor,
             "history": list(self._chain_history),
+            "lock_seconds": lock_seconds,
             "frontier_ids": [r["id"] for r in frontier],
             "rows": list(self._rows),
             "reset_flash_at": self._chain_reset_at,

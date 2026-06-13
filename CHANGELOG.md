@@ -4,6 +4,26 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.9] — 2026-06-13
+
+### Changed
+- **Chain flowchart nodes now have rounded outlines + a CC drain
+  ring.** Replaces the square frame.
+  - **Cursor** + **history nodes** show a draining ring computed
+    from the cast timestamp + the longest CC duration the skill
+    applies. Drains clockwise from 12 o'clock; bright section is
+    the time remaining, dim section is elapsed lock.
+  - **Frontier nodes** show a thin static rounded outline.
+  - **Idle nodes** show a faint dim outline.
+- New `chain.cc_durations:` block on chain combos lets you
+  override the per-tag lock-time defaults (knockdown 1.5 s,
+  bound 1.2 s, stun 1.5 s, knockback 1.0 s, float 1.0 s,
+  stiffness 0.8 s, grab 2.0 s). Combos that omit the block use
+  the defaults.
+- `chain_state` now ships a `lock_seconds` map (skill-id →
+  longest CC duration in seconds) so the renderer doesn't need
+  to walk skill-info on every render frame.
+
 ## [0.6.4-beta.8] — 2026-06-13
 
 ### Added
@@ -845,6 +865,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.9
 [0.6.4-beta.8]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.8
 [0.6.4-beta.7]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.7
 [0.6.4-beta.6]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.6

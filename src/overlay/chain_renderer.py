@@ -56,6 +56,109 @@ _EDGE_ACTIVE = "#FFD700"
 _HEADER_COLOR = "#FFD700"
 _RESET_COLOR = "#CC2030"
 
+# Rounded-rect perimeter sampling — N points around the perimeter
+# clockwise from 12 o'clock, used both for drawing the outline and
+# for partial-perimeter "drain ring" rendering. Higher = smoother
+# curves but more canvas line items per node.
+_PERIMETER_SAMPLES = 80
+# Radius for the rounded corners as a fraction of node size.
+_CORNER_RADIUS_FRAC = 0.22
+
+
+def _rounded_rect_perimeter(
+    cx: int, cy: int, half: int, radius: int,
+) -> List[Tuple[float, float]]:
+    """Return ``_PERIMETER_SAMPLES`` (x, y) points walking the
+    perimeter of a rounded square clockwise, starting at 12 o'clock
+    (top-centre) and ending one step before it. Used for drawing
+    smooth outlines and partial drain rings.
+    """
+    import math
+
+    # Centres of the four corner arcs.
+    left = cx - half + radius
+    right = cx + half - radius
+    top = cy - half + radius
+    bottom = cy + half - radius
+
+    # Total perimeter = straight sides + four quarter-arcs
+    side_len = 2 * (half - radius)
+    arc_len = (math.pi / 2) * radius
+    total_len = 4 * side_len + 4 * arc_len
+
+    # Walk from 12 o'clock (top centre) clockwise. The "12 o'clock"
+    # point sits in the middle of the top straight segment, between
+    # the top-left arc end and the top-right arc start.
+    out: List[Tuple[float, float]] = []
+    half_top = side_len / 2.0
+    for i in range(_PERIMETER_SAMPLES):
+        t = (i / _PERIMETER_SAMPLES) * total_len
+        # Sequence walked clockwise from the top-centre:
+        #   1. top straight (right half), length half_top
+        #   2. top-right arc, length arc_len
+        #   3. right straight, length side_len
+        #   4. bottom-right arc, length arc_len
+        #   5. bottom straight (right→left), length side_len
+        #   6. bottom-left arc, length arc_len
+        #   7. left straight (bottom→top), length side_len
+        #   8. top-left arc, length arc_len
+        #   9. top straight (left half), length half_top
+        s = t
+        if s < half_top:
+            x = cx + s
+            y = cy - half
+        elif s < half_top + arc_len:
+            a = (s - half_top) / radius  # 0 → π/2
+            x = right + radius * math.sin(a)
+            y = top - radius * math.cos(a)
+        elif s < half_top + arc_len + side_len:
+            x = cx + half
+            y = top + (s - half_top - arc_len)
+        elif s < half_top + arc_len + side_len + arc_len:
+            a = (s - half_top - arc_len - side_len) / radius
+            x = right + radius * math.cos(a)
+            y = bottom + radius * math.sin(a)
+        elif (s
+              < half_top + arc_len + side_len + arc_len + side_len):
+            x = right - (
+                s - half_top - arc_len - side_len - arc_len
+            )
+            y = cy + half
+        elif (s
+              < half_top + arc_len + side_len + arc_len + side_len
+              + arc_len):
+            a = (
+                s - half_top - arc_len - side_len - arc_len
+                - side_len
+            ) / radius
+            x = left - radius * math.sin(a)
+            y = bottom + radius * math.cos(a)
+        elif (s
+              < half_top + arc_len + side_len + arc_len + side_len
+              + arc_len + side_len):
+            x = cx - half
+            y = bottom - (
+                s - half_top - arc_len - side_len - arc_len
+                - side_len - arc_len
+            )
+        elif (s
+              < half_top + arc_len + side_len + arc_len + side_len
+              + arc_len + side_len + arc_len):
+            a = (
+                s - half_top - arc_len - side_len - arc_len
+                - side_len - arc_len - side_len
+            ) / radius
+            x = left - radius * math.cos(a)
+            y = top - radius * math.sin(a)
+        else:
+            x = cx - (
+                s - half_top - arc_len - side_len - arc_len
+                - side_len - arc_len - side_len - arc_len
+            )
+            y = cy - half
+        out.append((x, y))
+    return out
+
 
 class ChainRenderer:
     """Horizontal flowchart for chain-mode priority combos."""
@@ -257,6 +360,12 @@ class ChainRenderer:
 
         # ---- Nodes --------------------------------------------------------
         history_ids = {sid for sid, _ts in history}
+        # Map skill_id → most recent cast timestamp from the chain
+        # history so the renderer can drain the ring per node.
+        history_ts: Dict[str, float] = {}
+        for sid, ts in history:
+            history_ts[sid] = ts
+        lock_seconds: Dict[str, float] = state.get("lock_seconds") or {}
         cls_slug = state.get("class_slug") or ""
         now_ms = int(time.monotonic() * 1000)
         flash_phase = (now_ms // _FLASH_PERIOD_MS) % 2 == 0
@@ -266,6 +375,7 @@ class ChainRenderer:
             (r["id"] for r in rows if r["id"] in frontier_ids), None,
         )
 
+        now = time.monotonic()
         for row in rows:
             sid = row["id"]
             pos = node_centres.get(sid)
@@ -277,6 +387,9 @@ class ChainRenderer:
                 is_history=(sid in history_ids and sid != cursor_id),
                 is_frontier=(sid in frontier_ids),
                 is_best=(sid == best_id and flash_phase),
+                lock_total_s=lock_seconds.get(sid, 0.0),
+                cast_ts=history_ts.get(sid),
+                now=now,
             )
 
         # ---- Off-chain reset flash overlay --------------------------------
@@ -306,24 +419,44 @@ class ChainRenderer:
         is_history: bool,
         is_frontier: bool,
         is_best: bool,
+        lock_total_s: float = 0.0,
+        cast_ts: Optional[float] = None,
+        now: float = 0.0,
     ) -> None:
         canvas = self.ctx.canvas
         ctx = self.ctx
         half = node_size // 2
+        radius = max(4, int(node_size * _CORNER_RADIUS_FRAC))
 
-        # ---- Frame ---------------------------------------------------------
-        if is_cursor:
-            frame, frame_w = _NODE_FRAME_CURSOR, 3
-        elif is_frontier:
-            frame, frame_w = _NODE_FRAME_FRONTIER, 2
-        elif is_history:
-            frame, frame_w = _NODE_FRAME_HISTORY, 2
+        # ---- Rounded outline (drawn before icon) ---------------------------
+        # Cursor + history nodes get a drain ring computed from the
+        # cast timestamp + lock duration; frontier and idle nodes
+        # get a static thin outline.
+        perim = _rounded_rect_perimeter(cx, cy, half, radius)
+
+        if (
+            (is_cursor or is_history)
+            and cast_ts is not None
+            and lock_total_s > 0.0
+        ):
+            elapsed = max(0.0, now - cast_ts)
+            remaining_frac = max(
+                0.0, min(1.0, 1.0 - (elapsed / lock_total_s))
+            )
+            ring_color = (
+                _NODE_FRAME_CURSOR if is_cursor else _NODE_FRAME_HISTORY
+            )
+            ring_width = 3 if is_cursor else 2
+            self._draw_drain_ring(
+                perim, remaining_frac, ring_color, ring_width,
+            )
         else:
-            frame, frame_w = _NODE_FRAME_DIM, 1
-        canvas.create_rectangle(
-            cx - half, cy - half, cx + half, cy + half,
-            outline=frame, width=frame_w, tags=(_TAG,),
-        )
+            # Static outline for frontier / idle nodes.
+            if is_frontier:
+                color, width = _NODE_FRAME_FRONTIER, 2
+            else:
+                color, width = _NODE_FRAME_DIM, 1
+            self._draw_static_outline(perim, color, width)
 
         # ---- Icon ----------------------------------------------------------
         photo = self._icons.get(class_slug, row["name"])
@@ -378,6 +511,59 @@ class ChainRenderer:
     # ------------------------------------------------------------------
     # Flash tick — drives the next-best key flash + reset fade
     # ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # Outline helpers
+    # ------------------------------------------------------------------
+    def _draw_static_outline(
+        self,
+        perim: List[Tuple[float, float]],
+        color: str,
+        width: int,
+    ) -> None:
+        """Draw a closed rounded outline by connecting consecutive
+        perimeter samples plus the wrap-around segment."""
+        canvas = self.ctx.canvas
+        n = len(perim)
+        for i in range(n):
+            x0, y0 = perim[i]
+            x1, y1 = perim[(i + 1) % n]
+            canvas.create_line(
+                x0, y0, x1, y1,
+                fill=color, width=width, tags=(_TAG,),
+            )
+
+    def _draw_drain_ring(
+        self,
+        perim: List[Tuple[float, float]],
+        remaining_frac: float,
+        active_color: str,
+        active_width: int,
+    ) -> None:
+        """Draw a partial perimeter walking clockwise from 12 o'clock.
+
+        The first ``remaining_frac × N`` samples are drawn in
+        ``active_color`` at ``active_width`` (the lock-time ring);
+        the rest are drawn faintly so the node still has a visible
+        outline.
+        """
+        canvas = self.ctx.canvas
+        n = len(perim)
+        active_count = int(round(n * max(0.0, min(1.0, remaining_frac))))
+        # When elapsed crosses 100 % we want zero active segments
+        # but a still-readable dim outline so the user sees "lock
+        # expired".
+        for i in range(n):
+            x0, y0 = perim[i]
+            x1, y1 = perim[(i + 1) % n]
+            if i < active_count:
+                color, width = active_color, active_width
+            else:
+                color, width = _NODE_FRAME_DIM, 1
+            canvas.create_line(
+                x0, y0, x1, y1,
+                fill=color, width=width, tags=(_TAG,),
+            )
+
     def _start_flash_tick(self) -> None:
         if self._tick_after_id is not None:
             return
