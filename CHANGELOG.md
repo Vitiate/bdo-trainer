@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.23] — 2026-06-13
+
+### Changed
+- **Chain animation runs another 1.5× faster.** Slide / pan
+  lerps bumped 0.22 → 0.33 and 0.18 → 0.27. Convergence is now
+  ~0.25 s — still smooth (~8 frames at 30 fps).
+
 ## [0.6.4-beta.22] — 2026-06-13
 
 ### Changed
@@ -1109,6 +1116,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.23]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.23
 [0.6.4-beta.22]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.22
 [0.6.4-beta.21]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.21
 [0.6.4-beta.20]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.20

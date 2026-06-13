@@ -55,8 +55,8 @@ _TICK_MS = 33
 # from the original calibration so the next-best skill snaps into
 # focus in ~0.4 s instead of ~0.9 s. Still smooth (~12 frames at
 # 30 fps) but quick enough to keep up with mid-fight casts.
-_SLIDE_LERP = 0.22
-_PAN_LERP = 0.18
+_SLIDE_LERP = 0.33
+_PAN_LERP = 0.27
 _SNAP_PX = 0.5
 
 # Highlight box: fixed screen position. The chart pans so the
