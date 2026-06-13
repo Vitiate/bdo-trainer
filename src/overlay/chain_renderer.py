@@ -44,6 +44,7 @@ _DEFAULT_NODE_VGAP = 18
 # Colours
 _NODE_FRAME_DIM = "#3A3A3A"
 _NODE_FRAME_FRONTIER = "#FFFFFF"
+_NODE_FRAME_BUFF = "#66E0FF"   # cyan — pre-buff / utility skills
 _NODE_FRAME_CURSOR = "#FFD700"
 _NODE_FRAME_HISTORY = "#776A2A"
 _LABEL_DIM = "#777777"
@@ -366,13 +367,14 @@ class ChainRenderer:
         for sid, ts in history:
             history_ts[sid] = ts
         lock_seconds: Dict[str, float] = state.get("lock_seconds") or {}
+        roles: Dict[str, str] = state.get("roles") or {}
         cls_slug = state.get("class_slug") or ""
         now_ms = int(time.monotonic() * 1000)
         flash_phase = (now_ms // _FLASH_PERIOD_MS) % 2 == 0
-        # Best frontier is the first frontier id in tier order — rows
-        # are already in priority order.
-        best_id: Optional[str] = next(
-            (r["id"] for r in rows if r["id"] in frontier_ids), None,
+        # Best frontier is the first frontier id (already
+        # role-prioritised by the player's reorder logic).
+        best_id: Optional[str] = (
+            (state.get("frontier_ids") or [None])[0]
         )
 
         now = time.monotonic()
@@ -387,6 +389,7 @@ class ChainRenderer:
                 is_history=(sid in history_ids and sid != cursor_id),
                 is_frontier=(sid in frontier_ids),
                 is_best=(sid == best_id and flash_phase),
+                role=roles.get(sid, "filler"),
                 lock_total_s=lock_seconds.get(sid, 0.0),
                 cast_ts=history_ts.get(sid),
                 now=now,
@@ -419,6 +422,7 @@ class ChainRenderer:
         is_history: bool,
         is_frontier: bool,
         is_best: bool,
+        role: str = "filler",
         lock_total_s: float = 0.0,
         cast_ts: Optional[float] = None,
         now: float = 0.0,
@@ -428,10 +432,15 @@ class ChainRenderer:
         half = node_size // 2
         radius = max(4, int(node_size * _CORNER_RADIUS_FRAC))
 
+        # Ring widths scale lightly with node size so a 64-px node
+        # doesn't draw with the same hairline as a 24-px one.
+        scale = max(1.0, node_size / 56.0)
+        cursor_ring_w = max(4, int(round(5 * scale)))
+        history_ring_w = max(3, int(round(4 * scale)))
+        frontier_outline_w = max(2, int(round(3 * scale)))
+        idle_outline_w = 1
+
         # ---- Rounded outline (drawn before icon) ---------------------------
-        # Cursor + history nodes get a drain ring computed from the
-        # cast timestamp + lock duration; frontier and idle nodes
-        # get a static thin outline.
         perim = _rounded_rect_perimeter(cx, cy, half, radius)
 
         if (
@@ -446,16 +455,25 @@ class ChainRenderer:
             ring_color = (
                 _NODE_FRAME_CURSOR if is_cursor else _NODE_FRAME_HISTORY
             )
-            ring_width = 3 if is_cursor else 2
+            ring_width = (
+                cursor_ring_w if is_cursor else history_ring_w
+            )
             self._draw_drain_ring(
                 perim, remaining_frac, ring_color, ring_width,
             )
         else:
-            # Static outline for frontier / idle nodes.
-            if is_frontier:
-                color, width = _NODE_FRAME_FRONTIER, 2
+            # Static outline for frontier / idle / pre-buff nodes.
+            if is_frontier and role == "pre_buff":
+                color, width = _NODE_FRAME_BUFF, frontier_outline_w
+            elif is_frontier:
+                color, width = _NODE_FRAME_FRONTIER, frontier_outline_w
+            elif role == "pre_buff":
+                # Even when not "frontier" (off cooldown but blocked
+                # for some other reason), a buff stays cyan so the
+                # user always knows which nodes are buffs.
+                color, width = _NODE_FRAME_BUFF, idle_outline_w
             else:
-                color, width = _NODE_FRAME_DIM, 1
+                color, width = _NODE_FRAME_DIM, idle_outline_w
             self._draw_static_outline(perim, color, width)
 
         # ---- Icon ----------------------------------------------------------

@@ -544,6 +544,101 @@ class PriorityPlayer:
                 seen.append(cat)
         return seen
 
+    # Skill role for chain rendering. The chain engine doesn't actually
+    # need to know "this is a buff" vs "this is burst" to compute
+    # frontier eligibility — that's pure CC-rule plus cooldown — but
+    # the renderer wants the role to (a) hide reposition skills from
+    # the frontier when they don't apply CC, (b) keep pre-buff skills
+    # always-eligible regardless of chain state, and (c) reorder
+    # burst skills above CC continuations when the cursor's lock is
+    # a knockdown (smash-window).
+    _CC_TAGS_BINDING: set = {
+        "stun", "stiffness", "knockdown", "knockback",
+        "floating", "bound", "grab",
+    }
+    _CC_TAGS_SMASH: set = {
+        "down_attack", "down_smash", "air_attack", "air_smash",
+    }
+    _DAMAGE_BURST_TIERS: set = {"high", "very_high"}
+
+    def classify_role(self, row: Dict[str, Any]) -> str:
+        """Bucket each skill row into one of:
+            "catch"      — applies a binding CC (KD / float / bound /
+                           stiffen / etc.). Default chain participant.
+            "burst"      — high-damage skill with no binding CC, but
+                           may have smash modifiers. Eligible while
+                           a target is locked; reordered above CC
+                           continuations during a knockdown window.
+            "pre_buff"   — buff/utility cast outside the chain
+                           (e.g. Foxspirit Conduit, Charmed). Always
+                           eligible; doesn't gate chain advance.
+            "reposition" — movement / iframe with no damage and no
+                           CC. Hidden from chain frontier unless it
+                           applies CC.
+            "filler"     — anything else (low / medium damage, no
+                           CC). Hidden from chain frontier.
+        """
+        info: Dict[str, Any] = {}
+        if self.get_skill_info:
+            info = self.get_skill_info(row["id"]) or {}
+        tags = {str(t).lower() for t in (info.get("cc") or [])}
+        damage = str(info.get("damage") or "").lower()
+        protection = str(info.get("protection") or "").lower()
+
+        # Has a binding CC? It's a chain participant.
+        if tags & self._CC_TAGS_BINDING:
+            return "catch"
+        # Damage skill with no binding CC → burst (smash modifiers
+        # tag along, but they don't open a chain).
+        if damage in self._DAMAGE_BURST_TIERS:
+            return "burst"
+        # Has smash modifiers but no binding CC and no `damage:`
+        # field — common for follow-up burst skills (Flow:
+        # Foxflare Encore, Flow: Emberclaw Sweep, etc.) where the
+        # YAML didn't populate `damage:`. Smash tags are a strong
+        # signal that the skill belongs in a chain's burst window.
+        if tags & self._CC_TAGS_SMASH:
+            return "burst"
+        # Buffs/utilities — heuristic: protection iframe + no
+        # damage, OR an AP/buff hint in notes. We can't perfectly
+        # detect a buff from the data we have, so the simpler
+        # rule is "skills explicitly marked pre-awakening / utility
+        # in name", but those mostly self-classify already. For
+        # awakening we keep this conservative: a skill with no
+        # damage, no CC, and an iframe or no-protection (i.e. not
+        # SA/FG which suggest a damaging skill) is a buff/utility.
+        if not damage and protection in ("iframe", "none", ""):
+            return "pre_buff"
+        # No CC, no notable damage, has a protected stance →
+        # reposition / utility.
+        if not damage:
+            return "reposition"
+        return "filler"
+
+    def _row_smash_tags(self, row: Dict[str, Any]) -> set:
+        info: Dict[str, Any] = {}
+        if self.get_skill_info:
+            info = self.get_skill_info(row["id"]) or {}
+        tags = {str(t).lower() for t in (info.get("cc") or [])}
+        return tags & self._CC_TAGS_SMASH
+
+    def _last_history_was_knockdown(self, now: float) -> bool:
+        """True iff the most recent chain history entry was a skill
+        whose CC included a hard-CC keeping the target on the ground
+        (knockdown / floating / bound). Used to prefer smash-tagged
+        burst skills."""
+        if not self._chain_history:
+            return False
+        sid, _ts = self._chain_history[-1]
+        row = self._row_for(sid)
+        if row is None:
+            return False
+        info: Dict[str, Any] = {}
+        if self.get_skill_info:
+            info = self.get_skill_info(sid) or {}
+        tags = {str(t).lower() for t in (info.get("cc") or [])}
+        return bool(tags & {"knockdown", "floating", "bound"})
+
     def _row_lock_duration_s(self, row: Dict[str, Any]) -> float:
         """Longest CC lock this skill applies, in seconds. Used by
         the renderer to size the per-node duration ring. Returns 0
@@ -601,28 +696,57 @@ class PriorityPlayer:
     def _is_chain_legal(self, row: Dict[str, Any], now: float) -> bool:
         """Would casting *row* now be a legal chain advance?
 
-        Legal means:
-        - Skill is off cooldown (caller already checked, but cheap to
-          double-check).
-        - Casting wouldn't push the hard-CC count above
-          ``max_hard_cc`` within the rolling window.
-        - The same (skill, category) pair isn't already in the
-          window's history (DR — same skill can't re-CC the same way).
+        Decided by role + CC rules:
+        - **pre_buff** — always legal (buffs cast independently of
+          the chain; don't consume the DR budget).
+        - **catch** — CC rules apply (hard-CC cap, no repeat-by-
+          same-skill within the window).
+        - **burst** — only legal while the cursor still holds the
+          target. The chain engine doesn't know the lock duration
+          here, so we approximate "target is held" as "history is
+          non-empty AND most-recent cast was within the lock for
+          its CC tag" via lock_seconds.
+        - **reposition** — only legal if it applies a CC (in which
+          case classify_role would have returned "catch"). With no
+          CC, never in the frontier.
+        - **filler** — same as reposition: hidden when in chain
+          mode unless it has CC.
         """
         if self._chain_cfg is None:
             return True
-        cats = self._row_categories(row)
-        # Skills with no CC tag still cast fine — they don't gate
-        # anything in chain rules either.
-        if not cats:
+        role = self.classify_role(row)
+        if role == "pre_buff":
+            # Buffs / utilities are always eligible.
             return True
-        used = self._categories_used_in_window(now)
-        for cat in cats:
-            if (row["id"], cat) in used:
+        if role in ("reposition", "filler"):
+            return False
+        # Catch / re-CC: standard chain rules.
+        if role == "catch":
+            cats = self._row_categories(row)
+            used = self._categories_used_in_window(now)
+            for cat in cats:
+                if (row["id"], cat) in used:
+                    return False
+            if "hard" in cats:
+                if (
+                    self._hard_count_in_window(now)
+                    >= self._chain_cfg["max_hard_cc"]
+                ):
+                    return False
+            return True
+        # Burst: needs a target locked (some history within window
+        # AND the most-recent cast's lock hasn't expired yet).
+        if role == "burst":
+            if not self._chain_history:
                 return False
-        if "hard" in cats:
-            if self._hard_count_in_window(now) >= self._chain_cfg["max_hard_cc"]:
+            last_sid, last_ts = self._chain_history[-1]
+            last_row = self._row_for(last_sid)
+            if last_row is None:
                 return False
+            lock_s = self._row_lock_duration_s(last_row)
+            if lock_s <= 0:
+                return False
+            return (now - last_ts) < lock_s
         return True
 
     def _chain_idle_expired(self, now: float) -> bool:
@@ -703,10 +827,54 @@ class PriorityPlayer:
         # Build a lock-duration map per skill id so the renderer can
         # draw the drain ring without re-walking get_skill_info.
         lock_seconds: Dict[str, float] = {}
+        roles: Dict[str, str] = {}
         for row in self._rows:
             secs = self._row_lock_duration_s(row)
             if secs > 0:
                 lock_seconds[row["id"]] = secs
+            roles[row["id"]] = self.classify_role(row)
+
+        # Reorder frontier:
+        # 1. burst skills with smash tags float to the top when the
+        #    most recent CC was a knockdown / floating / bound (the
+        #    smash-window). Among burst, prefer down_smash > air_smash
+        #    > down_attack > air_attack just by tag count match.
+        # 2. catch skills sort by tier (priority), then declaration
+        #    order — i.e. the existing behaviour.
+        # 3. pre_buff skills always sort to the bottom of the
+        #    frontier so they don't compete with chain advances for
+        #    the "next best" highlight.
+        smash_window = self._last_history_was_knockdown(now)
+        smash_priority = {
+            "down_smash": 0,
+            "air_smash": 1,
+            "down_attack": 2,
+            "air_attack": 3,
+        }
+
+        def _frontier_sort_key(row: Dict[str, Any]):
+            sid = row["id"]
+            role = roles.get(sid, "filler")
+            tier = int(row.get("tier", 0))
+            if role == "pre_buff":
+                # Buffs always last (large bucket value).
+                return (3, 0, tier)
+            if role == "burst" and smash_window:
+                tags = self._row_smash_tags(row)
+                # Lowest priority value among the row's smash tags.
+                best_smash = min(
+                    (smash_priority.get(t, 99) for t in tags),
+                    default=99,
+                )
+                # Bucket 0 — burst-during-knockdown wins everything.
+                return (0, best_smash, tier)
+            if role == "burst":
+                # Burst when target isn't downed: middle bucket.
+                return (2, 0, tier)
+            # Catch / re-CC.
+            return (1, 0, tier)
+
+        frontier_sorted = sorted(frontier, key=_frontier_sort_key)
         return {
             "active": True,
             "class": cls,
@@ -716,7 +884,9 @@ class PriorityPlayer:
             "cursor": self._chain_cursor,
             "history": list(self._chain_history),
             "lock_seconds": lock_seconds,
-            "frontier_ids": [r["id"] for r in frontier],
+            "roles": roles,
+            "smash_window": smash_window,
+            "frontier_ids": [r["id"] for r in frontier_sorted],
             "rows": list(self._rows),
             "reset_flash_at": self._chain_reset_at,
             "idle_reset_ms": self._chain_cfg["idle_reset_ms"],

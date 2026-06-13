@@ -4,6 +4,44 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.10] — 2026-06-13
+
+### Added
+- **Skill role classification** in chain mode. Each skill in a
+  priority combo is bucketed into one of:
+  - `catch` — applies a binding CC (KD / float / bound / stiffen
+    / etc.). Standard chain participant.
+  - `burst` — high-damage skill OR has smash modifiers (DA / DS /
+    AA / AS) without a binding CC. Eligible while the cursor's
+    target is still locked; reordered above CC continuations
+    when the most-recent CC was a knockdown / floating / bound
+    (the smash window).
+  - `pre_buff` — buff / utility (no damage, no CC, iframe or no
+    protection). Always eligible regardless of chain state;
+    doesn't consume the DR budget.
+  - `reposition` / `filler` — hidden from the chain frontier
+    unless they apply a CC.
+- **Smash-window reordering.** When the cursor is on a knockdown,
+  burst skills with `down_smash` / `air_smash` / `down_attack` /
+  `air_attack` tags float to the top of the frontier, ahead of
+  CC continuations. The "best next" flash lands on the highest-
+  damage downsmash candidate so you commit to the right finisher
+  without having to remember the priority list.
+
+### Changed
+- **Chain ring widths bumped** so the ring reads at smaller icon
+  sizes. Cursor 5 px (was 3), history 4 px (was 2). Both scale
+  lightly with icon size — at 64 px the cursor ring is ~6 px.
+- **Pre-buff nodes get a cyan outline** (`#66E0FF`) instead of
+  the white frontier outline so they don't read as "next move"
+  even when off cooldown.
+- **Maegu Awakening — Spirit Parade and Heavenly Return** key
+  lists fixed. Both had `keys: [shift, x, e, f]` (the trainer
+  flattened the `SHIFT+X — E or F during Flow: Hanpuri` tooltip
+  into a single chord, which rendered as `Shift+X+D+F` after
+  remap). Now `keys: [shift, x]` with `keys_alt: [e]` for the
+  Hanpuri-flow continuation.
+
 ## [0.6.4-beta.9] — 2026-06-13
 
 ### Changed
@@ -865,6 +903,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.10]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.10
 [0.6.4-beta.9]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.9
 [0.6.4-beta.8]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.8
 [0.6.4-beta.7]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.7
