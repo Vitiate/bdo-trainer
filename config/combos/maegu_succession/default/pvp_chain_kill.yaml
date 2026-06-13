@@ -34,7 +34,6 @@ chain:
   finishers:
     - spirit_parade
     - prime_flower_shroud
-    - flower_shroud
 priority:
   - tier: Engage
     description: |
@@ -54,8 +53,6 @@ priority:
         note: F (hold). Stiffen — gated to follow Soulsnare.
         requires_prev: soulsnare
         requires_window_ms: 2000
-      - skill: flower_shroud
-        note: W+E. Non-prime engage for the Spirited Away variant.
 
   - tier: Re-CC
     description: |

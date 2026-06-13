@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.28] — 2026-06-13
+
+### Fixed
+- **Succession `pvp_chain_kill` had two skills sharing `W+E`.**
+  Both `prime_flower_shroud` and the non-prime `flower_shroud`
+  were in the Engage tier with the same chord, so the trainer
+  had no way to tell which one you cast. Dropped the non-prime
+  entry — the dedicated `pvp_flower_shroud_spirited_away.yaml`
+  sequence combo still covers the non-prime engage.
+  (The remaining `F` overlap between `soulsnare` and
+  `flow_hanpuri` is intentional: `flow_hanpuri` is hard-gated
+  with `requires_prev: soulsnare`, so the trainer resolves
+  `soulsnare` first and only opens `flow_hanpuri` after.)
+
 ## [0.6.4-beta.27] — 2026-06-13
 
 ### Added
@@ -1195,6 +1209,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.28]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.28
 [0.6.4-beta.27]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.27
 [0.6.4-beta.26]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.26
 [0.6.4-beta.25]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.25
