@@ -352,6 +352,48 @@ class ComboEditor(tk.Frame):
 
         row = 0
 
+        # ---- Collapsible metadata header ----------------------------
+        # Lets the user hide the Combo ID / Name / Category /
+        # Difficulty / Mode / Window / Description block once they're
+        # configured, dedicating more visible area to the steps /
+        # priority editor below.
+        self._metadata_collapsed = False
+        self._metadata_toggle_btn = tk.Button(
+            ff,
+            text="▼  Combo metadata",
+            font=FONT_BOLD, fg=GOLD, bg=BG_DARK,
+            activebackground=BG_DARK, activeforeground=ACCENT_HOVER,
+            relief="flat", bd=0, anchor="w",
+            padx=4, pady=2, cursor="hand2",
+            command=self._toggle_metadata_collapsed,
+        )
+        self._metadata_toggle_btn.grid(
+            row=row, column=0, columnspan=2, sticky="ew", padx=4, pady=(8, 2),
+        )
+        row += 1
+
+        # All the metadata fields below live inside this child frame
+        # so the toggle can grid_remove the whole block at once. We
+        # mirror ff's column configuration onto it so the existing
+        # per-row .grid(column=0/1, sticky="ew") layout still flows
+        # correctly.
+        self._metadata_block = tk.Frame(ff, bg=BG_DARK)
+        self._metadata_block.grid(
+            row=row, column=0, columnspan=2, sticky="ew",
+        )
+        self._metadata_block.columnconfigure(1, weight=1)
+        # Subsequent metadata-row .grid() calls target the child
+        # frame by reassigning the local ``ff`` reference. We restore
+        # ff at the end of the metadata block so the steps/priority
+        # rows below grid into the original parent.
+        meta_block_row = self._metadata_block_start_row = row
+        row += 1
+        ff = self._metadata_block
+
+        # Reset the row counter for the metadata block — it grids
+        # into its own child frame starting at row 0.
+        row = 0
+
         # ---- Combo ID (read-only) ----
         tk.Label(
             ff,
@@ -560,6 +602,13 @@ class ComboEditor(tk.Frame):
         self._desc_text.grid(row=row, column=1, sticky="ew", padx=4, pady=2)
         row += 1
 
+        # End of metadata block — switch back to the outer form
+        # frame so the steps / priority sections grid into the
+        # parent at row = self._metadata_block_start_row + 1, which
+        # was reserved before we redirected ff.
+        ff = self._form_frame
+        row = self._metadata_block_start_row + 1
+
         # ---- Sequence-mode block (steps header + container + add btn) ----
         self._sequence_header = tk.Frame(ff, bg=BG_DARK)
         self._sequence_header.grid(
@@ -721,6 +770,25 @@ class ComboEditor(tk.Frame):
 
         # Keep track of the max form row for toggling visibility
         self._form_widgets_row_count = row + 1
+
+    # ------------------------------------------------------------------
+    # Metadata collapse toggle
+    # ------------------------------------------------------------------
+    def _toggle_metadata_collapsed(self) -> None:
+        """Hide / show the combo-metadata block. The toggle button
+        always stays visible so the user can re-expand. Steps /
+        priority editor below shifts up as the metadata block
+        disappears because grid_remove preserves layout slots but
+        not space.
+        """
+        if self._metadata_collapsed:
+            self._metadata_block.grid()
+            self._metadata_toggle_btn.configure(text="▼  Combo metadata")
+            self._metadata_collapsed = False
+        else:
+            self._metadata_block.grid_remove()
+            self._metadata_toggle_btn.configure(text="▶  Combo metadata")
+            self._metadata_collapsed = True
 
     # ------------------------------------------------------------------
     # Mode visibility

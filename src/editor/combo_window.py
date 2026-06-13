@@ -239,11 +239,33 @@ class ComboEditorWindow:
             wraplength=520, justify="center",
         )
 
-        # ---- Top: bundle metadata + loadout ----
+        # ---- Top: bundle metadata + loadout (collapsible) ----------------
+        # Header bar (always visible) + body (toggleable). The body
+        # contains the bundle metadata + loadout editors. Collapsing
+        # hands the freed vertical space to the combo editor below
+        # via the _combo_pane's expand=True.
         self._meta_pane = tk.Frame(content, bg=BG_CARD)
 
-        meta_inner = tk.Frame(self._meta_pane, bg=BG_CARD)
-        meta_inner.pack(fill="x", padx=12, pady=(10, 8))
+        self._meta_collapsed = False
+        self._meta_toggle_btn = tk.Button(
+            self._meta_pane,
+            text="▼  Bundle metadata + Loadout",
+            font=FONT_BOLD, fg=GOLD, bg=BG_CARD,
+            activebackground=BG_CARD, activeforeground=ACCENT_HOVER,
+            relief="flat", bd=0, anchor="w",
+            padx=8, pady=4, cursor="hand2",
+            command=self._toggle_meta_collapsed,
+        )
+        self._meta_toggle_btn.pack(fill="x", padx=4, pady=(4, 0))
+
+        # Body — everything that used to live directly under
+        # _meta_pane now sits inside _meta_body. _toggle_meta_collapsed
+        # pack_forgets / repacks this single frame.
+        self._meta_body = tk.Frame(self._meta_pane, bg=BG_CARD)
+        self._meta_body.pack(fill="x")
+
+        meta_inner = tk.Frame(self._meta_body, bg=BG_CARD)
+        meta_inner.pack(fill="x", padx=12, pady=(6, 8))
 
         # Bundle header (name + description)
         row = tk.Frame(meta_inner, bg=BG_CARD)
@@ -420,6 +442,28 @@ class ComboEditorWindow:
         self._action_row = action_row
         self._content_frame = content
         self._paned.add(content, minsize=560)
+
+    def _toggle_meta_collapsed(self) -> None:
+        """Hide / show the bundle-metadata body. The header bar
+        stays visible so the user can re-expand. The combo editor
+        below grows / shrinks automatically because it's the only
+        ``expand=True`` child of the content frame.
+        """
+        if self._meta_collapsed:
+            # Re-expand. Repack body before action_row is irrelevant
+            # because the body sits inside _meta_pane, not the
+            # parent content frame.
+            self._meta_body.pack(fill="x")
+            self._meta_toggle_btn.configure(
+                text="▼  Bundle metadata + Loadout",
+            )
+            self._meta_collapsed = False
+        else:
+            self._meta_body.pack_forget()
+            self._meta_toggle_btn.configure(
+                text="▶  Bundle metadata + Loadout",
+            )
+            self._meta_collapsed = True
 
     def _show_placeholder(self) -> None:
         for w in (self._meta_pane, self._combo_pane, self._action_row):

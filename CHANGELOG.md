@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.26] — 2026-06-13
+
+### Added
+- **Bundle metadata + Loadout panel is now collapsible** in the
+  combo editor window. Click the gold header to fold the bundle
+  name / description / loadout block away — the combo editor
+  below grows into the freed vertical space.
+- **Combo metadata block is now collapsible** inside the combo
+  editor itself. Click the "▼ Combo metadata" header to hide
+  Combo ID / Name / Category / Difficulty / Mode / Step Window /
+  Description, leaving only the steps or priority-tier editor
+  visible. Useful once the combo is configured and you're
+  iterating on the step list.
+
 ## [0.6.4-beta.25] — 2026-06-13
 
 ### Fixed
@@ -1151,6 +1165,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.26]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.26
 [0.6.4-beta.25]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.25
 [0.6.4-beta.24]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.24
 [0.6.4-beta.23]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.23
