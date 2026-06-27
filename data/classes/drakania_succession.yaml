@@ -1306,11 +1306,10 @@ skills:
       during cooldown) Air Attack Down Attack 22.08% damage in PvP only'
   prime_ascent:
     name: 'Prime: Ascent'
-    input: ↓ + C Hold C with 3 or more ions stockpiled to consume ions and perform extra attacks
+    input: S + C (hold C with 3+ ions for extra attacks)
     keys:
     - s
     - c
-    - hold
     protection: SA
     cc:
     - knockdown
@@ -1382,11 +1381,10 @@ skills:
       (PvE only) Down Attack 37.54% damage in PvP only
   prime_brimbolt_strike:
     name: 'Prime: Brimbolt Strike'
-    input: SHIFT + RMB Hold RMB to charge ions SHIFT + RMB during other skills to perform instantly
+    input: SHIFT + RMB (hold RMB to charge ions)
     keys:
     - shift
     - rmb
-    - hold
     protection: SA
     cc:
     - bound
@@ -1486,11 +1484,10 @@ skills:
       PvP only'
   prime_markthanan_s_flourish:
     name: 'Prime: Markthanan''s Flourish'
-    input: SHIFT + LMB Hold LMB to charge ions SHIFT + LMB during other skills to perform instantly
+    input: SHIFT + LMB (hold LMB to charge ions)
     keys:
     - shift
     - lmb
-    - hold
     protection: SA
     cc:
     - floating
@@ -1557,10 +1554,9 @@ skills:
       Knockback on hits (Nullified during cooldown) 49.69% damage in PvP only Damage reduced during cooldown'
   prime_sundering_claw:
     name: 'Prime: Sundering Claw'
-    input: C Hold C to charge ions C after other skills to perform instantly
+    input: C (hold to charge ions; cast after other skills for instant)
     keys:
     - c
-    - hold
     protection: FG
     cc:
     - knockdown
@@ -1606,11 +1602,12 @@ skills:
       player. However, only 50% of Black Spirit's Rage will be transferred.
   refraction:
     name: Refraction
-    input: '← or → + RMB ← or → + RMB while charging ions with Brimbolt Strike, Eviscerate, Markthanan''s Flourish, or Prime:
-      Sundering Claw Cancel with any other key while moving'
+    input: A + RMB (left) or D + RMB (right); cancel with any movement key
     keys:
-    - a
     - d
+    - rmb
+    keys_alt:
+    - a
     - rmb
     protection: iframe
     cooldown_ms: 4000

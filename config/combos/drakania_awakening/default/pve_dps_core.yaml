@@ -1,0 +1,58 @@
+combo_id: pve_dps_core
+class: Drakania
+spec: Awakening
+bundle_id: default
+category: pve
+name: 'PvE — Core DPS Combo (Hex → Drag → Legacy)'
+description: |
+  Awakening Drakania PvE rotation (guide courtesy of OP
+  Brightflame). This is the *core* sequence — always optimal
+  for protection, DPS, cancelling and flowing. Run it as a
+  loop; for the extended/filler version see the extended combo
+  file.
+
+  Stance flow:
+    Hexeblood (red) → Doombringer → Dragonblood (blue) →
+    Legacy (back to red).
+
+  Sequence:
+    W+RMB > W+E > SHIFT+F > S+F > S+RMB > SHIFT+RMB > F >
+    LMB+RMB > SHIFT+E > SHIFT+Q > S+E > S+LMB > S+F (hold for
+    Storm Piercer flow) > SPACE (Legacy → red)
+
+  Lower-end spot variation: 1 hit of S+RMB then 1 hit of
+  SHIFT+RMB is enough before going into F → LMB+RMB.
+
+  Safety: the Hexeblood string is protection-optimal; don't
+  deviate at high-end spots.
+difficulty: advanced
+combo_window_ms: 400
+steps:
+- skill: storm_maul
+  note: W+RMB. iframe KD + DA. Opener.
+- skill: tectonic_slam
+  note: W+E (Hexeblood). SA full-CC.
+- skill: extinction
+  note: SHIFT+F. KD + AA + -DR debuff + atk/cast speed.
+- skill: sundering_roar
+  note: S+F (Hexeblood). FG DA. Crit + back attack damage addon.
+- skill: storm_piercer
+  note: S+RMB (Hexeblood). FG stun + DA. Full string for extended FG.
+- skill: spiteful_soul
+  note: SHIFT+RMB. SA float. Full string for extended FG.
+- skill: crackling_flame
+  note: F.
+- skill: flow_concealed_claw
+  note: LMB+RMB after the spear chain. Hexeblood flow.
+- skill: flow_obliterate
+  note: SHIFT+E. SA bound + DA. Last Hex skill.
+- skill: doombringer
+  note: SHIFT+Q. iframe full-CC payload. Transition to Dragonblood.
+- skill: tectonic_slam
+  note: S+E (Dragonblood). Tectonic Slam — back attack / crit dmg addon.
+- skill: savage_decree
+  note: S+LMB (Dragonblood). Hold LMB to continue.
+- skill: storm_piercer
+  note: S+F (hold) — Storm Piercer flow after Sundering Roar.
+- skill: legacy
+  note: SPACE. Legacy back to Hexeblood. Restart the loop.

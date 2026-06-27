@@ -4,6 +4,31 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.31] — 2026-06-13
+
+### Fixed
+- **Drakania skills had `'hold'` as a literal key** in the YAML
+  for skills that charge ions or have a hold-to-continue
+  modifier. The trainer would never satisfy these chords. The
+  affected (used) Succession skills are fixed:
+  - `prime_brimbolt_strike`: `[shift, rmb, hold]` → `[shift, rmb]`
+  - `prime_sundering_claw`: `[c, hold]` → `[c]`
+  - `prime_markthanan_s_flourish`: `[shift, lmb, hold]` → `[shift, lmb]`
+  - `prime_ascent`: `[s, c, hold]` → `[s, c]`
+- **Both Drakania `refraction` entries had `← or →` flattened
+  into `[a, d, rmb]`.** Now `[d, rmb]` (right) primary,
+  `[a, rmb]` (left) alt — same fix pattern as Maegu's
+  Bared Claws / Flower Shroud.
+
+### Changed
+- **Awakening Drakania combo is now sequence mode.** The
+  Hexeblood → Doombringer → Dragonblood → Legacy loop is a
+  fixed ordered string, not a priority/cooldown rotation; the
+  priority-mode framing was wrong. Two sequence-mode files:
+  - `pve_dps_core.yaml` — the protection-optimal core string.
+  - `pve_dps_extended.yaml` — adds Refraction, Tip of the
+    Scale, Cloud's Strife, and a second Spiteful Soul.
+
 ## [0.6.4-beta.30] — 2026-06-13
 
 ### Added
@@ -1272,6 +1297,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.31]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.31
 [0.6.4-beta.30]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.30
 [0.6.4-beta.29]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.29
 [0.6.4-beta.28]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.28

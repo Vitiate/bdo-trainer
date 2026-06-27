@@ -1045,11 +1045,12 @@ skills:
       player. However, only 50% of Black Spirit's Rage will be transferred.
   refraction:
     name: Refraction
-    input: '← or → + RMB ← or → + RMB while charging ions with Brimbolt Strike, Eviscerate, Markthanan''s Flourish, or Prime:
-      Sundering Claw Cancel with any other key while moving'
+    input: A + RMB (left) or D + RMB (right); cancel with any movement key
     keys:
-    - a
     - d
+    - rmb
+    keys_alt:
+    - a
     - rmb
     protection: iframe
     cooldown_ms: 4000

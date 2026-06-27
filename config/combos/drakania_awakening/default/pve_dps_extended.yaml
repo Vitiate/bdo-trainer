@@ -1,0 +1,68 @@
+combo_id: pve_dps_extended
+class: Drakania
+spec: Awakening
+bundle_id: default
+category: pve
+name: 'PvE — Extended DPS Combo (with Refraction / Tip of Scale / Cloud Strife)'
+description: |
+  Extended version of the core PvE rotation (guide courtesy of
+  OP Brightflame). Adds Refraction (A/D+RMB), Tip of the Scale
+  (SHIFT+LMB in Dragonblood), and Flow: Cloud's Strife
+  (LMB+RMB after Tip of the Scale) for higher damage and more
+  flexibility on the Dragonblood side.
+
+  Sequence:
+    W+RMB > W+E > SHIFT+F > S+F > S+RMB > SHIFT+RMB > F >
+    LMB+RMB > SHIFT+E > SPACE > SHIFT+Q > SHIFT+RMB > A/D+RMB
+    > SHIFT+LMB > LMB+RMB (flow) > F > S+E > S+LMB > S+F (hold
+    for Storm Piercer flow) > SPACE (Legacy → red)
+
+  Dragonblood Sundering Roar may not be off cooldown depending
+  on attack speed — fill with another Storm Piercer / Savage
+  Decree pass while waiting.
+
+  Save Decree is getting FG protection in next week's patch,
+  so it can be added after Spiteful Soul for additional dps.
+difficulty: advanced
+combo_window_ms: 400
+steps:
+- skill: storm_maul
+  note: W+RMB. iframe KD + DA. Opener.
+- skill: tectonic_slam
+  note: W+E (Hexeblood). SA full-CC.
+- skill: extinction
+  note: SHIFT+F. KD + AA + -DR debuff + atk/cast speed.
+- skill: sundering_roar
+  note: S+F (Hexeblood). FG DA.
+- skill: storm_piercer
+  note: S+RMB (Hexeblood). FG stun + DA. Full string.
+- skill: spiteful_soul
+  note: SHIFT+RMB. SA float. Full string.
+- skill: crackling_flame
+  note: F.
+- skill: flow_concealed_claw
+  note: LMB+RMB. Hexeblood flow.
+- skill: flow_obliterate
+  note: SHIFT+E. SA bound + DA.
+- skill: legacy
+  note: SPACE. Legacy — extra cancel/reset.
+- skill: doombringer
+  note: SHIFT+Q. iframe full-CC payload. Transition to Dragonblood.
+- skill: spiteful_soul
+  note: SHIFT+RMB (Dragonblood). SA continued damage.
+- skill: refraction
+  note: A+RMB or D+RMB. iframe reposition.
+- skill: tip_of_the_scale
+  note: SHIFT+LMB (Dragonblood). SA KD + DA.
+- skill: flow_cloud_s_strife
+  note: LMB+RMB after Tip of the Scale. Dragonblood flow.
+- skill: crackling_flame
+  note: F (Dragonblood).
+- skill: tectonic_slam
+  note: S+E (Dragonblood). Back attack damage / crit dmg addon.
+- skill: savage_decree
+  note: S+LMB (Dragonblood). Hold LMB to continue.
+- skill: storm_piercer
+  note: S+F (hold) — Storm Piercer flow after Sundering Roar.
+- skill: legacy
+  note: SPACE. Legacy back to Hexeblood. Restart the loop.
