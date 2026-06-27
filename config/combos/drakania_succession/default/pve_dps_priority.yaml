@@ -1,0 +1,110 @@
+combo_id: pve_dps_priority
+class: Drakania
+spec: Succession
+bundle_id: default
+category: pve
+mode: priority
+name: 'PvE — DPS Priority'
+description: |
+  Cooldown-driven Succession Drakania PvE rotation.
+
+  Tier 0 (Top Priority — freestyle) — Brimbolt Strike + Flow:
+    Brimbolt Wave for mob-dense pulls; Blazing Strike;
+    Sundering Claw. These dictate the rotation; everything
+    else slots around their cooldowns.
+
+  Tier 1 (Core Burst) — Eviscerate, Markthanan's Flourish,
+    Markthanan's Dominion, Brimbolt Annihilation, Soaring
+    Claw. Ascent has a long 12s cooldown so it falls out of
+    sync — usually cast on its own.
+
+  Tier 2 (Engages / Cancels) — Abyssal Fang and Brimbolt Raze
+    are the engage / reposition tools, but Abyssal Fang's
+    main job in the rotation is as an *animation cancel* for
+    Flourish and Dominion. Brimbolt Raze opens with KD + pull.
+
+  Tier 3 (Fillers) — Skewer, Omnislash. Use as needed when
+    higher-priority skills are on cooldown.
+
+  Notable Cancels (prefers_after):
+    Sundering Claw  ← after Markthanan's Flourish / Dominion
+                      (extending-flow cancel)
+    Abyssal Fang    ← after Flourish / Dominion (quickcast
+                      animation cancel of the long ending)
+    Ascent          ← after Abyssal Fang (Fang-cancel into
+                      Ascent — preferred over the Flourish
+                      flow which is slower)
+    Markthanan's    ← after Abyssal Fang (Fang-cancel into
+      Dominion         quickcast Dominion)
+
+  Safety: Markthanan's Dominion is a standing skill — locking
+  yourself in place can get you killed at high-end spots.
+  Same goes for fully flowing through Ascent's heal at
+  dangerous spots.
+priority:
+  - tier: Top Priority
+    description: |
+      Freestyle. Brimbolt Strike + Brimbolt Wave first when
+      mobs are dense; then Blazing Strike, then Sundering
+      Claw. Cycle these by cooldown.
+    skills:
+      - skill: prime_brimbolt_strike
+        note: SHIFT+RMB (hold). SA, bound + pull + DA — top priority for dense pulls.
+      - skill: flow_brimbolt_wave
+        note: LMB+RMB after Brimbolt Strike. SA bound chain.
+        requires_prev: prime_brimbolt_strike
+        requires_window_ms: 1500
+      - skill: prime_blazing_strike
+        note: S+RMB. FG bound + DA.
+      - skill: prime_sundering_claw
+        note: C (hold). FG KD + pull + DA. Cancels out of Flourish / Dominion.
+        prefers_after:
+          - prime_markthanan_s_flourish
+          - prime_markthanan_s_dominion
+        prefers_window_ms: 1500
+
+  - tier: Core Burst
+    description: |
+      Cycle by cooldown around the top-priority skills.
+      Ascent's 12s CD desyncs from the rest; cast on its own
+      when up, ideally Fang-cancelled in.
+    skills:
+      - skill: prime_eviscerate
+        note: SHIFT+F. FG KD + AA.
+      - skill: prime_markthanan_s_flourish
+        note: SHIFT+LMB (hold). SA float + DA + AA.
+      - skill: prime_markthanan_s_dominion
+        note: SHIFT+E. SA knockback + stun + DA. Quickcast after Fang.
+        prefers_after: prime_abyssal_fang
+        prefers_window_ms: 1200
+      - skill: prime_ascent
+        note: S+C (hold). SA KD + bound + pull. Quickcast after Fang (better than Flourish flow).
+        prefers_after: prime_abyssal_fang
+        prefers_window_ms: 1200
+      - skill: brimbolt_annihilation
+        note: S+E. FG KD + DA + AA.
+      - skill: soaring_claw
+        note: SHIFT+X. Float + AA.
+
+  - tier: Engages / Cancels
+    description: |
+      Repositioning and animation-cancel role. Abyssal Fang
+      is the main animation-cancel for Flourish / Dominion
+      endings — it's preferred while those are recently cast.
+    skills:
+      - skill: prime_abyssal_fang
+        note: E. Stiffen + DA + AA. Top priority as animation-cancel after Flourish/Dominion.
+        prefers_after:
+          - prime_markthanan_s_flourish
+          - prime_markthanan_s_dominion
+        prefers_window_ms: 1500
+      - skill: prime_brimbolt_raze
+        note: W+RMB. FG KD + pull + DA + spin. Engage/reposition.
+
+  - tier: Filler
+    description: Cycle while top-priority and core-burst skills are on cooldown.
+    skills:
+      - skill: prime_skewer
+        note: RMB. Knockback. Filler / poke.
+      - skill: prime_omnislash
+        note: S+LMB. FG KD + DA.

@@ -1182,10 +1182,11 @@ skills:
       1 hits Down Attack 73.67% damage in PvP only'
   storm_piercer:
     name: Storm Piercer
-    input: '↓ + RMB in Dragonblood Hold F after Dragonblood: Sundering Roar'
+    input: 'S + RMB in Dragonblood; or F (hold) after Dragonblood: Sundering Roar'
     keys:
     - s
     - rmb
+    keys_alt:
     - f
     protection: FG
     cc:

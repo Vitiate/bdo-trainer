@@ -4,6 +4,37 @@ All notable changes to this project are documented in this file.
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.4-beta.30] — 2026-06-13
+
+### Added
+- **Succession Drakania PvE DPS priority combo.** 14 skills
+  across 4 tiers — Top Priority (freestyle: Brimbolt Strike +
+  Brimbolt Wave for dense pulls, Blazing Strike, Sundering
+  Claw), Core Burst (Eviscerate, Flourish, Dominion, Ascent,
+  Annihilation, Soaring Claw), Engages/Cancels (Abyssal Fang
+  as animation-cancel, Brimbolt Raze), Filler (Skewer,
+  Omnislash). Cancel-flow boosts encoded:
+  - Sundering Claw prefers after Flourish / Dominion.
+  - Abyssal Fang prefers after Flourish / Dominion (the
+    animation-cancel role).
+  - Ascent and Dominion both prefer after Abyssal Fang (the
+    quickcast Fang-cancel-in).
+  - Flow: Brimbolt Wave hard-gated to require Brimbolt Strike
+    within 1.5 s.
+- **Awakening Drakania PvE DPS priority combo.** 15 skills
+  across 5 tiers covering the Hexeblood → Doombringer →
+  Dragonblood → Legacy stance loop. Same skill IDs cast in
+  both stances (Tectonic Slam, Sundering Roar, Storm Piercer,
+  Savage Decree) appear once. LMB+RMB is shared between
+  `flow_concealed_claw` (Hex) and `flow_cloud_s_strife`
+  (Drag); each is gated via `requires_prev` so only one is
+  legal at a time. (Guide courtesy of OP Brightflame.)
+
+### Fixed
+- **Awakening Drakania `storm_piercer` keys flattened** from
+  "S+RMB in Dragonblood; F hold after Sundering Roar" into
+  `[s, rmb, f]`. Primary is now `[s, rmb]` with `[f]` as alt.
+
 ## [0.6.4-beta.29] — 2026-06-13
 
 ### Changed
@@ -1241,6 +1272,7 @@ The original file is moved to `config/classes/_legacy/`.
 
 Initial editor + setup-guide release. See git history for details.
 
+[0.6.4-beta.30]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.30
 [0.6.4-beta.29]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.29
 [0.6.4-beta.28]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.28
 [0.6.4-beta.27]: https://github.com/Vitiate/bdo-trainer/releases/tag/v0.6.4-beta.27
